@@ -1,0 +1,739 @@
+2-stage decision task
+2nd-order rule acquisition
+aberrant behavior checklist - community
+abstract/concrete judgment: bilingual
+abstract/concrete task
+acquired equivalence
+action imitation task
+action observation task
+action-perception loop
+acupuncture task
+Adaptation of marshmellow test
+adaptive n-back task
+adolescent symptom inventory
+Adult ADHD Clinical Diagnostic Scale
+Adult ADHD Self-Report Scale
+adult attachment interview
+adult behavior checklist
+Adult's Penn Word Memory Test Delayed Memory
+alternating runs paradigm
+ambiguous figure task
+American National Adult Reading Test
+analogical reasoning task
+Angling Risk Task
+animal naming task
+ANT task
+antisaccade/prosaccade task
+apparent verticality judgment
+articulatory suppression task
+artificial grammar learning task
+associative memory encoding task
+Ataxia
+attention bias
+attention networks test
+attention switching task
+attentional blink paradigm
+audio narrative
+audio-visual target detection task
+auditory masking task
+auditory scene perception
+auditory temporal discrimination task
+autism diagnostic interview - revised
+autism diagnostic observation schedule
+autism spectrum quotient
+autobiographical memory task
+AX-CPT task
+AX-DPX
+backward digit span task
+backward masking
+balloon analogue risk task
+Barratt Impulsiveness Scale
+battelle developmental inventory
+Becker-Degroot-Marschak (BDM) procedure
+beery-buktenica developmental test of visual-motor integration
+behavioral approach/inhibition systems
+behavioral investment allocation strategy
+behavioral rating inventory of executive function
+Benton facial recognition test
+Bickel Titrator
+big five questionnaire
+big/little circle
+bimanual coordination task
+Biological Motion Perception (Passive Viewing) Paradigm
+biological motion task
+Birkbeck Reversible Sentence Comprehension Test
+Birmingham object recognition battery
+Bistability
+Bistable percept paradigm
+block design test
+block tapping test
+Blocked channel-selection task
+body image self-reflection task
+boston naming test
+braille reading task
+breath-holding
+Brief Psychiatric Rating Scale
+brief self control scale
+brief symptom inventory
+Brixton spatial anticipation test
+broad autism phenotype questionnaire
+broader phenotype autism symptom scale
+California Verbal Learning Test
+California Verbal Learning Test-II
+Cambridge Face Memory Test
+Cambridge Gambling Task
+Cambridge Neuropsychological Test Automated Battery
+Cambridge risk task
+capsaicin-evoked pain
+CatBat task
+categorization task
+category fluency test
+Cattell's Culture Fair Intelligence Test
+Center for Epidemiologic Studies Depression Scale
+Change Detection Task
+Chapman Infrequency Scale
+Chapman Magical Ideation Scale
+Chapman Perceptual Aberration Scale
+Chapman Physical Anhedonia Scale
+Chapman Social Anhedonia Scale
+chewing/swallowing
+Child Behavior Checklist
+Children's Communication Checklist
+Children's Memory Scale
+Children's Psychiatric Rating Scale
+Children's Yale-Brown Obsessive Compulsive Scale
+chimeric animal Stroop task
+choice reaction time task
+choice task between risky and non-risky options
+classification probe without feedback
+Clinical Evaluation of Language Fundamentals-3
+clock drawing task
+Cognitive Reflection Test
+coherent motion
+Coherent/Incoherent discourse distinction task
+cold pressor test
+cold stimulation
+color naming task
+Color Trails Test
+color-discrimination task
+color-word stroop task
+color-word stroop with task switching
+Columbia Card Task
+Communication and Symbolic Behavior Scales Development Profile
+complex span test
+complex trait judgment task
+Comprehensive Test of Phonological Processing
+conditional stop signal task
+conjunction search task
+Conners 3rd Edition
+Conners Comprehensive Behavior Rating Scales
+consensus decision-making task
+contextual cueing task
+contextual semantic priming task
+Continuous Performance Task
+Continuous Performance Test - AX version
+continuous recognition paradigm
+contour integration task
+contour interpolation task
+contrast detection task
+contrast sensitivity test
+copying task
+Corpus analysis
+Corsi Blocks
+counterconditioning
+counting Stroop task
+Counting/Calculation
+covert naming task
+Covert verb generation task
+criteria task
+cross modality
+cue approach task
+cued explicit recognition
+cups task
+cyberball task
+deception task
+deductive reasoning task
+delay conditioning
+Delay Discounting Titration
+delayed intention task
+delayed match to sample task
+delayed memory task
+delayed nonmatch to sample task
+delayed recall test
+delayed response task
+deterministic classification
+Deviance Detection
+devil's task
+dichotic listening task
+Dickman Impulsivity Inventory
+Dietary Decisions Task
+Differential Ability Scales
+digit cancellation task
+digit span task
+digit/symbol coding test
+Dimensions task
+directed forgetting task
+Discourse content questions
+Distraction paradigm (capture)
+divided auditory attention
+doors and people test
+DOSPERT
+dot motion task
+dot pattern expectancy task
+drawing
+drawing from memory task
+dual sensitization
+dual-task paradigm
+dual-task weather prediction
+duckworth's short grit scale
+Early Childhood Behavioral Questionnaire
+Early Development Interview (EDI)
+Early Social and Communication Scales
+Eating questionnaire
+eating/drinking
+Eckblad and Chapman's Hypomanic Personality Scale
+Edinburgh Handedness Inventory
+electric stimulation
+embedded figures test
+emotion expression identification
+emotion processing fMRI task paradigm
+Emotion Recognition Task
+Emotion Regulation Questionnaire
+Emotion Regulation Task
+emotional localizer fMRI task paradigm
+emotional regulation task
+encoding task
+episodic recall
+Eriksen flanker task
+Expressive One Word-Picture Vocabulary Test
+Expressive One-Word Picture Vocabulary Test
+Expressive Vocabulary Test
+extradimensional shift task
+Eye tracking paradigms
+Eysenck Personality Questionnaire
+Face Identification task
+face matching task
+face monitor/discrimination
+face n-back task
+face working memory task
+facial recognition task
+Fagerstrom Test for Nicotine Dependence
+false belief task
+False Belief task
+fame judgment task
+figure ground task
+film viewing
+finger tapping task
+Fitts task
+Five Facet Mindfulness Questionnaire
+fixation task
+flashing checkerboard
+flexion/extension
+following commands
+foreshortened view task
+forward digit span task
+free word list recall
+functional localizer fMRI tasks
+future time perspective questionnaire
+gambling fMRI task paradigm
+gambling task
+gating
+gender discrimination task
+general knowledge task
+Glasgow Coma Scale
+global-local task
+gm Paradigm
+go/no-go task
+Graded Naming Test
+grasping task
+Gray Oral Reading Test - 4
+Gustatory stimulation with liquid tastes or flavors
+Halstead-Reitan Battery
+Hamilton Psychiatric Rating Scale for Depression
+hand chirality recognition
+hand side recognition
+haptic illusion task
+Hayling sentence completion test
+heat sensitization/adaptation
+heat stimulation
+Hidden State Decision Making Task
+hierarchical rule task
+Holt and Laury Risk Titrator
+Hooper visual organization test
+Hopkins Symptom Checklist
+horizontal checkerboard
+Hungry Donkey Task
+Hypomanic Personality Scale
+I7 impulsiveness and venturesomeness questionnaire
+ideational praxis task
+image monitoring
+imagined movement
+imagined objects/scenes
+immediate memory task
+immediate recall test
+Implicit Association Task
+incentive modulated antisaccade task
+Incidental encoding task
+inductive reasoning aptitude
+Information Sampling Task
+instrumental learning task
+intensity for somatosensory stimulation
+Inter-dimensional/Extra-dimensional Shift Task
+Inter-modal selective attention task
+intermodal preferential looking paradigm
+International Affective Picture System
+intradimensional shift task
+Iowa Gambling Task
+Ishihara plates for color blindness
+isometric force
+item recognition task
+Joint Attention / Social and Nonsocial Orienting Task
+Judgment of Line Orientation Task
+Kanizsa figures
+Kaufman Brief Intelligence Test
+keep-track task
+Kirby Delay Discounting Task
+Landmark task
+language processing fMRI task paradigm
+lateral facilitation
+Leiter International Performance Scale
+length match task
+letter case judgment task
+letter comparison task
+letter fluency test
+letter memory
+letter n-back task
+letter naming task
+letter number sequencing
+lexical decision task
+Listening and reading task
+listening span task
+living-nonliving task
+living/nonliving judgment on mirror-reversed and plain-text words
+local computation
+logical reasoning task
+Loneliness Rating Scale
+MacArthur Communicative Development Inventories
+Manipulation of coherence and cohesion
+Manipulation of individual words
+Manipulation of ISI
+Manipulation of language and non-verbal behaviors
+Manipulation of predictability
+Manipulation of predictability and acceptability
+match to sample visual search
+matching familiar figures test
+matching pennies game
+Maudsley Obsessive Compulsive Inventory
+McGurk effect
+Measured Emotion Differentiation Test
+mechanical stimulation
+meditation task
+memory guided saccade task
+memory span test
+mental arithmetic task
+mental imagery task
+mental rotation task
+mentalizing task
+MicroCog
+micturition task
+Mindful Attention and Awareness Scale
+Mini Mental State Examination
+minimal feature match task
+Minnesota Multiphasic Personality Inventory
+mirror reading task
+mirror tracing task
+mixed event-related probe
+mixed gambles task
+modified Erickson Scale of Communication Attitudes
+monetary incentive delay task
+Montreal Cognitive Assessment
+Moral Dilemma Task
+Morris water maze
+motion discrimination task
+Motion processing
+motor fMRI task paradigm
+Motor Screening Task
+Motor Selective Stop Signal Task
+motor sequencing task
+motorphotic
+Mouse tracking paradigms
+Mullen Scales of Early Learning
+Muller-Lyer Illusion
+multi-attribute decision making task
+multi-attribute reward-guided decision task
+Multi-class n-back task
+multi-object localizer task
+multi-source interference task
+Multidimensional Personality Questionnaire
+Multiplication task
+multisource interference task
+multistability
+music comprehension/production
+n-back task
+naming (covert)
+naming (overt)
+Naming tasks
+NART-R
+National Adult Reading Test
+navigation task
+negative priming task
+network traversal task
+NIH Toolbox 2-Minute Walk Endurance Test
+NIH Toolbox 4-Meter Walk Gait Speed Test
+NIH Toolbox 9-Hole Pegboard Dexterity Test
+NIH Toolbox Dimensional Change Card Sort Test
+NIH Toolbox Dynamic Visual Acuity Test
+NIH Toolbox General Life Satisfaction Survey
+NIH Toolbox Grip Strength Test
+NIH Toolbox Hearing Handicap Inventory
+NIH Toolbox Hearing Threshold Test
+NIH Toolbox List Sorting Working Memory Test
+NIH Toolbox Meaning and Purpose Survey
+NIH Toolbox Odor Identification Test
+NIH Toolbox Oral Reading Recognition Test
+NIH Toolbox Oral Symbol Digit Test
+NIH Toolbox Pain Intensity Survey
+NIH Toolbox Pain Interference Survey
+NIH Toolbox Picture Sequence Memory Test
+NIH Toolbox Picture Vocabulary Test
+NIH Toolbox Positive Affect Survey
+NIH Toolbox Standing Balance Test
+NIH Toolbox Taste Intensity Test
+NIH Toolbox Vision-Related Quality of Life Survey
+NIH Toolbox Visual Acuity Test
+NIH Toolbox Words-in Noise Test
+nine-hole peg test
+non-choice task
+non-painful electrical stimulation
+non-painful thermal stimulation
+non-spatial cuing paradigm
+nonword repetition task
+Novelty detection task
+NPU-threat test
+Numerical Working Memory Task
+numerosity estimation task
+object alternation task
+object classification
+object decision task
+object n-back
+object naming task
+object one-back task
+object perception task
+Object Rating Task
+object recognition task
+object working memory task
+object-discrimination task
+oculomotor delayed response
+odd-even task
+oddball task
+olfactory monitoring/discrimination
+One Touch Stockings of Cambridge
+operant task
+operation span task
+orientation match task
+orientation test
+orthographic discrimination
+orthographic task
+overlapping figures task
+Overt word repetition
+Paced Auditory Serial Addition Test
+pain monitor/discrimination task
+paired associate learning
+paired associate recall
+pantomime task
+Parallel/serial search
+parity judgment task
+Parrott Scale
+Partial Report Procedure
+passive avoidance task
+passive listening
+passive viewing
+pattern comparison task
+pavlovian conditioning task
+PDD Behavior Inventory
+Peabody Picture Vocabulary Test
+PEBL Perceptual Vigilance Task
+Penn Conditional Exclusion Test
+Penn continuous performance task
+Penn Emotion Recognition Task
+Penn Face Memory Test
+Penn Facial Memory Test Delayed Memory
+Penn Fractal N-Back
+Penn Matrix Reasoning Test
+Penn Motor Praxis
+Penn Visual Object Learning Test
+Penn Visual Object Learning Test Delayed Memory
+Penn Vocabulary Test
+Penn Word Memory Test
+Penn’s Logical Reasoning Test
+perceptual closure task
+perceptual discrimination task
+perceptual organization
+phasic pain stimulation
+phoneme detection task
+phonemic fluency task
+phonetic discrimination task
+phonological discrimination
+phonological task
+Piaget's Water Jar Task
+picture naming task
+picture-word Stroop test
+pitch/monitor discrimination
+Pittsburgh Sleep Quality Index
+Plus-minus
+pointing
+Porteus maze test
+position of gap match task
+Positive and Negative Affect Scale
+Posner cueing task
+predictive-inference helicopter task
+Preschool Language Scale
+Probabilistic classification task
+Probabilistic gambling task
+probabilistic reversal learning task
+Probabilistic Selection Task
+problem solving task
+prospective memory task
+prototype distortion task
+pseudoword naming task
+psychological refractory period (PRP) paradigm
+psychophysics task
+pursuit rotor task
+pyramids and palm trees task
+random number generation task
+rapid automatized naming test
+rapid serial object transformation
+rapid serial visual presentation task
+Rapid Visual Information Processing
+Raven's Advanced Progressive Matrices
+Re-entrant processing
+Reaction Time
+reading (covert)
+reading (overt)
+reading span task
+reappraisal task
+recall test
+recency judgment task
+recitation/repetition (covert)
+recitation/repetition (overt)
+recognition memory test
+Regularity and Change Detection
+regulated heat stimulation
+relational processing fMRI task paradigm
+relational reasoning task
+remember/know task
+response mapping task
+rest eyes closed
+rest eyes open
+retinotopic mapping task
+retinotopic representation
+retrieval-induced forgetting task
+reversal learning task
+reversal weather prediction
+Rey Auditory Verbal Learning Task
+Rey-Ostereith Complex Figure Test
+Reynell Developmental Language Scales
+rhyme verification task
+risky gains task
+Rivermead Behavioural Memory Test
+route learning
+roving somatosensory oddball task
+rubber hand illusion
+Running Memory
+Salthouse and Babcock Listening Span task
+same-different task
+Scale for the Assessment of Negative Symptoms
+Scale for the Assessment of Positive Symptoms
+scene recognition task
+Selection-Optimization-Compensation (SOC) questionnaire
+selective attention task
+self monitoring task
+self ordered pointing task
+self regulation questionnaire
+semantic anomaly judgement task
+semantic association task
+semantic classification task
+semantic decision task
+semantic fluency task
+semantic memory task
+semantic relatedness task
+semantic task
+Sensory Profile
+sentence completion test
+sentence-picture matching task
+Sentence/discourse content test
+Sentence/nonword language localizer
+Sequence encoding
+sequence recall/learning
+Sequence reproduction
+sequential shape matching
+serial reaction time task
+set-shifting task
+shadowing task
+Shift Task
+Short Penn Continuous Performance Test-Number and Letter Version
+short-term memory task
+Simon task
+simple reaction time task
+Simple span task
+Single item food choice task
+single-task weather prediction
+size match task
+social bargaining fMRI task
+social cognition (theory of mind) fMRI task paradigm
+Social Communication Questionnaire
+Social Competence Questionnaire
+social influence for food preferences task
+social judgment of faces task
+social judgment task
+Social localizer fMRI task paradigm
+Social Norm Processing Task
+Social Responsiveness Scale
+source memory test
+Space Fortress
+Space Fortress with Oddball
+span/supra-span test
+Spatial cuing paradigm
+spatial delayed response task
+spatial localizer fMRI task paradigm
+spatial location/discrimination
+spatial n-back task
+Spatial Recognition Memory
+spatial span test
+spatial working memory localizer task
+spatial working memory task
+Speech Detection
+spelling task
+Spielberger's State-Trait Anxiety Questionnaire
+standard localizer fMRI task paradigm
+Stanford Leisure-Time Activity Categorical Item
+Stanford-Binet Intelligence Scales
+Sternberg delayed recognition task
+Sternberg Directed Forgetting
+Sternberg Item Recognition Task
+Sternberg Recent Probes
+stimulus selective stop signal task
+Stockings of Cambridge Task
+stop signal task
+Stop signal task with dot motion discrimination
+stop signal task with letter naming
+stop signal task with pseudo word naming
+stop signal walking task with stroop
+stop-change task
+Stroop task
+Structured Clinical Interview for Diagnostic and Statistical Manual of Mental Disorders (DSM-IV)
+subjective emotional picture discrimination
+Surface properties of object paradigms
+sustained attention to response task
+Symbol Counter Task
+symbol-digit substitution
+Symptom Checklist-90-Revised
+synatcting and semantic fMRI task paradigm
+synchrony judgment task
+syntactic acceptability judgement task
+syntactic discrimination
+syntactic task
+tactile monitor/discrimination
+Tapping task
+target detection task
+task switching (3x2)
+task-switching
+Temperament and Character Inventory
+temporal discounting task
+temporal order judgment task
+ten item personality questionnaire
+Test of Adolescent and Adult Language
+Test of Early Language Development
+Test of Language Development
+test of variables of attention
+Test of Word Reading Efficiency
+theories of willpower scale
+theory of mind task
+thermal grill illusion
+think/no-think task
+Time Wall
+Time-series of response time
+Tobacco Craving Questionnaire
+tone counting
+Tone Detection (JND)
+Tone Matching
+tone monitor/discrimination
+tonic pain stimulation
+Tower of Hanoi
+Tower of London
+Tower of London Imagine
+trace conditioning
+Trail Making Test A and B
+Transitive inference task
+treatment self-regulation questionnaire
+Two item food choice task
+Ultimatum Game (UG)
+underlining test
+Unified Parkinson's Disease Rating Scale
+updating task
+UPPS-P Impulsivity Scale
+Uznadze haptic illusion task
+Vandenberg & Kuse Tasks
+verb generation task
+Verbal description of visual depiction
+verbal fluency task
+verbal working memory task
+Vernier discrimination task
+vertical checkerboard
+vibrotactile monitor/discrimination
+video games
+vigilance
+Vineland Adaptive Behavior Scales
+visual alignment task
+Visual Analogue Scales
+visual attention task
+visual illusion susceptibility
+Visual Object Learning Test
+Visual Patterns Test
+visual pursuit/tracking
+visual search task
+Visual world paradigm
+visually guided saccade task
+visuospatial cueing task
+Volatile Bandit
+WAIS Arithmetic
+WAIS Comprehension
+WAIS Digit Span
+WAIS Object Assembly
+WAIS Picture Arrangement
+WAIS Picture Completion
+WAIS Similarities
+WAIS Vocabulary
+WAIS-Information
+Warrington's Face/Word Recognition Test
+Wason card selection task
+Wechsler Abbreviated Scale of Intelligence
+Wechsler Adult Intelligence Scale - Revised
+Wechsler Adult Intelligence Scale-Revised
+Wechsler Intelligence Scale for Children - Revised
+Wechsler Memory Scale Fourth Edition
+whistling
+why/how task
+willingness to wait task
+WISC-R Mazes
+Wisconsin card sorting test
+word attack
+word comprehension task
+word fluency test
+word generation task
+word identification
+word one-back task
+word recognition task
+word stem completion (covert)
+word stem completion (overt)
+word-picture matching task
+word-picture verification task
+working memory fMRI task paradigm
+WRAT-4 Math Computation
+WRAT-4 Word Reading
+writing task
+Yellow Light Game
+Young Mania Rating Scale
+zimbardo time perspective inventory
+zoo map test
+Zuckerman Sensation Seeking Scale
