@@ -18,6 +18,12 @@ LISC is written in Python 3.
 - beautifulsoup4
 - nltk
 
+Optional dependencies, used for plots:
+- matplotlib
+- seaborn
+- scipy
+- wordcloud
+
 ## Install
 
 LISC will be posted to PYPI soon. For now, you can use it by cloning from Github.
