@@ -152,14 +152,20 @@ class Base(object):
             raise InconsistentDataError('Mismatch in number of exclusions and terms!')
 
 
-    def set_exclusions_file(self):
-        """Load exclusion words from a txt file."""
+    def set_exclusions_file(self, excl_f_name='exclusions'):
+        """Load exclusion words from a txt file.
+
+        Parameters
+        ----------
+        excl_f_name : str
+            xx
+        """
 
         # Unload previous terms if some are already loaded
         self.unload_exclusions()
 
         # Get exclusion words from module data file
-        exclusions = _terms_load_file('exclusions')
+        exclusions = _terms_load_file(excl_f_name)
 
         # Check that the number of exclusions matches n_terms
         if len(exclusions) != self.n_terms:
