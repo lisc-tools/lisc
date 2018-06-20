@@ -9,10 +9,11 @@ LISC is a package for performing automated meta-analyses of scientific papers, b
 
 ## Python Version
 
-LISC is written in Python 3.
+LISC is written in Python 3, and requires Python 3.3 or greater.
 
 ## Dependencies
 
+Requirements:
 - numpy
 - requests
 - beautifulsoup4
