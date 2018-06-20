@@ -9,7 +9,7 @@ with open(os.path.join('lisc', 'version.py')) as vf:
 
 long_description = \
 """
-TO DO.
+Literature Scanner.
 """
 
 setup(
@@ -22,10 +22,23 @@ setup(
     url = 'https://github.com/tomdonoghue/lisc',
     packages = find_packages(),
     license = 'TODO',
-    classifiers = ['TODO'],
+    classifiers = [
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Science/Research',
+        'Topic :: Scientific/Engineering',
+        'License :: OSI Approved :: Apache Software License',
+        'Operating System :: MacOS :: MacOS X',
+        'Operating System :: Microsoft :: Windows',
+        'Operating System :: POSIX :: Linux',
+        'Operating System :: Unix',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
+        ],
     download_url = 'https://github.com/tomdonoghue/lisc/releases',
-    keywords = ['TODO'],
-    install_requires = ['TODO'],
-    tests_require = ['pytest'],
-    #extras_require = TODO
+    keywords = ['web-scraping', 'meta-analysis', 'text-mining', 'scientific-publications', 'literature-mining', 'literature-review'],
+    install_requires = ['numpy', 'nltk', 'beautifulsoup4', 'requests'],
+    tests_require = ['pytest']
 )
