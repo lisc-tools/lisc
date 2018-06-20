@@ -7,10 +7,11 @@ import scipy.cluster.hierarchy as hier
 
 from lisc.core.db import check_db
 
-#########################################################################################
-#########################################################################################
+###################################################################################################
+###################################################################################################
 
-def plot_matrix(dat, x_labels, y_labels, square=False, figsize=(10, 12), save_fig=False, save_name='Matrix'):
+def plot_matrix(dat, x_labels, y_labels, square=False, figsize=(10, 12),
+                save_fig=False, save_name='Matrix', db=None):
     """Plot the matrix of percent asscociations between terms."""
 
     f, ax = plt.subplots(figsize=figsize)
@@ -28,7 +29,7 @@ def plot_matrix(dat, x_labels, y_labels, square=False, figsize=(10, 12), save_fi
         plt.savefig(s_file)
 
 
-def plot_clustermap(dat, cmap='purple', save_fig=False, save_name='Clustermap'):
+def plot_clustermap(dat, cmap='purple', save_fig=False, save_name='Clustermap', db=None):
     """Plot clustermap.
 
     Parameters
@@ -64,7 +65,7 @@ def plot_clustermap(dat, cmap='purple', save_fig=False, save_name='Clustermap'):
         cg.savefig(s_file, transparent=True)
 
 
-def plot_dendrogram(dat, labels, save_fig=False, save_name='Dendrogram'):
+def plot_dendrogram(dat, labels, save_fig=False, save_name='Dendrogram', db=None):
     """Plot dendrogram."""
 
     plt.figure(figsize=(3, 15))
