@@ -84,8 +84,8 @@ class Count(object):
             self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
                 _, self.meta_dat = \
                     scrape_counts(
-                        terms_lst_a = self.terms['A'].terms,
-                        excls_lst_a = self.terms['A'].exclusions,
+                        terms_lst_a=self.terms['A'].terms,
+                        excls_lst_a=self.terms['A'].exclusions,
                         db=db, verbose=verbose)
             self.square = True
 
@@ -94,10 +94,10 @@ class Count(object):
             self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
                 self.terms['B'].counts, self.meta_dat = \
                     scrape_counts(
-                        terms_lst_a = self.terms['A'].terms,
-                        excls_lst_a = self.terms['A'].exclusions,
-                        terms_lst_b = self.terms['B'].terms,
-                        excls_lst_b = self.terms['B'].exclusions,
+                        terms_lst_a=self.terms['A'].terms,
+                        excls_lst_a=self.terms['A'].exclusions,
+                        terms_lst_b=self.terms['B'].terms,
+                        excls_lst_b=self.terms['B'].exclusions,
                         db=db, verbose=verbose)
             self.square = False
 
@@ -156,21 +156,21 @@ class Count(object):
             print('{:12} - {:8.0f}'.format(term, self.terms[dim].counts[ind]))
 
 
-    def drop_data(self, n, dim='A'):
+    def drop_data(self, n_articles, dim='A'):
         """Drop terms based on number of article results.
 
         Parameters
         ----------
-        n : int
+        n_articles : int
             Mininum number of articles to keep each term.
         dim : 'A' or 'B', optional
             Which set of terms to operate upon.
         """
 
-        keep_inds = np.where(self.terms[dim].counts > n)[0]
+        keep_inds = np.where(self.terms[dim].counts > n_articles)[0]
 
-        self.terms[dim].terms = [self.terms[dim].terms[i] for i in keep_inds]
-        self.terms[dim].labels = [self.terms[dim].labels[i] for i in keep_inds]
+        self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
+        self.terms[dim].labels = [self.terms[dim].labels[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
         self.terms[dim].n_terms = len(self.terms[dim].terms)

@@ -1,9 +1,9 @@
 """Base object for LISC."""
 
 import pkg_resources as pkg
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 
-from lisc.core.utils import extract
+#from lisc.core.utils import extract
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################

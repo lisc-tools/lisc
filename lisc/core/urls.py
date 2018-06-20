@@ -40,14 +40,14 @@ usehistory : Whether to store findings on remote server.
 
 from lisc.core.errors import InconsistentDataError
 
-##########################################################################################
-##########################################################################################
+###################################################################################################
+###################################################################################################
 
-# Whether to add pubmed authentification details for ERP-SCANR tool
+# Whether to add pubmed authentification details for LISC tool
 AUTH = False
 
-##########################################################################################
-##########################################################################################
+###################################################################################################
+###################################################################################################
 
 class URLS(object):
     """Class to hold URL information for ERP SCANR project.
@@ -70,7 +70,8 @@ class URLS(object):
         Dictionary of all arguments (settings & values) that can be used in e-utils URL.
     """
 
-    def __init__(self, db=None, usehistory='n', retmax=None, field=None, retmode=None, auto_gen=False):
+    def __init__(self, db=None, usehistory='n', retmax=None, field=None,
+                 retmode=None, auto_gen=False):
         """Initialize the ncbi e-utils urls.
 
         Parameters
@@ -127,8 +128,8 @@ class URLS(object):
 
         Notes
         -----
-        - All possible settings are set as possible arguments to this function. For each of
-            these possible settings, all of which are given a value are saved out into the dictionary.
+        - All possible settings are set as possible arguments to this function.
+            For each  possible settings, each that is given a value is saved out to the dictionary.
         - The 'locals()' function returns a dictionary of variables in scope (in this function).
         - Using 'locals()' saves separately defining a list of possible variables, that
             would need to be maintained to make sure it matched the method arguments.
@@ -243,9 +244,8 @@ class URLS(object):
         fetch_base = _check_auth(self.eutils + 'efetch.fcgi?')
         self.fetch = fetch_base + '&'.join([self.args[arg] for arg in args_to_use])
 
-##########################################################################################
-##########################################################################################
-##########################################################################################
+###################################################################################################
+###################################################################################################
 
 def _check_auth(url):
     """Check for authorization, if so add registered details."""

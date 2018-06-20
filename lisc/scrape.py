@@ -11,10 +11,11 @@ from lisc.data import Data
 from lisc.core.urls import URLS
 from lisc.core.requester import Requester
 
-##############################################################################################################
-##############################################################################################################
+###################################################################################################
+###################################################################################################
 
-def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[], db='pubmed', verbose=False):
+def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
+                  db='pubmed', verbose=False):
     """Search through pubmed for all abstracts for co-occurence.
 
     Parameters
@@ -196,7 +197,8 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
 
     # Get e-utils URLS object
     hist_val = 'y' if use_hist else 'n'
-    urls = URLS(db=db, usehistory=hist_val, retmax=retmax, retmode='xml', field='TIAB', auto_gen=False)
+    urls = URLS(db=db, usehistory=hist_val, retmax=retmax,
+                retmode='xml', field='TIAB', auto_gen=False)
     urls.build_info(['db'])
     urls.build_search(['db', 'usehistory', 'retmax', 'retmode', 'field'])
     urls.build_fetch(['db', 'retmode'])
@@ -290,8 +292,8 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
 
     return results, meta_dat
 
-##############################################################################################################
-##############################################################################################################
+###################################################################################################
+###################################################################################################
 
 def _get_db_info(req, info_url):
     """Calls EInfo to get info and status of db to be used for scraping.
@@ -408,9 +410,9 @@ def _mk(t_lst, cm=''):
         return ''
 
 
-######################################################################################################
-################################# LISC - WORDS - FUNCTIONS (PRIVATE) #################################
-######################################################################################################
+###################################################################################################
+################################ LISC - WORDS - FUNCTIONS (PRIVATE) ###############################
+###################################################################################################
 
 def _extract_add_info(cur_dat, new_id, art):
     """Extract information from article web page and add to
@@ -498,7 +500,7 @@ def _process_words(text):
     words = nltk.word_tokenize(text)
 
     # Remove stop words, and non-alphabetical tokens (punctuation). Return the result.
-    words_cleaned =  [word.lower() for word in words if (
+    words_cleaned = [word.lower() for word in words if (
         (not word.lower() in stopwords.words('english')) & word.isalnum())]
 
     return words_cleaned

@@ -1,4 +1,7 @@
-"""Class for LISC word analysis (text analysis of abstract texts)."""
+"""Class for LISC word analysis (text analysis of abstract texts).
+
+ToDo: check meta_dat attribute - add to init either here, or in base.
+"""
 
 # Import custom code
 from lisc.base import Base

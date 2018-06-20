@@ -106,7 +106,7 @@ class DataAll(object):
         # Add data to summary dictionary.
         self.summary['n_articles'] = str(self.n_articles)
         self.summary['top_author_name'] = ' '.join([self.author_counts[0][1][1],
-                                               self.author_counts[0][1][0]])
+                                                    self.author_counts[0][1][0]])
         self.summary['top_author_count'] = str(self.author_counts[0][0])
         self.summary['top_journal_name'] = self.journal_counts[0][1]
         self.summary['top_journal_count'] = str(self.journal_counts[0][0])
