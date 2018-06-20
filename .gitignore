@@ -24,5 +24,8 @@
 /docs/_site/*
 /docs/.sass-cache/*
 
+# Ignore pylint output
+_lint.txt
+
 # Ignore authentification file
 .auth
