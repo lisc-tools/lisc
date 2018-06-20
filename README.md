@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/pypi/l/fooof.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
-LISC is a package for performing automated meta-analyses of scientific packages. It is basically a utility packages, built on top of the Pubmed E-Utils API.
+LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.
 
 ## Python Version
 
@@ -15,6 +15,7 @@ LISC is written in Python 3.
 ## Dependencies
 
 - numpy
+- requests
 - beautiful-soup
 - nltk
 
