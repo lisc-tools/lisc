@@ -105,39 +105,39 @@ def test_update_history():
     """   """
     pass
 
-def test_save():
-    """   """
+# def test_save():
+#     """   """
 
-    tdb = TDB()
+#     tdb = TDB()
 
-    dat = load_data(add_dat=True)
+#     dat = load_data(add_dat=True)
 
-    dat.save(tdb)
+#     dat.save(tdb)
 
-    assert True
+#     assert True
 
-def test_load():
-    """   """
+# def test_load():
+#     """   """
 
-    tdb = TDB()
+#     tdb = TDB()
 
-    dat = Data('test')
-    dat.load(tdb)
+#     dat = Data('test')
+#     dat.load(tdb)
 
-    assert dat
+#     assert dat
 
-def test_clear():
-    """   """
+# def test_clear():
+#     """   """
 
-    dat = load_data(add_dat=True)
-    dat.clear()
-    dat.check_results()
-    assert dat.n_articles == 0
+#     dat = load_data(add_dat=True)
+#     dat.clear()
+#     dat.check_results()
+#     assert dat.n_articles == 0
 
-def test_save_n_clear():
-    """   """
+# def test_save_n_clear():
+#     """   """
 
-    dat = load_data(add_dat=True)
-    dat.save_n_clear()
+#     dat = load_data(add_dat=True)
+#     dat.save_n_clear()
 
-    assert dat.n_articles == 0
+#     assert dat.n_articles == 0

@@ -26,19 +26,16 @@ class TestDB(SCDB):
 ##################################################################################
 ##################################################################################
 
-def load_base(set_erps=False, set_excl=False, set_terms=None):
+def load_base(set_terms=False, set_excl=False):
     """Helper function to load Base() object for testing."""
 
     base = Base()
 
-    if set_erps:
-        base.set_erps_file()
+    if set_terms:
+        base.set_terms_file('test')
 
     if set_excl:
-        base.set_exclusions_file()
-
-    if set_terms:
-        base.set_terms_file(set_terms)
+        base.set_exclusions_file('test_excl')
 
     return base
 

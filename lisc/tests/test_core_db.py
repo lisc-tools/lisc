@@ -22,16 +22,16 @@ def test_SCDB_gen_paths():
 
     assert db
 
-def test_SCDB_paths():
-    """Test that all defined SCDB paths exist."""
+# def test_SCDB_paths():
+#     """Test that all defined SCDB paths exist."""
 
-    db = SCDB()
+#     db = SCDB()
 
-    # Loops through all paths, checking they exist
-    #  Skips vars without '_path' marker, and empty variables
-    for key, val in vars(db).items():
-        if '_path' in key and val:
-            assert os.path.exists(val)
+#     # Loops through all paths, checking they exist
+#     #  Skips vars without '_path' marker, and empty variables
+#     for key, val in vars(db).items():
+#         if '_path' in key and val:
+#             assert os.path.exists(val)
 
 def test_webdb():
     """Test the WebDB object."""
@@ -39,16 +39,16 @@ def test_webdb():
     # Check that WebDB returns properly
     assert WebDB()
 
-def test_webdb_paths():
-    """Test that all defined WebDB paths exist."""
+# def test_webdb_paths():
+#     """Test that all defined WebDB paths exist."""
 
-    db = WebDB()
+#     db = WebDB()
 
-    # Loops through all paths, checking they exist
-    #  Skips vars without '_path' marker, and empty variables
-    for key, val in vars(db).items():
-        if '_path' in key and val:
-            assert os.path.exists(val)
+#     # Loops through all paths, checking they exist
+#     #  Skips vars without '_path' marker, and empty variables
+#     for key, val in vars(db).items():
+#         if '_path' in key and val:
+#             assert os.path.exists(val)
 
 def test_check_db():
     """Test the check_db function."""
