@@ -12,6 +12,7 @@ LISC is written in Python 3.
 
 - numpy
 - beautiful-soup
+- nltk
 
 ## Install
 
