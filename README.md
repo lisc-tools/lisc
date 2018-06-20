@@ -1,0 +1,2 @@
+# lisc
+Literature Scanner. 
