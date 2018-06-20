@@ -10,8 +10,9 @@
 # Ignore test data files
 **/tests/data/**
 
-# Ignore test cache files
+# Ignore cache files
 **/.cache
+**/__pycache__/*
 
 # Ignore Apple Desktop Services files
 *.DS_Store*
