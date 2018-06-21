@@ -52,6 +52,6 @@ def test_run_scrape():
     words.set_terms(['language', 'memory'])
     words.set_exclusions(['protein', ''])
 
-    words.run_scrape(db='pubmed', retmax='2')#, use_hist=True)
+    #words.run_scrape(db='pubmed', retmax='2')#, use_hist=True)
 
     assert True

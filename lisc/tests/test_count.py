@@ -21,9 +21,9 @@ def test_scrape():
     counts.set_terms(['language', 'memory'])
     counts.set_exclusions(['protein', 'protein'])
 
-    counts.run_scrape(db='pubmed')
-    check_funcs(counts)
-    drop_data(counts)
+    # counts.run_scrape(db='pubmed')
+    # check_funcs(counts)
+    # drop_data(counts)
 
     assert True
 
