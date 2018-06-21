@@ -1,7 +1,4 @@
-"""Class for LISC word analysis (text analysis of abstract texts).
-
-ToDo: check meta_dat attribute - add to init either here, or in base.
-"""
+"""Class for LISC word analysis (text analysis of abstract texts)."""
 
 # Import custom code
 from lisc.base import Base
@@ -31,6 +28,9 @@ class Words(Base):
         # Initialize a list to store results for all the erps
         self.result_keys = list()
         self.results = list()
+
+        # Initialize dictionary to store db info
+        self.meta_dat = dict()
 
 
     def __getitem__(self, key):
@@ -68,7 +68,7 @@ class Words(Base):
         self.results.append(new_result)
 
 
-    def run_scrape(self, db='pubmed', retmax=None, use_hist=False, save_n_clear=True, verbose=False):
+    def run_scrape(self, db='pubmed', retmax=None, use_hist=False, save_n_clear=False, verbose=False):
         """Launch a scrape of words data.
 
         Parameters

@@ -17,8 +17,6 @@ class Base(object):
         Stores info about the database used for scarping data.
     terms : list of list of str
         Terms words.
-    terms_type : str
-        Type of terms used.
     labels : list of str
         Label to reference each term.
     exclusions : list of list str
@@ -35,12 +33,6 @@ class Base(object):
 
     def __init__(self):
         """Initialize Base() object."""
-
-        # Initialize dictionary to store db info
-        self.meta_dat = dict()
-
-        # Initialize variable to keep track of term type used
-        self.terms_type = str()
 
         # Initialize list of terms to use, including exclusions & labels
         self.terms = list()

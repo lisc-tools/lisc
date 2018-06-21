@@ -38,6 +38,9 @@ class Count(object):
         self.dat_percent = np.zeros(0)
         self.square = bool()
 
+        # Initialize dictionary to store db info
+        self.meta_dat = dict()
+
 
     def set_terms(self, terms, dim='A'):
         """Sets the given list of strings as terms to use.
