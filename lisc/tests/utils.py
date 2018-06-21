@@ -39,13 +39,13 @@ def load_base(set_terms=False, set_excl=False):
 
     return base
 
-def load_data(add_dat=False, n=1):
+def load_data(add_dat=False, n_dat=1):
     """Helper function to load Data() object for testing."""
 
     dat = Data('test', ['test'])
 
     if add_dat:
-        for i in range(n):
+        for i in range(n_dat):
             dat.add_id(1)
             dat.add_title('title')
             dat.add_journal('science', 'sc')

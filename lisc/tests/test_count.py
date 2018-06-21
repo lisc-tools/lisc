@@ -4,14 +4,12 @@ import numpy as np
 
 from lisc.count import Count
 
-#######################################################################################
-################################ TESTS - ERPSC - COUNT ################################
-#######################################################################################
+###################################################################################################
+######################################### TESTS - COUNT ###########################################
+###################################################################################################
 
-def test_erpsc_count():
-    """Test the Count object."""
+def test_count():
 
-    # Check that ERPSCCount returns properly
     assert Count()
 
 def test_scrape():
@@ -20,27 +18,32 @@ def test_scrape():
     counts = Count()
 
     # Add ERPs and terms
-    #counts.set_erps(['N400', 'P600'])
     counts.set_terms(['language', 'memory'])
     counts.set_exclusions(['protein', 'protein'])
 
-    #counts.run_scrape(db='pubmed')
+    counts.run_scrape(db='pubmed')
+    check_funcs(counts)
+    drop_data(counts)
 
     assert True
 
     #assert np.all(counts.dat_numbers)
     #assert np.all(counts.dat_percent)
 
-    check_funcs(counts)
 
 def check_funcs(counts):
     """Given object with scraped data, test all the check functions."""
 
     # Check that all check functions run
-    #counts.check_cooc_erps()
-    #counts.check_cooc_terms()
-    #counts.check_top()
-    #counts.check_counts('erp')
-    #counts.check_counts('term')
+    counts.check_cooc()
+    counts.check_top()
+    counts.check_counts()
+
+    assert True
+
+def drop_data(counts):
+
+    #
+    counts.drop_data(0)
 
     assert True

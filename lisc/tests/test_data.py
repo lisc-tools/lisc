@@ -1,4 +1,8 @@
-"""Tests for the Data() class and related functions from lisc."""
+"""Tests for the Data() class and related functions from lisc.
+
+Note: this should be updated to use pytest tools to use the same data object.
+ToDo: add testing of saving & loading.
+"""
 
 from py.test import raises
 
@@ -6,18 +10,20 @@ from lisc.data import *
 from lisc.tests.utils import TestDB as TDB
 from lisc.tests.utils import load_data
 
-######################################################################################
-############################## TESTS - ERPSC - datA ##############################
-######################################################################################
+###################################################################################################
+###################################################################################################
 
 def test_data():
-    """Test the Data object."""
 
-    # Check that Data returns properly.
     assert Data('test', ['test'])
 
+def test_iter():
+
+    dat = load_data(add_dat=True, n_dat=2)
+    for dd in dat:
+        assert dd
+
 def test_add_id():
-    """   """
 
     dat = load_data()
     dat.add_id(1)
@@ -25,7 +31,6 @@ def test_add_id():
     assert dat.ids
 
 def test_add_title():
-    """   """
 
     dat = load_data()
     dat.add_title('title')
@@ -33,7 +38,6 @@ def test_add_title():
     assert dat.titles
 
 def test_add_authors():
-    """   """
 
     dat = load_data()
     dat.add_authors(('Last', 'First', 'IN', 'School'))
@@ -41,15 +45,13 @@ def test_add_authors():
     assert dat.authors
 
 def test_add_journal():
-    """   """
 
     dat = load_data()
     dat.add_journal('Journal name', 'J abbrev')
 
     assert dat.journals
 
-def test_add_dat():
-    """   """
+def test_add_words():
 
     dat = load_data()
     dat.add_words(['new', 'dat'])
@@ -57,7 +59,6 @@ def test_add_dat():
     assert dat.words
 
 def test_add_kws():
-    """   """
 
     dat = load_data()
     dat.add_kws(['list', 'of', 'kws'])
@@ -65,7 +66,6 @@ def test_add_kws():
     assert dat.kws
 
 def test_add_pub_date():
-    """   """
 
     dat = load_data()
     dat.add_pub_date((2000, 'Feb'))
@@ -74,7 +74,6 @@ def test_add_pub_date():
     assert dat.months
 
 def test_add_doi():
-    """   """
 
     dat = load_data()
     dat.add_doi('doi_str')
@@ -82,7 +81,6 @@ def test_add_doi():
     assert dat.dois
 
 def test_increment_n_articles():
-    """   """
 
     dat = load_data()
     dat.increment_n_articles()
@@ -90,7 +88,6 @@ def test_increment_n_articles():
     assert dat.n_articles
 
 def test_check_results():
-    """   """
 
     dat = load_data(add_dat=True)
 
@@ -102,11 +99,10 @@ def test_check_results():
         assert dat.check_results()
 
 def test_update_history():
-    """   """
+
     pass
 
 # def test_save():
-#     """   """
 
 #     tdb = TDB()
 
@@ -117,7 +113,6 @@ def test_update_history():
 #     assert True
 
 # def test_load():
-#     """   """
 
 #     tdb = TDB()
 
@@ -126,16 +121,14 @@ def test_update_history():
 
 #     assert dat
 
-# def test_clear():
-#     """   """
+def test_clear():
 
-#     dat = load_data(add_dat=True)
-#     dat.clear()
-#     dat.check_results()
-#     assert dat.n_articles == 0
+    dat = load_data(add_dat=True)
+    dat.clear()
+    dat.check_results()
+    assert dat.n_articles == 0
 
 # def test_save_n_clear():
-#     """   """
 
 #     dat = load_data(add_dat=True)
 #     dat.save_n_clear()

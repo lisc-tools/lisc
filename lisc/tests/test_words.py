@@ -2,9 +2,9 @@
 
 from py.test import raises
 
-import requests
+#import requests
 #import bs4
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 
 from lisc.data import Data
 from lisc.words import Words
@@ -45,20 +45,13 @@ def test_add_results():
 
     assert words.results
 
+def test_run_scrape():
 
+    words = Words()
 
+    words.set_terms(['language', 'memory'])
+    words.set_exclusions(['protein', ''])
 
+    words.run_scrape(db='pubmed', retmax='2')#, use_hist=True)
 
-# def test_scrape_data_hist():
-#     """Test the scrape_data method, using HTTP Post method."""
-
-#     words = Words()
-
-#     # Add ERPs and terms
-#     #words.set_erps(['N180', 'P600'])
-#     words.set_terms(['language', 'memory'])
-#     words.set_exclusions(['protein', ''])
-
-#     #words.scrape_data(db='pubmed', retmax='5', use_hist=True)
-
-#     assert True
+    assert True
