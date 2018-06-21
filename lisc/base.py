@@ -1,9 +1,7 @@
 """Base object for LISC."""
 
 import pkg_resources as pkg
-#from bs4 import BeautifulSoup
 
-#from lisc.core.utils import extract
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -39,7 +37,7 @@ class Base(object):
         """Initialize Base() object."""
 
         # Initialize dictionary to store db info
-        #self.db_info = dict()
+        self.meta_dat = dict()
 
         # Initialize variable to keep track of term type used
         self.terms_type = str()
