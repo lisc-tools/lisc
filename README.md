@@ -7,6 +7,8 @@
 
 LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.
 
+NOTE: the current version is still a development version (0.1.0-dev) and may not be totally stable.
+
 ## Python Version
 
 LISC is written in Python 3, and requires Python 3.3 or greater.
@@ -16,10 +18,11 @@ LISC is written in Python 3, and requires Python 3.3 or greater.
 Requirements:
 - numpy
 - requests
+- lxml
 - beautifulsoup4
 - nltk
 
-Optional dependencies, used for plots:
+Optional dependencies, used for plots & analysis:
 - matplotlib
 - seaborn
 - scipy
@@ -27,4 +30,12 @@ Optional dependencies, used for plots:
 
 ## Install
 
-LISC will be posted to PYPI soon. For now, you can use it by cloning from Github.
+LISC will be posted to PYPI soon.
+
+For now, you can use it by cloning from Github. In terminal, run:
+
+`$ git clone https://github.com/TomDonoghue/lisc`
+
+Once you have done this, move into the directory you just cloned and run:
+
+`$ pip install .`
