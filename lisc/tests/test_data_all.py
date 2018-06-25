@@ -6,36 +6,28 @@ from lisc.tests.utils import load_data
 ###################################################################################################
 ###################################################################################################
 
-def test_data_all():
+def test_data_all(tdata_full):
     """
     Note: Constructor calls (& implicitly tests) the combine & create_freq funcs.
     """
 
-    dat = load_data(add_dat=True, n_dat=2)
-
-    dat_all = DataAll(dat)
+    dat_all = DataAll(tdata_full)
 
     assert dat_all
 
-def test_check_funcs():
+def test_check_funcs(tdata_all):
 
-    dat = load_data(add_dat=True, n_dat=2)
-    dat_all = DataAll(dat)
-
-    dat_all.check_words(2)
-    dat_all.check_kws(2)
+    tdata_all.check_words(2)
+    tdata_all.check_kws(2)
 
     assert True
 
-def test_create_print_summary():
+def test_create_print_summary(tdata_all):
 
-    dat = load_data(add_dat=True, n_dat=2)
-    dat_all = DataAll(dat)
+    tdata_all.create_summary()
 
-    dat_all.create_summary()
+    assert tdata_all.summary
 
-    assert dat_all.summary
-
-    dat_all.print_summary()
+    tdata_all.print_summary()
 
     assert True

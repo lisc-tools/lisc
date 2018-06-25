@@ -1,6 +1,5 @@
 """Tests for the Data() class and related functions from lisc.
 
-Note: this should be updated to use pytest tools to use the same data object.
 ToDo: add testing of saving & loading.
 """
 
@@ -17,77 +16,74 @@ def test_data():
 
     assert Data('test', ['test'])
 
-def test_iter():
+def test_iter(tdata_full):
 
-    dat = load_data(add_dat=True, n_dat=2)
-    for dd in dat:
-        assert dd
+    for dat in tdata_full:
+        assert dat
 
-def test_add_id(tdata):
+def test_add_id(tdata_empty):
 
-    tdata.add_id(1)
+    tdata_empty.add_id(1)
 
-    assert tdata.ids
+    assert tdata_empty.ids
 
-def test_add_title(tdata):
+def test_add_title(tdata_empty):
 
-    tdata.add_title('title')
+    tdata_empty.add_title('title')
 
-    assert tdata.titles
+    assert tdata_empty.titles
 
-def test_add_authors(tdata):
+def test_add_authors(tdata_empty):
 
-    tdata.add_authors(('Last', 'First', 'IN', 'School'))
+    tdata_empty.add_authors(('Last', 'First', 'IN', 'School'))
 
-    assert tdata.authors
+    assert tdata_empty.authors
 
-def test_add_journal(tdata):
+def test_add_journal(tdata_empty):
 
-    tdata.add_journal('Journal name', 'J abbrev')
+    tdata_empty.add_journal('Journal name', 'J abbrev')
 
-    assert tdata.journals
+    assert tdata_empty.journals
 
-def test_add_words(tdata):
+def test_add_words(tdata_empty):
 
-    tdata.add_words(['new', 'dat'])
+    tdata_empty.add_words(['new', 'dat'])
 
-    assert tdata.words
+    assert tdata_empty.words
 
-def test_add_kws(tdata):
+def test_add_kws(tdata_empty):
 
-    tdata.add_kws(['list', 'of', 'kws'])
+    tdata_empty.add_kws(['list', 'of', 'kws'])
 
-    assert tdata.kws
+    assert tdata_empty.kws
 
-def test_add_pub_date(tdata):
+def test_add_pub_date(tdata_empty):
 
-    tdata.add_pub_date((2000, 'Feb'))
+    tdata_empty.add_pub_date((2000, 'Feb'))
 
-    assert tdata.years
-    assert tdata.months
+    assert tdata_empty.years
+    assert tdata_empty.months
 
-def test_add_doi(tdata):
+def test_add_doi(tdata_empty):
 
-    tdata.add_doi('doi_str')
+    tdata_empty.add_doi('doi_str')
 
-    assert tdata.dois
+    assert tdata_empty.dois
 
-def test_increment_n_articles(tdata):
+def test_increment_n_articles(tdata_empty):
 
-    tdata.increment_n_articles()
+    tdata_empty.increment_n_articles()
 
-    assert tdata.n_articles
+    assert tdata_empty.n_articles
 
-def test_check_results():
+def test_check_results(tdata_full):
 
-    dat = load_data(add_dat=True)
+    tdata_full.check_results()
 
-    dat.check_results()
-
-    dat.n_articles += 1
+    tdata_full.n_articles += 1
 
     with raises(InconsistentDataError):
-        assert dat.check_results()
+        assert tdata_full.check_results()
 
 def test_update_history():
 
@@ -112,12 +108,11 @@ def test_update_history():
 
 #     assert dat
 
-def test_clear():
+def test_clear(tdata_full):
 
-    dat = load_data(add_dat=True)
-    dat.clear()
-    dat.check_results()
-    assert dat.n_articles == 0
+    tdata_full.clear()
+    tdata_full.check_results()
+    assert tdata_full.n_articles == 0
 
 # def test_save_n_clear():
 
