@@ -4,6 +4,7 @@ import pkg_resources as pkg
 
 from lisc.base import Base
 from lisc.data import Data
+from lisc.data_all import DataAll
 from lisc.core.db import SCDB
 
 ###################################################################################################
@@ -25,7 +26,7 @@ class TestDB(SCDB):
 ###################################################################################################
 
 def load_base(set_terms=False, set_excl=False):
-    """Helper function to load Base() object for testing."""
+    """Helper function to load Base object for testing."""
 
     base = Base()
 
@@ -38,7 +39,7 @@ def load_base(set_terms=False, set_excl=False):
     return base
 
 def load_data(add_dat=False, n_dat=1):
-    """Helper function to load Data() object for testing."""
+    """Helper function to load Data object for testing."""
 
     dat = Data('test', ['test'])
 
@@ -55,3 +56,11 @@ def load_data(add_dat=False, n_dat=1):
             dat.increment_n_articles()
 
     return dat
+
+def load_data_all():
+    """Helper function to load DataAll object for testing."""
+
+    dat = load_data(add_dat=True, n_dat=2)
+    dat_all = DataAll(dat)
+
+    return dat_all
