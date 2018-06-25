@@ -9,7 +9,6 @@ from py.test import raises
 
 from lisc.base import Base, _check_type, _terms_load_file
 
-from lisc.tests.utils import load_base
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -40,78 +39,63 @@ def test_base():
 
     assert Base()
 
-def test_set_terms():
+def test_set_terms(tbase_empty):
 
-    base = load_base()
-    base.set_terms(['word', 'thing'])
+    tbase_empty.set_terms(['word', 'thing'])
 
-    assert base.terms
+    assert tbase_empty.terms
 
-def test_set_terms_file():
+def test_set_terms_file(tbase_empty):
 
-    base = load_base()
-    base.set_terms_file('test')
+    tbase_empty.set_terms_file('test')
 
-    assert base.terms
+    assert tbase_empty.terms
 
-def tests_check_terms():
+def tests_check_terms(tbase_terms):
 
-    base = load_base(set_terms=True)
-
-    base.check_terms()
+    tbase_terms.check_terms()
 
     assert True
 
-def test_unload_terms():
+def test_unload_terms(tbase_terms):
 
-    base = load_base(set_terms=True)
+    tbase_terms.unload_terms()
 
-    base.unload_terms()
+    assert not tbase_terms.terms
+    assert not tbase_terms.n_terms
 
-    assert not base.terms
-    assert not base.n_terms
+def test_get_term_labels(tbase_terms):
 
-def test_get_term_labels():
+    tbase_terms.get_term_labels()
 
-    base = load_base(set_terms=True)
-    base.get_term_labels()
+    assert tbase_terms.labels
 
-    assert base.labels
+def test_set_exclusions(tbase_terms):
 
-def test_set_exclusions():
+    tbase_terms.set_exclusions(['not', 'this'])
 
-    base = Base()
-    base.set_terms(['word', 'thing'])
-    base.set_exclusions(['not', 'this'])
+    assert tbase_terms.exclusions
 
-    assert base.exclusions
+def test_set_exclusions_error(tbase_terms):
 
     # Check error with improper # of exclusion words
-    base = Base()
-    base.set_terms(['word', 'thing'])
-
     with raises(InconsistentDataError):
-        base.set_exclusions(['bad'])
+        tbase_terms.set_exclusions(['bad'])
 
-def test_set_exclusions_file():
+def test_set_exclusions_file(tbase_terms):
 
-    base = load_base(set_terms=True)
-    base.set_exclusions_file('test_excl')
+    tbase_terms.set_exclusions_file('test_excl')
 
-    assert base.exclusions
+    assert tbase_terms.exclusions
 
-def test_check_exclusions():
+def test_check_exclusions(tbase_terms_excl):
 
-    base = load_base(set_terms=True, set_excl=True)
-
-    base.check_exclusions()
+    tbase_terms_excl.check_exclusions()
 
     assert True
 
-def test_unload_exclusions():
+def test_unload_exclusions(tbase_terms_excl):
 
-    base = load_base(set_terms=True, set_excl=True)
+    tbase_terms_excl.unload_exclusions()
 
-    base.unload_exclusions()
-
-    assert not base.exclusions
+    assert not tbase_terms_excl.exclusions
