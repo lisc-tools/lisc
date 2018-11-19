@@ -1,0 +1,27 @@
+lisc.data\_all.DataAll
+======================
+
+.. currentmodule:: lisc.data_all
+
+.. autoclass:: DataAll
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataAll.__init__
+      ~DataAll.check_kws
+      ~DataAll.check_words
+      ~DataAll.create_summary
+      ~DataAll.print_summary
+      ~DataAll.save_summary
+   
+   
+
+   
+   
+   

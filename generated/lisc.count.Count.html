@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>lisc.count.Count &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">lisc.count.Count</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/generated/lisc.count.Count.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="lisc-count-count">
+<h1>lisc.count.Count<a class="headerlink" href="#lisc-count-count" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lisc.count.Count">
+<em class="property">class </em><code class="descclassname">lisc.count.</code><code class="descname">Count</code><a class="reference internal" href="../_modules/lisc/count.html#Count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a class for counting co-occurence of pre-specified terms list(s).</p>
+<dl class="attribute">
+<dt id="lisc.count.Count.terms">
+<code class="descname">terms</code><a class="headerlink" href="#lisc.count.Count.terms" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict()</em> – Search terms to use.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.count.Count.dat_numbers">
+<code class="descname">dat_numbers</code><a class="headerlink" href="#lisc.count.Count.dat_numbers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>2d array</em> – The numbers of papers found for each combination of terms.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.count.Count.dat_percent">
+<code class="descname">dat_percent</code><a class="headerlink" href="#lisc.count.Count.dat_percent" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>2d array</em> – The percentage of papers for each term that include the corresponding term.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.count.Count.square">
+<code class="descname">square</code><a class="headerlink" href="#lisc.count.Count.square" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> – Whether the count data matrix is symetrical.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize LISC Count() object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.count.Count.__init__" title="lisc.count.Count.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
+<td>Initialize LISC Count() object.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_cooc</span></code>([dim])</td>
+<td>“Prints out the most frequent association for each term.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_counts</span></code>([dim])</td>
+<td>Check how many papers found for each term.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_top</span></code>([dim])</td>
+<td>Check the terms with the most papers.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code>(n_articles[,&nbsp;dim])</td>
+<td>Drop terms based on number of article results.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_scrape</span></code>([db,&nbsp;verbose])</td>
+<td>Scrape co-occurence data.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions</span></code>(exclusions[,&nbsp;dim])</td>
+<td>Sets the given list of strings as exclusion words.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms</span></code>(terms[,&nbsp;dim])</td>
+<td>Sets the given list of strings as terms to use.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

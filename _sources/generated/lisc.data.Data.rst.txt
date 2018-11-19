@@ -1,0 +1,37 @@
+lisc.data.Data
+==============
+
+.. currentmodule:: lisc.data
+
+.. autoclass:: Data
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Data.__init__
+      ~Data.add_authors
+      ~Data.add_doi
+      ~Data.add_id
+      ~Data.add_journal
+      ~Data.add_kws
+      ~Data.add_pub_date
+      ~Data.add_title
+      ~Data.add_words
+      ~Data.check_results
+      ~Data.clear
+      ~Data.increment_n_articles
+      ~Data.load
+      ~Data.save
+      ~Data.save_n_clear
+      ~Data.update_history
+   
+   
+
+   
+   
+   

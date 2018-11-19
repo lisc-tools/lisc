@@ -1,0 +1,33 @@
+lisc.words.Words
+================
+
+.. currentmodule:: lisc.words
+
+.. autoclass:: Words
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Words.__init__
+      ~Words.add_results
+      ~Words.check_exclusions
+      ~Words.check_terms
+      ~Words.get_term_labels
+      ~Words.run_scrape
+      ~Words.set_exclusions
+      ~Words.set_exclusions_file
+      ~Words.set_terms
+      ~Words.set_terms_file
+      ~Words.unload_exclusions
+      ~Words.unload_terms
+   
+   
+
+   
+   
+   

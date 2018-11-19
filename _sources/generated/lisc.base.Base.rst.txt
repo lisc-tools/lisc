@@ -1,0 +1,31 @@
+lisc.base.Base
+==============
+
+.. currentmodule:: lisc.base
+
+.. autoclass:: Base
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Base.__init__
+      ~Base.check_exclusions
+      ~Base.check_terms
+      ~Base.get_term_labels
+      ~Base.set_exclusions
+      ~Base.set_exclusions_file
+      ~Base.set_terms
+      ~Base.set_terms_file
+      ~Base.unload_exclusions
+      ~Base.unload_terms
+   
+   
+
+   
+   
+   
