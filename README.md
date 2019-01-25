@@ -11,7 +11,7 @@ NOTE: the current version is still a development version (0.1.0-dev) and may not
 
 ## Python Version
 
-LISC is written in Python 3, and requires Python 3.3 or greater.
+LISC is written in Python 3, and requires Python 3.4 or greater.
 
 ## Dependencies
 
