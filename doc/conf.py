@@ -17,6 +17,7 @@ from os.path import dirname as up
 
 import sphinx_gallery
 import sphinx_bootstrap_theme
+from sphinx_gallery.sorting import FileNameSortKey
 
 # -- Project information -----------------------------------------------------
 
@@ -52,7 +53,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    #'sphinx_gallery.gen_gallery',
+    'sphinx_gallery.gen_gallery',
     'sphinx.ext.napoleon'
 ]
 
@@ -102,7 +103,8 @@ html_theme_options = {
     'navbar_sidebarrel': False,
     'navbar_links': [
         ("API", "api"),
-        ("GitHub", "https://github.com/TomDonoghue/lisc", True)
+        ("Tutorial", "auto_tutorial/index"),
+        ("GitHub", "https://github.com/lisc-tools/lisc", True)
     ],
     'bootswatch_theme': "flatly"
 }
@@ -182,7 +184,12 @@ texinfo_documents = [
 
 # -- Extension configuration -------------------------------------------------
 
-sphinx_gallery_conf = {}
+sphinx_gallery_conf = {
+    'examples_dirs': ['../tutorial'],
+    'gallery_dirs': ['auto_tutorial'],
+    'within_subsection_order': FileNameSortKey,
+    'backreferences_dir': 'generated'
+}
 
 # -- Options for intersphinx extension ---------------------------------------
 

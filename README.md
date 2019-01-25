@@ -1,8 +1,8 @@
 # LISC - Literature Scanner
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.org/TomDonoghue/lisc.svg)](https://travis-ci.org/TomDonoghue/lisc)
-[![codecov](https://codecov.io/gh/TomDonoghue/lisc/branch/master/graph/badge.svg)](https://codecov.io/gh/TomDonoghue/lisc)
+[![Build Status](https://travis-ci.org/lisc-tools/lisc.svg)](https://travis-ci.org/lisc-tools/lisc)
+[![codecov](https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg)](https://codecov.io/gh/lisc-tools/lisc)
 [![License](https://img.shields.io/pypi/l/fooof.svg)](https://opensource.org/licenses/Apache-2.0)
 
 LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.
@@ -34,7 +34,7 @@ LISC will be posted to PYPI soon.
 
 For now, you can use it by cloning from Github. In terminal, run:
 
-`$ git clone https://github.com/TomDonoghue/lisc`
+`$ git clone https://github.com/lisc-tools/lisc`
 
 Once you have done this, move into the directory you just cloned and run:
 
