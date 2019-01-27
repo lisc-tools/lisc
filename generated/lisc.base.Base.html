@@ -7,11 +7,11 @@
     <title>lisc.base.Base &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -43,7 +43,8 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="../api.html">API</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="../auto_tutorial/index.html">Tutorial</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -104,111 +105,6 @@
       
   <div class="section" id="lisc-base-base">
 <h1>lisc.base.Base<a class="headerlink" href="#lisc-base-base" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="lisc.base.Base">
-<em class="property">class </em><code class="descclassname">lisc.base.</code><code class="descname">Base</code><a class="reference internal" href="../_modules/lisc/base.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for LISC analyses.</p>
-<dl class="attribute">
-<dt id="lisc.base.Base.db_info">
-<code class="descname">db_info</code><a class="headerlink" href="#lisc.base.Base.db_info" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>dict()</em> – Stores info about the database used for scarping data.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.terms">
-<code class="descname">terms</code><a class="headerlink" href="#lisc.base.Base.terms" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of list of str</em> – Terms words.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.terms_type">
-<code class="descname">terms_type</code><a class="headerlink" href="#lisc.base.Base.terms_type" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Type of terms used.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.labels">
-<code class="descname">labels</code><a class="headerlink" href="#lisc.base.Base.labels" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of str</em> – Label to reference each term.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.exclusions">
-<code class="descname">exclusions</code><a class="headerlink" href="#lisc.base.Base.exclusions" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of list str</em> – Exclusion words for each term, used to avoid unwanted articles.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.n_terms">
-<code class="descname">n_terms</code><a class="headerlink" href="#lisc.base.Base.n_terms" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>int</em> – Number of terms.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.date">
-<code class="descname">date</code><a class="headerlink" href="#lisc.base.Base.date" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Date data was collected.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.meta_dat">
-<code class="descname">meta_dat</code><a class="headerlink" href="#lisc.base.Base.meta_dat" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>dict</em> – Meta data for the scrape.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.base.Base.has_dat">
-<code class="descname">has_dat</code><a class="headerlink" href="#lisc.base.Base.has_dat" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>bool</em> – Whether there is any terms and/or data loaded.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.base.Base.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize Base() object.</p>
-</dd></dl>
-
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.base.Base.__init__" title="lisc.base.Base.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
-<td>Initialize Base() object.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_exclusions</span></code>()</td>
-<td>Print out the current list of exclusion words.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_terms</span></code>()</td>
-<td>Print out the current list of terms.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_term_labels</span></code>()</td>
-<td>Get term labels.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions</span></code>(exclusions)</td>
-<td>Sets the given list of strings as exclusion words.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions_file</span></code>([excl_f_name])</td>
-<td>Load exclusion words from a txt file.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms</span></code>(terms)</td>
-<td>Sets the given list of strings as terms to use.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms_file</span></code>(terms_f_name)</td>
-<td>Load terms from a txt file.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_exclusions</span></code>()</td>
-<td>Unload the current set of exclusion words.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code>()</td>
-<td>Unload the current set of terms.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 
 
@@ -224,7 +120,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>

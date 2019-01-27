@@ -7,11 +7,11 @@
     <title>lisc.data_all.DataAll &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -43,7 +43,8 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="../api.html">API</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="../auto_tutorial/index.html">Tutorial</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -104,125 +105,6 @@
       
   <div class="section" id="lisc-data-all-dataall">
 <h1>lisc.data_all.DataAll<a class="headerlink" href="#lisc-data-all-dataall" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="lisc.data_all.DataAll">
-<em class="property">class </em><code class="descclassname">lisc.data_all.</code><code class="descname">DataAll</code><span class="sig-paren">(</span><em>term_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object to hold term data, aggregated across papers.</p>
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.label">
-<code class="descname">label</code><a class="headerlink" href="#lisc.data_all.DataAll.label" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Label for the current term.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.term">
-<code class="descname">term</code><a class="headerlink" href="#lisc.data_all.DataAll.term" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of str</em> – Name(s) of the term word data relates to.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.n_articles">
-<code class="descname">n_articles</code><a class="headerlink" href="#lisc.data_all.DataAll.n_articles" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>int</em> – Number of articles whos data is included in object.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.all_words">
-<code class="descname">all_words</code><a class="headerlink" href="#lisc.data_all.DataAll.all_words" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of str</em> – All abstract words collected across all articles.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.all_kws">
-<code class="descname">all_kws</code><a class="headerlink" href="#lisc.data_all.DataAll.all_kws" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of str</em> – All keywords collected across all articles.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.word_freqs">
-<code class="descname">word_freqs</code><a class="headerlink" href="#lisc.data_all.DataAll.word_freqs" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>nltk.probability.FreqDist</em> – Frequency distribution of all words.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.kw_freqs">
-<code class="descname">kw_freqs</code><a class="headerlink" href="#lisc.data_all.DataAll.kw_freqs" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>nltk.probability.FreqDist</em> – Frequency distribution of all keywords.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.author_counts">
-<code class="descname">author_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.author_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of tuple of (int, (str, str))</em> – Counter across all authors.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.f_author_counts">
-<code class="descname">f_author_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.f_author_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of tuple of (int, (str, str))</em> – Counter across all first authors.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.journal_counts">
-<code class="descname">journal_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.journal_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of tuple of (int, str)</em> – Counter across all journals.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.year_counts">
-<code class="descname">year_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.year_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list of tuple of (int, int)</em> – Counter across all years of publication.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data_all.DataAll.summary">
-<code class="descname">summary</code><a class="headerlink" href="#lisc.data_all.DataAll.summary" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>dict</em> – Summary / overview of data associated with current object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data_all.DataAll.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>term_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize DataAll() object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>term_data</strong> (<a class="reference internal" href="lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><em>Data</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – xx</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data_all.DataAll.__init__" title="lisc.data_all.DataAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term_data)</td>
-<td>Initialize DataAll() object.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_kws</span></code>([n_check])</td>
-<td>Check the most common kws for the term.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_words</span></code>([n_check])</td>
-<td>Check the most common words for the term.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_summary</span></code>()</td>
-<td>Fill the summary dictionary of the current terms Words data.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code>()</td>
-<td>Print out a summary of the scraped term paper data.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code>([db])</td>
-<td>Save out a summary of the scraped term paper data.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 
 
@@ -238,7 +120,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>
