@@ -54,8 +54,12 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx_gallery.gen_gallery',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'm2r'
 ]
+
+# Set to generate sphinx docs for class members (methods)
+autodoc_default_flags = ['members']
 
 # generate autosummary even if no references
 autosummary_generate = True
@@ -106,7 +110,17 @@ html_theme_options = {
         ("Tutorial", "auto_tutorial/index"),
         ("GitHub", "https://github.com/lisc-tools/lisc", True)
     ],
-    'bootswatch_theme': "flatly"
+    'bootswatch_theme': "flatly",
+
+    # Render the current pages TOC in the navbar. (Default: true)
+    'navbar_pagenav': False,
+
+    # Render the next and previous page links in navbar. (Default: true)
+    'navbar_sidebarrel': False,
+
+    # Location of link to source.
+    # Options are "nav" (default), "footer" or anything else to exclude.
+    'source_link_position': False
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
