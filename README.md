@@ -5,15 +5,24 @@
 [![codecov](https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg)](https://codecov.io/gh/lisc-tools/lisc)
 [![License](https://img.shields.io/pypi/l/fooof.svg)](https://opensource.org/licenses/Apache-2.0)
 
+
 LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.
 
 NOTE: the current version is still a development version (0.1.0-dev) and may not be totally stable.
 
-## Python Version
+## Overview
 
-LISC is written in Python 3, and requires Python 3.4 or greater.
+LISC is a python module for scraping literature data. It currently supports and acts as a wrapper around the Pubmed E-Utilities.
+
+LISC provides for two different 'types' of scraping, 'Counts', which can be used to count the popularity and co-occurence of specified search terms, and 'Words', which collects meta-data and text data for papers identified from a set of search terms.
+
+As well as the functionality to collect such data, LISC includes support to analyzing and plotting returned data, as well as save and load utilties for storing the collected data.
+
+By construction, LISC provides both an Object-Oriented approach for running literature scrapes, as well as the option to use functions (both of which call the same underlying code).
 
 ## Dependencies
+
+LISC is written in Python 3, and requires Python 3.4 or greater to run.
 
 Requirements:
 - numpy
