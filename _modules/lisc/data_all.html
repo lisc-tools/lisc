@@ -7,12 +7,11 @@
     <title>lisc.data_all &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +44,7 @@
             
                 <li><a href="../../api.html">API</a></li>
                 <li><a href="../../auto_tutorial/index.html">Tutorial</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -59,23 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -105,13 +91,13 @@
 
 <span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="k">import</span> <span class="n">check_db</span>
 
-<span class="c1">##########################################################################################</span>
-<span class="c1">##########################################################################################</span>
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 <span class="n">EXCLUDE_KWS</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="c1">##########################################################################################</span>
-<span class="c1">##########################################################################################</span>
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="DataAll"><a class="viewcode-back" href="../../generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll">[docs]</a><span class="k">class</span> <span class="nc">DataAll</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Object to hold term data, aggregated across papers.</span>
@@ -176,7 +162,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_words</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_check</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<div class="viewcode-block" id="DataAll.check_words"><a class="viewcode-back" href="../../generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll.check_words">[docs]</a>    <span class="k">def</span> <span class="nf">check_words</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_check</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check the most common words for the term.</span>
 
 <span class="sd">        Parameters</span>
@@ -185,10 +171,10 @@
 <span class="sd">            Number of top words to print out.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_freqs</span><span class="p">,</span> <span class="n">n_check</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_freqs</span><span class="p">,</span> <span class="n">n_check</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_kws</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_check</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<div class="viewcode-block" id="DataAll.check_kws"><a class="viewcode-back" href="../../generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll.check_kws">[docs]</a>    <span class="k">def</span> <span class="nf">check_kws</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_check</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check the most common kws for the term.</span>
 
 <span class="sd">        Parameters</span>
@@ -197,10 +183,10 @@
 <span class="sd">            Number of top words to print out.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kw_freqs</span><span class="p">,</span> <span class="n">n_check</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">_check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kw_freqs</span><span class="p">,</span> <span class="n">n_check</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">create_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataAll.create_summary"><a class="viewcode-back" href="../../generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll.create_summary">[docs]</a>    <span class="k">def</span> <span class="nf">create_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill the summary dictionary of the current terms Words data.&quot;&quot;&quot;</span>
 
         <span class="c1"># Add data to summary dictionary.</span>
@@ -216,10 +202,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></div>
 
 
-    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataAll.print_summary"><a class="viewcode-back" href="../../generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll.print_summary">[docs]</a>    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print out a summary of the scraped term paper data.&quot;&quot;&quot;</span>
 
         <span class="c1"># Print out summary information</span>
@@ -230,16 +216,16 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Most common author: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_name&#39;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    number of publications: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_count&#39;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Most common journal: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_name&#39;</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    number of publications: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    number of publications: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">save_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DataAll.save_summary"><a class="viewcode-back" href="../../generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll.save_summary">[docs]</a>    <span class="k">def</span> <span class="nf">save_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save out a summary of the scraped term paper data.&quot;&quot;&quot;</span>
 
         <span class="n">db</span> <span class="o">=</span> <span class="n">check_db</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">words_path</span> <span class="o">+</span> <span class="s1">&#39;/summary/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div></div>
 
 <span class="c1">##########################################################################################</span>
 <span class="c1">##########################################################################################</span>
@@ -498,7 +484,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>

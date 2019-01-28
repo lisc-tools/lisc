@@ -7,12 +7,11 @@
     <title>lisc.words &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +44,7 @@
             
                 <li><a href="../../api.html">API</a></li>
                 <li><a href="../../auto_tutorial/index.html">Tutorial</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -59,23 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -98,10 +84,7 @@
     <div class="col-md-12 content">
       
   <h1>Source code for lisc.words</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Class for LISC word analysis (text analysis of abstract texts).</span>
-
-<span class="sd">ToDo: check meta_dat attribute - add to init either here, or in base.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Class for LISC word analysis (text analysis of abstract texts).&quot;&quot;&quot;</span>
 
 <span class="c1"># Import custom code</span>
 <span class="kn">from</span> <span class="nn">lisc.base</span> <span class="k">import</span> <span class="n">Base</span>
@@ -130,7 +113,10 @@
 
         <span class="c1"># Initialize a list to store results for all the erps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">result_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="c1"># Initialize dictionary to store db info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_dat</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></div>
 
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
@@ -155,7 +141,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_result</span><span class="p">):</span>
+<div class="viewcode-block" id="Words.add_results"><a class="viewcode-back" href="../../generated/lisc.words.Words.html#lisc.words.Words.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_result</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new Data results object.</span>
 
 <span class="sd">        Parameters</span>
@@ -165,10 +151,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">result_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">run_scrape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_n_clear</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Words.run_scrape"><a class="viewcode-back" href="../../generated/lisc.words.Words.html#lisc.words.Words.run_scrape">[docs]</a>    <span class="k">def</span> <span class="nf">run_scrape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_n_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Launch a scrape of words data.</span>
 
 <span class="sd">        Parameters</span>
@@ -188,7 +174,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_dat</span> <span class="o">=</span> <span class="n">scrape_words</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span>
                                                    <span class="n">retmax</span><span class="o">=</span><span class="n">retmax</span><span class="p">,</span> <span class="n">use_hist</span><span class="o">=</span><span class="n">use_hist</span><span class="p">,</span>
                                                    <span class="n">save_n_clear</span><span class="o">=</span><span class="n">save_n_clear</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">dat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">dat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">]</span></div></div>
 </pre></div>
 
     </div>
@@ -203,7 +189,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>

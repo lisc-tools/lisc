@@ -58,30 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">lisc.base.Base</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/generated/lisc.base.Base.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -105,6 +85,255 @@
       
   <div class="section" id="lisc-base-base">
 <h1>lisc.base.Base<a class="headerlink" href="#lisc-base-base" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lisc.base.Base">
+<em class="property">class </em><code class="descclassname">lisc.base.</code><code class="descname">Base</code><a class="reference internal" href="../_modules/lisc/base.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for LISC analyses.</p>
+<dl class="attribute">
+<dt id="lisc.base.Base.db_info">
+<code class="descname">db_info</code><a class="headerlink" href="#lisc.base.Base.db_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores info about the database used for scarping data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a>()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.terms">
+<code class="descname">terms</code><a class="headerlink" href="#lisc.base.Base.terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terms words.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.labels">
+<code class="descname">labels</code><a class="headerlink" href="#lisc.base.Base.labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label to reference each term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.exclusions">
+<code class="descname">exclusions</code><a class="headerlink" href="#lisc.base.Base.exclusions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exclusion words for each term, used to avoid unwanted articles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of list str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.n_terms">
+<code class="descname">n_terms</code><a class="headerlink" href="#lisc.base.Base.n_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of terms.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.date">
+<code class="descname">date</code><a class="headerlink" href="#lisc.base.Base.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Date data was collected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.meta_dat">
+<code class="descname">meta_dat</code><a class="headerlink" href="#lisc.base.Base.meta_dat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meta data for the scrape.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.base.Base.has_dat">
+<code class="descname">has_dat</code><a class="headerlink" href="#lisc.base.Base.has_dat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether there is any terms and/or data loaded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize Base() object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.base.Base.__init__" title="lisc.base.Base.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
+<td>Initialize Base() object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.base.Base.check_exclusions" title="lisc.base.Base.check_exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_exclusions</span></code></a>()</td>
+<td>Print out the current list of exclusion words.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.base.Base.check_terms" title="lisc.base.Base.check_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_terms</span></code></a>()</td>
+<td>Print out the current list of terms.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.base.Base.get_term_labels" title="lisc.base.Base.get_term_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_term_labels</span></code></a>()</td>
+<td>Get term labels.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.base.Base.set_exclusions" title="lisc.base.Base.set_exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions</span></code></a>(exclusions)</td>
+<td>Sets the given list of strings as exclusion words.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.base.Base.set_exclusions_file" title="lisc.base.Base.set_exclusions_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions_file</span></code></a>([excl_f_name])</td>
+<td>Load exclusion words from a txt file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.base.Base.set_terms" title="lisc.base.Base.set_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms</span></code></a>(terms)</td>
+<td>Sets the given list of strings as terms to use.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.base.Base.set_terms_file" title="lisc.base.Base.set_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms_file</span></code></a>(terms_f_name)</td>
+<td>Load terms from a txt file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.base.Base.unload_exclusions" title="lisc.base.Base.unload_exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_exclusions</span></code></a>()</td>
+<td>Unload the current set of exclusion words.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.base.Base.unload_terms" title="lisc.base.Base.unload_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code></a>()</td>
+<td>Unload the current set of terms.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lisc.base.Base.check_exclusions">
+<code class="descname">check_exclusions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.check_exclusions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.check_exclusions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out the current list of exclusion words.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.check_terms">
+<code class="descname">check_terms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.check_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.check_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out the current list of terms.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.get_term_labels">
+<code class="descname">get_term_labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.get_term_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.get_term_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get term labels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.set_exclusions">
+<code class="descname">set_exclusions</code><span class="sig-paren">(</span><em>exclusions</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.set_exclusions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.set_exclusions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the given list of strings as exclusion words.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exclusions</strong> (<em>list of str OR list of list of str</em>) – List of exclusion words to be used.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.set_exclusions_file">
+<code class="descname">set_exclusions_file</code><span class="sig-paren">(</span><em>excl_f_name='exclusions'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.set_exclusions_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.set_exclusions_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load exclusion words from a txt file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>excl_f_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – xx</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.set_terms">
+<code class="descname">set_terms</code><span class="sig-paren">(</span><em>terms</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.set_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.set_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the given list of strings as terms to use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>terms</strong> (<em>list of str OR list of list of str</em>) – List of terms to be used.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.set_terms_file">
+<code class="descname">set_terms_file</code><span class="sig-paren">(</span><em>terms_f_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.set_terms_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.set_terms_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load terms from a txt file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>terms_f_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – File name to load terms from.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.unload_exclusions">
+<code class="descname">unload_exclusions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.unload_exclusions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.unload_exclusions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unload the current set of exclusion words.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.base.Base.unload_terms">
+<code class="descname">unload_terms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/base.html#Base.unload_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.base.Base.unload_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unload the current set of terms.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

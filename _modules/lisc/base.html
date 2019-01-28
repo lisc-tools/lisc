@@ -7,12 +7,11 @@
     <title>lisc.base &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +44,7 @@
             
                 <li><a href="../../api.html">API</a></li>
                 <li><a href="../../auto_tutorial/index.html">Tutorial</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -59,23 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -101,9 +87,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;Base object for LISC.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">pkg_resources</span> <span class="k">as</span> <span class="nn">pkg</span>
-<span class="c1">#from bs4 import BeautifulSoup</span>
 
-<span class="c1">#from lisc.core.utils import extract</span>
 <span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="k">import</span> <span class="n">InconsistentDataError</span>
 
 <span class="c1">###################################################################################################</span>
@@ -119,8 +103,6 @@
 <span class="sd">        Stores info about the database used for scarping data.</span>
 <span class="sd">    terms : list of list of str</span>
 <span class="sd">        Terms words.</span>
-<span class="sd">    terms_type : str</span>
-<span class="sd">        Type of terms used.</span>
 <span class="sd">    labels : list of str</span>
 <span class="sd">        Label to reference each term.</span>
 <span class="sd">    exclusions : list of list str</span>
@@ -138,12 +120,6 @@
 <div class="viewcode-block" id="Base.__init__"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize Base() object.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Initialize dictionary to store db info</span>
-        <span class="c1">#self.db_info = dict()</span>
-
-        <span class="c1"># Initialize variable to keep track of term type used</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">terms_type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">()</span>
-
         <span class="c1"># Initialize list of terms to use, including exclusions &amp; labels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
@@ -154,7 +130,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">set_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.set_terms"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.set_terms">[docs]</a>    <span class="k">def</span> <span class="nf">set_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the given list of strings as terms to use.</span>
 
 <span class="sd">        Parameters</span>
@@ -173,10 +149,10 @@
 
         <span class="c1"># Set the number of terms</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">has_dat</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_dat</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
-    <span class="k">def</span> <span class="nf">set_terms_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms_f_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.set_terms_file"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.set_terms_file">[docs]</a>    <span class="k">def</span> <span class="nf">set_terms_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms_f_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load terms from a txt file.</span>
 
 <span class="sd">        Parameters</span>
@@ -197,19 +173,19 @@
         <span class="c1"># Set as list, attach to object, set labels</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">terms</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_term_labels</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_term_labels</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.check_terms"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.check_terms">[docs]</a>    <span class="k">def</span> <span class="nf">check_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print out the current list of terms.&quot;&quot;&quot;</span>
 
         <span class="c1"># Print out header and all term words</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;List of terms used: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">terms_ls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">term</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms_ls</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">term</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms_ls</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">unload_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.unload_terms"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.unload_terms">[docs]</a>    <span class="k">def</span> <span class="nf">unload_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unload the current set of terms.&quot;&quot;&quot;</span>
 
         <span class="c1"># Check if exclusions are loaded, to empty them if so.</span>
@@ -222,16 +198,16 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">has_dat</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_dat</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
-    <span class="k">def</span> <span class="nf">get_term_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.get_term_labels"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.get_term_labels">[docs]</a>    <span class="k">def</span> <span class="nf">get_term_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get term labels.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">]</span></div>
 
 
-    <span class="k">def</span> <span class="nf">set_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.set_exclusions"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.set_exclusions">[docs]</a>    <span class="k">def</span> <span class="nf">set_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the given list of strings as exclusion words.</span>
 
 <span class="sd">        Parameters</span>
@@ -249,10 +225,10 @@
 
         <span class="c1"># Check that the number of exclusions matches n_terms</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;Mismatch in number of exclusions and terms!&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;Mismatch in number of exclusions and terms!&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">set_exclusions_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excl_f_name</span><span class="o">=</span><span class="s1">&#39;exclusions&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.set_exclusions_file"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.set_exclusions_file">[docs]</a>    <span class="k">def</span> <span class="nf">set_exclusions_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excl_f_name</span><span class="o">=</span><span class="s1">&#39;exclusions&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load exclusion words from a txt file.</span>
 
 <span class="sd">        Parameters</span>
@@ -273,19 +249,19 @@
 
         <span class="c1"># Drop number indices for exclusions, and set as list</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exclusions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exclusions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.check_exclusions"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.check_exclusions">[docs]</a>    <span class="k">def</span> <span class="nf">check_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print out the current list of exclusion words.&quot;&quot;&quot;</span>
 
         <span class="c1"># Print out header and all exclusion words</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;List of exclusion words used: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">lab</span><span class="p">,</span> <span class="n">excs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">lab</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> : &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">exc</span> <span class="k">for</span> <span class="n">exc</span> <span class="ow">in</span> <span class="n">excs</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">lab</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> : &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">exc</span> <span class="k">for</span> <span class="n">exc</span> <span class="ow">in</span> <span class="n">excs</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">unload_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.unload_exclusions"><a class="viewcode-back" href="../../generated/lisc.base.Base.html#lisc.base.Base.unload_exclusions">[docs]</a>    <span class="k">def</span> <span class="nf">unload_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unload the current set of exclusion words.&quot;&quot;&quot;</span>
 
         <span class="c1"># Check if exclusions are loaded. If so, print status and empty.</span>
@@ -295,7 +271,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unloading previous exclusion words.&#39;</span><span class="p">)</span>
 
             <span class="c1"># Reset exclusions variables to empty</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div></div>
 
 <span class="c1">##########################################################################################</span>
 <span class="c1">##########################################################################################</span>
@@ -357,7 +333,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>

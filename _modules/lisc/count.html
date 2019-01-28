@@ -7,12 +7,11 @@
     <title>lisc.count &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +44,7 @@
             
                 <li><a href="../../api.html">API</a></li>
                 <li><a href="../../auto_tutorial/index.html">Tutorial</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -59,23 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -136,10 +122,13 @@
         <span class="c1"># Initialize data output variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dat_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">()</span>
+
+        <span class="c1"># Initialize dictionary to store db info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_dat</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">set_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.set_terms"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.set_terms">[docs]</a>    <span class="k">def</span> <span class="nf">set_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the given list of strings as terms to use.</span>
 
 <span class="sd">        Parameters</span>
@@ -151,10 +140,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">set_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">set_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.set_exclusions"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.set_exclusions">[docs]</a>    <span class="k">def</span> <span class="nf">set_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the given list of strings as exclusion words.</span>
 
 <span class="sd">        Parameters</span>
@@ -165,10 +154,10 @@
 <span class="sd">            Which set of terms to operate upon.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">set_exclusions</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">set_exclusions</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">run_scrape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.run_scrape"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.run_scrape">[docs]</a>    <span class="k">def</span> <span class="nf">run_scrape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Scrape co-occurence data.</span>
 
 <span class="sd">        Parameters</span>
@@ -199,10 +188,10 @@
                         <span class="n">terms_lst_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span>
                         <span class="n">excls_lst_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span>
                         <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_cooc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.check_cooc"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.check_cooc">[docs]</a>    <span class="k">def</span> <span class="nf">check_cooc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;&quot;Prints out the most frequent association for each term.</span>
 
 <span class="sd">        Parameters</span>
@@ -224,10 +213,10 @@
             <span class="c1"># Print out the results</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For the  </span><span class="si">{:12}</span><span class="s2"> the most common association is </span><span class="se">\t</span><span class="s2"> </span><span class="si">{:18}</span><span class="s2"> with </span><span class="se">\t</span><span class="s2"> %</span><span class="si">{:05.2f}</span><span class="s2">&quot;</span>
                   <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">assoc_ind</span><span class="p">],</span> \
-                  <span class="n">dat</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="n">assoc_ind</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+                  <span class="n">dat</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="n">assoc_ind</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.check_top"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check the terms with the most papers.</span>
 
 <span class="sd">        Parameters</span>
@@ -239,10 +228,10 @@
         <span class="c1"># Find and print the term for which the most papers were found</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{:12}</span><span class="s2">  with </span><span class="si">{:8.0f}</span><span class="s2"> papers&quot;</span>
               <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)],</span> \
-              <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)]))</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)]))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.check_counts"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.check_counts">[docs]</a>    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check how many papers found for each term.</span>
 
 <span class="sd">        Parameters</span>
@@ -253,10 +242,10 @@
 
         <span class="c1"># Check counts for all terms</span>
         <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:12}</span><span class="s1"> - </span><span class="si">{:8.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:12}</span><span class="s1"> - </span><span class="si">{:8.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">]))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Count.drop_data"><a class="viewcode-back" href="../../generated/lisc.count.Count.html#lisc.count.Count.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Drop terms based on number of article results.</span>
 
 <span class="sd">        Parameters</span>
@@ -280,7 +269,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span><span class="p">[</span><span class="n">keep_inds</span><span class="p">,</span> <span class="p">:]</span>
         <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dat_numbers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat_numbers</span><span class="p">[:,</span> <span class="n">keep_inds</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span><span class="p">[:,</span> <span class="n">keep_inds</span><span class="p">]</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat_percent</span><span class="p">[:,</span> <span class="n">keep_inds</span><span class="p">]</span></div></div>
 </pre></div>
 
     </div>
@@ -295,7 +284,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>

@@ -58,30 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">lisc.scrape.scrape_words</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/generated/lisc.scrape.scrape_words.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -105,6 +85,43 @@
       
   <div class="section" id="lisc-scrape-scrape-words">
 <h1>lisc.scrape.scrape_words<a class="headerlink" href="#lisc-scrape-scrape-words" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lisc.scrape.scrape_words">
+<code class="descclassname">lisc.scrape.</code><code class="descname">scrape_words</code><span class="sig-paren">(</span><em>terms_lst</em>, <em>exclusions_lst=[]</em>, <em>db='pubmed'</em>, <em>retmax=None</em>, <em>use_hist=False</em>, <em>save_n_clear=True</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/scrape.html#scrape_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.scrape.scrape_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search and scrape from pubmed for all abstracts referring to a given term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>terms_lst</strong> (<em>list of list of str</em>) – Search terms.</li>
+<li><strong>exclusions_lst</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for search terms.</li>
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em> (</em><em>default: 'pubmed'</em><em>)</em>) – Which pubmed database to use.</li>
+<li><strong>retmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of records to return.</li>
+<li><strong>use_hist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Use e-utilities history: storing results on their server, as needed.</li>
+<li><strong>save_n_clear</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Whether to</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Whether to print out updates.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>results</strong> (<em>list of lisc Data() objects</em>) – Results from the scraping data for each term.</li>
+<li><strong>meta_dat</strong> (<em>dict</em>) – Meta data from the scrape.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The scraping does an exact word search for the term given.
+It then loops through all the articles found about that data.
+For each article, pulls and saves out data (including title, abstract, authors, etc)</p>
+<blockquote>
+<div>Pulls data using the hierarchical tag structure that organize the articles.
+This procedure loops through each article tag.</div></blockquote>
+</dd></dl>
+
 </div>
 
 

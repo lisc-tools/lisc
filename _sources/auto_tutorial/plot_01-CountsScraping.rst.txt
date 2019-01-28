@@ -1,0 +1,514 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_auto_tutorial_plot_01-CountsScraping.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_auto_tutorial_plot_01-CountsScraping.py:
+
+
+Tutorial 01 - Counts Scraping
+=============================
+
+
+This tutorial covers running scrapes, for count data.
+
+
+Counts
+------
+
+'Counts' scrapes for co-occurence of given set(s) of terms.
+
+Running scrapes is available in both a 'functions' and 'objects' approach.
+
+
+
+Set up some test data
+ Note that each entry is itself a list
+
+
+
+.. code-block:: python
+
+    terms_a = [['brain'], ['cognition']]
+    terms_b = [['body'], ['biology'], ['disease']]
+
+
+
+
+
+
+
+Counts
+------
+
+'Counts' scraping gets data about the co-occurence of terms of interest.
+
+Specifically, it search titles and abstracts, and checks how often two terms of interest appear together in the literature.
+
+
+
+.. code-block:: python
+
+
+    # Import LISC - Count
+    from lisc.count import Count
+    from lisc.scrape import scrape_counts
+
+
+
+
+
+
+
+Running a scrape with the scrape_counts function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+.. code-block:: python
+
+
+    # Run a scrape of 'counts' (co-occurence data) - across a single list of terms
+    dat_numbers, dat_percent, term_counts, _, meta_dat = scrape_counts(terms_a, db='pubmed', verbose=True)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Running counts for:  brain
+    Running counts for:  cognition
+
+
+
+.. code-block:: python
+
+
+    # Check out how many papers where found for each combination
+    print(dat_numbers)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [[    0 18561]
+     [18561     0]]
+
+
+
+.. code-block:: python
+
+
+    # Check out the percent of paper overlap
+    print(dat_percent)
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [[0.         0.02013705]
+     [0.27710016 0.        ]]
+
+
+
+.. code-block:: python
+
+
+    # Print out many papers found for each term
+    for term, count in zip(terms_a, term_counts):
+        print('{:12} : {}'.format(term[0], count))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    brain        : 921734
+    cognition    : 66983
+
+
+When given a single set of terms, the 'Counts' scrapes each term  against each other term.
+
+You can also specify different sets of terms to scrape, as below, whereby each term in list A is scraped for co-occurence for each term in list B (but not to other terms in list A).
+
+
+
+.. code-block:: python
+
+
+    # Run a scrape of 'counts' (co-occurence data) across two different lists of terms
+    dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts(
+        terms_lst_a=terms_a, terms_lst_b=terms_b, db='pubmed', verbose=True)
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Running counts for:  brain
+    Running counts for:  cognition
+
+
+Count Object
+------------
+
+There is also an OOP interface available in LISC, to organize the terms and data, and run scrapes.
+
+Note that the underlying code is the same - the count object ultimately calls the same scrape function as above.
+
+
+
+.. code-block:: python
+
+
+    # Initialize counts object
+    counts = Count()
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Set terms to run
+    counts.set_terms(terms_a)
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Run scrape
+    counts.run_scrape(verbose=True)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Running counts for:  brain
+    Running counts for:  cognition
+
+
+The Counts object also comes with some helper methods to check out the data.
+
+
+
+.. code-block:: python
+
+
+    # Check the highest associations for each term
+    counts.check_cooc()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    For the  brain        the most common association is     cognition          with         %02.01
+    For the  cognition    the most common association is     brain              with         %27.71
+
+
+
+.. code-block:: python
+
+
+    # Check how many papers were found for each search term
+    counts.check_counts()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    brain        -   921734
+    cognition    -    66983
+
+
+
+.. code-block:: python
+
+
+    # Check the top term
+    counts.check_top()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    The most studied term is  brain         with   921734 papers
+
+
+Co-occurence data - different word lists
+
+
+
+.. code-block:: python
+
+
+    # Initialize count object
+    counts_two = Count()
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Set terms lists
+    #  Different terms lists are indexed by the 'A' and 'B' labels
+    counts_two.set_terms(terms_a, 'A')
+    counts_two.set_terms(terms_b, 'B')
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Scrape co-occurence data
+    counts_two.run_scrape()
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # From there you can use all the same methods to explore the data
+    #  You can also specify which list to check
+    counts_two.check_cooc('A')
+    print('\n')
+    counts_two.check_cooc('B')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    For the  brain        the most common association is     disease            with         %15.33
+    For the  cognition    the most common association is     disease            with         %20.94
+
+
+    For the  body         the most common association is     cognition          with         %05.46
+    For the  biology      the most common association is     cognition          with         %00.82
+    For the  disease      the most common association is     cognition          with         %20.94
+
+
+Synonyms & Exclusion Words
+--------------------------
+
+There is also support for adding synonyms and exclusion words.
+
+Synonyms are combined with the 'OR' operator, meaning results will be returned if they include any of the given terms.
+
+Exclusion words are combined with the 'NOT' operator, meaning entries will be excluded if they include these terms.
+
+For example, a using search terms ['gene', 'genetic'] with exclusion words ['protein'] creates the search:
+- ("gene"OR"genetic"NOT"protein")
+
+
+
+.. code-block:: python
+
+
+    # Initialize Count object
+    counts = Count()
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Set up terms with synonyms
+    #  Being able to include synonyms is the reason each term entry is itself a list
+    terms_lst = [['gene', 'genetic'], ['cortex', 'cortical']]
+
+    # Set up exclusions
+    #  You can also include synonyms for exclusions - which is why each entry is also a list
+    excl_lst = [['protein'], ['subcortical']]
+
+    # Set the terms & exclusions
+    counts.set_terms(terms_lst, 'A')
+    counts.set_exclusions(excl_lst, 'A')
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # You can check which terms are loaded
+    counts.terms['A'].check_terms()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    List of terms used: 
+
+    gene, genetic
+    cortex, cortical
+
+
+
+.. code-block:: python
+
+
+    # Check exclusion words
+    counts.terms['A'].check_exclusions()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    List of exclusion words used: 
+
+    gene     : protein
+    cortex   : subcortical
+
+
+
+.. code-block:: python
+
+
+    # LISC objects will use the first item of each terms lists as a label for that term
+    counts.terms['A'].labels
+
+
+
+
+
+
+
+
+Note that searching across different terms lists, and using synonyms and exclusions can all also be done directly using the scrape_counts function.
+
+
+**Total running time of the script:** ( 1 minutes  12.220 seconds)
+
+
+.. _sphx_glr_download_auto_tutorial_plot_01-CountsScraping.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: plot_01-CountsScraping.py <plot_01-CountsScraping.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_01-CountsScraping.ipynb <plot_01-CountsScraping.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_

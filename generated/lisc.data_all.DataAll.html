@@ -58,30 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">lisc.data_all.DataAll</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/generated/lisc.data_all.DataAll.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -105,6 +85,267 @@
       
   <div class="section" id="lisc-data-all-dataall">
 <h1>lisc.data_all.DataAll<a class="headerlink" href="#lisc-data-all-dataall" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lisc.data_all.DataAll">
+<em class="property">class </em><code class="descclassname">lisc.data_all.</code><code class="descname">DataAll</code><span class="sig-paren">(</span><em>term_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to hold term data, aggregated across papers.</p>
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.label">
+<code class="descname">label</code><a class="headerlink" href="#lisc.data_all.DataAll.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label for the current term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.term">
+<code class="descname">term</code><a class="headerlink" href="#lisc.data_all.DataAll.term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name(s) of the term word data relates to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.n_articles">
+<code class="descname">n_articles</code><a class="headerlink" href="#lisc.data_all.DataAll.n_articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of articles whos data is included in object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.all_words">
+<code class="descname">all_words</code><a class="headerlink" href="#lisc.data_all.DataAll.all_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>All abstract words collected across all articles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.all_kws">
+<code class="descname">all_kws</code><a class="headerlink" href="#lisc.data_all.DataAll.all_kws" title="Permalink to this definition">¶</a></dt>
+<dd><p>All keywords collected across all articles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.word_freqs">
+<code class="descname">word_freqs</code><a class="headerlink" href="#lisc.data_all.DataAll.word_freqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency distribution of all words.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">nltk.probability.FreqDist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.kw_freqs">
+<code class="descname">kw_freqs</code><a class="headerlink" href="#lisc.data_all.DataAll.kw_freqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency distribution of all keywords.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">nltk.probability.FreqDist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.author_counts">
+<code class="descname">author_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.author_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counter across all authors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>))</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.f_author_counts">
+<code class="descname">f_author_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.f_author_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counter across all first authors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>))</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.journal_counts">
+<code class="descname">journal_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.journal_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counter across all journals.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.year_counts">
+<code class="descname">year_counts</code><a class="headerlink" href="#lisc.data_all.DataAll.year_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counter across all years of publication.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.data_all.DataAll.summary">
+<code class="descname">summary</code><a class="headerlink" href="#lisc.data_all.DataAll.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Summary / overview of data associated with current object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.data_all.DataAll.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>term_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize DataAll() object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>term_data</strong> (<a class="reference internal" href="lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><em>Data</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – xx</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data_all.DataAll.__init__" title="lisc.data_all.DataAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term_data)</td>
+<td>Initialize DataAll() object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data_all.DataAll.check_kws" title="lisc.data_all.DataAll.check_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_kws</span></code></a>([n_check])</td>
+<td>Check the most common kws for the term.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data_all.DataAll.check_words" title="lisc.data_all.DataAll.check_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_words</span></code></a>([n_check])</td>
+<td>Check the most common words for the term.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data_all.DataAll.create_summary" title="lisc.data_all.DataAll.create_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_summary</span></code></a>()</td>
+<td>Fill the summary dictionary of the current terms Words data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data_all.DataAll.print_summary" title="lisc.data_all.DataAll.print_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code></a>()</td>
+<td>Print out a summary of the scraped term paper data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data_all.DataAll.save_summary" title="lisc.data_all.DataAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>([db])</td>
+<td>Save out a summary of the scraped term paper data.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lisc.data_all.DataAll.check_kws">
+<code class="descname">check_kws</code><span class="sig-paren">(</span><em>n_check=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.check_kws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.check_kws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the most common kws for the term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_check</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – Number of top words to print out.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.data_all.DataAll.check_words">
+<code class="descname">check_words</code><span class="sig-paren">(</span><em>n_check=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.check_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.check_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the most common words for the term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_check</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – Number of top words to print out.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.data_all.DataAll.create_summary">
+<code class="descname">create_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.create_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill the summary dictionary of the current terms Words data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.data_all.DataAll.print_summary">
+<code class="descname">print_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.print_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out a summary of the scraped term paper data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.data_all.DataAll.save_summary">
+<code class="descname">save_summary</code><span class="sig-paren">(</span><em>db=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data_all.html#DataAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data_all.DataAll.save_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save out a summary of the scraped term paper data.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Tutorial &#8212; lisc 0.1.0-dev documentation</title>
+    <title>Tutorial 04 - Words Analysis &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -43,7 +43,7 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="../api.html">API</a></li>
-                <li><a href="#">Tutorial</a></li>
+                <li><a href="index.html">Tutorial</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -83,39 +83,61 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="tutorial">
-<span id="tutorials"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
-<div class="sphx-glr-thumbcontainer" tooltip="Tutorial 01"><div class="figure" id="id1">
-<img alt="../_images/sphx_glr_plot_01-CountsScraping_thumb.png" src="../_images/sphx_glr_plot_01-CountsScraping_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_01-CountsScraping.html#sphx-glr-auto-tutorial-plot-01-countsscraping-py"><span class="std std-ref">Tutorial 01 - Counts Scraping</span></a></span></p>
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-auto-tutorial-plot-04-wordsanalysis-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
-</div><div class="toctree-wrapper compound">
+<div class="sphx-glr-example-title section" id="tutorial-04-words-analysis">
+<span id="sphx-glr-auto-tutorial-plot-04-wordsanalysis-py"></span><h1>Tutorial 04 - Words Analysis<a class="headerlink" href="#tutorial-04-words-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Data</span>
+<span class="kn">from</span> <span class="nn">lisc.data_all</span> <span class="kn">import</span> <span class="n">DataAll</span>
+</pre></div>
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Tutorial 02"><div class="figure" id="id2">
-<img alt="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" src="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_02-CountsAnalysis.html#sphx-glr-auto-tutorial-plot-02-countsanalysis-py"><span class="std std-ref">Tutorial 02 - Counts Analysis</span></a></span></p>
+<div class="section" id="data-all">
+<h2>Data All<a class="headerlink" href="#data-all" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#dd = DataAll(words.results[0])</span>
+<span class="c1">#dd.journal_counts</span>
+
+<span class="c1"># Add data to path</span>
+<span class="c1">#db = SCDB()</span>
+
+<span class="c1"># Load raw data from a particular ERP</span>
+<span class="c1">#term = &#39;autobiographical recall&#39;</span>
+<span class="c1">#dat = Data(term)</span>
+<span class="c1">#dat.load(db)</span>
+
+<span class="c1"># Collapse data across papers</span>
+<span class="c1">#all_dat = DataAll(dat)</span>
+</pre></div>
 </div>
-</div><div class="toctree-wrapper compound">
+<p>from lisc.plts.wc import make_wc</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#make_wc(all_dat.word_freqs, 25, term)</span>
+</pre></div>
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Tutorial 03"><div class="figure" id="id3">
-<img alt="../_images/sphx_glr_plot_03-WordsScraping_thumb.png" src="../_images/sphx_glr_plot_03-WordsScraping_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_03-WordsScraping.html#sphx-glr-auto-tutorial-plot-03-wordsscraping-py"><span class="std std-ref">Tutorial 03 - Words Scraping</span></a></span></p>
 </div>
-</div><div class="toctree-wrapper compound">
+<div class="section" id="exploring-words-data">
+<h2>Exploring Words Data<a class="headerlink" href="#exploring-words-data" title="Permalink to this headline">¶</a></h2>
+<p>The words object also has a couple convenience methods for exploring the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indexing with labels</span>
+<span class="c1">#print(words[&#39;brain&#39;])</span>
+</pre></div>
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Tutorial 04"><div class="figure" id="id4">
-<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" src="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_04-WordsAnalysis.html#sphx-glr-auto-tutorial-plot-04-wordsanalysis-py"><span class="std std-ref">Tutorial 04 - Words Analysis</span></a></span></p>
-</div>
-</div><div class="toctree-wrapper compound">
-</div>
-<div style='clear:both'></div><div class="sphx-glr-footer class sphx-glr-footer-gallery docutils container">
+<dl class="docutils">
+<dt>Iterating through papers found from a particular search term</dt>
+<dd>The iteration returns a dictionary with all the paper data</dd>
+<dt>for art in words[‘cognition’]:</dt>
+<dd>print(art[‘title’])</dd>
+</dl>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorial-plot-04-wordsanalysis-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../_downloads/29608708defa83fcaba8f1d7ee531244/auto_tutorial_python.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">auto_tutorial_python.zip</span></code></a></div>
+<a class="reference download internal" download="" href="../_downloads/235991c1fb2f6f4896deeb06820fa3c2/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></div>
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../_downloads/9caba7a7f0ec7558cef4c9e4e1a0e3d9/auto_tutorial_jupyter.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">auto_tutorial_jupyter.zip</span></code></a></div>
+<a class="reference download internal" download="" href="../_downloads/4a6c5d0601da5c78576d26147d785c58/plot_04-WordsAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-WordsAnalysis.ipynb</span></code></a></div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
 </div>
 
 

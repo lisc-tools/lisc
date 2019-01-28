@@ -7,12 +7,11 @@
     <title>lisc.data &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +44,7 @@
             
                 <li><a href="../../api.html">API</a></li>
                 <li><a href="../../auto_tutorial/index.html">Tutorial</a></li>
-                <li><a href="https://github.com/TomDonoghue/lisc">GitHub</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -59,23 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -200,7 +186,7 @@
             <span class="p">}</span>
 
 
-    <span class="k">def</span> <span class="nf">add_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_id</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_id"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_id">[docs]</a>    <span class="k">def</span> <span class="nf">add_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new ID to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -209,10 +195,10 @@
 <span class="sd">            The ID number of the current article.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_id</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_title</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_title"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_title">[docs]</a>    <span class="k">def</span> <span class="nf">add_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_title</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new title to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -221,10 +207,10 @@
 <span class="sd">            The title of the current article.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_title</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_title</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_authors</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_authors"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_authors">[docs]</a>    <span class="k">def</span> <span class="nf">add_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_authors</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new set of authors to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -234,10 +220,10 @@
 <span class="sd">                (LastName, FirstName, Initials, Affiliation)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_authors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_authors</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_journal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_journal</span><span class="p">,</span> <span class="n">new_iso_abbrev</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_journal"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_journal">[docs]</a>    <span class="k">def</span> <span class="nf">add_journal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_journal</span><span class="p">,</span> <span class="n">new_iso_abbrev</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new journal name and ISO abbreviation to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -248,10 +234,10 @@
 <span class="sd">            Standardized abbreviation of journal name article comes from.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">new_journal</span><span class="p">,</span> <span class="n">new_iso_abbrev</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">new_journal</span><span class="p">,</span> <span class="n">new_iso_abbrev</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_words</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_words</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_words"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_words">[docs]</a>    <span class="k">def</span> <span class="nf">add_words</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_words</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add new words to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -260,10 +246,10 @@
 <span class="sd">            List of words from the current article.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_words</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_words</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_kws</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_kws</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_kws"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_kws">[docs]</a>    <span class="k">def</span> <span class="nf">add_kws</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_kws</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add new keywords to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -272,10 +258,10 @@
 <span class="sd">            List of keywords from current article.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">kws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_kws</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_kws</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_pub_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_pub_date</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_pub_date"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_pub_date">[docs]</a>    <span class="k">def</span> <span class="nf">add_pub_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_pub_date</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add publication date information to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -285,10 +271,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_pub_date</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">months</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_pub_date</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">months</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_pub_date</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
 
 
-    <span class="k">def</span> <span class="nf">add_doi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_doi</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_doi"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.add_doi">[docs]</a>    <span class="k">def</span> <span class="nf">add_doi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_doi</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add DOI to termWords object.</span>
 
 <span class="sd">        Parameters</span>
@@ -297,16 +283,16 @@
 <span class="sd">            DOI for the current article.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_doi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_doi</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">increment_n_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.increment_n_articles"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.increment_n_articles">[docs]</a>    <span class="k">def</span> <span class="nf">increment_n_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Increment the number of articles included in current object.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.check_results"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.check_results">[docs]</a>    <span class="k">def</span> <span class="nf">check_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check for consistencty in extracted results.</span>
 
 <span class="sd">        If everything worked, each data field (ids, titles, words, years)</span>
@@ -325,16 +311,16 @@
             <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;term Words data is inconsistent.&#39;</span><span class="p">)</span>
 
         <span class="c1"># Update history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update_history</span><span class="p">(</span><span class="s1">&#39;Passed Check&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_history</span><span class="p">(</span><span class="s1">&#39;Passed Check&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">update_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.update_history"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.update_history">[docs]</a>    <span class="k">def</span> <span class="nf">update_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update object history.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">update</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.save"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save out json file with all attached data.&quot;&quot;&quot;</span>
 
         <span class="n">db</span> <span class="o">=</span> <span class="n">check_db</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
@@ -345,10 +331,10 @@
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1"># Update history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update_history</span><span class="p">(</span><span class="s1">&#39;Saved&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_history</span><span class="p">(</span><span class="s1">&#39;Saved&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.load"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load raw data from json file.&quot;&quot;&quot;</span>
 
         <span class="n">db</span> <span class="o">=</span> <span class="n">check_db</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
@@ -366,10 +352,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_doi</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;doi&#39;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">increment_n_articles</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">check_results</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_results</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.clear"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Clear all data attached to object.&quot;&quot;&quot;</span>
 
         <span class="c1"># Re-initiliaze all data lists to be empty</span>
@@ -387,14 +373,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c1"># Update history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update_history</span><span class="p">(</span><span class="s1">&#39;Cleared&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_history</span><span class="p">(</span><span class="s1">&#39;Cleared&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">save_n_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.save_n_clear"><a class="viewcode-back" href="../../generated/lisc.data.Data.html#lisc.data.Data.save_n_clear">[docs]</a>    <span class="k">def</span> <span class="nf">save_n_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save out the attached data and clear the object.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div></div>
 
 <span class="c1">################################################################################</span>
 <span class="c1">################################################################################</span>
@@ -417,7 +403,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
     </p>
   </div>
 </footer>

@@ -58,30 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">lisc.words.Words</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/generated/lisc.words.Words.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -105,6 +85,126 @@
       
   <div class="section" id="lisc-words-words">
 <h1>lisc.words.Words<a class="headerlink" href="#lisc-words-words" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lisc.words.Words">
+<em class="property">class </em><code class="descclassname">lisc.words.</code><code class="descname">Words</code><a class="reference internal" href="../_modules/lisc/words.html#Words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.words.Words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for searching through words in the abstracts of specified papers.</p>
+<dl class="attribute">
+<dt id="lisc.words.Words.result_keys">
+<code class="descname">result_keys</code><a class="headerlink" href="#lisc.words.Words.result_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keys for each result data attached to object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.words.Words.results">
+<code class="descname">results</code><a class="headerlink" href="#lisc.words.Words.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Results for each ERP, stored in custom Words object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of Data() objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.words.Words.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/words.html#Words.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.words.Words.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize LISC Words() object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.words.Words.__init__" title="lisc.words.Words.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
+<td>Initialize LISC Words() object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.words.Words.add_results" title="lisc.words.Words.add_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_results</span></code></a>(new_result)</td>
+<td>Add a new Data results object.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_exclusions</span></code>()</td>
+<td>Print out the current list of exclusion words.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_terms</span></code>()</td>
+<td>Print out the current list of terms.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_term_labels</span></code>()</td>
+<td>Get term labels.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.words.Words.run_scrape" title="lisc.words.Words.run_scrape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_scrape</span></code></a>([db,&nbsp;retmax,&nbsp;use_hist,&nbsp;…])</td>
+<td>Launch a scrape of words data.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions</span></code>(exclusions)</td>
+<td>Sets the given list of strings as exclusion words.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions_file</span></code>([excl_f_name])</td>
+<td>Load exclusion words from a txt file.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms</span></code>(terms)</td>
+<td>Sets the given list of strings as terms to use.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms_file</span></code>(terms_f_name)</td>
+<td>Load terms from a txt file.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_exclusions</span></code>()</td>
+<td>Unload the current set of exclusion words.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code>()</td>
+<td>Unload the current set of terms.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lisc.words.Words.add_results">
+<code class="descname">add_results</code><span class="sig-paren">(</span><em>new_result</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/words.html#Words.add_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.words.Words.add_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new Data results object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_result</strong> (<a class="reference internal" href="lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><em>Data</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – Object with information about current term.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.words.Words.run_scrape">
+<code class="descname">run_scrape</code><span class="sig-paren">(</span><em>db='pubmed'</em>, <em>retmax=None</em>, <em>use_hist=False</em>, <em>save_n_clear=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/words.html#Words.run_scrape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.words.Words.run_scrape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a scrape of words data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em> (</em><em>default: 'pubmed'</em><em>)</em>) – Which pubmed database to use.</li>
+<li><strong>retmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of records to return.</li>
+<li><strong>use_hist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Use e-utilities history: storing results on their server, as needed.</li>
+<li><strong>save_n_clear</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Whether to</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Whether to print out updates.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to lisc’s documentation! &#8212; lisc 0.1.0-dev documentation</title>
+    <title>LISC - Literature Scanner &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
@@ -58,31 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Welcome to lisc’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="_sources/index.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -104,18 +83,48 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="welcome-to-lisc-s-documentation">
-<h1>Welcome to lisc’s documentation!<a class="headerlink" href="#welcome-to-lisc-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <div class="section" id="lisc-literature-scanner">
+<h1>LISC - Literature Scanner<a class="headerlink" href="#lisc-literature-scanner" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="http://www.repostatus.org/#active"><img alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." src="http://www.repostatus.org/badges/latest/active.svg" /></a>
+<a class="reference external image-reference" href="https://travis-ci.org/lisc-tools/lisc"><img alt="Build Status" src="https://travis-ci.org/lisc-tools/lisc.svg" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/lisc-tools/lisc"><img alt="codecov" src="https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg" /></a>
+<a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/fooof.svg" /></a>
+<p>LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.</p>
+<p>NOTE: the current version is still a development version (0.1.0-dev) and may not be totally stable.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>LISC is a python module for scraping literature data. It currently supports and acts as a wrapper around the Pubmed E-Utilities.</p>
+<p>LISC provides for two different ‘types’ of scraping, ‘Counts’, which can be used to count the popularity and co-occurence of specified search terms, and ‘Words’, which collects meta-data and text data for papers identified from a set of search terms.</p>
+<p>As well as the functionality to collect such data, LISC includes support to analyzing and plotting returned data, as well as save and load utilties for storing the collected data.</p>
+<p>By construction, LISC provides both an Object-Oriented approach for running literature scrapes, as well as the option to use functions (both of which call the same underlying code).</p>
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>LISC is written in Python 3, and requires Python 3.4 or greater to run.</p>
+<p>Requirements:</p>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li>numpy</li>
+<li>requests</li>
+<li>lxml</li>
+<li>beautifulsoup4</li>
+<li>nltk</li>
 </ul>
+<p>Optional dependencies, used for plots &amp; analysis:</p>
+<ul class="simple">
+<li>matplotlib</li>
+<li>seaborn</li>
+<li>scipy</li>
+<li>wordcloud</li>
+</ul>
+</div>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>LISC will be posted to PYPI soon.</p>
+<p>For now, you can use it by cloning from Github. In terminal, run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/lisc-tools/lisc</span></code></p>
+<p>Once you have done this, move into the directory you just cloned and run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code></p>
+</div>
 </div>
 
 

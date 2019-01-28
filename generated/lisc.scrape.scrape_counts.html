@@ -58,30 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">lisc.scrape.scrape_counts</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/generated/lisc.scrape.scrape_counts.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -105,6 +85,41 @@
       
   <div class="section" id="lisc-scrape-scrape-counts">
 <h1>lisc.scrape.scrape_counts<a class="headerlink" href="#lisc-scrape-scrape-counts" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lisc.scrape.scrape_counts">
+<code class="descclassname">lisc.scrape.</code><code class="descname">scrape_counts</code><span class="sig-paren">(</span><em>terms_lst_a</em>, <em>excls_lst_a=[]</em>, <em>terms_lst_b=[]</em>, <em>excls_lst_b=[]</em>, <em>db='pubmed'</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/scrape.html#scrape_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.scrape.scrape_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search through pubmed for all abstracts for co-occurence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>terms_lst_a</strong> (<em>list of list of str</em>) – Search terms.</li>
+<li><strong>excl_lst_a</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for search terms.</li>
+<li><strong>terms_lst_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Secondary list of search terms.</li>
+<li><strong>excl_lst_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for secondary list of search terms.</li>
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em> (</em><em>default: 'pubmed'</em><em>)</em>) – Which pubmed database to use.</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default: False</em><em>)</em>) – Whether to print out updates.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>dat_numbers</strong> (<em>2d array</em>) – The numbers of papers found for each combination of terms.</li>
+<li><strong>dat_percent</strong> (<em>2d array</em>) – The percentage of papers for each term that include the corresponding term.</li>
+<li><strong>term_a_counts</strong> (<em>1d array</em>) – Number of papers for each term.</li>
+<li><strong>term_b_counts</strong> (<em>1d array</em>) – Number of papers for each term, in the secondary list of terms.</li>
+<li><strong>meta_dat</strong> (<em>dict</em>) – Meta data from the scrape.</li>
+<li><em>The scraping does an exact word search for two terms.</em></li>
+<li><em>The HTML page returned by the pubmed search includes a ‘count’ field.</em></li>
+<li><em>This field contains the number of papers with both terms. This is extracted.</em></li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 

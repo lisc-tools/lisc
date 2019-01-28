@@ -58,30 +58,10 @@
       aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">lisc.count.Count</a></li>
-</ul>
-</ul>
-</li>
-              
             
             
             
             
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/generated/lisc.count.Count.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -105,6 +85,221 @@
       
   <div class="section" id="lisc-count-count">
 <h1>lisc.count.Count<a class="headerlink" href="#lisc-count-count" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lisc.count.Count">
+<em class="property">class </em><code class="descclassname">lisc.count.</code><code class="descname">Count</code><a class="reference internal" href="../_modules/lisc/count.html#Count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a class for counting co-occurence of pre-specified terms list(s).</p>
+<dl class="attribute">
+<dt id="lisc.count.Count.terms">
+<code class="descname">terms</code><a class="headerlink" href="#lisc.count.Count.terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search terms to use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a>()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.count.Count.dat_numbers">
+<code class="descname">dat_numbers</code><a class="headerlink" href="#lisc.count.Count.dat_numbers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The numbers of papers found for each combination of terms.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">2d array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.count.Count.dat_percent">
+<code class="descname">dat_percent</code><a class="headerlink" href="#lisc.count.Count.dat_percent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The percentage of papers for each term that include the corresponding term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">2d array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lisc.count.Count.square">
+<code class="descname">square</code><a class="headerlink" href="#lisc.count.Count.square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the count data matrix is symetrical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize LISC Count() object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.count.Count.__init__" title="lisc.count.Count.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
+<td>Initialize LISC Count() object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.count.Count.check_cooc" title="lisc.count.Count.check_cooc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_cooc</span></code></a>([dim])</td>
+<td>“Prints out the most frequent association for each term.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.count.Count.check_counts" title="lisc.count.Count.check_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_counts</span></code></a>([dim])</td>
+<td>Check how many papers found for each term.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.count.Count.check_top" title="lisc.count.Count.check_top"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_top</span></code></a>([dim])</td>
+<td>Check the terms with the most papers.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.count.Count.drop_data" title="lisc.count.Count.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles[,&nbsp;dim])</td>
+<td>Drop terms based on number of article results.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.count.Count.run_scrape" title="lisc.count.Count.run_scrape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_scrape</span></code></a>([db,&nbsp;verbose])</td>
+<td>Scrape co-occurence data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.count.Count.set_exclusions" title="lisc.count.Count.set_exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_exclusions</span></code></a>(exclusions[,&nbsp;dim])</td>
+<td>Sets the given list of strings as exclusion words.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.count.Count.set_terms" title="lisc.count.Count.set_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_terms</span></code></a>(terms[,&nbsp;dim])</td>
+<td>Sets the given list of strings as terms to use.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lisc.count.Count.check_cooc">
+<code class="descname">check_cooc</code><span class="sig-paren">(</span><em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.check_cooc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.check_cooc" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Prints out the most frequent association for each term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dim</strong> (<em>'A'</em><em> or </em><em>'B'</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.check_counts">
+<code class="descname">check_counts</code><span class="sig-paren">(</span><em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.check_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.check_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check how many papers found for each term.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dim</strong> (<em>'A'</em><em> or </em><em>'B'</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.check_top">
+<code class="descname">check_top</code><span class="sig-paren">(</span><em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.check_top"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.check_top" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the terms with the most papers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dim</strong> (<em>'A'</em><em> or </em><em>'B'</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.drop_data">
+<code class="descname">drop_data</code><span class="sig-paren">(</span><em>n_articles</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.drop_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.drop_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop terms based on number of article results.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_articles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Mininum number of articles to keep each term.</li>
+<li><strong>dim</strong> (<em>'A'</em><em> or </em><em>'B'</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.run_scrape">
+<code class="descname">run_scrape</code><span class="sig-paren">(</span><em>db='pubmed'</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.run_scrape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.run_scrape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scrape co-occurence data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em> (</em><em>default: 'pubmed'</em><em>)</em>) – Which pubmed database to use.</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – Whether to print out updates.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.set_exclusions">
+<code class="descname">set_exclusions</code><span class="sig-paren">(</span><em>exclusions</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.set_exclusions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.set_exclusions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the given list of strings as exclusion words.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>exclusions</strong> (<em>list of str OR list of list of str</em>) – List of exclusion words to be used.</li>
+<li><strong>dim</strong> (<em>'A'</em><em> or </em><em>'B'</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.count.Count.set_terms">
+<code class="descname">set_terms</code><span class="sig-paren">(</span><em>terms</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/count.html#Count.set_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.count.Count.set_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the given list of strings as terms to use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>terms</strong> (<em>list of str OR list of list of str</em>) – List of terms to be used.</li>
+<li><strong>dim</strong> (<em>'A'</em><em> or </em><em>'B'</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
