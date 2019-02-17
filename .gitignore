@@ -20,9 +20,12 @@
 # Ignore swap files
 *.swp*
 
-# Ignore things for website
-/docs/_site/*
-/docs/.sass-cache/*
+# Ignore docsite output files
+/doc/_site/*
+/doc/_build/*
+/doc/auto_tutorial/*
+/doc/generated/*
+/doc/.sass-cache/*
 
 # Ignore pylint output
 _lint.txt
