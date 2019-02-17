@@ -4,7 +4,6 @@ Tutorial 03 - Words Scraping
 """
 
 ###############################################################################
-# Words
 #
 # 'Words' scrapes abstract text data, and paper meta-data, for all papers found for a given set of terms.
 #
@@ -16,7 +15,7 @@ Tutorial 03 - Words Scraping
 # Another way to scrape the data is to get some paper data from
 
 ###############################################################################
-#
+
 # Import LISC - Words
 from lisc.words import Words
 from lisc.scrape import scrape_words
@@ -51,7 +50,6 @@ d1 = dat[0]
 print(d1.n_articles, '\n')
 print('\n'.join(d1.titles), '\n')
 
-
 ###############################################################################
 # Object Approach: Words
 # ----------------------
@@ -64,7 +62,6 @@ words.set_terms(terms_a)
 
 # Run words scrape
 words.run_scrape(retmax='5', save_n_clear=False)
-
 
 ###############################################################################
 #
@@ -80,7 +77,6 @@ words.results
 # Regardless of what you are scraping, or how you run it through LISC, there is some meta-data saved.
 #
 # This data is collected in a dictionary, that is returned by the scrape functions (and saved to the objects, if applicable).
-
 
 ###############################################################################
 #

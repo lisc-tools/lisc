@@ -17,7 +17,7 @@ Tutorial 01 - Counts Scraping
 #
 
 ###############################################################################
-#
+
 # Set up some test data
 #  Note that each entry is itself a list
 terms_a = [['brain'], ['cognition']]
@@ -52,7 +52,6 @@ print(dat_numbers)
 # Check out the percent of paper overlap
 print(dat_percent)
 
-
 ###############################################################################
 
 # Print out many papers found for each term
@@ -71,7 +70,6 @@ for term, count in zip(terms_a, term_counts):
 dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts(
     terms_lst_a=terms_a, terms_lst_b=terms_b, db='pubmed', verbose=True)
 
-
 ###############################################################################
 # Count Object
 # ------------
@@ -79,7 +77,6 @@ dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts
 # There is also an OOP interface available in LISC, to organize the terms and data, and run scrapes.
 #
 # Note that the underlying code is the same - the count object ultimately calls the same scrape function as above.
-
 
 ###############################################################################
 
@@ -189,7 +186,6 @@ counts.terms['A'].check_exclusions()
 
 # LISC objects will use the first item of each terms lists as a label for that term
 counts.terms['A'].labels
-
 
 ###############################################################################
 #

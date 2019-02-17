@@ -5,6 +5,11 @@ Tutorial 04 - Words Analysis
 
 ###############################################################################
 #
+# This tutorial explores the built in utilities for exploring & anayzing words data.
+#
+
+###############################################################################
+
 from lisc.core.db import SCDB
 from lisc.data import Data
 from lisc.data_all import DataAll
@@ -33,17 +38,14 @@ from lisc.data_all import DataAll
 
 #make_wc(all_dat.word_freqs, 25, term)
 
-
 ###############################################################################
 # Exploring Words Data
 # --------------------
 #
 # The words object also has a couple convenience methods for exploring the data.
 
-
 # Indexing with labels
 #print(words['brain'])
-
 
 ###############################################################################
 #
