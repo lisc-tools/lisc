@@ -14,11 +14,19 @@ NOTE: the current version is still a development version (0.1.0-dev) and may not
 
 LISC is a python module for scraping literature data. It currently supports and acts as a wrapper around the Pubmed E-Utilities.
 
-LISC provides for two different 'types' of scraping, 'Counts', which can be used to count the popularity and co-occurence of specified search terms, and 'Words', which collects meta-data and text data for papers identified from a set of search terms.
+LISC provides for two different 'types' of scraping:
+- 'Counts', which can be used to count the popularity and co-occurence of specified search terms
+- 'Words', which collects meta-data and text data for papers identified from a set of search terms
 
 As well as the functionality to collect such data, LISC includes support to analyzing and plotting returned data, as well as save and load utilties for storing the collected data.
 
-By construction, LISC provides both an Object-Oriented approach for running literature scrapes, as well as the option to use functions (both of which call the same underlying code).
+## Documentation
+
+Documentation for LISC available [here](https://lisc-tools.github.io/lisc/).
+
+The documentation also includes a set of [tutorials](https://lisc-tools.github.io/lisc/auto_tutorials/index.html).
+
+For a curated list of projects that use LISC (or pre-cursors), check out the [projects](https://github.com/lisc-tools/Projects) page.
 
 ## Dependencies
 
@@ -39,12 +47,34 @@ Optional dependencies, used for plots & analysis:
 
 ## Install
 
-LISC will be posted to PYPI soon.
+**Stable Version**
 
-For now, you can use it by cloning from Github. In terminal, run:
+PIP install coming soon!
+
+**Development Version**
+
+To get the development version (updates that are not yet published to pip), you can clone this repo.
 
 `$ git clone https://github.com/lisc-tools/lisc`
 
-Once you have done this, move into the directory you just cloned and run:
+To install this cloned copy of LISC, move into the directory you just cloned, and run:
 
 `$ pip install .`
+
+**Editable Version**
+
+If you want to install an editable version, for making contributions, download the development version as above, and run:
+
+`$ pip install -e .`
+
+## Bug Reports
+
+Please use the [Github issue tracker](https://github.com/lisc-tools/lisc/issues) to file bug reports and/or ask questions about this project.
+
+## Contribute
+
+`LISC` welcomes and encourages contributions from the community, as long as contributors follow the [Code of Conduct](https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md).
+
+If you have an idea of something to add to LISC, please start by opening an [issue](https://github.com/lisc-tools/lisc/issues).
+
+When working on LISC, please follow the [Contribution Guidelines](https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md).
