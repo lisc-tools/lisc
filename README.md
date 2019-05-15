@@ -24,7 +24,7 @@ As well as the functionality to collect such data, LISC includes support to anal
 
 Documentation for LISC available [here](https://lisc-tools.github.io/lisc/).
 
-The documentation also includes a set of [tutorials](https://lisc-tools.github.io/lisc/auto_tutorials/index.html).
+The documentation also includes a set of [tutorials](https://lisc-tools.github.io/lisc/auto_tutorial/index.html).
 
 For a curated list of projects that use LISC (or pre-cursors), check out the [projects](https://github.com/lisc-tools/Projects) page.
 
