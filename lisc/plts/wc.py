@@ -1,16 +1,15 @@
-"""Word cloud plots for LISC."""
+"""LISC plots - word clouds."""
 
 import os
 import random
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 from lisc.core.db import check_db
 
-############################################################################################
-############################################################################################
-############################################################################################
+###################################################################################################
+###################################################################################################
 
 def make_wc(freq_dist, n_words, label, disp_fig=True, save_fig=False, db=None):
     """Create and display wordcloud.

@@ -5,10 +5,9 @@ import pkg_resources as pkg
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
-###################################### LISC - GENERAL - BASE ######################################
 ###################################################################################################
 
-class Base(object):
+class Base():
     """Base class for LISC analyses.
 
     Attributes
@@ -187,8 +186,8 @@ class Base(object):
             # Reset exclusions variables to empty
             self.exclusions = list()
 
-##########################################################################################
-##########################################################################################
+###################################################################################################
+###################################################################################################
 
 def _check_type(term):
     """Check type of input term, and return as a list.
@@ -224,12 +223,10 @@ def _terms_load_file(dat_name):
         Data from the file.
     """
 
-    # Open file
     f_name = 'terms/' + dat_name + '.txt'
     f_path = pkg.resource_filename(__name__, f_name)
     terms_file = open(f_path, 'r')
 
-    # Pull out data from file
     dat = terms_file.read().splitlines()
 
     return dat

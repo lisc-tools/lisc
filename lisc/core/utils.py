@@ -1,19 +1,16 @@
 """Basic utility functions for LISC."""
 
-#import os
+###################################################################################################
+###################################################################################################
 
-###############################################################################################
-################################# LISC - UTILS - FUNCTIONS ####################################
-###############################################################################################
-
-def comb_terms(lst, jt):
+def comb_terms(lst, joiner):
     """Combine a list of terms to use as search arguments.
 
     Parameters
     ----------
     lst : list of str
         List of terms to combine together.
-    jt : {'or', 'not'}
+    joiner : {'or', 'not'}
         Term to use to join together terms.
 
     Returns
@@ -26,10 +23,12 @@ def comb_terms(lst, jt):
     lst = ['"'+ item + '"' for item in lst]
 
     # Join together using requested join term
-    if jt == 'or':
+    if joiner == 'or':
         out = '(' + 'OR'.join(lst) + ')'
-    elif jt == 'not':
+    elif joiner == 'not':
         out = 'NOT' + 'NOT'.join(lst)
+    else:
+        raise ValueError('Join term not understood.')
 
     return out
 
@@ -61,19 +60,18 @@ def extract(dat, tag, how):
 
     # Use try to be robust to missing tag
     try:
-        if how is 'raw':
+        if how == 'raw':
             return dat.find(tag)
-        elif how is 'str':
+        elif how == 'str':
             return dat.find(tag).text
-        elif how is 'all':
+        elif how == 'all':
             return dat.findAll(tag)
 
     except AttributeError:
         return None
 
-################################################################################################
-################################## ERPSC - UTILS - DECORATORS ##################################
-################################################################################################
+###################################################################################################
+###################################################################################################
 
 def CatchNone(func):
     """Decorator function to catch and return None, if given as first argument."""

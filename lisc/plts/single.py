@@ -1,6 +1,7 @@
-"""Create data plots for LISC project - plots for single terms."""
+"""LISC plots - plots for single terms."""
 
 import os
+
 import matplotlib.pyplot as plt
 
 from lisc.core.db import check_db

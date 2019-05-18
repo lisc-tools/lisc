@@ -1,11 +1,9 @@
 """Class for LISC word analysis (text analysis of abstract texts)."""
 
-# Import custom code
 from lisc.base import Base
 from lisc.scrape import scrape_words
 
 ###################################################################################################
-########################################## LISC  -  WORDS #########################################
 ###################################################################################################
 
 class Words(Base):

@@ -1,11 +1,11 @@
-"""Database structure object for the LISC project."""
+"""Database structure object for LISC."""
 
 import os
 
 ###################################################################################################
 ###################################################################################################
 
-class SCDB(object):
+class SCDB():
     """Class to hold database information for SCANR project.
 
     Attributes
@@ -43,7 +43,7 @@ class SCDB(object):
 
 
     def gen_paths(self):
-        """Generate all the full paths for the ERP-SCANR project."""
+        """Generate all the full paths for the database object."""
 
         # Set the data path
         self.data_path = os.path.join(self.project_path, 'Data')
@@ -54,8 +54,8 @@ class SCDB(object):
         self.words_path = os.path.join(self.data_path, 'words')
 
 
-class WebDB(object):
-    """Class to hold database information for SCANR Website.
+class WebDB():
+    """Class to hold database information for a LISC Website.
 
     Parameters
     ----------
@@ -89,12 +89,12 @@ def check_db(db):
     Parameters
     ----------
     db : SCDB() object, or None
-        Database object for LISC project.
+        Database object.
 
     Returns
     -------
     db : SCDB() object
-        Database object for LISC project.
+        Database object.
     """
 
     # If db is currently None, initialize as SCDB

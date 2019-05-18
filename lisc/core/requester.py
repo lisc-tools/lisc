@@ -3,12 +3,10 @@
 import time
 import requests
 
-REST_TIME = 1/3
-
 ###################################################################################################
 ###################################################################################################
 
-class Requester(object):
+class Requester():
     """Object to handle URL requests.
 
     Attributes
@@ -17,6 +15,8 @@ class Requester(object):
         Status of the requester, whether currently being used to make requests.
     n_requests : int
         Number of requests that have been completed.
+    rest_time : float
+        Amount of time to rest between requests.
     st_time : str
         Time when request session started.
     en_time : str
@@ -30,6 +30,8 @@ class Requester(object):
 
         self.is_active = False
         self.n_requests = int()
+
+        self.rest_time = 1/3
 
         self.st_time = time.strftime('%H:%M %A %d %B')
         self.en_time = str()
@@ -53,8 +55,8 @@ class Requester(object):
         time_since_req = time.time() - self.time_last_req
 
         # If last request was too recent, pause
-        if time_since_req < REST_TIME:
-            self.wait(REST_TIME - time_since_req)
+        if time_since_req < self.rest_time:
+            self.wait(self.rest_time - time_since_req)
 
 
     @staticmethod

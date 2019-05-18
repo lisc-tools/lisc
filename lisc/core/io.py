@@ -1,4 +1,4 @@
-"""Load & save functions for SCANR."""
+"""Load & save functions for LISC."""
 
 import os
 import pickle
@@ -16,7 +16,7 @@ def save_pickle_obj(obj, f_name, db=None):
 
     Parameters
     ----------
-    obj : {Counts() object, Words() object}
+    obj : Counts() or Words() object
         LISC custom object to save out.
     f_name : str
         Name to append to saved out file name.
@@ -52,7 +52,7 @@ def save_pickle_obj(obj, f_name, db=None):
 
 
 def load_pickle_obj(f_name, db=None):
-    """Load a custom object, from a pickle file, for SCANR project.
+    """Load a custom object, from a pickle file.
 
     Parameters
     ----------
@@ -60,6 +60,11 @@ def load_pickle_obj(f_name, db=None):
         File name of the object to be loaded.
     db : SCDB object, optional
         Database object for the SCANR project.
+
+    Returns
+    -------
+    object
+        Custom object loaded from pickle file.
     """
 
     # Check for database object, initialize if not provided
@@ -81,5 +86,4 @@ def load_pickle_obj(f_name, db=None):
     else:
         raise InconsistentDataError('Can not find requested file name.')
 
-    # Load and return the data
     return pickle.load(open(load_path, 'rb'))

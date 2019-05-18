@@ -1,15 +1,16 @@
 """Scraper functions for LISC."""
 
 import datetime
+
+import nltk
 import numpy as np
 from bs4 import BeautifulSoup
-import nltk
 from nltk.corpus import stopwords
 
-from lisc.core.utils import comb_terms, extract, CatchNone, CatchNone2
 from lisc.data import Data
 from lisc.core.urls import URLS
 from lisc.core.requester import Requester
+from lisc.core.utils import comb_terms, extract, CatchNone, CatchNone2
 
 ###################################################################################################
 ###################################################################################################
@@ -409,9 +410,7 @@ def _mk(t_lst, cm=''):
     else:
         return ''
 
-
 ###################################################################################################
-################################ LISC - WORDS - FUNCTIONS (PRIVATE) ###############################
 ###################################################################################################
 
 def _extract_add_info(cur_dat, new_id, art):
@@ -477,7 +476,6 @@ def _ids_to_str(ids):
     for i in range(1, n_ids):
         ids_str = ids_str + ',' + str(ids[i].text)
 
-    # Return string of ids
     return ids_str
 
 

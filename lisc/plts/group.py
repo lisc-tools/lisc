@@ -1,6 +1,7 @@
-"""Create data plots for LISC - plots for group analysis."""
+"""LISC plots - plots for group analysis."""
 
 import os
+
 import seaborn as sns
 import matplotlib.pyplot as plt
 import scipy.cluster.hierarchy as hier

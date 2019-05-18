@@ -13,7 +13,7 @@ EXCLUDE_KWS = []
 ###################################################################################################
 ###################################################################################################
 
-class DataAll(object):
+class DataAll():
     """Object to hold term data, aggregated across papers.
 
     Attributes
@@ -50,7 +50,7 @@ class DataAll(object):
         Parameters
         ----------
         term_data : Data() object
-            xx
+            TODO.
         """
 
         self.label = term_data.label
@@ -81,7 +81,7 @@ class DataAll(object):
 
         Parameters
         ----------
-        n_check : int, optional (default=20)
+        n_check : int, optional, default: 20
             Number of top words to print out.
         """
 
@@ -93,7 +93,7 @@ class DataAll(object):
 
         Parameters
         ----------
-        n_check : int, optional (default=20)
+        n_check : int, optional, default: 20
             Number of top words to print out.
         """
 
@@ -141,9 +141,8 @@ class DataAll(object):
         with open(db.words_path + '/summary/' + self.label + '.json', 'w') as outfile:
             json.dump(self.summary, outfile)
 
-##########################################################################################
-##########################################################################################
-##########################################################################################
+###################################################################################################
+###################################################################################################
 
 def _check(freqs, n_check, label):
     """Prints out the most common items in frequecy distribution.
@@ -245,7 +244,7 @@ def _proc_years(year_lst):
     return counts
 
 
-def _proc_journals(j_lst):
+def _proc_journals(journals_lst):
     """Process journals.
 
     Parameters
@@ -260,56 +259,55 @@ def _proc_journals(j_lst):
         Number of publications per journal - (n, Journal Name).
     """
 
-    names = [j[0] for j in j_lst]
+    names = [journal[0] for journal in journals_lst]
 
-    # TODO: Update this quick fix
-    names = [n for n in names if n is not None]
+    # TODO: Update this quick fix (??)
+    names = [name for name in names if name is not None]
 
-    counts = [(names.count(i), i) for i in set(names)]
+    counts = [(names.count(element), element) for element in set(names)]
     counts.sort(reverse=True)
 
     return counts
 
 
-def _proc_authors(a_lst):
+def _proc_authors(authors_lst):
     """Process all authors.
 
     Parameters
     ----------
-    a_lst : list of list of tuple of (str, str, str, str)
+    authors_lst : list of list of tuple of (str, str, str, str)
         Authors of all articles included in object.
             (Last Name, First Name, Initials, Affiliation)
 
     Returns
     -------
-    counts : list of tuple of (int, (str, str))
+    author_counts : list of tuple of (int, (str, str))
         Number of publications per author - (n, (Last Name, Initials)).
-
-    Notes
-    -----
-    The non-obvious list comprehension is more obviously written as:
-    all_authors = []
-    for authors in a_lst:
-        for author in authors:
-            all_authors.append(author)
     """
 
     # Drop author lists that are None
-    a_lst = [a for a in a_lst if a is not None]
+    authors_lst = [author for author in authors_lst if author is not None]
 
     # Reduce author fields to pair of tuples (L_name, Initials)
-    names = [(author[0], author[2]) for authors in a_lst for author in authors]
+    # This list comprehension can be equivalently written as:
+    # all_authors = []
+    # for authors in a_lst:
+    #     for author in authors:
+    #         all_authors.append(author)
+    names = [(author[0], author[2]) for authors in authors_lst for author in authors]
 
     # Count how often each author published
-    return _count(_fix_names(names))
+    author_counts = _count(_fix_names(names))
+
+    return author_counts
 
 
-def _proc_end_authors(a_lst):
+def _proc_end_authors(authors_lst):
     """Process first and last authors only.
 
     Parameters
     ----------
-    a_lst : list of list of tuple of (str, str, str, str)
+    authors_lst : list of list of tuple of (str, str, str, str)
         Authors of all articles included in object.
             (Last Name, First Name, Initials, Affiliation)
 
@@ -320,13 +318,13 @@ def _proc_end_authors(a_lst):
     """
 
     # Drop author lists that are None
-    a_lst = [a for a in a_lst if a is not None]
+    authors_lst = [author for author in authors_lst if author is not None]
 
     # Pull out the full name for the first & last author of each paper
     #  Last author is only considered if there is more than 1 author
-    firsts = [authors[0] for authors in a_lst]
+    firsts = [authors[0] for authors in authors_lst]
     f_names = [(author[0], author[2]) for author in firsts]
-    lasts = [authors[-1] for authors in a_lst if len(authors) > 1]
+    lasts = [authors[-1] for authors in authors_lst if len(authors) > 1]
     l_names = [(author[0], author[2]) for author in lasts]
 
     f_counts = _count(_fix_names(f_names))
@@ -356,7 +354,7 @@ def _fix_names(names):
     """
 
     # Drop names whos data is all None
-    names = [n for n in names if n != (None, None)]
+    names = [name for name in names if name != (None, None)]
 
     # TODO: figure out and fix
     # Fix names if full name ended up in last name field
@@ -366,12 +364,12 @@ def _fix_names(names):
     return names
 
 
-def _count(d_lst):
+def _count(data_lst):
     """Count occurences of each item in a list.
 
     Parameters
     ----------
-    d_lst : list of str
+    data_lst : list of str
         List of items to count occurences of.
 
     Returns
@@ -380,7 +378,7 @@ def _count(d_lst):
         Counts for how often each item occurs in the input list.
     """
 
-    counts = [(d_lst.count(i), i) for i in set(d_lst)]
+    counts = [(data_lst.count(element), element) for element in set(data_lst)]
     counts.sort(reverse=True)
 
     return counts

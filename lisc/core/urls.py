@@ -1,4 +1,4 @@
-"""URLs for the SCANR project.
+"""URLs for the LISC.
 
 External Documentation
 ----------------------
@@ -43,7 +43,6 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 ###################################################################################################
 
-# Whether to add pubmed authentification details for LISC tool
 AUTH = False
 
 ###################################################################################################
@@ -101,7 +100,8 @@ class URLS(object):
 
         # Initialize dictionary to save settings, and add settings to it
         self.settings = dict()
-        self.save_settings(db=db, usehistory=usehistory, retmax=retmax, field=field, retmode=retmode)
+        self.save_settings(db=db, usehistory=usehistory, retmax=retmax,
+                           field=field, retmode=retmode)
 
         # Initialize dictionary to save url arguments, and populate it from settings
         self.args = dict()
@@ -256,7 +256,7 @@ def _check_auth(url):
         return url
 
 def _authenticate():
-    """Check that user has permission to run as registered ERP-SCANR tool."""
+    """Check that user has permission to run as registered E-Utils tool."""
 
     import hashlib
 

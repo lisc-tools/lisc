@@ -6,10 +6,9 @@ from lisc.base import Base
 from lisc.scrape import scrape_counts
 
 ###################################################################################################
-########################################## LISC - COUNT ###########################################
 ###################################################################################################
 
-class Count(object):
+class Count():
     """This is a class for counting co-occurence of pre-specified terms list(s).
 
     Attributes
@@ -115,8 +114,8 @@ class Count(object):
         """
 
         # Set up which direction to act across
-        dat = self.dat_percent if dim is 'A' else self.dat_percent.T
-        alt = 'B' if dim is 'A' and not self.square else 'A'
+        dat = self.dat_percent if dim == 'A' else self.dat_percent.T
+        alt = 'B' if dim == 'A' and not self.square else 'A'
 
         # Loop through each erp term, find maximally associated term term and print out
         for term_ind, term in enumerate(self.terms[dim].labels):
