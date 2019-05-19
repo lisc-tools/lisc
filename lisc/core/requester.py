@@ -15,8 +15,8 @@ class Requester():
         Status of the requester, whether currently being used to make requests.
     n_requests : int
         Number of requests that have been completed.
-    rest_time : float
-        Amount of time to rest between requests.
+    wait_time : float
+        Amount of time to wait between requests, in seconds.
     st_time : str
         Time when request session started.
     en_time : str
@@ -31,12 +31,18 @@ class Requester():
         self.is_active = False
         self.n_requests = int()
 
-        self.rest_time = 1/3
+        self.wait_time = 0
 
         self.st_time = time.strftime('%H:%M %A %d %B')
         self.en_time = str()
 
         self.time_last_req = float()
+
+
+    def set_wait_time(self, wait_time):
+        """Set the amount of time to rest between requests."""
+
+        self.wait_time = wait_time
 
 
     def check(self):
@@ -55,8 +61,8 @@ class Requester():
         time_since_req = time.time() - self.time_last_req
 
         # If last request was too recent, pause
-        if time_since_req < self.rest_time:
-            self.wait(self.rest_time - time_since_req)
+        if time_since_req < self.wait_time:
+            self.wait(self.wait_time - time_since_req)
 
 
     @staticmethod

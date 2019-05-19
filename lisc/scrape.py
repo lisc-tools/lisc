@@ -1,4 +1,11 @@
-"""Scraper functions for LISC."""
+"""Scraper functions for LISC.
+
+Notes
+-----
+The wait time for requesting is set for the E-Utils API, which allows for:
+- 10 requests/second for authenticated users (using an API key)
+- 3 requests/second otherwise
+"""
 
 import datetime
 
@@ -56,17 +63,17 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     # Initialize meta data
     meta_dat = dict()
 
-    # Initlaize Requester object
-    req = Requester()
-
     # Set date of when data was scraped
     meta_dat['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
-    # Get e-utils URLS object. Set retmax as 0, since not using UIDs in this analysis
+    # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
     urls = URLS(db=db, retmax='0', retmode='xml', field='TIAB')
-
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'retmax', 'retmode', 'field'])
+
+    # Initialize Requester object
+    req = Requester()
+    req.set_wait_time(1/10 if urls.authenticated else 1/3)
 
     # Sort out terms
     n_terms_a = len(terms_lst_a)
@@ -103,7 +110,6 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     # Loop through each term (list-A)
     for a_ind, term_a in enumerate(terms_lst_a):
 
-        # Print out status
         if verbose:
             print('Running counts for: ', terms_lst_a[a_ind][0])
 
@@ -140,10 +146,6 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
                 dat_numbers[b_ind, a_ind] = count
                 dat_percent[b_ind, a_ind] = count / term_b_counts[b_ind]
 
-        # Save (?)
-        #np.save('dat_numbers_' + term_a[0] + '.npy', dat_numbers)
-        #np.save('dat_percent_' + term_a[0] + '.npy', dat_percent)
-
     # Set Requester object as finished being used
     req.close()
     meta_dat['req'] = req
@@ -161,15 +163,15 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
         Search terms.
     exclusions_lst : list of list of str, optional
         Exclusion words for search terms.
-    db : str, optional (default: 'pubmed')
+    db : str, optional, default: 'pubmed'
         Which pubmed database to use.
     retmax : int, optional
         Maximum number of records to return.
-    use_hist : bool, optional (default: False)
+    use_hist : bool, optional, default: False
         Use e-utilities history: storing results on their server, as needed.
     save_n_clear : bool, optional (default: False)
-        Whether to
-    verbose : bool, optional (default: False)
+        Whether to save words data to disk per term as it goes, instead of holding in memory.
+    verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
@@ -188,11 +190,9 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
         This procedure loops through each article tag.
     """
 
+    # Initialize results & meta data
     results = []
     meta_dat = dict()
-
-    # Requester object
-    req = Requester()
 
     # Set date of when data was collected
     meta_dat['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
@@ -206,6 +206,10 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
     urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
     urls.build_url('fetch', ['db', 'retmode'])
 
+    # Initialize Requester object
+    req = Requester()
+    req.set_wait_time(1/10 if urls.authenticated else 1/3)
+
     # Get current information about database being used
     meta_dat['db_info'] = _get_db_info(req, urls.info)
 
@@ -216,7 +220,6 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
     # Loop through all the terms
     for ind, terms in enumerate(terms_lst):
 
-        # Print out status
         if verbose:
             print('Scraping words for: ', terms[0])
 
@@ -232,7 +235,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
         # Create the url for the search term
         url = urls.search + term_arg
 
-        # Update History
+        # Update history
         cur_dat.update_history('Start Scrape')
 
         # Get page and parse
@@ -303,6 +306,8 @@ def _get_db_info(req, info_url):
 
     Parameters
     ----------
+    req : Requester object
+        Requester object to launch requests from.
     info_url : str
         URL to request db information from.
 
@@ -333,9 +338,9 @@ def _scrape_papers(req, art_url, cur_dat):
     Parameters
     ----------
     req : Requester() object
-        Manages request
+        Requester object to launch requests from.
     art_url : str
-        URL for the article to be scraped
+        URL for the article to be scraped.
 
     Returns
     -------
@@ -468,15 +473,13 @@ def _ids_to_str(ids):
         A string of all concatenated ids.
     """
 
-    # Check how many ids in list
+    # Check how many ids in list & initialize string with first id
     n_ids = len(ids)
-
-    # Initialize string with first id
     ids_str = str(ids[0].text)
 
     # Loop through rest of the id's, appending to end of id_str
-    for i in range(1, n_ids):
-        ids_str = ids_str + ',' + str(ids[i].text)
+    for ind in range(1, n_ids):
+        ids_str = ids_str + ',' + str(ids[ind].text)
 
     return ids_str
 
@@ -542,10 +545,8 @@ def _process_authors(author_list):
     # Pull out all author tags from the input
     authors = extract(author_list, 'Author', 'all')
 
-    # Initialize list to return
-    out = []
-
     # Extract data for each author
+    out = []
     for author in authors:
         out.append((extract(author, 'LastName', 'str'), extract(author, 'ForeName', 'str'),
                     extract(author, 'Initials', 'str'), extract(author, 'Affiliation', 'str')))
@@ -595,6 +596,6 @@ def _process_ids(ids, id_type):
         The DOI if available, otherwise None.
     """
 
-    lst = [str(i.contents[0]) for i in ids if i.attrs == {'IdType' : id_type}]
+    lst = [str(id.contents[0]) for id in ids if id.attrs == {'IdType' : id_type}]
 
     return None if not lst else lst
