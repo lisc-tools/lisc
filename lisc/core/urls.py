@@ -68,8 +68,8 @@ class URLS(object):
         The API key, if operating as an authenticated user.
     """
 
-    def __init__(self, db=None, usehistory='n', retmax=None, field=None,
-                 retmode=None, auto_gen=False, api_key=None):
+    def __init__(self, db=None, usehistory='n', retmax=None,
+                 field=None, retmode=None, api_key=None):
         """Initialize the ncbi e-utils urls.
 
         Parameters
@@ -84,8 +84,6 @@ class URLS(object):
             The search field to search within.
         retmode : {'lxml', 'xml'}, optional
             The return format for the results.
-        auto_gen : boolean, optional, default: False
-            Whether to automatically generate URLs (without extra arguments).
         api_key : str, optional
             An API key for authenticated NCBI user account.
         """
@@ -115,10 +113,6 @@ class URLS(object):
         else:
             self.authenticated = False
             self.api_key = None
-
-        if auto_gen:
-            self.build_url('search', [])
-            self.build_url('fetch', [])
 
 
     def auth_url(self, url):

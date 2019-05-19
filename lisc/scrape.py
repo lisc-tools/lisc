@@ -211,8 +211,8 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
 
     # Get e-utils URLS object
     hist_val = 'y' if use_hist else 'n'
-    urls = URLS(db=db, usehistory=hist_val, retmax=retmax, retmode='xml',
-                field=field, api_key=api_key, auto_gen=False)
+    urls = URLS(db=db, usehistory=hist_val, retmax=retmax,
+                retmode='xml', field=field, api_key=api_key)
 
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])

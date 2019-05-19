@@ -10,8 +10,7 @@ from lisc.core.errors import InconsistentDataError
 
 def test_urls():
 
-    assert URLS(auto_gen=False)
-    assert URLS(auto_gen=True)
+    assert URLS()
 
 def test_urls_settings_args():
     """Tests URLS() returns properly with settings provided, and args defined.
