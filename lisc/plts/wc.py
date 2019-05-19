@@ -7,17 +7,22 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 from lisc.core.db import check_db
+from lisc.plts.utils import _save_fig
 
 ###################################################################################################
 ###################################################################################################
 
-def make_wc(freq_dist, n_words, label, disp_fig=True, save_fig=False, db=None):
+def make_wc(freq_dist, n_words, label, save_fig=False):
     """Create and display wordcloud.
 
     Parameters
     ----------
+    freq_dist : xx
+        xx
     n_words : int
         Number of top words to include in the wordcloud.
+    label : xx
+        xx
     save_fig : boolean
         Whether to save out the wordcloud.
     """
@@ -28,14 +33,7 @@ def make_wc(freq_dist, n_words, label, disp_fig=True, save_fig=False, db=None):
     plt.imshow(wc)
     plt.axis("off")
 
-    if save_fig:
-
-        db = check_db(db)
-        s_file = os.path.join(db.figs_path, 'wc', label + '.svg')
-
-        plt.savefig(s_file, transparent=True)
-        if not disp_fig:
-            plt.close()
+    _save_fig(save_fig, label)
 
 
 def conv_freqs(freq_dist, n_words):
@@ -86,7 +84,6 @@ def create_wc(words_in):
 
     return wc
 
-############################################################################################
 ############################################################################################
 ############################################################################################
 

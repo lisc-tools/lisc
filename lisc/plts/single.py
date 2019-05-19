@@ -5,27 +5,39 @@ import os
 import matplotlib.pyplot as plt
 
 from lisc.core.db import check_db
+from lisc.plts.utils import _save_fig
 
-#########################################################################################
-#########################################################################################
+###################################################################################################
+###################################################################################################
 
-def plot_years(year_counts, label, disp_fig=True, save_fig=False, db=None):
-    """Plot publications across years histogram."""
+def plot_years(year_counts, label=None, year_range=None, save_fig=False):
+    """Plot publications across years histogram.
 
-    f, ax = plt.subplots(figsize=(10, 5))
-
-    yrs = set(range(1985, 2016))
+    Parameters
+    ----------
+    year_counts : xx
+        xx
+    label : xx
+        xx
+    year_range : xx
+        xx
+    save_fig : xx
+        xx
+    """
 
     # Extract x & y data to plot
-    x_dat = [y[0] for y in year_counts]
-    y_dat = [y[1] for y in year_counts]
+    x_dat = [xd[0] for xd in year_counts]
+    y_dat = [yd[1] for yd in year_counts]
+
+    f, ax = plt.subplots(figsize=(10, 5))
 
     # Add line and points to plot
     plt.plot(x_dat, y_dat)
     plt.plot(x_dat, y_dat, '.', markersize=16)
 
     # Set plot limits
-    plt.xlim([min(yrs), max(yrs)])
+    if year_range:
+        plt.xlim([year_range[0], year_range[1]])
     plt.ylim([0, max(y_dat)+5])
 
     # Add title & labels
@@ -33,11 +45,4 @@ def plot_years(year_counts, label, disp_fig=True, save_fig=False, db=None):
     plt.xlabel('Year', fontsize=18)
     plt.ylabel('# Pubs', fontsize=18)
 
-    if save_fig:
-
-        db = check_db(db)
-        s_file = os.path.join(db.figs_path, 'year', label + '.svg')
-
-        plt.savefig(s_file, transparent=True)
-        if not disp_fig:
-            plt.close()
+    _save_fig(save_fig, label)
