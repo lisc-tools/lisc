@@ -12,7 +12,6 @@ from lisc.tests.utils import TestDB as TDB
 ###################################################################################################
 
 def test_save_pickle_obj():
-    """Test the save_pickle_obj function."""
     pass
 
 #     tdb = TDB()
@@ -30,9 +29,7 @@ def test_save_pickle_obj():
 #         save_pickle_obj(['bad dat'], 'test_bad', db=tdb)
 
 def test_load_pickle_obj():
-    """Test the load_pickle_obj function."""
     pass
-
 
 #     tdb = TDB()
 

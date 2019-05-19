@@ -7,10 +7,8 @@ from lisc.tests.utils import load_data
 ###################################################################################################
 
 def test_data_all(tdata_full):
-    """
-    Note: Constructor calls (& implicitly tests) the combine & create_freq funcs.
-    """
 
+    # Note - constructor calls (& implicitly tests) the combine & create_freq funcs.
     dat_all = DataAll(tdata_full)
 
     assert dat_all

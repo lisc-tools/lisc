@@ -1,17 +1,15 @@
 """Tests for the basic utilities functions from lisc.core."""
 
-#from types import UnicodeType
-import bs4
 from py.test import raises
+
+import bs4
 
 from lisc.core.utils import comb_terms, extract
 
-##########################################################################
-##########################################################################
-##########################################################################
+###################################################################################################
+###################################################################################################
 
 def test_comb_terms():
-    """Test the comb_terms function."""
 
     out = comb_terms(['one', 'two'], 'or')
     assert out == '("one"OR"two")'
@@ -21,7 +19,6 @@ def test_comb_terms():
 
 
 def test_extract():
-    """Test the extract function."""
 
     # Create a complex tag
     out = bs4.element.Tag(name='Out')
@@ -41,12 +38,6 @@ def test_extract():
     # Test how = 'raw'
     out_raw = extract(out, 'Inn', 'raw')
     assert type(out_raw) is bs4.element.Tag
-
-    # DROPPED CASE WITH MOVE TO PY35
-    # Test how = 'txt'
-    #out_txt = extract(out, 'Inn', 'txt')
-    #assert isinstance(out_txt, UnicodeType)
-    #assert out_txt == unicode('words words')
 
     # Test how = 'str'
     out_str = extract(out, 'Inn', 'str')

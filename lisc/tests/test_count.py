@@ -1,11 +1,10 @@
-"""Tests for the Count() class and related functions from lisc."""
+"""Tests for the Count class and related functions from lisc."""
 
 import numpy as np
 
 from lisc.count import Count
 
 ###################################################################################################
-######################################### TESTS - COUNT ###########################################
 ###################################################################################################
 
 def test_count():
@@ -17,11 +16,10 @@ def test_scrape():
 
     counts = Count()
 
-    # Add ERPs and terms
     counts.set_terms(['language', 'memory'])
     counts.set_exclusions(['protein', 'protein'])
 
-    # counts.run_scrape(db='pubmed')
+    #counts.run_scrape(db='pubmed')
     # check_funcs(counts)
     # drop_data(counts)
 
@@ -43,7 +41,6 @@ def check_funcs(counts):
 
 def drop_data(counts):
 
-    #
     counts.drop_data(0)
 
     assert True

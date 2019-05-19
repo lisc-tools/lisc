@@ -4,18 +4,14 @@ import os
 
 from lisc.core.db import SCDB, WebDB, check_db
 
-##################################################################################
-##################################################################################
-##################################################################################
+###################################################################################################
+###################################################################################################
 
 def test_SCDB():
-    """Test the SCDB object."""
 
-    # Check that SCDB returns properly.
     assert SCDB(auto_gen=False)
 
 def test_SCDB_gen_paths():
-    """Check that gen_paths method of SCDB."""
 
     db = SCDB(auto_gen=False)
     db.gen_paths()
@@ -34,9 +30,7 @@ def test_SCDB_gen_paths():
 #             assert os.path.exists(val)
 
 def test_webdb():
-    """Test the WebDB object."""
 
-    # Check that WebDB returns properly
     assert WebDB()
 
 # def test_webdb_paths():

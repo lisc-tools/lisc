@@ -10,16 +10,13 @@ from lisc.data import Data
 from lisc.words import Words
 
 ###################################################################################################
-###################################### TESTS - ERPSC - WORDS ######################################
 ###################################################################################################
 
 def test_words():
-    """Test the Words object."""
 
     assert Words()
 
 def test_get_item():
-    """   """
 
     words = Words()
 
@@ -37,7 +34,6 @@ def test_get_item():
     assert words['test']
 
 def test_add_results():
-    """Test the add_results method."""
 
     words = Words()
 

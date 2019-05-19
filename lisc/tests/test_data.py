@@ -1,7 +1,4 @@
-"""Tests for the Data() class and related functions from lisc.
-
-ToDo: add testing of saving & loading.
-"""
+"""Tests for the Data class and related functions from lisc."""
 
 from py.test import raises
 
