@@ -70,13 +70,18 @@ class Count():
         self.terms[dim].set_exclusions(exclusions)
 
 
-    def run_scrape(self, db='pubmed', verbose=False):
+    def run_scrape(self, db='pubmed', field='TIAB', api_key=None, verbose=False):
         """Scrape co-occurence data.
 
         Parameters
         ----------
         db : str, optional (default: 'pubmed')
             Which pubmed database to use.
+        field : str, optional, default: 'TIAB'
+            Field to search for term within.
+            Defaults to 'TIAB', which is Title/Abstract.
+        api_key : str
+            An API key for a NCBI account.
         verbose : bool, optional (default=False)
             Whether to print out updates.
         """
@@ -88,7 +93,8 @@ class Count():
                     scrape_counts(
                         terms_lst_a=self.terms['A'].terms,
                         excls_lst_a=self.terms['A'].exclusions,
-                        db=db, verbose=verbose)
+                        db=db, field=field, api_key=api_key,
+                        verbose=verbose)
             self.square = True
 
         # Run two different sets of terms
@@ -100,7 +106,8 @@ class Count():
                         excls_lst_a=self.terms['A'].exclusions,
                         terms_lst_b=self.terms['B'].terms,
                         excls_lst_b=self.terms['B'].exclusions,
-                        db=db, verbose=verbose)
+                        db=db, field=field, api_key=api_key,
+                        verbose=verbose)
             self.square = False
 
 

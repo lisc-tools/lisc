@@ -66,7 +66,8 @@ class Words(Base):
         self.results.append(new_result)
 
 
-    def run_scrape(self, db='pubmed', retmax=None, use_hist=False, save_n_clear=False, verbose=False):
+    def run_scrape(self, db='pubmed', retmax=None, field='TIAB', api_key=None,
+                   use_hist=False, save_n_clear=False, verbose=False):
         """Launch a scrape of words data.
 
         Parameters
@@ -75,6 +76,11 @@ class Words(Base):
             Which pubmed database to use.
         retmax : int, optional
             Maximum number of records to return.
+        field : str, optional, default: 'TIAB'
+            Field to search for term within.
+            Defaults to 'TIAB', which is Title/Abstract.
+        api_key : str
+            An API key for a NCBI account.
         use_hist : bool, optional (default: False)
             Use e-utilities history: storing results on their server, as needed.
         save_n_clear : bool, optional (default: False)
@@ -83,7 +89,8 @@ class Words(Base):
             Whether to print out updates.
         """
 
-        self.results, self.meta_dat = scrape_words(self.terms, self.exclusions, db=db,
-                                                   retmax=retmax, use_hist=use_hist,
+        self.results, self.meta_dat = scrape_words(self.terms, self.exclusions,
+                                                   db=db, retmax=retmax, field=field,
+                                                   api_key=api_key, use_hist=use_hist,
                                                    save_n_clear=save_n_clear, verbose=verbose)
         self.result_keys = [dat.label for dat in self.results]

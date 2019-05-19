@@ -23,7 +23,7 @@ from lisc.core.utils import comb_terms, extract, CatchNone, CatchNone2
 ###################################################################################################
 
 def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
-                  db='pubmed', verbose=False):
+                  db='pubmed', field='TIAB', api_key=None, verbose=False):
     """Search through pubmed for all abstracts for co-occurence.
 
     Parameters
@@ -38,6 +38,11 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
         Exclusion words for secondary list of search terms.
     db : str, optional (default: 'pubmed')
         Which pubmed database to use.
+    field : str, optional, default: 'TIAB'
+        Field to search for term within.
+        Defaults to 'TIAB', which is Title/Abstract.
+    api_key : str
+        An API key for a NCBI account.
     verbose : bool, optional (default: False)
         Whether to print out updates.
 
@@ -54,6 +59,8 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     meta_dat : dict
         Meta data from the scrape.
 
+    Notes
+    -----
     The scraping does an exact word search for two terms.
 
     The HTML page returned by the pubmed search includes a 'count' field.
@@ -67,7 +74,7 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     meta_dat['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
-    urls = URLS(db=db, retmax='0', retmode='xml', field='TIAB')
+    urls = URLS(db=db, retmax='0', field=field, retmode='xml', api_key=api_key)
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'retmax', 'retmode', 'field'])
 
@@ -153,8 +160,8 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     return dat_numbers, dat_percent, term_a_counts, term_b_counts, meta_dat
 
 
-def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
-                 use_hist=False, save_n_clear=True, verbose=False):
+def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='TIAB',
+                 api_key=None, use_hist=False, save_n_clear=True, verbose=False):
     """Search and scrape from pubmed for all abstracts referring to a given term.
 
     Parameters
@@ -167,6 +174,11 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
         Which pubmed database to use.
     retmax : int, optional
         Maximum number of records to return.
+    field : str, optional, default: 'TIAB'
+        Field to search for term within.
+        Defaults to 'TIAB', which is Title/Abstract.
+    api_key : str
+        An API key for a NCBI account.
     use_hist : bool, optional, default: False
         Use e-utilities history: storing results on their server, as needed.
     save_n_clear : bool, optional (default: False)
@@ -199,8 +211,8 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
 
     # Get e-utils URLS object
     hist_val = 'y' if use_hist else 'n'
-    urls = URLS(db=db, usehistory=hist_val, retmax=retmax,
-                retmode='xml', field='TIAB', auto_gen=False)
+    urls = URLS(db=db, usehistory=hist_val, retmax=retmax, retmode='xml',
+                field=field, api_key=api_key, auto_gen=False)
 
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
