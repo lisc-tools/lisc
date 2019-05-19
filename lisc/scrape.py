@@ -64,8 +64,9 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs in this analysis
     urls = URLS(db=db, retmax='0', retmode='xml', field='TIAB')
-    urls.build_info(['db'])
-    urls.build_search(['db', 'retmax', 'retmode', 'field'])
+
+    urls.build_url('info', ['db'])
+    urls.build_url('search', ['db', 'retmax', 'retmode', 'field'])
 
     # Sort out terms
     n_terms_a = len(terms_lst_a)
@@ -200,9 +201,10 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None,
     hist_val = 'y' if use_hist else 'n'
     urls = URLS(db=db, usehistory=hist_val, retmax=retmax,
                 retmode='xml', field='TIAB', auto_gen=False)
-    urls.build_info(['db'])
-    urls.build_search(['db', 'usehistory', 'retmax', 'retmode', 'field'])
-    urls.build_fetch(['db', 'retmode'])
+
+    urls.build_url('info', ['db'])
+    urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
+    urls.build_url('fetch', ['db', 'retmode'])
 
     # Get current information about database being used
     meta_dat['db_info'] = _get_db_info(req, urls.info)

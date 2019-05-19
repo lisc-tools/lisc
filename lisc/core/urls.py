@@ -109,7 +109,7 @@ class URLS(object):
         self.fill_args()
 
         # Check for authentication (API key)
-        if self.api_key:
+        if api_key:
             self.authenticated = True
             self.api_key = api_key
         else:
@@ -165,7 +165,7 @@ class URLS(object):
         if util not in utils:
             raise ValueError('Specified e-utility not understood.')
 
-        self.check_args(args_to_use)
+        self.check_args(args)
 
         url = self.auth_url(self.eutils + utils[util])
 
