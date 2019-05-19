@@ -33,7 +33,7 @@ class Requester():
 
         self.wait_time = 0
 
-        self.st_time = time.strftime('%H:%M %A %d %B')
+        self.st_time = time.strftime('%H:%M %A %d %B %Y')
         self.en_time = str()
 
         self.time_last_req = float()
