@@ -12,13 +12,23 @@ NOTE: the current version is still a development version (0.1.0-dev) and may not
 
 ## Overview
 
-LISC is a python module for scraping literature data. It currently supports and acts as a wrapper around the Pubmed E-Utilities.
+LISC is a python module for collecting and analzying scientific literature. 
 
-LISC provides for two different 'types' of scraping:
-- 'Counts', which can be used to count the popularity and co-occurence of specified search terms
-- 'Words', which collects meta-data and text data for papers identified from a set of search terms
+#### Data Collection
 
-As well as the functionality to collect such data, LISC includes support to analyzing and plotting returned data, as well as save and load utilties for storing the collected data.
+For data collection, LISC currently offers support for using the Pubmed E-Utilities.
+
+LISC provides for two different 'types' of literature data collection:
+- 'Counts': popularity and co-occurence analysis of specified search terms.
+- 'Words': collects text data and meta-data from papers identified by specified search terms.
+
+#### Data Analysis
+
+LISC provides support and utities for:
+- Custom data objects for managing and operating on returned data.
+- Save and load utilties for storing collected data.
+- Support and tools for analyzing and plotting returned data.
+- Data visualization utilities.
 
 ## Documentation
 
@@ -47,7 +57,7 @@ Optional dependencies, used for plots & analysis:
 
 ## Install
 
-**Stable Version**
+**Stable Release Version**
 
 PIP install coming soon!
 
@@ -73,8 +83,9 @@ Please use the [Github issue tracker](https://github.com/lisc-tools/lisc/issues)
 
 ## Contribute
 
-`LISC` welcomes and encourages contributions from the community, as long as contributors follow the [Code of Conduct](https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md).
+`LISC` welcomes and encourages contributions from the community!
 
 If you have an idea of something to add to LISC, please start by opening an [issue](https://github.com/lisc-tools/lisc/issues).
 
-When working on LISC, please follow the [Contribution Guidelines](https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md).
+When working on LISC, please follow the [Contribution Guidelines](https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md), and also make sure to follow our
+[Code of Conduct](https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md).
