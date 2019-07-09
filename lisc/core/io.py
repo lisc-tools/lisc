@@ -19,7 +19,7 @@ def save_object(obj, f_name, db=None):
     obj : Counts() or Words() object
         LISC custom object to save out.
     f_name : str
-        Name to append to saved out file name.
+        Name for the file to be saved out.
     db : SCDB() object, optional
         Database object for the LISC project.
     """
@@ -35,7 +35,7 @@ def save_object(obj, f_name, db=None):
     else:
         raise InconsistentDataError('Object type unclear - can not save.')
 
-    pickle.dump(obj, open(os.path.join(save_path, save_name), 'wb'))
+    pickle.dump(obj, open(os.path.join(save_path, f_name + '.p'), 'wb'))
 
 
 def load_object(f_name, db=None):
