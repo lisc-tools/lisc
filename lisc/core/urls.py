@@ -162,6 +162,7 @@ class URLS(object):
         self.check_args(args)
 
         url = self.auth_url(self.eutils + utils[util])
+        url = url + '&'.join([self.args[arg] for arg in args])
 
         if util in ['query', 'search']:
             url += '&term='
