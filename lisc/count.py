@@ -1,4 +1,4 @@
-"""Class for Count analysis (key word co-occurences in papers)."""
+"""Class for Count analysis: analyses of co-occurences data."""
 
 import numpy as np
 
@@ -124,7 +124,7 @@ class Count():
         dat = self.dat_percent if dim == 'A' else self.dat_percent.T
         alt = 'B' if dim == 'A' and not self.square else 'A'
 
-        # Loop through each erp term, find maximally associated term term and print out
+        # Loop through each term, find maximally associated term term and print out
         for term_ind, term in enumerate(self.terms[dim].labels):
 
             # Find the index of the most common association for current term

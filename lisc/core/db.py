@@ -6,14 +6,14 @@ import os
 ###################################################################################################
 
 class SCDB():
-    """Class to hold database information for SCANR project.
+    """Class to hold database information for a SCANR project.
 
     Attributes
     ----------
     project_path : str
-        Base path to the ERPSC project.
+        Base path for the project.
     data_path : str
-        Path to the data folder of the ERPSC project.
+        Path to the data folder of the project.
     counts_path : str
         Path to the data folder for counts data.
     words_path : str

@@ -1,6 +1,7 @@
 """Classes and functions to store aggregated term paper data."""
 
 import json
+
 import nltk
 
 from lisc.core.db import check_db

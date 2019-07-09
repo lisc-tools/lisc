@@ -9,9 +9,9 @@ The wait time for requesting is set for the E-Utils API, which allows for:
 
 import datetime
 
-import nltk
 import numpy as np
 from bs4 import BeautifulSoup
+from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 from lisc.data import Data
@@ -512,7 +512,7 @@ def _process_words(text):
     """
 
     # Tokenize input text
-    words = nltk.word_tokenize(text)
+    words = word_tokenize(text)
 
     # Remove stop words, and non-alphabetical tokens (punctuation). Return the result.
     words_cleaned = [word.lower() for word in words if (

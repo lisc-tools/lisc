@@ -1,4 +1,4 @@
-"""Class for LISC word analysis (text analysis of abstract texts)."""
+"""Class for LISC word analysis: analyses of text data."""
 
 from lisc.base import Base
 from lisc.scrape import scrape_words
@@ -14,7 +14,7 @@ class Words(Base):
     result_keys : list of str
         Keys for each result data attached to object.
     results : list of Data() objects
-        Results for each ERP, stored in custom Words object.
+        Results for each search term, stored in custom Words object.
     """
 
     def __init__(self):
@@ -23,7 +23,7 @@ class Words(Base):
         # Inherit from Base Class
         Base.__init__(self)
 
-        # Initialize a list to store results for all the erps
+        # Initialize a list to store results for all terms
         self.result_keys = list()
         self.results = list()
 
@@ -38,6 +38,11 @@ class Words(Base):
         ----------
         key : str
             Term name to get from results data.
+
+        Returns
+        -------
+        Data
+            Data object for the requested result.
         """
 
         # Give up if object is empty

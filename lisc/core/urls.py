@@ -44,7 +44,7 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 
 class URLS(object):
-    """Class to hold URL information for ERP SCANR project.
+    """Class to hold URL information for SCANR project.
 
     Attributes
     ----------
@@ -116,7 +116,7 @@ class URLS(object):
 
 
     def auth_url(self, url):
-        """Add user & tool details to URL, if authenticated."""
+        """Add api key to URL, if authenticated."""
 
         if self.authenticated:
             return url + '&api_key=' + self.api_key

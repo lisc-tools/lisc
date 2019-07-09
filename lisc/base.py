@@ -147,7 +147,7 @@ class Base():
         Parameters
         ----------
         excl_f_name : str
-            xx
+            File name to load terms from.
         """
 
         # Unload previous terms if some are already loaded
