@@ -2,6 +2,7 @@
 
 import pkg_resources as pkg
 
+#from lisc.core.io import save_object
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -24,7 +25,7 @@ class Base():
         Number of terms.
     date : str
         Date data was collected.
-    meta_dat : dict
+    meta_data : dict
         Meta data for the scrape.
     has_dat : bool
         Whether there is any terms and/or data loaded.
@@ -185,6 +186,20 @@ class Base():
 
             # Reset exclusions variables to empty
             self.exclusions = list()
+
+
+    def save(self, f_name, db=None):
+        """Save out the current object.
+
+        Parameters
+        ----------
+        f_name : str
+            Name to append to saved out file name.
+        db : SCDB() object, optional
+            Database object for the LISC project.
+        """
+
+        save_object(f_name, db)
 
 ###################################################################################################
 ###################################################################################################

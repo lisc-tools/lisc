@@ -38,7 +38,7 @@ class Count():
         self.square = bool()
 
         # Initialize dictionary to store db info
-        self.meta_dat = dict()
+        self.meta_data = dict()
 
 
     def set_terms(self, terms, dim='A'):
@@ -89,7 +89,7 @@ class Count():
         # Run single list of terms against themselves - 'square'
         if not self.terms['B'].has_dat:
             self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
-                _, self.meta_dat = \
+                _, self.meta_data = \
                     scrape_counts(
                         terms_lst_a=self.terms['A'].terms,
                         excls_lst_a=self.terms['A'].exclusions,
@@ -100,7 +100,7 @@ class Count():
         # Run two different sets of terms
         else:
             self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
-                self.terms['B'].counts, self.meta_dat = \
+                self.terms['B'].counts, self.meta_data = \
                     scrape_counts(
                         terms_lst_a=self.terms['A'].terms,
                         excls_lst_a=self.terms['A'].exclusions,

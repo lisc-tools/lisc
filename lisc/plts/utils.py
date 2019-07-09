@@ -1,8 +1,10 @@
 """LISC plots - utilities."""
 
+import os
+
 import matplotlib.pyplot as plt
 
-from lisc.core.db import check_db
+#from lisc.core.db import check_db
 
 ###################################################################################################
 ###################################################################################################

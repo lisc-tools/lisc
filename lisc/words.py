@@ -28,7 +28,7 @@ class Words(Base):
         self.results = list()
 
         # Initialize dictionary to store db info
-        self.meta_dat = dict()
+        self.meta_data = dict()
 
 
     def __getitem__(self, key):
@@ -94,7 +94,7 @@ class Words(Base):
             Whether to print out updates.
         """
 
-        self.results, self.meta_dat = scrape_words(self.terms, self.exclusions,
+        self.results, self.meta_data = scrape_words(self.terms, self.exclusions,
                                                    db=db, retmax=retmax, field=field,
                                                    api_key=api_key, use_hist=use_hist,
                                                    save_n_clear=save_n_clear, verbose=verbose)
