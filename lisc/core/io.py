@@ -11,7 +11,7 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 ###################################################################################################
 
-def save_pickle_obj(obj, f_name, db=None):
+def save_object(obj, f_name, db=None):
     """Save a custom object from LISC as a pickle file.
 
     Parameters
@@ -27,31 +27,18 @@ def save_pickle_obj(obj, f_name, db=None):
     # Check for database object, initialize if not provided
     db = check_db(db)
 
-    # If it's a Counts object, set path and name
+    # Set the save path based on object type
     if isinstance(obj, Count):
-        save_name = f_name + '_counts.p'
         save_path = db.counts_path
-
-    # If it's a Words object, set path and name
     elif isinstance(obj, Words):
-        save_name = f_name + '_words.p'
         save_path = db.words_path
-
-    # If neither, raise error as object type is unclear
     else:
         raise InconsistentDataError('Object type unclear - can not save.')
 
-    # Save out labels header file
-    #with open(os.path.join(save_path, 'labels.txt'), 'w') as outfile:
-    #    for label in obj.labels:
-    #        outfile.write("%s\n" % label)
-
-    # Save pickle file
-    save_file = os.path.join(save_path, save_name)
-    pickle.dump(obj, open(save_file, 'wb'))
+    pickle.dump(obj, open(os.path.join(save_path, save_name), 'wb'))
 
 
-def load_pickle_obj(f_name, db=None):
+def load_object(f_name, db=None):
     """Load a custom object, from a pickle file.
 
     Parameters

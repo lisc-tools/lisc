@@ -56,7 +56,7 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
         Number of papers for each term.
     term_b_counts : 1d array
         Number of papers for each term, in the secondary list of terms.
-    meta_dat : dict
+    meta_data : dict
         Meta data from the scrape.
 
     Notes
@@ -68,10 +68,10 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     """
 
     # Initialize meta data
-    meta_dat = dict()
+    meta_data = dict()
 
     # Set date of when data was scraped
-    meta_dat['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+    meta_data['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
     urls = URLS(db=db, retmax='0', field=field, retmode='xml', api_key=api_key)
@@ -112,7 +112,7 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
         np.fill_diagonal(dat_percent, 0)
 
     # Get current information about database being used
-    meta_dat['db_info'] = _get_db_info(req, urls.info)
+    meta_data['db_info'] = _get_db_info(req, urls.info)
 
     # Loop through each term (list-A)
     for a_ind, term_a in enumerate(terms_lst_a):
@@ -155,9 +155,9 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
 
     # Set Requester object as finished being used
     req.close()
-    meta_dat['req'] = req
+    meta_data['req'] = req
 
-    return dat_numbers, dat_percent, term_a_counts, term_b_counts, meta_dat
+    return dat_numbers, dat_percent, term_a_counts, term_b_counts, meta_data
 
 
 def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='TIAB',
@@ -190,7 +190,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
     -------
     results : list of lisc Data() objects
         Results from the scraping data for each term.
-    meta_dat : dict
+    meta_data : dict
         Meta data from the scrape.
 
     Notes
@@ -204,10 +204,10 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
 
     # Initialize results & meta data
     results = []
-    meta_dat = dict()
+    meta_data = dict()
 
     # Set date of when data was collected
-    meta_dat['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+    meta_data['date'] = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
     # Get e-utils URLS object
     hist_val = 'y' if use_hist else 'n'
@@ -223,7 +223,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
     req.set_wait_time(1/10 if urls.authenticated else 1/3)
 
     # Get current information about database being used
-    meta_dat['db_info'] = _get_db_info(req, urls.info)
+    meta_data['db_info'] = _get_db_info(req, urls.info)
 
     # Check exclusions
     if not exclusions_lst:
@@ -306,9 +306,9 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
 
     # Set Requester object as finished being used
     req.close()
-    meta_dat['req'] = req
+    meta_data['req'] = req
 
-    return results, meta_dat
+    return results, meta_data
 
 ###################################################################################################
 ###################################################################################################

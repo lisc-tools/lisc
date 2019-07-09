@@ -15,7 +15,7 @@ class TestDB(SCDB):
 
     def __init__(self):
 
-        # Initialize from OMDB object
+        # Initialize from normal database object
         SCDB.__init__(self, auto_gen=False)
 
         # Set up the base path to tests data

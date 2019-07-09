@@ -99,3 +99,20 @@ def check_db(db):
 
     # If db is currently None, initialize as SCDB
     return SCDB() if not db else db
+
+
+def create_db(project_path):
+    """Create the file structure for a SCANR database.
+
+    Attributes
+    ----------
+    project_path : str
+        Base path for the project.
+    """
+
+    db = SCDB(project_path)
+
+    os.mkdir(db.figs_path)
+    os.mkdir(db.data_path)
+    os.mkdir(db.counts_path)
+    os.mkdir(db.words_path)
