@@ -6,7 +6,9 @@ Analyzing scraped words data.
 """
 
 ###################################################################################################
-
+#
+# Words Analyses
+# --------------
 #
 # This tutorial explores the built in utilities for exploring & anayzing words data.
 #

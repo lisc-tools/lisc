@@ -10,10 +10,21 @@ Scraping literature data, focused on word co-occurence.
 # Counts
 # ------
 #
-# 'Counts' scrapes for co-occurence of given set(s) of terms.
+# 'Counts' scraping gets data about the co-occurence of terms of interest.
+#
+# Specifically, it searches the literature, and checks how often terms of interest appear together.
 #
 # Running scrapes is available in both a 'functions' and 'objects' approach.
 #
+
+###################################################################################################
+
+# Import LISC - Count
+from lisc.count import Count
+from lisc.scrape import scrape_counts
+
+from lisc.core.db import SCDB
+from lisc.core.io import save_pickle_obj
 
 ###################################################################################################
 
@@ -21,21 +32,6 @@ Scraping literature data, focused on word co-occurence.
 #  Note that each entry is itself a list
 terms_a = [['brain'], ['cognition']]
 terms_b = [['body'], ['biology'], ['disease']]
-
-###################################################################################################
-#
-# Counts
-# ------
-#
-# 'Counts' scraping gets data about the co-occurence of terms of interest.
-#
-# Specifically, it search titles and abstracts, and checks how often two terms
-# of interest appear together in the literature.
-#
-
-# Import LISC - Count
-from lisc.count import Count
-from lisc.scrape import scrape_counts
 
 ###################################################################################################
 #
@@ -47,7 +43,7 @@ dat_numbers, dat_percent, term_counts, _, meta_dat = scrape_counts(terms_a, db='
 
 ###################################################################################################
 
-# Check out how many papers where found for each combination
+# Check how many papers were found for each combination
 print(dat_numbers)
 
 ###################################################################################################
@@ -57,21 +53,20 @@ print(dat_percent)
 
 ###################################################################################################
 
-# Print out many papers found for each term
+# Print out how many papers found for each term
 for term, count in zip(terms_a, term_counts):
     print('{:12} : {}'.format(term[0], count))
 
 ###################################################################################################
-#
 #
 # When given a single set of terms, the 'Counts' scrapes each term  against each other term.
 #
 # You can also specify different sets of terms to scrape, as below, whereby
 # each term in list A is scraped for co-occurence for each term in list B
 # (but not to other terms in list A).
+#
 
 ###################################################################################################
-
 
 # Run a scrape of 'counts' (co-occurence data) across two different lists of terms
 dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts(
@@ -87,6 +82,7 @@ dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts
 #
 # Note that the underlying code is the same - the count object ultimately calls
 # the same scrape function as above.
+#
 
 ###################################################################################################
 
@@ -105,8 +101,8 @@ counts.run_scrape(verbose=True)
 
 ###################################################################################################
 #
-#
 # The Counts object also comes with some helper methods to check out the data.
+#
 
 ###################################################################################################
 
@@ -126,6 +122,7 @@ counts.check_top()
 ###################################################################################################
 #
 # Co-occurence data - different word lists
+#
 
 ###################################################################################################
 
@@ -167,6 +164,7 @@ counts_two.check_cooc('B')
 #
 # For example, a using search terms ['gene', 'genetic'] with exclusion words ['protein'] creates the search:
 # - ("gene"OR"genetic"NOT"protein")
+#
 
 ###################################################################################################
 
@@ -204,6 +202,10 @@ counts.terms['A'].labels
 
 ###################################################################################################
 #
-#
 # Note that searching across different terms lists, and using synonyms and
 # exclusions can all also be done directly using the scrape_counts function.
+#
+
+###################################################################################################
+
+save_pickle_obj(counts_two, 'tutorial_counts', SCDB('dat'))
