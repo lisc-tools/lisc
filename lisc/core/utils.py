@@ -69,31 +69,3 @@ def extract(dat, tag, how):
 
     except AttributeError:
         return None
-
-###################################################################################################
-###################################################################################################
-
-def CatchNone(func):
-    """Decorator function to catch and return None, if given as first argument."""
-
-    def wrapper(*args):
-
-        if args[0] is not None:
-            return func(*args)
-        else:
-            return None
-
-    return wrapper
-
-
-def CatchNone2(func):
-    """Decorator function to catch and return None, None if given as argument."""
-
-    def wrapper(*args):
-
-        if args[0] is not None:
-            return func(*args)
-        else:
-            return None, None
-
-    return wrapper

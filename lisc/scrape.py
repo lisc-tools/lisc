@@ -5,6 +5,7 @@ Notes
 The wait time for requesting is set for the E-Utils API, which allows for:
 - 10 requests/second for authenticated users (using an API key)
 - 3 requests/second otherwise
+^TODO: check limits for updated PUBMED.
 """
 
 import datetime
@@ -17,7 +18,8 @@ from nltk.corpus import stopwords
 from lisc.data import Data
 from lisc.core.urls import URLS
 from lisc.core.requester import Requester
-from lisc.core.utils import comb_terms, extract, CatchNone, CatchNone2
+from lisc.core.utils import comb_terms, extract
+from lisc.core.decorators import CatchNone, CatchNone2
 
 ###################################################################################################
 ###################################################################################################
