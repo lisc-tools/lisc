@@ -1,21 +1,52 @@
 """LISC plots - utilities."""
 
 import os
+from functools import wraps
 
-import matplotlib.pyplot as plt
+from lisc.core.db import SCDB
+from lisc.core.modutils import safe_import
 
-#from lisc.core.db import check_db
+plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
 
-def _save_fig(save_fig, save_name, save_folder=None):
+def check_ax(ax, figsize=None):
+    """Check whether a figure axes object is defined, define if not.
+
+    Parameters
+    ----------
+    ax : matplotlib.Axes or None
+        Axes object to check if is defined.
+
+    Returns
+    -------
+    ax : matplotlib.Axes
+        Figure axes object to use.
     """
 
+    if not ax:
+        _, ax = plt.subplots(figsize=figsize)
 
-    """
+    return ax
 
-    if save_fig:
 
-        save_file = os.path.join(save_folder, save_name + '.png')
-        plt.savefig(save_file, transparent=True)
+def savefig(func):
+
+    @wraps(func)
+    def decorated(*args, **kwargs):
+
+        save_fig = kwargs.pop('save_fig', False)
+        f_name = kwargs.pop('f_name', None)
+        f_path = kwargs.pop('folder', None)
+
+        if isinstance(f_path, SCDB):
+            f_path = f_path.figures_path
+
+        func(*args, **kwargs)
+
+        if save_fig:
+            full_path = os.path.join(f_path, f_name) if f_path else f_name
+            plt.savefig(full_path)
+
+    return decorated

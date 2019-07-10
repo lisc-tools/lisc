@@ -1,16 +1,15 @@
 """LISC plots - plots for single terms."""
 
-import os
+from lisc.plts.utils import check_ax, savefig
+from lisc.core.modutils import safe_import
 
-import matplotlib.pyplot as plt
-
-from lisc.core.db import check_db
-from lisc.plts.utils import _save_fig
+plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
 
-def plot_years(year_counts, label=None, year_range=None, save_fig=False):
+@savefig
+def plot_years(year_counts, label=None, year_range=None, ax=None):
     """Plot publications across years histogram.
 
     Parameters
@@ -21,15 +20,13 @@ def plot_years(year_counts, label=None, year_range=None, save_fig=False):
         xx
     year_range : xx
         xx
-    save_fig : xx
-        xx
     """
+
+    ax = check_ax(ax, (10, 5))
 
     # Extract x & y data to plot
     x_dat = [xd[0] for xd in year_counts]
     y_dat = [yd[1] for yd in year_counts]
-
-    f, ax = plt.subplots(figsize=(10, 5))
 
     # Add line and points to plot
     plt.plot(x_dat, y_dat)
@@ -44,5 +41,3 @@ def plot_years(year_counts, label=None, year_range=None, save_fig=False):
     plt.title('Publication History', fontsize=24, fontweight='bold')
     plt.xlabel('Year', fontsize=18)
     plt.ylabel('# Pubs', fontsize=18)
-
-    _save_fig(save_fig, label)
