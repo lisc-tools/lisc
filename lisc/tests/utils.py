@@ -1,11 +1,15 @@
 """Helper functions for testing lisc."""
 
 import pkg_resources as pkg
+from functools import wraps
 
 from lisc.base import Base
 from lisc.data import Data
 from lisc.data_all import DataAll
 from lisc.core.db import SCDB
+from lisc.core.modutils import safe_import
+
+plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
@@ -64,3 +68,28 @@ def load_data_all():
     dat_all = DataAll(dat)
 
     return dat_all
+
+###################################################################################################
+###################################################################################################
+
+def plot_test(func):
+    """Decorator for simple testing of plotting functions.
+
+    Notes
+    -----
+    This decorator closes all plots prior to the test.
+    After running the test function, it checks an axis was created with data.
+    It therefore performs a minimal test - asserting the plots exists, with no accuracy checking.
+    """
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+
+        plt.close('all')
+
+        func(*args, **kwargs)
+
+        ax = plt.gca()
+        assert ax.has_data()
+
+    return wrapper
