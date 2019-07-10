@@ -96,7 +96,13 @@ def plot_test(func):
 
 
 def optional_test(dependency):
-    """   """
+    """Decorator to only run a test if the specified optional dependency is present.
+
+    Parameters
+    ----------
+    dependency : str
+        The name of an optional dependency to test import of.
+    """
 
     def decorator(func):
 

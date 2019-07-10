@@ -2,10 +2,18 @@
 
 import pytest
 
+from lisc.core.modutils import safe_import
 from lisc.tests.utils import load_base, load_data, load_data_all
+
+plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
+
+def pytest_configure(config):
+    if plt:
+        plt.switch_backend('agg')
+    np.random.seed(42)
 
 @pytest.fixture(scope='function')
 def tbase_empty():
