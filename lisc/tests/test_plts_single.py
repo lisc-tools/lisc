@@ -2,13 +2,14 @@
 
 import numpy as np
 
-from lisc.tests.utils import plot_test
+from lisc.tests.utils import plot_test, optional_test
 
 from lisc.plts.single import *
 
 ###################################################################################################
 ###################################################################################################
 
+@optional_test('matplotlib')
 @plot_test
 def test_plot_years():
 

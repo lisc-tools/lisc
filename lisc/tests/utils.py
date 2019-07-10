@@ -93,3 +93,19 @@ def plot_test(func):
         assert ax.has_data()
 
     return wrapper
+
+
+def optional_test(dependency):
+    """   """
+
+    def decorator(func):
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+
+            if safe_import(dependency):
+                return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
