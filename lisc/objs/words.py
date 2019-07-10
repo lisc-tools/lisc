@@ -1,6 +1,6 @@
 """Class for LISC word analysis: analyses of text data."""
 
-from lisc.base import Base
+from lisc.objs.base import Base
 from lisc.scrape import scrape_words
 
 ###################################################################################################

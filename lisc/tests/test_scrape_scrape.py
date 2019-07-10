@@ -4,17 +4,17 @@ from py.test import raises
 
 from lisc.scrape import *
 
-#from lisc.words import _ids_to_str, _process_words, _process_kws
-#from lisc.words import _process_authors, _process_pub_date, _process_ids
-
-##
-##
+###################################################################################################
+###################################################################################################
 
 def test_scrape_counts():
     pass
 
 def test_scrape_words():
     pass
+
+#from lisc.words import _ids_to_str, _process_words, _process_kws
+#from lisc.words import _process_authors, _process_pub_date, _process_ids
 
 # def test_scrape_data():
 #     """Test the scrape_data method."""
@@ -29,11 +29,6 @@ def test_scrape_words():
 #     #words.scrape_data(db='pubmed', retmax='5')
 
 #     assert True
-
-
-
-
-##
 
 # def test_extract_add_info():
 #     """Test the extract_add_info method."""

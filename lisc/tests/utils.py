@@ -3,9 +3,8 @@
 import pkg_resources as pkg
 from functools import wraps
 
-from lisc.base import Base
-from lisc.data import Data
-from lisc.data_all import DataAll
+from lisc.objs.base import Base
+from lisc.data import Data, DataAll
 from lisc.core.db import SCDB
 from lisc.core.modutils import safe_import
 

@@ -2,7 +2,7 @@
 
 from py.test import raises
 
-from lisc.data import *
+from lisc.data.data import *
 from lisc.tests.utils import TestDB as TDB
 from lisc.tests.utils import load_data
 

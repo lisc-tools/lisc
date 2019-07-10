@@ -1,6 +1,6 @@
 """Tests for the DataAll() class and related functions from lisc."""
 
-from lisc.data_all import *
+from lisc.data.data_all import *
 from lisc.tests.utils import load_data
 
 ###################################################################################################

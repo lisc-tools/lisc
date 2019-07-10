@@ -16,8 +16,8 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 from lisc.data import Data
-from lisc.core.urls import URLS
-from lisc.core.requester import Requester
+from lisc.urls import URLS
+from lisc.requester import Requester
 from lisc.core.utils import comb_terms, extract
 from lisc.core.decorators import CatchNone, CatchNone2
 

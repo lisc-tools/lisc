@@ -2,19 +2,19 @@
 
 import numpy as np
 
-from lisc.count import Count
+from lisc.objs.counts import Counts
 
 ###################################################################################################
 ###################################################################################################
 
-def test_count():
+def test_counts():
 
-    assert Count()
+    assert Counts()
 
 def test_scrape():
     """Test that Count object successful scrapes data."""
 
-    counts = Count()
+    counts = Counts()
 
     counts.set_terms(['language', 'memory'])
     counts.set_exclusions(['protein', 'protein'])

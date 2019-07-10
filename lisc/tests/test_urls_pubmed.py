@@ -2,7 +2,7 @@
 
 from py.test import raises
 
-from lisc.core.urls import URLS
+from lisc.urls.pubmed import URLS
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################

@@ -3,8 +3,7 @@
 from py.test import raises
 
 from lisc.core.io import *
-from lisc.count import Count
-from lisc.words import Words
+from lisc.objs import Counts, Words
 from lisc.core.errors import InconsistentDataError
 
 from lisc.tests.utils import TestDB as TDB
@@ -26,12 +25,11 @@ def test_load_terms_file():
     assert isinstance(dat, list)
     assert isinstance(dat[0], str)
 
-
 def test_save_object():
 
     tdb = TDB()
 
-    count_obj = Count()
+    count_obj = Counts()
     words_obj = Words()
 
     save_object(count_obj, 'test_counts', folder=tdb)

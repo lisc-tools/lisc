@@ -2,13 +2,13 @@
 
 import numpy as np
 
-from lisc.base import Base
+from lisc.objs.base import Base
 from lisc.scrape import scrape_counts
 
 ###################################################################################################
 ###################################################################################################
 
-class Count():
+class Counts():
     """This is a class for counting co-occurence of pre-specified terms list(s).
 
     Attributes

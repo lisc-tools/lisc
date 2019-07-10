@@ -7,7 +7,7 @@ NOTES
 
 from py.test import raises
 
-from lisc.base import Base#, _check_type, _terms_load_file
+from lisc.objs.base import Base
 
 from lisc.core.errors import InconsistentDataError
 

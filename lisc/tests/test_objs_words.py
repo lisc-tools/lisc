@@ -7,7 +7,7 @@ from py.test import raises
 #from bs4 import BeautifulSoup
 
 from lisc.data import Data
-from lisc.words import Words
+from lisc.objs.words import Words
 
 ###################################################################################################
 ###################################################################################################

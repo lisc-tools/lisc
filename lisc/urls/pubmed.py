@@ -1,4 +1,4 @@
-"""URLs for the LISC.
+"""Pubmed URLs for LISC.
 
 External Documentation
 ----------------------
