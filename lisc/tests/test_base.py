@@ -7,28 +7,9 @@ NOTES
 
 from py.test import raises
 
-from lisc.base import Base, _check_type, _terms_load_file
+from lisc.base import Base#, _check_type, _terms_load_file
 
 from lisc.core.errors import InconsistentDataError
-
-###################################################################################################
-###################################################################################################
-
-def test_check_type():
-
-    out = _check_type('string')
-    assert isinstance(out, list)
-
-    out = _check_type(['list'])
-    assert isinstance(out, list)
-
-def test_terms_load_file():
-
-    dat = _terms_load_file('test')
-
-    assert dat
-    assert isinstance(dat, list)
-    assert isinstance(dat[0], str)
 
 ####################################################################################################
 ####################################################################################################
@@ -43,11 +24,11 @@ def test_set_terms(tbase_empty):
 
     assert tbase_empty.terms
 
-def test_set_terms_file(tbase_empty):
+# def test_set_terms_file(tbase_empty):
 
-    tbase_empty.set_terms_file('test')
+#     tbase_empty.set_terms_file('test')
 
-    assert tbase_empty.terms
+#     assert tbase_empty.terms
 
 def tests_check_terms(tbase_terms):
 
@@ -80,11 +61,11 @@ def test_set_exclusions_error(tbase_terms):
     with raises(InconsistentDataError):
         tbase_terms.set_exclusions(['bad'])
 
-def test_set_exclusions_file(tbase_terms):
+# def test_set_exclusions_file(tbase_terms):
 
-    tbase_terms.set_exclusions_file('test_excl')
+#     tbase_terms.set_exclusions_file('test_excl')
 
-    assert tbase_terms.exclusions
+#     assert tbase_terms.exclusions
 
 def test_check_exclusions(tbase_terms_excl):
 
@@ -97,3 +78,11 @@ def test_unload_exclusions(tbase_terms_excl):
     tbase_terms_excl.unload_exclusions()
 
     assert not tbase_terms_excl.exclusions
+
+def test_check_type(tbase_empty):
+
+    out = tbase_empty._check_type('string')
+    assert isinstance(out, list)
+
+    out = tbase_empty._check_type(['list'])
+    assert isinstance(out, list)

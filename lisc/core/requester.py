@@ -98,6 +98,9 @@ class Requester():
         else:
             self.open()
 
+        # HACK LOGGING
+        print(url)
+
         # Get the requested URL
         out = requests.get(url)
 

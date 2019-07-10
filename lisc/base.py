@@ -1,8 +1,6 @@
 """Base object for LISC."""
 
-import pkg_resources as pkg
-
-#from lisc.core.io import save_object
+from lisc.core.io import load_terms_file, save_object
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -58,7 +56,7 @@ class Base():
 
         # Set given list as the terms
         for term in terms:
-            self.terms.append(_check_type(term))
+            self.terms.append(self._check_type(term))
         self.get_term_labels()
 
         # Set the number of terms
@@ -66,22 +64,22 @@ class Base():
         self.has_dat = True
 
 
-    def set_terms_file(self, terms_f_name):
-        """Load terms from a txt file.
+    def set_terms_file(self, f_name, folder=None):
+        """Load terms from a text file.
 
         Parameters
         ----------
-        terms_f_name : str
+        f_name : str
             File name to load terms from.
+        folder : SCDB or str or None
+            A string or object containing a file path.
         """
 
         # Unload previous terms if some are already loaded
         self.unload_terms()
 
-        # Get terms from module data file
-        terms = _terms_load_file(terms_f_name)
-
-        # Set the number of terms
+        # Load terms from file & set number of terms
+        terms = load_terms_file(f_name, folder)
         self.n_terms = len(terms)
 
         # Set as list, attach to object, set labels
@@ -135,27 +133,29 @@ class Base():
 
         # Set given list as exclusion words
         for exclude in exclusions:
-            self.exclusions.append(_check_type(exclude))
+            self.exclusions.append(self._check_type(exclude))
 
         # Check that the number of exclusions matches n_terms
         if len(exclusions) != self.n_terms:
             raise InconsistentDataError('Mismatch in number of exclusions and terms!')
 
 
-    def set_exclusions_file(self, excl_f_name='exclusions'):
-        """Load exclusion words from a txt file.
+    def set_exclusions_file(self, f_name, folder=None):
+        """Load exclusion words from a text file.
 
         Parameters
         ----------
-        excl_f_name : str
-            File name to load terms from.
+        f_name : str
+            File name to load exclusion terms from.
+        folder : SCDB or str or None
+            A string or object containing a file path.
         """
 
         # Unload previous terms if some are already loaded
         self.unload_exclusions()
 
         # Get exclusion words from module data file
-        exclusions = _terms_load_file(excl_f_name)
+        exclusions = load_terms_file(f_name, folder)
 
         # Check that the number of exclusions matches n_terms
         if len(exclusions) != self.n_terms:
@@ -188,60 +188,36 @@ class Base():
             self.exclusions = list()
 
 
-    def save(self, f_name, db=None):
+    def save(self, f_name, folder=None):
         """Save out the current object.
 
         Parameters
         ----------
         f_name : str
             Name to append to saved out file name.
-        db : SCDB() object, optional
-            Database object for the LISC project.
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
         """
 
-        save_object(f_name, db)
+        save_object(f_name, folder)
 
-###################################################################################################
-###################################################################################################
 
-def _check_type(term):
-    """Check type of input term, and return as a list.
+    @staticmethod
+    def _check_type(term):
+        """Check type of input term, and return as a list.
 
-    Parameters
-    ----------
-    term : str OR list of str
-        New term to add to the object.
+        Parameters
+        ----------
+        term : str OR list of str
+            New term to add to the object.
 
-    Returns
-    -------
-    list of str
-        New term, set as a list.
-    """
+        Returns
+        -------
+        list of str
+            New term, set as a list.
+        """
 
-    # Check the type of the given item, return as list
-    if isinstance(term, str):
-        return [term]
-    elif isinstance(term, list):
-        return term
-
-def _terms_load_file(dat_name):
-    """Loads a terms data file from within the module.
-
-    Parameters
-    ----------
-    dat_name : str
-        Name of the terms data file to load.
-
-    Returns
-    -------
-    dat : list of str
-        Data from the file.
-    """
-
-    f_name = 'terms/' + dat_name + '.txt'
-    f_path = pkg.resource_filename(__name__, f_name)
-    terms_file = open(f_path, 'r')
-
-    dat = terms_file.read().splitlines()
-
-    return dat
+        if isinstance(term, str):
+            return [term]
+        elif isinstance(term, list):
+            return term

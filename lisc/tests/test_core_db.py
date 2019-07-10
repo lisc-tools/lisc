@@ -2,7 +2,7 @@
 
 import os
 
-from lisc.core.db import SCDB, WebDB, check_db
+from lisc.core.db import *
 
 ###################################################################################################
 ###################################################################################################
@@ -45,7 +45,6 @@ def test_webdb():
 #             assert os.path.exists(val)
 
 def test_check_db():
-    """Test the check_db function."""
 
     # Check that it returns an SCDB when given None
     db = check_db(None)
@@ -55,3 +54,11 @@ def test_check_db():
     db = SCDB()
     db = check_db(db)
     assert isinstance(db, SCDB)
+
+def test_check_folder():
+
+    assert check_folder(None, '') == None
+    assert check_folder('string', '') == 'string'
+    assert isinstance(check_folder(SCDB(), 'terms'), str)
+    #assert isinstance(check_folder(SCDB(), 'terms'), SCDB)
+

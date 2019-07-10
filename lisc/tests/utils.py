@@ -19,7 +19,7 @@ class TestDB(SCDB):
         SCDB.__init__(self, auto_gen=False)
 
         # Set up the base path to tests data
-        self.project_path = pkg.resource_filename(__name__, 'data')
+        self.base_path = pkg.resource_filename(__name__, 'test_db')
         self.gen_paths()
 
 ###################################################################################################
@@ -31,10 +31,10 @@ def load_base(set_terms=False, set_excl=False):
     base = Base()
 
     if set_terms:
-        base.set_terms_file('test')
+        base.set_terms([['test1', 'test sin'], ['test2', 'uh oh']])
 
     if set_excl:
-        base.set_exclusions_file('test_excl')
+        base.set_exclusions([['exc1', 'blehh'], ['exc2', 'meh']])
 
     return base
 

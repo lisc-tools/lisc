@@ -6,39 +6,47 @@ from lisc.core.io import *
 from lisc.count import Count
 from lisc.words import Words
 from lisc.core.errors import InconsistentDataError
+
 from lisc.tests.utils import TestDB as TDB
 
 ###################################################################################################
 ###################################################################################################
 
-def test_save_pickle_obj():
-    pass
+def test_check_ext():
 
-#     tdb = TDB()
+    assert check_ext('file', '.txt') == 'file.txt'
+    assert check_ext('file.txt', '.txt') == 'file.txt'
 
-#     count_obj = Count()
-#     words_obj = Words()
+def test_load_terms_file():
 
-#     save_pickle_obj(count_obj, 'test', db=tdb)
-#     save_pickle_obj(words_obj, 'test', db=tdb)
+    tdb = TDB()
+    dat = load_terms_file('test_terms', tdb)
 
-#     assert True
+    assert dat
+    assert isinstance(dat, list)
+    assert isinstance(dat[0], str)
 
-#     # Test error checking
-#     with raises(InconsistentDataError):
-#         save_pickle_obj(['bad dat'], 'test_bad', db=tdb)
 
-def test_load_pickle_obj():
-    pass
+def test_save_object():
 
-#     tdb = TDB()
+    tdb = TDB()
 
-#     count_obj = load_pickle_obj('test_counts', db=tdb)
-#     assert count_obj
+    count_obj = Count()
+    words_obj = Words()
 
-#     words_obj = load_pickle_obj('test_words', db=tdb)
-#     assert words_obj
+    save_object(count_obj, 'test_counts', folder=tdb)
+    save_object(words_obj, 'test_words', folder=tdb)
 
-#     # Test error checking
-#     with raises(InconsistentDataError):
-#         load_pickle_obj('bad_name', db=tdb)
+    assert True
+
+    with raises(InconsistentDataError):
+        save_object(['bad dat'], 'test_bad', folder=tdb)
+
+def test_load_object():
+
+    tdb = TDB()
+
+    counts = load_object('test_counts', folder=tdb)
+    words = load_object('test_words', folder=tdb)
+
+    assert True

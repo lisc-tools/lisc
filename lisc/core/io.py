@@ -3,15 +3,55 @@
 import os
 import pickle
 
-from lisc.words import Words
-from lisc.count import Count
-from lisc.core.db import check_db
+from lisc.core.db import SCDB, check_db, check_folder
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
 ###################################################################################################
 
-def save_object(obj, f_name, db=None):
+def check_ext(f_name, ext):
+    """Check the extension for a file name, and add if missing.
+
+    Parameters
+    ----------
+    f_name : str
+        The name of the file.
+    ext : str
+        The extension to check and add.
+
+    Returns
+    -------
+    str
+        File name with the extenion added.
+    """
+
+    return f_name + ext if not f_name.endswith(ext) else f_name
+
+
+def load_terms_file(f_name, folder=None):
+    """Loads terms from a text file.
+
+    Parameters
+    ----------
+    f_name : str
+        Name of the file to load.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
+
+    Returns
+    -------
+    dat : list of str
+        Data from the file.
+    """
+
+    terms_file = open(os.path.join(check_folder(folder, 'terms'),
+                                   check_ext(f_name, '.txt')), 'r')
+    dat = terms_file.read().splitlines()
+
+    return dat
+
+
+def save_object(obj, f_name, folder=None):
     """Save a custom object from LISC as a pickle file.
 
     Parameters
@@ -20,33 +60,33 @@ def save_object(obj, f_name, db=None):
         LISC custom object to save out.
     f_name : str
         Name for the file to be saved out.
-    db : SCDB() object, optional
-        Database object for the LISC project.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
     """
 
-    # Check for database object, initialize if not provided
-    db = check_db(db)
-
     # Set the save path based on object type
+    # Note: imports done here to stop circular imports
+    from lisc import Count, Words
     if isinstance(obj, Count):
-        save_path = db.counts_path
+        obj_type = 'counts'
     elif isinstance(obj, Words):
-        save_path = db.words_path
+        obj_type = 'words'
     else:
         raise InconsistentDataError('Object type unclear - can not save.')
 
-    pickle.dump(obj, open(os.path.join(save_path, f_name + '.p'), 'wb'))
+    pickle.dump(obj, open(os.path.join(check_folder(folder, obj_type),
+                                       check_ext(f_name, '.p')), 'wb'))
 
 
-def load_object(f_name, db=None):
+def load_object(f_name, folder=None):
     """Load a custom object, from a pickle file.
 
     Parameters
     ----------
     f_name : str
         File name of the object to be loaded.
-    db : SCDB object, optional
-        Database object for the SCANR project.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
 
     Returns
     -------
@@ -54,23 +94,21 @@ def load_object(f_name, db=None):
         Custom object loaded from pickle file.
     """
 
-    # Check for database object, initialize if not provided
-    db = check_db(db)
+    load_path = None
 
-    # Get all available files, for Count and Words pickled objects
-    counts_objs = os.listdir(db.counts_path)
-    words_objs = os.listdir(db.words_path)
+    if isinstance(folder, SCDB):
 
-    # Search for object in saved Count files, and set path if found
-    if f_name + '.p' in counts_objs:
-        load_path = os.path.join(db.counts_path, f_name + '.p')
+        if check_ext(f_name, '.p') in folder.get_files('counts'):
+            load_path = os.path.join(folder.counts_path, f_name)
+        elif check_ext(f_name, '.p') in folder.get_files('words'):
+            load_path = os.path.join(folder.words_path, f_name)
 
-    # Search for object in saved Words files, and set path if found
-    elif f_name + '.p' in words_objs:
-        load_path = os.path.join(db.words_path, f_name + '.p')
+    elif isinstance(folder, str) or folder == None:
 
-    # Raise an error if the file name is not found
-    else:
+        if f_name in os.lisdir(folder):
+            load_path = os.path.join(folder, f_name)
+
+    if not load_path:
         raise InconsistentDataError('Can not find requested file name.')
 
-    return pickle.load(open(load_path, 'rb'))
+    return pickle.load(open(check_ext(load_path, '.p'), 'rb'))
