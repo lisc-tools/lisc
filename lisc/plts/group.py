@@ -1,19 +1,17 @@
 """LISC plots - plots for group analysis."""
 
-import os
+from lisc.plts.utils import check_ax, savefig, get_cmap
+from lisc.core.modutils import safe_import
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-import scipy.cluster.hierarchy as hier
-
-from lisc.core.db import check_db
-from lisc.plts.utils import _save_fig
+plt = safe_import('.pyplot', 'matplotlib')
+sns = safe_import('seaborn')
+hier = safe_import('.cluster.hierarchy', 'scipy')
 
 ###################################################################################################
 ###################################################################################################
 
-def plot_matrix(dat, x_labels, y_labels, square=False, figsize=(10, 12),
-                save_fig=False, save_name='Matrix'):
+@savefig
+def plot_matrix(dat, x_labels, y_labels, square=False, ax=None):
     """Plot the matrix of percent asscociations between terms.
 
     Parameters
@@ -28,27 +26,19 @@ def plot_matrix(dat, x_labels, y_labels, square=False, figsize=(10, 12),
         xx
     """
 
-    f, ax = plt.subplots(figsize=figsize)
-
-    sns.heatmap(dat, square=square, xticklabels=x_labels, yticklabels=y_labels)
-
-    f.tight_layout()
-
-    _save_fig(save_fig, save_name)
+    sns.heatmap(dat, square=square, xticklabels=x_labels, yticklabels=y_labels,
+                ax=check_ax(ax, (10, 12)))
 
 
-def plot_clustermap(dat, cmap='purple', save_fig=False, save_name='Clustermap'):
+@savefig
+def plot_clustermap(dat, cmap='purple', ax=None):
     """Plot clustermap.
 
     Parameters
     ----------
-    dat : pandas.DataFrame
-        Data to create clustermap from.
+    dat : xx
+        xx
     cmap : xx
-        xx
-    save_fig : xx
-        xx
-    save_name : xx
         xx
     """
 
@@ -56,24 +46,21 @@ def plot_clustermap(dat, cmap='purple', save_fig=False, save_name='Clustermap'):
     sns.set()
     sns.set_context("paper", font_scale=1.5)
 
-    # Set colourmap
-    if cmap == 'purple':
-        cmap = sns.cubehelix_palette(as_cmap=True)
-    elif cmap == 'blue':
-        cmap = sns.cubehelix_palette(as_cmap=True, rot=-.3, light=0.9, dark=0.2)
+    ax = check_ax(ax, (12, 10))
 
-    # Create the clustermap
-    cg = sns.clustermap(dat, cmap=cmap, method='complete', metric='cosine', figsize=(12, 10))
+    if isinstance(cmap, str):
+        cmap = get_cmap(cmap)
+
+    cg = sns.clustermap(dat, cmap=cmap, method='complete', metric='cosine')
 
     # Fix axes
     cg.cax.set_visible(True)
     _ = plt.setp(cg.ax_heatmap.xaxis.get_majorticklabels(), rotation=60, ha='right')
     _ = plt.setp(cg.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
 
-    _save_fig(save_fig, save_name)
 
-
-def plot_dendrogram(dat, labels, save_fig=False, save_name='Dendrogram'):
+@savefig
+def plot_dendrogram(dat, labels, ax=None):
     """Plot dendrogram.
 
     Parameters
@@ -82,17 +69,10 @@ def plot_dendrogram(dat, labels, save_fig=False, save_name='Dendrogram'):
         xx
     labels :
         xx
-    save_fig :
-        xx
-    save_name :
-        xx
     """
-
-    plt.figure(figsize=(3, 15))
 
     linkage_data = hier.linkage(dat, method='complete', metric='cosine')
 
     dendro_plot = hier.dendrogram(linkage_data, orientation='left', labels=labels,
-                                  color_threshold=0.25, leaf_font_size=12)
-
-    _save_fig(save_fig, save_name)
+                                  color_threshold=0.25, leaf_font_size=12,
+                                  ax=check_ax(ax, (3, 15)))
