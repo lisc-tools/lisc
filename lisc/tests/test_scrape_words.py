@@ -1,14 +1,9 @@
-"""   """
+"""Tests for scrape words."""
 
-from py.test import raises
-
-from lisc.scrape import *
+from lisc.scrape.words import *
 
 ###################################################################################################
 ###################################################################################################
-
-def test_scrape_counts():
-    pass
 
 def test_scrape_words():
     pass
@@ -99,21 +94,13 @@ def test_scrape_words():
 #     assert words_out == exp_out
 
 # def test_process_kws():
-#     """Test the _process_kws function."""
-
 #     pass
 
 # def test_process_authors():
-#     """Test the _process_authors function."""
-
 #     pass
 
 # def test_process_pub_date():
-#     """   """
-
 #     pass
 
 # def test_process_ids():
-#     """   """
-
 #     pass

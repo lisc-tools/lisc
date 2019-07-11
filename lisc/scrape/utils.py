@@ -23,14 +23,36 @@ def comb_terms(lst, joiner):
     lst = ['"'+ item + '"' for item in lst]
 
     # Join together using requested join term
-    if joiner == 'or':
+    if joiner.lower() == 'or':
         out = '(' + 'OR'.join(lst) + ')'
-    elif joiner == 'not':
+    elif joiner.lower() == 'not':
         out = 'NOT' + 'NOT'.join(lst)
     else:
         raise ValueError('Join term not understood.')
 
     return out
+
+
+def _mk(t_lst, cm=''):
+    """Create search term component.
+
+    Parameters
+    ----------
+    t_lst : list of str
+        List of words to connect together.
+    cm : str
+        Connector word to append to front of search term.
+
+    Returns
+    -------
+    str
+        Search term.
+    """
+
+    if t_lst and t_lst[0]:
+        return cm + comb_terms(t_lst, 'or')
+    else:
+        return ''
 
 
 def extract(dat, tag, how):

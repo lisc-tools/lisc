@@ -4,7 +4,7 @@ from py.test import raises
 
 import bs4
 
-from lisc.core.utils import comb_terms, extract
+from lisc.scrape.utils import comb_terms, extract
 
 ###################################################################################################
 ###################################################################################################
