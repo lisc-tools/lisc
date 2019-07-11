@@ -115,7 +115,7 @@ class Requester():
         self.throttle()
 
         # HACK LOGGING
-        print(url)
+        #print(url)
 
         # Get the requested URL
         out = requests.get(url)
