@@ -15,17 +15,17 @@ def scrape_info(db='pubmed', api_key=None, verbose=False):
 
     Parameters
     ----------
-    db : str, optional (default: 'pubmed')
+    db : str, optional, default: 'pubmed'
         Which pubmed database to use.
     api_key : str
         An API key for a NCBI account.
-    verbose : bool, optional (default: False)
+    verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
     -------
     meta_data : MetaData() object
-        xx
+        Meta data about the scrape.
     """
 
     urls = URLS(db=db, retmode='xml', api_key=api_key)
@@ -56,7 +56,7 @@ def get_db_info(req, info_url):
     Returns
     -------
     db_info : dict
-        Database information.
+        Information about the database from which the data was accessed.
     """
 
     # Get the info page and parse with BeautifulSoup

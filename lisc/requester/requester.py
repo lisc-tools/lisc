@@ -55,7 +55,13 @@ class Requester():
         return req_dict
 
     def set_wait_time(self, wait_time):
-        """Set the amount of time to rest between requests."""
+        """Set the amount of time to rest between requests.
+
+        Parameters
+        ----------
+        wait_time : float
+            Time, in seconds, to wait between launching URL requests.
+        """
 
         self.wait_time = wait_time
 
@@ -87,7 +93,7 @@ class Requester():
         Parameters
         ----------
         wait_time : float
-            Time, in seconds, to wait.
+            Time, in seconds, to wait between launching URL requests.
         """
 
         time.sleep(wait_time)
@@ -129,7 +135,13 @@ class Requester():
 
     @staticmethod
     def get_time():
-        """Get the current time."""
+        """Get the current time.
+
+        Returns
+        -------
+        str
+            Current date & time.
+        """
 
         return time.strftime('%H:%M %A %d %B %Y')
 

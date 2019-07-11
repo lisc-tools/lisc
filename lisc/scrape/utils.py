@@ -16,7 +16,7 @@ def comb_terms(lst, joiner):
     Returns
     -------
     out : str
-        String
+        String created by combining the inputs.
     """
 
     # Add quotes to list items for exact search

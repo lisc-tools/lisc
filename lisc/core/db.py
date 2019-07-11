@@ -6,7 +6,7 @@ import os
 ###################################################################################################
 
 class SCDB():
-    """Class to hold database information for a SCANR project.
+    """Database object for a SCANR project.
 
     Attributes
     ----------
@@ -16,12 +16,16 @@ class SCDB():
         Path to the terms folder of the project.
     data_path : str
         Path to the data folder of the project.
+    figs_path : str
+        Path to the folder to save out figures.
     counts_path : str
         Path to the data folder for counts data.
     words_path : str
         Path to the data folder for words data.
-    figs_path : str
-        Path to the folder to save out figures.
+    raw_path : str
+        Path to the data folder for the raw words data.
+    summary_path : str
+        Path to the data folder for summaries of the words data.
     """
 
     def __init__(self, base_path=None, auto_gen=True):
@@ -33,11 +37,11 @@ class SCDB():
         # Initialize paths
         self.terms_path = str()
         self.data_path = str()
+        self.figs_path = str()
         self.counts_path = str()
         self.words_path = str()
         self.raw_path = str()
         self.summary_path = str()
-        self.figs_path = str()
 
         # Generate project paths
         if auto_gen:

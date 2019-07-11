@@ -36,7 +36,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
         An API key for a NCBI account.
     use_hist : bool, optional, default: False
         Use e-utilities history: storing results on their server, as needed.
-    save_n_clear : bool, optional (default: False)
+    save_n_clear : bool, optional, default: False
         Whether to save words data to disk per term as it goes, instead of holding in memory.
     verbose : bool, optional, default: False
         Whether to print out updates.

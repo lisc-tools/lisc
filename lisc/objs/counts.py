@@ -75,14 +75,14 @@ class Counts():
 
         Parameters
         ----------
-        db : str, optional (default: 'pubmed')
+        db : str, optional, default: 'pubmed'
             Which pubmed database to use.
         field : str, optional, default: 'TIAB'
             Field to search for term within.
             Defaults to 'TIAB', which is Title/Abstract.
         api_key : str
             An API key for a NCBI account.
-        verbose : bool, optional (default=False)
+        verbose : bool, optional, default=False
             Whether to print out updates.
         """
 

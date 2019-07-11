@@ -48,7 +48,7 @@ class DataAll():
         Parameters
         ----------
         term_data : Data() object
-            xx
+            Data for all papers from a given search term.
         exclusions : list of str
             Words to exclude from the word collections.
         """

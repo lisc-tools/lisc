@@ -77,7 +77,7 @@ class Words(Base):
 
         Parameters
         ----------
-        db : str, optional (default: 'pubmed')
+        db : str, optional, default: 'pubmed'
             Which pubmed database to use.
         retmax : int, optional
             Maximum number of records to return.
@@ -86,11 +86,11 @@ class Words(Base):
             Defaults to 'TIAB', which is Title/Abstract.
         api_key : str
             An API key for a NCBI account.
-        use_hist : bool, optional (default: False)
+        use_hist : bool, optional, default: False
             Use e-utilities history: storing results on their server, as needed.
-        save_n_clear : bool, optional (default: False)
+        save_n_clear : bool, optional, default: False
             Whether to
-        verbose : bool, optional (default: False)
+        verbose : bool, optional, default: False
             Whether to print out updates.
         """
 

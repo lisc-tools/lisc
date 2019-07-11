@@ -18,12 +18,12 @@ def get_cmap(cmap):
     Parameters
     ----------
     cmap : {'purple', 'blue'}
-        xx
+        Specifier for which colormap to use.
 
     Returns
     -------
-    cmap : xx
-        xx
+    cmap : matplotlib.cmap
+        The specified colormap object.
     """
 
     if cmap == 'purple':

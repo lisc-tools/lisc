@@ -11,19 +11,21 @@ hier = safe_import('.cluster.hierarchy', 'scipy')
 ###################################################################################################
 
 @savefig
-def plot_matrix(dat, x_labels, y_labels, square=False, ax=None):
+def plot_matrix(dat, x_labels=None, y_labels=None, square=False, ax=None):
     """Plot the matrix of percent asscociations between terms.
 
     Parameters
     ----------
-    dat : xx
-        xx
-    x_labels : xx
-        xx
-    y_labels : xx
-        xx
-    square : xx
-        xx
+    dat : 2d array
+        Data to plot, as a matrix.
+    x_labels : list of str
+        Labels for the x-axis.
+    y_labels : list of str
+        Labels for the y-axis.
+    square : bool
+        Whether to plot each cell as equal sized squares.
+    ax : matplotlib.Axes, optional
+        Figure axes upon which to plot.
     """
 
     sns.heatmap(dat, square=square, xticklabels=x_labels, yticklabels=y_labels,
@@ -36,10 +38,12 @@ def plot_clustermap(dat, cmap='purple', ax=None):
 
     Parameters
     ----------
-    dat : xx
-        xx
-    cmap : xx
-        xx
+    dat : 2d array
+        Data to plot, as a clustermap.
+    cmap : matplotlib.cmap
+        Colormap to use for the plot.
+    ax : matplotlib.Axes, optional
+        Figure axes upon which to plot.
     """
 
     # Set up plotting and aesthetics
@@ -65,10 +69,12 @@ def plot_dendrogram(dat, labels, ax=None):
 
     Parameters
     ----------
-    dat :
-        xx
-    labels :
-        xx
+    dat : 2d array
+        Data to plot, as a dendrogram.
+    labels : list of str
+        Labels for the dendrogram.
+    ax : matplotlib.Axes, optional
+        Figure axes upon which to plot.
     """
 
     linkage_data = hier.linkage(dat, method='complete', metric='cosine')

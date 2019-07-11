@@ -10,12 +10,12 @@ class MetaData():
 
     Attributes
     ----------
-    date :
-        xx
-    requester :
-        xx
-    database_info :
-        xx
+    date : str
+        Information on the date that the data collection was run.
+    requester : dict
+        Information about the requester object used for the scrape.
+    database_info : dict
+        Information about the database from which the data was accessed.
     """
 
     def __init__(self):
@@ -47,7 +47,7 @@ class MetaData():
         Parameters
         ----------
         requester : Requester() object
-            xx
+            The object used to launch URL requests.
         """
 
         requester.close()
@@ -60,7 +60,7 @@ class MetaData():
         Parameters
         ----------
         db_info : dict
-            xx
+            Information about the database from which the data was collected.
         """
 
         self.db_info = db_info

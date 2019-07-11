@@ -12,28 +12,28 @@ from lisc.urls.pubmed import URLS, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
+def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
                   db='pubmed', field='TIAB', api_key=None, verbose=False):
     """Scrape pubmed for word co-occurence.
 
     Parameters
     ----------
-    terms_lst_a : list of list of str
+    terms_a : list of list of str
         Search terms.
-    excl_lst_a : list of list of str, optional
+    exclusions_a : list of list of str, optional
         Exclusion words for search terms.
-    terms_lst_b : list of list of str, optional
+    terms_b : list of list of str, optional
         Secondary list of search terms.
-    excl_lst_b : list of list of str, optional
+    exclusions_b : list of list of str, optional
         Exclusion words for secondary list of search terms.
-    db : str, optional (default: 'pubmed')
+    db : str, optional, default: 'pubmed'
         Which pubmed database to use.
     field : str, optional, default: 'TIAB'
         Field to search for term within.
         Defaults to 'TIAB', which is Title/Abstract.
     api_key : str
         An API key for a NCBI account.
-    verbose : bool, optional (default: False)
+    verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
@@ -42,9 +42,9 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
         The numbers of papers found for each combination of terms.
     data_percent : 2d array
         The percentage of papers for each term that include the corresponding term.
-    term_a_counts : 1d array
+    a_counts : 1d array
         Number of papers for each term.
-    term_b_counts : 1d array
+    b_counts : 1d array
         Number of papers for each term, in the secondary list of terms.
     meta_data : dict
         Meta data from the scrape.
@@ -67,24 +67,24 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     req = Requester(wait_time=get_wait_time(urls.authenticated))
 
     # Sort out terms
-    n_terms_a = len(terms_lst_a)
-    if len(terms_lst_b) == 0:
+    n_terms_a = len(terms_a)
+    if len(terms_b) == 0:
         square = True
-        terms_lst_b = terms_lst_a
-        excls_lst_b = excls_lst_a
+        terms_b = terms_a
+        exclusions_b = exclusions_a
     else:
         square = False
-    n_terms_b = len(terms_lst_b)
+    n_terms_b = len(terms_b)
 
     # Check exclusions
-    if not excls_lst_a:
-        excls_lst_a = [[]] * n_terms_a
-    if not excls_lst_b:
-        excls_lst_b = [[]] * n_terms_b
+    if not exclusions_a:
+        exclusions_a = [[]] * n_terms_a
+    if not exclusions_b:
+        exclusions_b = [[]] * n_terms_b
 
     # Initialize count variables to the correct length
-    term_a_counts = np.ones([n_terms_a], dtype=int) * -1
-    term_b_counts = np.ones([n_terms_b], dtype=int) * -1
+    a_counts = np.ones([n_terms_a], dtype=int) * -1
+    b_counts = np.ones([n_terms_b], dtype=int) * -1
 
     # Initialize right size matrices to store data
     data_numbers = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
@@ -99,17 +99,17 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     meta_data.add_db_info(get_db_info(req, urls.info))
 
     # Loop through each term (list-A)
-    for a_ind, (term_a, excl_a) in enumerate(zip(terms_lst_a, excls_lst_a)):
+    for a_ind, (term_a, excl_a) in enumerate(zip(terms_a, exclusions_a)):
 
         if verbose:
             print('Running counts for: ', term_a[0])
 
         # Get number of results for current term search
         url = urls.search + mk_term(term_a) + mk_term(excl_a, 'NOT')
-        term_a_counts[a_ind] = get_count(req, url)
+        a_counts[a_ind] = get_count(req, url)
 
         # Loop through each term (list-b)
-        for b_ind, (term_b, excl_b) in enumerate(zip(terms_lst_b, excls_lst_b)):
+        for b_ind, (term_b, excl_b) in enumerate(zip(terms_b, exclusions_b)):
 
             # Skip scrapes of equivalent term combinations - if single term list
             #  This will skip the diaonal row, and any combinations already scraped
@@ -118,7 +118,7 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
 
             # Get number of results for just term search
             url = urls.search + mk_term(term_b) + mk_term(excl_b, 'NOT')
-            term_b_counts[b_ind] = get_count(req, url)
+            b_counts[b_ind] = get_count(req, url)
 
             # Make URL - Exact Term Version, using double quotes, & exclusions
             url = urls.search + mk_term(term_a) + mk_term(excl_a, 'NOT') + \
@@ -127,15 +127,15 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
             count = get_count(req, url)
 
             data_numbers[a_ind, b_ind] = count
-            data_percent[a_ind, b_ind] = count / term_a_counts[a_ind]
+            data_percent[a_ind, b_ind] = count / a_counts[a_ind]
 
             if square:
                 data_numbers[b_ind, a_ind] = count
-                data_percent[b_ind, a_ind] = count / term_b_counts[b_ind]
+                data_percent[b_ind, a_ind] = count / b_counts[b_ind]
 
     meta_data.add_requester(req)
 
-    return data_numbers, data_percent, term_a_counts, term_b_counts, meta_data
+    return data_numbers, data_percent, a_counts, b_counts, meta_data
 
 
 def get_count(req, url):
