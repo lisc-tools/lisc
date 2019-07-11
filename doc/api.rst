@@ -6,51 +6,71 @@ API Documentation
 
 .. currentmodule:: lisc
 
-Base
-====
+Objects
+=======
+
+.. currentmodule:: lisc.objs
 
 .. autosummary::
   :toctree: generated/
 
-  base.Base
-
-Counts
-======
-
-.. autosummary::
-  :toctree: generated/
-
-  count.Count
-
-Words
-=====
-
-.. autosummary::
-  :toctree: generated/
-
-  words.Words
+  Counts
+  Words
 
 Scrape
 ======
 
+.. currentmodule:: lisc.scrape
+
 .. autosummary::
   :toctree: generated/
 
-  scrape.scrape_counts
-  scrape.scrape_words
+  scrape_info
+  scrape_counts
+  scrape_words
 
-Data
+Data Objects
+============
+
+.. currentmodule:: lisc.data
+
+.. autosummary::
+  :toctree: generated/
+
+  Data
+  MetaData
+  DataAll
+
+Requester
+=========
+
+.. currentmodule:: lisc.requester
+
+.. autosummary::
+  :toctree: generated/
+
+  Requester
+
+URLS
 ====
 
-.. autosummary::
-  :toctree: generated/
-
-  data.Data
-
-DataAll
-=======
+.. currentmodule:: lisc.urls
 
 .. autosummary::
   :toctree: generated/
 
-  data_all.DataAll
+  URLS
+
+Plotting
+========
+
+.. currentmodule:: lisc.plts
+
+.. autosummary::
+  :toctree: generated/
+
+  single.plot_years
+  group.plot_matrix
+  group.plot_clustermap
+  group.plot_dendrogram
+  wordcloud.plot_wordcloud
