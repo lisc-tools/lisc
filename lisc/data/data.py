@@ -1,8 +1,10 @@
 """Classes and functions to store and process extracted paper data."""
 
+import os
 import json
 
-from lisc.core.db import check_db
+from lisc.core.db import check_folder
+from lisc.core.io import parse_json_data, check_ext
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -25,10 +27,10 @@ class Data():
         Titles of all articles included in object.
     journals : list of tuple of (str, str)
         List of journals articles come from.
-            (Journal Name, ISO abbreviation).
+        (Journal Name, ISO abbreviation).
     authors : list of list of str
         Authors of all articles included in object.
-            (Last Name, First Name, Initials, Affiliation)
+        (Last Name, First Name, Initials, Affiliation)
     words : list of list of unicode
         Words extracted from each article.
     kws : list of list of str
@@ -44,7 +46,7 @@ class Data():
     """
 
     def __init__(self, label, term=[]):
-        """Initialize termWords() object.
+        """Initialize Data() object.
 
         Parameters
         ----------
@@ -223,7 +225,6 @@ class Data():
             self.update_history('Failed Check')
             raise InconsistentDataError('term Words data is inconsistent.')
 
-        # Update history
         self.update_history('Passed Check')
 
 
@@ -233,26 +234,37 @@ class Data():
         self.history.append(update)
 
 
-    def save(self, db=None):
-        """Save out json file with all attached data."""
+    def save(self, folder=None):
+        """Save out json file with all attached data.
 
-        db = check_db(db)
+        Parameters
+        ----------
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
+        """
 
-        with open(db.words_path + '/raw/' + self.label + '.json', 'w') as outfile:
+        folder = check_folder(folder, 'raw')
+
+        with open(os.path.join(folder, check_ext(self.label, '.json')), 'w') as outfile:
             for art in self:
                 json.dump(art, outfile)
                 outfile.write('\n')
 
-        # Update history
         self.update_history('Saved')
 
 
-    def load(self, db=None):
-        """Load raw data from json file."""
+    def load(self, folder=None):
+        """Load raw data from json file.
 
-        db = check_db(db)
+        Parameters
+        ----------
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
+        """
 
-        data = _parse_json_dat(db.words_path + '/raw/' + self.label + '.json')
+        folder = check_folder(folder, 'raw')
+
+        data = parse_json_data(os.path.join(folder, check_ext(self.label, '.json')))
 
         for dat in data:
             self.add_id(dat['id'])
@@ -271,7 +283,6 @@ class Data():
     def clear(self):
         """Clear all data attached to object."""
 
-        # Re-initiliaze all data lists to be empty
         self.ids = list()
         self.titles = list()
         self.journals = list()
@@ -282,10 +293,8 @@ class Data():
         self.months = list()
         self.dois = list()
 
-        # Re-initialize article count to zero
         self.n_articles = 0
 
-        # Update history
         self.update_history('Cleared')
 
 
@@ -294,10 +303,3 @@ class Data():
 
         self.save()
         self.clear()
-
-###################################################################################################
-###################################################################################################
-
-def _parse_json_dat(f_name):
-    for l in open(f_name):
-        yield json.loads(l)

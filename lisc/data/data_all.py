@@ -1,15 +1,12 @@
 """Classes and functions to store aggregated term paper data."""
 
+import os
 import json
 
 import nltk
 
-from lisc.core.db import check_db
-
-###################################################################################################
-###################################################################################################
-
-EXCLUDE_KWS = []
+from lisc.core.io import check_ext
+from lisc.core.db import check_folder
 
 ###################################################################################################
 ###################################################################################################
@@ -45,13 +42,15 @@ class DataAll():
         Summary / overview of data associated with current object.
     """
 
-    def __init__(self, term_data):
+    def __init__(self, term_data, exclusions=[]):
         """Initialize DataAll() object.
 
         Parameters
         ----------
         term_data : Data() object
-            TODO.
+            xx
+        exclusions : list of str
+            Words to exclude from the word collections.
         """
 
         self.label = term_data.label
@@ -63,8 +62,8 @@ class DataAll():
         self.all_kws = _combine(term_data.kws)
 
         # Convert lists of all words in frequency distributions
-        self.word_freqs = _freq_dist(self.all_words, self.term + [self.label] + EXCLUDE_KWS)
-        self.kw_freqs = _freq_dist(self.all_kws, self.term + [self.label] + EXCLUDE_KWS)
+        self.word_freqs = _freq_dist(self.all_words, self.term + [self.label] + exclusions)
+        self.kw_freqs = _freq_dist(self.all_kws, self.term + [self.label] + exclusions)
 
         # Get counts of authors, journals, years
         self.author_counts = _proc_authors(term_data.authors)
@@ -134,12 +133,18 @@ class DataAll():
         print('    number of publications: \t', self.summary['top_journal_count'], '\n')
 
 
-    def save_summary(self, db=None):
-        """Save out a summary of the scraped term paper data."""
+    def save_summary(self, folder=None):
+        """Save out a summary of the scraped term paper data.
 
-        db = check_db(db)
+        Parameters
+        ----------
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
+        """
 
-        with open(db.words_path + '/summary/' + self.label + '.json', 'w') as outfile:
+        folder = check_folder(folder, 'summary')
+
+        with open(os.path.join(folder, check_ext(self.label, '.json')), 'w') as outfile:
             json.dump(self.summary, outfile)
 
 ###################################################################################################

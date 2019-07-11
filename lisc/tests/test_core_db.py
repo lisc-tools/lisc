@@ -44,21 +44,9 @@ def test_webdb():
 #         if '_path' in key and val:
 #             assert os.path.exists(val)
 
-def test_check_db():
-
-    # Check that it returns an SCDB when given None
-    db = check_db(None)
-    assert isinstance(db, SCDB)
-
-    # Check that it returns an SCDB object when given one
-    db = SCDB()
-    db = check_db(db)
-    assert isinstance(db, SCDB)
-
 def test_check_folder():
 
     assert check_folder(None, '') == None
     assert check_folder('string', '') == 'string'
     assert isinstance(check_folder(SCDB(), 'terms'), str)
     #assert isinstance(check_folder(SCDB(), 'terms'), SCDB)
-

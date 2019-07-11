@@ -35,6 +35,8 @@ class SCDB():
         self.data_path = str()
         self.counts_path = str()
         self.words_path = str()
+        self.raw_path = str()
+        self.summary_path = str()
         self.figs_path = str()
 
         # Generate project paths
@@ -51,6 +53,8 @@ class SCDB():
 
         self.counts_path = os.path.join(self.data_path, 'counts')
         self.words_path = os.path.join(self.data_path, 'words')
+        self.raw_path = os.path.join(self.words_path, 'raw')
+        self.summary_path = os.path.join(self.words_path, 'summary')
 
 
     def get_files(self, folder):
@@ -58,8 +62,8 @@ class SCDB():
 
         Parameters
         ----------
-        folder : {'terms', 'figures', 'data', 'counts', 'words'}
-            Which folder to
+        folder : {'terms', 'figures', 'data', 'counts', 'words', 'raw', 'summary'}
+            Which folder to get the list of files from.
 
         Returns
         -------
@@ -106,7 +110,7 @@ def check_folder(folder, f_type):
     ----------
     folder : SCDB or str or None
         A string or object containing a file path.
-    f_type : {'terms', 'figures', 'data', 'counts', 'words'}
+    f_type : {'terms', 'figures', 'data', 'counts', 'words', 'raw', 'summary'}
         Which path to extract, if it's a SCDB object.
 
     Returns
@@ -126,24 +130,6 @@ def check_folder(folder, f_type):
     return folder
 
 
-def check_db(db):
-    """Check if SCDB object is initialized, if not, return an SCDB object.
-
-    Parameters
-    ----------
-    db : SCDB() object, or None
-        Database object.
-
-    Returns
-    -------
-    db : SCDB() object
-        Database object.
-    """
-
-    # If db is currently None, initialize as SCDB
-    return SCDB() if not db else db
-
-
 def create_file_structure(base_path):
     """Create the file structure for a SCANR database.
 
@@ -155,7 +141,7 @@ def create_file_structure(base_path):
 
     db = SCDB(base_path)
 
-    os.mkdir(db.figs_path)
-    os.mkdir(db.data_path)
-    os.mkdir(db.counts_path)
-    os.mkdir(db.words_path)
+    paths = [key for key in vars(db).keys() if '_path' in key]
+
+    for path in paths:
+        os.mkdir(path)

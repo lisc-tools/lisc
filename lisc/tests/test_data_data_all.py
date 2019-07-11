@@ -2,6 +2,7 @@
 
 from lisc.data.data_all import *
 from lisc.tests.utils import load_data
+from lisc.tests.utils import TestDB as TDB
 
 ###################################################################################################
 ###################################################################################################
@@ -20,12 +21,15 @@ def test_check_funcs(tdata_all):
 
     assert True
 
-def test_create_print_summary(tdata_all):
+def test_summary(tdata_all):
+
+    tdb = TDB()
 
     tdata_all.create_summary()
 
     assert tdata_all.summary
 
     tdata_all.print_summary()
+    tdata_all.save_summary(folder=tdb)
 
     assert True

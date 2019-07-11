@@ -1,9 +1,10 @@
 """Load & save functions for LISC."""
 
 import os
+import json
 import pickle
 
-from lisc.core.db import SCDB, check_db, check_folder
+from lisc.core.db import SCDB, check_folder
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -112,3 +113,10 @@ def load_object(f_name, folder=None):
         raise InconsistentDataError('Can not find requested file name.')
 
     return pickle.load(open(check_ext(load_path, '.p'), 'rb'))
+
+
+def parse_json_data(f_name):
+    """Parse data from a json file."""
+
+    for l in open(f_name):
+        yield json.loads(l)

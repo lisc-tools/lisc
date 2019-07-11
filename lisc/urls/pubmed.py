@@ -43,6 +43,30 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 ###################################################################################################
 
+def get_wait_time(authenticated):
+    """Get the wait time based on whether EUtils API use is autheticated or not.
+
+    Parameters
+    ----------
+    authenticated : bool
+        Whether EUtils API use is authenticated.
+
+    Returns
+    -------
+    float
+        Wait time to use between API calls, in seconds.
+
+    Notes
+    -----
+    The wait time for requesting is set for the E-Utils API, which allows for:
+    - 10 requests/second for authenticated users (using an API key)
+    - 3 requests/second otherwise
+    ToDo: check these values.
+    """
+
+    return 1/10 if authenticated else 1/3
+
+
 class URLS(object):
     """Class to hold URL information for SCANR project.
 

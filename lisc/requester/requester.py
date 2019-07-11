@@ -25,19 +25,34 @@ class Requester():
         Time at which last request was sent.
     """
 
-    def __init__(self):
-        """Initialize Requester object."""
+    def __init__(self, wait_time=0):
 
-        self.is_active = False
+        self.is_active = bool()
         self.n_requests = int()
 
-        self.wait_time = 0
+        self.wait_time = int()
 
-        self.st_time = time.strftime('%H:%M %A %d %B %Y')
+        self.st_time = str()
         self.en_time = str()
 
         self.time_last_req = float()
 
+        # Set object as active
+        self.set_wait_time(wait_time)
+        self.open()
+
+
+    def __repr__(self):
+        return str(self.__dict__)
+
+
+    def as_dict(self):
+        """Get the attributes of the Requester object as a dictionary."""
+
+        req_dict = self.__dict__
+        req_dict.pop('time_last_req')
+
+        return req_dict
 
     def set_wait_time(self, wait_time):
         """Set the amount of time to rest between requests."""
@@ -92,11 +107,12 @@ class Requester():
             Object containing the requested web page.
         """
 
-        # Check if current object is active, and throttle is required
-        if self.is_active:
-            self.throttle()
-        else:
-            self.open()
+        # Check if current object is active
+        if not self.is_active:
+            raise ValueError('Requester object is not active.')
+
+        # Check and throttle, if required
+        self.throttle()
 
         # HACK LOGGING
         print(url)
@@ -111,15 +127,22 @@ class Requester():
         return out
 
 
+    @staticmethod
+    def get_time():
+        """Get the current time."""
+
+        return time.strftime('%H:%M %A %d %B %Y')
+
+
     def open(self):
         """Set the current object as active."""
 
-        self.st_time = time.strftime('%H:%M %A %d %B')
+        self.st_time = self.get_time()
         self.is_active = True
 
 
     def close(self):
         """Set the current object as inactive."""
 
-        self.en_time = time.strftime('%H:%M %A %d %B')
+        self.en_time = self.get_time()
         self.is_active = False
