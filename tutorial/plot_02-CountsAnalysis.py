@@ -6,7 +6,8 @@ Analyzing scraped co-occurence data.
 """
 
 from lisc.core.db import SCDB
-from lisc.core.io import load_pickle_obj
+from lisc.core.io import load_object
+from lisc.plts.group import *
 
 ###################################################################################################
 #
@@ -16,7 +17,7 @@ from lisc.core.io import load_pickle_obj
 # This tutorial explores the built in utilities for exploring & anayzing counts data.
 #
 
-counts = load_pickle_obj('tutorial_counts_counts', SCDB('dat'))
+counts = load_object('tutorial_counts_counts', SCDB('dat'))
 
 ###################################################################################################
 

@@ -19,12 +19,12 @@ Scraping literature data, focused on word co-occurence.
 
 ###################################################################################################
 
-# Import LISC - Count
-from lisc.count import Count
+# Import LISC - Counts
+from lisc.objs import Counts
 from lisc.scrape import scrape_counts
 
 from lisc.core.db import SCDB
-from lisc.core.io import save_pickle_obj
+from lisc.core.io import save_object
 
 ###################################################################################################
 
@@ -87,7 +87,7 @@ dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts
 ###################################################################################################
 
 # Initialize counts object
-counts = Count()
+counts = Counts()
 
 ###################################################################################################
 
@@ -127,7 +127,7 @@ counts.check_top()
 ###################################################################################################
 
 # Initialize count object
-counts_two = Count()
+counts_two = Counts()
 
 ###################################################################################################
 
@@ -169,7 +169,7 @@ counts_two.check_cooc('B')
 ###################################################################################################
 
 # Initialize Count object
-counts = Count()
+counts = Counts()
 
 ###################################################################################################
 
@@ -208,4 +208,4 @@ counts.terms['A'].labels
 
 ###################################################################################################
 
-save_pickle_obj(counts_two, 'tutorial_counts', SCDB('dat'))
+save_object(counts_two, 'tutorial_counts', SCDB('dat'))

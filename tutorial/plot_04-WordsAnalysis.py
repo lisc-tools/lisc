@@ -16,8 +16,7 @@ Analyzing scraped words data.
 ###################################################################################################
 
 from lisc.core.db import SCDB
-from lisc.data import Data
-from lisc.data_all import DataAll
+from lisc.data import Data, DataAll
 
 ###################################################################################################
 #

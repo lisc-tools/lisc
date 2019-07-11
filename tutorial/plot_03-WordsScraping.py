@@ -16,7 +16,7 @@ Scraping literature data for specified search terms.
 ###################################################################################################
 
 # Import LISC - Words
-from lisc.words import Words
+from lisc.objs import Words
 from lisc.scrape import scrape_words
 
 ###################################################################################################
@@ -35,7 +35,7 @@ terms_b = [['body'], ['biology'], ['disease']]
 ###################################################################################################
 
 # Scrape words data - set the scrape to return data for at most 5 papers per term
-dat, meta_dat = scrape_words(terms_a, retmax='5', use_hist=False, save_n_clear=False, verbose=True)
+dat, meta_data = scrape_words(terms_a, retmax='5', use_hist=False, save_n_clear=False, verbose=True)
 
 ###################################################################################################
 
@@ -94,10 +94,10 @@ words.results
 ###################################################################################################
 
 # The meta data includes some information on the database that was scraped
-meta_dat['db_info']
+meta_data['db_info']
 
 # This data is also saved to object
-words.meta_dat['db_info']
+words.meta_data['db_info']
 
 ###################################################################################################
 #
@@ -107,6 +107,6 @@ words.meta_dat['db_info']
 
 ###################################################################################################
 
-print('Start time:    ', meta_dat['req'].st_time)
-print('End time:      ', meta_dat['req'].en_time)
-print('# of requests: ', meta_dat['req'].n_requests)
+print('Start time:    ', meta_data['req'].st_time)
+print('End time:      ', meta_data['req'].en_time)
+print('# of requests: ', meta_data['req'].n_requests)
