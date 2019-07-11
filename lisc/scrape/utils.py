@@ -33,7 +33,7 @@ def comb_terms(lst, joiner):
     return out
 
 
-def _mk(t_lst, cm=''):
+def mk_term(t_lst, cm=''):
     """Create search term component.
 
     Parameters

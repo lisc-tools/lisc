@@ -6,7 +6,6 @@ from lisc.core.modutils import safe_import
 from lisc.plts.utils import savefig
 
 plt = safe_import('.pyplot', 'matplotlib')
-#from wordcloud import WordCloud
 wc = safe_import('wordcloud')
 
 ###################################################################################################
@@ -26,10 +25,10 @@ def plot_wordcloud(freq_dist, n_words, label):
         xx
     """
 
-    wc = create_wordcloud(conv_freqs(freq_dist, 20))
+    cloud = create_wordcloud(conv_freqs(freq_dist, 20))
 
     plt.figure(figsize=(10, 10))
-    plt.imshow(wc)
+    plt.imshow(cloud)
     plt.axis("off")
 
 
@@ -47,7 +46,6 @@ def create_wordcloud(words_in):
         Wordcloud definition.
     """
 
-    # Create the WordCloud object
     cloud = wc.WordCloud(background_color=None,
                          mode='RGBA',
                          width=800,
@@ -57,7 +55,6 @@ def create_wordcloud(words_in):
                          min_font_size=25,
                          max_font_size=80).generate_from_frequencies(words_in)
 
-    # Change colour scheme to grey
     cloud.recolor(color_func=_grey_color_func, random_state=3)
 
     return cloud

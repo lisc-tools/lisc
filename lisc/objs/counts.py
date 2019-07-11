@@ -37,7 +37,7 @@ class Counts():
         self.dat_percent = np.zeros(0)
         self.square = bool()
 
-        # Initialize dictionary to store db info
+        # Initialize to store meta data
         self.meta_data = dict()
 
 

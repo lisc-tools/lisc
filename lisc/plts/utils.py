@@ -7,9 +7,32 @@ from lisc.core.db import SCDB
 from lisc.core.modutils import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
+sns = safe_import('seaborn')
 
 ###################################################################################################
 ###################################################################################################
+
+def get_cmap(cmap):
+    """Get a requested colormap.
+
+    Parameters
+    ----------
+    cmap : {'purple', 'blue'}
+        xx
+
+    Returns
+    -------
+    cmap : xx
+        xx
+    """
+
+    if cmap == 'purple':
+        cmap = sns.cubehelix_palette(as_cmap=True)
+    elif cmap == 'blue':
+        cmap = sns.cubehelix_palette(as_cmap=True, rot=-.3, light=0.9, dark=0.2)
+
+    return cmap
+
 
 def check_ax(ax, figsize=None):
     """Check whether a figure axes object is defined, define if not.
@@ -32,6 +55,7 @@ def check_ax(ax, figsize=None):
 
 
 def savefig(func):
+    """Decorator to save out a figure, if requested."""
 
     @wraps(func)
     def decorated(*args, **kwargs):

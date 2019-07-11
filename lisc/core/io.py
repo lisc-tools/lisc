@@ -104,9 +104,9 @@ def load_object(f_name, folder=None):
         elif check_ext(f_name, '.p') in folder.get_files('words'):
             load_path = os.path.join(folder.words_path, f_name)
 
-    elif isinstance(folder, str) or folder == None:
+    elif isinstance(folder, str) or folder is None:
 
-        if f_name in os.lisdir(folder):
+        if f_name in os.listdir(folder):
             load_path = os.path.join(folder, f_name)
 
     if not load_path:
@@ -116,7 +116,18 @@ def load_object(f_name, folder=None):
 
 
 def parse_json_data(f_name):
-    """Parse data from a json file."""
+    """Parse data from a json file.
 
-    for l in open(f_name):
-        yield json.loads(l)
+    Parameters
+    ----------
+    f_name : str
+        File name of the json file to be loaded.
+
+    Yields
+    ------
+    str
+        The loaded line of json data.
+    """
+
+    for line in open(f_name):
+        yield json.loads(line)

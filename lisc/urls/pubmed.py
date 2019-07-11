@@ -67,7 +67,7 @@ def get_wait_time(authenticated):
     return 1/10 if authenticated else 1/3
 
 
-class URLS(object):
+class URLS():
     """Class to hold URL information for SCANR project.
 
     Attributes

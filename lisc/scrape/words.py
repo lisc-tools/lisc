@@ -7,8 +7,9 @@ from nltk.corpus import stopwords
 from lisc.data import Data
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
-from lisc.urls.pubmed import URLS, get_wait_time
+from lisc.scrape.info import get_db_info
 from lisc.scrape.utils import comb_terms, extract
+from lisc.urls.pubmed import URLS, get_wait_time
 from lisc.core.decorators import CatchNone, CatchNone2
 
 ###################################################################################################
@@ -121,7 +122,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
                 # Get article page, scrape data, update position
                 art_url = urls.fetch + '&WebEnv=' + web_env + '&query_key=' + query_key + \
                           '&retstart=' + str(ret_start_it) + '&retmax=' + str(ret_end_it)
-                cur_dat = scrape_papers(req, art_url, cur_dat)
+                cur_dat = get_papers(req, art_url, cur_dat)
                 ret_start_it += ret_end_it
 
                 # Stop if number of scraped papers has reached total retmax
@@ -139,7 +140,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
 
             # Get article page & scrape data
             art_url = urls.fetch + '&id=' + ids_str
-            cur_dat = scrape_papers(req, art_url, cur_dat)
+            cur_dat = get_papers(req, art_url, cur_dat)
 
         # Check consistency of extracted results
         cur_dat.check_results()
@@ -177,7 +178,7 @@ def get_papers(req, art_url, cur_dat):
     articles = art_page_soup.findAll('PubmedArticle')
 
     # Loop through each article, extracting relevant information
-    for ind, art in enumerate(articles):
+    for art in articles:
 
         # Get ID of current article & extract and add info to data object
         new_id = _process_ids(extract(art, 'ArticleId', 'all'), 'pubmed')

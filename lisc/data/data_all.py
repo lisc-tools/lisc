@@ -196,9 +196,14 @@ def _combine(in_lst):
 
     out = []
 
-    for ind in range(len(in_lst)):
-        if in_lst[ind]:
-            out.extend(in_lst[ind])
+    for el in in_lst:
+        if el:
+            out.extend(el)
+
+    # OLD:
+    #for ind in range(len(in_lst)):
+    #    if in_lst[ind]:
+    #        out.extend(in_lst[ind])
 
     return out
 

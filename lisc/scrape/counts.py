@@ -4,7 +4,9 @@ import numpy as np
 from bs4 import BeautifulSoup
 
 from lisc.requester import Requester
-from lisc.scrape.utils import extract
+from lisc.data.meta_data import MetaData
+from lisc.scrape.info import get_db_info
+from lisc.scrape.utils import extract, mk_term
 from lisc.urls.pubmed import URLS, get_wait_time
 
 ###################################################################################################
@@ -97,18 +99,17 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
     meta_data.add_db_info(get_db_info(req, urls.info))
 
     # Loop through each term (list-A)
-    for a_ind, term_a in enumerate(terms_lst_a):
+    for a_ind, (term_a, excl_a) in enumerate(zip(terms_lst_a, excls_lst_a)):
 
         if verbose:
-            print('Running counts for: ', terms_lst_a[a_ind][0])
+            print('Running counts for: ', term_a[0])
 
         # Get number of results for current term search
-        url = urls.search + _mk(terms_lst_a[a_ind]) + \
-              _mk(excls_lst_a[a_ind], 'NOT')
+        url = urls.search + mk_term(term_a) + mk_term(excl_a, 'NOT')
         term_a_counts[a_ind] = get_count(req, url)
 
         # Loop through each term (list-b)
-        for b_ind, term_b in enumerate(terms_lst_b):
+        for b_ind, (term_b, excl_b) in enumerate(zip(terms_lst_b, excls_lst_b)):
 
             # Skip scrapes of equivalent term combinations - if single term list
             #  This will skip the diaonal row, and any combinations already scraped
@@ -116,15 +117,12 @@ def scrape_counts(terms_lst_a, excls_lst_a=[], terms_lst_b=[], excls_lst_b=[],
                 continue
 
             # Get number of results for just term search
-            url = urls.search + _mk(terms_lst_b[b_ind]) + \
-                _mk(excls_lst_b[b_ind], 'NOT')
+            url = urls.search + mk_term(term_b) + mk_term(excl_b, 'NOT')
             term_b_counts[b_ind] = get_count(req, url)
 
             # Make URL - Exact Term Version, using double quotes, & exclusions
-            url = urls.search + _mk(terms_lst_a[a_ind]) + \
-                    _mk(excls_lst_a[a_ind], 'NOT') + \
-                    _mk(terms_lst_b[b_ind], 'AND') + \
-                    _mk(excls_lst_b[b_ind], 'NOT')
+            url = urls.search + mk_term(term_a) + mk_term(excl_a, 'NOT') + \
+                    mk_term(term_b, 'AND') + mk_term(excl_b, 'NOT')
 
             count = get_count(req, url)
 
@@ -157,7 +155,6 @@ def get_count(req, url):
     page = req.get_url(url)
     page_soup = BeautifulSoup(page.content, 'lxml')
 
-    # Get all count tags
     counts = extract(page_soup, 'count', 'all')
 
     try:
