@@ -229,7 +229,13 @@ class Data():
 
 
     def update_history(self, update):
-        """Update object history."""
+        """Update object history.
+
+        Parameters
+        ----------
+        update : str
+            A message to add to the history.
+        """
 
         self.history.append(update)
 
@@ -298,8 +304,14 @@ class Data():
         self.update_history('Cleared')
 
 
-    def save_n_clear(self):
-        """Save out the attached data and clear the object."""
+    def save_n_clear(self, folder=None):
+        """Save out the attached data and clear the object.
 
-        self.save()
+        Parameters
+        ----------
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
+        """
+
+        self.save(folder)
         self.clear()
