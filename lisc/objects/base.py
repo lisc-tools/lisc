@@ -11,35 +11,34 @@ class Base():
 
     Attributes
     ----------
-    db_info : dict()
-        Stores info about the database used for scarping data.
     terms : list of list of str
         Terms words.
     labels : list of str
         Label to reference each term.
     exclusions : list of list str
         Exclusion words for each term, used to avoid unwanted articles.
+    has_data : bool
+        Whether there is any terms and/or data loaded.
     n_terms : int
         Number of terms.
-    date : str
-        Date data was collected.
-    meta_data : dict
-        Meta data for the scrape.
-    has_dat : bool
-        Whether there is any terms and/or data loaded.
     """
 
     def __init__(self):
         """Initialize Base() object."""
 
-        # Initialize list of terms to use, including exclusions & labels
         self.terms = list()
         self.labels = list()
         self.exclusions = list()
-        self.has_dat = False
 
-        # Initialize counters for numbers of terms
-        self.n_terms = int()
+
+    @property
+    def has_data(self):
+        return bool(self.terms)
+
+
+    @property
+    def n_terms(self):
+        return len(self.terms)
 
 
     def set_terms(self, terms):
@@ -51,17 +50,11 @@ class Base():
             List of terms to be used.
         """
 
-        # Unload previous terms if some are already loaded
         self.unload_terms()
 
-        # Set given list as the terms
         for term in terms:
             self.terms.append(self._check_type(term))
         self.get_term_labels()
-
-        # Set the number of terms
-        self.n_terms = len(terms)
-        self.has_dat = True
 
 
     def set_terms_file(self, f_name, folder=None):
@@ -75,16 +68,12 @@ class Base():
             A string or object containing a file path.
         """
 
-        # Unload previous terms if some are already loaded
         self.unload_terms()
 
-        # Load terms from file & set number of terms
         terms = load_terms_file(f_name, folder)
-        self.n_terms = len(terms)
 
-        # Set as list, attach to object, set labels
-        for i in range(self.n_terms):
-            self.terms.append(terms[i][:].split(','))
+        for term in terms:
+            self.terms.append(term.split(','))
         self.get_term_labels()
 
 
@@ -100,17 +89,10 @@ class Base():
     def unload_terms(self):
         """Unload the current set of terms."""
 
-        # Check if exclusions are loaded, to empty them if so.
         if self.terms:
 
-            # Print status that term words are being unloaded
             print('Unloading previous terms words.')
-
-            # Reset term variables to empty
             self.terms = list()
-            self.n_terms = int()
-
-        self.has_dat = False
 
 
     def get_term_labels(self):
@@ -128,14 +110,11 @@ class Base():
             List of exclusion words to be used.
         """
 
-        # Unload previous terms if some are already loaded
         self.unload_exclusions()
 
-        # Set given list as exclusion words
         for exclude in exclusions:
             self.exclusions.append(self._check_type(exclude))
 
-        # Check that the number of exclusions matches n_terms
         if len(exclusions) != self.n_terms:
             raise InconsistentDataError('Mismatch in number of exclusions and terms!')
 
@@ -151,25 +130,19 @@ class Base():
             A string or object containing a file path.
         """
 
-        # Unload previous terms if some are already loaded
         self.unload_exclusions()
-
-        # Get exclusion words from module data file
         exclusions = load_terms_file(f_name, folder)
 
-        # Check that the number of exclusions matches n_terms
         if len(exclusions) != self.n_terms:
             raise InconsistentDataError('Mismatch in number of exclusions and terms!')
 
-        # Drop number indices for exclusions, and set as list
-        for i in range(self.n_terms):
-            self.exclusions.append(exclusions[i][3:].split(','))
+        for exclusion in exclusions:
+            self.exclusions.append(exclusion.split(','))
 
 
     def check_exclusions(self):
         """Print out the current list of exclusion words."""
 
-        # Print out header and all exclusion words
         print('List of exclusion words used: \n')
         for lab, excs in zip(self.labels, self.exclusions):
             print(lab + "\t : " + ", ".join(exc for exc in excs))
@@ -178,28 +151,10 @@ class Base():
     def unload_exclusions(self):
         """Unload the current set of exclusion words."""
 
-        # Check if exclusions are loaded. If so, print status and empty.
         if self.exclusions:
 
-            # Print status that exclusion words are being unloaded
             print('Unloading previous exclusion words.')
-
-            # Reset exclusions variables to empty
             self.exclusions = list()
-
-
-    def save(self, f_name, folder=None):
-        """Save out the current object.
-
-        Parameters
-        ----------
-        f_name : str
-            Name to append to saved out file name.
-        folder : str or SCDB() object, optional
-            Folder or database object specifying the save location.
-        """
-
-        save_object(f_name, folder)
 
 
     @staticmethod

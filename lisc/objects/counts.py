@@ -20,7 +20,9 @@ class Counts():
     dat_percent : 2d array
         The percentage of papers for each term that include the corresponding term.
     square : bool
-        Whether the count data matrix is symetrical.
+        Whether the count data matrix is symmetrical.
+    meta_data : MetaData() object
+        Meta data information about the data scrape.
     """
 
     def __init__(self):
@@ -32,13 +34,10 @@ class Counts():
             self.terms[dat] = Base()
             self.terms[dat].counts = np.zeros(0, dtype=int)
 
-        # Initialize data output variables
         self.dat_numbers = np.zeros(0)
         self.dat_percent = np.zeros(0)
         self.square = bool()
-
-        # Initialize to store meta data
-        self.meta_data = dict()
+        self.meta_data = None
 
 
     def set_terms(self, terms, dim='A'):
@@ -56,6 +55,23 @@ class Counts():
         self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
+    def set_terms_file(self, f_name, folder=None, dim='A'):
+        """Load terms from a text file.
+
+        Parameters
+        ----------
+        f_name : str
+            File name to load terms from.
+        folder : SCDB or str or None
+            A string or object containing a file path.
+        dim : 'A' or 'B', optional
+            Which set of terms to operate upon.
+        """
+
+        self.terms[dim].set_terms_file(f_name, folder)
+        self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
+
+
     def set_exclusions(self, exclusions, dim='A'):
         """Sets the given list of strings as exclusion words.
 
@@ -68,6 +84,22 @@ class Counts():
         """
 
         self.terms[dim].set_exclusions(exclusions)
+
+
+    def set_exclusions_file(f_name, folder=None, dim='A'):
+        """Load exclusion words from a text file.
+
+        Parameters
+        ----------
+        f_name : str
+            File name to load exclusion terms from.
+        folder : SCDB or str or None
+            A string or object containing a file path.
+        dim : 'A' or 'B', optional
+            Which set of terms to operate upon.
+        """
+
+        self.terms[dim].set_exclusions_file(f_name, folder)
 
 
     def run_scrape(self, db='pubmed', field='TIAB', api_key=None, verbose=False):
@@ -87,12 +119,11 @@ class Counts():
         """
 
         # Run single list of terms against themselves - 'square'
-        if not self.terms['B'].has_dat:
-            self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
-                _, self.meta_data = \
+        if not self.terms['B'].has_data:
+            self.dat_numbers, self.dat_percent, self.terms['A'].counts, _, self.meta_data = \
                     scrape_counts(
-                        terms_lst_a=self.terms['A'].terms,
-                        excls_lst_a=self.terms['A'].exclusions,
+                        terms_a=self.terms['A'].terms,
+                        exclusions_a=self.terms['A'].exclusions,
                         db=db, field=field, api_key=api_key,
                         verbose=verbose)
             self.square = True
@@ -102,10 +133,10 @@ class Counts():
             self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
                 self.terms['B'].counts, self.meta_data = \
                     scrape_counts(
-                        terms_lst_a=self.terms['A'].terms,
-                        excls_lst_a=self.terms['A'].exclusions,
-                        terms_lst_b=self.terms['B'].terms,
-                        excls_lst_b=self.terms['B'].exclusions,
+                        terms_a=self.terms['A'].terms,
+                        exclusions_a=self.terms['A'].exclusions,
+                        terms_b=self.terms['B'].terms,
+                        exclusions_b=self.terms['B'].exclusions,
                         db=db, field=field, api_key=api_key,
                         verbose=verbose)
             self.square = False
@@ -181,8 +212,6 @@ class Counts():
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
         self.terms[dim].labels = [self.terms[dim].labels[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
-
-        self.terms[dim].n_terms = len(self.terms[dim].terms)
 
         if dim == 'A':
             self.dat_numbers = self.dat_numbers[keep_inds, :]

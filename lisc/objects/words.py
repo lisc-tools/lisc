@@ -11,24 +11,22 @@ class Words(Base):
 
     Attributes
     ----------
-    result_keys : list of str
-        Keys for each result data attached to object.
     results : list of Data() objects
         Results for each search term, stored in custom Words object.
+    result_keys : list of str
+        Keys for each result data attached to object.
+    meta_data : MetaData() object
+        Meta data information about the data scrape.
     """
 
     def __init__(self):
         """Initialize LISC Words() object."""
 
-        # Inherit from Base Class
         Base.__init__(self)
 
-        # Initialize a list to store results for all terms
-        self.result_keys = list()
         self.results = list()
-
-        # Initialize dictionary to store db info
-        self.meta_data = dict()
+        self.result_keys = list()
+        self.meta_data = None
 
 
     def __getitem__(self, key):
@@ -41,7 +39,7 @@ class Words(Base):
 
         Returns
         -------
-        Data
+        Data() object
             Data object for the requested result.
         """
 
@@ -67,8 +65,8 @@ class Words(Base):
             Object with information about current term.
         """
 
-        self.result_keys.append(new_result.label)
         self.results.append(new_result)
+        self.result_keys.append(new_result.label)
 
 
     def run_scrape(self, db='pubmed', retmax=None, field='TIAB', api_key=None,
