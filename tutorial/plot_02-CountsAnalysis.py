@@ -17,7 +17,7 @@ from lisc.plts.group import *
 # This tutorial explores the built in utilities for exploring & anayzing counts data.
 #
 
-counts = load_object('tutorial_counts_counts', SCDB('dat'))
+counts = load_object('tutorial_counts', SCDB('dat'))
 
 ###################################################################################################
 

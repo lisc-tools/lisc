@@ -9,7 +9,7 @@ API Documentation
 Objects
 =======
 
-.. currentmodule:: lisc.objs
+.. currentmodule:: lisc.objects
 
 .. autosummary::
   :toctree: generated/

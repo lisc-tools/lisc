@@ -20,7 +20,7 @@ Scraping literature data, focused on word co-occurence.
 ###################################################################################################
 
 # Import LISC - Counts
-from lisc.objs import Counts
+from lisc import Counts
 from lisc.scrape import scrape_counts
 
 from lisc.core.db import SCDB
@@ -70,7 +70,7 @@ for term, count in zip(terms_a, term_counts):
 
 # Run a scrape of 'counts' (co-occurence data) across two different lists of terms
 dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts(
-    terms_lst_a=terms_a, terms_lst_b=terms_b, db='pubmed', verbose=True)
+    terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)
 
 ###################################################################################################
 #

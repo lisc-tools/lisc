@@ -16,7 +16,7 @@ Scraping literature data for specified search terms.
 ###################################################################################################
 
 # Import LISC - Words
-from lisc.objs import Words
+from lisc import Words
 from lisc.scrape import scrape_words
 
 ###################################################################################################
