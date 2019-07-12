@@ -7,7 +7,7 @@ import nltk
 
 from lisc.core.io import check_ext
 from lisc.core.db import check_folder
-from lisc.data.utils import combine_lists, count_occurences
+from lisc.data.utils import combine_lists
 from lisc.data.count import *
 
 ###################################################################################################

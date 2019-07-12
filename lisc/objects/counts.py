@@ -86,7 +86,7 @@ class Counts():
         self.terms[dim].set_exclusions(exclusions)
 
 
-    def set_exclusions_file(f_name, folder=None, dim='A'):
+    def set_exclusions_file(self, f_name, folder=None, dim='A'):
         """Load exclusion words from a text file.
 
         Parameters

@@ -41,15 +41,15 @@ def load_terms_file(f_name, folder=None):
 
     Returns
     -------
-    dat : list of str
+    terms : list of str
         Data from the file.
     """
 
     terms_file = open(os.path.join(check_folder(folder, 'terms'),
                                    check_ext(f_name, '.txt')), 'r')
-    dat = terms_file.read().splitlines()
+    terms = terms_file.read().splitlines()
 
-    return dat
+    return terms
 
 
 def save_object(obj, f_name, folder=None):

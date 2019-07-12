@@ -1,6 +1,6 @@
 """Base object for LISC."""
 
-from lisc.core.io import load_terms_file, save_object
+from lisc.core.io import load_terms_file
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################

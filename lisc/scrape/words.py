@@ -7,7 +7,8 @@ from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
 from lisc.scrape.utils import comb_terms
-from lisc.scrape.process import *
+from lisc.scrape.process import (extract, ids_to_str, process_ids, process_authors,
+                                 process_words, process_kws, process_pub_date)
 from lisc.urls.pubmed import URLS, get_wait_time
 
 ###################################################################################################
