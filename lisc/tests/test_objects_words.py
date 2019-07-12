@@ -7,7 +7,7 @@ from py.test import raises
 #from bs4 import BeautifulSoup
 
 from lisc.data import Data
-from lisc.objs.words import Words
+from lisc.objects.words import Words
 
 ###################################################################################################
 ###################################################################################################
@@ -50,4 +50,17 @@ def test_run_scrape():
 
     #words.run_scrape(db='pubmed', retmax='2')#, use_hist=True)
 
-    assert True
+
+# def test_scrape_data():
+#     """Test the scrape_data method."""
+
+#     words = Words()
+
+#     # Add ERPs and terms
+#     #words.set_terms(['N400', 'P600'])
+#     words.set_terms(['language', 'memory'])
+#     words.set_exclusions(['cell', ''])
+
+#     #words.scrape_data(db='pubmed', retmax='5')
+
+#     assert True

@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from lisc.objs.counts import Counts
+from lisc.objects.counts import Counts
 
 ###################################################################################################
 ###################################################################################################
@@ -20,27 +20,18 @@ def test_scrape():
     counts.set_exclusions(['protein', 'protein'])
 
     #counts.run_scrape(db='pubmed')
-    # check_funcs(counts)
-    # drop_data(counts)
-
-    assert True
+    #check_funcs(counts)
+    #drop_data(counts)
 
     #assert np.all(counts.dat_numbers)
     #assert np.all(counts.dat_percent)
 
-
 def check_funcs(counts):
-    """Given object with scraped data, test all the check functions."""
 
-    # Check that all check functions run
     counts.check_cooc()
     counts.check_top()
     counts.check_counts()
 
-    assert True
-
 def drop_data(counts):
 
     counts.drop_data(0)
-
-    assert True

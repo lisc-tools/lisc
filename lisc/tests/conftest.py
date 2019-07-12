@@ -2,8 +2,11 @@
 
 import pytest
 
+from lisc.objects import Counts, Words
+from lisc.requester import Requester
 from lisc.core.modutils import safe_import
 from lisc.tests.utils import load_base, load_data, load_data_all
+from lisc.tests.utils import TestDB as TDB
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -11,8 +14,27 @@ plt = safe_import('.pyplot', 'matplotlib')
 ###################################################################################################
 
 def pytest_configure(config):
+
+    # Set backend for matplotlib tests, if mpl is available
     if plt:
         plt.switch_backend('agg')
+
+
+@pytest.fixture(scope='session')
+def tdb():
+    return TDB()
+
+@pytest.fixture(scope='session')
+def tcounts():
+    return Counts()
+
+@pytest.fixture(scope='session')
+def twords():
+    return Words()
+
+@pytest.fixture(scope='function')
+def treq():
+    return Requester()
 
 @pytest.fixture(scope='function')
 def tbase_empty():

@@ -1,4 +1,4 @@
-"""Tests for Requestor functions and classes from lisc.core."""
+"""Tests for Requestor functions and classes."""
 
 import time
 
@@ -7,6 +7,8 @@ from lisc.requester import Requester
 ###################################################################################################
 ###################################################################################################
 
+# TODO: UPDATE TO USE A TEST OBJECT REQUESTOR
+
 def test_requester():
 
     assert Requester()
@@ -14,8 +16,8 @@ def test_requester():
 def test_set_wait_time():
 
     req = Requester()
-    req.set_wait_time(1)
 
+    req.set_wait_time(1)
     assert req.wait_time == 1
 
 def test_check():
@@ -31,7 +33,6 @@ def test_throttle():
     req.time_last_req = time.time()
 
     req.throttle()
-
     assert True
 
 def test_wait():
@@ -39,7 +40,6 @@ def test_wait():
     req = Requester()
 
     req.wait(0.01)
-
     assert True
 
 def test_get_url():
@@ -47,7 +47,6 @@ def test_get_url():
     req = Requester()
 
     web_page = req.get_url('http://www.google.com')
-
     assert web_page
 
 def test_open():
@@ -55,7 +54,6 @@ def test_open():
     req = Requester()
 
     req.open()
-
     assert req.is_active
 
 def test_close():
@@ -64,5 +62,4 @@ def test_close():
 
     req.open()
     req.close()
-
     assert not req.is_active

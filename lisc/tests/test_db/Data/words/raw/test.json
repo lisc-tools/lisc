@@ -1,1 +1,2 @@
 {"label": "test", "term": ["test"], "id": 1, "title": "title", "journal": ["science", "sc"], "authors": [["A", "B", "C", "D"]], "words": ["new", "dat"], "kws": ["lots", "of", "erps"], "year": 2112, "month": "Jan", "doi": "doi_str"}
+{"label": "test", "term": ["test"], "id": 1, "title": "title", "journal": ["science", "sc"], "authors": [["A", "B", "C", "D"]], "words": ["new", "dat"], "kws": ["lots", "of", "erps"], "year": 2112, "month": "Jan", "doi": "doi_str"}

@@ -7,5 +7,3 @@ from lisc.scrape.counts import *
 
 def test_scrape_counts():
     pass
-
-

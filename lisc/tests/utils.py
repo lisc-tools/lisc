@@ -3,7 +3,7 @@
 import pkg_resources as pkg
 from functools import wraps
 
-from lisc.objs.base import Base
+from lisc.objects.base import Base
 from lisc.data import Data, DataAll
 from lisc.core.db import SCDB
 from lisc.core.modutils import safe_import
@@ -24,9 +24,6 @@ class TestDB(SCDB):
         # Set up the base path to tests data
         self.base_path = pkg.resource_filename(__name__, 'test_db')
         self.gen_paths()
-
-###################################################################################################
-###################################################################################################
 
 def load_base(set_terms=False, set_excl=False):
     """Helper function to load Base object for testing."""
@@ -68,9 +65,6 @@ def load_data_all():
 
     return dat_all
 
-###################################################################################################
-###################################################################################################
-
 def plot_test(func):
     """Decorator for simple testing of plotting functions.
 
@@ -92,7 +86,6 @@ def plot_test(func):
         assert ax.has_data()
 
     return wrapper
-
 
 def optional_test(dependency):
     """Decorator to only run a test if the specified optional dependency is present.
