@@ -3,7 +3,7 @@
 from bs4 import BeautifulSoup
 
 from lisc.requester import Requester
-from lisc.scrape.utils import extract
+from lisc.scrape.process import extract
 from lisc.data.meta_data import MetaData
 from lisc.urls.pubmed import URLS, get_wait_time
 

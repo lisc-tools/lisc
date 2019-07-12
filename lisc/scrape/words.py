@@ -1,16 +1,14 @@
 """Scrape words data from Pubmed."""
 
 from bs4 import BeautifulSoup
-from nltk import word_tokenize
-from nltk.corpus import stopwords
 
 from lisc.data import Data
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
-from lisc.scrape.utils import comb_terms, extract
+from lisc.scrape.utils import comb_terms
+from lisc.scrape.process import *
 from lisc.urls.pubmed import URLS, get_wait_time
-from lisc.core.decorators import CatchNone, CatchNone2
 
 ###################################################################################################
 ###################################################################################################
@@ -75,7 +73,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
 
     # Check exclusions
     if not exclusions_lst:
-        exclusions_lst = [[] for i in range(len(terms_lst))]
+        exclusions_lst = [[] for ind in range(len(terms_lst))]
 
     # Loop through all the terms
     for ind, terms in enumerate(terms_lst):
@@ -94,17 +92,13 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
 
         cur_dat.update_history('Start Scrape')
 
-        # Create the url for the search term
         url = urls.search + term_arg
 
-        # Get page and parse
         page = req.get_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
 
-        # Using history
         if use_hist:
 
-            # Initialize to start at 0
             ret_start_it = 0
 
             # Get number of papers, and keys to use history
@@ -116,7 +110,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
             while ret_start_it < count:
 
                 # Set the number of papers per iteration (the ret_max per call)
-                #  This defaults to 100, but will sets to less if fewer needed to reach retmax
+                #  This defaults to 100, but will set to less if fewer needed to reach retmax
                 ret_end_it = min(100, int(retmax) - ret_start_it)
 
                 # Get article page, scrape data, update position
@@ -132,21 +126,15 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
         # Without using history
         else:
 
-            # Get all ids
             ids = page_soup.find_all('id')
+            ids_str = ids_to_str(ids)
 
-            # Convert ids to string
-            ids_str = _ids_to_str(ids)
-
-            # Get article page & scrape data
             art_url = urls.fetch + '&id=' + ids_str
             cur_dat = get_papers(req, art_url, cur_dat)
 
-        # Check consistency of extracted results
         cur_dat.check_results()
         cur_dat.update_history('End Scrape')
 
-        # Save out and clear data
         if save_n_clear:
             cur_dat.save_n_clear()
         results.append(cur_dat)
@@ -165,6 +153,8 @@ def get_papers(req, art_url, cur_dat):
         Requester object to launch requests from.
     art_url : str
         URL for the article to be scraped.
+    cur_dat : Data() object
+        Data object to add data to
 
     Returns
     -------
@@ -181,22 +171,20 @@ def get_papers(req, art_url, cur_dat):
     for art in articles:
 
         # Get ID of current article & extract and add info to data object
-        new_id = _process_ids(extract(art, 'ArticleId', 'all'), 'pubmed')
-        cur_dat = _extract_add_info(cur_dat, new_id, art)
+        new_id = process_ids(extract(art, 'ArticleId', 'all'))
+        cur_dat = extract_add_info(cur_dat, new_id, art)
 
     return cur_dat
 
-###################################################################################################
-###################################################################################################
 
-def _extract_add_info(cur_dat, new_id, art):
+def extract_add_info(cur_dat, art_id, art):
     """Extract information from article web page and add to
 
     Parameters
     ----------
     cur_dat : Data() object
         Object to store information for the current term.
-    new_id : int
+    art_id : int
         Paper ID of the new paper.
     art : bs4.element.Tag() object
         Extracted pubmed article.
@@ -205,163 +193,17 @@ def _extract_add_info(cur_dat, new_id, art):
     -------
     cur_dat : Data() object
         Object to store data from the current term.
-
-    NOTES
-    -----
-    Data extraction is all in try/except statements in order to
-        deal with missing data, since fields may be missing.
     """
 
-    cur_dat.add_id(new_id)
+    cur_dat.add_id(art_id)
     cur_dat.add_title(extract(art, 'ArticleTitle', 'str'))
-    cur_dat.add_authors(_process_authors(extract(art, 'AuthorList', 'raw')))
+    cur_dat.add_authors(process_authors(extract(art, 'AuthorList', 'raw')))
     cur_dat.add_journal(extract(art, 'Title', 'str'), extract(art, 'ISOAbbreviation', 'str'))
-    cur_dat.add_words(_process_words(extract(art, 'AbstractText', 'str')))
-    cur_dat.add_kws(_process_kws(extract(art, 'Keyword', 'all')))
-    cur_dat.add_pub_date(_process_pub_date(extract(art, 'PubDate', 'raw')))
-    cur_dat.add_doi(_process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
+    cur_dat.add_words(process_words(extract(art, 'AbstractText', 'str')))
+    cur_dat.add_kws(process_kws(extract(art, 'Keyword', 'all')))
+    cur_dat.add_pub_date(process_pub_date(extract(art, 'PubDate', 'raw')))
+    cur_dat.add_doi(process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
 
     cur_dat.increment_n_articles()
 
     return cur_dat
-
-
-def _ids_to_str(ids):
-    """Takes a list of pubmed ids, returns a str of the ids separated by commas.
-
-    Parameters
-    ----------
-    ids : bs4.element.ResultSet
-        List of pubmed ids.
-
-    Returns
-    -------
-    ids_str : str
-        A string of all concatenated ids.
-    """
-
-    # Check how many ids in list & initialize string with first ID
-    n_ids = len(ids)
-    ids_str = str(ids[0].text)
-
-    # Loop through rest of the ID's, appending to end of id_str
-    for ind in range(1, n_ids):
-        ids_str = ids_str + ',' + str(ids[ind].text)
-
-    return ids_str
-
-
-@CatchNone
-def _process_words(text):
-    """Processes abstract text - sets to lower case, and removes stopwords and punctuation.
-
-    Parameters
-    ----------
-    text : str
-        Text as one long string.
-
-    Returns
-    -------
-    words_cleaned : list of str
-        List of words, after processing.
-    """
-
-    words = word_tokenize(text)
-
-    # Remove stop words, and non-alphabetical tokens (punctuation)
-    words_cleaned = [word.lower() for word in words if (
-        (not word.lower() in stopwords.words('english')) & word.isalnum())]
-
-    return words_cleaned
-
-
-@CatchNone
-def _process_kws(keywords):
-    """Extract and process keywords data.
-
-    Parameters
-    ----------
-    kws : bs4.element.ResultSet
-        List of all the keyword tags.
-
-    Returns
-    -------
-    list of str
-        List of all the keywords.
-    """
-
-    return [kw.text.lower() for kw in keywords]
-
-
-@CatchNone
-def _process_authors(author_list):
-    """Extract and process author data.
-
-    Parameters
-    ----------
-    author_list : bs4.element.Tag
-        AuthorList tag, which contains tags related to author data.
-
-    Returns
-    -------
-    out : list of tuple of (str, str, str, str)
-        List of authors, each as (LastName, FirstName, Initials, Affiliation).
-    """
-
-    # Pull out all author tags from the input
-    authors = extract(author_list, 'Author', 'all')
-
-    # Extract data for each author
-    out = []
-    for author in authors:
-        out.append((extract(author, 'LastName', 'str'), extract(author, 'ForeName', 'str'),
-                    extract(author, 'Initials', 'str'), extract(author, 'Affiliation', 'str')))
-
-    return out
-
-
-@CatchNone2
-def _process_pub_date(pub_date):
-    """Extract and process publication date data.
-
-    Parameters
-    ----------
-    pub_date : bs4.element.Tag
-        PubDate tag, which contains tags with publication date information.
-
-    Returns
-    -------
-    year : int or None
-        Year the article was published.
-    month : str or None
-        Month the article was published.
-    """
-
-    # Extract year, convert to int if not None
-    year = extract(pub_date, 'Year', 'str')
-    year = int(year) if year else year
-
-    # Extract month
-    month = extract(pub_date, 'Month', 'str')
-
-    return year, month
-
-
-@CatchNone
-def _process_ids(ids, id_type):
-    """Extract and process ID data.
-
-    Parameters
-    ----------
-    ids : bs4.element.ResultSet
-        All the ArticleId tags, with all IDs for the article.
-
-    Returns
-    -------
-    str or None
-        The DOI if available, otherwise None.
-    """
-
-    lst = [str(id.contents[0]) for id in ids if id.attrs == {'IdType' : id_type}]
-
-    return None if not lst else lst

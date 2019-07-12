@@ -6,7 +6,8 @@ from bs4 import BeautifulSoup
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
-from lisc.scrape.utils import extract, mk_term
+from lisc.scrape.utils import mk_term
+from lisc.scrape.process import extract
 from lisc.urls.pubmed import URLS, get_wait_time
 
 ###################################################################################################
