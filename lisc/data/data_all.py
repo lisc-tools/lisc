@@ -8,7 +8,7 @@ import nltk
 from lisc.core.io import check_ext
 from lisc.core.db import check_folder
 from lisc.data.utils import combine_lists, count_occurences
-from lisc.data.process import *
+from lisc.data.count import *
 
 ###################################################################################################
 ###################################################################################################
@@ -69,10 +69,10 @@ class DataAll():
         self.kw_freqs = self.create_freq_dist(self.all_kws, exclusions)
 
         # Get counts of authors, journals, years
-        self.author_counts = process_authors(term_data.authors)
-        self.f_author_counts, self.l_author_counts = process_end_authors(term_data.authors)
-        self.journal_counts = process_journals(term_data.journals)
-        self.year_counts = process_years(term_data.years)
+        self.author_counts = count_authors(term_data.authors)
+        self.f_author_counts, self.l_author_counts = count_end_authors(term_data.authors)
+        self.journal_counts = count_journals(term_data.journals)
+        self.year_counts = count_years(term_data.years)
 
         # Initialize summary dictionary
         self.summary = dict()

@@ -1,12 +1,12 @@
-"""Helper functions to process data for LISC."""
+"""Helper functions to count data for LISC."""
 
 from lisc.data.utils import count_occurences
 
 ###################################################################################################
 ###################################################################################################
 
-def process_years(years):
-    """Process years.
+def count_years(years):
+    """Count years.
 
     Parameters
     ----------
@@ -25,8 +25,8 @@ def process_years(years):
     return counts
 
 
-def process_journals(journals):
-    """Process journals.
+def count_journals(journals):
+    """Count journals.
 
     Parameters
     ----------
@@ -51,8 +51,8 @@ def process_journals(journals):
     return counts
 
 
-def process_authors(authors):
-    """Process all authors.
+def count_authors(authors):
+    """Count all authors.
 
     Parameters
     ----------
@@ -83,8 +83,8 @@ def process_authors(authors):
     return counts
 
 
-def process_end_authors(authors):
-    """Process first and last authors only.
+def count_end_authors(authors):
+    """Count first and last authors only.
 
     Parameters
     ----------
