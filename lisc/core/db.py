@@ -77,33 +77,6 @@ class SCDB():
 
         return os.listdir(getattr(self, folder + '_path'))
 
-
-class WebDB():
-    """Class to hold database information for a LISC Website.
-
-    Parameters
-    ----------
-    base_path : str
-        Path to base directory of website.
-    post_path : str
-        Path to posts directory.
-    dat_path : str
-        Path to data directory.
-    plt_path : str
-        Path to plots directory.
-    """
-
-    def __init__(self, base_path=None):
-        """Initialize WebDB object."""
-
-        # Set base path for the website
-        self.base_path = ("") if not base_path else base_path
-
-        # Set paths to directories for the website
-        self.post_path = os.path.join(self.base_path, '_posts')
-        self.dat_path = os.path.join(self.base_path, '_data')
-        self.plt_path = os.path.join(self.base_path, 'assets/TERMs')
-
 ###################################################################################################
 ###################################################################################################
 
