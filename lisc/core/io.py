@@ -67,7 +67,7 @@ def save_object(obj, f_name, folder=None):
 
     # Set the save path based on object type
     # Note: imports done here to stop circular imports
-    from lisc.objs import Counts, Words
+    from lisc.objects import Counts, Words
     if isinstance(obj, Counts):
         obj_type = 'counts'
     elif isinstance(obj, Words):

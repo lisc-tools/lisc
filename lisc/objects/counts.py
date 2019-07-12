@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from lisc.objs.base import Base
+from lisc.objects.base import Base
 from lisc.scrape import scrape_counts
 
 ###################################################################################################
