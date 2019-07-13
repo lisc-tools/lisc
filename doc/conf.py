@@ -107,7 +107,8 @@ html_theme_options = {
     'navbar_sidebarrel': False,
     'navbar_links': [
         ("API", "api"),
-        ("Tutorial", "auto_tutorial/index"),
+        ("Tutorials", "auto_tutorials/index"),
+        ("Examples", "auto_examples/index"),
         ("GitHub", "https://github.com/lisc-tools/lisc", True)
     ],
     'bootswatch_theme': "flatly",
@@ -199,8 +200,8 @@ texinfo_documents = [
 # -- Extension configuration -------------------------------------------------
 
 sphinx_gallery_conf = {
-    'examples_dirs': ['../tutorial'],
-    'gallery_dirs': ['auto_tutorial'],
+    'examples_dirs': ['../examples', '../tutorials'],
+    'gallery_dirs': ['auto_examples', 'auto_tutorials'],
     'within_subsection_order': FileNameSortKey,
     'backreferences_dir': 'generated'
 }

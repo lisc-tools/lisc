@@ -22,7 +22,8 @@ help:
 # Custom cleaner that also removes the generated files from sphinx-gallery
 clean:
 	rm -rf $(BUILDDIR)/*
-	rm -rf auto_tutorial
+	rm -rf auto_tutorials
+	rm -rf auto_examples
 	rm -rf generated
 
 # Build the html site, and push it to gh-pages branch of repo to deploy
