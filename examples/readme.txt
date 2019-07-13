@@ -1,7 +1,7 @@
-.. _tutorials:
+.. _examples:
 
-Tutorials
-=========
+Examples
+========
 
 .. contents:: Contents
    :local:

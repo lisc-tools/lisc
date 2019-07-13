@@ -12,12 +12,12 @@ Scraping literature data for specified search terms.
 #
 # Another way to scrape the literature is to collect text and meta-data from
 # all papers found for a given set of terms.
+#
 
 ###################################################################################################
 
 # Import LISC - Words
 from lisc import Words
-from lisc.scrape import scrape_words
 
 ###################################################################################################
 
@@ -25,33 +25,6 @@ from lisc.scrape import scrape_words
 #  Note that each entry should be a list
 terms_a = [['brain'], ['cognition']]
 terms_b = [['body'], ['biology'], ['disease']]
-
-###################################################################################################
-#
-# Function Approach: scrape_words
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-
-###################################################################################################
-
-# Scrape words data - set the scrape to return data for at most 5 papers per term
-dat, meta_data = scrape_words(terms_a, retmax='5', use_hist=False, save_n_clear=False, verbose=True)
-
-###################################################################################################
-
-# The function returns a list of LISC Data objects
-dat
-
-###################################################################################################
-
-# Each data object holds the data for the scraped papers
-d1 = dat[0]
-
-###################################################################################################
-
-# Print out some of the data
-print(d1.n_articles, '\n')
-print('\n'.join(d1.titles), '\n')
 
 ###################################################################################################
 #
@@ -93,17 +66,17 @@ words.results
 
 ###################################################################################################
 
-# The meta data includes some information on the database that was scraped
-meta_data['db_info']
-
 # This data is also saved to object
 words.meta_data['db_info']
 
 ###################################################################################################
 #
 # It also includes the Requester object, which is used to launch URL requests
-#   This object also stores some details about the scrape
-#   It can be used, for example, to track how long scrapes take, and how many requests they include
+#
+# This object also stores some details about the scrape
+#
+# It can be used, for example, to track how long scrapes take, and how many requests they include
+#
 
 ###################################################################################################
 

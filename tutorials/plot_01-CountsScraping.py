@@ -21,7 +21,6 @@ Scraping literature data, focused on word co-occurence.
 
 # Import LISC - Counts
 from lisc import Counts
-from lisc.scrape import scrape_counts
 
 from lisc.core.db import SCDB
 from lisc.core.io import save_object
@@ -32,45 +31,6 @@ from lisc.core.io import save_object
 #  Note that each entry is itself a list
 terms_a = [['brain'], ['cognition']]
 terms_b = [['body'], ['biology'], ['disease']]
-
-###################################################################################################
-#
-# Running a scrape with the scrape_counts function
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# Run a scrape of 'counts' (co-occurence data) - across a single list of terms
-dat_numbers, dat_percent, term_counts, _, meta_dat = scrape_counts(terms_a, db='pubmed', verbose=True)
-
-###################################################################################################
-
-# Check how many papers were found for each combination
-print(dat_numbers)
-
-###################################################################################################
-
-# Check out the percent of paper overlap
-print(dat_percent)
-
-###################################################################################################
-
-# Print out how many papers found for each term
-for term, count in zip(terms_a, term_counts):
-    print('{:12} : {}'.format(term[0], count))
-
-###################################################################################################
-#
-# When given a single set of terms, the 'Counts' scrapes each term  against each other term.
-#
-# You can also specify different sets of terms to scrape, as below, whereby
-# each term in list A is scraped for co-occurence for each term in list B
-# (but not to other terms in list A).
-#
-
-###################################################################################################
-
-# Run a scrape of 'counts' (co-occurence data) across two different lists of terms
-dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts(
-    terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)
 
 ###################################################################################################
 #
@@ -162,7 +122,7 @@ counts_two.check_cooc('B')
 # Exclusion words are combined with the 'NOT' operator, meaning entries
 # will be excluded if they include these terms.
 #
-# For example, a using search terms ['gene', 'genetic'] with exclusion words ['protein'] creates the search:
+# For example, using search terms ['gene', 'genetic'] with exclusion words ['protein'] creates the search:
 # - ("gene"OR"genetic"NOT"protein")
 #
 
