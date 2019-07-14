@@ -60,7 +60,7 @@ def get_db_info(req, info_url):
     """
 
     # Get the info page and parse with BeautifulSoup
-    info_page = req.get_url(info_url)
+    info_page = req.request_url(info_url)
     info_page_soup = BeautifulSoup(info_page.content, 'lxml')
 
     # Set list of fields to extract from EInfo

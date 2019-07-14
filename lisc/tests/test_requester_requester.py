@@ -42,11 +42,11 @@ def test_wait():
     req.wait(0.01)
     assert True
 
-def test_get_url():
+def test_request_url():
 
     req = Requester()
 
-    web_page = req.get_url('http://www.google.com')
+    web_page = req.request_url('http://www.google.com')
     assert web_page
 
 def test_open():

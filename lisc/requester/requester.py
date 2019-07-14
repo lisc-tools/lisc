@@ -99,7 +99,7 @@ class Requester():
         time.sleep(wait_time)
 
 
-    def get_url(self, url):
+    def request_url(self, url):
         """Request a URL.
 
         Parameters

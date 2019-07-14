@@ -6,7 +6,7 @@ from lisc.data import Data
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
-from lisc.scrape.utils import comb_terms
+from lisc.scrape.utils import mk_term, join
 from lisc.scrape.process import (extract, ids_to_str, process_ids, process_authors,
                                  process_words, process_kws, process_pub_date)
 from lisc.urls.pubmed import URLS, get_wait_time
@@ -14,15 +14,15 @@ from lisc.urls.pubmed import URLS, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='TIAB',
+def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB',
                  api_key=None, use_hist=False, save_n_clear=True, verbose=False):
     """Scrape pubmed for documents using specified term(s).
 
     Parameters
     ----------
-    terms_lst : list of list of str
+    terms : list of list of str
         Search terms.
-    exclusions_lst : list of list of str, optional
+    exclusions : list of list of str, optional
         Exclusion words for search terms.
     db : str, optional, default: 'pubmed'
         Which pubmed database to use.
@@ -57,8 +57,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
     """
 
     # Get e-utils URLS object
-    hist_val = 'y' if use_hist else 'n'
-    urls = URLS(db=db, usehistory=hist_val, retmax=retmax,
+    urls = URLS(db=db, usehistory='y' if use_hist else 'n', retmax=retmax,
                 retmode='xml', field=field, api_key=api_key)
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
@@ -73,29 +72,23 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
     meta_data.add_db_info(get_db_info(req, urls.info))
 
     # Check exclusions
-    if not exclusions_lst:
-        exclusions_lst = [[] for ind in range(len(terms_lst))]
+    if not exclusions:
+        exclusions = [[] for ind in range(len(terms))]
 
     # Loop through all the terms
-    for ind, terms in enumerate(terms_lst):
+    for ind, (term, excl) in enumerate(zip(terms, excl)):
 
         if verbose:
-            print('Scraping words for: ', terms[0])
+            print('Scraping words for: ', term[0])
 
         # Initiliaze object to store data for current term papers
-        cur_dat = Data(terms[0], terms)
-
-        # Set up search terms - add exclusions, if there are any
-        if exclusions_lst[ind]:
-            term_arg = comb_terms(terms, 'or') + comb_terms(exclusions_lst[ind], 'not')
-        else:
-            term_arg = comb_terms(terms, 'or')
-
+        cur_dat = Data(term[0], term)
         cur_dat.update_history('Start Scrape')
 
-        url = urls.search + term_arg
-
-        page = req.get_url(url)
+        # Set up search terms - add exclusions, if there are any
+        term_arg = join(mk_term(term), mk_term(excl), 'NOT')
+        url = urls.get_url('search', {'term' : term_arg})
+        page = req.request_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
 
         if use_hist:
@@ -115,12 +108,12 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
                 ret_end_it = min(100, int(retmax) - ret_start_it)
 
                 # Get article page, scrape data, update position
-                art_url = urls.fetch + '&WebEnv=' + web_env + '&query_key=' + query_key + \
-                          '&retstart=' + str(ret_start_it) + '&retmax=' + str(ret_end_it)
+                url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
+                                'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
+                art_url = urls.get_url('fetch', url_settings)
                 cur_dat = get_papers(req, art_url, cur_dat)
                 ret_start_it += ret_end_it
 
-                # Stop if number of scraped papers has reached total retmax
                 if ret_start_it >= int(retmax):
                     break
 
@@ -128,9 +121,7 @@ def scrape_words(terms_lst, exclusions_lst=[], db='pubmed', retmax=None, field='
         else:
 
             ids = page_soup.find_all('id')
-            ids_str = ids_to_str(ids)
-
-            art_url = urls.fetch + '&id=' + ids_str
+            art_rul = urls.get_url('fetch', {'id' : ids_to_str(ids)})
             cur_dat = get_papers(req, art_url, cur_dat)
 
         cur_dat.check_results()
@@ -164,7 +155,7 @@ def get_papers(req, art_url, cur_dat):
     """
 
     # Get page of all articles
-    art_page = req.get_url(art_url)
+    art_page = req.request_url(art_url)
     art_page_soup = BeautifulSoup(art_page.content, "xml")
     articles = art_page_soup.findAll('PubmedArticle')
 

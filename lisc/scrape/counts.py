@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
-from lisc.scrape.utils import mk_term
+from lisc.scrape.utils import mk_term, join
 from lisc.scrape.process import extract
 from lisc.urls.pubmed import URLS, get_wait_time
 
@@ -105,11 +105,15 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
         if verbose:
             print('Running counts for: ', term_a[0])
 
+        # Make term arguments
+        term_a_arg = join(mk_term(term_a), mk_term(excl_a), 'NOT')
+        term_b_arg = join(mk_term(term_b), mk_term(excl_b), 'NOT')
+        full_term_arg = join(term_a_arg, term_b_arg, 'AND')
+
         # Get number of results for current term search
-        url = urls.search + mk_term(term_a) + mk_term(excl_a, 'NOT')
+        url = urls.get_url('search', {'term' : term_a_arg})
         a_counts[a_ind] = get_count(req, url)
 
-        # Loop through each term (list-b)
         for b_ind, (term_b, excl_b) in enumerate(zip(terms_b, exclusions_b)):
 
             # Skip scrapes of equivalent term combinations - if single term list
@@ -117,14 +121,12 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
             if square and data_numbers[a_ind, b_ind] != -1:
                 continue
 
-            # Get number of results for just term search
-            url = urls.search + mk_term(term_b) + mk_term(excl_b, 'NOT')
+            # Get number of results for current term search
+            url = urls.get_url('search', {'term' : term_b_arg})
             b_counts[b_ind] = get_count(req, url)
 
-            # Make URL - Exact Term Version, using double quotes, & exclusions
-            url = urls.search + mk_term(term_a) + mk_term(excl_a, 'NOT') + \
-                    mk_term(term_b, 'AND') + mk_term(excl_b, 'NOT')
-
+            # Get number of resuls for combination of terms
+            url = urls.get_url('search', {'term', full_term_arg})
             count = get_count(req, url)
 
             data_numbers[a_ind, b_ind] = count
@@ -153,7 +155,7 @@ def get_count(req, url):
         Count of the number of articles found.
     """
 
-    page = req.get_url(url)
+    page = req.request_url(url)
     page_soup = BeautifulSoup(page.content, 'lxml')
 
     counts = extract(page_soup, 'count', 'all')
