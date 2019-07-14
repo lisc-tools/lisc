@@ -41,8 +41,8 @@ class Base():
         return len(self.terms)
 
 
-    def set_terms(self, terms):
-        """Sets the given list of strings as terms to use.
+    def add_terms(self, terms):
+        """Add the given list of strings as terms to use.
 
         Parameters
         ----------
@@ -57,7 +57,7 @@ class Base():
         self.get_term_labels()
 
 
-    def set_terms_file(self, f_name, folder=None):
+    def add_terms_file(self, f_name, folder=None):
         """Load terms from a text file.
 
         Parameters
@@ -101,8 +101,8 @@ class Base():
         self.labels = [term[0] for term in self.terms]
 
 
-    def set_exclusions(self, exclusions):
-        """Sets the given list of strings as exclusion words.
+    def add_exclusions(self, exclusions):
+        """Add the given list of strings as exclusion words.
 
         Parameters
         ----------
@@ -119,7 +119,7 @@ class Base():
             raise InconsistentDataError('Mismatch in number of exclusions and terms!')
 
 
-    def set_exclusions_file(self, f_name, folder=None):
+    def add_exclusions_file(self, f_name, folder=None):
         """Load exclusion words from a text file.
 
         Parameters

@@ -13,8 +13,8 @@ class Words(Base):
     ----------
     results : list of Data() objects
         Results for each search term, stored in custom Words object.
-    result_keys : list of str
-        Keys for each result data attached to object.
+    labels : list of str
+        Labels for each result data attached to object.
     meta_data : MetaData() object
         Meta data information about the data scrape.
     """
@@ -25,7 +25,7 @@ class Words(Base):
         Base.__init__(self)
 
         self.results = list()
-        self.result_keys = list()
+        self.labels = list()
         self.meta_data = None
 
 
@@ -44,12 +44,12 @@ class Words(Base):
         """
 
         # Give up if object is empty
-        if len(self.result_keys) == 0:
+        if len(self.labels) == 0:
             raise IndexError('Object is empty - cannot index.')
 
         # Check if requested key is available
         try:
-            ind = self.result_keys.index(key)
+            ind = self.labels.index(key)
         except ValueError:
             raise IndexError('Requested key not available in object.')
 
@@ -66,11 +66,11 @@ class Words(Base):
         """
 
         self.results.append(new_result)
-        self.result_keys.append(new_result.label)
+        self.labels.append(new_result.label)
 
 
     def run_scrape(self, db='pubmed', retmax=None, field='TIAB', api_key=None,
-                   use_hist=False, save_n_clear=False, verbose=False):
+                   use_hist=False, save_n_clear=False, folder=None, verbose=False):
         """Launch a scrape of words data.
 
         Parameters
@@ -87,7 +87,9 @@ class Words(Base):
         use_hist : bool, optional, default: False
             Use e-utilities history: storing results on their server, as needed.
         save_n_clear : bool, optional, default: False
-            Whether to
+            Whether to save words data to disk per term as it goes, instead of holding in memory.
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.
         """
@@ -95,5 +97,6 @@ class Words(Base):
         self.results, self.meta_data = scrape_words(self.terms, self.exclusions,
                                                     db=db, retmax=retmax, field=field,
                                                     api_key=api_key, use_hist=use_hist,
-                                                    save_n_clear=save_n_clear, verbose=verbose)
-        self.result_keys = [dat.label for dat in self.results]
+                                                    save_n_clear=save_n_clear, folder=folder,
+                                                    verbose=verbose)
+        self.labels = [dat.label for dat in self.results]

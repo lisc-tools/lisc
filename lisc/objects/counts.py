@@ -40,8 +40,8 @@ class Counts():
         self.meta_data = None
 
 
-    def set_terms(self, terms, dim='A'):
-        """Sets the given list of strings as terms to use.
+    def add_terms(self, terms, dim='A'):
+        """Add the given list of strings as terms to use.
 
         Parameters
         ----------
@@ -51,11 +51,11 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].set_terms(terms)
+        self.terms[dim].add_terms(terms)
         self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def set_terms_file(self, f_name, folder=None, dim='A'):
+    def add_terms_file(self, f_name, folder=None, dim='A'):
         """Load terms from a text file.
 
         Parameters
@@ -68,12 +68,12 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].set_terms_file(f_name, folder)
+        self.terms[dim].add_terms_file(f_name, folder)
         self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def set_exclusions(self, exclusions, dim='A'):
-        """Sets the given list of strings as exclusion words.
+    def add_exclusions(self, exclusions, dim='A'):
+        """Add the given list of strings as exclusion words.
 
         Parameters
         ----------
@@ -83,10 +83,10 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].set_exclusions(exclusions)
+        self.terms[dim].add_exclusions(exclusions)
 
 
-    def set_exclusions_file(self, f_name, folder=None, dim='A'):
+    def add_exclusions_file(self, f_name, folder=None, dim='A'):
         """Load exclusion words from a text file.
 
         Parameters
@@ -99,7 +99,7 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].set_exclusions_file(f_name, folder)
+        self.terms[dim].add_exclusions_file(f_name, folder)
 
 
     def run_scrape(self, db='pubmed', field='TIAB', api_key=None, verbose=False):

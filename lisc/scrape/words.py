@@ -14,8 +14,8 @@ from lisc.urls.pubmed import URLS, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB',
-                 api_key=None, use_hist=False, save_n_clear=True, verbose=False):
+def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', api_key=None,
+                 use_hist=False, save_n_clear=False, folder=None, verbose=False):
     """Scrape pubmed for documents using specified term(s).
 
     Parameters
@@ -37,6 +37,8 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB',
         Use e-utilities history: storing results on their server, as needed.
     save_n_clear : bool, optional, default: False
         Whether to save words data to disk per term as it goes, instead of holding in memory.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
 
@@ -128,7 +130,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB',
         cur_dat.update_history('End Scrape')
 
         if save_n_clear:
-            cur_dat.save_n_clear()
+            cur_dat.save_n_clear(folder=folder)
         results.append(cur_dat)
 
     meta_data.add_requester(req)
@@ -170,7 +172,7 @@ def get_papers(req, art_url, cur_dat):
 
 
 def extract_add_info(cur_dat, art_id, art):
-    """Extract information from article web page and add to
+    """Extract information from article web page and add to a data object.
 
     Parameters
     ----------

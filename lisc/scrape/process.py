@@ -176,14 +176,21 @@ def process_ids(ids, id_type):
     ids : bs4.element.ResultSet
         All the ArticleId tags, with all IDs for the article.
     id_type : {'pubmed', 'doi'}
-        xx
+        Which type of ID to extract & process.
 
     Returns
     -------
-    str or None
-        The DOI if available, otherwise None.
+    out : str or lst or None
+        A str or list of available IDs, if any are available, otherwise None.
     """
 
-    lst = [str(id.contents[0]) for id in ids if id.attrs == {'IdType' : id_type}]
+    lst = [str(cur_id.contents[0]) for cur_id in ids if cur_id.attrs == {'IdType' : id_type}]
 
-    return None if not lst else lst
+    if not lst:
+        out = None
+    elif len(lst) == 1:
+        out = lst[0]
+    else:
+        out = lst
+
+    return out

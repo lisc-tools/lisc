@@ -30,6 +30,8 @@ def get_cmap(cmap):
         cmap = sns.cubehelix_palette(as_cmap=True)
     elif cmap == 'blue':
         cmap = sns.cubehelix_palette(as_cmap=True, rot=-.3, light=0.9, dark=0.2)
+    else:
+        raise ValueError('Requested colormap not understood.')
 
     return cmap
 
