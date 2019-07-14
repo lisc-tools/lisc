@@ -23,6 +23,7 @@ def pytest_configure(config):
 
     # Download required nltk data for tokenizing
     nltk.download('punkt')
+    nltk.download('stopwords')
 
 
 @pytest.fixture(scope='session')
