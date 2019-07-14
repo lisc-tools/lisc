@@ -160,16 +160,23 @@ class URLS():
         ----------
         util : {'info', 'query', 'search', 'fetch'}
             Which e-utility to get the URL for.
-        additions : dict
+        additions : dict, optional
             Any additional arguments to add to the URL.
 
         Returns
-        str
+        -------
+        full_url : str
             The requested URL, with any extra arguments added.
         """
 
         self._check_util(util)
-        return getattr(self, util) + '&'.join([ke + '=' + va for ke, va in additions.items()])
+
+        extra_args = '&'.join([ke + '=' + va for ke, va in additions.items()])
+        extra_args = '&' + extra_args if extra_args else ''
+
+        full_url = getattr(self, util) + extra_args
+
+        return full_url
 
 
     def check_url(self, util):

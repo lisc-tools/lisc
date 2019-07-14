@@ -23,7 +23,7 @@ def join(front, back, joiner='AND'):
     - This function only adds the join if both strings are non-empty.
     """
 
-    return front + joiner if (front and back) else '' + back
+    return front + joiner + back if (front and back) else front + back
 
 
 def mk_term(terms):
@@ -45,11 +45,10 @@ def mk_term(terms):
     - This function adds "" to terms to make them exact search only.
     """
 
+    out = ''
+
     if terms and terms[0]:
         terms = ['"'+ item + '"' for item in terms]
         out = '(' + 'OR'.join(terms) + ')'
-
-    else:
-        out = ''
 
     return out

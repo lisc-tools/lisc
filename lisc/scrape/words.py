@@ -76,7 +76,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB',
         exclusions = [[] for ind in range(len(terms))]
 
     # Loop through all the terms
-    for ind, (term, excl) in enumerate(zip(terms, excl)):
+    for ind, (term, excl) in enumerate(zip(terms, exclusions)):
 
         if verbose:
             print('Scraping words for: ', term[0])
@@ -121,7 +121,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB',
         else:
 
             ids = page_soup.find_all('id')
-            art_rul = urls.get_url('fetch', {'id' : ids_to_str(ids)})
+            art_url = urls.get_url('fetch', {'id' : ids_to_str(ids)})
             cur_dat = get_papers(req, art_url, cur_dat)
 
         cur_dat.check_results()
@@ -163,7 +163,7 @@ def get_papers(req, art_url, cur_dat):
     for art in articles:
 
         # Get ID of current article & extract and add info to data object
-        new_id = process_ids(extract(art, 'ArticleId', 'all'))
+        new_id = process_ids(extract(art, 'ArticleId', 'all'), 'pubmed')
         cur_dat = extract_add_info(cur_dat, new_id, art)
 
     return cur_dat

@@ -8,7 +8,7 @@ from functools import wraps
 def CatchNone(func):
     """Decorator function to catch and return None, if given as first argument."""
 
-    @wraps
+    @wraps(func)
     def wrapper(*args):
 
         if args[0] is not None:
@@ -22,7 +22,7 @@ def CatchNone(func):
 def CatchNone2(func):
     """Decorator function to catch and return None, None if given as argument."""
 
-    @wraps
+    @wraps(func)
     def wrapper(*args):
 
         if args[0] is not None:

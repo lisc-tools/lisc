@@ -107,8 +107,6 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
 
         # Make term arguments
         term_a_arg = join(mk_term(term_a), mk_term(excl_a), 'NOT')
-        term_b_arg = join(mk_term(term_b), mk_term(excl_b), 'NOT')
-        full_term_arg = join(term_a_arg, term_b_arg, 'AND')
 
         # Get number of results for current term search
         url = urls.get_url('search', {'term' : term_a_arg})
@@ -121,12 +119,16 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
             if square and data_numbers[a_ind, b_ind] != -1:
                 continue
 
+            # Make term arguments
+            term_b_arg = join(mk_term(term_b), mk_term(excl_b), 'NOT')
+            full_term_arg = join(term_a_arg, term_b_arg, 'AND')
+
             # Get number of results for current term search
             url = urls.get_url('search', {'term' : term_b_arg})
             b_counts[b_ind] = get_count(req, url)
 
-            # Get number of resuls for combination of terms
-            url = urls.get_url('search', {'term', full_term_arg})
+            # Get number of results for combination of terms
+            url = urls.get_url('search', {'term' : full_term_arg})
             count = get_count(req, url)
 
             data_numbers[a_ind, b_ind] = count

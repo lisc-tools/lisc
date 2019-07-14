@@ -83,7 +83,7 @@ def process_words(text):
     Returns
     -------
     words_cleaned : list of str
-        List of words, after processing.
+        List of tokenized words, after processing.
     """
 
     words = word_tokenize(text)
@@ -168,13 +168,15 @@ def process_pub_date(pub_date):
 
 
 @CatchNone
-def process_ids(ids):
+def process_ids(ids, id_type):
     """Extract and process ID data.
 
     Parameters
     ----------
     ids : bs4.element.ResultSet
         All the ArticleId tags, with all IDs for the article.
+    id_type : {'pubmed', 'doi'}
+        xx
 
     Returns
     -------
@@ -182,6 +184,6 @@ def process_ids(ids):
         The DOI if available, otherwise None.
     """
 
-    lst = [str(id.contents[0]) for id in ids if id.attrs == {'IdType' : 'pubmed'}]
+    lst = [str(id.contents[0]) for id in ids if id.attrs == {'IdType' : id_type}]
 
     return None if not lst else lst
