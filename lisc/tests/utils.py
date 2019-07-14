@@ -31,10 +31,10 @@ def load_base(set_terms=False, set_excl=False):
     base = Base()
 
     if set_terms:
-        base.set_terms([['test1', 'test sin'], ['test2', 'uh oh']])
+        base.add_terms([['test1', 'test sin'], ['test2', 'uh oh']])
 
     if set_excl:
-        base.set_exclusions([['exc1', 'blehh'], ['exc2', 'meh']])
+        base.add_exclusions([['exc1', 'blehh'], ['exc2', 'meh']])
 
     return base
 
@@ -44,7 +44,7 @@ def load_data(add_dat=False, n_dat=1):
     dat = Data('test', ['test'])
 
     if add_dat:
-        for i in range(n_dat):
+        for ind in range(n_dat):
             dat.add_id(1)
             dat.add_title('title')
             dat.add_journal('science', 'sc')

@@ -32,9 +32,8 @@ def test_extract():
 
     # Test how = 'str'
     out_str = extract(out, 'Inn', 'str')
-    #TODO: Figure this out? Whats the return type?
-    #assert isinstance(out_str, str)
-    #assert out_str == 'words words'
+    assert isinstance(out_str, str)
+    assert out_str == 'words words'
 
     # Test how = 'all'
     out_all = extract(out, 'Inn', 'all')
@@ -54,34 +53,22 @@ def test_ids_to_str():
 
     assert out == '1111,1111'
 
-# def test_none_process():
-#     """The _process functions have a decorator to catch & return None inputs.
-#     Test that this is working - returns None when given None.
-#     """
+def test_none_process():
+    """The _process functions have a decorator to catch & return None inputs.
+    Test that this is working - returns None when given None.
+    """
 
-#     assert process_words(None) is None
-#     assert process_kws(None) is None
-#     assert process_authors(None) is None
-#     assert process_authors(None) is None
-#     assert process_pub_date(None) == (None, None)
+    assert process_words(None) is None
+    assert process_kws(None) is None
+    assert process_authors(None) is None
+    assert process_pub_date(None) == (None, None)
+    assert process_ids(None, 'doi') == None
 
-# def test_process_words():
+def test_process_words():
 
-#     words = 'The Last wOrd, in they eRp!'
+    words = 'The Last wOrd, in the eRp!'
 
-#     words_out = process_words(words)
-#     exp_out = ['last', 'word', 'erp']
+    words_out = process_words(words)
+    exp_out = ['last', 'word', 'erp']
 
-#     assert words_out == exp_out
-
-def test_process_kws():
-    pass
-
-def test_process_authors():
-    pass
-
-def test_process_pub_date():
-    pass
-
-def test_process_ids():
-    pass
+    assert words_out == exp_out

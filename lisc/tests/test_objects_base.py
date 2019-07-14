@@ -13,17 +13,17 @@ def test_base():
 
     assert Base()
 
-def test_set_terms(tbase_empty):
+def test_add_terms(tbase_empty):
 
-    tbase_empty.set_terms(['word', 'thing'])
+    tbase_empty.add_terms(['word', 'thing'])
     assert tbase_empty.terms == [['word'], ['thing']]
 
-    tbase_empty.set_terms(['word', ['thing', 'same']])
+    tbase_empty.add_terms(['word', ['thing', 'same']])
     assert tbase_empty.terms == [['word'], ['thing', 'same']]
 
-def test_set_terms_file(tdb, tbase_empty):
+def test_add_terms_file(tdb, tbase_empty):
 
-    tbase_empty.set_terms_file('test_terms', folder=tdb)
+    tbase_empty.add_terms_file('test_terms', folder=tdb)
     assert tbase_empty.terms
 
 def tests_check_terms(tbase_terms):
@@ -45,19 +45,19 @@ def test_get_term_labels(tbase_terms):
 
     assert tbase_terms.labels
 
-def test_set_exclusions(tbase_terms):
+def test_add_exclusions(tbase_terms):
 
-    tbase_terms.set_exclusions(['not', 'this'])
+    tbase_terms.add_exclusions(['not', 'this'])
 
     assert tbase_terms.exclusions
 
     # Check error with improper # of exclusion words
     with raises(InconsistentDataError):
-        tbase_terms.set_exclusions(['bad'])
+        tbase_terms.add_exclusions(['bad'])
 
-def test_set_exclusions_file(tdb, tbase_terms):
+def test_add_exclusions_file(tdb, tbase_terms):
 
-    tbase_terms.set_exclusions_file('test_exclusions', folder=tdb)
+    tbase_terms.add_exclusions_file('test_exclusions', folder=tdb)
     assert tbase_terms.exclusions
 
 def test_check_exclusions(tbase_terms_excl):

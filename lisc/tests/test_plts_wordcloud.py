@@ -9,9 +9,9 @@ from lisc.plts.wordcloud import *
 ###################################################################################################
 ###################################################################################################
 
-# @optional_test('wordcloud')
-# @plot_test
-# def test_make_wc():
+@optional_test('wordcloud')
+@plot_test
+def test_make_wc():
 
-#     freq_dist = FreqDist(['lots', 'of', 'words', 'words'])
-#     plot_wordcloud(freq_dist, 5, 'Name')
+    freq_dist = FreqDist(['lots', 'of', 'words', 'words'])
+    plot_wordcloud(freq_dist, 5)

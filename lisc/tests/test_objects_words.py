@@ -45,22 +45,10 @@ def test_run_scrape():
 
     words = Words()
 
-    words.set_terms(['language', 'memory'])
-    words.set_exclusions(['protein', ''])
+    words.add_terms(['language', 'memory'])
+    words.add_exclusions(['protein', ''])
 
-    #words.run_scrape(db='pubmed', retmax='2')#, use_hist=True)
+    words.run_scrape(db='pubmed', retmax='2')
 
-
-# def test_scrape_data():
-#     """Test the scrape_data method."""
-
-#     words = Words()
-
-#     # Add ERPs and terms
-#     #words.set_terms(['N400', 'P600'])
-#     words.set_terms(['language', 'memory'])
-#     words.set_exclusions(['cell', ''])
-
-#     #words.scrape_data(db='pubmed', retmax='5')
-
-#     assert True
+    assert words.results
+    assert words.labels

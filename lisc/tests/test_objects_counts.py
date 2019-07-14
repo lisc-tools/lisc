@@ -11,20 +11,28 @@ def test_counts():
 
     assert Counts()
 
-def test_scrape():
-    """Test that Count object successful scrapes data."""
+def test_scrape_one():
 
     counts = Counts()
 
-    counts.set_terms(['language', 'memory'])
-    counts.set_exclusions(['protein', 'protein'])
+    counts.add_terms(['language', 'memory'], dim='A')
+    counts.add_exclusions(['protein', 'protein'], dim='A')
 
-    #counts.run_scrape(db='pubmed')
-    #check_funcs(counts)
-    #drop_data(counts)
+    counts.run_scrape(db='pubmed')
+    check_funcs(counts)
+    drop_data(counts)
 
-    #assert np.all(counts.dat_numbers)
-    #assert np.all(counts.dat_percent)
+def test_scrape_tw0():
+
+    counts = Counts()
+
+    counts.add_terms(['language', 'memory'], dim='A')
+    counts.add_exclusions(['protein', 'protein'], dim='A')
+    counts.add_terms(['cognition'], dim='B')
+
+    counts.run_scrape(db='pubmed')
+    check_funcs(counts)
+    drop_data(counts)
 
 def check_funcs(counts):
 
