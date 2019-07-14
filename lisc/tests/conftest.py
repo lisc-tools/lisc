@@ -2,6 +2,8 @@
 
 import pytest
 
+import nltk
+
 from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.core.modutils import safe_import
@@ -18,6 +20,9 @@ def pytest_configure(config):
     # Set backend for matplotlib tests, if mpl is available
     if plt:
         plt.switch_backend('agg')
+
+    # Download required nltk data for tokenizing
+    nltk.download('punkt')
 
 
 @pytest.fixture(scope='session')
