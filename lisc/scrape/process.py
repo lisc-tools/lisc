@@ -3,7 +3,7 @@
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 
-from lisc.core.decorators import CatchNone, CatchNone2
+from lisc.core.decorators import catch_none
 
 ###################################################################################################
 ###################################################################################################
@@ -71,7 +71,7 @@ def ids_to_str(ids):
     return ids_str
 
 
-@CatchNone
+@catch_none(1)
 def process_words(text):
     """Processes abstract text - sets to lower case, and removes stopwords and punctuation.
 
@@ -95,7 +95,7 @@ def process_words(text):
     return words_cleaned
 
 
-@CatchNone
+@catch_none(1)
 def process_kws(keywords):
     """Extract and process keywords data.
 
@@ -113,7 +113,7 @@ def process_kws(keywords):
     return [kw.text.lower() for kw in keywords]
 
 
-@CatchNone
+@catch_none(1)
 def process_authors(authors):
     """Extract and process author data.
 
@@ -140,7 +140,7 @@ def process_authors(authors):
     return out
 
 
-@CatchNone2
+@catch_none(2)
 def process_pub_date(pub_date):
     """Extract and process publication date data.
 
@@ -167,7 +167,7 @@ def process_pub_date(pub_date):
     return year, month
 
 
-@CatchNone
+@catch_none(1)
 def process_ids(ids, id_type):
     """Extract and process ID data.
 
