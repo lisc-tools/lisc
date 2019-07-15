@@ -103,7 +103,8 @@ class Counts():
         self.terms[dim].add_exclusions_file(f_name, folder)
 
 
-    def run_scrape(self, db='pubmed', field='TIAB', api_key=None, verbose=False):
+    def run_scrape(self, db='pubmed', field='TIAB', api_key=None,
+                   logging=None, folder=None, verbose=False):
         """Scrape co-occurence data.
 
         Parameters
@@ -115,6 +116,10 @@ class Counts():
             Defaults to 'TIAB', which is Title/Abstract.
         api_key : str
             An API key for a NCBI account.
+        logging : {None, 'print', 'store', 'file'}
+            What kind of logging, if any, to do for requested URLs.
+        folder : str or SCDB() object, optional
+            Folder or database object specifying the save location.
         verbose : bool, optional, default=False
             Whether to print out updates.
         """
@@ -126,6 +131,7 @@ class Counts():
                 terms_a=self.terms['A'].terms,
                 exclusions_a=self.terms['A'].exclusions,
                 db=db, field=field, api_key=api_key,
+                logging=logging, folder=folder,
                 verbose=verbose)
 
         # Run two different sets of terms
@@ -137,6 +143,7 @@ class Counts():
                 terms_b=self.terms['B'].terms,
                 exclusions_b=self.terms['B'].exclusions,
                 db=db, field=field, api_key=api_key,
+                logging=logging, folder=folder,
                 verbose=verbose)
             self.terms['A'].counts, self.terms['B'].counts = term_counts
 

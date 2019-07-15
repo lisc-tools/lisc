@@ -10,7 +10,7 @@ from lisc.urls.pubmed import URLS, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def scrape_info(db='pubmed', api_key=None, verbose=False):
+def scrape_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=False):
     """Scrape pubmed for database information & metadata.
 
     Parameters
@@ -19,6 +19,10 @@ def scrape_info(db='pubmed', api_key=None, verbose=False):
         Which pubmed database to use.
     api_key : str
         An API key for a NCBI account.
+    logging : {None, 'print', 'store', 'file'}
+        What kind of logging, if any, to do for requested URLs.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
 
@@ -32,7 +36,8 @@ def scrape_info(db='pubmed', api_key=None, verbose=False):
     urls.build_url('info', ['db'])
 
     meta_data = MetaData()
-    req = Requester(wait_time=get_wait_time(urls.authenticated))
+    req = Requester(wait_time=get_wait_time(urls.authenticated),
+                    logging=logging, folder=folder)
 
     if verbose:
         print('Gathering info on {} database.'.format(db))

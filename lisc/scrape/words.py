@@ -15,7 +15,7 @@ from lisc.urls.pubmed import URLS, get_wait_time
 ###################################################################################################
 
 def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', api_key=None,
-                 use_hist=False, save_n_clear=False, folder=None, verbose=False):
+                 use_hist=False, save_n_clear=False, logging=None, folder=None, verbose=False):
     """Scrape pubmed for documents using specified term(s).
 
     Parameters
@@ -37,6 +37,8 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
         Use e-utilities history: storing results on their server, as needed.
     save_n_clear : bool, optional, default: False
         Whether to save words data to disk per term as it goes, instead of holding in memory.
+    logging : {None, 'print', 'store', 'file'}
+        What kind of logging, if any, to do for requested URLs.
     folder : str or SCDB() object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
@@ -68,7 +70,8 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
     # Initialize results, meta data & requester
     results = []
     meta_data = MetaData()
-    req = Requester(wait_time=get_wait_time(urls.authenticated))
+    req = Requester(wait_time=get_wait_time(urls.authenticated),
+                    logging=logging, folder=folder)
 
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.info))
