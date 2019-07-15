@@ -4,6 +4,7 @@ import numpy as np
 
 from lisc.objects.base import Base
 from lisc.scrape import scrape_counts
+from lisc.analysis.counts import compute_normalization, compute_association_index
 
 ###################################################################################################
 ###################################################################################################
@@ -15,9 +16,9 @@ class Counts():
     ----------
     terms : dict()
         Search terms to use.
-    dat_numbers : 2d array
+    counts : 2d array
         The numbers of papers found for each combination of terms.
-    dat_percent : 2d array
+    score : 2d array
         The percentage of papers for each term that include the corresponding term.
     square : bool
         Whether the count data matrix is symmetrical.
@@ -34,8 +35,8 @@ class Counts():
             self.terms[dat] = Base()
             self.terms[dat].counts = np.zeros(0, dtype=int)
 
-        self.dat_numbers = np.zeros(0)
-        self.dat_percent = np.zeros(0)
+        self.counts = np.zeros(0)
+        self.score = np.zeros(0)
         self.square = bool()
         self.meta_data = None
 
@@ -118,28 +119,54 @@ class Counts():
             Whether to print out updates.
         """
 
-        # Run single list of terms against themselves - 'square'
+        # Run single list of terms against themselves, in 'square' mode
         if not self.terms['B'].has_data:
-            self.dat_numbers, self.dat_percent, self.terms['A'].counts, _, self.meta_data = \
-                    scrape_counts(
-                        terms_a=self.terms['A'].terms,
-                        exclusions_a=self.terms['A'].exclusions,
-                        db=db, field=field, api_key=api_key,
-                        verbose=verbose)
             self.square = True
+            self.counts, self.terms['A'].counts, self.meta_data = scrape_counts(
+                terms_a=self.terms['A'].terms,
+                exclusions_a=self.terms['A'].exclusions,
+                db=db, field=field, api_key=api_key,
+                verbose=verbose)
 
         # Run two different sets of terms
         else:
-            self.dat_numbers, self.dat_percent, self.terms['A'].counts, \
-                self.terms['B'].counts, self.meta_data = \
-                    scrape_counts(
-                        terms_a=self.terms['A'].terms,
-                        exclusions_a=self.terms['A'].exclusions,
-                        terms_b=self.terms['B'].terms,
-                        exclusions_b=self.terms['B'].exclusions,
-                        db=db, field=field, api_key=api_key,
-                        verbose=verbose)
             self.square = False
+            self.counts, term_counts, self.meta_data = scrape_counts(
+                terms_a=self.terms['A'].terms,
+                exclusions_a=self.terms['A'].exclusions,
+                terms_b=self.terms['B'].terms,
+                exclusions_b=self.terms['B'].exclusions,
+                db=db, field=field, api_key=api_key,
+                verbose=verbose)
+            self.terms['A'].counts, self.terms['B'].counts = term_counts
+
+
+    def compute_score(self, score_type='association', dim='A'):
+        """Compute a score (index or normalization) of the co-occurence data.
+
+        Parameters
+        ----------
+        score_type : {'association', 'normalize'}
+            The type of score to apply to the co-occurence data.
+        dim : {'A', 'B'}
+            Which dimension of counts to use.
+            Only used if 'score' is 'normalize'.
+        """
+
+        if score_type == 'association':
+            if self.square:
+                self.score = compute_association_index(
+                    self.counts, self.terms['A'].counts, self.terms['A'].counts)
+            else:
+                self.score = compute_association_index(
+                    self.counts, self.terms['A'].counts, self.terms['B'].counts)
+
+        elif score_type == 'normalize':
+            self.score = compute_normalization(
+                self.counts, self.terms[dim].counts, dim)
+
+        else:
+            raise ValueError('Score type not understood.')
 
 
     def check_cooc(self, dim='A'):
@@ -152,7 +179,7 @@ class Counts():
         """
 
         # Set up which direction to act across
-        dat = self.dat_percent if dim == 'A' else self.dat_percent.T
+        dat = self.score if dim == 'A' else self.score.T
         alt = 'B' if dim == 'A' and not self.square else 'A'
 
         # Loop through each term, find maximally associated term term and print out
@@ -214,8 +241,8 @@ class Counts():
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
         if dim == 'A':
-            self.dat_numbers = self.dat_numbers[keep_inds, :]
-            self.dat_percent = self.dat_percent[keep_inds, :]
+            self.counts = self.counts[keep_inds, :]
+            self.score = self.score[keep_inds, :]
         if dim == 'B':
-            self.dat_numbers = self.dat_numbers[:, keep_inds]
-            self.dat_percent = self.dat_percent[:, keep_inds]
+            self.counts = self.counts[:, keep_inds]
+            self.score = self.score[:, keep_inds]

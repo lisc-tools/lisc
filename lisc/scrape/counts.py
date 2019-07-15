@@ -41,12 +41,8 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
     -------
     data_numbers : 2d array
         The numbers of papers found for each combination of terms.
-    data_percent : 2d array
-        The percentage of papers for each term that include the corresponding term.
-    a_counts : 1d array
-        Number of papers for each term.
-    b_counts : 1d array
-        Number of papers for each term, in the secondary list of terms.
+    counts : 1d array or list of 1d array
+        Number of papers for each term independently.
     meta_data : dict
         Meta data from the scrape.
 
@@ -84,17 +80,15 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
         exclusions_b = [[]] * n_terms_b
 
     # Initialize count variables to the correct length
-    a_counts = np.ones([n_terms_a], dtype=int) * -1
-    b_counts = np.ones([n_terms_b], dtype=int) * -1
+    counts_a = np.ones([n_terms_a], dtype=int) * -1
+    counts_b = np.ones([n_terms_b], dtype=int) * -1
 
     # Initialize right size matrices to store data
     data_numbers = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
-    data_percent = np.ones([n_terms_a, n_terms_b]) * -1
 
     # Set diagonal to zero if square (term co-occurence with itself)
     if square:
         np.fill_diagonal(data_numbers, 0)
-        np.fill_diagonal(data_percent, 0)
 
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.info))
@@ -110,12 +104,12 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
 
         # Get number of results for current term search
         url = urls.get_url('search', {'term' : term_a_arg})
-        a_counts[a_ind] = get_count(req, url)
+        counts_a[a_ind] = get_count(req, url)
 
         for b_ind, (term_b, excl_b) in enumerate(zip(terms_b, exclusions_b)):
 
             # Skip scrapes of equivalent term combinations - if single term list
-            #  This will skip the diaonal row, and any combinations already scraped
+            #  This will skip the diagonal row, and any combinations already scraped
             if square and data_numbers[a_ind, b_ind] != -1:
                 continue
 
@@ -124,23 +118,26 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[],
             full_term_arg = join(term_a_arg, term_b_arg, 'AND')
 
             # Get number of results for current term search
-            url = urls.get_url('search', {'term' : term_b_arg})
-            b_counts[b_ind] = get_count(req, url)
+            if not square:
+                url = urls.get_url('search', {'term' : term_b_arg})
+                counts_b[b_ind] = get_count(req, url)
 
             # Get number of results for combination of terms
             url = urls.get_url('search', {'term' : full_term_arg})
             count = get_count(req, url)
 
             data_numbers[a_ind, b_ind] = count
-            data_percent[a_ind, b_ind] = count / a_counts[a_ind]
-
             if square:
                 data_numbers[b_ind, a_ind] = count
-                data_percent[b_ind, a_ind] = count / b_counts[b_ind]
+
+    if square:
+        counts = counts_a
+    else:
+        counts = [counts_a, counts_b]
 
     meta_data.add_requester(req)
 
-    return data_numbers, data_percent, a_counts, b_counts, meta_data
+    return data_numbers, counts, meta_data
 
 
 def get_count(req, url):

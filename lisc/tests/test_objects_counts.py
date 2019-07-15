@@ -19,10 +19,11 @@ def test_scrape_one():
     counts.add_exclusions(['protein', 'protein'], dim='A')
 
     counts.run_scrape(db='pubmed')
+    counts.compute_score('association')
     check_funcs(counts)
     drop_data(counts)
 
-def test_scrape_tw0():
+def test_scrape_two():
 
     counts = Counts()
 
@@ -31,6 +32,7 @@ def test_scrape_tw0():
     counts.add_terms(['cognition'], dim='B')
 
     counts.run_scrape(db='pubmed')
+    counts.compute_score('normalize')
     check_funcs(counts)
     drop_data(counts)
 

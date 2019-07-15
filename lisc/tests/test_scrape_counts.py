@@ -11,9 +11,12 @@ def test_scrape_counts():
     excls_a = [['protein'], ['protein']]
     terms_b = ['brain']
 
-    counts, percs, a_counts, b_counts, meta_data = scrape_counts(terms_a, excls_a, terms_b)
+    n_a = len(terms_a)
+    n_b = len(terms_b)
 
-    assert counts.shape == (2, 1)
+    cooc, counts, meta_data = scrape_counts(terms_a, excls_a, terms_b)
 
-    assert len(a_counts) == len(terms_a)
-    assert len(b_counts) == len(terms_b)
+    assert cooc.shape == (n_a, n_b)
+
+    assert len(counts[0]) == n_a
+    assert len(counts[1]) == n_b
