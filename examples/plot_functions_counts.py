@@ -1,14 +1,13 @@
 """
-Example - XXX
-=============
+Example - Counts with Functions
+===============================
 
-XXXX.
+Scraping word co-occurence data, using a function oriented approach.
 """
 
 ###################################################################################################
 
 from lisc.scrape import scrape_counts
-
 
 ###################################################################################################
 
@@ -21,26 +20,18 @@ terms_b = ['heart', 'lung']
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Run a scrape of 'counts' (co-occurence data) - across a single list of terms
-dat_numbers, dat_percent, term_counts, _, meta_dat = scrape_counts(terms_a, db='pubmed', verbose=True)
-
+coocs, term_counts, meta_dat = scrape_counts(terms_a, db='pubmed', verbose=True)
 
 ###################################################################################################
 
 # Check how many papers were found for each combination
-print(dat_numbers)
-
-###################################################################################################
-
-# Check out the percent of paper overlap
-print(dat_percent)
-
+print(coocs)
 
 ###################################################################################################
 
 # Print out how many papers found for each term
 for term, count in zip(terms_a, term_counts):
     print('{:12} : {}'.format(term[0], count))
-
 
 ###################################################################################################
 #
@@ -54,5 +45,5 @@ for term, count in zip(terms_a, term_counts):
 ###################################################################################################
 
 # Run a scrape of 'counts' (co-occurence data) across two different lists of terms
-dat_numbers, dat_percent, term_counts_a, term_counts_b, meta_dat = scrape_counts(
+coocs, term_counts, meta_dat = scrape_counts(
     terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)

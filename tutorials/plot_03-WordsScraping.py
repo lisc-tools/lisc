@@ -2,7 +2,7 @@
 Tutorial 03 - Words Scraping
 ============================
 
-Scraping literature data for specified search terms.
+Scraping literature data, collecting text and metadata for specified search terms.
 """
 
 ###################################################################################################
@@ -34,11 +34,11 @@ terms_b = [['body'], ['biology'], ['disease']]
 
 ###################################################################################################
 
-# Initialize Words object
+# Initialize Words object and set the terms to search for
 words = Words()
+words.add_terms(terms_a)
 
-# Set terms to search
-words.set_terms(terms_a)
+###################################################################################################
 
 # Run words scrape
 words.run_scrape(retmax='5', save_n_clear=False)
@@ -52,6 +52,7 @@ words.results
 #
 # The use of synonyms and exclusion words, demonstrated above for counts,
 # applies in the same way to the scraping words.
+#
 
 ###################################################################################################
 #
