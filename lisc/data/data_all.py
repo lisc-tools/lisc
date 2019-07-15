@@ -7,6 +7,8 @@ import nltk
 
 from lisc.core.io import check_ext
 from lisc.core.db import check_folder
+from lisc.data.utils import combine_lists
+from lisc.data.count import *
 
 ###################################################################################################
 ###################################################################################################
@@ -48,7 +50,7 @@ class DataAll():
         Parameters
         ----------
         term_data : Data() object
-            xx
+            Data for all papers from a given search term.
         exclusions : list of str
             Words to exclude from the word collections.
         """
@@ -58,46 +60,55 @@ class DataAll():
         self.n_articles = term_data.n_articles
 
         # Combine all articles into single list of all words
-        self.all_words = _combine(term_data.words)
-        self.all_kws = _combine(term_data.kws)
+        self.all_words = combine_lists(term_data.words)
+        self.all_kws = combine_lists(term_data.kws)
 
-        # Convert lists of all words in frequency distributions
-        self.word_freqs = _freq_dist(self.all_words, self.term + [self.label] + exclusions)
-        self.kw_freqs = _freq_dist(self.all_kws, self.term + [self.label] + exclusions)
+        # Convert lists of all words to frequency distributions
+        exclusions = exclusions + self.term + [self.label]
+        self.word_freqs = self.create_freq_dist(self.all_words, exclusions)
+        self.kw_freqs = self.create_freq_dist(self.all_kws, exclusions)
 
         # Get counts of authors, journals, years
-        self.author_counts = _proc_authors(term_data.authors)
-        self.f_author_counts, self.l_author_counts = \
-            _proc_end_authors(term_data.authors)
-        self.journal_counts = _proc_journals(term_data.journals)
-        self.year_counts = _proc_years(term_data.years)
+        self.author_counts = count_authors(term_data.authors)
+        self.f_author_counts, self.l_author_counts = count_end_authors(term_data.authors)
+        self.journal_counts = count_journals(term_data.journals)
+        self.year_counts = count_years(term_data.years)
 
         # Initialize summary dictionary
         self.summary = dict()
 
 
-    def check_words(self, n_check=20):
-        """Check the most common words for the term.
+    def check_frequencies(self, data='words', n_check=20):
+        """Prints out the most common items in frequecy distribution.
 
         Parameters
         ----------
-        n_check : int, optional, default: 20
-            Number of top words to print out.
+        data : {'words', 'kws'}
+            Which frequency distribution to check.
+        n_check : int
+            Number of most common items to print out.
         """
 
-        _check(self.word_freqs, n_check, self.label)
+        if data in ['words', 'kws']:
+            freqs = getattr(self, data[:-1] + '_freqs')
+        else:
+            raise ValueError('Requested data not understood')
 
+        # Reset number to check if there are fewer words available
+        if n_check > len(freqs):
+            n_check = len(freqs)
 
-    def check_kws(self, n_check=20):
-        """Check the most common kws for the term.
+        # Get the requested number of most common kws for the term
+        top = freqs.most_common()[0:n_check]
 
-        Parameters
-        ----------
-        n_check : int, optional, default: 20
-            Number of top words to print out.
-        """
+        # Join together the top words into a string
+        top_str = ''
+        for i in range(n_check):
+            top_str += top[i][0]
+            top_str += ' , '
 
-        _check(self.kw_freqs, n_check, self.label)
+        # Print out the top words for the current term
+        print("{:5} : ".format(self.label) + top_str)
 
 
     def create_summary(self):
@@ -147,249 +158,30 @@ class DataAll():
         with open(os.path.join(folder, check_ext(self.label, '.json')), 'w') as outfile:
             json.dump(self.summary, outfile)
 
-###################################################################################################
-###################################################################################################
 
-def _check(freqs, n_check, label):
-    """Prints out the most common items in frequecy distribution.
-
-    Parameters
-    ----------
-    freqs : nltk.FreqDist
-        Frequency distribution to check.
-    n_check : int
-        Number of most common items to print out.
-    label : str
-        Label to print for which data this relates to.
-    """
-
-    # Reset number to check if there are fewer words available
-    if n_check > len(freqs):
-        n_check = len(freqs)
-
-    # Get the requested number of most common kws for the term
-    top = freqs.most_common()[0:n_check]
-
-    # Join together the top words into a string
-    top_str = ''
-    for i in range(n_check):
-        top_str += top[i][0]
-        top_str += ' , '
-
-    # Print out the top words for the current term
-    print("{:5} : ".format(label) + top_str)
-
-
-def _combine(in_lst):
-    """Combine list of lists into one large list.
-
-    Parameters
-    ----------
-    in_lst : list of list of str
-        Embedded lists to combine.
-
-    Returns
-    -------
-    out : list of str
-        Combined list.
-    """
-
-    out = []
-
-    for el in in_lst:
-        if el:
-            out.extend(el)
-
-    # OLD:
-    #for ind in range(len(in_lst)):
-    #    if in_lst[ind]:
-    #        out.extend(in_lst[ind])
-
-    return out
-
-
-def _freq_dist(in_lst, exclude):
-    """Create frequency distribution.
-
-    Parameters
-    ----------
-    in_lst : list of str
-        Word items to create frequecy distribution of.
-    exclude : list of str
-        Words to exclude from list.
-
-    Returns
-    -------
-    freqs : nltk.FreqDist
-        Frequency distribution of the input list.
-    """
-
-    freqs = nltk.FreqDist(in_lst)
-
-    for it in exclude:
-        try:
-            freqs.pop(it.lower())
-        except KeyError:
-            pass
-
-    return freqs
-
-
-def _proc_years(year_lst):
-    """Process years.
-
-    Parameters
-    ----------
-    year_lst : list of int
-        Year of publication of all papers.
-
-    Returns
-    -------
-    counts : list of tuple of (int, int)
-        Number of publications per year - (year, n).
-    """
-
-    counts = [(year, year_lst.count(year)) for year in set(year_lst) - set([None])]
-    counts.sort()
-
-    return counts
-
-
-def _proc_journals(journals_lst):
-    """Process journals.
-
-    Parameters
-    ----------
-    j_lst : list of tuple of (str, str)
-        List of journals articles come from.
-            (Journal Name, ISO abbreviation)
-
-    Returns
-    -------
-    counts : list of tuple of (int, str)
-        Number of publications per journal - (n, Journal Name).
-    """
-
-    names = [journal[0] for journal in journals_lst]
-
-    # TODO: Update this quick fix (??)
-    names = [name for name in names if name is not None]
-
-    counts = [(names.count(element), element) for element in set(names)]
-    counts.sort(reverse=True)
-
-    return counts
-
-
-def _proc_authors(authors_lst):
-    """Process all authors.
-
-    Parameters
-    ----------
-    authors_lst : list of list of tuple of (str, str, str, str)
-        Authors of all articles included in object.
-            (Last Name, First Name, Initials, Affiliation)
-
-    Returns
-    -------
-    author_counts : list of tuple of (int, (str, str))
-        Number of publications per author - (n, (Last Name, Initials)).
-    """
-
-    # Drop author lists that are None
-    authors_lst = [author for author in authors_lst if author is not None]
-
-    # Reduce author fields to pair of tuples (L_name, Initials)
-    # This list comprehension can be equivalently written as:
-    # all_authors = []
-    # for authors in a_lst:
-    #     for author in authors:
-    #         all_authors.append(author)
-    names = [(author[0], author[2]) for authors in authors_lst for author in authors]
-
-    # Count how often each author published
-    author_counts = _count(_fix_names(names))
-
-    return author_counts
-
-
-def _proc_end_authors(authors_lst):
-    """Process first and last authors only.
-
-    Parameters
-    ----------
-    authors_lst : list of list of tuple of (str, str, str, str)
-        Authors of all articles included in object.
-            (Last Name, First Name, Initials, Affiliation)
-
-    Returns
-    -------
-    counts : list of tuple of (int, (str, str))
-        Number of publications per author - (n, (Last Name, Initials)).
-    """
-
-    # Drop author lists that are None
-    authors_lst = [author for author in authors_lst if author is not None]
-
-    # Pull out the full name for the first & last author of each paper
-    #  Last author is only considered if there is more than 1 author
-    firsts = [authors[0] for authors in authors_lst]
-    f_names = [(author[0], author[2]) for author in firsts]
-    lasts = [authors[-1] for authors in authors_lst if len(authors) > 1]
-    l_names = [(author[0], author[2]) for author in lasts]
-
-    f_counts = _count(_fix_names(f_names))
-    l_counts = _count(_fix_names(l_names))
-
-    return f_counts, l_counts
-
-
-def _fix_names(names):
-    """Fix author names.
-
-    Parameters
-    ----------
-    names : list of tuple of (L_Name, Initials)
-        Author names.
-
-    Returns
-    -------
-    names : list of tuple of (L_Name, Initials)
-        Author names.
-
-    Notes
-    -----
-    Sometimes full author name ends up in the last name field.
-    If first name is None, assume this happened:
-        Split up the text in first name, and grab the first name initial.
-    """
-
-    # Drop names whos data is all None
-    names = [name for name in names if name != (None, None)]
-
-    # TODO: figure out and fix
-    # Fix names if full name ended up in last name field
-    #names = [(name[0].split(' ')[1], name[0].split(' ')[0][0])
-    #         if name[1] is None else name for name in names]
-
-    return names
-
-
-def _count(data_lst):
-    """Count occurences of each item in a list.
-
-    Parameters
-    ----------
-    data_lst : list of str
-        List of items to count occurences of.
-
-    Returns
-    -------
-    counts : list of tuple of (item_label, count)
-        Counts for how often each item occurs in the input list.
-    """
-
-    counts = [(data_lst.count(element), element) for element in set(data_lst)]
-    counts.sort(reverse=True)
-
-    return counts
+    @staticmethod
+    def create_freq_dist(in_lst, exclude):
+        """Create frequency distribution.
+
+        Parameters
+        ----------
+        in_lst : list of str
+            Word items to create frequecy distribution of.
+        exclude : list of str
+            Words to exclude from list.
+
+        Returns
+        -------
+        freqs : nltk.FreqDist
+            Frequency distribution of the input list.
+        """
+
+        freqs = nltk.FreqDist(in_lst)
+
+        for it in exclude:
+            try:
+                freqs.pop(it.lower())
+            except KeyError:
+                pass
+
+        return freqs

@@ -9,17 +9,17 @@ plt = safe_import('.pyplot', 'matplotlib')
 ###################################################################################################
 
 @savefig
-def plot_years(year_counts, label=None, year_range=None, ax=None):
+def plot_years(year_counts, year_range=None, ax=None):
     """Plot publications across years histogram.
 
     Parameters
     ----------
-    year_counts : xx
-        xx
-    label : xx
-        xx
-    year_range : xx
-        xx
+    year_counts : list of tuple of (int, int)
+        Data on the number of publications per year.
+    year_range : list of [int, int], optional
+        The range of years to plot on the x-axis.
+    ax : matplotlib.Axes, optional
+        Figure axes upon which to plot.
     """
 
     ax = check_ax(ax, (10, 5))

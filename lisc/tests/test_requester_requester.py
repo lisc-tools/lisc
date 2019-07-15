@@ -1,5 +1,6 @@
-"""Tests for Requestor functions and classes from lisc.core."""
+"""Tests for Requestor functions and classes."""
 
+import os
 import time
 
 from lisc.requester import Requester
@@ -11,58 +12,65 @@ def test_requester():
 
     assert Requester()
 
-def test_set_wait_time():
+def test_as_dict(treq):
 
-    req = Requester()
-    req.set_wait_time(1)
+    req_dict = treq.as_dict()
+    assert isinstance(req_dict, dict)
 
-    assert req.wait_time == 1
+def test_set_wait_time(treq):
 
-def test_check():
+    treq.set_wait_time(1)
+    assert treq.wait_time == 1
 
-    req = Requester()
-    req.check()
+def test_check(treq):
 
+    treq.check()
     assert True
 
-def test_throttle():
+def test_throttle(treq):
 
-    req = Requester()
-    req.time_last_req = time.time()
+    treq.time_last_req = time.time()
 
-    req.throttle()
-
+    treq.throttle()
     assert True
 
-def test_wait():
+def test_wait(treq):
 
-    req = Requester()
-
-    req.wait(0.01)
-
+    treq.wait(0.01)
     assert True
 
-def test_get_url():
+def test_request_url(treq):
 
-    req = Requester()
-
-    web_page = req.get_url('http://www.google.com')
-
+    web_page = treq.request_url('http://www.google.com')
     assert web_page
 
-def test_open():
+def test_logging(tdb):
 
-    req = Requester()
+    urls = ['http://www.google.com']
 
-    req.open()
+    req_1 = Requester(logging='print')
+    req_2 = Requester(logging='store')
+    req_3 = Requester(logging='file', folder=tdb)
 
-    assert req.is_active
+    for url in urls:
+        for req in [req_1, req_2, req_3]:
+            req.request_url(url)
+            req.close()
 
-def test_close():
+    assert req_2.log == ['http://www.google.com']
+    assert os.path.exists(os.path.join(tdb.logs_path, 'requester_log.txt'))
 
-    req = Requester()
+def test_get_time(treq):
 
-    req.open()
-    req.close()
+    assert treq._get_time()
 
-    assert not req.is_active
+def test_open(treq):
+
+    treq.open()
+    assert treq.is_active
+
+def test_close(treq):
+
+    treq.open()
+    treq.close()
+    assert not treq.is_active

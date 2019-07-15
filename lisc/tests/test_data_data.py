@@ -3,7 +3,6 @@
 from py.test import raises
 
 from lisc.data.data import *
-from lisc.tests.utils import TestDB as TDB
 from lisc.tests.utils import load_data
 
 ###################################################################################################
@@ -82,23 +81,19 @@ def test_check_results(tdata_full):
     with raises(InconsistentDataError):
         assert tdata_full.check_results()
 
-def test_update_history():
+def test_update_history(tdata_full):
 
-    pass
+    tdata_full.update_history('Something happened')
+    assert tdata_full.history
 
-def test_save():
-
-    tdb = TDB()
+def test_save(tdb):
 
     dat = load_data(add_dat=True)
-
     dat.save(tdb)
 
     assert True
 
-def test_load():
-
-    tdb = TDB()
+def test_load(tdb):
 
     dat = Data('test')
     dat.load(tdb)
@@ -111,9 +106,7 @@ def test_clear(tdata_full):
     tdata_full.check_results()
     assert tdata_full.n_articles == 0
 
-# def test_save_n_clear():
+def test_save_n_clear(tdb, tdata_full):
 
-#     dat = load_data(add_dat=True)
-#     dat.save_n_clear()
-
-#     assert dat.n_articles == 0
+    tdata_full.save_n_clear(tdb)
+    assert tdata_full.n_articles == 0

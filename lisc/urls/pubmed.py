@@ -72,7 +72,7 @@ class URLS():
 
     Attributes
     ----------
-    eutils : str
+    base : str
         Base URL for the e-utils tools.
     info  : str
         URL for getting database information from e-utils.
@@ -84,12 +84,8 @@ class URLS():
         URL for fetching with e-utils.
     settings : dict()
         Dictionary of all defined settings and their values.
-    args : dict()
-        Dictionary of all arguments (settings & values) that can be used in e-utils URL.
     authenticated : boolean
         Whether using an API key as an authenticated NCBI user.
-    api_key : str
-        The API key, if operating as an authenticated user.
     """
 
     def __init__(self, db=None, usehistory='n', retmax=None,
@@ -102,7 +98,7 @@ class URLS():
             Which literature database to use.
         usehistory : {'n', 'y'}
             Whether to use history caching on pubmed server.
-        retmax : str, optional
+        retmax : int, optional
             The maximum number of papers to return.
         field : str, optional
             The search field to search within.
@@ -112,56 +108,22 @@ class URLS():
             An API key for authenticated NCBI user account.
         """
 
-        # Set up the base url for NCBI E-Utils
-        self.eutils = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+        self.base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
 
-        # Initialize variables to store search and fetch URLs
         self.info = str()
         self.query = str()
         self.search = str()
         self.fetch = str()
 
-        # Initialize dictionary to save settings, and add settings to it
         self.settings = dict()
-        self.fill_settings(db=db, usehistory=usehistory, retmax=retmax,
-                           field=field, retmode=retmode)
-
-        # Initialize dictionary to save url arguments, and populate it from settings
         self.args = dict()
-        self.fill_args()
 
         # Check for authentication (API key)
-        if api_key:
-            self.authenticated = True
-            self.api_key = api_key
-        else:
-            self.authenticated = False
-            self.api_key = None
+        self.authenticated = True if api_key else False
 
-
-    def auth_url(self, url):
-        """Add api key to URL, if authenticated."""
-
-        if self.authenticated:
-            return url + '&api_key=' + self.api_key
-        else:
-            return url
-
-
-    def check_args(self, args_to_use):
-        """Checks whether the requested arguments are defined, so that they can be used.
-
-        Parameters
-        ----------
-        args_to_use : list of str
-            Requested arguments to check that they are defined.
-        """
-
-        # Check that all requested arguments are available. Catch and raise custom error if not.
-        try:
-            [self.args[arg] for arg in args_to_use]
-        except KeyError:
-            raise InconsistentDataError('Not all requested settings provided - can not proceed.')
+        # Collect settings, filling in with all defined settings / arguments
+        self.fill_settings(db=db, usehistory=usehistory, retmax=str(retmax),
+                           field=field, retmode=retmode, api_key=api_key)
 
 
     def build_url(self, util, args):
@@ -180,33 +142,74 @@ class URLS():
                  'search' : 'esearch.fcgi?',
                  'fetch' : 'efetch.fcgi?'}
 
-        if util not in utils:
-            raise ValueError('Specified e-utility not understood.')
+        self._check_util(util)
+        for arg in args:
+            if arg not in self.settings:
+                raise InconsistentDataError('Not all requested arguments available - can not proceed.')
 
-        self.check_args(args)
-
-        url = self.auth_url(self.eutils + utils[util])
-        url = url + '&'.join([self.args[arg] for arg in args])
-
-        if util in ['query', 'search']:
-            url += '&term='
+        args = ['api_key'] + args if self.authenticated else args
+        url = self.base + utils[util] + '&'.join([arg + '=' + self.settings[arg] for arg in args])
 
         setattr(self, util, url)
 
 
-    def fill_settings(self, usehistory=None, db=None, retmax=None, field=None, retmode=None):
+    def get_url(self, util, additions={}):
+        """Get a requested URL, with any additional arguments.
+
+        Parameters
+        ----------
+        util : {'info', 'query', 'search', 'fetch'}
+            Which e-utility to get the URL for.
+        additions : dict, optional
+            Any additional arguments to add to the URL.
+
+        Returns
+        -------
+        full_url : str
+            The requested URL, with any extra arguments added.
+        """
+
+        self._check_util(util)
+
+        extra_args = '&'.join([ke + '=' + va for ke, va in additions.items()])
+        extra_args = '&' + extra_args if extra_args else ''
+
+        full_url = getattr(self, util) + extra_args
+
+        return full_url
+
+
+    def check_url(self, util):
+        """Check the built URL for a specified e-utility.
+
+        Parameters
+        ----------
+        util : {'info', 'query', 'search', 'fetch'}
+            Which e-utility to build the URL for.
+        """
+
+        self._check_util(util)
+        print(getattr(self, util))
+
+
+    def fill_settings(self, db=None, usehistory=None, retmax=None,
+                      field=None, retmode=None, api_key=None):
         """Put all provided settings values into a dictionary object.
 
         Parameters
         ----------
         db : str, optional
             Which database to use.
+        usehistory : {'n', 'y'}
+            Whether to use history caching on pubmed server.
         retmax : str, optional
             Maximum number of items to return.
         field : str, optional
             The search field to search within.
         retmode :  {'lxml', 'xml'}, optional
             The return format for the results.
+        api_key : str, optional
+            An API key for authenticated NCBI user account.
 
         Notes
         -----
@@ -219,11 +222,9 @@ class URLS():
 
         # # Equivalent and more explicit to the dictionary comprehension below
         #
-        # # Initialize list of possible settings, and remove the self argument
         # possible_settings = locals().keys()
         # possible_settings.remove('self')
         #
-        # # Loop through all possible settings
         # for ps in possible_settings:
         #
         #     # If defined (not None) set the value of the setting
@@ -235,9 +236,9 @@ class URLS():
             if ke is not 'self' and va is not None}
 
 
-    def fill_args(self):
-        """Create the arguments that can be added to the e-utils urls."""
+    @staticmethod
+    def _check_util(util):
+        """Check that a requested utility is valid."""
 
-        # For each parameter in settings, create the url argument
-        for param in self.settings.keys():
-            self.args[param] = param + '=' + self.settings[param]
+        if util not in ['info', 'query', 'search', 'fetch']:
+            raise ValueError('Specified e-utility not understood.')

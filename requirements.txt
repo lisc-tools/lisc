@@ -1,6 +1,6 @@
 numpy
-nltk
-beautifulsoup4
 requests
 lxml
-matplotlib
+beautifulsoup4
+nltk
+

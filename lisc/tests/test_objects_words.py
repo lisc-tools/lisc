@@ -7,7 +7,7 @@ from py.test import raises
 #from bs4 import BeautifulSoup
 
 from lisc.data import Data
-from lisc.objs.words import Words
+from lisc.objects.words import Words
 
 ###################################################################################################
 ###################################################################################################
@@ -45,9 +45,10 @@ def test_run_scrape():
 
     words = Words()
 
-    words.set_terms(['language', 'memory'])
-    words.set_exclusions(['protein', ''])
+    words.add_terms(['language', 'memory'])
+    words.add_exclusions(['protein', ''])
 
-    #words.run_scrape(db='pubmed', retmax='2')#, use_hist=True)
+    words.run_scrape(db='pubmed', retmax='2')
 
-    assert True
+    assert words.results
+    assert words.labels

@@ -3,36 +3,41 @@
 from bs4 import BeautifulSoup
 
 from lisc.requester import Requester
-from lisc.scrape.utils import extract
+from lisc.scrape.process import extract
 from lisc.data.meta_data import MetaData
 from lisc.urls.pubmed import URLS, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
 
-def scrape_info(db='pubmed', api_key=None, verbose=False):
+def scrape_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=False):
     """Scrape pubmed for database information & metadata.
 
     Parameters
     ----------
-    db : str, optional (default: 'pubmed')
+    db : str, optional, default: 'pubmed'
         Which pubmed database to use.
     api_key : str
         An API key for a NCBI account.
-    verbose : bool, optional (default: False)
+    logging : {None, 'print', 'store', 'file'}
+        What kind of logging, if any, to do for requested URLs.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
+    verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
     -------
     meta_data : MetaData() object
-        xx
+        Meta data about the scrape.
     """
 
     urls = URLS(db=db, retmode='xml', api_key=api_key)
     urls.build_url('info', ['db'])
 
     meta_data = MetaData()
-    req = Requester(wait_time=get_wait_time(urls.authenticated))
+    req = Requester(wait_time=get_wait_time(urls.authenticated),
+                    logging=logging, folder=folder)
 
     if verbose:
         print('Gathering info on {} database.'.format(db))
@@ -56,11 +61,11 @@ def get_db_info(req, info_url):
     Returns
     -------
     db_info : dict
-        Database information.
+        Information about the database from which the data was accessed.
     """
 
     # Get the info page and parse with BeautifulSoup
-    info_page = req.get_url(info_url)
+    info_page = req.request_url(info_url)
     info_page_soup = BeautifulSoup(info_page.content, 'lxml')
 
     # Set list of fields to extract from EInfo

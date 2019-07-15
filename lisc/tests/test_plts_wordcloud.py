@@ -14,4 +14,4 @@ from lisc.plts.wordcloud import *
 def test_make_wc():
 
     freq_dist = FreqDist(['lots', 'of', 'words', 'words'])
-    plot_wordcloud(freq_dist, 5, 'Name')
+    plot_wordcloud(freq_dist, 5)

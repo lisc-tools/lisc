@@ -18,18 +18,20 @@ def get_cmap(cmap):
     Parameters
     ----------
     cmap : {'purple', 'blue'}
-        xx
+        Specifier for which colormap to use.
 
     Returns
     -------
-    cmap : xx
-        xx
+    cmap : matplotlib.cmap
+        The specified colormap object.
     """
 
     if cmap == 'purple':
         cmap = sns.cubehelix_palette(as_cmap=True)
     elif cmap == 'blue':
         cmap = sns.cubehelix_palette(as_cmap=True, rot=-.3, light=0.9, dark=0.2)
+    else:
+        raise ValueError('Requested colormap not understood.')
 
     return cmap
 

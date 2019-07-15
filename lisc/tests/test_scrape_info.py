@@ -6,4 +6,6 @@ from lisc.scrape.info import *
 ###################################################################################################
 
 def test_scrape_info():
-    pass
+
+    out = scrape_info(db='pubmed')
+    assert out

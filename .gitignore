@@ -8,7 +8,7 @@
 **/.coverage
 
 # Ignore test data files
-**/tests/data/**
+lisc/tests/test_db/*
 
 # Ignore cache files
 **/.cache
