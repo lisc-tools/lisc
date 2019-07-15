@@ -14,6 +14,8 @@ class SCDB():
         Base path for the project.
     terms_path : str
         Path to the terms folder of the project.
+    logs_path : str
+        Path to log files of the project.
     data_path : str
         Path to the data folder of the project.
     figs_path : str
@@ -36,6 +38,7 @@ class SCDB():
 
         # Initialize paths
         self.terms_path = str()
+        self.logs_path = str()
         self.data_path = str()
         self.figs_path = str()
         self.counts_path = str()
@@ -52,6 +55,7 @@ class SCDB():
         """Generate all the full paths for the database object."""
 
         self.terms_path = os.path.join(self.base_path, 'Terms')
+        self.logs_path = os.path.join(self.base_path, 'Logs')
         self.data_path = os.path.join(self.base_path, 'Data')
         self.figs_path = os.path.join(self.base_path, 'Figures')
 
@@ -61,12 +65,12 @@ class SCDB():
         self.summary_path = os.path.join(self.words_path, 'summary')
 
 
-    def get_files(self, folder):
+    def get_files(self, f_type):
         """Get a list of avaialable files in a folder in the database.
 
         Parameters
         ----------
-        folder : {'terms', 'figures', 'data', 'counts', 'words', 'raw', 'summary'}
+        f_type : {'terms', 'logs', 'figures', 'data', 'counts', 'words', 'raw', 'summary'}
             Which folder to get the list of files from.
 
         Returns
@@ -75,7 +79,7 @@ class SCDB():
             List of files available in specified folder.
         """
 
-        return os.listdir(getattr(self, folder + '_path'))
+        return os.listdir(getattr(self, f_type + '_path'))
 
 ###################################################################################################
 ###################################################################################################
@@ -87,7 +91,7 @@ def check_folder(folder, f_type):
     ----------
     folder : SCDB or str or None
         A string or object containing a file path.
-    f_type : {'terms', 'figures', 'data', 'counts', 'words', 'raw', 'summary'}
+    f_type : {'terms', 'logs', 'figures', 'data', 'counts', 'words', 'raw', 'summary'}
         Which path to extract, if it's a SCDB object.
 
     Returns
@@ -98,11 +102,14 @@ def check_folder(folder, f_type):
     Notes
     -----
     - If the input is an SCDB object, returns a file path as a string.
-    - If the input is already a string, or None, returns the input.
+    - If the input is already a string, returns the input.
+    - If the input is None, returns an empty string.
     """
 
     if isinstance(folder, SCDB):
         folder = getattr(folder, f_type + '_path')
+    elif folder is None:
+        folder = ''
 
     return folder
 

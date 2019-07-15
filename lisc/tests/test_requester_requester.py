@@ -1,5 +1,6 @@
 """Tests for Requestor functions and classes."""
 
+import os
 import time
 
 from lisc.requester import Requester
@@ -43,9 +44,25 @@ def test_request_url(treq):
     web_page = treq.request_url('http://www.google.com')
     assert web_page
 
+def test_logging(tdb):
+
+    urls = ['http://www.google.com']
+
+    req_1 = Requester(logging='print')
+    req_2 = Requester(logging='store')
+    req_3 = Requester(logging='file', folder=tdb)
+
+    for url in urls:
+        for req in [req_1, req_2, req_3]:
+            req.request_url(url)
+            req.close()
+
+    assert req_2.log == ['http://www.google.com']
+    assert os.path.exists(os.path.join(tdb.logs_path, 'requester_log.txt'))
+
 def test_get_time(treq):
 
-    assert treq.get_time()
+    assert treq._get_time()
 
 def test_open(treq):
 

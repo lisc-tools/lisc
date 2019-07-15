@@ -15,6 +15,6 @@ def test_SCDB():
 
 def test_check_folder():
 
-    assert check_folder(None, '') == None
+    assert check_folder(None, '') == ''
     assert check_folder('string', '') == 'string'
     assert isinstance(check_folder(SCDB(), 'terms'), str)

@@ -2,6 +2,10 @@
 
 import time
 import requests
+from os.path import join as pjoin
+
+from lisc.core.db import check_folder
+from lisc.core.io import check_ext
 
 ###################################################################################################
 ###################################################################################################
@@ -23,9 +27,24 @@ class Requester():
         Time when request session ended.
     time_last_req : float
         Time at which last request was sent.
+    logging : {None, 'print', 'store', 'file'}
+        What kind of logging, if any, to do for requested URLs.
+    log : None or list or file object
+        Object to log requested URLs, format depends on `logging`.
     """
 
-    def __init__(self, wait_time=0):
+    def __init__(self, wait_time=0., logging=None, folder=None):
+        """Initialize a requester object.
+
+        Parameters
+        ----------
+        wait_time : float, optional, default: 0.
+            Amount of time to wait between requests, in seconds.
+        logging : {None, 'print', 'store', 'file'}, optional
+            What kind of logging, if any, to do for requested URLs.
+        folder : SCDB or str or None
+            A string or object containing a file path.
+        """
 
         self.is_active = bool()
         self.n_requests = int()
@@ -41,6 +60,9 @@ class Requester():
         self.set_wait_time(wait_time)
         self.open()
 
+        # Set up for any logging
+        self.logging, self.log = self._set_up_logging(logging, folder)
+
 
     def __repr__(self):
         return str(self.__dict__)
@@ -53,6 +75,7 @@ class Requester():
         req_dict.pop('time_last_req')
 
         return req_dict
+
 
     def set_wait_time(self, wait_time):
         """Set the amount of time to rest between requests.
@@ -99,7 +122,7 @@ class Requester():
         time.sleep(wait_time)
 
 
-    def request_url(self, url):
+    def request_url(self, url, logging=None):
         """Request a URL.
 
         Parameters
@@ -117,11 +140,9 @@ class Requester():
         if not self.is_active:
             raise ValueError('Requester object is not active.')
 
-        # Check and throttle, if required
+        # Check and throttle, if required, and do any logging
         self.throttle()
-
-        # HACK LOGGING
-        #print(url)
+        self._log_url(url)
 
         # Get the requested URL
         out = requests.get(url)
@@ -133,8 +154,73 @@ class Requester():
         return out
 
 
+    def open(self):
+        """Set the current object as active."""
+
+        self.st_time = self._get_time()
+        self.is_active = True
+
+
+    def close(self):
+        """Set the current object as inactive."""
+
+        self.en_time = self._get_time()
+        self.is_active = False
+
+        if self.logging == 'file':
+            self.log.write('\nREQUESTER LOG - CLOSED AT:  ' + self.en_time)
+            self.log.close()
+
+
+    def _set_up_logging(self, logging, folder):
+        """Set up for URL logging.
+
+        Parameters
+        ----------
+        logging : {None, 'print', 'store', 'file'}
+            What kind of logging, if any, to do for requested URLs.
+        folder : SCDB or str or None
+            A string or object containing a file path.
+        """
+
+        if logging in [None, 'print']:
+            log = None
+
+        elif logging == 'store':
+            log = []
+
+        elif logging == 'file':
+            log = open(pjoin(check_folder(folder, 'logs'),
+                             check_ext('requester_log', '.txt')), 'w')
+            log.write('REQUESTER LOG - STARTED AT:  ' + self.st_time)
+
+        else:
+            raise ValueError('Logging type not understood.')
+
+        return logging, log
+
+
+    def _log_url(self, url):
+        """Log a URL that is to be requested.
+
+        Parameters
+        ----------
+        url : str
+            URL to log.
+        """
+
+        if self.logging == 'print':
+            print(url)
+
+        elif self.logging == 'store':
+            self.log.append(url)
+
+        elif self.logging == 'file':
+            self.log.write('\n' + url)
+
+
     @staticmethod
-    def get_time():
+    def _get_time():
         """Get the current time.
 
         Returns
@@ -144,17 +230,3 @@ class Requester():
         """
 
         return time.strftime('%H:%M %A %d %B %Y')
-
-
-    def open(self):
-        """Set the current object as active."""
-
-        self.st_time = self.get_time()
-        self.is_active = True
-
-
-    def close(self):
-        """Set the current object as inactive."""
-
-        self.en_time = self.get_time()
-        self.is_active = False

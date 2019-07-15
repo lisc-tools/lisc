@@ -16,6 +16,8 @@ class MetaData():
         Information about the requester object used for the scrape.
     database_info : dict
         Information about the database from which the data was accessed.
+    log : list or None
+        A log of requested URLs, if requests were logged.
     """
 
     def __init__(self):
@@ -23,6 +25,7 @@ class MetaData():
         self.date = None
         self.requester = None
         self.db_info = None
+        self.log = None
 
         self.get_date()
 
@@ -51,7 +54,13 @@ class MetaData():
         """
 
         requester.close()
-        self.requester = requester.as_dict()
+        req_dict = requester.as_dict()
+
+        log = req_dict.pop('log')
+        if isinstance(log, list):
+            self.log = log
+
+        self.requester = req_dict
 
 
     def add_db_info(self, db_info):
