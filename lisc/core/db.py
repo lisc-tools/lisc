@@ -5,6 +5,10 @@ import os
 ###################################################################################################
 ###################################################################################################
 
+PATHS = {0 : ['base'],
+         1 : ['terms', 'logs', 'data', 'figs'],
+         2 : ['counts', 'words', 'raw', 'summary']}
+
 class SCDB():
     """Database object for a SCANR project.
 
@@ -125,7 +129,6 @@ def create_file_structure(base_path):
 
     db = SCDB(base_path)
 
-    paths = [key for key in db.__dict__.keys() if '_path' in key]
-
-    for path in paths:
-        os.mkdir(getattr(db, path))
+    for level in sorted(PATHS.keys()):
+        for label in PATHS[level]:
+            os.mkdir(getattr(db, label + '_path'))
