@@ -8,8 +8,7 @@
 **/.coverage
 
 # Ignore test data files
-**/*.p
-**/*.json
+lisc/tests/test_db/*
 
 # Ignore cache files
 **/.cache

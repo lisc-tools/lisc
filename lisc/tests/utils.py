@@ -2,11 +2,12 @@
 
 import pkg_resources as pkg
 from functools import wraps
+from os.path import join as pjoin
 
 from lisc.objects.base import Base
 from lisc.data import Data, DataAll
-from lisc.core.db import SCDB
 from lisc.core.modutils import safe_import
+from lisc.core.db import SCDB, create_file_structure, check_folder
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -19,11 +20,19 @@ class TestDB(SCDB):
     def __init__(self):
 
         # Initialize from normal database object
-        SCDB.__init__(self, auto_gen=False)
+        base = pkg.resource_filename(__name__, 'test_db')
+        SCDB.__init__(self, base_path=base)
 
-        # Set up the base path to tests data
-        self.base_path = pkg.resource_filename(__name__, 'test_db')
-        self.gen_paths()
+def create_files(folder):
+    """Creates some test term files."""
+
+    term_file = open(pjoin(check_folder(folder, 'terms'), 'test_terms.txt'), 'w')
+    term_file.write('word\nthing, same')
+    term_file.close()
+
+    excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_exclusions.txt'), 'w')
+    excl_file.write('not\navoid')
+    excl_file.close()
 
 def load_base(set_terms=False, set_excl=False):
     """Helper function to load Base object for testing."""

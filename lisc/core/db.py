@@ -128,4 +128,4 @@ def create_file_structure(base_path):
     paths = [key for key in vars(db).keys() if '_path' in key]
 
     for path in paths:
-        os.mkdir(path)
+        os.mkdir(getattr(db, path))
