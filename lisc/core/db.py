@@ -125,7 +125,7 @@ def create_file_structure(base_path):
 
     db = SCDB(base_path)
 
-    paths = [key for key in vars(db).keys() if '_path' in key]
+    paths = [key for key in db.__dict__.keys() if '_path' in key]
 
     for path in paths:
         os.mkdir(getattr(db, path))
