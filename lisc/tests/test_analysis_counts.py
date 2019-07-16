@@ -31,13 +31,14 @@ def test_compute_normalization():
 
 def test_compute_association_index():
 
-    data = np.array([[5, 10, 15], [0, 5, 10]])
+    data = np.array([[5, 10, 5], [0, 5, 0]])
     counts_a = [10, 10]
     counts_b = [10, 10, 10]
 
     out = compute_association_index(data, counts_a, counts_b)
-    assert np.array_equal(out, np.array([[5/20, 10/20, 15/20], [0/20, 5/20, 10/20]]))
+    assert np.array_equal(out, np.array([[5/(20-5), 10/(20-10), 5/(20-5)],
+                                         [0/(20-0), 5/(20-5), 0/(20-0)]]))
 
-    # Test error is shapes don't work
+    # Test error if shapes don't work
     with raises(ValueError):
         compute_association_index(data, counts_b, counts_a)

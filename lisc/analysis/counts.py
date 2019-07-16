@@ -59,12 +59,13 @@ def compute_association_index(data, counts_a, counts_b):
 
     Returns
     -------
-    out : 2d array
+    index : 2d array
         The association score of the co-occurence data.
 
     Notes
     -----
-    - This computes a the jaccard similarity, as AI_ij = |c_ij N d_ij| / |c_ij U d_ij|
+    - This computes a the Jaccard index, as AI_ij = |c_ij N d_ij| / |c_ij U d_ij|
+    - The denominator |c_ij U d_ij|, is equivalent to |c_ij| + |d_ij| - |c_ij N d_ij|
     """
 
     n_a = len(counts_a)
@@ -73,7 +74,7 @@ def compute_association_index(data, counts_a, counts_b):
     if not n_a == data.shape[0] and n_b == data.shape[1]:
         raise ValueError('Data shapes are inconsistent.')
 
-    combined_counts = np.tile(counts_a, [n_b, 1]).T + np.tile(counts_b, [n_a, 1])
-    out = data / combined_counts
+    denominator = np.tile(counts_a, [n_b, 1]).T + np.tile(counts_b, [n_a, 1]) - data
+    index = data / denominator
 
-    return out
+    return index
