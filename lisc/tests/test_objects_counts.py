@@ -38,7 +38,7 @@ def test_scrape_two():
 
 def check_funcs(counts):
 
-    counts.check_cooc()
+    counts.check_data()
     counts.check_top()
     counts.check_counts()
 

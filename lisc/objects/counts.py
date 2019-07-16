@@ -1,4 +1,4 @@
-"""Class for Count analysis: analyses of co-occurences data."""
+"""Class for collectiton and analyses of co-occurences data."""
 
 import numpy as np
 
@@ -10,7 +10,7 @@ from lisc.analysis.counts import compute_normalization, compute_association_inde
 ###################################################################################################
 
 class Counts():
-    """This is a class for counting co-occurence of pre-specified terms list(s).
+    """A class for collecting and analyzing co-occurence data of pre-specified terms list(s).
 
     Attributes
     ----------
@@ -176,20 +176,27 @@ class Counts():
             raise ValueError('Score type not understood.')
 
 
-    def check_cooc(self, dim='A'):
+    def check_data(self, dim='A', data_type='counts'):
         """"Prints out the most frequent association for each term.
 
         Parameters
         ----------
         dim : 'A' or 'B', optional
             Which set of terms to operate upon.
+        data_type : {'counts', 'score'}
+            Which data type to use.
         """
 
+        if data_type not in ['counts', 'score']:
+            raise ValueError('Data type not understood - can not proceed.')
+        if data_type == 'score' and self.score.size == 0:
+            raise ValueError('Score is not computed - can not proceed.')
+
         # Set up which direction to act across
-        dat = self.score if dim == 'A' else self.score.T
+        dat = getattr(self, data_type) if dim == 'A' else getattr(self, data_type).T
         alt = 'B' if dim == 'A' and not self.square else 'A'
 
-        # Loop through each term, find maximally associated term term and print out
+        # Loop through each term, find maximally associated term and print out
         for term_ind, term in enumerate(self.terms[dim].labels):
 
             # Find the index of the most common association for current term
