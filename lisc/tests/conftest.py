@@ -38,14 +38,15 @@ def check_db():
     """Once, prior to session, this will clear and re-initialize the test file database."""
 
     # Create the test database directory
-    test_db_dir = pkg.resource_filename(__name__, 'test_db')
+    tests_dir = pkg.resource_filename('lisc', 'tests')
+    test_db_name = 'test_db'
 
     # If the directories already exist, clear them
-    if os.path.exists(test_db_dir):
-        shutil.rmtree(test_db_dir)
+    if os.path.exists(os.path.join(tests_dir, test_db_name)):
+        shutil.rmtree(os.path.join(tests_dir, test_db_name))
 
-    create_file_structure(test_db_dir)
-    create_files(os.path.join(test_db_dir, 'Terms'))
+    tdb = create_file_structure(tests_dir, test_db_name)
+    create_files(tdb)
 
 @pytest.fixture(scope='session')
 def tdb():

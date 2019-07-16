@@ -13,6 +13,8 @@ def test_SCDB():
     db.gen_paths()
     assert db
 
+    db.check_file_structure()
+
 def test_check_folder():
 
     assert check_folder(None, '') == ''
