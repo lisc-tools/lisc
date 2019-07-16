@@ -3,6 +3,7 @@
 import numpy as np
 
 from lisc.objects.base import Base
+from lisc.objects.utils import wrap, get_max_length
 from lisc.scrape import scrape_counts
 from lisc.analysis.counts import compute_normalization, compute_association_index
 
@@ -48,7 +49,7 @@ class Counts():
         ----------
         terms : list of str OR list of list of str
             List of terms to be used.
-        dim : 'A' or 'B', optional
+        dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
 
@@ -65,7 +66,7 @@ class Counts():
             File name to load terms from.
         folder : SCDB or str or None
             A string or object containing a file path.
-        dim : 'A' or 'B', optional
+        dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
 
@@ -80,7 +81,7 @@ class Counts():
         ----------
         exclusions : list of str OR list of list of str
             List of exclusion words to be used.
-        dim : 'A' or 'B', optional
+        dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
 
@@ -96,7 +97,7 @@ class Counts():
             File name to load exclusion terms from.
         folder : SCDB or str or None
             A string or object containing a file path.
-        dim : 'A' or 'B', optional
+        dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
 
@@ -153,9 +154,9 @@ class Counts():
 
         Parameters
         ----------
-        score_type : {'association', 'normalize'}
+        score_type : {'association', 'normalize'}, optional
             The type of score to apply to the co-occurence data.
-        dim : {'A', 'B'}
+        dim : {'A', 'B'}, optional
             Which dimension of counts to use.
             Only used if 'score' is 'normalize'.
         """
@@ -176,12 +177,47 @@ class Counts():
             raise ValueError('Score type not understood.')
 
 
+    def check_top(self, dim='A'):
+        """Check the terms with the most papers.
+
+        Parameters
+        ----------
+        dim : {'A', 'B'}, optional
+            Which set of terms to operate upon.
+        """
+
+        #twid = get_max_length(self.terms[dim].labels)
+        #nwid = get_max_length(self.terms[dim].counts)
+
+        max_ind = np.argmax(self.terms[dim].counts)
+        print("The most studied term is  {}  with  {}  papers.".format(
+              wrap(self.terms[dim].labels[max_ind]),
+              self.terms[dim].counts[max_ind]))
+
+
+    def check_counts(self, dim='A'):
+        """Check how many papers found for each term.
+
+        Parameters
+        ----------
+        dim : {'A', 'B'}, optional
+            Which set of terms to operate upon.
+        """
+
+        print("The number of documents found for each search term is:")
+        for ind, term in enumerate(self.terms[dim].labels):
+            print("  {:{twid}}   -   {:{nwid}.0f}".format(
+                wrap(term), self.terms[dim].counts[ind],
+                twid=get_max_length(self.terms[dim].labels, 2),
+                nwid=get_max_length(self.terms[dim].counts)))
+
+
     def check_data(self, dim='A', data_type='counts'):
         """"Prints out the most frequent association for each term.
 
         Parameters
         ----------
-        dim : 'A' or 'B', optional
+        dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         data_type : {'counts', 'score'}
             Which data type to use.
@@ -202,39 +238,13 @@ class Counts():
             # Find the index of the most common association for current term
             assoc_ind = np.argmax(dat[term_ind, :])
 
-            # Print out the results
-            print("For the  {:12} the most common association is \t {:18} with \t %{:05.2f}"
-                  .format(term, self.terms[alt].labels[assoc_ind], \
-                  dat[term_ind, assoc_ind]*100))
-
-
-    def check_top(self, dim='A'):
-        """Check the terms with the most papers.
-
-        Parameters
-        ----------
-        dim : 'A' or 'B', optional
-            Which set of terms to operate upon.
-        """
-
-        # Find and print the term for which the most papers were found
-        print("The most studied term is  {:12}  with {:8.0f} papers"
-              .format(self.terms[dim].labels[np.argmax(self.terms[dim].counts)], \
-              self.terms[dim].counts[np.argmax(self.terms[dim].counts)]))
-
-
-    def check_counts(self, dim='A'):
-        """Check how many papers found for each term.
-
-        Parameters
-        ----------
-        dim : 'A' or 'B', optional
-            Which set of terms to operate upon.
-        """
-
-        # Check counts for all terms
-        for ind, term in enumerate(self.terms[dim].labels):
-            print('{:12} - {:8.0f}'.format(term, self.terms[dim].counts[ind]))
+            print(("For  {:{twid1}}  the most common association is" +
+                   "  {:{twid2}}  with  {:{nwid}}").format(
+                   wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
+                   dat[term_ind, assoc_ind]*100,
+                   twid1=get_max_length(self.terms[dim].labels, 2),
+                   twid2=get_max_length(self.terms[alt].labels, 2),
+                   nwid='>10.0f' if data_type == 'counts' else '06.3f'))
 
 
     def drop_data(self, n_articles, dim='A'):
@@ -244,7 +254,7 @@ class Counts():
         ----------
         n_articles : int
             Mininum number of articles to keep each term.
-        dim : 'A' or 'B', optional
+        dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
 
