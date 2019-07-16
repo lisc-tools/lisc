@@ -38,6 +38,7 @@ retmode : Format to return.
 usehistory : Whether to store findings on remote server.
 """
 
+from lisc.urls.urls import URLS
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -67,8 +68,8 @@ def get_wait_time(authenticated):
     return 1/10 if authenticated else 1/3
 
 
-class URLS():
-    """Class to hold URL information for SCANR project.
+class EUtils(URLS):
+    """Class to hold URLs for the NCBI EUtils API.
 
     Attributes
     ----------
@@ -108,18 +109,15 @@ class URLS():
             An API key for authenticated NCBI user account.
         """
 
-        self.base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+        # Set up the base url & utils list for the EUtils API
+        base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+        utils = {'info' : 'einfo.fcgi?',
+                 'query' : 'egquery.fcgi?',
+                 'search' : 'esearch.fcgi?',
+                 'fetch' : 'efetch.fcgi?'}
 
-        self.info = str()
-        self.query = str()
-        self.search = str()
-        self.fetch = str()
-
-        self.settings = dict()
-        self.args = dict()
-
-        # Check for authentication (API key)
-        self.authenticated = True if api_key else False
+        authenticated = True if api_key else False
+        URLS.__init__(self, base, utils, authenticated=authenticated)
 
         # Collect settings, filling in with all defined settings / arguments
         self.fill_settings(db=db, usehistory=usehistory, retmax=str(retmax),
@@ -127,30 +125,26 @@ class URLS():
 
 
     def build_url(self, util, args):
-        """Build the URL for a specified e-utility, with provided arguments.
+        """Build the URL for a specified utility, with provided arguments.
 
         Parameters
         ----------
-        util : {'info', 'query', 'search', 'fetch'}
-            Which e-utility to build the URL for.
+        util : str
+            Which utility to build the URL for.
         args : list of str
             Arguments to use to build the URL.
         """
 
-        utils = {'info' : 'einfo.fcgi?',
-                 'query' : 'egquery.fcgi?',
-                 'search' : 'esearch.fcgi?',
-                 'fetch' : 'efetch.fcgi?'}
-
         self._check_util(util)
+
         for arg in args:
             if arg not in self.settings:
                 raise InconsistentDataError('Not all requested arguments available - can not proceed.')
 
         args = ['api_key'] + args if self.authenticated else args
-        url = self.base + utils[util] + '&'.join([arg + '=' + self.settings[arg] for arg in args])
+        url = self.base + self.utils[util] + '&'.join([arg + '=' + self.settings[arg] for arg in args])
 
-        setattr(self, util, url)
+        self.urls[util] = url
 
 
     def get_url(self, util, additions={}):
@@ -158,8 +152,8 @@ class URLS():
 
         Parameters
         ----------
-        util : {'info', 'query', 'search', 'fetch'}
-            Which e-utility to get the URL for.
+        util : str
+            Which utility to get the URL for.
         additions : dict, optional
             Any additional arguments to add to the URL.
 
@@ -174,71 +168,6 @@ class URLS():
         extra_args = '&'.join([ke + '=' + va for ke, va in additions.items()])
         extra_args = '&' + extra_args if extra_args else ''
 
-        full_url = getattr(self, util) + extra_args
+        full_url = self.urls[util] + extra_args
 
         return full_url
-
-
-    def check_url(self, util):
-        """Check the built URL for a specified e-utility.
-
-        Parameters
-        ----------
-        util : {'info', 'query', 'search', 'fetch'}
-            Which e-utility to build the URL for.
-        """
-
-        self._check_util(util)
-        print(getattr(self, util))
-
-
-    def fill_settings(self, db=None, usehistory=None, retmax=None,
-                      field=None, retmode=None, api_key=None):
-        """Put all provided settings values into a dictionary object.
-
-        Parameters
-        ----------
-        db : str, optional
-            Which database to use.
-        usehistory : {'n', 'y'}
-            Whether to use history caching on pubmed server.
-        retmax : str, optional
-            Maximum number of items to return.
-        field : str, optional
-            The search field to search within.
-        retmode :  {'lxml', 'xml'}, optional
-            The return format for the results.
-        api_key : str, optional
-            An API key for authenticated NCBI user account.
-
-        Notes
-        -----
-        - All possible settings are set as possible arguments to this function.
-            For each  possible settings, each that is given a value is saved out to the dictionary.
-        - The 'locals()' function returns a dictionary of variables in scope (in this function).
-        - Using 'locals()' saves separately defining a list of possible variables, that
-            would need to be maintained to make sure it matched the method arguments.
-        """
-
-        # # Equivalent and more explicit to the dictionary comprehension below
-        #
-        # possible_settings = locals().keys()
-        # possible_settings.remove('self')
-        #
-        # for ps in possible_settings:
-        #
-        #     # If defined (not None) set the value of the setting
-        #     #   into a dictionary, with key of the name of the setting
-        #     if eval(ps):
-        #         self.settings[ps] = eval(ps)
-
-        self.settings = {ke: va for ke, va in locals().items() \
-            if ke is not 'self' and va is not None}
-
-
-    @staticmethod
-    def _check_util(util):
-        """Check that a requested utility is valid."""
-
-        if util not in ['info', 'query', 'search', 'fetch']:
-            raise ValueError('Specified e-utility not understood.')

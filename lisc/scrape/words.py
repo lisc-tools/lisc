@@ -9,7 +9,7 @@ from lisc.scrape.info import get_db_info
 from lisc.scrape.utils import mk_term, join
 from lisc.scrape.process import (extract, ids_to_str, process_ids, process_authors,
                                  process_words, process_kws, process_pub_date)
-from lisc.urls.pubmed import URLS, get_wait_time
+from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
@@ -61,7 +61,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
     """
 
     # Get e-utils URLS object
-    urls = URLS(db=db, usehistory='y' if use_hist else 'n', retmax=retmax,
+    urls = EUtils(db=db, usehistory='y' if use_hist else 'n', retmax=retmax,
                 retmode='xml', field=field, api_key=api_key)
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
@@ -74,7 +74,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
                     logging=logging, folder=folder)
 
     # Get current information about database being used
-    meta_data.add_db_info(get_db_info(req, urls.info))
+    meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Check exclusions
     if not exclusions:

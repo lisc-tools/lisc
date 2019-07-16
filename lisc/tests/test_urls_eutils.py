@@ -1,10 +1,8 @@
-"""Tests for URL functions and classes from lisc.core."""
+"""Tests for EUtils URL functions and classes for lisc."""
 
 from py.test import raises
 
-from lisc.core.errors import InconsistentDataError
-
-from lisc.urls.pubmed import *
+from lisc.urls.eutils import *
 
 ###################################################################################################
 ###################################################################################################
@@ -13,16 +11,14 @@ def test_get_wait_time():
 
     assert get_wait_time(True)
 
-def test_urls():
+def test_eutils():
 
-    assert URLS()
+    assert EUtils()
 
 def test_urls_settings():
-    """Tests URLS() returns properly with settings provided, and args defined.
-    This triggers save_settings() and save_args() methods with inputs from __init__.
-    """
+    """Tests URLS() returns properly with settings provided, and args defined."""
 
-    urls = URLS(db='pubmed', retmax=500, retmode='xml')
+    urls = EUtils(db='pubmed', retmax=500, retmode='xml')
     assert urls.settings['db'] == 'pubmed'
     assert urls.settings['retmax'] == '500'
     with raises(KeyError):
@@ -30,32 +26,23 @@ def test_urls_settings():
 
 def test_build_url():
 
-    urls = URLS(db='pubmed', retmax='500', field='id', retmode='xml')
+    urls = EUtils(db='pubmed', retmax='500', field='id', retmode='xml')
 
     urls.build_url('info', [])
-    assert urls.info
+    assert urls.utils['info']
 
     urls.build_url('query', ['db'])
-    assert urls.query
+    assert urls.utils['query']
 
     urls.build_url('search', ['db', 'retmode'])
-    assert urls.search
+    assert urls.utils['search']
 
     urls.build_url('fetch', ['db', 'retmode'])
-    assert urls.fetch
-
-def test_check_url():
-
-    urls = URLS(db='pmc')
-    urls.build_url('info', ['db'])
-
-    urls.check_url('info')
-    with raises(ValueError):
-        urls.check_url('notinfo')
+    assert urls.utils['fetch']
 
 def test_get_url():
 
-    urls = URLS(db='pubmed', retmode='xml')
+    urls = EUtils(db='pubmed', retmode='xml')
 
     urls.build_url('info', ['db'])
     info = urls.get_url('info')

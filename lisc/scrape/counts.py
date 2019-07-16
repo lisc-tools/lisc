@@ -8,7 +8,7 @@ from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
 from lisc.scrape.utils import mk_term, join
 from lisc.scrape.process import extract
-from lisc.urls.pubmed import URLS, get_wait_time
+from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
@@ -59,7 +59,7 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[], db='pub
     """
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
-    urls = URLS(db=db, retmax='0', field=field, retmode='xml', api_key=api_key)
+    urls = EUtils(db=db, retmax='0', field=field, retmode='xml', api_key=api_key)
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'retmax', 'retmode', 'field'])
 
@@ -96,7 +96,7 @@ def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[], db='pub
         np.fill_diagonal(data_numbers, 0)
 
     # Get current information about database being used
-    meta_data.add_db_info(get_db_info(req, urls.info))
+    meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Loop through each term (list-A)
     for a_ind, (term_a, excl_a) in enumerate(zip(terms_a, exclusions_a)):

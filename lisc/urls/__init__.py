@@ -1,1 +1,1 @@
-from .pubmed import URLS
+from .eutils import EUtils

@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from lisc.requester import Requester
 from lisc.scrape.process import extract
 from lisc.data.meta_data import MetaData
-from lisc.urls.pubmed import URLS, get_wait_time
+from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
@@ -32,7 +32,7 @@ def scrape_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=Fa
         Meta data about the scrape.
     """
 
-    urls = URLS(db=db, retmode='xml', api_key=api_key)
+    urls = EUtils(db=db, retmode='xml', api_key=api_key)
     urls.build_url('info', ['db'])
 
     meta_data = MetaData()
@@ -42,7 +42,7 @@ def scrape_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=Fa
     if verbose:
         print('Gathering info on {} database.'.format(db))
 
-    meta_data.add_db_info(get_db_info(req, urls.info))
+    meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
     meta_data.add_requester(req)
 
     return meta_data
@@ -71,7 +71,7 @@ def get_db_info(req, info_url):
     # Set list of fields to extract from EInfo
     fields = ['dbname', 'menuname', 'description', 'dbbuild', 'count', 'lastupdate']
 
-    # Extract basic infomation into a dictionary
+    # Extract basic information into a dictionary
     db_info = dict()
     for field in fields:
         db_info[field] = extract(info_page_soup, field, 'str')
