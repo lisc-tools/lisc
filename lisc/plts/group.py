@@ -79,5 +79,5 @@ def plot_dendrogram(data, labels=None, ax=None):
 
     linkage_data = hier.linkage(data, method='complete', metric='cosine')
 
-    hier.dendrogram(linkage_data, orientation='left', **check_args(['labels'], labels),
-                    color_threshold=0.25, leaf_font_size=12, ax=check_ax(ax, (3, 15)))
+    hier.dendrogram(linkage_data, orientation='left', color_threshold=0.25,
+                    leaf_font_size=12, ax=check_ax(ax, (3, 15)), **check_args(['labels'], labels))

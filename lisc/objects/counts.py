@@ -186,13 +186,10 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        #twid = get_max_length(self.terms[dim].labels)
-        #nwid = get_max_length(self.terms[dim].counts)
-
         max_ind = np.argmax(self.terms[dim].counts)
         print("The most studied term is  {}  with  {}  papers.".format(
-              wrap(self.terms[dim].labels[max_ind]),
-              self.terms[dim].counts[max_ind]))
+            wrap(self.terms[dim].labels[max_ind]),
+            self.terms[dim].counts[max_ind]))
 
 
     def check_counts(self, dim='A'):
@@ -206,10 +203,10 @@ class Counts():
 
         print("The number of documents found for each search term is:")
         for ind, term in enumerate(self.terms[dim].labels):
-            print("  {:{twid}}   -   {:{nwid}.0f}".format(
+            print("  {:{twd}}   -   {:{nwd}.0f}".format(
                 wrap(term), self.terms[dim].counts[ind],
-                twid=get_max_length(self.terms[dim].labels, 2),
-                nwid=get_max_length(self.terms[dim].counts)))
+                twd=get_max_length(self.terms[dim].labels, 2),
+                nwd=get_max_length(self.terms[dim].counts)))
 
 
     def check_data(self, dim='A', data_type='counts'):
@@ -238,13 +235,12 @@ class Counts():
             # Find the index of the most common association for current term
             assoc_ind = np.argmax(dat[term_ind, :])
 
-            print(("For  {:{twid1}}  the most common association is" +
-                   "  {:{twid2}}  with  {:{nwid}}").format(
-                   wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
-                   dat[term_ind, assoc_ind]*100,
-                   twid1=get_max_length(self.terms[dim].labels, 2),
-                   twid2=get_max_length(self.terms[alt].labels, 2),
-                   nwid='>10.0f' if data_type == 'counts' else '06.3f'))
+            print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
+                wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
+                dat[term_ind, assoc_ind]*100,
+                twd1=get_max_length(self.terms[dim].labels, 2),
+                twd2=get_max_length(self.terms[alt].labels, 2),
+                nwd='>10.0f' if data_type == 'counts' else '06.3f'))
 
 
     def drop_data(self, n_articles, dim='A'):

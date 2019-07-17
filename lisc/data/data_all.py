@@ -8,7 +8,7 @@ import nltk
 from lisc.core.io import check_ext
 from lisc.core.db import check_folder
 from lisc.data.utils import combine_lists
-from lisc.data.count import *
+from lisc.data.count import count_years, count_journals, count_authors, count_end_authors
 
 ###################################################################################################
 ###################################################################################################

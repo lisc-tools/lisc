@@ -62,7 +62,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
 
     # Get e-utils URLS object
     urls = EUtils(db=db, usehistory='y' if use_hist else 'n', retmax=retmax,
-                retmode='xml', field=field, api_key=api_key)
+                  retmode='xml', field=field, api_key=api_key)
     urls.build_url('info', ['db'])
     urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
     urls.build_url('fetch', ['db', 'retmode'])
@@ -81,7 +81,7 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
         exclusions = [[] for ind in range(len(terms))]
 
     # Loop through all the terms
-    for ind, (term, excl) in enumerate(zip(terms, exclusions)):
+    for term, excl in zip(terms, exclusions):
 
         if verbose:
             print('Scraping words for: ', term[0])

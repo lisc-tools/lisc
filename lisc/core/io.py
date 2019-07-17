@@ -5,7 +5,6 @@ import json
 import pickle
 
 from lisc.core.db import SCDB, check_folder
-from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
 ###################################################################################################
@@ -73,7 +72,7 @@ def save_object(obj, f_name, folder=None):
     elif isinstance(obj, Words):
         obj_type = 'words'
     else:
-        raise InconsistentDataError('Object type unclear - can not save.')
+        raise ValueError('Object type unclear - can not save.')
 
     pickle.dump(obj, open(os.path.join(check_folder(folder, obj_type),
                                        check_ext(f_name, '.p')), 'wb'))
@@ -110,7 +109,7 @@ def load_object(f_name, folder=None):
             load_path = os.path.join(folder, f_name)
 
     if not load_path:
-        raise InconsistentDataError('Can not find requested file name.')
+        raise ValueError('Can not find requested file name.')
 
     return pickle.load(open(check_ext(load_path, '.p'), 'rb'))
 

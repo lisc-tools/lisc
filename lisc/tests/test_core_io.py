@@ -5,7 +5,6 @@ import os
 from py.test import raises
 
 from lisc.objects import Counts, Words
-from lisc.core.errors import InconsistentDataError
 
 from lisc.core.io import *
 
@@ -33,7 +32,7 @@ def test_save_object(tdb, tcounts, twords):
     assert os.path.exists(os.path.join(tdb.counts_path, 'test_counts.p'))
     assert os.path.exists(os.path.join(tdb.words_path, 'test_words.p'))
 
-    with raises(InconsistentDataError):
+    with raises(ValueError):
         save_object(['bad dat'], 'test_bad', folder=tdb)
 
 def test_load_object(tdb):

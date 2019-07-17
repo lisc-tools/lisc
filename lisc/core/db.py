@@ -162,7 +162,7 @@ def check_file_structure(base_path):
         Base path of the directory structure to check.
     """
 
-    for root, dirs, files in os.walk(base_path):
+    for root, _, files in os.walk(base_path):
 
         level = root.replace(base_path, '').count(os.sep)
         indent = ' ' * 4 * (level)
@@ -172,5 +172,6 @@ def check_file_structure(base_path):
         subindent = ' ' * 4 * (level + 1)
 
         for file in files:
-            if file[0] == '.': continue
+            if file[0] == '.':
+                continue
             print('{}{}'.format(subindent, file))

@@ -39,7 +39,6 @@ usehistory : Whether to store findings on remote server.
 """
 
 from lisc.urls.urls import URLS
-from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
 ###################################################################################################
@@ -116,7 +115,7 @@ class EUtils(URLS):
                  'search' : 'esearch.fcgi?',
                  'fetch' : 'efetch.fcgi?'}
 
-        authenticated = True if api_key else False
+        authenticated = bool(api_key)
         URLS.__init__(self, base, utils, authenticated=authenticated)
 
         # Collect settings, filling in with all defined settings / arguments
@@ -139,10 +138,11 @@ class EUtils(URLS):
 
         for arg in args:
             if arg not in self.settings:
-                raise InconsistentDataError('Not all requested arguments available - can not proceed.')
+                raise ValueError('Not all requested arguments available - can not proceed.')
 
         args = ['api_key'] + args if self.authenticated else args
-        url = self.base + self.utils[util] + '&'.join([arg + '=' + self.settings[arg] for arg in args])
+        url = self.base + self.utils[util] + \
+            '&'.join([arg + '=' + self.settings[arg] for arg in args])
 
         self.urls[util] = url
 

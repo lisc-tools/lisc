@@ -1,8 +1,9 @@
 """Object to handle URL requests."""
 
+import os
 import time
+
 import requests
-from os.path import join as pjoin
 
 from lisc.core.db import check_folder
 from lisc.core.io import check_ext
@@ -122,7 +123,7 @@ class Requester():
         time.sleep(wait_time)
 
 
-    def request_url(self, url, logging=None):
+    def request_url(self, url):
         """Request a URL.
 
         Parameters
@@ -140,11 +141,11 @@ class Requester():
         if not self.is_active:
             raise ValueError('Requester object is not active.')
 
-        # Check and throttle, if required, and do any logging
+        # Check and throttle, if required,
         self.throttle()
-        self._log_url(url)
 
-        # Get the requested URL
+        # Log and request the URL
+        self._log_url(url)
         out = requests.get(url)
 
         # Update data on requests
@@ -190,8 +191,8 @@ class Requester():
             log = []
 
         elif logging == 'file':
-            log = open(pjoin(check_folder(folder, 'logs'),
-                             check_ext('requester_log', '.txt')), 'w')
+            log = open(os.path.join(check_folder(folder, 'logs'),
+                                    check_ext('requester_log', '.txt')), 'w')
             log.write('REQUESTER LOG - STARTED AT:  ' + self.st_time)
 
         else:
