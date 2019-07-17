@@ -3,7 +3,7 @@
 ###################################################################################################
 ###################################################################################################
 
-class URLS():
+class URLs():
     """Class to hold URL information for SCANR project.
 
     Attributes
@@ -11,11 +11,13 @@ class URLS():
     base : str
         Base URL for the API.
     utils : dict
-        xx
+        What utilities are available for the API.
     urls : dict
-        xx
+        The URLs for each utility.
+    settings : dict
+        The available settings for the API.
     authenticated : boolean
-        xx
+        Whether acting as an authenticated user for the API.
     """
 
     def __init__(self, base, utils, authenticated=None):
@@ -58,7 +60,13 @@ class URLS():
 
 
     def _check_util(self, util):
-        """Check that a requested utility is valid."""
+        """Check that a requested utility is valid.
+
+        Parameters
+        ----------
+        util : str
+            Name of the utility to check for.
+        """
 
         if util not in self.utils.keys():
             raise ValueError('Specified utility not understood.')

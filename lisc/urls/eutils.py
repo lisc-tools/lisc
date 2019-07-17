@@ -38,7 +38,7 @@ retmode : Format to return.
 usehistory : Whether to store findings on remote server.
 """
 
-from lisc.urls.urls import URLS
+from lisc.urls.urls import URLs
 
 ###################################################################################################
 ###################################################################################################
@@ -67,21 +67,17 @@ def get_wait_time(authenticated):
     return 1/10 if authenticated else 1/3
 
 
-class EUtils(URLS):
+class EUtils(URLs):
     """Class to hold URLs for the NCBI EUtils API.
 
     Attributes
     ----------
     base : str
         Base URL for the e-utils tools.
-    info  : str
-        URL for getting database information from e-utils.
-    query : str
-        URL for querying with e-utils.
-    search : str
-        URL for searching with e-utils.
-    fetch  : str
-        URL for fetching with e-utils.
+    utils : dict
+        Collection of EUtils utilities.
+    urls : dict
+        URLs for each EUtils utility.
     settings : dict()
         Dictionary of all defined settings and their values.
     authenticated : boolean
@@ -90,7 +86,7 @@ class EUtils(URLS):
 
     def __init__(self, db=None, usehistory='n', retmax=None,
                  field=None, retmode=None, api_key=None):
-        """Initialize the ncbi e-utils urls.
+        """Initialize the ncbi e-utils urls, with provided settings.
 
         Parameters
         ----------

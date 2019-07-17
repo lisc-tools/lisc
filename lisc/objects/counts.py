@@ -209,7 +209,7 @@ class Counts():
                 nwd=get_max_length(self.terms[dim].counts)))
 
 
-    def check_data(self, dim='A', data_type='counts'):
+    def check_data(self, data_type='counts', dim='A'):
         """"Prints out the most frequent association for each term.
 
         Parameters
