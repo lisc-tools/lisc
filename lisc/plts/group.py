@@ -1,6 +1,6 @@
 """LISC plots - plots for group analysis."""
 
-from lisc.plts.utils import check_ax, savefig, get_cmap
+from lisc.plts.utils import check_args, check_ax, savefig, get_cmap
 from lisc.core.modutils import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -11,12 +11,12 @@ hier = safe_import('.cluster.hierarchy', 'scipy')
 ###################################################################################################
 
 @savefig
-def plot_matrix(dat, x_labels=None, y_labels=None, square=False, ax=None):
+def plot_matrix(data, x_labels=None, y_labels=None, square=False, ax=None):
     """Plot the matrix of percent asscociations between terms.
 
     Parameters
     ----------
-    dat : 2d array
+    data : 2d array
         Data to plot, as a matrix.
     x_labels : list of str
         Labels for the x-axis.
@@ -28,57 +28,56 @@ def plot_matrix(dat, x_labels=None, y_labels=None, square=False, ax=None):
         Figure axes upon which to plot.
     """
 
-    sns.heatmap(dat, square=square, xticklabels=x_labels, yticklabels=y_labels,
-                ax=check_ax(ax, (10, 12)))
+    sns.heatmap(data, square=square, ax=check_ax(ax, (8, 8)),
+                **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
 
 
 @savefig
-def plot_clustermap(dat, cmap='purple', ax=None):
+def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
     """Plot clustermap.
 
     Parameters
     ----------
-    dat : 2d array
+    data : 2d array
         Data to plot, as a clustermap.
     cmap : matplotlib.cmap
         Colormap to use for the plot.
-    ax : matplotlib.Axes, optional
-        Figure axes upon which to plot.
+    x_labels : list of str
+        Labels for the x-axis.
+    y_labels : list of str
+        Labels for the y-axis.
     """
 
-    # Set up plotting and aesthetics
     sns.set()
     sns.set_context("paper", font_scale=1.5)
-
-    ax = check_ax(ax, (12, 10))
 
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
-    cg = sns.clustermap(dat, cmap=cmap, method='complete', metric='cosine')
+    cg = sns.clustermap(data, cmap=cmap, method='complete', metric='cosine',
+                        **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
 
-    # Fix axes
+
     cg.cax.set_visible(True)
     _ = plt.setp(cg.ax_heatmap.xaxis.get_majorticklabels(), rotation=60, ha='right')
     _ = plt.setp(cg.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
 
 
 @savefig
-def plot_dendrogram(dat, labels, ax=None):
+def plot_dendrogram(data, labels=None, ax=None):
     """Plot dendrogram.
 
     Parameters
     ----------
     dat : 2d array
         Data to plot, as a dendrogram.
-    labels : list of str
+    labels : list of str, optional
         Labels for the dendrogram.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
     """
 
-    linkage_data = hier.linkage(dat, method='complete', metric='cosine')
+    linkage_data = hier.linkage(data, method='complete', metric='cosine')
 
-    dendro_plot = hier.dendrogram(linkage_data, orientation='left', labels=labels,
-                                  color_threshold=0.25, leaf_font_size=12,
-                                  ax=check_ax(ax, (3, 15)))
+    hier.dendrogram(linkage_data, orientation='left', **check_args(['labels'], labels),
+                    color_threshold=0.25, leaf_font_size=12, ax=check_ax(ax, (3, 15)))

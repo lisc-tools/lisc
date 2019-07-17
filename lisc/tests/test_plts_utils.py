@@ -17,3 +17,8 @@ def test_get_cmap():
 
     with raises(ValueError):
         get_cmap('Not a thing.')
+
+def test_check_args():
+
+    assert check_args(['new_name'], None) == {}
+    assert check_args(['new_name'], [1, 2, 3]) == {'new_name' : [1, 2, 3]}

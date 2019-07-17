@@ -12,6 +12,25 @@ sns = safe_import('seaborn')
 ###################################################################################################
 ###################################################################################################
 
+def check_args(names, *inputs):
+    """Checks a series of inputs, and renames them and packages them, if they are not None.
+
+    Parameters
+    ----------
+    names : list of str
+        List of names to apply to the given inputs.
+    *inputs
+        Any input variables to check.
+
+    Returns
+    -------
+    dictionay
+        A dictionary with the new names and values, for all non None inputs.
+    """
+
+    return {label : value for label, value in zip(names, inputs) if value}
+
+
 def get_cmap(cmap):
     """Get a requested colormap.
 
