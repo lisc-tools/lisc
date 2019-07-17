@@ -2,7 +2,7 @@
 Tutorial 04 - Words Analysis
 ============================
 
-Analyzing scraped words data.
+Analyzing collected text data and metadata.
 """
 
 ###################################################################################################
@@ -15,13 +15,44 @@ Analyzing scraped words data.
 
 ###################################################################################################
 
-from lisc.core.db import SCDB
+from lisc import SCDB, load_object
 from lisc.data import Data, DataAll
+
+###################################################################################################
+
+db = SCDB('lisc_db')
+
+words = load_object('tutorial_words', folder=SCDB('lisc_db'))
+
+###################################################################################################
+
+# Reload all data
+for ind in range(words.n_erps):
+    words.results[ind].load()
+
 
 ###################################################################################################
 #
 # Data All
 # --------
+#
+
+###################################################################################################
+
+# Collect into list of aggragated data objects
+all_dat = [DataAll(words[erp]) for erp in words.result_keys]
+
+
+# Check an example summary
+all_dat[0].create_summary()
+all_dat[0].print_summary()
+
+###################################################################################################
+
+
+
+###################################################################################################
+
 
 #dd = DataAll(words.results[0])
 #dd.journal_counts
@@ -40,9 +71,9 @@ from lisc.data import Data, DataAll
 ###################################################################################################
 
 #
-#from lisc.plts.wc import make_wc
+from lisc.plts.wordcloud import plot_wordcloud
 
-#make_wc(all_dat.word_freqs, 25, term)
+plot_wordcloud(all_dat[0].word_freqs, 25)
 
 ###################################################################################################
 

@@ -2,7 +2,7 @@
 Tutorial 03 - Words Scraping
 ============================
 
-Scraping literature data, collecting text and metadata for specified search terms.
+Collecting literature data, extracting text and metadata for specified search terms.
 """
 
 ###################################################################################################
@@ -17,26 +17,31 @@ Scraping literature data, collecting text and metadata for specified search term
 ###################################################################################################
 
 # Import LISC - Words
+from lisc import SCDB, save_object
 from lisc import Words
 
 ###################################################################################################
-
-# Set up some test data
-#  Note that each entry should be a list
-terms_a = [['brain'], ['cognition']]
-terms_b = [['body'], ['biology'], ['disease']]
+#
+# Words Object
+# ------------
+#
+# The 'Words' object is used to handle word analyses.
+#
+# Note that the same principles of organizing search terms, including
+# how to synonyms and exclusion words, are the same as for the introduced
+# in the first tutorial.
+#
 
 ###################################################################################################
-#
-# Object Approach: Words
-# ----------------------
-#
+
+# Set up some terms
+terms = [['brain'], ['body']]
 
 ###################################################################################################
 
 # Initialize Words object and set the terms to search for
 words = Words()
-words.add_terms(terms_a)
+words.add_terms(terms)
 
 ###################################################################################################
 
@@ -50,37 +55,23 @@ words.results
 
 ###################################################################################################
 #
-# The use of synonyms and exclusion words, demonstrated above for counts,
-# applies in the same way to the scraping words.
+# NEW EXAMPLE
+# -----------
 #
 
-###################################################################################################
-#
-# Metadata
-# --------
-#
-# Regardless of what you are scraping, or how you run it through LISC,
-# there is some meta-data saved.
-#
-# This data is collected in a dictionary, that is returned by the scrape
-# functions (and saved to the objects, if applicable).
 
 ###################################################################################################
 
-# This data is also saved to object
-words.meta_data['db_info']
-
-###################################################################################################
-#
-# It also includes the Requester object, which is used to launch URL requests
-#
-# This object also stores some details about the scrape
-#
-# It can be used, for example, to track how long scrapes take, and how many requests they include
-#
+# Set up some terms
+terms = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
+words.add_terms(terms)
 
 ###################################################################################################
 
-print('Start time:    ', meta_data['req'].st_time)
-print('End time:      ', meta_data['req'].en_time)
-print('# of requests: ', meta_data['req'].n_requests)
+db = SCDB('lisc_db')
+
+# Run words scrape
+words.run_scrape(retmax='10', save_n_clear=True, folder=db)
+
+
+save_object(words, 'tutorial_words', folder=db)

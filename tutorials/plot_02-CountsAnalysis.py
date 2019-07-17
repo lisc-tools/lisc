@@ -5,8 +5,9 @@ Tutorial 02 - Counts Analysis
 Analyzing scraped co-occurence data.
 """
 
-from lisc.core.db import SCDB
-from lisc.core.io import load_object
+from lisc import SCDB, load_object
+
+
 from lisc.plts.group import *
 
 ###################################################################################################
@@ -17,36 +18,47 @@ from lisc.plts.group import *
 # This tutorial explores the built in utilities for exploring & anayzing counts data.
 #
 
-counts = load_object('tutorial_counts', SCDB('dat'))
+counts = load_object('tutorial_counts', SCDB('lisc_db'))
+
+
 
 ###################################################################################################
 
+counts.check_data(data_type='counts', dim='A', )
+
+###################################################################################################
+
+counts.check_data(data_type='counts', dim='B', )
+
+###################################################################################################
 #
-l1 = ['A', 'B']
-l2 = ['A', 'B', 'C']
+# Scores
+# ------
+#
+# The Counts co-occurence data collection gives us a raw data matrix of the number of
+# papers in with terms co-occur, as well as counts of the number of total papers using
+# each term.
+#
+#
 
 ###################################################################################################
 
-# Plot matrix
-plot_matrix(counts.dat_percent, l1, l2)
+# Compute the association index
+counts.compute_score('association')
 
 ###################################################################################################
 
-# Plot clustermap
-plot_clustermap(counts.dat_percent)
+# Plot a matrix of the association index data
+plot_matrix(counts.score, counts.terms['A'].labels, counts.terms['B'].labels)
 
 ###################################################################################################
 
-# Plot dendrogram
-plot_dendrogram(counts.dat_percent, l1)
+# Plot a clustermap of the association index data
+plot_clustermap(counts.score, counts.terms['A'].labels, counts.terms['B'].labels)
 
 ###################################################################################################
 
-
-###################################################################################################
-
-
-###################################################################################################
-
+# Plot a dendrogram, to cluster the terms
+plot_dendrogram(counts.score, counts.terms['B'].labels)
 
 ###################################################################################################

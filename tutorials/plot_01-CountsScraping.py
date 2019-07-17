@@ -2,24 +2,18 @@
 Tutorial 01 - Counts Scraping
 =============================
 
-Scraping word co-occurence data from scientific literature.
+Scraping term co-occurence data from scientific literature.
 """
 
 ###################################################################################################
 #
-# Word Co-Occurence
+# Term Co-Occurence
 # -----------------
 #
-# Specifically, it searches the literature, and checks how often terms of interest appear together.
+# Term co-occurence searches the literature, and checks how often terms of interest appear together.
 #
-#
-
-###################################################################################################
-#
-# Counts
-# ------
-#
-# 'Counts' scraping gets data about the co-occurence of terms of interest.
+# This type of analysis can be used to infer associations and relationships between
+# terms of interest.
 #
 
 ###################################################################################################
@@ -30,24 +24,31 @@ from lisc.core.db import SCDB
 from lisc.core.io import save_object
 
 ###################################################################################################
+#
+# Counts Object
+# -------------
+#
+# The 'Counts' object is used to handle term co-occurence analyses.
+#
+
+###################################################################################################
+#
+# Counts: single list
+# -------------------
+#
+# For the first example of running a counts analysis, we will use a single list of terms.
+#
+# When a single list of terms is provided, the word co-occurence is collected as the
+# co-occurence of each term with every other term in the list.
+#
+# Let's start with an example using different parts of the brain, and examine
+# how often these brain regions are talked about together.
+#
+
+###################################################################################################
 
 # Set up some test data
-#  Note that each entry is itself a list
-terms = [['brain'], ['cognition']]
-
-###################################################################################################
-#
-# Count Object
-# ------------
-#
-# There is also an OOP interface available in LISC,
-# to organize the terms and data, and run scrapes.
-#
-# Note that the underlying code is the same - the count object ultimately calls
-# the same scrape function as above.
-#
-
-###################################################################################################
+terms = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
 
 # Initialize counts object & add the terms that we want to scrape
 counts = Counts()
@@ -65,11 +66,6 @@ counts.run_scrape(verbose=True)
 
 ###################################################################################################
 
-# Check the highest associations for each term
-counts.check_cooc()
-
-###################################################################################################
-
 # Check how many papers were found for each search term
 counts.check_counts()
 
@@ -80,18 +76,23 @@ counts.check_top()
 
 ###################################################################################################
 #
-# Co-occurence data - different word lists
+# Counts: two lists
+# -----------------
+#
+# In the first example above, we provided a single list of terms.
+#
+# Now let's explore using two different sets of terms.
+#
+# In this example, we will keep our list of brain regions, and explore how they
+# might be related to different sensory systems.
 #
 
 ###################################################################################################
 
-terms = [['brain'], ['cognition']]
-terms_b = [['body'], ['biology'], ['disease']]
-
-###################################################################################################
-
-# Initialize count object
-counts = Counts()
+# Set some new terms
+terms_a = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
+terms_b = [['vision'], ['audition'], ['somatosensory'], ['olfaction', 'smell'],
+           ['gustation', 'taste'], ['proprioception'], ['nociception', 'pain']]
 
 ###################################################################################################
 
@@ -106,13 +107,11 @@ counts.add_terms(terms_b, 'B')
 counts.run_scrape()
 
 ###################################################################################################
-
+#
 # From there you can use all the same methods to explore the data
-#  You can also specify which list to check
-counts.check_cooc('A')
-print('\n')
-counts.check_cooc('B')
+#
 
 ###################################################################################################
 
-save_object(counts_two, 'tutorial_counts', SCDB('dat'))
+# Save out our counts object
+save_object(counts, 'tutorial_counts', folder=SCDB('lisc_db'))
