@@ -25,9 +25,11 @@ class Words(Base):
         Base.__init__(self)
 
         self.results = list()
-        self.labels = list()
         self.meta_data = None
 
+    @property
+    def labels(self):
+        return [result.label for result in self.results]
 
     def __getitem__(self, key):
         """Index into Words object with term result key.
@@ -66,7 +68,6 @@ class Words(Base):
         """
 
         self.results.append(new_result)
-        self.labels.append(new_result.label)
 
 
     def run_scrape(self, db='pubmed', retmax=None, field='TIAB', api_key=None, use_hist=False,
@@ -102,4 +103,3 @@ class Words(Base):
                                                     save_n_clear=save_n_clear,
                                                     logging=logging, folder=folder,
                                                     verbose=verbose)
-        self.labels = [dat.label for dat in self.results]

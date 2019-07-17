@@ -39,12 +39,6 @@ def test_unload_terms(tbase_terms):
     assert not tbase_terms.terms
     assert not tbase_terms.n_terms
 
-def test_get_term_labels(tbase_terms):
-
-    tbase_terms.get_term_labels()
-
-    assert tbase_terms.labels
-
 def test_add_exclusions(tbase_terms):
 
     tbase_terms.add_exclusions(['not', 'this'])

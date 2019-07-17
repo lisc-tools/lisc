@@ -112,7 +112,7 @@ class EUtils(URLs):
                  'fetch' : 'efetch.fcgi?'}
 
         authenticated = bool(api_key)
-        URLS.__init__(self, base, utils, authenticated=authenticated)
+        URLs.__init__(self, base, utils, authenticated=authenticated)
 
         # Collect settings, filling in with all defined settings / arguments
         self.fill_settings(db=db, usehistory=usehistory, retmax=str(retmax),

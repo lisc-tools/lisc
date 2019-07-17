@@ -27,18 +27,19 @@ class Base():
         """Initialize Base() object."""
 
         self.terms = list()
-        self.labels = list()
         self.exclusions = list()
-
 
     @property
     def has_data(self):
         return bool(self.terms)
 
-
     @property
     def n_terms(self):
         return len(self.terms)
+
+    @property
+    def labels(self):
+        return [term[0] for term in self.terms]
 
 
     def add_terms(self, terms):
@@ -54,7 +55,6 @@ class Base():
 
         for term in terms:
             self.terms.append(self._check_type(term))
-        self.get_term_labels()
 
 
     def add_terms_file(self, f_name, folder=None):
@@ -74,7 +74,6 @@ class Base():
 
         for term in terms:
             self.terms.append(term.split(','))
-        self.get_term_labels()
 
 
     def check_terms(self):
@@ -93,12 +92,6 @@ class Base():
 
             print('Unloading previous terms words.')
             self.terms = list()
-
-
-    def get_term_labels(self):
-        """Get term labels."""
-
-        self.labels = [term[0] for term in self.terms]
 
 
     def add_exclusions(self, exclusions):

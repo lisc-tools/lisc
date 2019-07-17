@@ -257,7 +257,6 @@ class Counts():
         keep_inds = np.where(self.terms[dim].counts > n_articles)[0]
 
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
-        self.terms[dim].labels = [self.terms[dim].labels[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
         if dim == 'A':
