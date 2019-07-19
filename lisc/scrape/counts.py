@@ -13,18 +13,24 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def scrape_counts(terms_a, exclusions_a=[], terms_b=[], exclusions_b=[], db='pubmed',
-                  field='TIAB', api_key=None, logging=None, folder=None, verbose=False):
+def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
+                  terms_b=[], inclusions_b=[], exclusions_b=[],
+                  db='pubmed', field='TIAB', api_key=None,
+                  logging=None, folder=None, verbose=False):
     """Scrape pubmed for word co-occurence.
 
     Parameters
     ----------
     terms_a : list of list of str
         Search terms.
+    inclusions_a : list of list of str, optional
+        Inclusions words for search terms.
     exclusions_a : list of list of str, optional
         Exclusion words for search terms.
     terms_b : list of list of str, optional
         Secondary list of search terms.
+    inclusions_b : list of list of str, optional
+        Inclusions words for secondary lis of search terms.
     exclusions_b : list of list of str, optional
         Exclusion words for secondary list of search terms.
     db : str, optional, default: 'pubmed'

@@ -16,7 +16,7 @@ def test_scrape_one():
     counts = Counts()
 
     counts.add_terms(['language', 'memory'], dim='A')
-    counts.add_exclusions(['protein', 'protein'], dim='A')
+    counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
 
     counts.run_scrape(db='pubmed')
     counts.compute_score('association')
@@ -28,7 +28,7 @@ def test_scrape_two():
     counts = Counts()
 
     counts.add_terms(['language', 'memory'], dim='A')
-    counts.add_exclusions(['protein', 'protein'], dim='A')
+    counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
     counts.add_terms(['cognition'], dim='B')
 
     counts.run_scrape(db='pubmed')

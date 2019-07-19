@@ -42,7 +42,7 @@ class Counts():
         self.meta_data = None
 
 
-    def add_terms(self, terms, dim='A'):
+    def add_terms(self, terms, term_type='terms', dim='A'):
         """Add the given list of strings as terms to use.
 
         Parameters
@@ -53,11 +53,12 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].add_terms(terms)
-        self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
+        self.terms[dim].add_terms(terms, term_type)
+        if term_type == 'terms':
+            self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def add_terms_file(self, f_name, folder=None, dim='A'):
+    def add_terms_file(self, f_name, term_type='terms', folder=None, dim='A'):
         """Load terms from a text file.
 
         Parameters
@@ -70,38 +71,9 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].add_terms_file(f_name, folder)
-        self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
-
-
-    def add_exclusions(self, exclusions, dim='A'):
-        """Add the given list of strings as exclusion words.
-
-        Parameters
-        ----------
-        exclusions : list of str OR list of list of str
-            List of exclusion words to be used.
-        dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
-        """
-
-        self.terms[dim].add_exclusions(exclusions)
-
-
-    def add_exclusions_file(self, f_name, folder=None, dim='A'):
-        """Load exclusion words from a text file.
-
-        Parameters
-        ----------
-        f_name : str
-            File name to load exclusion terms from.
-        folder : SCDB or str or None
-            A string or object containing a file path.
-        dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
-        """
-
-        self.terms[dim].add_exclusions_file(f_name, folder)
+        self.terms[dim].add_terms_file(f_name, folder, term_type)
+        if term_type == 'terms':
+            self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
     def run_scrape(self, db='pubmed', field='TIAB', api_key=None,
@@ -130,6 +102,7 @@ class Counts():
             self.square = True
             self.counts, self.terms['A'].counts, self.meta_data = scrape_counts(
                 terms_a=self.terms['A'].terms,
+                inclusions_a=self.terms['A'].inclusions,
                 exclusions_a=self.terms['A'].exclusions,
                 db=db, field=field, api_key=api_key,
                 logging=logging, folder=folder,
@@ -140,8 +113,10 @@ class Counts():
             self.square = False
             self.counts, term_counts, self.meta_data = scrape_counts(
                 terms_a=self.terms['A'].terms,
+                inclusions_a=self.terms['A'].inclusions,
                 exclusions_a=self.terms['A'].exclusions,
                 terms_b=self.terms['B'].terms,
+                inclusions_b=self.terms['B'].inclusions,
                 exclusions_b=self.terms['B'].exclusions,
                 db=db, field=field, api_key=api_key,
                 logging=logging, folder=folder,

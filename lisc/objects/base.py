@@ -52,6 +52,8 @@ class Base():
         ----------
         terms : list of str OR list of list of str
             List of terms to be used.
+        term_type : {'terms', 'inclusions', 'exclusions'}
+            Which type of terms to use.
         """
 
         self.unload_terms(term_type)
@@ -67,12 +69,14 @@ class Base():
         ----------
         f_name : str
             File name to load terms from.
+        term_type : {'terms', 'inclusions', 'exclusions'}
+            Which type of terms to use.
         folder : SCDB or str or None
             A string or object containing a file path.
         """
 
         terms = load_terms_file(f_name, folder)
-        self.add_terms(term_type, terms)
+        self.add_terms(terms, term_type)
 
 
     def check_terms(self, term_type='terms'):
@@ -81,7 +85,7 @@ class Base():
         Attributes
         ----------
         term_type : {'terms', 'inclusions', 'exclusions'}
-            xx
+            Which type of terms to use.
         """
 
         print('List of {} used: \n'.format(term_type))
@@ -96,7 +100,7 @@ class Base():
         Attributes
         ----------
         term_type : {'terms', 'inclusions', 'exclusions'}
-            xx
+            Which type of terms to use.
         """
 
         if getattr(self, term_type):
@@ -106,7 +110,7 @@ class Base():
 
 
     def _check_term_consistency(self):
-        """   """
+        """Check if the loaded terms and inclusions/exclusions are consistent size."""
 
         if self.inclusions and self.n_terms != len(self.inclusions):
             raise InconsistentDataError('Mismatch in number of inclusions and terms!')

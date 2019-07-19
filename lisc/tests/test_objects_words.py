@@ -46,7 +46,7 @@ def test_run_scrape():
     words = Words()
 
     words.add_terms(['language', 'memory'])
-    words.add_exclusions(['protein', ''])
+    words.add_terms(['protein', ''], 'exclusions')
 
     words.run_scrape(db='pubmed', retmax='2')
 

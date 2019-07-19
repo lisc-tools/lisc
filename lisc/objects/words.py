@@ -97,7 +97,7 @@ class Words(Base):
             Whether to print out updates.
         """
 
-        self.results, self.meta_data = scrape_words(self.terms, self.exclusions,
+        self.results, self.meta_data = scrape_words(self.terms, self.inclusions, self.exclusions,
                                                     db=db, retmax=retmax, field=field,
                                                     api_key=api_key, use_hist=use_hist,
                                                     save_n_clear=save_n_clear,

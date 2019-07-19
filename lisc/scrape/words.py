@@ -14,14 +14,17 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', api_key=None,
-                 use_hist=False, save_n_clear=False, logging=None, folder=None, verbose=False):
+def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
+                 field='TIAB', api_key=None, use_hist=False, save_n_clear=False,
+                 logging=None, folder=None, verbose=False):
     """Scrape pubmed for documents using specified term(s).
 
     Parameters
     ----------
     terms : list of list of str
         Search terms.
+    inclusions : list of list of str, optional
+        Inclusion words for search terms.
     exclusions : list of list of str, optional
         Exclusion words for search terms.
     db : str, optional, default: 'pubmed'
@@ -76,12 +79,12 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
-    # Check exclusions
-    if not exclusions:
-        exclusions = [[] for ind in range(len(terms))]
+    # Check inclusions & exclusions
+    inclusions = inclusions if inclusions else [[]] * len(terms)
+    exclusions = exclusions if exclusions else [[]] * len(terms)
 
     # Loop through all the terms
-    for term, excl in zip(terms, exclusions):
+    for term, incl, excl in zip(terms, inclusions, exclusions):
 
         if verbose:
             print('Scraping words for: ', term[0])
@@ -98,14 +101,13 @@ def scrape_words(terms, exclusions=[], db='pubmed', retmax=None, field='TIAB', a
 
         if use_hist:
 
-            ret_start_it = 0
-
             # Get number of papers, and keys to use history
             count = int(page_soup.find('count').text)
             web_env = page_soup.find('webenv').text
             query_key = page_soup.find('querykey').text
 
             # Loop through pulling paper data, using history
+            ret_start_it = 0
             while ret_start_it < count:
 
                 # Set the number of papers per iteration (the ret_max per call)
@@ -201,6 +203,6 @@ def extract_add_info(cur_dat, art_id, art):
     cur_dat.add_pub_date(process_pub_date(extract(art, 'PubDate', 'raw')))
     cur_dat.add_doi(process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
 
-    cur_dat.increment_n_articles()
+    #cur_dat.increment_n_articles()
 
     return cur_dat
