@@ -65,15 +65,11 @@ def treq():
     return Requester()
 
 @pytest.fixture(scope='function')
-def tbase_empty():
+def tbase():
     return load_base()
 
 @pytest.fixture(scope='function')
 def tbase_terms():
-    return load_base(True)
-
-@pytest.fixture(scope='function')
-def tbase_terms_excl():
     return load_base(True, True)
 
 @pytest.fixture(scope='function')

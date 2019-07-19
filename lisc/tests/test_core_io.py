@@ -22,7 +22,8 @@ def test_load_terms_file(tdb):
 
     assert terms
     assert isinstance(terms, list)
-    assert isinstance(terms[0], str)
+    assert isinstance(terms[0], list)
+    assert isinstance(terms[0][0], str)
 
 def test_save_object(tdb, tcounts, twords):
 

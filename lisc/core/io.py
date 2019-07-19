@@ -40,13 +40,14 @@ def load_terms_file(f_name, folder=None):
 
     Returns
     -------
-    terms : list of str
+    terms : list of list of str
         Data from the file.
     """
 
     terms_file = open(os.path.join(check_folder(folder, 'terms'),
                                    check_ext(f_name, '.txt')), 'r')
     terms = terms_file.read().splitlines()
+    terms = [term.split(',') for term in terms]
 
     return terms
 

@@ -15,8 +15,10 @@ class Base():
         Terms words.
     labels : list of str
         Label to reference each term.
+    inclusions : list of str
+        Inclusion words for each term.
     exclusions : list of list str
-        Exclusion words for each term, used to avoid unwanted articles.
+        Exclusion words for each term.
     has_data : bool
         Whether there is any terms and/or data loaded.
     n_terms : int
@@ -27,6 +29,7 @@ class Base():
         """Initialize Base() object."""
 
         self.terms = list()
+        self.inclusions = list()
         self.exclusions = list()
 
     @property
@@ -42,7 +45,7 @@ class Base():
         return [term[0] for term in self.terms]
 
 
-    def add_terms(self, terms):
+    def add_terms(self, terms, term_type='terms'):
         """Add the given list of strings as terms to use.
 
         Parameters
@@ -51,13 +54,13 @@ class Base():
             List of terms to be used.
         """
 
-        self.unload_terms()
-
+        self.unload_terms(term_type)
         for term in terms:
-            self.terms.append(self._check_type(term))
+            getattr(self, term_type).append(self._check_type(term))
+        self._check_term_consistency()
 
 
-    def add_terms_file(self, f_name, folder=None):
+    def add_terms_file(self, f_name, term_type='terms', folder=None):
         """Load terms from a text file.
 
         Parameters
@@ -68,86 +71,48 @@ class Base():
             A string or object containing a file path.
         """
 
-        self.unload_terms()
-
         terms = load_terms_file(f_name, folder)
-
-        for term in terms:
-            self.terms.append(term.split(','))
+        self.add_terms(term_type, terms)
 
 
-    def check_terms(self):
-        """Print out the current list of terms."""
+    def check_terms(self, term_type='terms'):
+        """Print out the current list of terms.
 
-        # Print out header and all term words
-        print('List of terms used: \n')
-        for terms_ls in self.terms:
-            print(", ".join(term for term in terms_ls))
-
-
-    def unload_terms(self):
-        """Unload the current set of terms."""
-
-        if self.terms:
-
-            print('Unloading previous terms words.')
-            self.terms = list()
-
-
-    def add_exclusions(self, exclusions):
-        """Add the given list of strings as exclusion words.
-
-        Parameters
+        Attributes
         ----------
-        exclusions : list of str OR list of list of str
-            List of exclusion words to be used.
+        term_type : {'terms', 'inclusions', 'exclusions'}
+            xx
         """
 
-        self.unload_exclusions()
+        print('List of {} used: \n'.format(term_type))
 
-        for exclude in exclusions:
-            self.exclusions.append(self._check_type(exclude))
-
-        if len(exclusions) != self.n_terms:
-            raise InconsistentDataError('Mismatch in number of exclusions and terms!')
+        for lab, word_lst in zip(self.labels, getattr(self, term_type)):
+            print(lab + "\t : " + ", ".join(word for word in word_lst))
 
 
-    def add_exclusions_file(self, f_name, folder=None):
-        """Load exclusion words from a text file.
+    def unload_terms(self, term_type='terms'):
+        """Unload the current set of terms.
 
-        Parameters
+        Attributes
         ----------
-        f_name : str
-            File name to load exclusion terms from.
-        folder : SCDB or str or None
-            A string or object containing a file path.
+        term_type : {'terms', 'inclusions', 'exclusions'}
+            xx
         """
 
-        self.unload_exclusions()
-        exclusions = load_terms_file(f_name, folder)
+        if getattr(self, term_type):
 
-        if len(exclusions) != self.n_terms:
+            print('Unloading previous {} words.'.format(term_type))
+            setattr(self, term_type, list())
+
+
+    def _check_term_consistency(self):
+        """   """
+
+        if self.inclusions and self.n_terms != len(self.inclusions):
+            raise InconsistentDataError('Mismatch in number of inclusions and terms!')
+
+        if self.exclusions and self.n_terms != len(self.exclusions):
             raise InconsistentDataError('Mismatch in number of exclusions and terms!')
-
-        for exclusion in exclusions:
-            self.exclusions.append(exclusion.split(','))
-
-
-    def check_exclusions(self):
-        """Print out the current list of exclusion words."""
-
-        print('List of exclusion words used: \n')
-        for lab, excs in zip(self.labels, self.exclusions):
-            print(lab + "\t : " + ", ".join(exc for exc in excs))
-
-
-    def unload_exclusions(self):
-        """Unload the current set of exclusion words."""
-
-        if self.exclusions:
-
-            print('Unloading previous exclusion words.')
-            self.exclusions = list()
 
 
     @staticmethod

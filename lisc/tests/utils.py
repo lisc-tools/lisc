@@ -30,11 +30,15 @@ def create_files(folder):
     term_file.write('word\nthing, same')
     term_file.close()
 
+    excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_inclusions.txt'), 'w')
+    excl_file.write('need\nrequired')
+    excl_file.close()
+
     excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_exclusions.txt'), 'w')
     excl_file.write('not\navoid')
     excl_file.close()
 
-def load_base(set_terms=False, set_excl=False):
+def load_base(set_terms=False, set_clusions=False):
     """Helper function to load Base object for testing."""
 
     base = Base()
@@ -42,8 +46,9 @@ def load_base(set_terms=False, set_excl=False):
     if set_terms:
         base.add_terms([['test1', 'test sin'], ['test2', 'uh oh']])
 
-    if set_excl:
-        base.add_exclusions([['exc1', 'blehh'], ['exc2', 'meh']])
+    if set_clusions:
+        base.add_terms([['yeh', 'definitely'], ['need', 'required']], 'inclusions')
+        base.add_terms([['exc1', 'blehh'], ['exc2', 'meh']], 'exclusions')
 
     return base
 

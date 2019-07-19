@@ -13,63 +13,72 @@ def test_base():
 
     assert Base()
 
-def test_add_terms(tbase_empty):
+def test_add_terms(tbase):
 
-    tbase_empty.add_terms(['word', 'thing'])
-    assert tbase_empty.terms == [['word'], ['thing']]
+    tbase.add_terms(['word', 'thing'])
+    assert tbase.terms == [['word'], ['thing']]
 
-    tbase_empty.add_terms(['word', ['thing', 'same']])
-    assert tbase_empty.terms == [['word'], ['thing', 'same']]
+    tbase.add_terms(['word', ['thing', 'same']])
+    assert tbase.terms == [['word'], ['thing', 'same']]
 
-def test_add_terms_file(tdb, tbase_empty):
+    tbase.add_terms(['need', 'required'], 'inclusions')
+    assert tbase.inclusions
 
-    tbase_empty.add_terms_file('test_terms', folder=tdb)
-    assert tbase_empty.terms
+    tbase.add_terms(['not', 'this'], 'exclusions')
+    assert tbase.exclusions
+
+def test_add_terms_file(tdb, tbase):
+
+    tbase.add_terms_file('test_terms', folder=tdb)
+    assert tbase.terms
+
+    tbase.add_terms_file('test_inclusions', 'inclusions', folder=tdb)
+    assert tbase.inclusions
+
+    tbase.add_terms_file('test_exclusions', 'exclusions', folder=tdb)
+    assert tbase.exclusions
 
 def tests_check_terms(tbase_terms):
 
     tbase_terms.check_terms()
-
-    assert True
+    tbase_terms.check_terms('inclusions')
+    tbase_terms.check_terms('exclusions')
 
 def test_unload_terms(tbase_terms):
 
-    tbase_terms.unload_terms()
+    tbase_terms.unload_terms('inclusions')
+    assert not tbase_terms.inclusions
+
+    tbase_terms.unload_terms('exclusions')
+    assert not tbase_terms.exclusions
+
+    tbase_terms.unload_terms('terms')
 
     assert not tbase_terms.terms
     assert not tbase_terms.n_terms
 
-def test_add_exclusions(tbase_terms):
+def test_check_type(tbase):
 
-    tbase_terms.add_exclusions(['not', 'this'])
+    out = tbase._check_type('string')
+    assert isinstance(out, list)
 
-    assert tbase_terms.exclusions
+    out = tbase._check_type(['list'])
+    assert isinstance(out, list)
 
-    # Check error with improper # of exclusion words
+def test_term_consistency(tbase_terms):
+
+    tbase_terms._check_term_consistency()
+
+    tbase_terms.exclusions = ['need', 'required']
+    tbase_terms._check_term_consistency()
+
+    tbase_terms.exclusions = ['not', 'avoid']
+    tbase_terms._check_term_consistency()
+
     with raises(InconsistentDataError):
-        tbase_terms.add_exclusions(['bad'])
+        tbase_terms.inclusions = ['need']
+        tbase_terms._check_term_consistency()
 
-def test_add_exclusions_file(tdb, tbase_terms):
-
-    tbase_terms.add_exclusions_file('test_exclusions', folder=tdb)
-    assert tbase_terms.exclusions
-
-def test_check_exclusions(tbase_terms_excl):
-
-    tbase_terms_excl.check_exclusions()
-
-    assert True
-
-def test_unload_exclusions(tbase_terms_excl):
-
-    tbase_terms_excl.unload_exclusions()
-
-    assert not tbase_terms_excl.exclusions
-
-def test_check_type(tbase_empty):
-
-    out = tbase_empty._check_type('string')
-    assert isinstance(out, list)
-
-    out = tbase_empty._check_type(['list'])
-    assert isinstance(out, list)
+    with raises(InconsistentDataError):
+        tbase_terms.exclusions = ['not', 'avoid', 'bad']
+        tbase_terms._check_term_consistency()
