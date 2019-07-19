@@ -140,7 +140,7 @@ def process_authors(authors):
     return out
 
 
-@catch_none(2)
+@catch_none(1)
 def process_pub_date(pub_date):
     """Extract and process publication date data.
 
@@ -153,18 +153,13 @@ def process_pub_date(pub_date):
     -------
     year : int or None
         Year the article was published.
-    month : str or None
-        Month the article was published.
     """
 
     # Extract year, convert to int if not None
     year = extract(pub_date, 'Year', 'str')
     year = int(year) if year else year
 
-    # Extract month
-    month = extract(pub_date, 'Month', 'str')
-
-    return year, month
+    return year
 
 
 @catch_none(1)

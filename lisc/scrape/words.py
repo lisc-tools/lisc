@@ -90,7 +90,7 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
             print('Scraping words for: ', term[0])
 
         # Initiliaze object to store data for current term papers
-        cur_dat = Data(term[0], term)
+        cur_dat = Data(term[0])
         cur_dat.update_history('Start Scrape')
 
         # Set up search terms - add exclusions, if there are any
@@ -176,13 +176,13 @@ def get_papers(req, art_url, cur_dat):
     return cur_dat
 
 
-def extract_add_info(cur_dat, art_id, art):
+def extract_add_info(cur_data, art_id, art):
     """Extract information from article web page and add to a data object.
 
     Parameters
     ----------
-    cur_dat : Data() object
-        Object to store information for the current term.
+    cur_data : Data() object
+        Object to store information for the current article.
     art_id : int
         Paper ID of the new paper.
     art : bs4.element.Tag() object
@@ -190,19 +190,17 @@ def extract_add_info(cur_dat, art_id, art):
 
     Returns
     -------
-    cur_dat : Data() object
-        Object to store data from the current term.
+    cur_data : Data() object
+        Object updated with data from the current article.
     """
 
-    cur_dat.add_id(art_id)
-    cur_dat.add_title(extract(art, 'ArticleTitle', 'str'))
-    cur_dat.add_authors(process_authors(extract(art, 'AuthorList', 'raw')))
-    cur_dat.add_journal(extract(art, 'Title', 'str'), extract(art, 'ISOAbbreviation', 'str'))
-    cur_dat.add_words(process_words(extract(art, 'AbstractText', 'str')))
-    cur_dat.add_kws(process_kws(extract(art, 'Keyword', 'all')))
-    cur_dat.add_pub_date(process_pub_date(extract(art, 'PubDate', 'raw')))
-    cur_dat.add_doi(process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
+    cur_data.add_data('ids', art_id)
+    cur_data.add_data('titles', extract(art, 'ArticleTitle', 'str'))
+    cur_data.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
+    cur_data.add_data('journals', (extract(art, 'Title', 'str'), extract(art, 'ISOAbbreviation', 'str')))
+    cur_data.add_data('words', process_words(extract(art, 'AbstractText', 'str')))
+    cur_data.add_data('kws', process_kws(extract(art, 'Keyword', 'all')))
+    cur_data.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))
+    cur_data.add_data('dois', process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
 
-    #cur_dat.increment_n_articles()
-
-    return cur_dat
+    return cur_data

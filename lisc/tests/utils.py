@@ -52,29 +52,29 @@ def load_base(set_terms=False, set_clusions=False):
 
     return base
 
-def load_data(add_dat=False, n_dat=1):
+def load_data(add_data=False, n_data=1):
     """Helper function to load Data object for testing."""
 
-    dat = Data('test', ['test'])
+    data = Data('test')
 
-    if add_dat:
-        for ind in range(n_dat):
-            dat.add_id(1)
-            dat.add_title('title')
-            dat.add_journal('science', 'sc')
-            dat.add_authors([('A', 'B', 'C', 'D')])
-            dat.add_words(['new', 'dat'])
-            dat.add_kws(['lots', 'of', 'erps'])
-            dat.add_pub_date((2112, 'Jan'))
-            dat.add_doi('doi_str')
-            dat.increment_n_articles()
+    if add_data:
+        for ind in range(n_data):
 
-    return dat
+            data.add_data('ids', 1)
+            data.add_data('titles', 'title')
+            data.add_data('journals', ['science', 'sc'])
+            data.add_data('authors', [('A', 'B', 'C', 'D')])
+            data.add_data('words', ['new', 'dat'])
+            data.add_data('kws', ['lots', 'of', 'erps'])
+            data.add_data('years', 2112)
+            data.add_data('dois', 'doi_str')
+
+    return data
 
 def load_data_all():
     """Helper function to load DataAll object for testing."""
 
-    dat = load_data(add_dat=True, n_dat=2)
+    dat = load_data(add_data=True, n_data=2)
     dat_all = DataAll(dat)
 
     return dat_all

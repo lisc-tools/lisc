@@ -24,7 +24,7 @@ def test_get_item():
     with raises(IndexError):
         words['not a thing']
 
-    words.add_results(Data('test', ['test']))
+    words.add_results(Data('test'))
 
     # Test error for wrong key
     with raises(IndexError):

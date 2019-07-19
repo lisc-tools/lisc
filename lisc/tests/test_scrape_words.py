@@ -40,7 +40,6 @@ def test_extract_add_info():
     assert data.words[0][0] == "ten"
     assert data.kws[0][0] == "computational modeling"
     assert data.years[0] == 2017
-    assert data.months[0] == 'May'
     assert data.dois[0] == '10.1111/cogs.12461'
 
     # Check page with all fields missing - check error handling
@@ -52,5 +51,4 @@ def test_extract_add_info():
     assert data.words[1] is None
     assert data.kws[1] is None
     assert data.years[1] is None
-    assert data.months[1] is None
     assert data.dois[1] is None

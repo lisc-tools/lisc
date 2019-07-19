@@ -78,7 +78,7 @@ def tdata_empty():
 
 @pytest.fixture(scope='function')
 def tdata_full():
-    return load_data(add_dat=True, n_dat=2)
+    return load_data(add_data=True, n_data=2)
 
 @pytest.fixture(scope='function')
 def tdata_all():

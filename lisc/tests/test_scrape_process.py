@@ -61,7 +61,7 @@ def test_none_process():
     assert process_words(None) is None
     assert process_kws(None) is None
     assert process_authors(None) is None
-    assert process_pub_date(None) == (None, None)
+    assert process_pub_date(None) == None
     assert process_ids(None, 'doi') == None
 
 def test_process_words():
