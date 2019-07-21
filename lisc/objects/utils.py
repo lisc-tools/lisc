@@ -3,13 +3,15 @@
 ###################################################################################################
 ###################################################################################################
 
-def wrap(string):
-    """Wrap a string in single quotes.
+def wrap(string, char="'"):
+    """Wrap a string in a specified character.
 
     Parameters
     ----------
     string : str
         Input string.
+    char : str
+        The character to wrap around the string.
 
     Returns
     -------
@@ -17,7 +19,7 @@ def wrap(string):
         The input string wrapped in single quotes.
     """
 
-    return "'" + string + "'"
+    return char + string + char
 
 
 def get_max_length(lst, add=0):
@@ -29,7 +31,6 @@ def get_max_length(lst, add=0):
         A list of element to check the length of.
     add : int, optional
         Amount to add to max length, to add as a buffer.
-
 
     Returns
     -------

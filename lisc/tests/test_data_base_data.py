@@ -22,6 +22,5 @@ def test_clear():
     tbase_data.ids = [1, 2, 3]
 
     tbase_data.clear()
-    tbase_data.check_results()
 
     assert tbase_data.n_articles == 0
