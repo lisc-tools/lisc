@@ -17,17 +17,18 @@ Objects
   Counts
   Words
 
-Scrape
-======
+Collect
+=======
 
-.. currentmodule:: lisc.scrape
+.. currentmodule:: lisc.collect
 
 .. autosummary::
   :toctree: generated/
 
-  scrape_info
-  scrape_counts
-  scrape_words
+  collect_info
+  collect_counts
+  collect_words
+  collect_citations
 
 Data Objects
 ============
@@ -37,9 +38,10 @@ Data Objects
 .. autosummary::
   :toctree: generated/
 
+  Term
   Data
-  MetaData
   DataAll
+  MetaData
 
 Requester
 =========
@@ -59,7 +61,9 @@ URLS
 .. autosummary::
   :toctree: generated/
 
-  URLS
+  URLs
+  EUtils
+  OpenCitations
 
 Plotting
 ========
@@ -74,3 +78,25 @@ Plotting
   group.plot_clustermap
   group.plot_dendrogram
   wordcloud.plot_wordcloud
+
+Database Management
+===================
+
+.. currentmodule:: lisc.core.db
+
+.. autosummary::
+  :toctree: generated/
+
+  SCDB
+  create_file_structure
+
+Utilities
+=========
+
+.. currentmodule:: lisc
+
+.. autosummary::
+  :toctree: generated/
+
+  save_object
+  load_object
