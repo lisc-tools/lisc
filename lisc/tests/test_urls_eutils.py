@@ -16,10 +16,9 @@ def test_eutils():
     assert EUtils()
 
 def test_urls_settings():
-    """Tests URLS() returns properly with settings provided, and args defined."""
 
-    urls = EUtils(db='pubmed', retmax=500, retmode='xml')
-    assert urls.settings['db'] == 'pubmed'
+    urls = EUtils(db='database', retmax=500, retmode='xml')
+    assert urls.settings['db'] == 'database'
     assert urls.settings['retmax'] == '500'
     with raises(KeyError):
         urls.settings['field']
@@ -28,27 +27,27 @@ def test_build_url():
 
     urls = EUtils(db='pubmed', retmax='500', field='id', retmode='xml')
 
-    urls.build_url('info', [])
+    urls.build_url('info')
     assert urls.utils['info']
 
-    urls.build_url('query', ['db'])
+    urls.build_url('query', settings=['db'])
     assert urls.utils['query']
 
-    urls.build_url('search', ['db', 'retmode'])
+    urls.build_url('search', settings=['db', 'retmode'])
     assert urls.utils['search']
 
-    urls.build_url('fetch', ['db', 'retmode'])
+    urls.build_url('fetch', settings=['db', 'retmode'])
     assert urls.utils['fetch']
 
 def test_get_url():
 
     urls = EUtils(db='pubmed', retmode='xml')
 
-    urls.build_url('info', ['db'])
+    urls.build_url('info', settings=['db'])
     info = urls.get_url('info')
     assert 'info' in info
 
-    urls.build_url('fetch', ['db', 'retmode'])
+    urls.build_url('fetch', settings=['db', 'retmode'])
     fetch = urls.get_url('fetch', {'WebEnv' : 'DATA'})
     assert 'fetch' in fetch
     assert 'WebEnv' in fetch

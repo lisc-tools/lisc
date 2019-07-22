@@ -104,12 +104,11 @@ class EUtils(URLs):
             An API key for authenticated NCBI user account.
         """
 
-        # Set up the base url & utils list for the EUtils API
         base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
-        utils = {'info' : 'einfo.fcgi?',
-                 'query' : 'egquery.fcgi?',
-                 'search' : 'esearch.fcgi?',
-                 'fetch' : 'efetch.fcgi?'}
+        utils = {'info' : 'einfo.fcgi',
+                 'query' : 'egquery.fcgi',
+                 'search' : 'esearch.fcgi',
+                 'fetch' : 'efetch.fcgi'}
 
         authenticated = bool(api_key)
         URLs.__init__(self, base, utils, authenticated=authenticated)
@@ -119,51 +118,7 @@ class EUtils(URLs):
                            field=field, retmode=retmode, api_key=api_key)
 
 
-    def build_url(self, util, args):
-        """Build the URL for a specified utility, with provided arguments.
+    def authenticate(self, url):
+        """Authenticate a EUtils URL."""
 
-        Parameters
-        ----------
-        util : str
-            Which utility to build the URL for.
-        args : list of str
-            Arguments to use to build the URL.
-        """
-
-        self._check_util(util)
-
-        for arg in args:
-            if arg not in self.settings:
-                raise ValueError('Not all requested arguments available - can not proceed.')
-
-        args = ['api_key'] + args if self.authenticated else args
-        url = self.base + self.utils[util] + \
-            '&'.join([arg + '=' + self.settings[arg] for arg in args])
-
-        self.urls[util] = url
-
-
-    def get_url(self, util, additions={}):
-        """Get a requested URL, with any additional arguments.
-
-        Parameters
-        ----------
-        util : str
-            Which utility to get the URL for.
-        additions : dict, optional
-            Any additional arguments to add to the URL.
-
-        Returns
-        -------
-        full_url : str
-            The requested URL, with any extra arguments added.
-        """
-
-        self._check_util(util)
-
-        extra_args = '&'.join([ke + '=' + va for ke, va in additions.items()])
-        extra_args = '&' + extra_args if extra_args else ''
-
-        full_url = self.urls[util] + extra_args
-
-        return full_url
+        url = url + '&api_key=' + self.settings['api_key']

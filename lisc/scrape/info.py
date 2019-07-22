@@ -33,7 +33,7 @@ def scrape_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=Fa
     """
 
     urls = EUtils(db=db, retmode='xml', api_key=api_key)
-    urls.build_url('info', ['db'])
+    urls.build_url('info', settings=['db'])
 
     meta_data = MetaData()
     req = Requester(wait_time=get_wait_time(urls.authenticated),

@@ -1,4 +1,10 @@
-"""Base URL object for LISC"""
+"""Base URL object for LISC.
+
+Segments : section added to the URL, separated by '/'.
+Settings : settings added to the URL, as key value pairs, following a '?' and added with '&'.
+"""
+
+from lisc.urls.utils import *
 
 ###################################################################################################
 ###################################################################################################
@@ -57,6 +63,69 @@ class URLs():
         """
 
         self.settings = {ke: va for ke, va in kwargs.items() if va is not None}
+
+
+    def authenticate(self, url):
+        """Method to authenticate a URL for a given API.
+
+        Note: this method should be overloaded by any API object that has authentification.
+        """
+
+        return url
+
+
+    def build_url(self, util, segments=[], settings=[]):
+        """Build the URL for a specified utility, with provided settings.
+
+        Parameters
+        ----------
+        util : str
+            Which utility to build the URL for.
+        segments : list of str
+            Segments to add to the URL.
+        settings : dict or list of str
+            Settings to use to build the URL.
+            If list, the settings values are taken from the objects settings attribute.
+        """
+
+        self._check_util(util)
+
+        if isinstance(settings, list):
+            if not all(el in self.settings.keys() for el in settings):
+                raise ValueError('Not all requested settings available - can not proceed.')
+            settings = {ke : va for ke, va in self.settings.items() if ke in settings}
+
+        url = self.base + make_segments([self.utils[util]] + segments) + make_settings(settings)
+
+        if self.authenticated:
+            url = self.authenticate(url)
+
+        self.urls[util] = url
+
+
+    def get_url(self, util, segments=[], settings={}):
+        """Get a requested URL, with any additional segments or settings.
+
+        Parameters
+        ----------
+        util : str
+            Which utility to get the URL for.
+        segments : list of str, optional
+            Any additional segments to add to the URL.
+        settings : dict, optional
+            Any additional settings to add to the URL.
+
+        Returns
+        -------
+        full_url : str
+            The requested URL, with any extra segments and settings added.
+        """
+
+        self._check_util(util)
+
+        full_url = self.urls[util] + make_segments(segments) + make_settings(settings, '&')
+
+        return full_url
 
 
     def _check_util(self, util):

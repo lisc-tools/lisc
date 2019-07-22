@@ -67,9 +67,9 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
     # Get e-utils URLS object
     urls = EUtils(db=db, usehistory='y' if use_hist else 'n', retmax=retmax,
                   retmode='xml', field=field, api_key=api_key)
-    urls.build_url('info', ['db'])
-    urls.build_url('search', ['db', 'usehistory', 'retmax', 'retmode', 'field'])
-    urls.build_url('fetch', ['db', 'retmode'])
+    urls.build_url('info', settings=['db'])
+    urls.build_url('search', settings=['db', 'usehistory', 'retmax', 'retmode', 'field'])
+    urls.build_url('fetch', settings=['db', 'retmode'])
 
     # Initialize results, meta data & requester
     results = []
@@ -98,7 +98,7 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
         cur_dat = Data(term)
 
         # Request web page
-        url = urls.get_url('search', {'term' : term_arg})
+        url = urls.get_url('search', settings={'term' : term_arg})
         page = req.request_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
 
@@ -120,7 +120,7 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
                 # Get article page, scrape data, update position
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
                                 'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
-                art_url = urls.get_url('fetch', url_settings)
+                art_url = urls.get_url('fetch', settings=url_settings)
                 cur_dat = get_papers(req, art_url, cur_dat)
                 ret_start_it += ret_end_it
 
@@ -131,7 +131,7 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
         else:
 
             ids = page_soup.find_all('id')
-            art_url = urls.get_url('fetch', {'id' : ids_to_str(ids)})
+            art_url = urls.get_url('fetch', settings={'id' : ids_to_str(ids)})
             cur_dat = get_papers(req, art_url, cur_dat)
 
         cur_dat.check_results()

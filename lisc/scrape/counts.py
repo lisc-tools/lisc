@@ -67,8 +67,8 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
     urls = EUtils(db=db, retmax='0', field=field, retmode='xml', api_key=api_key)
-    urls.build_url('info', ['db'])
-    urls.build_url('search', ['db', 'retmax', 'retmode', 'field'])
+    urls.build_url('info', settings=['db'])
+    urls.build_url('search', settings=['db', 'retmax', 'retmode', 'field'])
 
     # Initialize meta data & requester
     meta_data = MetaData()
@@ -115,7 +115,7 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
             print('Running counts for: ', term_a.label)
 
         # Get number of results for current term search
-        url = urls.get_url('search', {'term' : term_a_arg})
+        url = urls.get_url('search', settings={'term' : term_a_arg})
         counts_a[a_ind] = get_count(req, url)
 
         for b_ind, (search_b, incl_b, excl_b) in enumerate(zip(terms_b, inclusions_b, exclusions_b)):
@@ -132,11 +132,11 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
             # Get number of results for current term search
             if not square:
-                url = urls.get_url('search', {'term' : term_b_arg})
+                url = urls.get_url('search', settings={'term' : term_b_arg})
                 counts_b[b_ind] = get_count(req, url)
 
             # Get number of results for combination of terms
-            url = urls.get_url('search', {'term' : full_term_arg})
+            url = urls.get_url('search', settings={'term' : full_term_arg})
             count = get_count(req, url)
 
             data_numbers[a_ind, b_ind] = count
