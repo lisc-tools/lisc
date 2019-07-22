@@ -4,20 +4,22 @@ import os
 
 from py.test import raises
 
-from lisc.data.data import *
+from lisc.data.term import Term
 from lisc.tests.utils import load_data
+
+from lisc.data.data import *
 
 ###################################################################################################
 ###################################################################################################
 
 def test_data():
 
-    assert Data('test')
+    assert Data(Term('label', ['search'], ['inclusion'], ['exclusion']))
 
 def test_iter(tdata_full):
 
-    for dat in tdata_full:
-        assert dat
+    for data in tdata_full:
+        assert data
 
 def test_add_data(tdata_empty):
 
@@ -51,18 +53,17 @@ def test_check_results(tdata_full):
     tdata_full.check_results()
 
     tdata_full.ids = [1]
-
     with raises(InconsistentDataError):
         assert tdata_full.check_results()
 
 def test_save(tdb, tdata_full):
 
     tdata_full.save(tdb)
-    assert os.path.exists(os.path.join(tdb.raw_path, 'test.json'))
+    assert os.path.exists(os.path.join(tdb.raw_path, tdata_full.label + '.json'))
 
 def test_load(tdb):
 
-    data = Data('test')
+    data = Data(Term('label', ['search'], ['inclusion'], ['exclusion']))
     data.load(tdb)
 
     assert data

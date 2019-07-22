@@ -66,7 +66,7 @@ class DataAll(BaseData):
         self.all_kws = combine_lists(term_data.kws)
 
         # Convert lists of all words to frequency distributions
-        exclusions = exclusions + [self.term] + [self.label] # TO FIX
+        exclusions = exclusions + self.term.search + self.term.inclusions
         self.word_freqs = self.create_freq_dist(self.all_words, exclusions)
         self.kw_freqs = self.create_freq_dist(self.all_kws, exclusions)
 
@@ -100,14 +100,9 @@ class DataAll(BaseData):
         if n_check > len(freqs):
             n_check = len(freqs)
 
-        # Get the requested number of most common kws for the term
+        # Get the requested number of most common words, and convert to str
         top = freqs.most_common()[0:n_check]
-
-        # Join together the top words into a string
-        top_str = ''
-        for i in range(n_check):
-            top_str += top[i][0]
-            top_str += ' , '
+        top_str = ' , '.join([word[0] for word in top[:n_check]])
 
         # Print out the top words for the current term
         print("{:5} : ".format(self.label) + top_str)

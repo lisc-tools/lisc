@@ -2,11 +2,7 @@
 
 from py.test import raises
 
-#import requests
-#import bs4
-#from bs4 import BeautifulSoup
-
-from lisc.data import Data
+from lisc.data import Data, Term
 from lisc.objects.words import Words
 
 ###################################################################################################
@@ -24,7 +20,7 @@ def test_get_item():
     with raises(IndexError):
         words['not a thing']
 
-    words.add_results(Data('test'))
+    words.add_results(Data(Term('test', [], [], [])))
 
     # Test error for wrong key
     with raises(IndexError):
@@ -37,7 +33,7 @@ def test_add_results():
 
     words = Words()
 
-    words.add_results(Data(['test']))
+    words.add_results(Data(Term('test', [], [], [])))
 
     assert words.results
 

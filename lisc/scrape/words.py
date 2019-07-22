@@ -2,7 +2,8 @@
 
 from bs4 import BeautifulSoup
 
-from lisc.data import Data
+from lisc.data.data import Data
+from lisc.data.term import Term
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
@@ -84,17 +85,19 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
     exclusions = exclusions if exclusions else [[]] * len(terms)
 
     # Loop through all the terms
-    for term, incl, excl in zip(terms, inclusions, exclusions):
+    for search, incl, excl in zip(terms, inclusions, exclusions):
+
+        # Collect term information and make search term argument
+        term = Term(search[0], search, incl, excl)
+        term_arg = mk_term(term)
 
         if verbose:
-            print('Scraping words for: ', term[0])
+            print('Scraping words for: ', term.label)
 
         # Initiliaze object to store data for current term papers
-        cur_dat = Data(term[0])
-        cur_dat.update_history('Start Scrape')
+        cur_dat = Data(term)
 
-        # Set up search terms - add exclusions, if there are any
-        term_arg = join(mk_term(term), mk_term(excl), 'NOT')
+        # Request web page
         url = urls.get_url('search', {'term' : term_arg})
         page = req.request_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
@@ -132,7 +135,6 @@ def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
             cur_dat = get_papers(req, art_url, cur_dat)
 
         cur_dat.check_results()
-        cur_dat.update_history('End Scrape')
 
         if save_n_clear:
             cur_dat.save_n_clear(folder=folder)

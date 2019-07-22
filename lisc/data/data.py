@@ -40,8 +40,6 @@ class Data(BaseData):
         Publication year of each article included in object.
     dois : list of str
         DOIs of each article included in object.
-    history : list of str
-        History of the object and it's data.
     """
 
     def __init__(self, term):
@@ -49,8 +47,8 @@ class Data(BaseData):
 
         Parameters
         ----------
-        term  : dict
-            Search term information.
+        term  : Term() object
+            Search term definition
         """
 
         # Inherit from the BaseData object
@@ -104,10 +102,7 @@ class Data(BaseData):
                 == len(self.words) == len(self.journals) == len(self.authors)
                 == len(self.kws) == len(self.years) == len(self.dois)):
 
-            self.update_history('Failed Check')
             raise InconsistentDataError('Words data is inconsistent.')
-
-        self.update_history('Passed Check')
 
 
     def save(self, folder=None):
@@ -125,8 +120,6 @@ class Data(BaseData):
             for art in self:
                 json.dump(art, outfile)
                 outfile.write('\n')
-
-        self.update_history('Saved')
 
 
     def load(self, folder=None):

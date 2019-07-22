@@ -4,6 +4,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 
 from lisc.requester import Requester
+from lisc.data.term import Term
 from lisc.data.meta_data import MetaData
 from lisc.scrape.info import get_db_info
 from lisc.scrape.utils import mk_term, join
@@ -78,17 +79,16 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
     n_terms_a = len(terms_a)
     if len(terms_b) == 0:
         square = True
-        terms_b = terms_a
-        exclusions_b = exclusions_a
+        terms_b, inclusion_b, exclusions_b = terms_a, inclusions_a, exclusions_a
     else:
         square = False
     n_terms_b = len(terms_b)
 
-    # Check exclusions
-    if not exclusions_a:
-        exclusions_a = [[]] * n_terms_a
-    if not exclusions_b:
-        exclusions_b = [[]] * n_terms_b
+    # Check inclusions & exclusions
+    inclusions_a = [[]] * n_terms_a if not inclusions_a else inclusions_a
+    inclusions_b = [[]] * n_terms_b if not inclusions_b else inclusions_b
+    exclusions_a = [[]] * n_terms_a if not exclusions_a else exclusions_a
+    exclusions_b = [[]] * n_terms_b if not exclusions_b else exclusions_b
 
     # Initialize count variables to the correct length
     counts_a = np.ones([n_terms_a], dtype=int) * -1
@@ -105,19 +105,20 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Loop through each term (list-A)
-    for a_ind, (term_a, excl_a) in enumerate(zip(terms_a, exclusions_a)):
-
-        if verbose:
-            print('Running counts for: ', term_a[0])
+    for a_ind, (search_a, incl_a, excl_a) in enumerate(zip(terms_a, inclusions_a, exclusions_a)):
 
         # Make term arguments
-        term_a_arg = join(mk_term(term_a), mk_term(excl_a), 'NOT')
+        term_a = Term(search_a[0], search_a, incl_a, excl_a)
+        term_a_arg = mk_term(term_a)
+
+        if verbose:
+            print('Running counts for: ', term_a.label)
 
         # Get number of results for current term search
         url = urls.get_url('search', {'term' : term_a_arg})
         counts_a[a_ind] = get_count(req, url)
 
-        for b_ind, (term_b, excl_b) in enumerate(zip(terms_b, exclusions_b)):
+        for b_ind, (search_b, incl_b, excl_b) in enumerate(zip(terms_b, inclusions_b, exclusions_b)):
 
             # Skip scrapes of equivalent term combinations - if single term list
             #  This will skip the diagonal row, and any combinations already scraped
@@ -125,7 +126,8 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
                 continue
 
             # Make term arguments
-            term_b_arg = join(mk_term(term_b), mk_term(excl_b), 'NOT')
+            term_b = Term(search_b[0], search_b, incl_b, excl_b)
+            term_b_arg = mk_term(term_b)
             full_term_arg = join(term_a_arg, term_b_arg, 'AND')
 
             # Get number of results for current term search

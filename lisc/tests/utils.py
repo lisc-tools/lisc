@@ -5,7 +5,7 @@ from functools import wraps
 from os.path import join as pjoin
 
 from lisc.objects.base import Base
-from lisc.data import Data, DataAll
+from lisc.data import Data, DataAll, Term
 from lisc.core.modutils import safe_import
 from lisc.core.db import SCDB, create_file_structure, check_folder
 
@@ -55,7 +55,7 @@ def load_base(set_terms=False, set_clusions=False):
 def load_data(add_data=False, n_data=1):
     """Helper function to load Data object for testing."""
 
-    data = Data('test')
+    data = Data(Term('label', ['search'], ['inclusion'], ['exclusion']))
 
     if add_data:
         for ind in range(n_data):
