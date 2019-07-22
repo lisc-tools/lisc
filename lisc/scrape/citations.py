@@ -14,7 +14,7 @@ def scrape_citations(dois, logging=None, folder=None, verbose=False):
     Parameters
     ----------
     dois : list of str
-        xx
+        DOIs to collect citation data for.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
     folder : str or SCDB() object, optional
@@ -58,7 +58,7 @@ def get_citation_data(req, citation_url):
     """
 
     page = req.request_url(citation_url)
-    n_citations = len(json.loads(page.content))
+    n_citations = len(json.loads(page.content.decode('utf-8')))
 
     # If the return is empty, encode as None instead of zero
     #   This is because we don't want to treat missing data as 0 citations

@@ -1,7 +1,5 @@
 """Utility functions for scraping with LISC."""
 
-from lisc.objects.utils import wrap
-
 ###################################################################################################
 ###################################################################################################
 
@@ -22,7 +20,7 @@ def mk_term(term, incl_joiner='OR'):
     """
 
     out = join(join(mk_comp(term.search), mk_comp(term.inclusions, incl_joiner), 'AND'),
-                    mk_comp(term.exclusions), 'NOT')
+               mk_comp(term.exclusions), 'NOT')
 
     return out
 

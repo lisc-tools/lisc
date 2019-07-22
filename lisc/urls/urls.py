@@ -4,7 +4,7 @@ Segments : section added to the URL, separated by '/'.
 Settings : settings added to the URL, as key value pairs, following a '?' and added with '&'.
 """
 
-from lisc.urls.utils import *
+from lisc.urls.utils import make_segments, make_settings
 
 ###################################################################################################
 ###################################################################################################

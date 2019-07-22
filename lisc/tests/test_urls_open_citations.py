@@ -1,7 +1,5 @@
 """Tests for OpenCitatons URLs LISC."""
 
-from py.test import raises
-
 from lisc.urls.open_citations import *
 
 ###################################################################################################

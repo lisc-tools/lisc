@@ -79,7 +79,7 @@ def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
     n_terms_a = len(terms_a)
     if len(terms_b) == 0:
         square = True
-        terms_b, inclusion_b, exclusions_b = terms_a, inclusions_a, exclusions_a
+        terms_b, inclusions_b, exclusions_b = terms_a, inclusions_a, exclusions_a
     else:
         square = False
     n_terms_b = len(terms_b)

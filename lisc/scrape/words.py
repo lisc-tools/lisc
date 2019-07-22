@@ -6,8 +6,8 @@ from lisc.data.data import Data
 from lisc.data.term import Term
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
+from lisc.scrape.utils import mk_term
 from lisc.scrape.info import get_db_info
-from lisc.scrape.utils import mk_term, join
 from lisc.scrape.process import (extract, ids_to_str, process_ids, process_authors,
                                  process_words, process_kws, process_pub_date)
 from lisc.urls.eutils import EUtils, get_wait_time

@@ -3,14 +3,14 @@
 ###################################################################################################
 ###################################################################################################
 
-def prepend(string, prepend):
+def prepend(string, prefix):
     """Append something to the beginning of another string.
 
     Parameters
     ----------
     string : str
         String to prepend to.
-    prepend : str
+    prefix : str
         String to add to the beginning.
 
     Returns
@@ -23,7 +23,7 @@ def prepend(string, prepend):
     This function deals with empty inputs, and returns an empty string in that case.
     """
 
-    return prepend + string if string else string
+    return prefix + string if string else string
 
 
 def make_segments(segments):
