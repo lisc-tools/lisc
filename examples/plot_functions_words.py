@@ -1,6 +1,6 @@
 """
-Example - XXX
-=============
+Example - Words with Functions
+==============================
 
 XXXX.
 """
@@ -13,7 +13,7 @@ XXXX.
 
 ###################################################################################################
 
-from lisc.scrape import scrape_words
+from lisc.collect import collect_words
 
 ###################################################################################################
 
@@ -22,7 +22,7 @@ terms = ['brain', 'body']
 ###################################################################################################
 
 # Scrape words data - set the scrape to return data for at most 5 papers per term
-dat, meta_data = scrape_words(terms, retmax='5', use_hist=False, save_n_clear=False, verbose=True)
+dat, meta_data = collect_words(terms, retmax='5', use_hist=False, save_n_clear=False, verbose=True)
 
 ###################################################################################################
 

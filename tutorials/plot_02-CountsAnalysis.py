@@ -20,8 +20,6 @@ from lisc.plts.group import *
 
 counts = load_object('tutorial_counts', SCDB('lisc_db'))
 
-
-
 ###################################################################################################
 
 counts.check_data(data_type='counts', dim='A', )
@@ -49,12 +47,12 @@ counts.compute_score('association')
 ###################################################################################################
 
 # Plot a matrix of the association index data
-plot_matrix(counts.score, counts.terms['A'].labels, counts.terms['B'].labels)
+plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
 
 ###################################################################################################
 
 # Plot a clustermap of the association index data
-plot_clustermap(counts.score, counts.terms['A'].labels, counts.terms['B'].labels)
+plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
 
 ###################################################################################################
 

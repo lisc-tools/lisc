@@ -7,7 +7,8 @@ Scraping word co-occurence data, using a function oriented approach.
 
 ###################################################################################################
 
-from lisc.scrape import scrape_counts
+from lisc.collect import collect_counts
+#from lisc.analysis.counts import compute_normalization, compute_association_index
 
 ###################################################################################################
 
@@ -20,7 +21,7 @@ terms_b = ['heart', 'lung']
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Run a scrape of 'counts' (co-occurence data) - across a single list of terms
-coocs, term_counts, meta_dat = scrape_counts(terms_a, db='pubmed', verbose=True)
+coocs, term_counts, meta_dat = collect_counts(terms_a, db='pubmed', verbose=True)
 
 ###################################################################################################
 
@@ -45,5 +46,5 @@ for term, count in zip(terms_a, term_counts):
 ###################################################################################################
 
 # Run a scrape of 'counts' (co-occurence data) across two different lists of terms
-coocs, term_counts, meta_dat = scrape_counts(
+coocs, term_counts, meta_dat = collect_counts(
     terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)

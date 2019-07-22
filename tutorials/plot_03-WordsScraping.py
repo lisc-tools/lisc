@@ -73,5 +73,6 @@ db = SCDB('lisc_db')
 # Run words scrape
 words.run_scrape(retmax='10', save_n_clear=True, folder=db)
 
+###################################################################################################
 
 save_object(words, 'tutorial_words', folder=db)

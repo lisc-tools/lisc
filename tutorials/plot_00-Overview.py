@@ -122,7 +122,7 @@ base.add_terms(terms)
 exclusions = [['protein'], ['subcortical']]
 
 # Add the exclusions
-base.add_exclusions(exclusions)
+base.add_terms(exclusions, 'exclusions')
 
 ###################################################################################################
 
@@ -132,7 +132,7 @@ base.check_terms()
 ###################################################################################################
 
 # Check exclusion words
-base.check_exclusions()
+base.check_terms('exclusions')
 
 ###################################################################################################
 #

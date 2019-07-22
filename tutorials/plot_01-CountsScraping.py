@@ -91,15 +91,15 @@ counts.check_top()
 
 # Set some new terms
 terms_a = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
-terms_b = [['vision'], ['audition'], ['somatosensory'], ['olfaction', 'smell'],
+terms_b = [['vision'], ['audition', 'auditory'], ['somatosensory'], ['olfaction', 'smell'],
            ['gustation', 'taste'], ['proprioception'], ['nociception', 'pain']]
 
 ###################################################################################################
 
 # Set terms lists
 #  Different terms lists are indexed by the 'A' and 'B' labels
-counts.add_terms(terms_a, 'A')
-counts.add_terms(terms_b, 'B')
+counts.add_terms(terms_a, dim='A')
+counts.add_terms(terms_b, dim='B')
 
 ###################################################################################################
 
