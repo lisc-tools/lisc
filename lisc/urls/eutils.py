@@ -73,7 +73,7 @@ class EUtils(URLs):
     Attributes
     ----------
     base : str
-        Base URL for the e-utils tools.
+        Base URL for the EUtils API.
     utils : dict
         Collection of EUtils utilities.
     urls : dict
@@ -104,7 +104,7 @@ class EUtils(URLs):
             An API key for authenticated NCBI user account.
         """
 
-        base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+        base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils'
         utils = {'info' : 'einfo.fcgi',
                  'query' : 'egquery.fcgi',
                  'search' : 'esearch.fcgi',

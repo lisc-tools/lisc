@@ -1,4 +1,4 @@
-"""Tests for EUtils URL functions and classes for lisc."""
+"""Tests for EUtils URLs for LISC."""
 
 from py.test import raises
 

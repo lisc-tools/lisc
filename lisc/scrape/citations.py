@@ -1,6 +1,6 @@
 """Scrape citations from OpenCitations."""
 
-from bs4 import BeautifulSoup
+import json
 
 from lisc.requester import Requester
 from lisc.urls.open_citations import OpenCitations
@@ -9,25 +9,40 @@ from lisc.urls.open_citations import OpenCitations
 ###################################################################################################
 
 def scrape_citations(dois, logging=None, folder=None, verbose=False):
-    """   """
+    """Scape OpenCitations for citation data.
+
+    Parameters
+    ----------
+    dois : list of str
+        xx
+    logging : {None, 'print', 'store', 'file'}
+        What kind of logging, if any, to do for requested URLs.
+    folder : str or SCDB() object, optional
+        Folder or database object specifying the save location.
+    verbose : bool, optional, default: False
+        Whether to print out updates.
+
+    Returns
+    -------
+    citations : dict
+        The number of citations for each DOI.
+    """
 
     urls = OpenCitations()
-    #urls.build_url('info', ['db'])
+    urls.build_url('citations')
 
-    # Wait time??
     req = Requester(wait_time=0.1, logging=logging, folder=folder)
 
     if verbose:
         print('Collecting citation data.')
 
-    for doi in dois:
-        get_citation_data(req, citation_url)
+    citations = {doi : get_citation_data(req, urls.get_url('citations', [doi])) for doi in dois}
 
-    return None
+    return citations
 
 
 def get_citation_data(req, citation_url):
-    """Calls EInfo to get info and status of db to be used for scraping.
+    """Extract the number of citations from a citations call.
 
     Parameters
     ----------
@@ -38,22 +53,16 @@ def get_citation_data(req, citation_url):
 
     Returns
     -------
-    xx
-        xx
+    n_citations : int
+        The number of citations the article has received.
     """
 
-    # Get the info page and parse with BeautifulSoup
-    citation_page = req.request_url(citation_url)
+    page = req.request_url(citation_url)
+    n_citations = len(json.loads(page.content))
 
+    # If the return is empty, encode as None instead of zero
+    #   This is because we don't want to treat missing data as 0 citations
+    if n_citations == 0:
+        n_citations = None
 
-    # info_page_soup = BeautifulSoup(info_page.content, 'lxml')
-
-    # # Set list of fields to extract from EInfo
-    # fields = ['dbname', 'menuname', 'description', 'dbbuild', 'count', 'lastupdate']
-
-    # # Extract basic infomation into a dictionary
-    # db_info = dict()
-    # for field in fields:
-    #     db_info[field] = extract(info_page_soup, field, 'str')
-
-    # return db_info
+    return n_citations
