@@ -1,11 +1,11 @@
 """Tests for scrape info."""
 
-from lisc.scrape.info import *
+from lisc.collect.info import *
 
 ###################################################################################################
 ###################################################################################################
 
-def test_scrape_info():
+def test_collect_info():
 
-    out = scrape_info(db='pubmed')
+    out = collect_info(db='pubmed')
     assert out

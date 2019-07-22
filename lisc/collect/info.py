@@ -3,14 +3,14 @@
 from bs4 import BeautifulSoup
 
 from lisc.requester import Requester
-from lisc.scrape.process import extract
+from lisc.collect.process import extract
 from lisc.data.meta_data import MetaData
 from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
 
-def scrape_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=False):
+def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=False):
     """Scrape pubmed for database information & metadata.
 
     Parameters

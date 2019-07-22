@@ -1,11 +1,11 @@
 """Tests for scrape counts."""
 
-from lisc.scrape.counts import *
+from lisc.collect.counts import *
 
 ###################################################################################################
 ###################################################################################################
 
-def test_scrape_counts():
+def test_collect_counts():
 
     terms_a = ['language', 'memory']
     excls_a = [['protein'], ['protein']]
@@ -14,7 +14,7 @@ def test_scrape_counts():
     n_a = len(terms_a)
     n_b = len(terms_b)
 
-    cooc, counts, meta_data = scrape_counts(terms_a, exclusions_a=excls_a, terms_b=terms_b)
+    cooc, counts, meta_data = collect_counts(terms_a, exclusions_a=excls_a, terms_b=terms_b)
 
     assert cooc.shape == (n_a, n_b)
 

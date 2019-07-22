@@ -3,23 +3,23 @@
 import requests
 from bs4 import BeautifulSoup
 
-from lisc.scrape.words import *
+from lisc.collect.words import *
 
 ###################################################################################################
 ###################################################################################################
 
-def test_scrape_words(tdb):
+def test_collect_words(tdb):
     pass
 
     terms = ['science', 'engineering']
     excls = ['philosophy', []]
 
     # Without history, nor save & clearing
-    res, meta_data = scrape_words(terms, excls, db='pubmed', retmax='2', save_n_clear=False, use_hist=False)
+    res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2', save_n_clear=False, use_hist=False)
     assert res
 
     # With history, and using save and clear
-    res, meta_data = scrape_words(terms, excls, db='pubmed', retmax='2', use_hist=True, folder=tdb)
+    res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2', use_hist=True, folder=tdb)
     assert res
 
 def test_extract_add_info():

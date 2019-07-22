@@ -1,7 +1,7 @@
 """Class for LISC word analysis: analyses of text data."""
 
 from lisc.objects.base import Base
-from lisc.scrape import scrape_words
+from lisc.collect import collect_words
 
 ###################################################################################################
 ###################################################################################################
@@ -97,9 +97,9 @@ class Words(Base):
             Whether to print out updates.
         """
 
-        self.results, self.meta_data = scrape_words(self.terms, self.inclusions, self.exclusions,
-                                                    db=db, retmax=retmax, field=field,
-                                                    api_key=api_key, use_hist=use_hist,
-                                                    save_n_clear=save_n_clear,
-                                                    logging=logging, folder=folder,
-                                                    verbose=verbose)
+        self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,
+                                                     db=db, retmax=retmax, field=field,
+                                                     api_key=api_key, use_hist=use_hist,
+                                                     save_n_clear=save_n_clear,
+                                                     logging=logging, folder=folder,
+                                                     verbose=verbose)

@@ -6,18 +6,18 @@ from bs4 import BeautifulSoup
 from lisc.requester import Requester
 from lisc.data.term import Term
 from lisc.data.meta_data import MetaData
-from lisc.scrape.info import get_db_info
-from lisc.scrape.utils import mk_term, join
-from lisc.scrape.process import extract
+from lisc.collect.info import get_db_info
+from lisc.collect.utils import mk_term, join
+from lisc.collect.process import extract
 from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
 
-def scrape_counts(terms_a, inclusions_a=[], exclusions_a=[],
-                  terms_b=[], inclusions_b=[], exclusions_b=[],
-                  db='pubmed', field='TIAB', api_key=None,
-                  logging=None, folder=None, verbose=False):
+def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
+                   terms_b=[], inclusions_b=[], exclusions_b=[],
+                   db='pubmed', field='TIAB', api_key=None,
+                   logging=None, folder=None, verbose=False):
     """Scrape pubmed for word co-occurence.
 
     Parameters

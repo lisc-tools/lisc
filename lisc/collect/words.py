@@ -6,18 +6,18 @@ from lisc.data.data import Data
 from lisc.data.term import Term
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
-from lisc.scrape.utils import mk_term
-from lisc.scrape.info import get_db_info
-from lisc.scrape.process import (extract, ids_to_str, process_ids, process_authors,
-                                 process_words, process_kws, process_pub_date)
+from lisc.collect.utils import mk_term
+from lisc.collect.info import get_db_info
+from lisc.collect.process import (extract, ids_to_str, process_ids, process_authors,
+                                  process_words, process_kws, process_pub_date)
 from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
 ###################################################################################################
 
-def scrape_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
-                 field='TIAB', api_key=None, use_hist=False, save_n_clear=False,
-                 logging=None, folder=None, verbose=False):
+def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
+                  field='TIAB', api_key=None, use_hist=False, save_n_clear=False,
+                  logging=None, folder=None, verbose=False):
     """Scrape pubmed for documents using specified term(s).
 
     Parameters

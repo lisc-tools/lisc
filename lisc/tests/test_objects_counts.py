@@ -11,7 +11,7 @@ def test_counts():
 
     assert Counts()
 
-def test_scrape_one():
+def test_collect_one():
 
     counts = Counts()
 
@@ -23,7 +23,7 @@ def test_scrape_one():
     check_funcs(counts)
     drop_data(counts)
 
-def test_scrape_two():
+def test_collect_two():
 
     counts = Counts()
 

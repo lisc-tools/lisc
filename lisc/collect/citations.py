@@ -8,7 +8,7 @@ from lisc.urls.open_citations import OpenCitations
 ###################################################################################################
 ###################################################################################################
 
-def scrape_citations(dois, logging=None, folder=None, verbose=False):
+def collect_citations(dois, logging=None, folder=None, verbose=False):
     """Scape OpenCitations for citation data.
 
     Parameters

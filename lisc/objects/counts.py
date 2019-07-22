@@ -4,7 +4,7 @@ import numpy as np
 
 from lisc.objects.base import Base
 from lisc.objects.utils import wrap, get_max_length
-from lisc.scrape import scrape_counts
+from lisc.collect import collect_counts
 from lisc.analysis.counts import compute_normalization, compute_association_index
 
 ###################################################################################################
@@ -100,7 +100,7 @@ class Counts():
         # Run single list of terms against themselves, in 'square' mode
         if not self.terms['B'].has_data:
             self.square = True
-            self.counts, self.terms['A'].counts, self.meta_data = scrape_counts(
+            self.counts, self.terms['A'].counts, self.meta_data = collect_counts(
                 terms_a=self.terms['A'].terms,
                 inclusions_a=self.terms['A'].inclusions,
                 exclusions_a=self.terms['A'].exclusions,
@@ -111,7 +111,7 @@ class Counts():
         # Run two different sets of terms
         else:
             self.square = False
-            self.counts, term_counts, self.meta_data = scrape_counts(
+            self.counts, term_counts, self.meta_data = collect_counts(
                 terms_a=self.terms['A'].terms,
                 inclusions_a=self.terms['A'].inclusions,
                 exclusions_a=self.terms['A'].exclusions,
