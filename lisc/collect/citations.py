@@ -8,13 +8,17 @@ from lisc.urls.open_citations import OpenCitations
 ###################################################################################################
 ###################################################################################################
 
-def collect_citations(dois, logging=None, folder=None, verbose=False):
+def collect_citations(dois, util='citations', logging=None, folder=None, verbose=False):
     """Scape OpenCitations for citation data.
 
     Parameters
     ----------
     dois : list of str
         DOIs to collect citation data for.
+    util : {'citations', 'references'}
+        Which utility to collect citation data with.
+        The 'citations' utility collects the number of citations citing the specified DOI.
+        The 'references' utility collects the number of references cited by the specified DOI.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
     folder : str or SCDB() object, optional
@@ -29,14 +33,14 @@ def collect_citations(dois, logging=None, folder=None, verbose=False):
     """
 
     urls = OpenCitations()
-    urls.build_url('citations')
+    urls.build_url(util)
 
     req = Requester(wait_time=0.1, logging=logging, folder=folder)
 
     if verbose:
         print('Collecting citation data.')
 
-    citations = {doi : get_citation_data(req, urls.get_url('citations', [doi])) for doi in dois}
+    citations = {doi : get_citation_data(req, urls.get_url(util, [doi])) for doi in dois}
 
     return citations
 
