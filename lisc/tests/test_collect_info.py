@@ -1,4 +1,4 @@
-"""Tests for scrape info."""
+"""Tests for info collections."""
 
 from lisc.collect.info import *
 

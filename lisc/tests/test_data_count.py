@@ -25,7 +25,6 @@ def test_count_authors():
     tdat = [[('Smith', 'Alfred', 'AS', 'Python'),
              ('Doe', 'Jane', 'JR', 'JavaScript')],
             [('Smith', 'Alfred', 'AS', 'Python')]]
-
     out = count_authors(tdat)
 
     assert out == [(2, ('Smith', 'AS')), (1, ('Doe', 'JR'))]
@@ -36,7 +35,6 @@ def test_count_end_authors():
              ('Middle', 'Arthur', 'AA', 'Matlab'),
              ('Doe', 'Jane', 'JR', 'JavaScript')],
             [('Smith', 'Alfred', 'AS', 'Python')]]
-
     f_authors, l_authors = count_end_authors(tdat)
 
     assert f_authors == [(2, ('Smith', 'AS'))]
@@ -45,7 +43,6 @@ def test_count_end_authors():
 def test_fix_author_names():
 
     tdat = [('Smith', 'AS'), (None, None), ('Doe', 'JR')]
-
     out = _fix_author_names(tdat)
 
     assert out == [('Smith', 'AS'), ('Doe', 'JR')]

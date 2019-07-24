@@ -25,23 +25,20 @@ def test_set_wait_time(treq):
 def test_check(treq):
 
     treq.check()
-    assert True
 
 def test_throttle(treq):
 
     treq.time_last_req = time.time()
-
     treq.throttle()
-    assert True
 
 def test_wait(treq):
 
     treq.wait(0.01)
-    assert True
 
 def test_request_url(treq):
 
     web_page = treq.request_url('http://www.google.com')
+
     assert web_page
 
 def test_logging(tdb):
@@ -67,10 +64,12 @@ def test_get_time(treq):
 def test_open(treq):
 
     treq.open()
+
     assert treq.is_active
 
 def test_close(treq):
 
     treq.open()
     treq.close()
+
     assert not treq.is_active

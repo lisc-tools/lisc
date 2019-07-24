@@ -1,4 +1,4 @@
-"""Tests for scrape citations."""
+"""Tests for citations collections."""
 
 from lisc.collect.citations import *
 

@@ -148,7 +148,10 @@ def create_file_structure(base_path=None, dir_name='lisc_db'):
 
     for level in sorted(PATHS.keys()):
         for label in PATHS[level]:
-            os.mkdir(getattr(db, label + '_path'))
+            try:
+                os.mkdir(getattr(db, label + '_path'))
+            except(FileExistsError):
+                pass
 
     return db
 

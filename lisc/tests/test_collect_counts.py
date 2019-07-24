@@ -1,4 +1,4 @@
-"""Tests for scrape counts."""
+"""Tests for counts collections."""
 
 from lisc.collect.counts import *
 

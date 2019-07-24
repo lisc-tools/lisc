@@ -1,4 +1,4 @@
-"""Tests for the scrape process functions."""
+"""Tests for the process functions for collections."""
 
 from py.test import raises
 

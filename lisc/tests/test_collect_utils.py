@@ -1,4 +1,4 @@
-"""Tests for the scrape utilities."""
+"""Tests for the collection utilities."""
 
 from lisc.data.term import Term
 

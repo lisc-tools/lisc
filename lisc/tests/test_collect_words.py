@@ -1,4 +1,4 @@
-"""Tests for scrape words."""
+"""Tests for words collections."""
 
 import requests
 from bs4 import BeautifulSoup
@@ -9,7 +9,6 @@ from lisc.collect.words import *
 ###################################################################################################
 
 def test_collect_words(tdb):
-    pass
 
     terms = ['science', 'engineering']
     excls = ['philosophy', []]

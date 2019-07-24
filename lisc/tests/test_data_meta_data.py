@@ -10,7 +10,6 @@ def test_meta_data(treq):
     meta_data = MetaData()
     assert meta_data
     assert meta_data['date']
-    print(meta_data)
 
     meta_data.add_requester(treq)
     assert meta_data.requester

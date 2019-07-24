@@ -28,4 +28,5 @@ def test_get_url():
 
     urls.build_url('citations')
     citations = urls.get_url('citations', ['10.1007/s00228-017-2226-2'])
+
     assert '10.1007' in citations

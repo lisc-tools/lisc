@@ -22,9 +22,9 @@ class Requester():
         Number of requests that have been completed.
     wait_time : float
         Amount of time to wait between requests, in seconds.
-    st_time : str
+    start_time : str
         Time when request session started.
-    en_time : str
+    end_time : str
         Time when request session ended.
     time_last_req : float
         Time at which last request was sent.
@@ -52,8 +52,8 @@ class Requester():
 
         self.wait_time = int()
 
-        self.st_time = str()
-        self.en_time = str()
+        self.start_time = str()
+        self.end_time = str()
 
         self.time_last_req = float()
 
@@ -95,8 +95,8 @@ class Requester():
 
         print('Requester object is active: \t', str(self.is_active))
         print('Number of requests sent: \t', str(self.n_requests))
-        print('Requester opened: \t\t', str(self.st_time))
-        print('Requester closed: \t\t', str(self.en_time))
+        print('Requester opened: \t\t', str(self.start_time))
+        print('Requester closed: \t\t', str(self.end_time))
 
 
     def throttle(self):
@@ -158,18 +158,18 @@ class Requester():
     def open(self):
         """Set the current object as active."""
 
-        self.st_time = self._get_time()
+        self.start_time = self._get_time()
         self.is_active = True
 
 
     def close(self):
         """Set the current object as inactive."""
 
-        self.en_time = self._get_time()
+        self.end_time = self._get_time()
         self.is_active = False
 
         if self.logging == 'file':
-            self.log.write('\nREQUESTER LOG - CLOSED AT:  ' + self.en_time)
+            self.log.write('\nREQUESTER LOG - CLOSED AT:  ' + self.end_time)
             self.log.close()
 
 
@@ -193,7 +193,7 @@ class Requester():
         elif logging == 'file':
             log = open(os.path.join(check_folder(folder, 'logs'),
                                     check_ext('requester_log', '.txt')), 'w')
-            log.write('REQUESTER LOG - STARTED AT:  ' + self.st_time)
+            log.write('REQUESTER LOG - STARTED AT:  ' + self.start_time)
 
         else:
             raise ValueError('Logging type not understood.')
@@ -230,4 +230,4 @@ class Requester():
             Current date & time.
         """
 
-        return time.strftime('%H:%M %A %d %B %Y')
+        return time.strftime('%H:%M:%S %A %d %B %Y')
