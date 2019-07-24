@@ -1,5 +1,7 @@
 """Base classes store and process extracted paper data."""
 
+from lisc.data.term import Term
+
 ###################################################################################################
 ###################################################################################################
 
@@ -7,6 +9,10 @@ class BaseData():
     """Base object for storing collected article data."""
 
     def __init__(self, term):
+
+        # If term provided is a string, consider it the label and make a Term object
+        if isinstance(term, str):
+            term = Term(term, [], [], [])
 
         self.term = term
 

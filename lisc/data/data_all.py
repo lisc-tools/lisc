@@ -21,28 +21,28 @@ class DataAll(BaseData):
     ----------
     label : str
         Label for the current term.
-    term : list of str
-        Name(s) of the term word data relates to.
+    term : Term() object
+        Definition of the search term, with inclusions and exclusion words.
     n_articles : int
         Number of articles whos data is included in object.
-    all_words : list of str
-        All abstract words collected across all articles.
-    all_kws : list of str
-        All keywords collected across all articles.
-    word_freqs : nltk.probability.FreqDist
-        Frequency distribution of all words.
-    kw_freqs : nltk.probability.FreqDist
-        Frequency distribution of all keywords.
+    ids : list of int
+        Pubmed article ids for all articles included in object.
+    journals : list of tuple of (int, str)
+        Counter across all journals.
     authors : list of tuple of (int, (str, str))
         Counter across all authors.
     first_authors : list of tuple of (int, (str, str))
         Counter across all first authors.
     last_authors : list of tuple of (int, (str, str))
         Counter across all last authors.
-    journals : list of tuple of (int, str)
-        Counter across all journals.
+    words : nltk.probability.FreqDist
+        Frequency distribution of all words.
+    kws : nltk.probability.FreqDist
+        Frequency distribution of all keywords.
     years : list of tuple of (int, int)
         Counter across all years of publication.
+    dois : list of str
+        DOIs of each article included in object.
     summary : dict
         Summary / overview of data associated with current object.
     """
@@ -61,20 +61,20 @@ class DataAll(BaseData):
         # Inherit from the BaseData object
         BaseData.__init__(self, term_data.term)
 
-        # Combine all articles into single list of all words
-        self.all_words = combine_lists(term_data.words)
-        self.all_kws = combine_lists(term_data.kws)
+        # Copy over tracking of included IDs & DOIs
+        self.ids = term_data.ids
+        self.dois = term_data.dois
+
+        # Get counts of authors, journals, years
+        self.journals = count_journals(term_data.journals)
+        self.authors = count_authors(term_data.authors)
+        self.first_authors, self.last_authors = count_end_authors(term_data.authors)
+        self.years = count_years(term_data.years)
 
         # Convert lists of all words to frequency distributions
         exclusions = exclusions + self.term.search + self.term.inclusions
-        self.word_freqs = self.create_freq_dist(self.all_words, exclusions)
-        self.kw_freqs = self.create_freq_dist(self.all_kws, exclusions)
-
-        # Get counts of authors, journals, years
-        self.authors = count_authors(term_data.authors)
-        self.first_authors, self.last_authors = count_end_authors(term_data.authors)
-        self.journals = count_journals(term_data.journals)
-        self.years = count_years(term_data.years)
+        self.words = self.create_freq_dist(combine_lists(term_data.words), exclusions)
+        self.kws = self.create_freq_dist(combine_lists(term_data.kws), exclusions)
 
         # Initialize summary dictionary
         self.summary = dict()
@@ -92,7 +92,7 @@ class DataAll(BaseData):
         """
 
         if data in ['words', 'kws']:
-            freqs = getattr(self, data[:-1] + '_freqs')
+            freqs = getattr(self, data)
         else:
             raise ValueError('Requested data not understood')
 
@@ -112,27 +112,22 @@ class DataAll(BaseData):
         """Fill the summary dictionary of the current terms Words data."""
 
         # Add data to summary dictionary.
+        self.summary['label'] = self.label
         self.summary['n_articles'] = str(self.n_articles)
         self.summary['top_author_name'] = ' '.join([self.authors[0][1][1],
                                                     self.authors[0][1][0]])
         self.summary['top_author_count'] = str(self.authors[0][0])
         self.summary['top_journal_name'] = self.journals[0][1]
         self.summary['top_journal_count'] = str(self.journals[0][0])
-        self.summary['top_kws'] = [freq[0] for freq in self.kw_freqs.most_common()[0:5]]
-        self.summary['first_publication'] = str(min([y[0] for y in self.years]))
-
-        if self.label != str(self.term[0]):
-            self.summary['name'] = str(self.term[0])
-        else:
-            self.summary['name'] = ''
+        self.summary['top_kws'] = [freq[0] for freq in self.kws.most_common()[0:5]]
+        self.summary['first_publication'] = str(min([year[0] for year in self.years]))
 
 
     def print_summary(self):
         """Print out a summary of the scraped term paper data."""
 
         # Print out summary information
-        print(self.label, ':')
-        print('  Full name of this term is: \t', self.summary['name'])
+        print(self.summary['label'], ':')
         print('  Number of articles: \t\t', self.summary['n_articles'])
         print('  First publication: \t\t', self.summary['first_publication'])
         print('  Most common author: \t\t', self.summary['top_author_name'])

@@ -6,6 +6,7 @@ import json
 from lisc.core.db import check_folder
 from lisc.core.io import parse_json_data, check_ext
 from lisc.core.errors import InconsistentDataError
+from lisc.data.term import Term
 from lisc.data.base_data import BaseData
 
 ###################################################################################################
@@ -18,8 +19,8 @@ class Data(BaseData):
     ----------
     label : str
         Label for the current term.
-    term : list of str
-        Name(s) of the term word data relates to (search terms).
+    term : Term() object
+        Definition of the search term, with inclusions and exclusion words.
     ids : list of int
         Pubmed article ids for all articles included in object.
     n_articles : int
@@ -47,8 +48,9 @@ class Data(BaseData):
 
         Parameters
         ----------
-        term  : Term() object
-            Search term definition
+        term  : Term() object or str.
+            Search term definition.
+            If input is a string, it is used as the label for the term.
         """
 
         # Inherit from the BaseData object
@@ -61,8 +63,6 @@ class Data(BaseData):
         for ind in range(self.n_articles):
 
             yield {
-                'label': self.label,
-                'term': self.term,
                 'id': self.ids[ind],
                 'title': self.titles[ind],
                 'journal': self.journals[ind],
@@ -80,9 +80,9 @@ class Data(BaseData):
         Parameters
         ----------
         field : str
-            xx
+            The attribute of the object to add data to.
         new_data : str or int or list
-            xx
+            Data to add to object.
         """
 
         getattr(self, field).append(new_data)
@@ -91,6 +91,8 @@ class Data(BaseData):
     def check_results(self):
         """Check for consistencty in extracted results.
 
+        Notes
+        -----
         If everything worked, each data field (ids, titles, words, years)
         should have the same length, equal to the number of articles.
         Some entries may be blank (missing data), but if the lengths are not
@@ -117,6 +119,8 @@ class Data(BaseData):
         folder = check_folder(folder, 'raw')
 
         with open(os.path.join(folder, check_ext(self.label, '.json')), 'w') as outfile:
+            json.dump({'term' : self.term}, outfile)
+            outfile.write('\n')
             for art in self:
                 json.dump(art, outfile)
                 outfile.write('\n')
@@ -134,6 +138,8 @@ class Data(BaseData):
         folder = check_folder(folder, 'raw')
 
         data = parse_json_data(os.path.join(folder, check_ext(self.label, '.json')))
+
+        self.term  = Term(*next(data)['term'])
 
         for dat in data:
             self.add_data('ids', dat['id'])
