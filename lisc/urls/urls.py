@@ -10,7 +10,7 @@ from lisc.urls.utils import make_segments, make_settings
 ###################################################################################################
 
 class URLs():
-    """Class to hold URL information for SCANR project.
+    """Class to hold URL information for an API interface.
 
     Attributes
     ----------
@@ -26,9 +26,21 @@ class URLs():
         Whether acting as an authenticated user for the API.
     """
 
-    def __init__(self, base, utils, authenticated=None):
+    def __init__(self, base, utils={}, authenticated=None):
+        """Initialize a URLs object.
+
+        Parameters
+        ----------
+        base : str
+            Base URL for the API.
+        utils : dict
+            Utilities for the utility, a dictionary with names and URL extensions.
+        authenticated : bool
+            Whether acting as an authenticated user for the API.
+        """
 
         self.base = base
+        utils['base'] = self.base
         self.utils = utils
         self.urls = {key : None for key in self.utils.keys()}
         self.settings = {}
@@ -81,7 +93,9 @@ class URLs():
         Notes
         -----
         This is a placeholder method, on the base URLs object, and should be
-        overloaded by any API object that has authentification.
+        overloaded by any API object that has authentification, with a
+        method that implements whatever is needed to authenticate the URL
+        for the API.
         """
 
         return url
@@ -134,9 +148,13 @@ class URLs():
             The requested URL, with any extra segments and settings added.
         """
 
-        self._check_util(util)
+        if not util in self.utils.keys():
+            self.build_url(util)
 
-        full_url = self.urls[util] + make_segments(segments) + make_settings(settings, '&')
+        url = self.urls[util]
+        settings_join = '?' if not '?' in url else '&'
+
+        full_url = url + make_segments(segments) + make_settings(settings, settings_join)
 
         return full_url
 

@@ -71,7 +71,7 @@ class Words(Base):
 
 
     def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
-                       api_key=None, save_n_clear=False, logging=None,
+                       api_key=None, save_and_clear=False, logging=None,
                        folder=None, verbose=False):
         """Launch a collection of words data.
 
@@ -88,7 +88,7 @@ class Words(Base):
             Use e-utilities history: storing results on their server, as needed.
         api_key : str
             An API key for a NCBI account.
-        save_n_clear : bool, optional, default: False
+        save_and_clear : bool, optional, default: False
             Whether to save words data to disk per term as it goes, instead of holding in memory.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
@@ -101,5 +101,5 @@ class Words(Base):
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,
                                                      db=db, retmax=retmax, field=field,
                                                      usehistory=usehistory, api_key=api_key,
-                                                     save_n_clear=save_n_clear, logging=logging,
+                                                     save_and_clear=save_and_clear, logging=logging,
                                                      folder=folder, verbose=verbose)

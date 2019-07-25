@@ -68,7 +68,7 @@ def test_load(tdb):
 
     assert data
 
-def test_save_n_clear(tdb, tdata_full):
+def test_save_and_clear(tdb, tdata_full):
 
-    tdata_full.save_n_clear(tdb)
+    tdata_full.save_and_clear(tdb)
     assert tdata_full.n_articles == 0

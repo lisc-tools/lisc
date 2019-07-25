@@ -56,6 +56,7 @@ class MetaData():
         requester.close()
         req_dict = requester.as_dict()
 
+        _ = req_dict.pop('is_active')
         log = req_dict.pop('log')
         if isinstance(log, list):
             self.log = log

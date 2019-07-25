@@ -17,7 +17,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 
 def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
                   retmax=None, field='TIAB', usehistory=False, api_key=None,
-                  save_n_clear=False, logging=None, folder=None, verbose=False):
+                  save_and_clear=False, logging=None, folder=None, verbose=False):
     """Collect text data and metadata from pubmed using specified search term(s).
 
     Parameters
@@ -39,7 +39,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         Use e-utilities history: storing results on their server, as needed.
     api_key : str
         An API key for a NCBI account.
-    save_n_clear : bool, optional, default: False
+    save_and_clear : bool, optional, default: False
         Whether to save words data to disk per term as it goes, instead of holding in memory.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
@@ -136,8 +136,8 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
 
         cur_dat.check_results()
 
-        if save_n_clear:
-            cur_dat.save_n_clear(folder=folder)
+        if save_and_clear:
+            cur_dat.save_and_clear(folder=folder)
         results.append(cur_dat)
 
     meta_data.add_requester(req)

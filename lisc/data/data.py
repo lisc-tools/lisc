@@ -154,7 +154,7 @@ class Data(BaseData):
         self.check_results()
 
 
-    def save_n_clear(self, folder=None):
+    def save_and_clear(self, folder=None):
         """Save out the attached data and clear the object.
 
         Parameters

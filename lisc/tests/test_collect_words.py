@@ -15,7 +15,7 @@ def test_collect_words(tdb):
 
     # Without history, nor save & clearing
     res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2',
-                                   save_n_clear=False, usehistory=False)
+                                   save_and_clear=False, usehistory=False)
     assert res
 
     # With history, and using save and clear

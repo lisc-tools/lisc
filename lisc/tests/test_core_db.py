@@ -20,3 +20,7 @@ def test_check_folder():
     assert check_folder(None, '') == ''
     assert check_folder('string', '') == 'string'
     assert isinstance(check_folder(SCDB(), 'terms'), str)
+
+def test_check_file_structure(tdb):
+
+    check_file_structure(tdb.base_path)

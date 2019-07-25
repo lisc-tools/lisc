@@ -2,6 +2,7 @@
 
 import os
 import time
+from copy import deepcopy
 
 import requests
 
@@ -72,7 +73,8 @@ class Requester():
     def as_dict(self):
         """Get the attributes of the Requester object as a dictionary."""
 
-        req_dict = self.__dict__
+        # Copy is so that attributes aren't dropped from object itself
+        req_dict = deepcopy(self.__dict__)
         req_dict.pop('time_last_req')
 
         return req_dict
