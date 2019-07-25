@@ -2,11 +2,12 @@
 
 import pkg_resources as pkg
 from functools import wraps
+from os.path import join as pjoin
 
-from lisc.objs.base import Base
-from lisc.data import Data, DataAll
-from lisc.core.db import SCDB
+from lisc.objects.base import Base
+from lisc.data import Data, DataAll, Term
 from lisc.core.modutils import safe_import
+from lisc.core.db import SCDB, create_file_structure, check_folder
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -19,57 +20,64 @@ class TestDB(SCDB):
     def __init__(self):
 
         # Initialize from normal database object
-        SCDB.__init__(self, auto_gen=False)
+        base = pkg.resource_filename(__name__, 'test_db')
+        SCDB.__init__(self, base_path=base)
 
-        # Set up the base path to tests data
-        self.base_path = pkg.resource_filename(__name__, 'test_db')
-        self.gen_paths()
+def create_files(folder):
+    """Creates some test term files."""
 
-###################################################################################################
-###################################################################################################
+    term_file = open(pjoin(check_folder(folder, 'terms'), 'test_terms.txt'), 'w')
+    term_file.write('word\nthing, same')
+    term_file.close()
 
-def load_base(set_terms=False, set_excl=False):
+    excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_inclusions.txt'), 'w')
+    excl_file.write('need\nrequired')
+    excl_file.close()
+
+    excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_exclusions.txt'), 'w')
+    excl_file.write('not\navoid')
+    excl_file.close()
+
+def load_base(set_terms=False, set_clusions=False):
     """Helper function to load Base object for testing."""
 
     base = Base()
 
     if set_terms:
-        base.set_terms([['test1', 'test sin'], ['test2', 'uh oh']])
+        base.add_terms([['test1', 'test sin'], ['test2', 'uh oh']])
 
-    if set_excl:
-        base.set_exclusions([['exc1', 'blehh'], ['exc2', 'meh']])
+    if set_clusions:
+        base.add_terms([['yeh', 'definitely'], ['need', 'required']], 'inclusions')
+        base.add_terms([['exc1', 'blehh'], ['exc2', 'meh']], 'exclusions')
 
     return base
 
-def load_data(add_dat=False, n_dat=1):
+def load_data(add_data=False, n_data=1):
     """Helper function to load Data object for testing."""
 
-    dat = Data('test', ['test'])
+    data = Data(Term('label', ['search'], ['inclusion'], ['exclusion']))
 
-    if add_dat:
-        for i in range(n_dat):
-            dat.add_id(1)
-            dat.add_title('title')
-            dat.add_journal('science', 'sc')
-            dat.add_authors([('A', 'B', 'C', 'D')])
-            dat.add_words(['new', 'dat'])
-            dat.add_kws(['lots', 'of', 'erps'])
-            dat.add_pub_date((2112, 'Jan'))
-            dat.add_doi('doi_str')
-            dat.increment_n_articles()
+    if add_data:
+        for ind in range(n_data):
 
-    return dat
+            data.add_data('ids', 1)
+            data.add_data('titles', 'title')
+            data.add_data('journals', ['science', 'sc'])
+            data.add_data('authors', [('A', 'B', 'C', 'D')])
+            data.add_data('words', ['new', 'dat'])
+            data.add_data('kws', ['lots', 'of', 'erps'])
+            data.add_data('years', 2112)
+            data.add_data('dois', 'doi_str')
+
+    return data
 
 def load_data_all():
     """Helper function to load DataAll object for testing."""
 
-    dat = load_data(add_dat=True, n_dat=2)
+    dat = load_data(add_data=True, n_data=2)
     dat_all = DataAll(dat)
 
     return dat_all
-
-###################################################################################################
-###################################################################################################
 
 def plot_test(func):
     """Decorator for simple testing of plotting functions.
@@ -92,7 +100,6 @@ def plot_test(func):
         assert ax.has_data()
 
     return wrapper
-
 
 def optional_test(dependency):
     """Decorator to only run a test if the specified optional dependency is present.

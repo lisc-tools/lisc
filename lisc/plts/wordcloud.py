@@ -3,7 +3,7 @@
 import random
 
 from lisc.core.modutils import safe_import
-from lisc.plts.utils import savefig
+from lisc.plts.utils import savefig, check_ax
 
 plt = safe_import('.pyplot', 'matplotlib')
 wc = safe_import('wordcloud')
@@ -12,32 +12,32 @@ wc = safe_import('wordcloud')
 ###################################################################################################
 
 @savefig
-def plot_wordcloud(freq_dist, n_words, label):
-    """Create and display wordcloud.
+def plot_wordcloud(freq_dist, n_words, ax=None):
+    """Create and display a wordcloud.
 
     Parameters
     ----------
-    freq_dist : xx
-        xx
+    freq_dist : nltk.FreqDist()
+        Frequency distribution of words to plot.
     n_words : int
         Number of top words to include in the wordcloud.
-    label : xx
-        xx
+    ax : matplotlib.Axes, optional
+        Figure axes upon which to plot.
     """
 
     cloud = create_wordcloud(conv_freqs(freq_dist, 20))
 
-    plt.figure(figsize=(10, 10))
-    plt.imshow(cloud)
-    plt.axis("off")
+    ax = check_ax(ax, (10, 10))
+    ax.imshow(cloud)
+    ax.axis("off")
 
 
-def create_wordcloud(words_in):
+def create_wordcloud(words):
     """Create WordCloud object.
 
     Parameters
     ----------
-    words_in : list of tuple
+    words : list of tuple
         Words to plot, with their corresponding frequencies.
 
     Returns
@@ -53,7 +53,7 @@ def create_wordcloud(words_in):
                          prefer_horizontal=1,
                          relative_scaling=0.5,
                          min_font_size=25,
-                         max_font_size=80).generate_from_frequencies(words_in)
+                         max_font_size=80).generate_from_frequencies(words)
 
     cloud.recolor(color_func=_grey_color_func, random_state=3)
 

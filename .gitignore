@@ -8,7 +8,7 @@
 **/.coverage
 
 # Ignore test data files
-**/tests/data/**
+lisc/tests/test_db/*
 
 # Ignore cache files
 **/.cache
@@ -23,7 +23,8 @@
 # Ignore docsite output files
 /doc/_site/*
 /doc/_build/*
-/doc/auto_tutorial/*
+/doc/auto_tutorials/*
+/doc/auto_examples/*
 /doc/generated/*
 /doc/.sass-cache/*
 

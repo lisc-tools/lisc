@@ -5,29 +5,30 @@ from functools import wraps
 ###################################################################################################
 ###################################################################################################
 
-def CatchNone(func):
-    """Decorator function to catch and return None, if given as first argument."""
+def catch_none(n_return=1):
+    """Decorator function to catch and return None, if given as first argument.
 
-    @wraps
-    def wrapper(*args):
+    Parameters
+    ----------
+    n_return : {1, 2}
+        The number of Nones to return as input, if input is None.
+    """
 
-        if args[0] is not None:
-            return func(*args)
-        else:
-            return None
+    def decorator(func):
 
-    return wrapper
+        @wraps(func)
+        def wrapper(*args, **kwargs):
 
+            if args[0] is not None:
+                return func(*args, **kwargs)
 
-def CatchNone2(func):
-    """Decorator function to catch and return None, None if given as argument."""
+            else:
 
-    @wraps
-    def wrapper(*args):
+                if n_return == 1:
+                    return None
+                elif n_return == 2:
+                    return None, None
 
-        if args[0] is not None:
-            return func(*args)
-        else:
-            return None, None
+        return wrapper
 
-    return wrapper
+    return decorator

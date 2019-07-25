@@ -12,24 +12,45 @@ sns = safe_import('seaborn')
 ###################################################################################################
 ###################################################################################################
 
+def check_args(names, *inputs):
+    """Checks a series of inputs, and renames them and packages them, if they are not None.
+
+    Parameters
+    ----------
+    names : list of str
+        List of names to apply to the given inputs.
+    *inputs
+        Any input variables to check.
+
+    Returns
+    -------
+    dict
+        A dictionary with the new names and values, for all non None inputs.
+    """
+
+    return {label : value for label, value in zip(names, inputs) if value}
+
+
 def get_cmap(cmap):
     """Get a requested colormap.
 
     Parameters
     ----------
     cmap : {'purple', 'blue'}
-        xx
+        Specifier for which colormap to use.
 
     Returns
     -------
-    cmap : xx
-        xx
+    cmap : matplotlib.cmap
+        The specified colormap object.
     """
 
     if cmap == 'purple':
         cmap = sns.cubehelix_palette(as_cmap=True)
     elif cmap == 'blue':
         cmap = sns.cubehelix_palette(as_cmap=True, rot=-.3, light=0.9, dark=0.2)
+    else:
+        raise ValueError('Requested colormap not understood.')
 
     return cmap
 
@@ -41,6 +62,8 @@ def check_ax(ax, figsize=None):
     ----------
     ax : matplotlib.Axes or None
         Axes object to check if is defined.
+    figsize : (float, float)
+        The figure for a new axis, if ax is not defined.
 
     Returns
     -------
