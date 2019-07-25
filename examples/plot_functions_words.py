@@ -1,14 +1,16 @@
 """
-Example - Words with Functions
-==============================
+Words with Functions
+====================
 
-XXXX.
+Scraping article text data and metadata, using a function oriented approach.
 """
 
 ###################################################################################################
 #
-# Function Approach: scrape_words
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Function Approach: collect_words
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# MORE WORDS.
 #
 
 ###################################################################################################
@@ -17,12 +19,13 @@ from lisc.collect import collect_words
 
 ###################################################################################################
 
-terms = ['brain', 'body']
+terms = [['brain'], ['body']]
 
 ###################################################################################################
 
-# Scrape words data - set the scrape to return data for at most 5 papers per term
-dat, meta_data = collect_words(terms, retmax='5', use_hist=False, save_n_clear=False, verbose=True)
+# Collect words data, setting the collection return data for at most 5 papers per term
+dat, meta_data = collect_words(terms, retmax='5', usehistory=False,
+                               save_and_clear=False, verbose=True)
 
 ###################################################################################################
 

@@ -1,24 +1,30 @@
 """
-Example - Counts with Functions
-===============================
+Counts with Functions
+=====================
 
 Scraping word co-occurence data, using a function oriented approach.
 """
 
 ###################################################################################################
+#
+# Function Approach: collect_counts
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# MORE WORDS.
+#
+
+###################################################################################################
 
 from lisc.collect import collect_counts
-#from lisc.analysis.counts import compute_normalization, compute_association_index
+from lisc.analysis.counts import compute_association_index
 
 ###################################################################################################
 
-terms_a = ['protein', 'gene']
-terms_b = ['heart', 'lung']
+# Set some terms lists
+terms_a = [['protein'], ['gene']]
+terms_b = [['heart'], ['lung']]
 
 ###################################################################################################
-#
-# Running a scrape with the scrape_counts function
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Run a scrape of 'counts' (co-occurence data) - across a single list of terms
 coocs, term_counts, meta_dat = collect_counts(terms_a, db='pubmed', verbose=True)
@@ -48,3 +54,20 @@ for term, count in zip(terms_a, term_counts):
 # Run a scrape of 'counts' (co-occurence data) across two different lists of terms
 coocs, term_counts, meta_dat = collect_counts(
     terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)
+
+###################################################################################################
+#
+# Calculating Scores
+# ~~~~~~~~~~~~~~~~~~
+#
+#
+
+###################################################################################################
+
+# Compute the association index score
+score = compute_association_index(coocs, term_counts[0], term_counts[1])
+
+###################################################################################################
+
+# Check the computed score measure for the co-occurence collection
+print(score)
