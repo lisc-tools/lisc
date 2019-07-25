@@ -1,6 +1,6 @@
 """
-Tutorial 01 - Counts Scraping
-=============================
+Tutorial 01: Counts Collection
+==============================
 
 Scraping term co-occurence data from scientific literature.
 """
@@ -12,8 +12,7 @@ Scraping term co-occurence data from scientific literature.
 #
 # Term co-occurence searches the literature, and checks how often terms of interest appear together.
 #
-# This type of analysis can be used to infer associations and relationships between
-# terms of interest.
+# This type of analysis can be used to infer associations and relationships between terms.
 #
 
 ###################################################################################################
@@ -33,8 +32,8 @@ from lisc.core.io import save_object
 
 ###################################################################################################
 #
-# Counts: single list
-# -------------------
+# Counts: Single List of Terms
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # For the first example of running a counts analysis, we will use a single list of terms.
 #
@@ -47,7 +46,7 @@ from lisc.core.io import save_object
 
 ###################################################################################################
 
-# Set up some test data
+# Set up some terms to search for
 terms = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
 
 # Initialize counts object & add the terms that we want to scrape
@@ -56,12 +55,24 @@ counts.add_terms(terms)
 
 ###################################################################################################
 
-# Run scrape
-counts.run_scrape(verbose=True)
+# Collect data
+counts.run_collection(verbose=True)
 
 ###################################################################################################
 #
-# The Counts object also comes with some helper methods to check out the data.
+# We have now collected some literature data!
+#
+# The Counts object will now contain count data for the word coocurence data between terms.
+#
+
+###################################################################################################
+
+# Check out the raw count data
+print(counts.counts)
+
+###################################################################################################
+#
+# The Counts object also comes with some helper methods to explore the data.
 #
 
 ###################################################################################################
@@ -76,8 +87,8 @@ counts.check_top()
 
 ###################################################################################################
 #
-# Counts: two lists
-# -----------------
+# Counts: Two Terms Lists
+# ~~~~~~~~~~~~~~~~~~~~~~~
 #
 # In the first example above, we provided a single list of terms.
 #
@@ -103,15 +114,19 @@ counts.add_terms(terms_b, dim='B')
 
 ###################################################################################################
 
-# Scrape co-occurence data
-counts.run_scrape()
+# Collect co-occurence data
+counts.run_collection()
 
 ###################################################################################################
 #
-# From there you can use all the same methods to explore the data
+# From there you can use all the same methods to explore the data we just collected.
+#
+# In the next tutorial, we explore analyzing our collected counts data.
+#
+# For now, let's save out our collected counts data, using the LISC utility to save the object.
 #
 
 ###################################################################################################
 
-# Save out our counts object
+# Save out the counts object
 save_object(counts, 'tutorial_counts', folder=SCDB('lisc_db'))

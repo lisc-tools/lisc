@@ -1,14 +1,17 @@
 """
-Tutorial 00 - LISC Overview
-===========================
+Tutorial 00: LISC Overview
+==========================
 
 An overview of the LISC code organization and approach.
 """
 
 ###################################################################################################
 #
-# Overview
-# -----------
+# LISC Overview
+# -------------
+#
+# LISC, or 'Literature Scanner', is a module for collecting and analyzing data and
+# information from the scientific literature.
 #
 # In this overview tutorial, we will first explore the main aspects of LISC, and
 # how it handles terms, data, files and requests.
@@ -54,7 +57,6 @@ An overview of the LISC code organization and approach.
 
 ###################################################################################################
 
-# Import the Base object
 from lisc.objects.base import Base
 
 ###################################################################################################
@@ -69,6 +71,8 @@ base = Base()
 #
 # For collecting papers and literature data, one first has to select search terms to
 # find the literature of interest.
+#
+# Note that by default, all search terms as used as exact term matches.
 #
 
 ###################################################################################################
@@ -86,30 +90,76 @@ base.check_terms()
 
 ###################################################################################################
 #
-# Synonyms & Exclusion Words
-# --------------------------
+# Complex Search Terms
+# --------------------
 #
-# So far, we have chosen some search terms to use as queries, and added them to our object.
+# So far, we have chosen some search terms, as single terms, to use as queries,
+# and added them to our object.
 #
-# However, we often need more than just single search terms - we might want to
-# also be able to specify synonyms and exclusion words.
+# Sometimes we might want more than just particular search words. We might want to
+# specify synonyms and/or use include inclusions or exclusion words.
+#
+# Synonyms
+# ~~~~~~~~
+#
+# To include synonyms, just add more entries to the input list of terms.
 #
 # Synonyms are combined with the 'OR' operator, meaning results will
 # be returned if they include any of the given terms.
 #
+# For example, the set of search terms ['brain', 'cortex'] is interpreted as:
+# '("brain"OR"cortex")'.
+#
+# Note that being able to include synonyms is the reason each term entry is itself a list.
+#
+# Inclusion & Exclusion Words
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Sometimes we might need to control the results that we get, by including inclusion
+# and exclusion words. Inclusions words are words that must also appear in the document
+# for a result to be returned. Exclusions words are words that must not be included in a
+# result in order for it to be returned.
+#
+# Inclusions words are combined with the 'AND' operator, meaning entries
+# will only be included if they also include these words.
+#
+# For example, the search terms ['brain', 'cortex'] with the inclusion word ['biology']
+# is interpreted as '("brain"OR"cortex")AND("biology")'.
+#
 # Exclusion words are combined with the 'NOT' operator, meaning entries
 # will be excluded if they include these terms.
 #
-# For example, using search terms ['gene', 'genetic'] with exclusion words ['protein']
-# creates the full search term: `'("gene"OR"genetic"NOT"protein")'`
+# For example, the search terms ['brain', 'cortex'] with the exclusion word ['body']
+# is interpreted as '("brain"OR"cortex")NOT("body")'.
 #
-# So let's update our set of terms, to include some synonyms and exclusions.
+# Putting it all Together
+# ~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Synonyms, inclusion and exclusion words can all be used together. Note also that
+# you can also specific synonyms for inclusion and exclusion words.
+#
+# For example, the following set of search term components:
+# - search terms ['brain', 'cortex']
+# - inclusion words ['biology', 'biochemistry']
+# - exclusion words ['body', 'corporeal']
+#
+# All combine to give the seach term of:
+# - `'("gene"OR"genetic)AND("biology"OR"biochemistry")NOT("body"OR"corporeal)'`
+#
+# TITLE
+# ~~~~~
+#
+#
+# Note that inclusion and exclusion words are should be lists of the same
+# length as the number of search terms. Each inclusion and exclusion term
+# is used for the corresponding search term.
+#
+# Now let's update our set of terms, to include some synonyms, inclusions and exclusions.
 #
 
 ###################################################################################################
 
-# Set up terms with synonyms
-#  Being able to include synonyms is the reason each term entry is itself a list
+# Set up a list of multiple terms, each with synonyms
 terms = [['gene', 'genetic'], ['cortex', 'cortical']]
 
 # Add the terms
@@ -117,11 +167,13 @@ base.add_terms(terms)
 
 ###################################################################################################
 
-# Set up exclusions
-#  You can also include synonyms for exclusions - which is why each entry is also a list
+# Set up inclusions and exclusions
+#   Each is a list, that should be the same length as the number of terms
+inclusions = [['brain'], ['body']]
 exclusions = [['protein'], ['subcortical']]
 
-# Add the exclusions
+# Add the inclusion and exclusions
+base.add_terms(inclusions, 'inclusions')
 base.add_terms(exclusions, 'exclusions')
 
 ###################################################################################################
@@ -131,7 +183,8 @@ base.check_terms()
 
 ###################################################################################################
 
-# Check exclusion words
+# Check inclusion & exclusion words
+base.check_terms('inclusions')
 base.check_terms('exclusions')
 
 ###################################################################################################
@@ -151,8 +204,8 @@ base.labels
 
 ###################################################################################################
 #
-# On Objects
-# ~~~~~~~~~~
+# LISC Objects
+# ~~~~~~~~~~~~
 #
 # Though LISC offers an object-oriented approach, note that the core procedures available
 # for scraping and analyzing data are implemented as stand-alone functions.
