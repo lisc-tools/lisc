@@ -13,7 +13,7 @@ wc = safe_import('wordcloud')
 
 @savefig
 def plot_wordcloud(freq_dist, n_words, ax=None):
-    """Create and display wordcloud.
+    """Create and display a wordcloud.
 
     Parameters
     ----------
@@ -32,12 +32,12 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
     ax.axis("off")
 
 
-def create_wordcloud(words_in):
+def create_wordcloud(words):
     """Create WordCloud object.
 
     Parameters
     ----------
-    words_in : list of tuple
+    words : list of tuple
         Words to plot, with their corresponding frequencies.
 
     Returns
@@ -53,7 +53,7 @@ def create_wordcloud(words_in):
                          prefer_horizontal=1,
                          relative_scaling=0.5,
                          min_font_size=25,
-                         max_font_size=80).generate_from_frequencies(words_in)
+                         max_font_size=80).generate_from_frequencies(words)
 
     cloud.recolor(color_func=_grey_color_func, random_state=3)
 

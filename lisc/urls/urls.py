@@ -68,7 +68,20 @@ class URLs():
     def authenticate(self, url):
         """Method to authenticate a URL for a given API.
 
-        Note: this method should be overloaded by any API object that has authentification.
+        Parameters
+        ----------
+        url : str
+            URL to add authentification to.
+
+        Returns
+        -------
+        str
+            Authenticated URL.
+
+        Notes
+        -----
+        This is a placeholder method, on the base URLs object, and should be
+        overloaded by any API object that has authentification.
         """
 
         return url

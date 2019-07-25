@@ -1,8 +1,9 @@
-"""Scrape citations from OpenCitations."""
+"""Collect citation data from OpenCitations."""
 
 import json
 
 from lisc.requester import Requester
+from lisc.data.meta_data import MetaData
 from lisc.urls.open_citations import OpenCitations
 
 ###################################################################################################
@@ -30,11 +31,14 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
     -------
     citations : dict
         The number of citations for each DOI.
+    meta_data : MetaData() object
+        Meta data about the data collection.
     """
 
     urls = OpenCitations()
     urls.build_url(util)
 
+    meta_data = MetaData()
     req = Requester(wait_time=0.1, logging=logging, folder=folder)
 
     if verbose:
@@ -42,7 +46,9 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
 
     citations = {doi : get_citation_data(req, urls.get_url(util, [doi])) for doi in dois}
 
-    return citations
+    meta_data.add_requester(req)
+
+    return citations, meta_data
 
 
 def get_citation_data(req, citation_url):

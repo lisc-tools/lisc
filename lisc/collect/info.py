@@ -1,4 +1,4 @@
-"""Scrape info & meta data from Pubmed."""
+"""Collect info & meta data from Pubmed."""
 
 from bs4 import BeautifulSoup
 
@@ -11,7 +11,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 
 def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=False):
-    """Scrape pubmed for database information & metadata.
+    """Collect database information & metadata from pubmed.
 
     Parameters
     ----------
@@ -29,7 +29,7 @@ def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=F
     Returns
     -------
     meta_data : MetaData() object
-        Meta data about the scrape.
+        Meta data about the data collection.
     """
 
     urls = EUtils(db=db, retmode='xml', api_key=api_key)

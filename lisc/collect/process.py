@@ -101,7 +101,7 @@ def process_kws(keywords):
 
     Parameters
     ----------
-    kws : bs4.element.ResultSet
+    keywords : bs4.element.ResultSet
         List of all the keyword tags.
 
     Returns
@@ -119,7 +119,7 @@ def process_authors(authors):
 
     Parameters
     ----------
-    author_list : bs4.element.Tag
+    authors : bs4.element.Tag
         AuthorList tag, which contains tags related to author data.
 
     Returns

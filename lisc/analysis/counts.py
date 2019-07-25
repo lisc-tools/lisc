@@ -14,6 +14,8 @@ def compute_normalization(data, counts, dim='A'):
         Counts of co-occurence of terms.
     counts : 1d array
         Counts for each individual search term.
+    dim : {'A', 'B'}, optional
+        Which set of terms to operate upon.
 
     Returns
     -------

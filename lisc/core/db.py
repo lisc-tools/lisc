@@ -35,7 +35,15 @@ class SCDB():
     """
 
     def __init__(self, base_path=None, auto_gen=True):
-        """Initialize SCDB object."""
+        """Initialize SCDB object.
+
+        Parameters
+        ----------
+        base_path : str
+            The path to where the database is located.
+        auto_gen : bool
+            Whether to automatically generate all the paths for the database folders.
+        """
 
         # Set base path for the project
         self.base_path = ("") if not base_path else base_path

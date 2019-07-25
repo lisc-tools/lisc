@@ -1,4 +1,4 @@
-"""Scrape words data from Pubmed."""
+"""Collect words data from Pubmed."""
 
 from bs4 import BeautifulSoup
 
@@ -15,10 +15,10 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
-                  field='TIAB', api_key=None, use_hist=False, save_n_clear=False,
-                  logging=None, folder=None, verbose=False):
-    """Scrape pubmed for documents using specified term(s).
+def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
+                  retmax=None, field='TIAB', usehistory=False, api_key=None,
+                  save_n_clear=False, logging=None, folder=None, verbose=False):
+    """Collect text data and metadata from pubmed using specified search term(s).
 
     Parameters
     ----------
@@ -35,10 +35,10 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
     field : str, optional, default: 'TIAB'
         Field to search for term within.
         Defaults to 'TIAB', which is Title/Abstract.
+    usehistory : bool, optional, default: False
+        Use e-utilities history: storing results on their server, as needed.
     api_key : str
         An API key for a NCBI account.
-    use_hist : bool, optional, default: False
-        Use e-utilities history: storing results on their server, as needed.
     save_n_clear : bool, optional, default: False
         Whether to save words data to disk per term as it goes, instead of holding in memory.
     logging : {None, 'print', 'store', 'file'}
@@ -51,13 +51,13 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
     Returns
     -------
     results : list of lisc Data() objects
-        Results from the scraping data for each term.
+        Results from collecting data for each term.
     meta_data : dict
-        Meta data from the scrape.
+        Meta data from the data collection.
 
     Notes
     -----
-    The scraping does an exact word search for the term given.
+    The collection does an exact word search for the term given.
     It then loops through all the articles found about that data.
     For each article, pulls and saves out data (including title, abstract, authors, etc)
         Pulls data using the hierarchical tag structure that organize the articles.
@@ -65,7 +65,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
     """
 
     # Get e-utils URLS object
-    urls = EUtils(db=db, usehistory='y' if use_hist else 'n', retmax=retmax,
+    urls = EUtils(db=db, usehistory='y' if usehistory else 'n', retmax=retmax,
                   retmode='xml', field=field, api_key=api_key)
     urls.build_url('info', settings=['db'])
     urls.build_url('search', settings=['db', 'usehistory', 'retmax', 'retmode', 'field'])
@@ -92,7 +92,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
         term_arg = mk_term(term)
 
         if verbose:
-            print('Scraping words for: ', term.label)
+            print('Collecting data for: ', term.label)
 
         # Initiliaze object to store data for current term papers
         cur_dat = Data(term)
@@ -102,7 +102,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
         page = req.request_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
 
-        if use_hist:
+        if usehistory:
 
             # Get number of papers, and keys to use history
             count = int(page_soup.find('count').text)
@@ -117,7 +117,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
                 #  This defaults to 100, but will set to less if fewer needed to reach retmax
                 ret_end_it = min(100, int(retmax) - ret_start_it)
 
-                # Get article page, scrape data, update position
+                # Get article page, collect data, update position
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
                                 'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
                 art_url = urls.get_url('fetch', settings=url_settings)
@@ -146,14 +146,14 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed', retmax=None,
 
 
 def get_papers(req, art_url, cur_dat):
-    """Scrape information for each article found for a given term.
+    """Collect information for each article found for a given term.
 
     Parameters
     ----------
     req : Requester() object
         Requester object to launch requests from.
     art_url : str
-        URL for the article to be scraped.
+        URL for the article to be collected.
     cur_dat : Data() object
         Data object to add data to
 
@@ -199,7 +199,8 @@ def extract_add_info(cur_data, art_id, art):
     cur_data.add_data('ids', art_id)
     cur_data.add_data('titles', extract(art, 'ArticleTitle', 'str'))
     cur_data.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
-    cur_data.add_data('journals', (extract(art, 'Title', 'str'), extract(art, 'ISOAbbreviation', 'str')))
+    cur_data.add_data('journals', (extract(art, 'Title', 'str'),
+                      extract(art, 'ISOAbbreviation', 'str')))
     cur_data.add_data('words', process_words(extract(art, 'AbstractText', 'str')))
     cur_data.add_data('kws', process_kws(extract(art, 'Keyword', 'all')))
     cur_data.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))

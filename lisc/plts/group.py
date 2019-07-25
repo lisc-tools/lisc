@@ -40,12 +40,12 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
     ----------
     data : 2d array
         Data to plot, as a clustermap.
-    cmap : matplotlib.cmap
-        Colormap to use for the plot.
     x_labels : list of str
         Labels for the x-axis.
     y_labels : list of str
         Labels for the y-axis.
+    cmap : matplotlib.cmap
+        Colormap to use for the plot.
     """
 
     sns.set()

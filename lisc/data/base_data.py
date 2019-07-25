@@ -9,6 +9,14 @@ class BaseData():
     """Base object for storing collected article data."""
 
     def __init__(self, term):
+        """Initialize BaseData object.
+
+        Parameters
+        ----------
+        term : Term() object or str
+            Search term definition.
+            If input is a string, it is used as the label for the term.
+        """
 
         # If term provided is a string, consider it the label and make a Term object
         if isinstance(term, str):

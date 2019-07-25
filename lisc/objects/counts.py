@@ -24,7 +24,7 @@ class Counts():
     square : bool
         Whether the count data matrix is symmetrical.
     meta_data : MetaData() object
-        Meta data information about the data scrape.
+        Meta data information about the data collection.
     """
 
     def __init__(self):
@@ -49,6 +49,8 @@ class Counts():
         ----------
         terms : list of str OR list of list of str
             List of terms to be used.
+        term_type : {'terms', 'inclusions', 'exclusions'}
+            Which type of terms to use.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
@@ -65,6 +67,8 @@ class Counts():
         ----------
         f_name : str
             File name to load terms from.
+        term_type : {'terms', 'inclusions', 'exclusions'}
+            Which type of terms to use.
         folder : SCDB or str or None
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
@@ -76,9 +80,9 @@ class Counts():
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def run_scrape(self, db='pubmed', field='TIAB', api_key=None,
-                   logging=None, folder=None, verbose=False):
-        """Scrape co-occurence data.
+    def run_collection(self, db='pubmed', field='TIAB', api_key=None,
+                       logging=None, folder=None, verbose=False):
+        """Collect co-occurence data.
 
         Parameters
         ----------
@@ -185,14 +189,14 @@ class Counts():
 
 
     def check_data(self, data_type='counts', dim='A'):
-        """"Prints out the most frequent association for each term.
+        """"Prints out the highest value count or score for each term.
 
         Parameters
         ----------
-        dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
         data_type : {'counts', 'score'}
             Which data type to use.
+        dim : {'A', 'B'}, optional
+            Which set of terms to operate upon.
         """
 
         if data_type not in ['counts', 'score']:

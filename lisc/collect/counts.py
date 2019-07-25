@@ -1,4 +1,4 @@
-"""Scrape counts data from Pubmed."""
+"""Collect counts data from Pubmed."""
 
 import numpy as np
 from bs4 import BeautifulSoup
@@ -18,7 +18,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
                    terms_b=[], inclusions_b=[], exclusions_b=[],
                    db='pubmed', field='TIAB', api_key=None,
                    logging=None, folder=None, verbose=False):
-    """Scrape pubmed for word co-occurence.
+    """Collect word co-occurence data from pubmed.
 
     Parameters
     ----------
@@ -55,11 +55,11 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     counts : 1d array or list of 1d array
         Number of papers for each term independently.
     meta_data : dict
-        Meta data from the scrape.
+        Meta data from the data collection.
 
     Notes
     -----
-    The scraping does an exact word search for two terms.
+    The collection does an exact word search for two terms.
 
     The HTML page returned by the pubmed search includes a 'count' field.
     This field contains the number of papers with both terms. This is extracted.
@@ -120,8 +120,8 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
         for b_ind, (search_b, incl_b, excl_b) in enumerate(zip(terms_b, inclusions_b, exclusions_b)):
 
-            # Skip scrapes of equivalent term combinations - if single term list
-            #  This will skip the diagonal row, and any combinations already scraped
+            # Skip collections of equivalent term combinations - if single term list
+            #  This will skip the diagonal row, and any combinations already collected
             if square and data_numbers[a_ind, b_ind] != -1:
                 continue
 
@@ -154,12 +154,14 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
 
 def get_count(req, url):
-    """Get the count of how many articles listed on search results URL.
+    """Get the count of how many articles listed for at the requested URL.
 
     Parameters
     ----------
+    req : Requester object
+        Requester object to launch requests from.
     url : str
-        URL to search with.
+        URL to request count data from.
 
     Returns
     -------

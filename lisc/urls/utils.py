@@ -50,6 +50,8 @@ def make_settings(settings, prefix='?'):
     ----------
     settings : dict
         Settings to use to create the settings string for a URL.
+    prefix : str
+        String to add to the beginning.
 
     Returns
     -------

@@ -24,7 +24,7 @@ def check_args(names, *inputs):
 
     Returns
     -------
-    dictionay
+    dict
         A dictionary with the new names and values, for all non None inputs.
     """
 
@@ -62,6 +62,8 @@ def check_ax(ax, figsize=None):
     ----------
     ax : matplotlib.Axes or None
         Axes object to check if is defined.
+    figsize : (float, float)
+        The figure for a new axis, if ax is not defined.
 
     Returns
     -------

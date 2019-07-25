@@ -6,15 +6,15 @@ import datetime
 ###################################################################################################
 
 class MetaData():
-    """An object to hold the meta data for a scrape.
+    """An object to hold the meta data for data collection.
 
     Attributes
     ----------
     date : str
         Information on the date that the data collection was run.
     requester : dict
-        Information about the requester object used for the scrape.
-    database_info : dict
+        Information about the requester object used for the data collection.
+    db_info : dict
         Information about the database from which the data was accessed.
     log : list or None
         A log of requested URLs, if requests were logged.

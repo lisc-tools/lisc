@@ -13,7 +13,7 @@ from lisc.data.base_data import BaseData
 ###################################################################################################
 
 class Data(BaseData):
-    """An object to hold the word results for a given term or term.
+    """An object to hold the word results for a given term.
 
     Attributes
     ----------
@@ -139,7 +139,7 @@ class Data(BaseData):
 
         data = parse_json_data(os.path.join(folder, check_ext(self.label, '.json')))
 
-        self.term  = Term(*next(data)['term'])
+        self.term = Term(*next(data)['term'])
 
         for dat in data:
             self.add_data('ids', dat['id'])

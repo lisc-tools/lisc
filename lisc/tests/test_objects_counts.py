@@ -18,7 +18,7 @@ def test_collect_one():
     counts.add_terms(['language', 'memory'], dim='A')
     counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
 
-    counts.run_scrape(db='pubmed')
+    counts.run_collection(db='pubmed')
     counts.compute_score('association')
     check_funcs(counts)
     drop_data(counts)
@@ -31,7 +31,7 @@ def test_collect_two():
     counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
     counts.add_terms(['cognition'], dim='B')
 
-    counts.run_scrape(db='pubmed')
+    counts.run_collection(db='pubmed')
     counts.compute_score('normalize')
     check_funcs(counts)
     drop_data(counts)

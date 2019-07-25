@@ -16,7 +16,7 @@ class Words(Base):
     labels : list of str
         Labels for each result data attached to object.
     meta_data : MetaData() object
-        Meta data information about the data scrape.
+        Meta data information about the data collection.
     """
 
     def __init__(self):
@@ -70,9 +70,10 @@ class Words(Base):
         self.results.append(new_result)
 
 
-    def run_scrape(self, db='pubmed', retmax=None, field='TIAB', api_key=None, use_hist=False,
-                   save_n_clear=False, logging=None, folder=None, verbose=False):
-        """Launch a scrape of words data.
+    def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
+                       api_key=None, save_n_clear=False, logging=None,
+                       folder=None, verbose=False):
+        """Launch a collection of words data.
 
         Parameters
         ----------
@@ -83,10 +84,10 @@ class Words(Base):
         field : str, optional, default: 'TIAB'
             Field to search for term within.
             Defaults to 'TIAB', which is Title/Abstract.
+        usehistory : bool, optional, default: False
+            Use e-utilities history: storing results on their server, as needed.
         api_key : str
             An API key for a NCBI account.
-        use_hist : bool, optional, default: False
-            Use e-utilities history: storing results on their server, as needed.
         save_n_clear : bool, optional, default: False
             Whether to save words data to disk per term as it goes, instead of holding in memory.
         logging : {None, 'print', 'store', 'file'}
@@ -99,7 +100,6 @@ class Words(Base):
 
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,
                                                      db=db, retmax=retmax, field=field,
-                                                     api_key=api_key, use_hist=use_hist,
-                                                     save_n_clear=save_n_clear,
-                                                     logging=logging, folder=folder,
-                                                     verbose=verbose)
+                                                     usehistory=usehistory, api_key=api_key,
+                                                     save_n_clear=save_n_clear, logging=logging,
+                                                     folder=folder, verbose=verbose)

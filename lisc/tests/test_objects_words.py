@@ -37,14 +37,14 @@ def test_add_results():
 
     assert words.results
 
-def test_run_scrape():
+def test_run_collection():
 
     words = Words()
 
     words.add_terms(['language', 'memory'])
     words.add_terms(['protein', ''], 'exclusions')
 
-    words.run_scrape(db='pubmed', retmax='2')
+    words.run_collection(db='pubmed', retmax='2')
 
     assert words.results
     assert words.labels

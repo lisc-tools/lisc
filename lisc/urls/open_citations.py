@@ -1,20 +1,28 @@
 """OpenCitations URLs for LISC.
 
+External Documentation
+----------------------
 API Information:
-https://opencitations.net/index/coci/api/v1
+    https://opencitations.net/index/coci/api/v1
 
-Operations
-- references
-- citations
-- citation
-- metadata
+Utilities
+---------
+references : Returns reference data for requested entries.
+    settings - doi
+citations : Returns citation data for requested entries.
+    settings - doi
+citation : Returns citation data for requested entries.
+    settings - oci (Open Citation Identifier)
+metadata : Returns metadata for
+    settings - dois
 
-Parameters
-- exclude
-- filter
-- sort
-- format
-- json
+Settings
+--------
+exclude : remove rows with empty values in the specified field name.
+filter : a filtering operation to apply to returned data.
+sort : a sort procedure to apply to returned data.
+format : format to return data as, as either 'json' or 'csv'.
+json : rules to transform returned json data.
 """
 
 from lisc.urls.urls import URLs
@@ -30,7 +38,7 @@ class OpenCitations(URLs):
     base : str
         Base URL for the OpenCitations API.
     utils : dict
-        Collection of OpenCitations utilities.
+        The OpenCitations utilities.
     urls : dict
         URLs for each OpenCitations utility.
     """

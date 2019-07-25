@@ -11,31 +11,31 @@ Usage Policies and Disclaimers:
 A list of all the valid databases:
     https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi
 
-Tools
------
-EInfo : Provides a list of all databases, and some basic data about them.
-    args - db, retmode
-EGQuery : Provides the number of records in all databases by a single query.
-    args - ToDo
+Utilities
+---------
+EInfo : Returns a list of all databases, and some basic data about them.
+    settings - db, retmode
+EGQuery : Returns the number of records in all databases by a single query.
+    settings - term
 ESearch : Returns UIDs matching a text query, or posts to / gets from history server.
-    args - db, term, field
+    settings - db, field, term
 EFetch : Returns formatted data records for a list of UIDs.
-    args - ToDo
+    settings - db, id, rettype, retmode
 
 Settings
 --------
-db : The target database.
+db : the target database.
     Most relevant database are: 'pubmed' & 'pmc'
         - pubmed: is a database of over 25 million references
         - pmc: an archive of freely available full text papers, of around 3 million papers
     More info here: https://www.nlm.nih.gov/pubs/factsheets/dif_med_pub.html
     FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/#q1
-term : word(s) to search for.
 id : list of UIDs (comma separated).
 field : the search field to search within.
-retmax : Maximum number of records to return.
-retmode : Format to return.
-usehistory : Whether to store findings on remote server.
+retmax : maximum number of records to return.
+retmode : format to return.
+usehistory : whether to store findings on remote server.
+term : search terms to use.
 """
 
 from lisc.urls.urls import URLs
@@ -75,7 +75,7 @@ class EUtils(URLs):
     base : str
         Base URL for the EUtils API.
     utils : dict
-        Collection of EUtils utilities.
+        The EUtil utilities.
     urls : dict
         URLs for each EUtils utility.
     settings : dict()
@@ -84,22 +84,22 @@ class EUtils(URLs):
         Whether using an API key as an authenticated NCBI user.
     """
 
-    def __init__(self, db=None, usehistory='n', retmax=None,
-                 field=None, retmode=None, api_key=None):
+    def __init__(self, db=None, retmax=None, field=None, retmode=None,
+                 usehistory='n', api_key=None):
         """Initialize the ncbi e-utils urls, with provided settings.
 
         Parameters
         ----------
         db : {'pubmed', 'pmc'}, optional
             Which literature database to use.
-        usehistory : {'n', 'y'}
-            Whether to use history caching on pubmed server.
         retmax : int, optional
             The maximum number of papers to return.
         field : str, optional
             The search field to search within.
         retmode : {'lxml', 'xml'}, optional
             The return format for the results.
+        usehistory : {'n', 'y'}
+            Whether to use history caching on pubmed server.
         api_key : str, optional
             An API key for authenticated NCBI user account.
         """
@@ -119,6 +119,17 @@ class EUtils(URLs):
 
 
     def authenticate(self, url):
-        """Authenticate a EUtils URL."""
+        """Authenticate a EUtils URL.
 
-        url = url + '&api_key=' + self.settings['api_key']
+        Parameters
+        ----------
+        url : str
+            URL to add authentification to.
+
+        Returns
+        -------
+        str
+            Authenticated URL.
+        """
+
+        return url + '&api_key=' + self.settings['api_key']

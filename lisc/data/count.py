@@ -88,7 +88,7 @@ def count_end_authors(authors):
 
     Parameters
     ----------
-    authors_lst : list of list of tuple of (str, str, str, str)
+    authors : list of list of tuple of (str, str, str, str)
         Authors of all articles included in object, as
         (last name, first name, initials, affiliation)
 

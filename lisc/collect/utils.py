@@ -19,10 +19,8 @@ def mk_term(term, incl_joiner='OR'):
         The complete search term.
     """
 
-    out = join(join(mk_comp(term.search), mk_comp(term.inclusions, incl_joiner), 'AND'),
-               mk_comp(term.exclusions), 'NOT')
-
-    return out
+    return join(join(mk_comp(term.search), mk_comp(term.inclusions, incl_joiner), 'AND'),
+                mk_comp(term.exclusions), 'NOT')
 
 
 def mk_comp(terms, joiner='OR'):
@@ -37,8 +35,8 @@ def mk_comp(terms, joiner='OR'):
 
     Returns
     -------
-    str
-        Search term.
+    comp : str
+        Search term component.
 
     Notes
     -----
@@ -46,12 +44,12 @@ def mk_comp(terms, joiner='OR'):
     - This function adds "" to terms to make them exact search only.
     """
 
-    out = ''
+    comp = ''
     if terms and terms[0]:
         terms = ['"'+ item + '"' for item in terms]
-        out = '(' + joiner.join(terms) + ')'
+        comp = '(' + joiner.join(terms) + ')'
 
-    return out
+    return comp
 
 
 def join(front, back, joiner='AND'):

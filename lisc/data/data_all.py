@@ -124,7 +124,7 @@ class DataAll(BaseData):
 
 
     def print_summary(self):
-        """Print out a summary of the scraped term paper data."""
+        """Print out a summary of the collected words data."""
 
         # Print out summary information
         print(self.summary['label'], ':')
@@ -137,7 +137,7 @@ class DataAll(BaseData):
 
 
     def save_summary(self, folder=None):
-        """Save out a summary of the scraped term paper data.
+        """Save out a summary of the collected words data.
 
         Parameters
         ----------
