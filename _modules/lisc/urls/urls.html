@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>lisc.urls.urls &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for lisc.urls.urls</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Base URL object for LISC.</span>
+
+<span class="sd">Segments : section added to the URL, separated by &#39;/&#39;.</span>
+<span class="sd">Settings : settings added to the URL, as key value pairs, following a &#39;?&#39; and added with &#39;&amp;&#39;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">lisc.urls.utils</span> <span class="k">import</span> <span class="n">make_segments</span><span class="p">,</span> <span class="n">make_settings</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="URLs"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs">[docs]</a><span class="k">class</span> <span class="nc">URLs</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Class to hold URL information for an API interface.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base : str</span>
+<span class="sd">        Base URL for the API.</span>
+<span class="sd">    utils : dict</span>
+<span class="sd">        What utilities are available for the API.</span>
+<span class="sd">    urls : dict</span>
+<span class="sd">        The URLs for each utility.</span>
+<span class="sd">    settings : dict</span>
+<span class="sd">        The available settings for the API.</span>
+<span class="sd">    authenticated : boolean</span>
+<span class="sd">        Whether acting as an authenticated user for the API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="URLs.__init__"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">utils</span><span class="o">=</span><span class="p">{},</span> <span class="n">authenticated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a URLs object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        base : str</span>
+<span class="sd">            Base URL for the API.</span>
+<span class="sd">        utils : dict</span>
+<span class="sd">            Utilities for the utility, a dictionary with names and URL extensions.</span>
+<span class="sd">        authenticated : bool</span>
+<span class="sd">            Whether acting as an authenticated user for the API.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
+        <span class="n">utils</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">utils</span> <span class="o">=</span> <span class="n">utils</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">urls</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span> <span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="n">authenticated</span></div>
+
+
+<div class="viewcode-block" id="URLs.check_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.check_url">[docs]</a>    <span class="k">def</span> <span class="nf">check_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check the built URL for a specified utility.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        util : str</span>
+<span class="sd">            Which utility to check the URL for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_util</span><span class="p">(</span><span class="n">util</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="n">util</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="URLs.fill_settings"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.fill_settings">[docs]</a>    <span class="k">def</span> <span class="nf">fill_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Put all provided settings values into a dictionary object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Keyword arguments for all settings, with their values.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - All possible settings are set as possible arguments to this function.</span>
+<span class="sd">            For each  possible settings, each that is given a value is saved out to the dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="n">ke</span><span class="p">:</span> <span class="n">va</span> <span class="k">for</span> <span class="n">ke</span><span class="p">,</span> <span class="n">va</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">va</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="URLs.authenticate"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Method to authenticate a URL for a given API.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        url : str</span>
+<span class="sd">            URL to add authentification to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Authenticated URL.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This is a placeholder method, on the base URLs object, and should be</span>
+<span class="sd">        overloaded by any API object that has authentification, with a</span>
+<span class="sd">        method that implements whatever is needed to authenticate the URL</span>
+<span class="sd">        for the API.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">url</span></div>
+
+
+<div class="viewcode-block" id="URLs.build_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.build_url">[docs]</a>    <span class="k">def</span> <span class="nf">build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="p">[],</span> <span class="n">settings</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="sd">&quot;&quot;&quot;Build the URL for a specified utility, with provided settings.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        util : str</span>
+<span class="sd">            Which utility to build the URL for.</span>
+<span class="sd">        segments : list of str</span>
+<span class="sd">            Segments to add to the URL.</span>
+<span class="sd">        settings : dict or list of str</span>
+<span class="sd">            Settings to use to build the URL.</span>
+<span class="sd">            If list, the settings values are taken from the objects settings attribute.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_util</span><span class="p">(</span><span class="n">util</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">settings</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not all requested settings available - can not proceed.&#39;</span><span class="p">)</span>
+            <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="n">ke</span> <span class="p">:</span> <span class="n">va</span> <span class="k">for</span> <span class="n">ke</span><span class="p">,</span> <span class="n">va</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">ke</span> <span class="ow">in</span> <span class="n">settings</span><span class="p">}</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="n">make_segments</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="p">[</span><span class="n">util</span><span class="p">]]</span> <span class="o">+</span> <span class="n">segments</span><span class="p">)</span> <span class="o">+</span> <span class="n">make_settings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="n">util</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span></div>
+
+
+<div class="viewcode-block" id="URLs.get_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.get_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="p">[],</span> <span class="n">settings</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;Get a requested URL, with any additional segments or settings.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        util : str</span>
+<span class="sd">            Which utility to get the URL for.</span>
+<span class="sd">        segments : list of str, optional</span>
+<span class="sd">            Any additional segments to add to the URL.</span>
+<span class="sd">        settings : dict, optional</span>
+<span class="sd">            Any additional settings to add to the URL.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        full_url : str</span>
+<span class="sd">            The requested URL, with any extra segments and settings added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">util</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">util</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="n">util</span><span class="p">]</span>
+        <span class="n">settings_join</span> <span class="o">=</span> <span class="s1">&#39;?&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;?&#39;</span> <span class="ow">in</span> <span class="n">url</span> <span class="k">else</span> <span class="s1">&#39;&amp;&#39;</span>
+
+        <span class="n">full_url</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">make_segments</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span> <span class="o">+</span> <span class="n">make_settings</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">settings_join</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">full_url</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_check_util</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that a requested utility is valid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        util : str</span>
+<span class="sd">            Name of the utility to check for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">util</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Specified utility not understood.&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

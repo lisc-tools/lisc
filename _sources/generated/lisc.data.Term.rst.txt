@@ -1,0 +1,32 @@
+lisc.data.Term
+==============
+
+.. currentmodule:: lisc.data
+
+.. autoclass:: Term
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Term.count
+      ~Term.index
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Term.exclusions
+      ~Term.inclusions
+      ~Term.label
+      ~Term.search
+   
+   

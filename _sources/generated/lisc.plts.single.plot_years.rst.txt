@@ -1,0 +1,6 @@
+lisc.plts.single.plot\_years
+============================
+
+.. currentmodule:: lisc.plts.single
+
+.. autofunction:: plot_years

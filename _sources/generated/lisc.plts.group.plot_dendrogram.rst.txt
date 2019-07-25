@@ -1,0 +1,6 @@
+lisc.plts.group.plot\_dendrogram
+================================
+
+.. currentmodule:: lisc.plts.group
+
+.. autofunction:: plot_dendrogram

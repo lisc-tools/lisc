@@ -1,0 +1,25 @@
+lisc.data.MetaData
+==================
+
+.. currentmodule:: lisc.data
+
+.. autoclass:: MetaData
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MetaData.__init__
+      ~MetaData.add_db_info
+      ~MetaData.add_requester
+      ~MetaData.get_date
+   
+   
+
+   
+   
+   

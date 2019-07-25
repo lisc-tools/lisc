@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial 03: Words Collection &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-03-wordscollection-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="tutorial-03-words-collection">
+<span id="sphx-glr-auto-tutorials-plot-03-wordscollection-py"></span><h1>Tutorial 03: Words Collection<a class="headerlink" href="#tutorial-03-words-collection" title="Permalink to this headline">¶</a></h1>
+<p>Collecting literature data, extracting text and metadata for specified search terms.</p>
+<div class="section" id="words">
+<h2>Words<a class="headerlink" href="#words" title="Permalink to this headline">¶</a></h2>
+<p>Another way to scrape the literature is to collect text and meta-data from
+all papers found for a given set of terms.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Words</span>
+<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">save_object</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="words-object">
+<h2>Words Object<a class="headerlink" href="#words-object" title="Permalink to this headline">¶</a></h2>
+<p>The ‘Words’ object is used to collection and analyzing text data and article metadata.</p>
+<p>Search terms are specified to find papers of interest, from which text data and other
+information is collected.</p>
+<p>Note that the same approach for organizing search terms, including synonyms, inclusion
+and exclusion words, is used as for Counts, as described in the first tutorial.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Words object and set the terms to search for</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">Words</span><span class="p">()</span>
+<span class="n">words</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data</span>
+<span class="n">words</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Words also saves the same list of Data objects</span>
+<span class="n">words</span><span class="o">.</span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="word-collections">
+<h2>Word Collections<a class="headerlink" href="#word-collections" title="Permalink to this headline">¶</a></h2>
+<p>Depending on what the search terms are, collections of words papers can become quite large.</p>
+<p>Because of this, you might want to use some of the available EUtils settings, and
+LISC options to help control how the data collection is done.</p>
+<p>In the next example, we’ll revisit the same search terms we used in the previous
+<cite>Counts</cite> analysis, and explore some of these settings.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
+<span class="n">words</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading previous terms words.
+</pre></div>
+</div>
+<div class="section" id="eutils-settings">
+<h3>EUtils Settings<a class="headerlink" href="#eutils-settings" title="Permalink to this headline">¶</a></h3>
+<p>The Pubmed EUtils has several settings that can help control searches, including:
+- <cite>field</cite> : which part of the record to search for search results
+- <cite>retmax</cite> : the maximum number of records to return for a given search
+- <cite>usehistory</cite> : whether to temporarily store results remotely and use them for interim requests</p>
+<p>As some general guidelines, the <cite>field</cite> setting defaults to <cite>TIAB</cite> for titles and abstracts.
+The <cite>retmax</cite> should be set to some upper bound if your search terms are likely to
+return a large number of papers. The <cite>usehistory</cite> parameter should be set to True if
+you are running a large scrape, as this is more efficient.</p>
+</div>
+<div class="section" id="word-collection-settings">
+<h3>Word Collection Settings<a class="headerlink" href="#word-collection-settings" title="Permalink to this headline">¶</a></h3>
+<p>If you are collecting data for a large number of search terms, that may return a large
+number of papers, then the <cite>Words</cite> collection can take a while, and the amount of
+data can become quite large.</p>
+<p>Because of this, the <cite>Words</cite> object offers a setting of how / when to save data:
+- <cite>save_and_clear</cite> : whether to save out collected data and clear per term</p>
+<p>Now, let’s run our bigger collection, using some of these settings.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up our database object, so we can save out data as we go</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+
+<span class="c1"># Collect words data</span>
+<span class="n">words</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">usehistory</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">,</span> <span class="n">save_and_clear</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that at this point, our Words object does not actually include the collected data,
+since we were saving and clearing the data out as we went.</p>
+<p>The Words object does still however have all the information about the Term data, and we
+can use that to help manage and reload our data, so it’s worth saving as well.</p>
+<p>We will analyze our words data in the next tutorial, so for now lets save out the Words object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">save_object</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  16.424 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-wordscollection-py">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/4cc954ab5c985e7aaf2b419f11ed1bad/plot_03-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-WordsCollection.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/18eb15e61839233ca9a9c758b37ba109/plot_03-WordsCollection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_03-WordsCollection.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

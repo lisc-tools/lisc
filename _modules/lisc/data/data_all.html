@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>lisc.data.data_all &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for lisc.data.data_all</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Classes and functions to store aggregated term paper data.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="kn">from</span> <span class="nn">lisc.core.io</span> <span class="k">import</span> <span class="n">check_ext</span>
+<span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="k">import</span> <span class="n">check_folder</span>
+<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="k">import</span> <span class="n">combine_lists</span>
+<span class="kn">from</span> <span class="nn">lisc.data.count</span> <span class="k">import</span> <span class="n">count_years</span><span class="p">,</span> <span class="n">count_journals</span><span class="p">,</span> <span class="n">count_authors</span><span class="p">,</span> <span class="n">count_end_authors</span>
+<span class="kn">from</span> <span class="nn">lisc.data.base_data</span> <span class="k">import</span> <span class="n">BaseData</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="DataAll"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll">[docs]</a><span class="k">class</span> <span class="nc">DataAll</span><span class="p">(</span><span class="n">BaseData</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Object to hold term data, aggregated across papers.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    label : str</span>
+<span class="sd">        Label for the current term.</span>
+<span class="sd">    term : Term() object</span>
+<span class="sd">        Definition of the search term, with inclusions and exclusion words.</span>
+<span class="sd">    n_articles : int</span>
+<span class="sd">        Number of articles whos data is included in object.</span>
+<span class="sd">    ids : list of int</span>
+<span class="sd">        Pubmed article ids for all articles included in object.</span>
+<span class="sd">    journals : list of tuple of (int, str)</span>
+<span class="sd">        Counter across all journals.</span>
+<span class="sd">    authors : list of tuple of (int, (str, str))</span>
+<span class="sd">        Counter across all authors.</span>
+<span class="sd">    first_authors : list of tuple of (int, (str, str))</span>
+<span class="sd">        Counter across all first authors.</span>
+<span class="sd">    last_authors : list of tuple of (int, (str, str))</span>
+<span class="sd">        Counter across all last authors.</span>
+<span class="sd">    words : nltk.probability.FreqDist</span>
+<span class="sd">        Frequency distribution of all words.</span>
+<span class="sd">    kws : nltk.probability.FreqDist</span>
+<span class="sd">        Frequency distribution of all keywords.</span>
+<span class="sd">    years : list of tuple of (int, int)</span>
+<span class="sd">        Counter across all years of publication.</span>
+<span class="sd">    dois : list of str</span>
+<span class="sd">        DOIs of each article included in object.</span>
+<span class="sd">    summary : dict</span>
+<span class="sd">        Summary / overview of data associated with current object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DataAll.__init__"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_data</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize DataAll() object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        term_data : Data() object</span>
+<span class="sd">            Data for all papers from a given search term.</span>
+<span class="sd">        exclusions : list of str</span>
+<span class="sd">            Words to exclude from the word collections.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Inherit from the BaseData object</span>
+        <span class="n">BaseData</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_data</span><span class="o">.</span><span class="n">term</span><span class="p">)</span>
+
+        <span class="c1"># Copy over tracking of included IDs &amp; DOIs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ids</span> <span class="o">=</span> <span class="n">term_data</span><span class="o">.</span><span class="n">ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dois</span> <span class="o">=</span> <span class="n">term_data</span><span class="o">.</span><span class="n">dois</span>
+
+        <span class="c1"># Get counts of authors, journals, years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span> <span class="o">=</span> <span class="n">count_journals</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">journals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">count_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_authors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_authors</span> <span class="o">=</span> <span class="n">count_end_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="n">count_years</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">years</span><span class="p">)</span>
+
+        <span class="c1"># Convert lists of all words to frequency distributions</span>
+        <span class="n">exclusions</span> <span class="o">=</span> <span class="n">exclusions</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">search</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">inclusions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">words</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">kws</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
+
+        <span class="c1"># Initialize summary dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="DataAll.check_frequencies"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.check_frequencies">[docs]</a>    <span class="k">def</span> <span class="nf">check_frequencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="n">n_check</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prints out the most common items in frequecy distribution.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : {&#39;words&#39;, &#39;kws&#39;}</span>
+<span class="sd">            Which frequency distribution to check.</span>
+<span class="sd">        n_check : int</span>
+<span class="sd">            Number of most common items to print out.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="s1">&#39;kws&#39;</span><span class="p">]:</span>
+            <span class="n">freqs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Requested data not understood&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Reset number to check if there are fewer words available</span>
+        <span class="k">if</span> <span class="n">n_check</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">):</span>
+            <span class="n">n_check</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
+
+        <span class="c1"># Get the requested number of most common words, and convert to str</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">freqs</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_check</span><span class="p">]</span>
+        <span class="n">top_str</span> <span class="o">=</span> <span class="s1">&#39; , &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">top</span><span class="p">[:</span><span class="n">n_check</span><span class="p">]])</span>
+
+        <span class="c1"># Print out the top words for the current term</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:5}</span><span class="s2"> : &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span> <span class="o">+</span> <span class="n">top_str</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataAll.create_summary"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.create_summary">[docs]</a>    <span class="k">def</span> <span class="nf">create_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fill the summary dictionary of the current terms Words data.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Add data to summary dictionary.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;n_articles&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_kws&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kws</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;first_publication&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="n">year</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="DataAll.print_summary"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.print_summary">[docs]</a>    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Print out a summary of the collected words data.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Print out summary information</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Number of articles: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;n_articles&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  First publication: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;first_publication&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Most common author: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_name&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    number of publications: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_count&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Most common journal: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_name&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    number of publications: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataAll.save_summary"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.save_summary">[docs]</a>    <span class="k">def</span> <span class="nf">save_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save out a summary of the collected words data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        folder : str or SCDB() object, optional</span>
+<span class="sd">            Folder or database object specifying the save location.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">folder</span> <span class="o">=</span> <span class="n">check_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataAll.create_freq_dist"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.create_freq_dist">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_freq_dist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">,</span> <span class="n">exclude</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create frequency distribution.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        in_lst : list of str</span>
+<span class="sd">            Word items to create frequecy distribution of.</span>
+<span class="sd">        exclude : list of str</span>
+<span class="sd">            Words to exclude from list.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        freqs : nltk.FreqDist</span>
+<span class="sd">            Frequency distribution of the input list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">freqs</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">freqs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">freqs</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

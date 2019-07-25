@@ -1,0 +1,6 @@
+lisc.plts.group.plot\_matrix
+============================
+
+.. currentmodule:: lisc.plts.group
+
+.. autofunction:: plot_matrix

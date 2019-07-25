@@ -14,24 +14,22 @@ lisc.data.Data
    .. autosummary::
    
       ~Data.__init__
-      ~Data.add_authors
-      ~Data.add_doi
-      ~Data.add_id
-      ~Data.add_journal
-      ~Data.add_kws
-      ~Data.add_pub_date
-      ~Data.add_title
-      ~Data.add_words
+      ~Data.add_data
       ~Data.check_results
       ~Data.clear
-      ~Data.increment_n_articles
       ~Data.load
       ~Data.save
-      ~Data.save_n_clear
-      ~Data.update_history
+      ~Data.save_and_clear
    
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Data.label
+      ~Data.n_articles
    
    

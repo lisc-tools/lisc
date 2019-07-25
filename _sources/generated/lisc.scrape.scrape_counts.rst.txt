@@ -1,6 +1,0 @@
-lisc.scrape.scrape\_counts
-==========================
-
-.. currentmodule:: lisc.scrape
-
-.. autofunction:: scrape_counts

@@ -1,0 +1,6 @@
+lisc.collect.collect\_words
+===========================
+
+.. currentmodule:: lisc.collect
+
+.. autofunction:: collect_words

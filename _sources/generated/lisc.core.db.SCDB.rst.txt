@@ -1,0 +1,25 @@
+lisc.core.db.SCDB
+=================
+
+.. currentmodule:: lisc.core.db
+
+.. autoclass:: SCDB
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SCDB.__init__
+      ~SCDB.check_file_structure
+      ~SCDB.gen_paths
+      ~SCDB.get_files
+   
+   
+
+   
+   
+   

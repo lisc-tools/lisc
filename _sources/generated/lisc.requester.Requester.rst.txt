@@ -1,0 +1,30 @@
+lisc.requester.Requester
+========================
+
+.. currentmodule:: lisc.requester
+
+.. autoclass:: Requester
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Requester.__init__
+      ~Requester.as_dict
+      ~Requester.check
+      ~Requester.close
+      ~Requester.open
+      ~Requester.request_url
+      ~Requester.set_wait_time
+      ~Requester.throttle
+      ~Requester.wait
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+lisc.collect.collect\_info
+==========================
+
+.. currentmodule:: lisc.collect
+
+.. autofunction:: collect_info

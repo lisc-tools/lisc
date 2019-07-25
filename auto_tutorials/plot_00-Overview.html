@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial 00: LISC Overview &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-00-overview-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="tutorial-00-lisc-overview">
+<span id="sphx-glr-auto-tutorials-plot-00-overview-py"></span><h1>Tutorial 00: LISC Overview<a class="headerlink" href="#tutorial-00-lisc-overview" title="Permalink to this headline">¶</a></h1>
+<p>An overview of the LISC code organization and approach.</p>
+<div class="section" id="lisc-overview">
+<h2>LISC Overview<a class="headerlink" href="#lisc-overview" title="Permalink to this headline">¶</a></h2>
+<p>LISC, or ‘Literature Scanner’, is a module for collecting and analyzing data and
+information from the scientific literature.</p>
+<p>In this overview tutorial, we will first explore the main aspects of LISC, and
+how it handles terms, data, files and requests.</p>
+<p>LISC serves as a wrapper around available application programmer interfaces (APIs)
+for interacting with databases that store scientific literature and related data.</p>
+<p>In this first overview, we will explore how LISC’s code structure.</p>
+<div class="section" id="available-analyses">
+<h3>Available Analyses<a class="headerlink" href="#available-analyses" title="Permalink to this headline">¶</a></h3>
+<p>The functionality of LISC is dependent on the APIs that are supported.</p>
+<p>Currently supported external APIs include the NCBI EUtils, offering access to the Pubmed
+database, and the OpenCitations API, offering access to citation data.</p>
+<dl class="docutils">
+<dt>EUtils:</dt>
+<dd><ul class="first last simple">
+<li>Counts: collecting word co-occurence data, counting how often terms occur together.</li>
+<li>Words: collecting text data and meta-data from papers.</li>
+</ul>
+</dd>
+<dt>OpenCitations:</dt>
+<dd><ul class="first last simple">
+<li>Cites: collecting citation data, counting the number of citations papers have</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="lisc-objects">
+<h2>LISC Objects<a class="headerlink" href="#lisc-objects" title="Permalink to this headline">¶</a></h2>
+<p>LISC is object oriented, meaning it offers and uses objects in order to handle
+search terms, collected data, and API requests.</p>
+<p>Here we will first explore the <cite>Base</cite> object, the underlying
+object structure for any data collections using search terms.</p>
+<p>Note that you will not otherwise use the <cite>Base</cite> object directly, but that it is the
+underlying object for the <cite>Counts</cite> and <cite>Words</cite> objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <span class="n">Base</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a base object</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search-terms">
+<h2>Search Terms<a class="headerlink" href="#search-terms" title="Permalink to this headline">¶</a></h2>
+<p>For collecting papers and literature data, one first has to select search terms to
+find the literature of interest.</p>
+<p>Note that by default, all search terms as used as exact term matches.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;chemistry&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;biology&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Add terms to the object</span>
+<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the terms added to the base object</span>
+<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of terms used:
+
+chemistry        : chemistry
+biology  : biology
+</pre></div>
+</div>
+</div>
+<div class="section" id="complex-search-terms">
+<h2>Complex Search Terms<a class="headerlink" href="#complex-search-terms" title="Permalink to this headline">¶</a></h2>
+<p>So far, we have chosen some search terms, as single terms, to use as queries,
+and added them to our object.</p>
+<p>Sometimes we might want more than just particular search words. We might want to
+specify synonyms and/or use include inclusions or exclusion words.</p>
+<div class="section" id="synonyms">
+<h3>Synonyms<a class="headerlink" href="#synonyms" title="Permalink to this headline">¶</a></h3>
+<p>To include synonyms, just add more entries to the input list of terms.</p>
+<p>Synonyms are combined with the ‘OR’ operator, meaning results will
+be returned if they include any of the given terms.</p>
+<p>For example, the set of search terms [‘brain’, ‘cortex’] is interpreted as:
+‘(“brain”OR”cortex”)’.</p>
+<p>Note that being able to include synonyms is the reason each term entry is itself a list.</p>
+</div>
+<div class="section" id="inclusion-exclusion-words">
+<h3>Inclusion &amp; Exclusion Words<a class="headerlink" href="#inclusion-exclusion-words" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes we might need to control the results that we get, by including inclusion
+and exclusion words. Inclusions words are words that must also appear in the document
+for a result to be returned. Exclusions words are words that must not be included in a
+result in order for it to be returned.</p>
+<p>Inclusions words are combined with the ‘AND’ operator, meaning entries
+will only be included if they also include these words.</p>
+<p>For example, the search terms [‘brain’, ‘cortex’] with the inclusion word [‘biology’]
+is interpreted as ‘(“brain”OR”cortex”)AND(“biology”)’.</p>
+<p>Exclusion words are combined with the ‘NOT’ operator, meaning entries
+will be excluded if they include these terms.</p>
+<p>For example, the search terms [‘brain’, ‘cortex’] with the exclusion word [‘body’]
+is interpreted as ‘(“brain”OR”cortex”)NOT(“body”)’.</p>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>Putting it all Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<p>Synonyms, inclusion and exclusion words can all be used together. Note also that
+you can also specific synonyms for inclusion and exclusion words.</p>
+<p>For example, the following set of search term components:
+- search terms [‘brain’, ‘cortex’]
+- inclusion words [‘biology’, ‘biochemistry’]
+- exclusion words [‘body’, ‘corporeal’]</p>
+<p>All combine to give the seach term of:
+- <cite>‘(“gene”OR”genetic)AND(“biology”OR”biochemistry”)NOT(“body”OR”corporeal)’</cite></p>
+</div>
+<div class="section" id="title">
+<h3>TITLE<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h3>
+<p>Note that inclusion and exclusion words are should be lists of the same
+length as the number of search terms. Each inclusion and exclusion term
+is used for the corresponding search term.</p>
+<p>Now let’s update our set of terms, to include some synonyms, inclusions and exclusions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a list of multiple terms, each with synonyms</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;genetic&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;cortex&#39;</span><span class="p">,</span> <span class="s1">&#39;cortical&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Add the terms</span>
+<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading previous terms words.
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up inclusions and exclusions</span>
+<span class="c1">#   Each is a list, that should be the same length as the number of terms</span>
+<span class="n">inclusions</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]]</span>
+<span class="n">exclusions</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;protein&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;subcortical&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Add the inclusion and exclusions</span>
+<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">inclusions</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
+<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">exclusions</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the loaded terms</span>
+<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of terms used:
+
+gene     : gene, genetic
+cortex   : cortex, cortical
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check inclusion &amp; exclusion words</span>
+<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">(</span><span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
+<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">(</span><span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of inclusions used:
+
+gene     : brain
+cortex   : body
+List of exclusions used:
+
+gene     : protein
+cortex   : subcortical
+</pre></div>
+</div>
+</div>
+<div class="section" id="labels">
+<h3>Labels<a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h3>
+<p>Since search terms with synonyms and exclusions are complex (have multiple parts), LISC
+will also create ‘labels’ for each search term, where the label for each term is the
+first item in each term list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the label for the current terms</span>
+<span class="n">base</span><span class="o">.</span><span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>LISC Objects<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Though LISC offers an object-oriented approach, note that the core procedures available
+for scraping and analyzing data are implemented as stand-alone functions.</p>
+<p>The objects serve primarily to help organize the data and support common analyses.</p>
+<p>If you prefer, you can use the functions directly, in particular, for more custom approaches.</p>
+<p>See the examples page for some examples of using LISC directly with functions.</p>
+</div>
+</div>
+<div class="section" id="database-management">
+<h2>Database Management<a class="headerlink" href="#database-management" title="Permalink to this headline">¶</a></h2>
+<p>When collecting and analysing literature, there can be a lot of data, and therefore
+a lot of files, to keep track of.</p>
+<p>For that reason, LISC offers a database structure</p>
+<p>If you use this file structure, LISC functions can automatically load and save files in an
+way using this file structure.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">create_file_structure</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure.</span>
+<span class="c1">#   Note that when called without a path argument input,</span>
+<span class="c1">#   the folder structure is made in the current directory.</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">create_file_structure</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the file structure for the created database</span>
+<span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>lisc_db/
+    Terms/
+    Logs/
+    Figures/
+    Data/
+        words/
+            raw/
+            summary/
+        counts/
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-00-overview-py">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/e8490a596597bd34feac6ae1c0d8757b/plot_00-Overview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_00-Overview.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/2ac62bbf25feee38359825bff11ee942/plot_00-Overview.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_00-Overview.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

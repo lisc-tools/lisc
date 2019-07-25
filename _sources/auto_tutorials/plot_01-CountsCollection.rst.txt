@@ -1,0 +1,287 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_auto_tutorials_plot_01-CountsCollection.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_auto_tutorials_plot_01-CountsCollection.py:
+
+
+Tutorial 01: Counts Collection
+==============================
+
+Scraping term co-occurence data from scientific literature.
+
+
+Term Co-Occurence
+-----------------
+
+Term co-occurence searches the literature, and checks how often terms of interest appear together.
+
+This type of analysis can be used to infer associations and relationships between terms.
+
+
+
+
+.. code-block:: python
+
+
+    from lisc import Counts
+
+    from lisc.core.db import SCDB
+    from lisc.core.io import save_object
+
+
+
+
+
+
+
+Counts Object
+-------------
+
+The 'Counts' object is used to handle term co-occurence analyses.
+
+
+
+Counts: Single List of Terms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the first example of running a counts analysis, we will use a single list of terms.
+
+When a single list of terms is provided, the word co-occurence is collected as the
+co-occurence of each term with every other term in the list.
+
+Let's start with an example using different parts of the brain, and examine
+how often these brain regions are talked about together.
+
+
+
+
+.. code-block:: python
+
+
+    # Set up some terms to search for
+    terms = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
+
+    # Initialize counts object & add the terms that we want to scrape
+    counts = Counts()
+    counts.add_terms(terms)
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Collect data
+    counts.run_collection(verbose=True)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Running counts for:  frontal lobe
+    Running counts for:  temporal lobe
+    Running counts for:  parietal lobe
+    Running counts for:  occipital lobe
+
+
+We have now collected some literature data!
+
+The Counts object will now contain count data for the word coocurence data between terms.
+
+
+
+
+.. code-block:: python
+
+
+    # Check out the raw count data
+    print(counts.counts)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [[   0 1746  755  491]
+     [1746    0  702  594]
+     [ 755  702    0  412]
+     [ 491  594  412    0]]
+
+
+The Counts object also comes with some helper methods to explore the data.
+
+
+
+
+.. code-block:: python
+
+
+    # Check how many papers were found for each search term
+    counts.check_counts()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    The number of documents found for each search term is:
+      'frontal lobe'     -   13916
+      'temporal lobe'    -   26881
+      'parietal lobe'    -    4811
+      'occipital lobe'   -    3638
+
+
+
+.. code-block:: python
+
+
+    # Check the top term
+    counts.check_top()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    The most studied term is  'temporal lobe'  with  26881  papers.
+
+
+Counts: Two Terms Lists
+~~~~~~~~~~~~~~~~~~~~~~~
+
+In the first example above, we provided a single list of terms.
+
+Now let's explore using two different sets of terms.
+
+In this example, we will keep our list of brain regions, and explore how they
+might be related to different sensory systems.
+
+
+
+
+.. code-block:: python
+
+
+    # Set some new terms
+    terms_a = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
+    terms_b = [['vision'], ['audition', 'auditory'], ['somatosensory'], ['olfaction', 'smell'],
+               ['gustation', 'taste'], ['proprioception'], ['nociception', 'pain']]
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Set terms lists
+    #  Different terms lists are indexed by the 'A' and 'B' labels
+    counts.add_terms(terms_a, dim='A')
+    counts.add_terms(terms_b, dim='B')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Unloading previous terms words.
+
+
+
+.. code-block:: python
+
+
+    # Collect co-occurence data
+    counts.run_collection()
+
+
+
+
+
+
+
+From there you can use all the same methods to explore the data we just collected.
+
+In the next tutorial, we explore analyzing our collected counts data.
+
+For now, let's save out our collected counts data, using the LISC utility to save the object.
+
+
+
+
+.. code-block:: python
+
+
+    # Save out the counts object
+    save_object(counts, 'tutorial_counts', folder=SCDB('lisc_db'))
+
+
+
+
+
+
+**Total running time of the script:** ( 1 minutes  5.631 seconds)
+
+
+.. _sphx_glr_download_auto_tutorials_plot_01-CountsCollection.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: plot_01-CountsCollection.py <plot_01-CountsCollection.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_01-CountsCollection.ipynb <plot_01-CountsCollection.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_

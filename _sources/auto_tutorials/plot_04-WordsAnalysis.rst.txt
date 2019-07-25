@@ -1,0 +1,277 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_auto_tutorials_plot_04-WordsAnalysis.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_auto_tutorials_plot_04-WordsAnalysis.py:
+
+
+Tutorial 04: Words Analysis
+===========================
+
+Analyzing collected text data and metadata.
+
+
+Words Analyses
+--------------
+
+This tutorial covers exploring & anayzing words data.
+
+For this tutorial, we will reload and use the `Words` data that we collected
+in the last tutorial.
+
+
+
+
+.. code-block:: python
+
+
+    from lisc import SCDB, load_object
+    from lisc.data import Data, DataAll
+
+    from lisc.plts.wordcloud import plot_wordcloud
+
+
+
+
+
+
+
+Data Objects
+~~~~~~~~~~~~
+
+LISC uses a custom object to store and organize collected words data.
+
+These objects are used internally in the `Words` objects.
+
+If th data collection was set to save out data as it was collected, then these Data
+objects can be loaded individually, using the label of the search term.
+
+
+
+
+.. code-block:: python
+
+
+    # Set up database object
+    db = SCDB('lisc_db')
+
+    # Load raw data for a particular term
+    term = 'frontal lobe'
+    data = Data(term)
+    data.load(db)
+
+
+
+
+
+
+
+DataAll Object
+~~~~~~~~~~~~~~
+
+There is also the `DataAll` object, which is variant which can be used to
+aggregate collected data across all articles collected for a given search term.
+
+The DataAll also have methods to create and check summaries created from the aggregate data.
+
+
+
+
+.. code-block:: python
+
+
+    # Collapse data across papers
+    data_all = DataAll(data)
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Check an example summary
+    data_all.create_summary()
+    data_all.print_summary()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    frontal lobe :
+      Number of articles:            14
+      First publication:             2019
+      Most common author:            Y Zhang
+        number of publications:      3
+      Most common journal:           Physiotherapy theory and practice
+        number of publications:      1
+
+
+Words Object
+~~~~~~~~~~~~
+
+The `Words` object can also be used to reload and analyze collected data.
+
+The `results` attribute of the `Words` object, when loaded, contains a list of
+Data objects, one for each term.
+
+
+
+
+.. code-block:: python
+
+
+    # Reload the words object
+    words = load_object('tutorial_words', folder=SCDB('lisc_db'))
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Reload all data
+    for ind in range(words.n_terms):
+        words.results[ind].load(folder=db)
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Collect into list of aggragated data objects
+    all_dat = [DataAll(words[label]) for label in words.labels]
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Plot a WordCloud of the collected data for the first term
+    plot_wordcloud(all_dat[0].words, 25)
+
+
+
+
+.. image:: /auto_tutorials/images/sphx_glr_plot_04-WordsAnalysis_001.png
+    :class: sphx-glr-single-img
+
+
+
+
+Exploring Words Data
+--------------------
+
+The words object also has a couple convenience methods for exploring the data.
+
+
+
+
+.. code-block:: python
+
+
+    # Indexing with labels
+    print(words['frontal lobe'])
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    <lisc.data.data.Data object at 0x133d29be0>
+
+
+
+.. code-block:: python
+
+
+    # Iterating through papers found from a particular search term
+    #  The iteration returns a dictionary with all the paper data
+    for art in words['temporal lobe']:
+        print(art['title'])
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Subicular pyramidal neurons gate drug resistance in temporal lobe epilepsy.
+    Regional Specialization and Coordination Within the Network for Perceiving and Knowing About Others.
+    Relationship between déjà vu experiences and recognition-memory impairments in temporal-lobe epilepsy.
+    PET imaging of metabolic changes after neural stem cells and GABA progenitor cells transplantation in a rat model of temporal lobe epilepsy.
+    Severe presentation of antibody-negative, postinfectious steroid-responsive encephalitis and atonic bladder after herpes simplex encephalitis.
+    The anticonvulsant and neuroprotective effects of kir2.3 activation in PTZ-induced seizures and the kainic acid model of TLE.
+    MicroRNA-23a contributes to hippocampal neuronal injuries and spatial memory impairment in an experimental model of temporal lobe epilepsy.
+    Cognitive deficits in a rat model of temporal lobe epilepsy using touchscreen-based translational tools.
+    Middle fossa approach for spontaneous cerebrospinal fluid fistula and encephaloceles.
+    The role of hippocampal subfield volume and fornix microstructure in episodic memory across the lifespan.
+    Urinary volatile metabolites of amygdala-kindled mice reveal novel biomarkers associated with temporal lobe epilepsy.
+    Ictal Central Apnea (ICA) may be a useful semiological sign in invasive epilepsy surgery evaluations.
+    Postoperative memory prognosis in temporal lobe epilepsy surgery: The contribution of postictal memory.
+    Study of the hippocampal internal architecture in temporal lobe epilepsy using 7 T and 3 T MRI.
+    Correlates of anomia in non-semantic variants of primary progressive aphasia converge over time.
+
+
+**Total running time of the script:** ( 0 minutes  0.134 seconds)
+
+
+.. _sphx_glr_download_auto_tutorials_plot_04-WordsAnalysis.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: plot_04-WordsAnalysis.py <plot_04-WordsAnalysis.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_04-WordsAnalysis.ipynb <plot_04-WordsAnalysis.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_

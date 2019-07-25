@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>lisc.collect.collect_counts &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="lisc-collect-collect-counts">
+<h1>lisc.collect.collect_counts<a class="headerlink" href="#lisc-collect-collect-counts" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lisc.collect.collect_counts">
+<code class="descclassname">lisc.collect.</code><code class="descname">collect_counts</code><span class="sig-paren">(</span><em>terms_a</em>, <em>inclusions_a=[]</em>, <em>exclusions_a=[]</em>, <em>terms_b=[]</em>, <em>inclusions_b=[]</em>, <em>exclusions_b=[]</em>, <em>db='pubmed'</em>, <em>field='TIAB'</em>, <em>api_key=None</em>, <em>logging=None</em>, <em>folder=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/counts.html#collect_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect word co-occurence data from pubmed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>terms_a</strong> (<em>list of list of str</em>) – Search terms.</li>
+<li><strong>inclusions_a</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Inclusions words for search terms.</li>
+<li><strong>exclusions_a</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for search terms.</li>
+<li><strong>terms_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Secondary list of search terms.</li>
+<li><strong>inclusions_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Inclusions words for secondary lis of search terms.</li>
+<li><strong>exclusions_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for secondary list of search terms.</li>
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which pubmed database to use.</li>
+<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term within.
+Defaults to ‘TIAB’, which is Title/Abstract.</li>
+<li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
+<li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
+<li><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to print out updates.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>data_numbers</strong> (<em>2d array</em>) – The numbers of papers found for each combination of terms.</li>
+<li><strong>counts</strong> (<em>1d array or list of 1d array</em>) – Number of papers for each term independently.</li>
+<li><strong>meta_data</strong> (<em>dict</em>) – Meta data from the data collection.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The collection does an exact word search for two terms.</p>
+<p>The HTML page returned by the pubmed search includes a ‘count’ field.
+This field contains the number of papers with both terms. This is extracted.</p>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

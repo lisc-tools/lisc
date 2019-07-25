@@ -12,6 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -43,7 +44,8 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="api.html">API</a></li>
-                <li><a href="auto_tutorial/index.html">Tutorial</a></li>
+                <li><a href="auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -93,10 +95,32 @@
 <p>NOTE: the current version is still a development version (0.1.0-dev) and may not be totally stable.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>LISC is a python module for scraping literature data. It currently supports and acts as a wrapper around the Pubmed E-Utilities.</p>
-<p>LISC provides for two different ‘types’ of scraping, ‘Counts’, which can be used to count the popularity and co-occurence of specified search terms, and ‘Words’, which collects meta-data and text data for papers identified from a set of search terms.</p>
-<p>As well as the functionality to collect such data, LISC includes support to analyzing and plotting returned data, as well as save and load utilties for storing the collected data.</p>
-<p>By construction, LISC provides both an Object-Oriented approach for running literature scrapes, as well as the option to use functions (both of which call the same underlying code).</p>
+<p>LISC is a python module for collecting and analzying scientific literature.</p>
+<div class="section" id="data-collection">
+<h3>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h3>
+<p>For data collection, LISC currently offers support for using the Pubmed E-Utilities.</p>
+<p>LISC provides for two different ‘types’ of literature data collection:</p>
+<ul class="simple">
+<li>‘Counts’: popularity and co-occurence analysis of specified search terms.</li>
+<li>‘Words’: collects text data and meta-data from papers identified by specified search terms.</li>
+</ul>
+</div>
+<div class="section" id="data-analysis">
+<h3>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this headline">¶</a></h3>
+<p>LISC provides support and utities for:</p>
+<ul class="simple">
+<li>Custom data objects for managing and operating on returned data.</li>
+<li>Save and load utilties for storing collected data.</li>
+<li>Support and tools for analyzing and plotting returned data.</li>
+<li>Data visualization utilities.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Documentation for LISC available <a class="reference external" href="https://lisc-tools.github.io/lisc/">here</a>.</p>
+<p>The documentation also includes a set of <a class="reference external" href="https://lisc-tools.github.io/lisc/auto_tutorial/index.html">tutorials</a>.</p>
+<p>For a curated list of projects that use LISC (or pre-cursors), check out the <a class="reference external" href="https://github.com/lisc-tools/Projects">projects</a> page.</p>
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
@@ -119,11 +143,27 @@
 </div>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p>LISC will be posted to PYPI soon.</p>
-<p>For now, you can use it by cloning from Github. In terminal, run:</p>
+<p><strong>Stable Release Version</strong></p>
+<p>PIP install coming soon!</p>
+<p><strong>Development Version</strong></p>
+<p>To get the development version (updates that are not yet published to pip), you can clone this repo.</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/lisc-tools/lisc</span></code></p>
-<p>Once you have done this, move into the directory you just cloned and run:</p>
+<p>To install this cloned copy of LISC, move into the directory you just cloned, and run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code></p>
+<p><strong>Editable Version</strong></p>
+<p>If you want to install an editable version, for making contributions, download the development version as above, and run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p>
+</div>
+<div class="section" id="bug-reports">
+<h2>Bug Reports<a class="headerlink" href="#bug-reports" title="Permalink to this headline">¶</a></h2>
+<p>Please use the <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">Github issue tracker</a> to file bug reports and/or ask questions about this project.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">LISC</span></code> welcomes and encourages contributions from the community!</p>
+<p>If you have an idea of something to add to LISC, please start by opening an <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">issue</a>.</p>
+<p>When working on LISC, please follow the <a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md">Contribution Guidelines</a>, and also make sure to follow our
+<a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
 </div>
 </div>
 
@@ -140,7 +180,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
     </p>
   </div>
 </footer>

@@ -1,0 +1,27 @@
+lisc.urls.EUtils
+================
+
+.. currentmodule:: lisc.urls
+
+.. autoclass:: EUtils
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~EUtils.__init__
+      ~EUtils.authenticate
+      ~EUtils.build_url
+      ~EUtils.check_url
+      ~EUtils.fill_settings
+      ~EUtils.get_url
+   
+   
+
+   
+   
+   

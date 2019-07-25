@@ -1,0 +1,30 @@
+lisc.objects.Counts
+===================
+
+.. currentmodule:: lisc.objects
+
+.. autoclass:: Counts
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Counts.__init__
+      ~Counts.add_terms
+      ~Counts.add_terms_file
+      ~Counts.check_counts
+      ~Counts.check_data
+      ~Counts.check_top
+      ~Counts.compute_score
+      ~Counts.drop_data
+      ~Counts.run_collection
+   
+   
+
+   
+   
+   

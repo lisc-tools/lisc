@@ -12,6 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -43,7 +44,8 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="#">API</a></li>
-                <li><a href="auto_tutorial/index.html">Tutorial</a></li>
+                <li><a href="auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -85,89 +87,159 @@
       
   <div class="section" id="api-documentation">
 <span id="id1"></span><h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="base">
-<h2>Base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="objects">
+<h2>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.base.Base.html#lisc.base.Base" title="lisc.base.Base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.Base</span></code></a>()</td>
-<td>Base class for LISC analyses.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.objects.Counts.html#lisc.objects.Counts" title="lisc.objects.Counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Counts</span></code></a>()</td>
+<td>A class for collecting and analyzing co-occurence data of pre-specified terms list(s).</td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="counts">
-<h2>Counts<a class="headerlink" href="#counts" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.count.Count.html#lisc.count.Count" title="lisc.count.Count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count.Count</span></code></a>()</td>
-<td>This is a class for counting co-occurence of pre-specified terms list(s).</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="words">
-<h2>Words<a class="headerlink" href="#words" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.words.Words.html#lisc.words.Words" title="lisc.words.Words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words.Words</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.objects.Words.html#lisc.objects.Words" title="lisc.objects.Words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Words</span></code></a>()</td>
 <td>Class for searching through words in the abstracts of specified papers.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="scrape">
-<h2>Scrape<a class="headerlink" href="#scrape" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="collect">
+<h2>Collect<a class="headerlink" href="#collect" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.scrape.scrape_counts.html#lisc.scrape.scrape_counts" title="lisc.scrape.scrape_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scrape.scrape_counts</span></code></a>(terms_lst_a[,&nbsp;…])</td>
-<td>Search through pubmed for all abstracts for co-occurence.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.collect.collect_info.html#lisc.collect.collect_info" title="lisc.collect.collect_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_info</span></code></a>([db,&nbsp;api_key,&nbsp;logging,&nbsp;folder,&nbsp;…])</td>
+<td>Collect database information &amp; metadata from pubmed.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/lisc.scrape.scrape_words.html#lisc.scrape.scrape_words" title="lisc.scrape.scrape_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scrape.scrape_words</span></code></a>(terms_lst[,&nbsp;…])</td>
-<td>Search and scrape from pubmed for all abstracts referring to a given term.</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.collect.collect_counts.html#lisc.collect.collect_counts" title="lisc.collect.collect_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_counts</span></code></a>(terms_a[,&nbsp;inclusions_a,&nbsp;…])</td>
+<td>Collect word co-occurence data from pubmed.</td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data.Data</span></code></a>(label[,&nbsp;term])</td>
-<td>An object to hold the word results for a given term or term.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.collect.collect_words.html#lisc.collect.collect_words" title="lisc.collect.collect_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_words</span></code></a>(terms[,&nbsp;inclusions,&nbsp;…])</td>
+<td>Collect text data and metadata from pubmed using specified search term(s).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.collect.collect_citations.html#lisc.collect.collect_citations" title="lisc.collect.collect_citations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_citations</span></code></a>(dois[,&nbsp;util,&nbsp;logging,&nbsp;…])</td>
+<td>Scape OpenCitations for citation data.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="dataall">
-<h2>DataAll<a class="headerlink" href="#dataall" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-objects">
+<h2>Data Objects<a class="headerlink" href="#data-objects" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data_all.DataAll.html#lisc.data_all.DataAll" title="lisc.data_all.DataAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_all.DataAll</span></code></a>(term_data)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.Term.html#lisc.data.Term" title="lisc.data.Term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Term</span></code></a></td>
+<td>Search term definition with inclusion &amp; exclusion words.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Data</span></code></a>(term)</td>
+<td>An object to hold the word results for a given term.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.DataAll.html#lisc.data.DataAll" title="lisc.data.DataAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataAll</span></code></a>(term_data[,&nbsp;exclusions])</td>
 <td>Object to hold term data, aggregated across papers.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetaData</span></code></a>()</td>
+<td>An object to hold the meta data for data collection.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="requester">
+<h2>Requester<a class="headerlink" href="#requester" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Requester</span></code></a>([wait_time,&nbsp;logging,&nbsp;folder])</td>
+<td>Object to handle URL requests.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="urls">
+<h2>URLS<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URLs</span></code></a>(base[,&nbsp;utils,&nbsp;authenticated])</td>
+<td>Class to hold URL information for an API interface.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EUtils</span></code></a>([db,&nbsp;retmax,&nbsp;field,&nbsp;retmode,&nbsp;…])</td>
+<td>Class to hold URLs for the NCBI EUtils API.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenCitations</span></code></a>()</td>
+<td>Class to hold URLs for the OpenCitations API.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.plts.single.plot_years.html#lisc.plts.single.plot_years" title="lisc.plts.single.plot_years"><code class="xref py py-obj docutils literal notranslate"><span class="pre">single.plot_years</span></code></a>(years[,&nbsp;year_range,&nbsp;ax])</td>
+<td>Plot publications across years histogram.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.plts.group.plot_matrix.html#lisc.plts.group.plot_matrix" title="lisc.plts.group.plot_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group.plot_matrix</span></code></a>(data[,&nbsp;x_labels,&nbsp;…])</td>
+<td>Plot the matrix of percent asscociations between terms.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.plts.group.plot_clustermap.html#lisc.plts.group.plot_clustermap" title="lisc.plts.group.plot_clustermap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group.plot_clustermap</span></code></a>(data[,&nbsp;x_labels,&nbsp;…])</td>
+<td>Plot clustermap.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.plts.group.plot_dendrogram.html#lisc.plts.group.plot_dendrogram" title="lisc.plts.group.plot_dendrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group.plot_dendrogram</span></code></a>(data[,&nbsp;labels,&nbsp;ax])</td>
+<td>Plot dendrogram.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.plts.wordcloud.plot_wordcloud.html#lisc.plts.wordcloud.plot_wordcloud" title="lisc.plts.wordcloud.plot_wordcloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wordcloud.plot_wordcloud</span></code></a>(freq_dist,&nbsp;n_words)</td>
+<td>Create and display a wordcloud.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="database-management">
+<h2>Database Management<a class="headerlink" href="#database-management" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCDB</span></code></a>([base_path,&nbsp;auto_gen])</td>
+<td>Database object for a SCANR project.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.core.db.create_file_structure.html#lisc.core.db.create_file_structure" title="lisc.core.db.create_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_file_structure</span></code></a>([base_path,&nbsp;dir_name])</td>
+<td>Create the file structure for a SCANR database.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.save_object.html#lisc.save_object" title="lisc.save_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_object</span></code></a>(obj,&nbsp;f_name[,&nbsp;folder])</td>
+<td>Save a custom object from LISC as a pickle file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.load_object.html#lisc.load_object" title="lisc.load_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_object</span></code></a>(f_name[,&nbsp;folder])</td>
+<td>Load a custom object, from a pickle file.</td>
 </tr>
 </tbody>
 </table>
@@ -187,7 +259,7 @@
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
     </p>
   </div>
 </footer>

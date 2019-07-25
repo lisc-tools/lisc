@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial 04: Words Analysis &#8212; lisc 0.1.0-dev documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="tutorial-04-words-analysis">
+<span id="sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"></span><h1>Tutorial 04: Words Analysis<a class="headerlink" href="#tutorial-04-words-analysis" title="Permalink to this headline">¶</a></h1>
+<p>Analyzing collected text data and metadata.</p>
+<div class="section" id="words-analyses">
+<h2>Words Analyses<a class="headerlink" href="#words-analyses" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial covers exploring &amp; anayzing words data.</p>
+<p>For this tutorial, we will reload and use the <cite>Words</cite> data that we collected
+in the last tutorial.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
+<span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Data</span><span class="p">,</span> <span class="n">DataAll</span>
+
+<span class="kn">from</span> <span class="nn">lisc.plts.wordcloud</span> <span class="kn">import</span> <span class="n">plot_wordcloud</span>
+</pre></div>
+</div>
+<div class="section" id="data-objects">
+<h3>Data Objects<a class="headerlink" href="#data-objects" title="Permalink to this headline">¶</a></h3>
+<p>LISC uses a custom object to store and organize collected words data.</p>
+<p>These objects are used internally in the <cite>Words</cite> objects.</p>
+<p>If th data collection was set to save out data as it was collected, then these Data
+objects can be loaded individually, using the label of the search term.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up database object</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+
+<span class="c1"># Load raw data for a particular term</span>
+<span class="n">term</span> <span class="o">=</span> <span class="s1">&#39;frontal lobe&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dataall-object">
+<h3>DataAll Object<a class="headerlink" href="#dataall-object" title="Permalink to this headline">¶</a></h3>
+<p>There is also the <cite>DataAll</cite> object, which is variant which can be used to
+aggregate collected data across all articles collected for a given search term.</p>
+<p>The DataAll also have methods to create and check summaries created from the aggregate data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collapse data across papers</span>
+<span class="n">data_all</span> <span class="o">=</span> <span class="n">DataAll</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check an example summary</span>
+<span class="n">data_all</span><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span>
+<span class="n">data_all</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>frontal lobe :
+  Number of articles:            14
+  First publication:             2019
+  Most common author:            Y Zhang
+    number of publications:      3
+  Most common journal:           Physiotherapy theory and practice
+    number of publications:      1
+</pre></div>
+</div>
+</div>
+<div class="section" id="words-object">
+<h3>Words Object<a class="headerlink" href="#words-object" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>Words</cite> object can also be used to reload and analyze collected data.</p>
+<p>The <cite>results</cite> attribute of the <cite>Words</cite> object, when loaded, contains a list of
+Data objects, one for each term.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the words object</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload all data</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
+    <span class="n">words</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect into list of aggragated data objects</span>
+<span class="n">all_dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">DataAll</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">words</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a WordCloud of the collected data for the first term</span>
+<span class="n">plot_wordcloud</span><span class="p">(</span><span class="n">all_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">words</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_04-WordsAnalysis_001.png" />
+</div>
+</div>
+<div class="section" id="exploring-words-data">
+<h2>Exploring Words Data<a class="headerlink" href="#exploring-words-data" title="Permalink to this headline">¶</a></h2>
+<p>The words object also has a couple convenience methods for exploring the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indexing with labels</span>
+<span class="k">print</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.data.Data object at 0x133d29be0&gt;
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through papers found from a particular search term</span>
+<span class="c1">#  The iteration returns a dictionary with all the paper data</span>
+<span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">art</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Subicular pyramidal neurons gate drug resistance in temporal lobe epilepsy.
+Regional Specialization and Coordination Within the Network for Perceiving and Knowing About Others.
+Relationship between déjà vu experiences and recognition-memory impairments in temporal-lobe epilepsy.
+PET imaging of metabolic changes after neural stem cells and GABA progenitor cells transplantation in a rat model of temporal lobe epilepsy.
+Severe presentation of antibody-negative, postinfectious steroid-responsive encephalitis and atonic bladder after herpes simplex encephalitis.
+The anticonvulsant and neuroprotective effects of kir2.3 activation in PTZ-induced seizures and the kainic acid model of TLE.
+MicroRNA-23a contributes to hippocampal neuronal injuries and spatial memory impairment in an experimental model of temporal lobe epilepsy.
+Cognitive deficits in a rat model of temporal lobe epilepsy using touchscreen-based translational tools.
+Middle fossa approach for spontaneous cerebrospinal fluid fistula and encephaloceles.
+The role of hippocampal subfield volume and fornix microstructure in episodic memory across the lifespan.
+Urinary volatile metabolites of amygdala-kindled mice reveal novel biomarkers associated with temporal lobe epilepsy.
+Ictal Central Apnea (ICA) may be a useful semiological sign in invasive epilepsy surgery evaluations.
+Postoperative memory prognosis in temporal lobe epilepsy surgery: The contribution of postictal memory.
+Study of the hippocampal internal architecture in temporal lobe epilepsy using 7 T and 3 T MRI.
+Correlates of anomia in non-semantic variants of primary progressive aphasia converge over time.
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.134 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/1ce65694381d2739d70267357f7a6fc8/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/74a42ab9fa45d8917bb42cbd44564c97/plot_04-WordsAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-WordsAnalysis.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

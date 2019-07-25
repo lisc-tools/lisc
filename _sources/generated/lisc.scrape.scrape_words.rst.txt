@@ -1,6 +1,0 @@
-lisc.scrape.scrape\_words
-=========================
-
-.. currentmodule:: lisc.scrape
-
-.. autofunction:: scrape_words

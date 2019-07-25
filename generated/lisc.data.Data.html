@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -43,7 +44,8 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="../api.html">API</a></li>
-                <li><a href="../auto_tutorial/index.html">Tutorial</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -87,8 +89,8 @@
 <h1>lisc.data.Data<a class="headerlink" href="#lisc-data-data" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lisc.data.Data">
-<em class="property">class </em><code class="descclassname">lisc.data.</code><code class="descname">Data</code><span class="sig-paren">(</span><em>label</em>, <em>term=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object to hold the word results for a given term or term.</p>
+<em class="property">class </em><code class="descclassname">lisc.data.</code><code class="descname">Data</code><span class="sig-paren">(</span><em>term</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object to hold the word results for a given term.</p>
 <dl class="attribute">
 <dt id="lisc.data.Data.label">
 <code class="descname">label</code><a class="headerlink" href="#lisc.data.Data.label" title="Permalink to this definition">¶</a></dt>
@@ -106,12 +108,12 @@
 <dl class="attribute">
 <dt id="lisc.data.Data.term">
 <code class="descname">term</code><a class="headerlink" href="#lisc.data.Data.term" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name(s) of the term word data relates to (search terms).</p>
+<dd><p>Definition of the search term, with inclusions and exclusion words.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lisc.data.Term.html#lisc.data.Term" title="lisc.data.Term">Term</a>() <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></td>
 </tr>
 </tbody>
 </table>
@@ -162,10 +164,8 @@
 <dl class="attribute">
 <dt id="lisc.data.Data.journals">
 <code class="descname">journals</code><a class="headerlink" href="#lisc.data.Data.journals" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>List of journals articles come from.</dt>
-<dd>(Journal Name, ISO abbreviation).</dd>
-</dl>
+<dd><p>List of journals articles come from.
+(Journal Name, ISO abbreviation).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -179,10 +179,8 @@
 <dl class="attribute">
 <dt id="lisc.data.Data.authors">
 <code class="descname">authors</code><a class="headerlink" href="#lisc.data.Data.authors" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Authors of all articles included in object.</dt>
-<dd>(Last Name, First Name, Initials, Affiliation)</dd>
-</dl>
+<dd><p>Authors of all articles included in object.
+(Last Name, First Name, Initials, Affiliation)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -236,20 +234,6 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.Data.months">
-<code class="descname">months</code><a class="headerlink" href="#lisc.data.Data.months" title="Permalink to this definition">¶</a></dt>
-<dd><p>Publication month of each article included in object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of int</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="lisc.data.Data.dois">
 <code class="descname">dois</code><a class="headerlink" href="#lisc.data.Data.dois" title="Permalink to this definition">¶</a></dt>
 <dd><p>DOIs of each article included in object.</p>
@@ -263,33 +247,16 @@
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="lisc.data.Data.history">
-<code class="descname">history</code><a class="headerlink" href="#lisc.data.Data.history" title="Permalink to this definition">¶</a></dt>
-<dd><p>History of the object and it’s data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="lisc.data.Data.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>label</em>, <em>term=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize termWords() object.</p>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>term</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize Data() object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Label for the term.</li>
-<li><strong>term</strong> (<em>list of str</em>) – Name(s) of the term.</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>term</strong> (<a class="reference internal" href="lisc.data.Term.html#lisc.data.Term" title="lisc.data.Term"><em>Term</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em> or </em><em>str.</em>) – Search term definition.
+If input is a string, it is used as the label for the term.</td>
 </tr>
 </tbody>
 </table>
@@ -302,113 +269,55 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.__init__" title="lisc.data.Data.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(label[,&nbsp;term])</td>
-<td>Initialize termWords() object.</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.__init__" title="lisc.data.Data.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term)</td>
+<td>Initialize Data() object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.add_authors" title="lisc.data.Data.add_authors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_authors</span></code></a>(new_authors)</td>
-<td>Add a new set of authors to termWords object.</td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.add_data" title="lisc.data.Data.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(field,&nbsp;new_data)</td>
+<td>Add data to object.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.add_doi" title="lisc.data.Data.add_doi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_doi</span></code></a>(new_doi)</td>
-<td>Add DOI to termWords object.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.add_id" title="lisc.data.Data.add_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_id</span></code></a>(new_id)</td>
-<td>Add a new ID to termWords object.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.add_journal" title="lisc.data.Data.add_journal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_journal</span></code></a>(new_journal,&nbsp;new_iso_abbrev)</td>
-<td>Add a new journal name and ISO abbreviation to termWords object.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.add_kws" title="lisc.data.Data.add_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_kws</span></code></a>(new_kws)</td>
-<td>Add new keywords to termWords object.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.add_pub_date" title="lisc.data.Data.add_pub_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_pub_date</span></code></a>(new_pub_date)</td>
-<td>Add publication date information to termWords object.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.add_title" title="lisc.data.Data.add_title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_title</span></code></a>(new_title)</td>
-<td>Add a new title to termWords object.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.add_words" title="lisc.data.Data.add_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_words</span></code></a>(new_words)</td>
-<td>Add new words to termWords object.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.check_results" title="lisc.data.Data.check_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_results</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.check_results" title="lisc.data.Data.check_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_results</span></code></a>()</td>
 <td>Check for consistencty in extracted results.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.clear" title="lisc.data.Data.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
 <td>Clear all data attached to object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.increment_n_articles" title="lisc.data.Data.increment_n_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">increment_n_articles</span></code></a>()</td>
-<td>Increment the number of articles included in current object.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.load" title="lisc.data.Data.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>([db])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.load" title="lisc.data.Data.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>([folder])</td>
 <td>Load raw data from json file.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.save" title="lisc.data.Data.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([db])</td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.save" title="lisc.data.Data.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([folder])</td>
 <td>Save out json file with all attached data.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.save_n_clear" title="lisc.data.Data.save_n_clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_n_clear</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.save_and_clear" title="lisc.data.Data.save_and_clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_and_clear</span></code></a>([folder])</td>
 <td>Save out the attached data and clear the object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.update_history" title="lisc.data.Data.update_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_history</span></code></a>(update)</td>
-<td>Update object history.</td>
-</tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="lisc.data.Data.add_authors">
-<code class="descname">add_authors</code><span class="sig-paren">(</span><em>new_authors</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new set of authors to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_authors</strong> (<em>list of tuple of</em><em> (</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>)</em>) – <dl class="docutils">
-<dt>Author list of the current article.</dt>
-<dd>(LastName, FirstName, Initials, Affiliation)</dd>
-</dl>
-</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.Data.label" title="lisc.data.Data.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.Data.n_articles" title="lisc.data.Data.n_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_articles</span></code></a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
 <dl class="method">
-<dt id="lisc.data.Data.add_doi">
-<code class="descname">add_doi</code><span class="sig-paren">(</span><em>new_doi</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_doi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_doi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add DOI to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_doi</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – DOI for the current article.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.add_id">
-<code class="descname">add_id</code><span class="sig-paren">(</span><em>new_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new ID to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The ID number of the current article.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.add_journal">
-<code class="descname">add_journal</code><span class="sig-paren">(</span><em>new_journal</em>, <em>new_iso_abbrev</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_journal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_journal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new journal name and ISO abbreviation to termWords object.</p>
+<dt id="lisc.data.Data.add_data">
+<code class="descname">add_data</code><span class="sig-paren">(</span><em>field</em>, <em>new_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data.add_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data to object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>new_journal</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the journal current article comes from.</li>
-<li><strong>new_iso_abbrev</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Standardized abbreviation of journal name article comes from.</li>
+<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The attribute of the object to add data to.</li>
+<li><strong>new_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – Data to add to object.</li>
 </ul>
 </td>
 </tr>
@@ -417,65 +326,10 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.Data.add_kws">
-<code class="descname">add_kws</code><span class="sig-paren">(</span><em>new_kws</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_kws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_kws" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add new keywords to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_kws</strong> (<em>list of str</em>) – List of keywords from current article.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.add_pub_date">
-<code class="descname">add_pub_date</code><span class="sig-paren">(</span><em>new_pub_date</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_pub_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_pub_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add publication date information to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_pub_date</strong> (<em>tuple of</em><em> (</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>)</em>) – Publication year and month of current article.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.add_title">
-<code class="descname">add_title</code><span class="sig-paren">(</span><em>new_title</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_title" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new title to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The title of the current article.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.add_words">
-<code class="descname">add_words</code><span class="sig-paren">(</span><em>new_words</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.add_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.add_words" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add new words to termWords object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_words</strong> (<em>list of str</em>) – List of words from the current article.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="lisc.data.Data.check_results">
-<code class="descname">check_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.check_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.check_results" title="Permalink to this definition">¶</a></dt>
+<code class="descname">check_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data.check_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.check_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check for consistencty in extracted results.</p>
+<p class="rubric">Notes</p>
 <p>If everything worked, each data field (ids, titles, words, years)
 should have the same length, equal to the number of articles.
 Some entries may be blank (missing data), but if the lengths are not
@@ -483,39 +337,45 @@ the same then the data does not line up and cannot be trusted.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.Data.clear">
-<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.clear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clear all data attached to object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.increment_n_articles">
-<code class="descname">increment_n_articles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.increment_n_articles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.increment_n_articles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Increment the number of articles included in current object.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="lisc.data.Data.load">
-<code class="descname">load</code><span class="sig-paren">(</span><em>db=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.load" title="Permalink to this definition">¶</a></dt>
+<code class="descname">load</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load raw data from json file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lisc.data.Data.save">
-<code class="descname">save</code><span class="sig-paren">(</span><em>db=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.save" title="Permalink to this definition">¶</a></dt>
+<code class="descname">save</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out json file with all attached data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.Data.save_n_clear">
-<code class="descname">save_n_clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.save_n_clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.save_n_clear" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.Data.save_and_clear">
+<code class="descname">save_and_clear</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data.html#Data.save_and_clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.save_and_clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out the attached data and clear the object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.data.Data.update_history">
-<code class="descname">update_history</code><span class="sig-paren">(</span><em>update</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data.html#Data.update_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Data.update_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update object history.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -535,7 +395,7 @@ the same then the data does not line up and cannot be trusted.</p>
     </p>
     <p>
         &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
     </p>
   </div>
 </footer>

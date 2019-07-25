@@ -1,0 +1,241 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_auto_tutorials_plot_02-CountsAnalysis.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_auto_tutorials_plot_02-CountsAnalysis.py:
+
+
+Tutorial 02: Counts Analysis
+============================
+
+Analyzing scraped co-occurence data.
+
+
+
+.. code-block:: python
+
+
+    from lisc import SCDB, load_object
+
+    from lisc.plts.group import *
+
+
+
+
+
+
+
+Counts Analyses
+---------------
+
+This tutorial explores the built in utilities for exploring & anayzing counts data.
+
+
+
+
+.. code-block:: python
+
+
+    # Reload the counts object from the last tutorial
+    counts = load_object('tutorial_counts', SCDB('lisc_db'))
+
+
+
+
+
+
+
+The `Counts` object has some helper methods to explore the collected data.
+
+First lets check the number of counts per term list.
+
+
+
+
+.. code-block:: python
+
+
+    # Look at the collect counts data for the first set of terms
+    counts.check_data(data_type='counts', dim='A', )
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    For  'frontal lobe'    the highest association is  'audition'        with       37500
+    For  'temporal lobe'   the highest association is  'audition'        with      129600
+    For  'parietal lobe'   the highest association is  'audition'        with       23100
+    For  'occipital lobe'  the highest association is  'vision'          with       23500
+
+
+
+.. code-block:: python
+
+
+    # Look at the collect counts data for the second set of terms
+    counts.check_data(data_type='counts', dim='B', )
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    For  'vision'          the highest association is  'occipital lobe'  with       23500
+    For  'audition'        the highest association is  'temporal lobe'   with      129600
+    For  'somatosensory'   the highest association is  'parietal lobe'   with       18700
+    For  'olfaction'       the highest association is  'temporal lobe'   with        7000
+    For  'gustation'       the highest association is  'temporal lobe'   with        4400
+    For  'proprioception'  the highest association is  'parietal lobe'   with         900
+    For  'nociception'     the highest association is  'temporal lobe'   with       19600
+
+
+Scores
+------
+
+The Counts co-occurence data collection gives us a raw data matrix of the number of
+papers in with terms co-occur, as well as counts of the number of total papers using
+each term.
+
+
+MORE INFORMATION ON SCORES
+
+
+
+
+.. code-block:: python
+
+
+    # Compute the association index
+    counts.compute_score('association')
+
+
+
+
+
+
+
+
+.. code-block:: python
+
+
+    # Check out the computed score
+    print(counts.score)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [[1.16357304e-03 3.37202924e-03 3.14227661e-03 1.87828700e-03
+      3.79191847e-04 2.15552083e-04 2.63625195e-04]
+     [1.32124110e-03 1.05149570e-02 3.33091962e-03 1.76924049e-03
+      7.98084597e-04 6.34437254e-05 3.18152379e-04]
+     [7.24687106e-04 2.25921289e-03 5.63813429e-03 4.55658712e-04
+      1.81268882e-04 9.52683392e-04 1.88529654e-04]
+     [2.02640361e-03 8.29859122e-04 1.08878243e-03 3.05119912e-04
+      0.00000000e+00 0.00000000e+00 1.04562289e-04]]
+
+
+Clustering and Plotting Counts Data
+-----------------------------------
+
+MORE INFORMATION HERE
+
+TODO: FIX UP PLOTS
+
+
+
+
+.. code-block:: python
+
+
+    # Plot a matrix of the association index data
+    plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
+
+
+
+
+.. image:: /auto_tutorials/images/sphx_glr_plot_02-CountsAnalysis_001.png
+    :class: sphx-glr-single-img
+
+
+
+
+
+.. code-block:: python
+
+
+    # Plot a clustermap of the association index data
+    plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
+
+
+
+
+.. image:: /auto_tutorials/images/sphx_glr_plot_02-CountsAnalysis_002.png
+    :class: sphx-glr-single-img
+
+
+
+
+
+.. code-block:: python
+
+
+    # Plot a dendrogram, to cluster the terms
+    plot_dendrogram(counts.score, counts.terms['B'].labels)
+
+
+
+.. image:: /auto_tutorials/images/sphx_glr_plot_02-CountsAnalysis_003.png
+    :class: sphx-glr-single-img
+
+
+
+
+**Total running time of the script:** ( 0 minutes  0.318 seconds)
+
+
+.. _sphx_glr_download_auto_tutorials_plot_02-CountsAnalysis.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: plot_02-CountsAnalysis.py <plot_02-CountsAnalysis.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_02-CountsAnalysis.ipynb <plot_02-CountsAnalysis.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_
