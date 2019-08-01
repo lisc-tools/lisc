@@ -38,8 +38,8 @@ def test_add_data(tdata_empty):
     tdata_empty.add_data('words', ['new', 'dat'])
     assert tdata_empty.words
 
-    tdata_empty.add_data('kws', ['list', 'of', 'kws'])
-    assert tdata_empty.kws
+    tdata_empty.add_data('keywords', ['list', 'of', 'keywords'])
+    assert tdata_empty.keywords
 
     tdata_empty.add_data('years', 2000)
     assert tdata_empty.years
@@ -50,11 +50,11 @@ def test_add_data(tdata_empty):
 
 def test_check_results(tdata_full):
 
-    tdata_full.check_results()
+    tdata_full._check_results()
 
     tdata_full.ids = [1]
     with raises(InconsistentDataError):
-        assert tdata_full.check_results()
+        assert tdata_full._check_results()
 
 def test_save(tdb, tdata_full):
 

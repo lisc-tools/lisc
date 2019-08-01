@@ -39,7 +39,7 @@ def test_extract_add_info():
     assert data.titles[0] == ("A Neurocomputational Model of the N400"
                               " and the P600 in Language Processing.")
     assert data.words[0][0] == "ten"
-    assert data.kws[0][0] == "computational modeling"
+    assert data.keywords[0][0] == "computational modeling"
     assert data.years[0] == 2017
     assert data.dois[0] == '10.1111/cogs.12461'
 
@@ -50,6 +50,6 @@ def test_extract_add_info():
     assert data.ids[1] == 999999
     assert data.titles[1] is None
     assert data.words[1] is None
-    assert data.kws[1] is None
+    assert data.keywords[1] is None
     assert data.years[1] is None
     assert data.dois[1] is None

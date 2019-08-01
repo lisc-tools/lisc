@@ -14,7 +14,7 @@ def test_data_all(tdata_full):
 def test_check(tdata_all):
 
     tdata_all.check_frequencies(data='words')
-    tdata_all.check_frequencies(data='kws')
+    tdata_all.check_frequencies(data='keywords')
 
 def test_summary(tdb, tdata_all):
 

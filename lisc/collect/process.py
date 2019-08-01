@@ -96,7 +96,7 @@ def process_words(text):
 
 
 @catch_none(1)
-def process_kws(keywords):
+def process_keywords(keywords):
     """Extract and process keywords data.
 
     Parameters

@@ -37,7 +37,7 @@ class DataAll(BaseData):
         Counter across all last authors.
     words : nltk.probability.FreqDist
         Frequency distribution of all words.
-    kws : nltk.probability.FreqDist
+    keywords : nltk.probability.FreqDist
         Frequency distribution of all keywords.
     years : list of tuple of (int, int)
         Counter across all years of publication.
@@ -74,7 +74,7 @@ class DataAll(BaseData):
         # Convert lists of all words to frequency distributions
         exclusions = exclusions + self.term.search + self.term.inclusions
         self.words = self.create_freq_dist(combine_lists(term_data.words), exclusions)
-        self.kws = self.create_freq_dist(combine_lists(term_data.kws), exclusions)
+        self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
 
         # Initialize summary dictionary
         self.summary = dict()
@@ -85,13 +85,13 @@ class DataAll(BaseData):
 
         Parameters
         ----------
-        data : {'words', 'kws'}
+        data : {'words', 'keywords'}
             Which frequency distribution to check.
         n_check : int
             Number of most common items to print out.
         """
 
-        if data in ['words', 'kws']:
+        if data in ['words', 'keywords']:
             freqs = getattr(self, data)
         else:
             raise ValueError('Requested data not understood')
@@ -119,7 +119,7 @@ class DataAll(BaseData):
         self.summary['top_author_count'] = str(self.authors[0][0])
         self.summary['top_journal_name'] = self.journals[0][1]
         self.summary['top_journal_count'] = str(self.journals[0][0])
-        self.summary['top_kws'] = [freq[0] for freq in self.kws.most_common()[0:5]]
+        self.summary['top_keywords'] = [freq[0] for freq in self.keywords.most_common()[0:5]]
         self.summary['first_publication'] = str(min([year[0] for year in self.years]))
 
 

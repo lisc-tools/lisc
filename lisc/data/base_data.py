@@ -29,7 +29,7 @@ class BaseData():
         self.journals = list()
         self.authors = list()
         self.words = list()
-        self.kws = list()
+        self.keywords = list()
         self.years = list()
         self.dois = list()
 
@@ -50,6 +50,6 @@ class BaseData():
         self.journals = list()
         self.authors = list()
         self.words = list()
-        self.kws = list()
+        self.keywords = list()
         self.years = list()
         self.dois = list()

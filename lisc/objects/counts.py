@@ -216,7 +216,7 @@ class Counts():
 
             print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
                 wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
-                dat[term_ind, assoc_ind]*100,
+                dat[term_ind, assoc_ind],
                 twd1=get_max_length(self.terms[dim].labels, 2),
                 twd2=get_max_length(self.terms[alt].labels, 2),
                 nwd='>10.0f' if data_type == 'counts' else '06.3f'))

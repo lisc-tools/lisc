@@ -35,7 +35,7 @@ class Data(BaseData):
         (Last Name, First Name, Initials, Affiliation)
     words : list of list of unicode
         Words extracted from each article.
-    kws : list of list of str
+    keywords : list of list of str
         List of keywords for each article included in the object.
     years : list of int
         Publication year of each article included in object.
@@ -68,7 +68,7 @@ class Data(BaseData):
                 'journal': self.journals[ind],
                 'authors': self.authors[ind],
                 'words': self.words[ind],
-                'kws': self.kws[ind],
+                'keywords': self.keywords[ind],
                 'year': self.years[ind],
                 'doi': self.dois[ind]
             }
@@ -86,25 +86,6 @@ class Data(BaseData):
         """
 
         getattr(self, field).append(new_data)
-
-
-    def check_results(self):
-        """Check for consistencty in extracted results.
-
-        Notes
-        -----
-        If everything worked, each data field (ids, titles, words, years)
-        should have the same length, equal to the number of articles.
-        Some entries may be blank (missing data), but if the lengths are not
-        the same then the data does not line up and cannot be trusted.
-        """
-
-        # Check that all data fields have length n_articles
-        if not (self.n_articles == len(self.ids) == len(self.titles)
-                == len(self.words) == len(self.journals) == len(self.authors)
-                == len(self.kws) == len(self.years) == len(self.dois)):
-
-            raise InconsistentDataError('Words data is inconsistent.')
 
 
     def save(self, folder=None):
@@ -147,11 +128,11 @@ class Data(BaseData):
             self.add_data('journals', dat['journal'])
             self.add_data('authors', dat['authors'])
             self.add_data('words', dat['words'])
-            self.add_data('kws', dat['kws'])
+            self.add_data('keywords', dat['keywords'])
             self.add_data('years', dat['year'])
             self.add_data('dois', dat['doi'])
 
-        self.check_results()
+        self._check_results()
 
 
     def save_and_clear(self, folder=None):
@@ -165,3 +146,22 @@ class Data(BaseData):
 
         self.save(folder)
         self.clear()
+
+
+    def _check_results(self):
+        """Check for consistencty in extracted results.
+
+        Notes
+        -----
+        If everything worked, each data field (ids, titles, words, years)
+        should have the same length, equal to the number of articles.
+        Some entries may be blank (missing data), but if the lengths are not
+        the same then the data does not line up and cannot be trusted.
+        """
+
+        # Check that all data fields have length n_articles
+        if not (self.n_articles == len(self.ids) == len(self.titles)
+                == len(self.words) == len(self.journals) == len(self.authors)
+                == len(self.keywords) == len(self.years) == len(self.dois)):
+
+            raise InconsistentDataError('Words data is inconsistent.')

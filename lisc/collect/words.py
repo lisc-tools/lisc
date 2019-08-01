@@ -9,7 +9,7 @@ from lisc.data.meta_data import MetaData
 from lisc.collect.utils import mk_term
 from lisc.collect.info import get_db_info
 from lisc.collect.process import (extract, ids_to_str, process_ids, process_authors,
-                                  process_words, process_kws, process_pub_date)
+                                  process_words, process_keywords, process_pub_date)
 from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
@@ -134,7 +134,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
             art_url = urls.get_url('fetch', settings={'id' : ids_to_str(ids)})
             cur_dat = get_papers(req, art_url, cur_dat)
 
-        cur_dat.check_results()
+        cur_dat._check_results()
 
         if save_and_clear:
             cur_dat.save_and_clear(folder=folder)
@@ -202,7 +202,7 @@ def extract_add_info(cur_data, art_id, art):
     cur_data.add_data('journals', (extract(art, 'Title', 'str'),
                       extract(art, 'ISOAbbreviation', 'str')))
     cur_data.add_data('words', process_words(extract(art, 'AbstractText', 'str')))
-    cur_data.add_data('kws', process_kws(extract(art, 'Keyword', 'all')))
+    cur_data.add_data('keywords', process_keywords(extract(art, 'Keyword', 'all')))
     cur_data.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))
     cur_data.add_data('dois', process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
 

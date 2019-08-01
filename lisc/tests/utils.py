@@ -65,7 +65,7 @@ def load_data(add_data=False, n_data=1):
             data.add_data('journals', ['science', 'sc'])
             data.add_data('authors', [('A', 'B', 'C', 'D')])
             data.add_data('words', ['new', 'dat'])
-            data.add_data('kws', ['lots', 'of', 'erps'])
+            data.add_data('keywords', ['lots', 'of', 'erps'])
             data.add_data('years', 2112)
             data.add_data('dois', 'doi_str')
 
