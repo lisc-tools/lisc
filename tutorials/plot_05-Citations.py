@@ -99,7 +99,7 @@ for doi, n_refs in references.items():
 # references and citations.
 #
 # The OpenCitations API tools do provide more information, including meta-data on individual
-# papers that are cited and included in references. If you
+# papers that are cited and included in references.
 #
 # LISC is also very open to contributions. If you are interested in developing
 # more LISC integration to help collect and analyze more citation related data,
