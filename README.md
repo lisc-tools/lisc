@@ -12,7 +12,7 @@ NOTE: the current version is still a development version (0.1.0-dev) and may not
 
 ## Overview
 
-LISC is a python module for collecting and analzying scientific literature. 
+LISC is a python module for collecting and analzying scientific literature.
 
 #### Data Collection
 
@@ -40,7 +40,7 @@ For a curated list of projects that use LISC (or pre-cursors), check out the [pr
 
 ## Dependencies
 
-LISC is written in Python 3, and requires Python 3.4 or greater to run.
+LISC is written in Python 3, and requires Python 3.5 or greater to run.
 
 Requirements:
 - numpy
