@@ -99,7 +99,7 @@ First lets check the number of counts per term list.
     For  'olfaction'       the highest association is  'temporal lobe'   with        7000
     For  'gustation'       the highest association is  'temporal lobe'   with        4400
     For  'proprioception'  the highest association is  'parietal lobe'   with         900
-    For  'nociception'     the highest association is  'temporal lobe'   with       19600
+    For  'nociception'     the highest association is  'temporal lobe'   with       19700
 
 
 Scores
@@ -144,14 +144,14 @@ MORE INFORMATION ON SCORES
 
  .. code-block:: none
 
-    [[1.16357304e-03 3.37202924e-03 3.14227661e-03 1.87828700e-03
-      3.79191847e-04 2.15552083e-04 2.63625195e-04]
-     [1.32124110e-03 1.05149570e-02 3.33091962e-03 1.76924049e-03
-      7.98084597e-04 6.34437254e-05 3.18152379e-04]
-     [7.24687106e-04 2.25921289e-03 5.63813429e-03 4.55658712e-04
-      1.81268882e-04 9.52683392e-04 1.88529654e-04]
-     [2.02640361e-03 8.29859122e-04 1.08878243e-03 3.05119912e-04
-      0.00000000e+00 0.00000000e+00 1.04562289e-04]]
+    [[1.16219315e-03 3.36924197e-03 3.13945803e-03 1.87645425e-03
+      3.78787879e-04 2.15320019e-04 2.63265955e-04]
+     [1.31962075e-03 1.05053256e-02 3.32736578e-03 1.76714127e-03
+      7.97130331e-04 6.33613179e-05 3.19338629e-04]
+     [7.23804658e-04 2.25733634e-03 5.63286945e-03 4.55166136e-04
+      1.81061018e-04 9.51374207e-04 1.88271050e-04]
+     [2.02390795e-03 8.29162842e-04 1.08773347e-03 3.04766549e-04
+      0.00000000e+00 0.00000000e+00 1.04418591e-04]]
 
 
 Clustering and Plotting Counts Data
@@ -210,7 +210,7 @@ TODO: FIX UP PLOTS
 
 
 
-**Total running time of the script:** ( 0 minutes  0.318 seconds)
+**Total running time of the script:** ( 0 minutes  0.391 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_02-CountsAnalysis.py:

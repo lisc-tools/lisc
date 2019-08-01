@@ -165,7 +165,7 @@ Currently the 'collect' functions available in LISC support collecting counts of
 references and citations.
 
 The OpenCitations API tools do provide more information, including meta-data on individual
-papers that are cited and included in references. If you
+papers that are cited and included in references.
 
 LISC is also very open to contributions. If you are interested in developing
 more LISC integration to help collect and analyze more citation related data,
@@ -173,7 +173,7 @@ feel free to get involved with the project on `Github <https://github.com/lisc-t
 
 
 
-**Total running time of the script:** ( 0 minutes  6.465 seconds)
+**Total running time of the script:** ( 0 minutes  6.319 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_05-Citations.py:

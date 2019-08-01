@@ -198,7 +198,7 @@ We will analyze our words data in the next tutorial, so for now lets save out th
 
 
 
-**Total running time of the script:** ( 0 minutes  16.424 seconds)
+**Total running time of the script:** ( 0 minutes  18.136 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_03-WordsCollection.py:

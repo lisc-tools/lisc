@@ -85,8 +85,8 @@ MORE WORDS.
 
  .. code-block:: none
 
-    [[     0 528678]
-     [528678      0]]
+    [[     0 529194]
+     [529194      0]]
 
 
 
@@ -107,8 +107,8 @@ MORE WORDS.
 
  .. code-block:: none
 
-    protein      : 2387464
-    gene         : 1612102
+    protein      : 2389735
+    gene         : 1613847
 
 
 When given a single set of terms, the 'Counts' scrapes each term  against each other term.
@@ -176,11 +176,11 @@ Calculating Scores
 
  .. code-block:: none
 
-    [[0.01876555 0.02415963]
-     [0.01467207 0.02219578]]
+    [[0.01876766 0.024166  ]
+     [0.01467166 0.02220099]]
 
 
-**Total running time of the script:** ( 0 minutes  13.144 seconds)
+**Total running time of the script:** ( 0 minutes  13.795 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_counts.py:

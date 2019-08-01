@@ -74,7 +74,7 @@ object, this collection information is attached and saved to the object, as the
 
  .. code-block:: none
 
-    2019-07-25_00:54:24
+    2019-08-01_10:17:28
 
 
 
@@ -138,7 +138,7 @@ The End!
 That is the end of the main tutorial for LISC!
 
 There are some additional stand alone examples on the
-`examples <https://lisc-tools.github.io/lisc/auto_tutorial/index.html>`_
+`examples <https://lisc-tools.github.io/lisc/auto_tutorials/index.html>`_
 page.
 
 If you have any further questions, or find any problems with the code,

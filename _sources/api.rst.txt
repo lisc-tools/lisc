@@ -4,6 +4,12 @@
 API Documentation
 =================
 
+The following is a list of the publicly available objects and functions in LISC.
+
+Note that many of the elements listed here are objects, indicated by CamelCase.
+
+If you click on the object names, it will take you to a new page describing their attributes and methods.
+
 .. currentmodule:: lisc
 
 Objects

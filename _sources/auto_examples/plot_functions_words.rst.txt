@@ -124,14 +124,14 @@ MORE WORDS.
 
     5 
 
-    Correlation between cephalic circumference at birth and ocular alterations in patients with microcephaly potentially associated with Zika Virus infection.
-    Prevalence of depression and anxiety and their association with cardiovascular risk factors in Northeast Brasil primary care patients.
-    Brain Structure and Subclinical Symptoms: A Dimensional Perspective of Psychopathology in the Depression and Anxiety Spectrum.
-    CTBP1 Confers Protection for Hippocampal and Cortical Neurons in Rat Models of Alzheimer's Disease.
-    Orally bioavailable glutamine antagonist prodrug JHU-083 penetrates mouse brain and suppresses the growth of MYC-driven medulloblastoma.
+    A BCI based visual-haptic neurofeedback training improves cortical activations and classification performance during motor imagery.
+    A computational model of radiolytic oxygen depletion during FLASH irradiation and its effect on the oxygen enhancement ratio.
+    MicroRNA-25-5p counteracts oxidized LDL-induced pathological changes by targeting neuronal growth regulator 1 (NEGR1) in human brain micro-vessel endothelial cells.
+    Cortex-wide Changes in Extracellular Potassium Ions Parallel Brain State Transitions in Awake Behaving Mice.
+    Distinct Connectivity and Functionality of Aldehyde Dehydrogenase 1a1-Positive Nigrostriatal Dopaminergic Neurons in Motor Learning.
 
 
-**Total running time of the script:** ( 0 minutes  4.996 seconds)
+**Total running time of the script:** ( 0 minutes  5.326 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_words.py:

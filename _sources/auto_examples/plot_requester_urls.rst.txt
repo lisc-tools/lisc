@@ -112,7 +112,7 @@ MORE WORDS.
 
     Requester object is active:      True
     Number of requests sent:         3
-    Requester opened:                00:54:11 Thursday 25 July 2019
+    Requester opened:                10:17:15 Thursday 01 August 2019
     Requester closed:
 
 
@@ -133,7 +133,7 @@ MORE WORDS.
 
  .. code-block:: none
 
-    {'is_active': True, 'n_requests': 3, 'wait_time': 0.5, 'start_time': '00:54:11 Thursday 25 July 2019', 'end_time': '', 'logging': None, 'log': None}
+    {'is_active': True, 'n_requests': 3, 'wait_time': 0.5, 'start_time': '10:17:15 Thursday 01 August 2019', 'end_time': '', 'logging': None, 'log': None}
 
 
 URLs Object
@@ -238,7 +238,7 @@ WORDS HERE.
 
 
 
-**Total running time of the script:** ( 0 minutes  2.741 seconds)
+**Total running time of the script:** ( 0 minutes  2.758 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_requester_urls.py:
