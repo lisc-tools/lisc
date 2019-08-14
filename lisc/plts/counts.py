@@ -1,4 +1,4 @@
-"""LISC plots - plots for group analysis."""
+"""LISC plots - plots for counts data."""
 
 from lisc.plts.utils import check_args, check_ax, savefig, get_cmap
 from lisc.core.modutils import safe_import
@@ -56,7 +56,6 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
 
     cg = sns.clustermap(data, cmap=cmap, method='complete', metric='cosine',
                         **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
-
 
     cg.cax.set_visible(True)
     _ = plt.setp(cg.ax_heatmap.xaxis.get_majorticklabels(), rotation=60, ha='right')

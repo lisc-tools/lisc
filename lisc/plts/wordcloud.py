@@ -5,39 +5,17 @@ import random
 from lisc.core.modutils import safe_import
 from lisc.plts.utils import savefig, check_ax
 
-plt = safe_import('.pyplot', 'matplotlib')
 wc = safe_import('wordcloud')
 
 ###################################################################################################
 ###################################################################################################
-
-@savefig
-def plot_wordcloud(freq_dist, n_words, ax=None):
-    """Create and display a wordcloud.
-
-    Parameters
-    ----------
-    freq_dist : nltk.FreqDist()
-        Frequency distribution of words to plot.
-    n_words : int
-        Number of top words to include in the wordcloud.
-    ax : matplotlib.Axes, optional
-        Figure axes upon which to plot.
-    """
-
-    cloud = create_wordcloud(conv_freqs(freq_dist, 20))
-
-    ax = check_ax(ax, (10, 10))
-    ax.imshow(cloud)
-    ax.axis("off")
-
 
 def create_wordcloud(words):
     """Create WordCloud object.
 
     Parameters
     ----------
-    words : list of tuple
+    words : dict
         Words to plot, with their corresponding frequencies.
 
     Returns
@@ -61,7 +39,7 @@ def create_wordcloud(words):
 
 
 def conv_freqs(freq_dist, n_words):
-    """Convert FreqDist into a list of tuple for creating a WordCloud.
+    """Convert FreqDist into a dictionary for creating a WordCloud.
 
     Parameters
     ----------
@@ -73,13 +51,11 @@ def conv_freqs(freq_dist, n_words):
     Returns
     -------
     dict
-        All words with their corresponding frequecies.
+        All words with their corresponding frequencies.
     """
 
     return dict(freq_dist.most_common(n_words))
 
-############################################################################################
-############################################################################################
 
 def _grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     """Function for custom coloring - use gray pallete.

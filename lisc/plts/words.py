@@ -1,12 +1,34 @@
-"""LISC plots - plots for single terms."""
+"""LISC plots - plots for words data."""
 
 from lisc.plts.utils import check_ax, savefig
+from lisc.plts.wordcloud import create_wordcloud, conv_freqs
 from lisc.core.modutils import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
+
+@savefig
+def plot_wordcloud(freq_dist, n_words, ax=None):
+    """Create and display a wordcloud.
+
+    Parameters
+    ----------
+    freq_dist : nltk.FreqDist()
+        Frequency distribution of words to plot.
+    n_words : int
+        Number of top words to include in the wordcloud.
+    ax : matplotlib.Axes, optional
+        Figure axes upon which to plot.
+    """
+
+    cloud = create_wordcloud(conv_freqs(freq_dist, 20))
+
+    ax = check_ax(ax, (10, 10))
+    ax.imshow(cloud)
+    ax.axis("off")
+
 
 @savefig
 def plot_years(years, year_range=None, ax=None):

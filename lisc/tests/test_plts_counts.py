@@ -4,7 +4,7 @@ import numpy as np
 
 from lisc.tests.utils import plot_test, optional_test
 
-from lisc.plts.group import *
+from lisc.plts.counts import *
 
 ###################################################################################################
 ###################################################################################################
