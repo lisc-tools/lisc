@@ -1,4 +1,4 @@
-"""Tests for the DataAll() class and related functions from lisc."""
+"""Tests for the DataAll class and related functions from lisc."""
 
 from lisc.data.data_all import *
 from lisc.tests.utils import load_data

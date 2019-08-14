@@ -7,7 +7,7 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 
 class Base():
-    """Base class for LISC analyses.
+    """A class for the base object for LISC collections & analyses.
 
     Attributes
     ----------

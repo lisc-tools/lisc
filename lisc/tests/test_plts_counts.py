@@ -1,4 +1,4 @@
-"""Tests for the group plots from lisc."""
+"""Tests for the counts plots from lisc."""
 
 import numpy as np
 

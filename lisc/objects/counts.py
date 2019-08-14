@@ -11,11 +11,11 @@ from lisc.analysis.counts import compute_normalization, compute_association_inde
 ###################################################################################################
 
 class Counts():
-    """A class for collecting and analyzing co-occurence data of pre-specified terms list(s).
+    """A class for collecting and analyzing co-occurence data for specified terms list(s).
 
     Attributes
     ----------
-    terms : dict()
+    terms : dict
         Search terms to use.
     counts : 2d array
         The numbers of papers found for each combination of terms.
@@ -23,12 +23,12 @@ class Counts():
         The percentage of papers for each term that include the corresponding term.
     square : bool
         Whether the count data matrix is symmetrical.
-    meta_data : MetaData() object
+    meta_data : MetaData object
         Meta data information about the data collection.
     """
 
     def __init__(self):
-        """Initialize LISC Count() object."""
+        """Initialize LISC Counts object."""
 
         # Initialize dictionary to store search terms
         self.terms = dict()
@@ -95,7 +95,7 @@ class Counts():
             An API key for a NCBI account.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
-        folder : str or SCDB() object, optional
+        folder : str or SCDB object, optional
             Folder or database object specifying the save location.
         verbose : bool, optional, default=False
             Whether to print out updates.
@@ -189,7 +189,7 @@ class Counts():
 
 
     def check_data(self, data_type='counts', dim='A'):
-        """"Prints out the highest value count or score for each term.
+        """Prints out the highest value count or score for each term.
 
         Parameters
         ----------

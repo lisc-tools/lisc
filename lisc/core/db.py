@@ -17,21 +17,21 @@ class SCDB():
     base_path : str
         Base path for the project.
     terms_path : str
-        Path to the terms folder of the project.
+        Path to the terms folder.
     logs_path : str
-        Path to log files of the project.
+        Path to log files folder.
     data_path : str
-        Path to the data folder of the project.
+        Path to the data files folder.
     figs_path : str
-        Path to the folder to save out figures.
+        Path to the figures folder.
     counts_path : str
-        Path to the data folder for counts data.
+        Path to the counts data files folder.
     words_path : str
-        Path to the data folder for words data.
+        Path to the words data files folder.
     raw_path : str
-        Path to the data folder for the raw words data.
+        Path to the raw words data files folder.
     summary_path : str
-        Path to the data folder for summaries of the words data.
+        Path to the words data summary files folder.
     """
 
     def __init__(self, base_path=None, auto_gen=True):
@@ -40,7 +40,7 @@ class SCDB():
         Parameters
         ----------
         base_path : str
-            The path to where the database is located.
+            The base path to where the database is located.
         auto_gen : bool
             Whether to automatically generate all the paths for the database folders.
         """

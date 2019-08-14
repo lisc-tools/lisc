@@ -31,7 +31,7 @@ from lisc.urls.urls import URLs
 ###################################################################################################
 
 class OpenCitations(URLs):
-    """Class to hold URLs for the OpenCitations API.
+    """URLs for the OpenCitations API.
 
     Attributes
     ----------

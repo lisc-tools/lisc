@@ -19,7 +19,7 @@ class Data(BaseData):
     ----------
     label : str
         Label for the current term.
-    term : Term() object
+    term : Term object
         Definition of the search term, with inclusions and exclusion words.
     ids : list of int
         Pubmed article ids for all articles included in object.
@@ -28,7 +28,7 @@ class Data(BaseData):
     titles : list of str
         Titles of all articles included in object.
     journals : list of tuple of (str, str)
-        List of journals articles come from.
+        Journals that the articles come from.
         (Journal Name, ISO abbreviation).
     authors : list of list of str
         Authors of all articles included in object.
@@ -44,11 +44,11 @@ class Data(BaseData):
     """
 
     def __init__(self, term):
-        """Initialize Data() object.
+        """Initialize Data object.
 
         Parameters
         ----------
-        term  : Term() object or str.
+        term  : Term object or str.
             Search term definition.
             If input is a string, it is used as the label for the term.
         """
@@ -89,11 +89,11 @@ class Data(BaseData):
 
 
     def save(self, folder=None):
-        """Save out json file with all attached data.
+        """Save out a json file with all attached data.
 
         Parameters
         ----------
-        folder : str or SCDB() object, optional
+        folder : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 
@@ -112,7 +112,7 @@ class Data(BaseData):
 
         Parameters
         ----------
-        folder : str or SCDB() object, optional
+        folder : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 
@@ -140,7 +140,7 @@ class Data(BaseData):
 
         Parameters
         ----------
-        folder : str or SCDB() object, optional
+        folder : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 

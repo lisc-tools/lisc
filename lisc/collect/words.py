@@ -43,14 +43,14 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         Whether to save words data to disk per term as it goes, instead of holding in memory.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB() object, optional
+    folder : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
     -------
-    results : list of lisc Data() objects
+    results : list of lisc Data objects
         Results from collecting data for each term.
     meta_data : dict
         Meta data from the data collection.
@@ -150,16 +150,16 @@ def get_papers(req, art_url, cur_dat):
 
     Parameters
     ----------
-    req : Requester() object
+    req : Requester object
         Requester object to launch requests from.
     art_url : str
         URL for the article to be collected.
-    cur_dat : Data() object
+    cur_dat : Data object
         Data object to add data to
 
     Returns
     -------
-    cur_dat : Data() object
+    cur_dat : Data object
         Object to store information for the current term.
     """
 
@@ -183,16 +183,16 @@ def extract_add_info(cur_data, art_id, art):
 
     Parameters
     ----------
-    cur_data : Data() object
+    cur_data : Data object
         Object to store information for the current article.
     art_id : int
         Paper ID of the new paper.
-    art : bs4.element.Tag() object
+    art : bs4.element.Tag object
         Extracted pubmed article.
 
     Returns
     -------
-    cur_data : Data() object
+    cur_data : Data object
         Object updated with data from the current article.
     """
 
@@ -200,7 +200,7 @@ def extract_add_info(cur_data, art_id, art):
     cur_data.add_data('titles', extract(art, 'ArticleTitle', 'str'))
     cur_data.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
     cur_data.add_data('journals', (extract(art, 'Title', 'str'),
-                      extract(art, 'ISOAbbreviation', 'str')))
+                                   extract(art, 'ISOAbbreviation', 'str')))
     cur_data.add_data('words', process_words(extract(art, 'AbstractText', 'str')))
     cur_data.add_data('keywords', process_keywords(extract(art, 'Keyword', 'all')))
     cur_data.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))

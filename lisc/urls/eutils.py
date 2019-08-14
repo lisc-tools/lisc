@@ -68,7 +68,7 @@ def get_wait_time(authenticated):
 
 
 class EUtils(URLs):
-    """Class to hold URLs for the NCBI EUtils API.
+    """URLs for the NCBI EUtils API.
 
     Attributes
     ----------
@@ -78,7 +78,7 @@ class EUtils(URLs):
         The EUtil utilities.
     urls : dict
         URLs for each EUtils utility.
-    settings : dict()
+    settings : dict
         Dictionary of all defined settings and their values.
     authenticated : boolean
         Whether using an API key as an authenticated NCBI user.

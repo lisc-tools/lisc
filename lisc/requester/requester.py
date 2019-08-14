@@ -18,9 +18,9 @@ class Requester():
     Attributes
     ----------
     is_active : bool
-        Status of the requester, whether currently being used to make requests.
+        Status of the requester; whether it is currently being used to make requests.
     n_requests : int
-        Number of requests that have been completed.
+        Number of requests that have been made.
     wait_time : float
         Amount of time to wait between requests, in seconds.
     start_time : str
@@ -32,7 +32,7 @@ class Requester():
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
     log : None or list or file object
-        Object to log requested URLs, format depends on `logging`.
+        Log of requested URLs. Format depends on `logging`.
     """
 
     def __init__(self, wait_time=0., logging=None, folder=None):
@@ -135,7 +135,7 @@ class Requester():
 
         Returns
         -------
-        out : requests.models.Response() object
+        out : requests.models.Response object
             Object containing the requested web page.
         """
 

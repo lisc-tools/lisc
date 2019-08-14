@@ -7,20 +7,20 @@ from lisc.collect import collect_words
 ###################################################################################################
 
 class Words(Base):
-    """Class for searching through words in the abstracts of specified papers.
+    """A class for collecting and analyzing words data for specified terms list(s).
 
     Attributes
     ----------
-    results : list of Data() objects
+    results : list of Data object
         Results for each search term, stored in custom Words object.
     labels : list of str
         Labels for each result data attached to object.
-    meta_data : MetaData() object
+    meta_data : MetaData object
         Meta data information about the data collection.
     """
 
     def __init__(self):
-        """Initialize LISC Words() object."""
+        """Initialize LISC Words object."""
 
         Base.__init__(self)
 
@@ -41,7 +41,7 @@ class Words(Base):
 
         Returns
         -------
-        Data() object
+        Data object
             Data object for the requested result.
         """
 
@@ -59,11 +59,11 @@ class Words(Base):
 
 
     def add_results(self, new_result):
-        """Add a new Data results object.
+        """Add a new results object.
 
         Parameters
         ----------
-        new_result : Data() object
+        new_result : Data object
             Object with information about current term.
         """
 
@@ -73,7 +73,7 @@ class Words(Base):
     def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
                        api_key=None, save_and_clear=False, logging=None,
                        folder=None, verbose=False):
-        """Launch a collection of words data.
+        """Collect words data.
 
         Parameters
         ----------
@@ -85,14 +85,14 @@ class Words(Base):
             Field to search for term within.
             Defaults to 'TIAB', which is Title/Abstract.
         usehistory : bool, optional, default: False
-            Use e-utilities history: storing results on their server, as needed.
+            Whether to use e-utilities history, storing results on their server, as needed.
         api_key : str
             An API key for a NCBI account.
         save_and_clear : bool, optional, default: False
             Whether to save words data to disk per term as it goes, instead of holding in memory.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
-        folder : str or SCDB() object, optional
+        folder : str or SCDB object, optional
             Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.

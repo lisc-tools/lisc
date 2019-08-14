@@ -15,13 +15,13 @@ from lisc.data.base_data import BaseData
 ###################################################################################################
 
 class DataAll(BaseData):
-    """Object to hold term data, aggregated across papers.
+    """An object to hold term data, aggregated across papers.
 
     Attributes
     ----------
     label : str
         Label for the current term.
-    term : Term() object
+    term : Term object
         Definition of the search term, with inclusions and exclusion words.
     n_articles : int
         Number of articles whos data is included in object.
@@ -44,15 +44,15 @@ class DataAll(BaseData):
     dois : list of str
         DOIs of each article included in object.
     summary : dict
-        Summary / overview of data associated with current object.
+        A summary of the data associated with the current object.
     """
 
     def __init__(self, term_data, exclusions=[]):
-        """Initialize DataAll() object.
+        """Initialize DataAll object.
 
         Parameters
         ----------
-        term_data : Data() object
+        term_data : Data object
             Data for all papers from a given search term.
         exclusions : list of str
             Words to exclude from the word collections.
@@ -141,7 +141,7 @@ class DataAll(BaseData):
 
         Parameters
         ----------
-        folder : str or SCDB() object, optional
+        folder : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 

@@ -21,14 +21,14 @@ def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=F
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB() object, optional
+    folder : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
     -------
-    meta_data : MetaData() object
+    meta_data : MetaData object
         Meta data about the data collection.
     """
 

@@ -10,7 +10,7 @@ from lisc.urls.open_citations import OpenCitations
 ###################################################################################################
 
 def collect_citations(dois, util='citations', logging=None, folder=None, verbose=False):
-    """Scape OpenCitations for citation data.
+    """Collect citation data from OpenCitations.
 
     Parameters
     ----------
@@ -22,7 +22,7 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
         The 'references' utility collects the number of references cited by the specified DOI.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB() object, optional
+    folder : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -31,7 +31,7 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
     -------
     citations : dict
         The number of citations for each DOI.
-    meta_data : MetaData() object
+    meta_data : MetaData object
         Meta data about the data collection.
     """
 
@@ -52,12 +52,12 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
 
 
 def get_citation_data(req, citation_url):
-    """Extract the number of citations from a citations call.
+    """Extract the number of citations from an OpenCitations URL request.
 
     Parameters
     ----------
     req : Requester object
-        Requester object to launch requests from.
+        Requester to launch requests from.
     citation_url : str
         URL to collect citation data from.
 

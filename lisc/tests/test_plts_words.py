@@ -1,4 +1,4 @@
-"""Tests for the single plots from lisc."""
+"""Tests for the words plots from lisc."""
 
 import numpy as np
 from nltk import FreqDist

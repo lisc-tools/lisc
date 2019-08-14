@@ -8,7 +8,7 @@ def mk_term(term, incl_joiner='OR'):
 
     Parameters
     ----------
-    term : Term() object
+    term : Term object
         Term information.
     incl_joiner : {'OR', 'AND'}
         The joiner to use to combine the inclusion words.

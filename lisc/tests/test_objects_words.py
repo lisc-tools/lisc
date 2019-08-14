@@ -1,4 +1,4 @@
-"""Tests for the Words() class and related functions from lisc."""
+"""Tests for the Words class and related functions from lisc."""
 
 from py.test import raises
 

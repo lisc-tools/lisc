@@ -11,11 +11,11 @@ class MetaData():
     Attributes
     ----------
     date : str
-        Information on the date that the data collection was run.
+        The date that the data collection was run.
     requester : dict
-        Information about the requester object used for the data collection.
+        Details of the requester object used for the data collection.
     db_info : dict
-        Information about the database from which the data was accessed.
+        Details of the database from which the data was accessed.
     log : list or None
         A log of requested URLs, if requests were logged.
     """
@@ -49,7 +49,7 @@ class MetaData():
 
         Parameters
         ----------
-        requester : Requester() object
+        requester : Requester object
             The object used to launch URL requests.
         """
 

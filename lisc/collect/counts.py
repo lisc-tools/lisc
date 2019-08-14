@@ -43,7 +43,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB() object, optional
+    folder : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.

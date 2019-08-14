@@ -10,7 +10,7 @@ from lisc.urls.utils import make_segments, make_settings
 ###################################################################################################
 
 class URLs():
-    """Class to hold URL information for an API interface.
+    """URLs for an API interface.
 
     Attributes
     ----------
