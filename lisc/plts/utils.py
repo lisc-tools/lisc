@@ -85,10 +85,10 @@ def savefig(func):
 
         save_fig = kwargs.pop('save_fig', False)
         f_name = kwargs.pop('f_name', None)
-        f_path = kwargs.pop('folder', None)
+        f_path = kwargs.pop('directory', None)
 
         if isinstance(f_path, SCDB):
-            f_path = f_path.figures_path
+            f_path = f_path.get_folder_path('figures')
 
         func(*args, **kwargs)
 

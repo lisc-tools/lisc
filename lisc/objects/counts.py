@@ -60,7 +60,7 @@ class Counts():
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def add_terms_file(self, f_name, term_type='terms', folder=None, dim='A'):
+    def add_terms_file(self, f_name, term_type='terms', directory=None, dim='A'):
         """Load terms from a text file.
 
         Parameters
@@ -69,19 +69,19 @@ class Counts():
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
-        folder : SCDB or str or None
+        directory : SCDB or str or None
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].add_terms_file(f_name, folder, term_type)
+        self.terms[dim].add_terms_file(f_name, directory, term_type)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
     def run_collection(self, db='pubmed', field='TIAB', api_key=None,
-                       logging=None, folder=None, verbose=False):
+                       logging=None, directory=None, verbose=False):
         """Collect co-occurence data.
 
         Parameters
@@ -95,7 +95,7 @@ class Counts():
             An API key for a NCBI account.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
-        folder : str or SCDB object, optional
+        directory : str or SCDB object, optional
             Folder or database object specifying the save location.
         verbose : bool, optional, default=False
             Whether to print out updates.
@@ -109,7 +109,7 @@ class Counts():
                 inclusions_a=self.terms['A'].inclusions,
                 exclusions_a=self.terms['A'].exclusions,
                 db=db, field=field, api_key=api_key,
-                logging=logging, folder=folder,
+                logging=logging, directory=directory,
                 verbose=verbose)
 
         # Run two different sets of terms
@@ -123,7 +123,7 @@ class Counts():
                 inclusions_b=self.terms['B'].inclusions,
                 exclusions_b=self.terms['B'].exclusions,
                 db=db, field=field, api_key=api_key,
-                logging=logging, folder=folder,
+                logging=logging, directory=directory,
                 verbose=verbose)
             self.terms['A'].counts, self.terms['B'].counts = term_counts
 

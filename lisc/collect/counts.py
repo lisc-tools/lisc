@@ -17,7 +17,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
                    terms_b=[], inclusions_b=[], exclusions_b=[],
                    db='pubmed', field='TIAB', api_key=None,
-                   logging=None, folder=None, verbose=False):
+                   logging=None, directory=None, verbose=False):
     """Collect word co-occurence data from pubmed.
 
     Parameters
@@ -43,7 +43,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -73,7 +73,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     # Initialize meta data & requester
     meta_data = MetaData()
     req = Requester(wait_time=get_wait_time(urls.authenticated),
-                    logging=logging, folder=folder)
+                    logging=logging, directory=directory)
 
     # Sort out terms
     n_terms_a = len(terms_a)

@@ -10,7 +10,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=False):
+def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbose=False):
     """Collect database information & metadata from pubmed.
 
     Parameters
@@ -21,7 +21,7 @@ def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=F
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -37,7 +37,7 @@ def collect_info(db='pubmed', api_key=None, logging=None, folder=None, verbose=F
 
     meta_data = MetaData()
     req = Requester(wait_time=get_wait_time(urls.authenticated),
-                    logging=logging, folder=folder)
+                    logging=logging, directory=directory)
 
     if verbose:
         print('Gathering info on {} database.'.format(db))

@@ -6,7 +6,7 @@ import json
 import nltk
 
 from lisc.core.io import check_ext
-from lisc.core.db import check_folder
+from lisc.core.db import check_directory
 from lisc.data.utils import combine_lists
 from lisc.data.count import count_years, count_journals, count_authors, count_end_authors
 from lisc.data.base_data import BaseData
@@ -136,18 +136,18 @@ class DataAll(BaseData):
         print('    number of publications: \t', self.summary['top_journal_count'], '\n')
 
 
-    def save_summary(self, folder=None):
+    def save_summary(self, directory=None):
         """Save out a summary of the collected words data.
 
         Parameters
         ----------
-        folder : str or SCDB object, optional
+        directory : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 
-        folder = check_folder(folder, 'summary')
+        directory = check_directory(directory, 'summary')
 
-        with open(os.path.join(folder, check_ext(self.label, '.json')), 'w') as outfile:
+        with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
             json.dump(self.summary, outfile)
 
 

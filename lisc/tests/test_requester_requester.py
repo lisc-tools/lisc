@@ -47,7 +47,7 @@ def test_logging(tdb):
 
     req_1 = Requester(logging='print')
     req_2 = Requester(logging='store')
-    req_3 = Requester(logging='file', folder=tdb)
+    req_3 = Requester(logging='file', directory=tdb)
 
     for url in urls:
         for req in [req_1, req_2, req_3]:
@@ -55,7 +55,7 @@ def test_logging(tdb):
             req.close()
 
     assert req_2.log == ['http://www.google.com']
-    assert os.path.exists(os.path.join(tdb.logs_path, 'requester_log.txt'))
+    assert os.path.exists(os.path.join(tdb.get_folder_path('logs'), 'requester_log.txt'))
 
 def test_get_time(treq):
 

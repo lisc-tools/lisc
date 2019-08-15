@@ -62,7 +62,7 @@ class Base():
         self._check_term_consistency()
 
 
-    def add_terms_file(self, f_name, term_type='terms', folder=None):
+    def add_terms_file(self, f_name, term_type='terms', directory=None):
         """Load terms from a text file.
 
         Parameters
@@ -71,11 +71,11 @@ class Base():
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
-        folder : SCDB or str or None
-            A string or object containing a file path.
+        directory : SCDB or str or None
+            Folder or database object specifying the file location.
         """
 
-        terms = load_terms_file(f_name, folder)
+        terms = load_terms_file(f_name, directory)
         self.add_terms(terms, term_type)
 
 

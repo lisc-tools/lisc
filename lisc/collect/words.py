@@ -17,7 +17,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 
 def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
                   retmax=None, field='TIAB', usehistory=False, api_key=None,
-                  save_and_clear=False, logging=None, folder=None, verbose=False):
+                  save_and_clear=False, logging=None, directory=None, verbose=False):
     """Collect text data and metadata from pubmed using specified search term(s).
 
     Parameters
@@ -43,7 +43,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         Whether to save words data to disk per term as it goes, instead of holding in memory.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -75,7 +75,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
     results = []
     meta_data = MetaData()
     req = Requester(wait_time=get_wait_time(urls.authenticated),
-                    logging=logging, folder=folder)
+                    logging=logging, directory=directory)
 
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
@@ -137,7 +137,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         cur_dat._check_results()
 
         if save_and_clear:
-            cur_dat.save_and_clear(folder=folder)
+            cur_dat.save_and_clear(directory=directory)
         results.append(cur_dat)
 
     meta_data.add_requester(req)

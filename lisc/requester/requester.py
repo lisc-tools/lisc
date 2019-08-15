@@ -6,7 +6,7 @@ from copy import deepcopy
 
 import requests
 
-from lisc.core.db import check_folder
+from lisc.core.db import check_directory
 from lisc.core.io import check_ext
 
 ###################################################################################################
@@ -35,7 +35,7 @@ class Requester():
         Log of requested URLs. Format depends on `logging`.
     """
 
-    def __init__(self, wait_time=0., logging=None, folder=None):
+    def __init__(self, wait_time=0., logging=None, directory=None):
         """Initialize a requester object.
 
         Parameters
@@ -44,7 +44,7 @@ class Requester():
             Amount of time to wait between requests, in seconds.
         logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
-        folder : SCDB or str or None
+        directory : SCDB or str or None
             A string or object containing a file path.
         """
 
@@ -63,7 +63,7 @@ class Requester():
         self.open()
 
         # Set up for any logging
-        self.logging, self.log = self._set_up_logging(logging, folder)
+        self.logging, self.log = self._set_up_logging(logging, directory)
 
 
     def __repr__(self):
@@ -175,14 +175,14 @@ class Requester():
             self.log.close()
 
 
-    def _set_up_logging(self, logging, folder):
+    def _set_up_logging(self, logging, directory):
         """Set up for URL logging.
 
         Parameters
         ----------
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
-        folder : SCDB or str or None
+        directory : SCDB or str or None
             A string or object containing a file path.
         """
 
@@ -193,7 +193,7 @@ class Requester():
             log = []
 
         elif logging == 'file':
-            log = open(os.path.join(check_folder(folder, 'logs'),
+            log = open(os.path.join(check_directory(directory, 'logs'),
                                     check_ext('requester_log', '.txt')), 'w')
             log.write('REQUESTER LOG - STARTED AT:  ' + self.start_time)
 

@@ -59,7 +59,7 @@ def test_check_results(tdata_full):
 def test_save(tdb, tdata_full):
 
     tdata_full.save(tdb)
-    assert os.path.exists(os.path.join(tdb.raw_path, tdata_full.label + '.json'))
+    assert os.path.exists(os.path.join(tdb.get_folder_path('raw'), tdata_full.label + '.json'))
 
 def test_load(tdb):
 

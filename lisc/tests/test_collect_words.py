@@ -20,7 +20,7 @@ def test_collect_words(tdb):
 
     # With history, and using save and clear
     res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2',
-                                   usehistory=True, folder=tdb)
+                                   usehistory=True, directory=tdb)
     assert res
 
 def test_extract_add_info():

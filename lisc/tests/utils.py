@@ -7,7 +7,7 @@ from os.path import join as pjoin
 from lisc.objects.base import Base
 from lisc.data import Data, DataAll, Term
 from lisc.core.modutils import safe_import
-from lisc.core.db import SCDB, create_file_structure, check_folder
+from lisc.core.db import SCDB, create_file_structure, check_directory
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -21,20 +21,20 @@ class TestDB(SCDB):
 
         # Initialize from normal database object
         base = pkg.resource_filename(__name__, 'test_db')
-        SCDB.__init__(self, base_path=base)
+        SCDB.__init__(self, base=base)
 
-def create_files(folder):
+def create_files(directory):
     """Creates some test term files."""
 
-    term_file = open(pjoin(check_folder(folder, 'terms'), 'test_terms.txt'), 'w')
+    term_file = open(pjoin(check_directory(directory, 'terms'), 'test_terms.txt'), 'w')
     term_file.write('word\nthing, same')
     term_file.close()
 
-    excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_inclusions.txt'), 'w')
+    excl_file = open(pjoin(check_directory(directory, 'terms'), 'test_inclusions.txt'), 'w')
     excl_file.write('need\nrequired')
     excl_file.close()
 
-    excl_file = open(pjoin(check_folder(folder, 'terms'), 'test_exclusions.txt'), 'w')
+    excl_file = open(pjoin(check_directory(directory, 'terms'), 'test_exclusions.txt'), 'w')
     excl_file.write('not\navoid')
     excl_file.close()
 

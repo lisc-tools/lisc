@@ -4,7 +4,7 @@ import os
 import json
 import pickle
 
-from lisc.core.db import SCDB, check_folder
+from lisc.core.db import SCDB, check_directory
 
 ###################################################################################################
 ###################################################################################################
@@ -28,14 +28,14 @@ def check_ext(f_name, ext):
     return f_name + ext if not f_name.endswith(ext) else f_name
 
 
-def load_terms_file(f_name, folder=None):
+def load_terms_file(f_name, directory=None):
     """Loads terms from a text file.
 
     Parameters
     ----------
     f_name : str
         Name of the file to load.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
 
     Returns
@@ -44,7 +44,7 @@ def load_terms_file(f_name, folder=None):
         Data from the file.
     """
 
-    terms_file = open(os.path.join(check_folder(folder, 'terms'),
+    terms_file = open(os.path.join(check_directory(directory, 'terms'),
                                    check_ext(f_name, '.txt')), 'r')
     terms = terms_file.read().splitlines()
     terms = [term.split(',') for term in terms]
@@ -52,7 +52,7 @@ def load_terms_file(f_name, folder=None):
     return terms
 
 
-def save_object(obj, f_name, folder=None):
+def save_object(obj, f_name, directory=None):
     """Save a custom object from LISC as a pickle file.
 
     Parameters
@@ -61,7 +61,7 @@ def save_object(obj, f_name, folder=None):
         LISC custom object to save out.
     f_name : str
         Name for the file to be saved out.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
     """
 
@@ -75,18 +75,18 @@ def save_object(obj, f_name, folder=None):
     else:
         raise ValueError('Object type unclear - can not save.')
 
-    pickle.dump(obj, open(os.path.join(check_folder(folder, obj_type),
+    pickle.dump(obj, open(os.path.join(check_directory(directory, obj_type),
                                        check_ext(f_name, '.p')), 'wb'))
 
 
-def load_object(f_name, folder=None):
+def load_object(f_name, directory=None):
     """Load a custom object, from a pickle file.
 
     Parameters
     ----------
     f_name : str
         File name of the object to be loaded.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
 
     Returns
@@ -97,17 +97,17 @@ def load_object(f_name, folder=None):
 
     load_path = None
 
-    if isinstance(folder, SCDB):
+    if isinstance(directory, SCDB):
 
-        if check_ext(f_name, '.p') in folder.get_files('counts'):
-            load_path = os.path.join(folder.counts_path, f_name)
-        elif check_ext(f_name, '.p') in folder.get_files('words'):
-            load_path = os.path.join(folder.words_path, f_name)
+        if check_ext(f_name, '.p') in directory.get_files('counts'):
+            load_path = os.path.join(directory.get_folder_path('counts'), f_name)
+        elif check_ext(f_name, '.p') in directory.get_files('words'):
+            load_path = os.path.join(directory.get_folder_path('words'), f_name)
 
-    elif isinstance(folder, str) or folder is None:
+    elif isinstance(directory, str) or directory is None:
 
-        if f_name in os.listdir(folder):
-            load_path = os.path.join(folder, f_name)
+        if f_name in os.listdir(directory):
+            load_path = os.path.join(directory, f_name)
 
     if not load_path:
         raise ValueError('Can not find requested file name.')

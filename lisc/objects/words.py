@@ -72,7 +72,7 @@ class Words(Base):
 
     def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
                        api_key=None, save_and_clear=False, logging=None,
-                       folder=None, verbose=False):
+                       directory=None, verbose=False):
         """Collect words data.
 
         Parameters
@@ -92,7 +92,7 @@ class Words(Base):
             Whether to save words data to disk per term as it goes, instead of holding in memory.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
-        folder : str or SCDB object, optional
+        directory : str or SCDB object, optional
             Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.
@@ -102,4 +102,4 @@ class Words(Base):
                                                      db=db, retmax=retmax, field=field,
                                                      usehistory=usehistory, api_key=api_key,
                                                      save_and_clear=save_and_clear, logging=logging,
-                                                     folder=folder, verbose=verbose)
+                                                     directory=directory, verbose=verbose)

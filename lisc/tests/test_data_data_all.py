@@ -23,4 +23,4 @@ def test_summary(tdb, tdata_all):
     assert tdata_all.summary
 
     tdata_all.print_summary()
-    tdata_all.save_summary(folder=tdb)
+    tdata_all.save_summary(directory=tdb)

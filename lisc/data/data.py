@@ -3,7 +3,7 @@
 import os
 import json
 
-from lisc.core.db import check_folder
+from lisc.core.db import check_directory
 from lisc.core.io import parse_json_data, check_ext
 from lisc.core.errors import InconsistentDataError
 from lisc.data.term import Term
@@ -88,18 +88,18 @@ class Data(BaseData):
         getattr(self, field).append(new_data)
 
 
-    def save(self, folder=None):
+    def save(self, directory=None):
         """Save out a json file with all attached data.
 
         Parameters
         ----------
-        folder : str or SCDB object, optional
+        directory : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 
-        folder = check_folder(folder, 'raw')
+        directory = check_directory(directory, 'raw')
 
-        with open(os.path.join(folder, check_ext(self.label, '.json')), 'w') as outfile:
+        with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
             json.dump({'term' : self.term}, outfile)
             outfile.write('\n')
             for art in self:
@@ -107,18 +107,18 @@ class Data(BaseData):
                 outfile.write('\n')
 
 
-    def load(self, folder=None):
+    def load(self, directory=None):
         """Load raw data from json file.
 
         Parameters
         ----------
-        folder : str or SCDB object, optional
+        directory : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 
-        folder = check_folder(folder, 'raw')
+        directory = check_directory(directory, 'raw')
 
-        data = parse_json_data(os.path.join(folder, check_ext(self.label, '.json')))
+        data = parse_json_data(os.path.join(directory, check_ext(self.label, '.json')))
 
         self.term = Term(*next(data)['term'])
 
@@ -135,16 +135,16 @@ class Data(BaseData):
         self._check_results()
 
 
-    def save_and_clear(self, folder=None):
+    def save_and_clear(self, directory=None):
         """Save out the attached data and clear the object.
 
         Parameters
         ----------
-        folder : str or SCDB object, optional
+        directory : str or SCDB object, optional
             Folder or database object specifying the save location.
         """
 
-        self.save(folder)
+        self.save(directory)
         self.clear()
 
 

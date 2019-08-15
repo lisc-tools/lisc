@@ -9,7 +9,7 @@ from lisc.urls.open_citations import OpenCitations
 ###################################################################################################
 ###################################################################################################
 
-def collect_citations(dois, util='citations', logging=None, folder=None, verbose=False):
+def collect_citations(dois, util='citations', logging=None, directory=None, verbose=False):
     """Collect citation data from OpenCitations.
 
     Parameters
@@ -22,7 +22,7 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
         The 'references' utility collects the number of references cited by the specified DOI.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    folder : str or SCDB object, optional
+    directory : str or SCDB object, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -39,7 +39,7 @@ def collect_citations(dois, util='citations', logging=None, folder=None, verbose
     urls.build_url(util)
 
     meta_data = MetaData()
-    req = Requester(wait_time=0.1, logging=logging, folder=folder)
+    req = Requester(wait_time=0.1, logging=logging, directory=directory)
 
     if verbose:
         print('Collecting citation data.')
