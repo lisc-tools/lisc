@@ -8,20 +8,21 @@ from lisc.core.decorators import catch_none
 ###################################################################################################
 ###################################################################################################
 
-def extract(dat, tag, how):
+def extract(tag, label, how):
     """Extract data from HTML tag.
 
     Parameters
     ----------
-    dat : bs4.element.Tag
+    tag : bs4.element.Tag
         HTML data to pull specific tag out of.
-    tag : str
+    label : str
         Label of the tag to extract.
     how : {'raw', 'all' , 'txt', 'str'}
         Method to extract the data.
-            raw - extract an embedded tag
-            str - extract text and convert to string
-            all - extract all embedded tags
+            raw    - extract an embedded tag
+            str    - extract text and convert to string
+            all    - extract all embedded tags
+            allstr - extract all embedded tags, and convert to string
 
     Returns
     -------
@@ -29,17 +30,19 @@ def extract(dat, tag, how):
         Requested data from the tag. Returns None is requested tag is unavailable.
     """
 
-    if how not in ['raw', 'str', 'all']:
+    if how not in ['raw', 'str', 'all', 'allstr']:
         raise ValueError('Value for how is not understood.')
 
     # Use try to be robust to missing tag
     try:
         if how == 'raw':
-            return dat.find(tag)
+            return tag.find(label)
         elif how == 'str':
-            return dat.find(tag).text
+            return tag.find(label).text
         elif how == 'all':
-            return dat.findAll(tag)
+            return tag.findAll(label)
+        elif how == 'allstr':
+            return ' '.join([part.text for part in tag.findAll('AbstractText')])
 
     except AttributeError:
         return None

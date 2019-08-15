@@ -94,7 +94,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
             print('Collecting data for: ', term.label)
 
         # Initialize object to store data for current term articles
-        cur_dat = Articles(term)
+        arts = Articles(term)
 
         # Request web page
         url = urls.get_url('search', settings={'term' : term_arg})
@@ -120,7 +120,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
                                 'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
                 art_url = urls.get_url('fetch', settings=url_settings)
-                cur_dat = get_articles(req, art_url, cur_dat)
+                arts = get_articles(req, art_url, arts)
                 ret_start_it += ret_end_it
 
                 if ret_start_it >= int(retmax):
@@ -131,20 +131,20 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
 
             ids = page_soup.find_all('id')
             art_url = urls.get_url('fetch', settings={'id' : ids_to_str(ids)})
-            cur_dat = get_articles(req, art_url, cur_dat)
+            arts = get_articles(req, art_url, arts)
 
-        cur_dat._check_results()
+        arts._check_results()
 
         if save_and_clear:
-            cur_dat.save_and_clear(directory=directory)
-        results.append(cur_dat)
+            arts.save_and_clear(directory=directory)
+        results.append(arts)
 
     meta_data.add_requester(req)
 
     return results, meta_data
 
 
-def get_articles(req, art_url, cur_dat):
+def get_articles(req, art_url, arts):
     """Collect information for each article found for a given term.
 
     Parameters
@@ -153,12 +153,12 @@ def get_articles(req, art_url, cur_dat):
         Requester object to launch requests from.
     art_url : str
         URL for the article to be collected.
-    cur_dat : Articles object
+    arts : Articles object
         Object to add data to.
 
     Returns
     -------
-    cur_dat : Articles object
+    arts : Articles object
         Object to store information for the current term.
     """
 
@@ -172,17 +172,17 @@ def get_articles(req, art_url, cur_dat):
 
         # Get ID of current article & extract and add info to data object
         new_id = process_ids(extract(art, 'ArticleId', 'all'), 'pubmed')
-        cur_dat = extract_add_info(cur_dat, new_id, art)
+        arts = extract_add_info(arts, new_id, art)
 
-    return cur_dat
+    return arts
 
 
-def extract_add_info(cur_data, art_id, art):
+def extract_add_info(arts, art_id, art):
     """Extract information from an article and add it to a data object.
 
     Parameters
     ----------
-    cur_data : Articles object
+    arts : Articles object
         Object to store information for the current article.
     art_id : int
         ID of the new article.
@@ -191,18 +191,18 @@ def extract_add_info(cur_data, art_id, art):
 
     Returns
     -------
-    cur_data : Articles object
+    arts : Articles object
         Object updated with data from the current article.
     """
 
-    cur_data.add_data('ids', art_id)
-    cur_data.add_data('titles', extract(art, 'ArticleTitle', 'str'))
-    cur_data.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
-    cur_data.add_data('journals', (extract(art, 'Title', 'str'),
+    arts.add_data('ids', art_id)
+    arts.add_data('titles', extract(art, 'ArticleTitle', 'str'))
+    arts.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
+    arts.add_data('journals', (extract(art, 'Title', 'str'),
                                    extract(art, 'ISOAbbreviation', 'str')))
-    cur_data.add_data('words', process_words(extract(art, 'AbstractText', 'str')))
-    cur_data.add_data('keywords', process_keywords(extract(art, 'Keyword', 'all')))
-    cur_data.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))
-    cur_data.add_data('dois', process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
+    arts.add_data('words', process_words(extract(art, 'AbstractText', 'allstr')))
+    arts.add_data('keywords', process_keywords(extract(art, 'Keyword', 'all')))
+    arts.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))
+    arts.add_data('dois', process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
 
-    return cur_data
+    return arts
