@@ -7,7 +7,6 @@ Exploring the LISC database and using files of terms.
 
 ###################################################################################################
 
-import os
 from lisc.core.db import SCDB, create_file_structure
 
 ###################################################################################################

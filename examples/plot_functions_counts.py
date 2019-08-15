@@ -63,19 +63,12 @@ coocs, term_counts, meta_dat = collect_counts(
 # Calculating Co-Occurence Scores
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Once you have collected the co-occurence data, the next step is to analyze the data.
+# Once the co-occurence data is collected, we often want to compute a normalization
+# or transform of the data.
 #
-# First though, we often want to compute a normalization or transform of the data.
-#
-# In `lisc.analysis` there are some functions to do so.
-#
-# We can normalize the data, dividing the co-occurence counts by the number of papers
-# per term. This allows us the examine and analyze, for example, the proportion of papers
-# with a given term that also include a secondary term of interest.
-#
-# We can also calculate some kind of association index or score. For example, the
-# `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard meassure
-# for measuring the similarity of samples, and is also available to compute and use.
+# Some more details on the measures available in LISC are available in the `Counts`
+# tutorial. When using the functions approach, all implemented scores and transforms
+# are available in `lisc.analysis`, as functions that take in our collected data.
 #
 
 ###################################################################################################
