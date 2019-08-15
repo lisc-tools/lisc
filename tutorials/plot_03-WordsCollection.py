@@ -17,7 +17,8 @@ Collecting literature data, extracting text and metadata for specified search te
 ###################################################################################################
 
 from lisc import Words
-from lisc import SCDB, save_object
+from lisc.utils.db import SCDB
+from lisc.utils.io import save_object
 
 ###################################################################################################
 #
@@ -52,7 +53,7 @@ words.run_collection(retmax='5')
 ###################################################################################################
 
 # Words also saves the same list of Data objects
-words.results
+print(words.results)
 
 ###################################################################################################
 #

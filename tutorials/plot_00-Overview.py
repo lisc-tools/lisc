@@ -187,6 +187,14 @@ base.check_terms('exclusions')
 
 ###################################################################################################
 #
+# Note that each inclusion / exclusion term is mapped to it's associated search term
+# based on it's index. Inclusion and exclusion word lists should also be the same length
+# as the set of search terms. If there are no inclusions / exclusions for a given search
+# term, leave it empty with an empty list.
+#
+
+###################################################################################################
+#
 # Labels
 # ~~~~~~
 #
@@ -223,15 +231,13 @@ base.labels
 # When collecting and analysing literature, there can be a lot of data, and therefore
 # a lot of files, to keep track of.
 #
-# For that reason, LISC offers a database structure
-#
-# If you use this file structure, LISC functions can automatically load and save files in an
-# way using this file structure.
+# For that reason, LISC offers a database structure. If you use this file structure,
+# LISC functions can automatically load and save files to an organized output structure.
 #
 
 ###################################################################################################
 
-from lisc.core.db import SCDB, create_file_structure
+from lisc.utils.db import SCDB, create_file_structure
 
 ###################################################################################################
 

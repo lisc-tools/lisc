@@ -69,7 +69,7 @@ citations, meta_data = collect_citations(dois, util='citations')
 
 # Check out the number of citations per DOI
 for doi, n_cites in citations.items():
-    print('{} \t : {}'.format(doi, n_cites))
+    print('{:25s} \t : {}'.format(doi, n_cites))
 
 ###################################################################################################
 #
@@ -88,7 +88,7 @@ references, meta_data = collect_citations(dois, util='references')
 
 # Check out the number of references per DOI
 for doi, n_refs in references.items():
-    print('{} \t : {}'.format(doi, n_refs))
+    print('{:25s} \t : {}'.format(doi, n_refs))
 
 ###################################################################################################
 #

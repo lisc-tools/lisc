@@ -18,9 +18,8 @@ Scraping term co-occurence data from scientific literature.
 ###################################################################################################
 
 from lisc import Counts
-
-from lisc.core.db import SCDB
-from lisc.core.io import save_object
+from lisc.utils.db import SCDB
+from lisc.utils.io import save_object
 
 ###################################################################################################
 #
