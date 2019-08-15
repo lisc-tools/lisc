@@ -61,7 +61,7 @@ def get_wait_time(authenticated):
     The wait time for requesting is set for the E-Utils API, which allows for:
     - 10 requests/second for authenticated users (using an API key)
     - 3 requests/second otherwise
-    ToDo: check these values.
+    More information on rate limits is availabe here: https://www.ncbi.nlm.nih.gov/books/NBK25497/
     """
 
     return 1/10 if authenticated else 1/3
