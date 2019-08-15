@@ -1,0 +1,2 @@
+brain,cortex
+body,corporeal

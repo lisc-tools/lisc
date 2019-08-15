@@ -2,7 +2,7 @@
 Words with Functions
 ====================
 
-Scraping article text data and metadata, using a function oriented approach.
+Collect article text data and metadata, using a function oriented approach.
 """
 
 ###################################################################################################
@@ -10,15 +10,19 @@ Scraping article text data and metadata, using a function oriented approach.
 # Function Approach: collect_words
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# MORE WORDS.
+# The core function for collecting words data is the `collect_words` function.
+#
+# Given a list of search terms, this function handles all the requests to collect the data.
 #
 
 ###################################################################################################
 
+# Import function to collect data
 from lisc.collect import collect_words
 
 ###################################################################################################
 
+# Set some terms to search for
 terms = [['brain'], ['body']]
 
 ###################################################################################################
@@ -29,7 +33,7 @@ dat, meta_data = collect_words(terms, retmax='5', usehistory=False,
 
 ###################################################################################################
 
-# The meta data includes some information on the database that was scraped
+# The meta data includes some information on the database from which data was collected
 meta_data['db_info']
 
 ###################################################################################################
@@ -39,7 +43,7 @@ dat
 
 ###################################################################################################
 
-# Each data object holds the data for the scraped papers
+# Each data object holds the data for the collected papers
 d1 = dat[0]
 
 ###################################################################################################
