@@ -1,4 +1,4 @@
-"""Classes and functions to store and process extracted paper data."""
+"""Classes and functions to store and process extracted article data."""
 
 import os
 import json
@@ -22,7 +22,7 @@ class Data(BaseData):
     term : Term object
         Definition of the search term, with inclusions and exclusion words.
     ids : list of int
-        Pubmed article ids for all articles included in object.
+        Article ids for all articles included in object.
     n_articles : int
         Number of articles included in object.
     titles : list of str
@@ -58,7 +58,7 @@ class Data(BaseData):
 
 
     def __iter__(self):
-        """Iterate through extracted term papers."""
+        """Iterate through collected articles."""
 
         for ind in range(self.n_articles):
 

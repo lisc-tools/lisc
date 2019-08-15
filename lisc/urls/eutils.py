@@ -1,4 +1,4 @@
-"""Pubmed URLs for LISC.
+"""EUtils URLs for LISC.
 
 External Documentation
 ----------------------
@@ -27,7 +27,7 @@ Settings
 db : the target database.
     Most relevant database are: 'pubmed' & 'pmc'
         - pubmed: is a database of over 25 million references
-        - pmc: an archive of freely available full text papers, of around 3 million papers
+        - pmc: an archive of freely available full text articles
     More info here: https://www.nlm.nih.gov/pubs/factsheets/dif_med_pub.html
     FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/#q1
 id : list of UIDs (comma separated).
@@ -90,16 +90,16 @@ class EUtils(URLs):
 
         Parameters
         ----------
-        db : {'pubmed', 'pmc'}, optional
-            Which literature database to use.
+        db : str, optional
+            Which database to access from EUtils.
         retmax : int, optional
-            The maximum number of papers to return.
+            The maximum number of articles to return.
         field : str, optional
             The search field to search within.
         retmode : {'lxml', 'xml'}, optional
             The return format for the results.
         usehistory : {'n', 'y'}
-            Whether to use history caching on pubmed server.
+            Whether to use history caching on the EUtils server.
         api_key : str, optional
             An API key for authenticated NCBI user account.
         """

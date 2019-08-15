@@ -1,4 +1,4 @@
-"""Collect info & meta data from Pubmed."""
+"""Collect info & meta data from EUtils."""
 
 from bs4 import BeautifulSoup
 
@@ -11,12 +11,12 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 
 def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbose=False):
-    """Collect database information & metadata from pubmed.
+    """Collect database information & metadata from EUtils.
 
     Parameters
     ----------
     db : str, optional, default: 'pubmed'
-        Which pubmed database to use.
+        Which database to access from EUtils.
     api_key : str
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}
@@ -49,12 +49,12 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
 
 
 def get_db_info(req, info_url):
-    """Calls EInfo to get info and status of db to be used for scraping.
+    """Calls EInfo to get info and status of the database to be used for data collection.
 
     Parameters
     ----------
     req : Requester object
-        Requester object to launch requests from.
+        Object to launch requests from.
     info_url : str
         URL to request db information from.
 

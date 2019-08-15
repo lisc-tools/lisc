@@ -19,7 +19,7 @@ class SCDB():
 
     Notes
     -----
-    The default set of paths for a SCDB object is:
+    The default set of paths for SCDB is:
     - terms                 Term files.
     - logs                  Log files.
     - figs                  Figure files.

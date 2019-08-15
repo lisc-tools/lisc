@@ -18,9 +18,10 @@ class Counts():
     terms : dict
         Search terms to use.
     counts : 2d array
-        The numbers of papers found for each combination of terms.
+        The numbers of articles found for each combination of terms.
     score : 2d array
-        The percentage of papers for each term that include the corresponding term.
+        A transformed 'score' of co-occurence data
+        This can be a normalized version of the data, and/or a computed association index.
     square : bool
         Whether the count data matrix is symmetrical.
     meta_data : MetaData object
@@ -87,9 +88,9 @@ class Counts():
         Parameters
         ----------
         db : str, optional, default: 'pubmed'
-            Which pubmed database to use.
+            Which database to access from EUtils.
         field : str, optional, default: 'TIAB'
-            Field to search for term within.
+            Field to search for term in.
             Defaults to 'TIAB', which is Title/Abstract.
         api_key : str
             An API key for a NCBI account.
@@ -157,7 +158,7 @@ class Counts():
 
 
     def check_top(self, dim='A'):
-        """Check the terms with the most papers.
+        """Check the terms with the most articles.
 
         Parameters
         ----------
@@ -166,13 +167,13 @@ class Counts():
         """
 
         max_ind = np.argmax(self.terms[dim].counts)
-        print("The most studied term is  {}  with  {}  papers.".format(
+        print("The most studied term is  {}  with  {}  articles.".format(
             wrap(self.terms[dim].labels[max_ind]),
             self.terms[dim].counts[max_ind]))
 
 
     def check_counts(self, dim='A'):
-        """Check how many papers found for each term.
+        """Check how many articles were found for each term.
 
         Parameters
         ----------

@@ -1,4 +1,4 @@
-"""Functions to process extracted tags from scraping for LISC."""
+"""Functions to process extracted tags from data collected with LISC."""
 
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -29,7 +29,6 @@ def extract(dat, tag, how):
         Requested data from the tag. Returns None is requested tag is unavailable.
     """
 
-    # Check how spec if valid
     if how not in ['raw', 'str', 'all']:
         raise ValueError('Value for how is not understood.')
 
@@ -47,20 +46,20 @@ def extract(dat, tag, how):
 
 
 def ids_to_str(ids):
-    """Takes a list of pubmed ids, returns a str of the ids separated by commas.
+    """Convert a list of article IDs to a comma separated string of IDs.
 
     Parameters
     ----------
     ids : bs4.element.ResultSet
-        List of pubmed ids.
+        List of article IDs.
 
     Returns
     -------
     ids_str : str
-        A string of all concatenated ids.
+        A string of all concatenated IDs.
     """
 
-    # Check how many ids in list & initialize string with first ID
+    # Check how many IDs in list & initialize string with first ID
     n_ids = len(ids)
     ids_str = str(ids[0].text)
 
@@ -73,7 +72,7 @@ def ids_to_str(ids):
 
 @catch_none(1)
 def process_words(text):
-    """Processes abstract text - sets to lower case, and removes stopwords and punctuation.
+    """Processes abstract text.
 
     Parameters
     ----------
@@ -84,6 +83,10 @@ def process_words(text):
     -------
     words_cleaned : list of str
         List of tokenized words, after processing.
+
+    Notes
+    -----
+    This function sets text to lower case, and removes stopwords and punctuation.
     """
 
     words = word_tokenize(text)
@@ -97,7 +100,7 @@ def process_words(text):
 
 @catch_none(1)
 def process_keywords(keywords):
-    """Extract and process keywords data.
+    """Extract and process keywords.
 
     Parameters
     ----------
@@ -115,7 +118,7 @@ def process_keywords(keywords):
 
 @catch_none(1)
 def process_authors(authors):
-    """Extract and process author data.
+    """Extract and process authors.
 
     Parameters
     ----------
@@ -142,7 +145,7 @@ def process_authors(authors):
 
 @catch_none(1)
 def process_pub_date(pub_date):
-    """Extract and process publication date data.
+    """Extract and process publication dates.
 
     Parameters
     ----------
@@ -164,7 +167,7 @@ def process_pub_date(pub_date):
 
 @catch_none(1)
 def process_ids(ids, id_type):
-    """Extract and process ID data.
+    """Extract and process IDs.
 
     Parameters
     ----------

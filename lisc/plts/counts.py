@@ -1,4 +1,10 @@
-"""LISC plots - plots for counts data."""
+"""LISC plots - plots for counts data.
+
+Notes
+-----
+The functions here serve as wrappers on external plotting and analysis
+libraries, to give access to relevant plots and clustering measures.
+"""
 
 from lisc.plts.utils import check_args, check_ax, savefig, get_cmap
 from lisc.core.modutils import safe_import
@@ -26,6 +32,10 @@ def plot_matrix(data, x_labels=None, y_labels=None, square=False, ax=None):
         Whether to plot each cell as equal sized squares.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
+
+    Notes
+    -----
+    This function is a wrapper on the seaborn `heatmap` plot function.
     """
 
     sns.heatmap(data, square=square, ax=check_ax(ax),
@@ -47,6 +57,10 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
         Labels for the y-axis.
     cmap : matplotlib.cmap
         Colormap to use for the plot.
+
+    Notes
+    -----
+    This function is a wrapper on the seaborn `clustermap` plot function.
     """
 
     sns.set()
@@ -77,6 +91,10 @@ def plot_dendrogram(data, labels=None, ax=None):
         Labels for the dendrogram.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
+
+    Notes
+    -----
+    This function is a wrapper on the scipy `dendrogram` plot function.
     """
 
     linkage_data = hier.linkage(data, method='complete', metric='cosine')

@@ -11,7 +11,7 @@ def count_years(years):
     Parameters
     ----------
     years : list of int
-        Year of publication of all papers.
+        Year of publication of all articles.
 
     Returns
     -------
@@ -101,7 +101,7 @@ def count_end_authors(authors):
     # Drop author lists that are None
     authors = [author for author in authors if author is not None]
 
-    # Pull out the full name for the first & last author of each paper
+    # Pull out the full name for the first & last author of each article
     #  Last author is only considered if there is more than 1 author
     firsts = [auth[0] for auth in authors]
     f_names = [(author[0], author[2]) for author in firsts]

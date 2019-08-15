@@ -1,4 +1,4 @@
-"""Classes and functions to store aggregated term paper data."""
+"""Classes and functions to store aggregated term article data."""
 
 import os
 import json
@@ -15,7 +15,7 @@ from lisc.data.base_data import BaseData
 ###################################################################################################
 
 class DataAll(BaseData):
-    """An object to hold term data, aggregated across papers.
+    """An object to hold term data, aggregated across articles.
 
     Attributes
     ----------
@@ -24,23 +24,23 @@ class DataAll(BaseData):
     term : Term object
         Definition of the search term, with inclusions and exclusion words.
     n_articles : int
-        Number of articles whos data is included in object.
+        Number of articles included in object.
     ids : list of int
-        Pubmed article ids for all articles included in object.
+        Article ids for all articles included in object.
     journals : list of tuple of (int, str)
-        Counter across all journals.
+        Counts of occurences of journals.
     authors : list of tuple of (int, (str, str))
-        Counter across all authors.
+        Counts of occurences of authors.
     first_authors : list of tuple of (int, (str, str))
-        Counter across all first authors.
+        Counts of occurences of first authors.
     last_authors : list of tuple of (int, (str, str))
-        Counter across all last authors.
+        Counts of occurences of last authors.
     words : nltk.probability.FreqDist
         Frequency distribution of all words.
     keywords : nltk.probability.FreqDist
         Frequency distribution of all keywords.
     years : list of tuple of (int, int)
-        Counter across all years of publication.
+        Counts of occurences of years of publication.
     dois : list of str
         DOIs of each article included in object.
     summary : dict
@@ -53,7 +53,7 @@ class DataAll(BaseData):
         Parameters
         ----------
         term_data : Data object
-            Data for all papers from a given search term.
+            Data for all articles from a given search term.
         exclusions : list of str
             Words to exclude from the word collections.
         """

@@ -78,14 +78,14 @@ class Words(Base):
         Parameters
         ----------
         db : str, optional, default: 'pubmed'
-            Which pubmed database to use.
+            Which database to access from EUtils.
         retmax : int, optional
             Maximum number of records to return.
         field : str, optional, default: 'TIAB'
             Field to search for term within.
             Defaults to 'TIAB', which is Title/Abstract.
         usehistory : bool, optional, default: False
-            Whether to use e-utilities history, storing results on their server, as needed.
+            Whether to use EUtils history, storing results on their server.
         api_key : str
             An API key for a NCBI account.
         save_and_clear : bool, optional, default: False

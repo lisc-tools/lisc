@@ -1,4 +1,4 @@
-"""Collect counts data from Pubmed."""
+"""Collect counts data from EUtils."""
 
 import numpy as np
 from bs4 import BeautifulSoup
@@ -18,7 +18,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
                    terms_b=[], inclusions_b=[], exclusions_b=[],
                    db='pubmed', field='TIAB', api_key=None,
                    logging=None, directory=None, verbose=False):
-    """Collect word co-occurence data from pubmed.
+    """Collect word co-occurence data from EUtils.
 
     Parameters
     ----------
@@ -35,7 +35,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     exclusions_b : list of list of str, optional
         Exclusion words for secondary list of search terms.
     db : str, optional, default: 'pubmed'
-        Which pubmed database to use.
+        Which database to access from EUtils.
     field : str, optional, default: 'TIAB'
         Field to search for term within.
         Defaults to 'TIAB', which is Title/Abstract.
@@ -51,9 +51,9 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     Returns
     -------
     data_numbers : 2d array
-        The numbers of papers found for each combination of terms.
+        The numbers of articles found for each combination of terms.
     counts : 1d array or list of 1d array
-        Number of papers for each term independently.
+        Number of articles for each term independently.
     meta_data : dict
         Meta data from the data collection.
 
@@ -61,8 +61,8 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     -----
     The collection does an exact word search for two terms.
 
-    The HTML page returned by the pubmed search includes a 'count' field.
-    This field contains the number of papers with both terms. This is extracted.
+    The HTML page returned by the EUtils search includes a 'count' field.
+    This field contains the number of articles with both terms. This is extracted.
     """
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
@@ -118,6 +118,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
         url = urls.get_url('search', settings={'term' : term_a_arg})
         counts_a[a_ind] = get_count(req, url)
 
+        # For each term in list a, loop through each term in list b
         for b_ind, (search_b, incl_b, excl_b) in enumerate(zip(terms_b, inclusions_b, exclusions_b)):
 
             # Skip collections of equivalent term combinations - if single term list
@@ -154,12 +155,12 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
 
 def get_count(req, url):
-    """Get the count of how many articles listed for at the requested URL.
+    """Get the count of how many articles listed at the requested URL.
 
     Parameters
     ----------
     req : Requester object
-        Requester object to launch requests from.
+        Object to launch requests from.
     url : str
         URL to request count data from.
 

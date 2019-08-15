@@ -1,4 +1,4 @@
-"""Collect words data from Pubmed."""
+"""Collect words data from EUtils."""
 
 from bs4 import BeautifulSoup
 
@@ -18,7 +18,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
                   retmax=None, field='TIAB', usehistory=False, api_key=None,
                   save_and_clear=False, logging=None, directory=None, verbose=False):
-    """Collect text data and metadata from pubmed using specified search term(s).
+    """Collect text data and metadata from EUtils using specified search term(s).
 
     Parameters
     ----------
@@ -29,14 +29,14 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
     exclusions : list of list of str, optional
         Exclusion words for search terms.
     db : str, optional, default: 'pubmed'
-        Which pubmed database to use.
+        Which database to access from EUtils.
     retmax : int, optional
-        Maximum number of records to return.
+        Maximum number of articles to return.
     field : str, optional, default: 'TIAB'
         Field to search for term within.
         Defaults to 'TIAB', which is Title/Abstract.
     usehistory : bool, optional, default: False
-        Use e-utilities history: storing results on their server, as needed.
+        Whether to use EUtils history, storing results on their server.
     api_key : str
         An API key for a NCBI account.
     save_and_clear : bool, optional, default: False
@@ -59,12 +59,11 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
     -----
     The collection does an exact word search for the term given.
     It then loops through all the articles found about that data.
-    For each article, pulls and saves out data (including title, abstract, authors, etc)
-        Pulls data using the hierarchical tag structure that organize the articles.
-        This procedure loops through each article tag.
+    For each article, i pulls and saves out data (including title, abstract, authors, etc)
+        It pulls data using the hierarchical tag structure that organizes the articles.
     """
 
-    # Get e-utils URLS object
+    # Get EUtils URLS object, with desired settings, and build required utility URLs
     urls = EUtils(db=db, usehistory='y' if usehistory else 'n', retmax=retmax,
                   retmode='xml', field=field, api_key=api_key)
     urls.build_url('info', settings=['db'])
@@ -94,7 +93,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         if verbose:
             print('Collecting data for: ', term.label)
 
-        # Initiliaze object to store data for current term papers
+        # Initialize object to store data for current term articles
         cur_dat = Data(term)
 
         # Request web page
@@ -104,16 +103,16 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
 
         if usehistory:
 
-            # Get number of papers, and keys to use history
+            # Get number of articles, and keys to use history
             count = int(page_soup.find('count').text)
             web_env = page_soup.find('webenv').text
             query_key = page_soup.find('querykey').text
 
-            # Loop through pulling paper data, using history
+            # Loop through, collecting article data, using history
             ret_start_it = 0
             while ret_start_it < count:
 
-                # Set the number of papers per iteration (the ret_max per call)
+                # Set the number of articles per iteration (the ret_max per call)
                 #  This defaults to 100, but will set to less if fewer needed to reach retmax
                 ret_end_it = min(100, int(retmax) - ret_start_it)
 
@@ -121,7 +120,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
                                 'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
                 art_url = urls.get_url('fetch', settings=url_settings)
-                cur_dat = get_papers(req, art_url, cur_dat)
+                cur_dat = get_articles(req, art_url, cur_dat)
                 ret_start_it += ret_end_it
 
                 if ret_start_it >= int(retmax):
@@ -132,7 +131,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
 
             ids = page_soup.find_all('id')
             art_url = urls.get_url('fetch', settings={'id' : ids_to_str(ids)})
-            cur_dat = get_papers(req, art_url, cur_dat)
+            cur_dat = get_articles(req, art_url, cur_dat)
 
         cur_dat._check_results()
 
@@ -145,7 +144,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
     return results, meta_data
 
 
-def get_papers(req, art_url, cur_dat):
+def get_articles(req, art_url, cur_dat):
     """Collect information for each article found for a given term.
 
     Parameters
@@ -179,16 +178,16 @@ def get_papers(req, art_url, cur_dat):
 
 
 def extract_add_info(cur_data, art_id, art):
-    """Extract information from article web page and add to a data object.
+    """Extract information from an article and add it to a data object.
 
     Parameters
     ----------
     cur_data : Data object
         Object to store information for the current article.
     art_id : int
-        Paper ID of the new paper.
+        ID of the new article.
     art : bs4.element.Tag object
-        Extracted pubmed article.
+        Extracted article.
 
     Returns
     -------

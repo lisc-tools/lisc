@@ -6,7 +6,7 @@ import numpy as np
 ###################################################################################################
 
 def compute_normalization(data, counts, dim='A'):
-    """Compute a normalization of the co-occurence matrix by the counst
+    """Compute a normalization of the co-occurence data.
 
     Parameters
     ----------
@@ -24,7 +24,7 @@ def compute_normalization(data, counts, dim='A'):
 
     Notes
     -----
-    - This computes a data matrix matrix as a percent of papers expressing co-occurence.
+    - This computes a normalized data matrix as a percent of articles expressing co-occurence.
     """
 
     if dim == 'A':

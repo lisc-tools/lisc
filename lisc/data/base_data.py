@@ -1,4 +1,4 @@
-"""Base classes store and process extracted paper data."""
+"""Base classes store and process collected article data."""
 
 from lisc.data.term import Term
 
