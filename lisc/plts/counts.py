@@ -28,8 +28,9 @@ def plot_matrix(data, x_labels=None, y_labels=None, square=False, ax=None):
         Figure axes upon which to plot.
     """
 
-    sns.heatmap(data, square=square, ax=check_ax(ax, (8, 8)),
+    sns.heatmap(data, square=square, ax=check_ax(ax),
                 **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
+    plt.tight_layout()
 
 
 @savefig
@@ -54,12 +55,14 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
-    cg = sns.clustermap(data, cmap=cmap, method='complete', metric='cosine',
+    cg = sns.clustermap(data, cmap=cmap, method='complete', metric='cosine',# figsize=(8, 8),
                         **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
 
-    cg.cax.set_visible(True)
     _ = plt.setp(cg.ax_heatmap.xaxis.get_majorticklabels(), rotation=60, ha='right')
     _ = plt.setp(cg.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
+
+    cg.fig.subplots_adjust(bottom=0.25)
+    cg.fig.subplots_adjust(right=0.75)
 
 
 @savefig
@@ -79,4 +82,5 @@ def plot_dendrogram(data, labels=None, ax=None):
     linkage_data = hier.linkage(data, method='complete', metric='cosine')
 
     hier.dendrogram(linkage_data, orientation='left', color_threshold=0.25,
-                    leaf_font_size=12, ax=check_ax(ax, (3, 15)), **check_args(['labels'], labels))
+                    leaf_font_size=12, ax=check_ax(ax), **check_args(['labels'], labels))
+    plt.tight_layout()
