@@ -99,7 +99,7 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    results : list of Data object</span>
+<span class="sd">    results : list of Articles object</span>
 <span class="sd">        Results for each search term, stored in custom Words object.</span>
 <span class="sd">    labels : list of str</span>
 <span class="sd">        Labels for each result data attached to object.</span>
@@ -129,8 +129,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Data object</span>
-<span class="sd">            Data object for the requested result.</span>
+<span class="sd">        Articles object</span>
+<span class="sd">            Articles object for the requested result.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Give up if object is empty</span>
@@ -151,7 +151,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        new_result : Data object</span>
+<span class="sd">        new_result : Articles object</span>
 <span class="sd">            Object with information about current term.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -166,14 +166,14 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        db : str, optional, default: &#39;pubmed&#39;</span>
-<span class="sd">            Which pubmed database to use.</span>
+<span class="sd">            Which database to access from EUtils.</span>
 <span class="sd">        retmax : int, optional</span>
 <span class="sd">            Maximum number of records to return.</span>
 <span class="sd">        field : str, optional, default: &#39;TIAB&#39;</span>
 <span class="sd">            Field to search for term within.</span>
 <span class="sd">            Defaults to &#39;TIAB&#39;, which is Title/Abstract.</span>
 <span class="sd">        usehistory : bool, optional, default: False</span>
-<span class="sd">            Whether to use e-utilities history, storing results on their server, as needed.</span>
+<span class="sd">            Whether to use EUtils history, storing results on their server.</span>
 <span class="sd">        api_key : str</span>
 <span class="sd">            An API key for a NCBI account.</span>
 <span class="sd">        save_and_clear : bool, optional, default: False</span>

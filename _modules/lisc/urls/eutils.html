@@ -86,7 +86,7 @@
     <div class="col-md-12 content">
       
   <h1>Source code for lisc.urls.eutils</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Pubmed URLs for LISC.</span>
+<span></span><span class="sd">&quot;&quot;&quot;EUtils URLs for LISC.</span>
 
 <span class="sd">External Documentation</span>
 <span class="sd">----------------------</span>
@@ -115,7 +115,7 @@
 <span class="sd">db : the target database.</span>
 <span class="sd">    Most relevant database are: &#39;pubmed&#39; &amp; &#39;pmc&#39;</span>
 <span class="sd">        - pubmed: is a database of over 25 million references</span>
-<span class="sd">        - pmc: an archive of freely available full text papers, of around 3 million papers</span>
+<span class="sd">        - pmc: an archive of freely available full text articles</span>
 <span class="sd">    More info here: https://www.nlm.nih.gov/pubs/factsheets/dif_med_pub.html</span>
 <span class="sd">    FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/#q1</span>
 <span class="sd">id : list of UIDs (comma separated).</span>
@@ -149,7 +149,7 @@
 <span class="sd">    The wait time for requesting is set for the E-Utils API, which allows for:</span>
 <span class="sd">    - 10 requests/second for authenticated users (using an API key)</span>
 <span class="sd">    - 3 requests/second otherwise</span>
-<span class="sd">    ToDo: check these values.</span>
+<span class="sd">    More information on rate limits is availabe here: https://www.ncbi.nlm.nih.gov/books/NBK25497/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="k">if</span> <span class="n">authenticated</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
@@ -178,16 +178,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        db : {&#39;pubmed&#39;, &#39;pmc&#39;}, optional</span>
-<span class="sd">            Which literature database to use.</span>
+<span class="sd">        db : str, optional</span>
+<span class="sd">            Which database to access from EUtils.</span>
 <span class="sd">        retmax : int, optional</span>
-<span class="sd">            The maximum number of papers to return.</span>
+<span class="sd">            The maximum number of articles to return.</span>
 <span class="sd">        field : str, optional</span>
 <span class="sd">            The search field to search within.</span>
 <span class="sd">        retmode : {&#39;lxml&#39;, &#39;xml&#39;}, optional</span>
 <span class="sd">            The return format for the results.</span>
 <span class="sd">        usehistory : {&#39;n&#39;, &#39;y&#39;}</span>
-<span class="sd">            Whether to use history caching on pubmed server.</span>
+<span class="sd">            Whether to use history caching on the EUtils server.</span>
 <span class="sd">        api_key : str, optional</span>
 <span class="sd">            An API key for authenticated NCBI user account.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

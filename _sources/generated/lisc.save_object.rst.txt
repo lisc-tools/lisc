@@ -1,6 +1,0 @@
-lisc.save\_object
-=================
-
-.. currentmodule:: lisc
-
-.. autofunction:: save_object

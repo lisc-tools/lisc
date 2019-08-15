@@ -1,7 +1,7 @@
-lisc.core.db.SCDB
-=================
+lisc.utils.db.SCDB
+==================
 
-.. currentmodule:: lisc.core.db
+.. currentmodule:: lisc.utils.db
 
 .. autoclass:: SCDB
 

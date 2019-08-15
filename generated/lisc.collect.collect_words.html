@@ -90,7 +90,7 @@
 <dl class="function">
 <dt id="lisc.collect.collect_words">
 <code class="descclassname">lisc.collect.</code><code class="descname">collect_words</code><span class="sig-paren">(</span><em>terms</em>, <em>inclusions=[]</em>, <em>exclusions=[]</em>, <em>db='pubmed'</em>, <em>retmax=None</em>, <em>field='TIAB'</em>, <em>usehistory=False</em>, <em>api_key=None</em>, <em>save_and_clear=False</em>, <em>logging=None</em>, <em>directory=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_words" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collect text data and metadata from pubmed using specified search term(s).</p>
+<dd><p>Collect text data and metadata from EUtils using specified search term(s).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -99,11 +99,11 @@
 <li><strong>terms</strong> (<em>list of list of str</em>) – Search terms.</li>
 <li><strong>inclusions</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Inclusion words for search terms.</li>
 <li><strong>exclusions</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for search terms.</li>
-<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which pubmed database to use.</li>
-<li><strong>retmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of records to return.</li>
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which database to access from EUtils.</li>
+<li><strong>retmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of articles to return.</li>
 <li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term within.
 Defaults to ‘TIAB’, which is Title/Abstract.</li>
-<li><strong>usehistory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Use e-utilities history: storing results on their server, as needed.</li>
+<li><strong>usehistory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to use EUtils history, storing results on their server.</li>
 <li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
 <li><strong>save_and_clear</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to save words data to disk per term as it goes, instead of holding in memory.</li>
 <li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
@@ -113,8 +113,8 @@ Defaults to ‘TIAB’, which is Title/Abstract.</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>results</strong> (<em>list of lisc Data objects</em>) – Results from collecting data for each term.</li>
-<li><strong>meta_data</strong> (<em>dict</em>) – Meta data from the data collection.</li>
+<li><strong>results</strong> (<em>list of Articles object</em>) – Results from collecting data for each term.</li>
+<li><strong>meta_data</strong> (<em>MetaData object</em>) – Meta data from the data collection.</li>
 </ul>
 </p>
 </td>
@@ -124,10 +124,9 @@ Defaults to ‘TIAB’, which is Title/Abstract.</li>
 <p class="rubric">Notes</p>
 <p>The collection does an exact word search for the term given.
 It then loops through all the articles found about that data.
-For each article, pulls and saves out data (including title, abstract, authors, etc)</p>
+For each article, i pulls and saves out data (including title, abstract, authors, etc)</p>
 <blockquote>
-<div>Pulls data using the hierarchical tag structure that organize the articles.
-This procedure loops through each article tag.</div></blockquote>
+<div>It pulls data using the hierarchical tag structure that organizes the articles.</div></blockquote>
 </dd></dl>
 
 </div>

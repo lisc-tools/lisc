@@ -257,6 +257,10 @@ gene     : protein
 cortex   : subcortical
 </pre></div>
 </div>
+<p>Note that each inclusion / exclusion term is mapped to it’s associated search term
+based on it’s index. Inclusion and exclusion word lists should also be the same length
+as the set of search terms. If there are no inclusions / exclusions for a given search
+term, leave it empty with an empty list.</p>
 </div>
 <div class="section" id="labels">
 <h3>Labels<a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h3>
@@ -281,10 +285,9 @@ for scraping and analyzing data are implemented as stand-alone functions.</p>
 <h2>Database Management<a class="headerlink" href="#database-management" title="Permalink to this headline">¶</a></h2>
 <p>When collecting and analysing literature, there can be a lot of data, and therefore
 a lot of files, to keep track of.</p>
-<p>For that reason, LISC offers a database structure</p>
-<p>If you use this file structure, LISC functions can automatically load and save files in an
-way using this file structure.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">create_file_structure</span>
+<p>For that reason, LISC offers a database structure. If you use this file structure,
+LISC functions can automatically load and save files to an organized output structure.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">create_file_structure</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure.</span>
@@ -304,12 +307,18 @@ way using this file structure.</p>
     figures/
     data/
         words/
+            tutorial_words.p
             raw/
+                parietal lobe.json
+                frontal lobe.json
+                occipital lobe.json
+                temporal lobe.json
             summary/
         counts/
+            tutorial_counts.p
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.003 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-00-overview-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/e8490a596597bd34feac6ae1c0d8757b/plot_00-Overview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_00-Overview.py</span></code></a></div>

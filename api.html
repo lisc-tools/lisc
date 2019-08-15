@@ -120,11 +120,11 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.Term.html#lisc.data.Term" title="lisc.data.Term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Term</span></code></a></td>
 <td>Search term definition with inclusion &amp; exclusion words.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Data</span></code></a>(term)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Articles</span></code></a>(term)</td>
 <td>An object to hold the word results for a given term.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.DataAll.html#lisc.data.DataAll" title="lisc.data.DataAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataAll</span></code></a>(term_data[,&nbsp;exclusions])</td>
-<td>An object to hold term data, aggregated across papers.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a>(term_data[,&nbsp;exclusions])</td>
+<td>An object to hold term data, aggregated across articles.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetaData</span></code></a>()</td>
 <td>An object to hold the meta data for data collection.</td>
@@ -142,13 +142,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.collect.collect_info.html#lisc.collect.collect_info" title="lisc.collect.collect_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_info</span></code></a>([db,&nbsp;api_key,&nbsp;logging,&nbsp;…])</td>
-<td>Collect database information &amp; metadata from pubmed.</td>
+<td>Collect database information &amp; metadata from EUtils.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.collect.collect_counts.html#lisc.collect.collect_counts" title="lisc.collect.collect_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_counts</span></code></a>(terms_a[,&nbsp;inclusions_a,&nbsp;…])</td>
-<td>Collect word co-occurence data from pubmed.</td>
+<td>Collect word co-occurence data from EUtils.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.collect.collect_words.html#lisc.collect.collect_words" title="lisc.collect.collect_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_words</span></code></a>(terms[,&nbsp;inclusions,&nbsp;…])</td>
-<td>Collect text data and metadata from pubmed using specified search term(s).</td>
+<td>Collect text data and metadata from EUtils using specified search term(s).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.collect.collect_citations.html#lisc.collect.collect_citations" title="lisc.collect.collect_citations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_citations</span></code></a>(dois[,&nbsp;util,&nbsp;logging,&nbsp;…])</td>
 <td>Collect citation data from OpenCitations.</td>
@@ -208,7 +208,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.analysis.counts.compute_normalization.html#lisc.analysis.counts.compute_normalization" title="lisc.analysis.counts.compute_normalization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_normalization</span></code></a>(data,&nbsp;counts[,&nbsp;dim])</td>
-<td>Compute a normalization of the co-occurence matrix by the counst</td>
+<td>Compute a normalization of the co-occurence data.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.analysis.counts.compute_association_index.html#lisc.analysis.counts.compute_association_index" title="lisc.analysis.counts.compute_association_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_association_index</span></code></a>(data,&nbsp;counts_a,&nbsp;…)</td>
 <td>Compute the association index from the co-occurence data.</td>
@@ -269,10 +269,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.save_object.html#lisc.save_object" title="lisc.save_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_object</span></code></a>(obj,&nbsp;f_name[,&nbsp;directory])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.utils.io.save_object.html#lisc.utils.io.save_object" title="lisc.utils.io.save_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_object</span></code></a>(obj,&nbsp;f_name[,&nbsp;directory])</td>
 <td>Save a custom object from LISC as a pickle file.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/lisc.load_object.html#lisc.load_object" title="lisc.load_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_object</span></code></a>(f_name[,&nbsp;directory])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.utils.io.load_object.html#lisc.utils.io.load_object" title="lisc.utils.io.load_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_object</span></code></a>(f_name[,&nbsp;directory])</td>
 <td>Load a custom object, from a pickle file.</td>
 </tr>
 </tbody>
@@ -286,10 +286,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCDB</span></code></a>([base,&nbsp;generate_paths,&nbsp;structure])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCDB</span></code></a>([base,&nbsp;generate_paths,&nbsp;structure])</td>
 <td>Database object for a SCANR project.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/lisc.core.db.create_file_structure.html#lisc.core.db.create_file_structure" title="lisc.core.db.create_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_file_structure</span></code></a>([base,&nbsp;name,&nbsp;structure])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/lisc.utils.db.create_file_structure.html#lisc.utils.db.create_file_structure" title="lisc.utils.db.create_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_file_structure</span></code></a>([base,&nbsp;name,&nbsp;structure])</td>
 <td>Create the file structure for a SCANR database.</td>
 </tr>
 </tbody>

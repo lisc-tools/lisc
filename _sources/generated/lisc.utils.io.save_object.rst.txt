@@ -1,0 +1,6 @@
+lisc.utils.io.save\_object
+==========================
+
+.. currentmodule:: lisc.utils.io
+
+.. autofunction:: save_object

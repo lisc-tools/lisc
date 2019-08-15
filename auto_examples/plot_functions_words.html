@@ -96,6 +96,9 @@
 <h2>Function Approach: collect_words<a class="headerlink" href="#function-approach-collect-words" title="Permalink to this headline">¶</a></h2>
 <p>The core function for collecting words data is the <cite>collect_words</cite> function.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
+<p>The parameters for the <cite>collect_words</cite> function are the same as available and described
+in the <cite>Words</cite> tutorial. Here we will briefly explore collecting data directly using
+the function approach.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data</span>
 <span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_words</span>
 </pre></div>
@@ -105,7 +108,7 @@
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data, setting the collection return data for at most 5 papers per term</span>
-<span class="n">dat</span><span class="p">,</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="n">results</span><span class="p">,</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                                <span class="n">save_and_clear</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -118,30 +121,37 @@ Collecting data for:  body
 <span class="n">meta_data</span><span class="p">[</span><span class="s1">&#39;db_info&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function returns a list of LISC Data objects</span>
-<span class="n">dat</span>
+<p>LISC uses custom <cite>Data</cite> objects to store collected article data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function returns a list of Articles objects</span>
+<span class="k">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each data object holds the data for the collected papers</span>
-<span class="n">d1</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x1285c0d68&gt;, &lt;lisc.data.articles.Articles object at 0x12889e278&gt;]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each `Articles` object holds the data for the collected papers for a given term</span>
+<span class="n">res1</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out some of the data</span>
-<span class="k">print</span><span class="p">(</span><span class="n">d1</span><span class="o">.</span><span class="n">n_articles</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d1</span><span class="o">.</span><span class="n">titles</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">res1</span><span class="o">.</span><span class="n">n_articles</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res1</span><span class="o">.</span><span class="n">titles</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
 
-Co-existent pilocytic astrocytoma with acute B-cell leukemia within the cerebellum.
-Bidirectional relationship between sleep and Alzheimer&#39;s disease: role of amyloid, tau, and other factors.
-Soluble Intercellular Adhesion Molecule-1 (sICAM-1) as a Biomarker of Vascular Cognitive Impairment in Older Adults.
-Comparison between logistic regression and machine learning algorithms on survival prediction of traumatic brain injuries.
-Extinction training following cocaine or MDMA self-administration produces discrete changes in D2-like and mGlu5 receptor density in the rat brain.
+Focused ultrasound in Parkinson&#39;s disease: A twofold path toward disease modification.
+Meningoencephalitis due to spotted fever rickettsioses, including Rocky Mountain spotted fever.
+Differential Changes in Functional Connectivity of Striatum-Prefrontal and Striatum-Motor Circuits in Premanifest Huntington&#39;s Disease.
+Electroencephalography in Psychiatric Surgery: Past Use and Future Directions.
+A biohybrid fly-robot interface system that performs active collision avoidance.
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  5.342 seconds)</p>
+<p>To further explore the data collected and available, and what can be accessed,
+check out the documentation for the <cite>Articles</cite> object, and what attributes it contains.</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  4.781 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/c51bf98dc93483a6be96a3aeaf61fd28/plot_functions_words.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_words.py</span></code></a></div>

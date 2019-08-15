@@ -86,7 +86,13 @@
     <div class="col-md-12 content">
       
   <h1>Source code for lisc.plts.counts</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;LISC plots - plots for counts data.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;LISC plots - plots for counts data.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+<span class="sd">The functions here serve as wrappers on external plotting and analysis</span>
+<span class="sd">libraries, to give access to relevant plots and clustering measures.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="k">import</span> <span class="n">check_args</span><span class="p">,</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span><span class="p">,</span> <span class="n">get_cmap</span>
 <span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="k">import</span> <span class="n">safe_import</span>
@@ -114,6 +120,10 @@
 <span class="sd">        Whether to plot each cell as equal sized squares.</span>
 <span class="sd">    ax : matplotlib.Axes, optional</span>
 <span class="sd">        Figure axes upon which to plot.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function is a wrapper on the seaborn `heatmap` plot function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">square</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">),</span>
@@ -135,6 +145,10 @@
 <span class="sd">        Labels for the y-axis.</span>
 <span class="sd">    cmap : matplotlib.cmap</span>
 <span class="sd">        Colormap to use for the plot.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function is a wrapper on the seaborn `clustermap` plot function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
@@ -165,6 +179,10 @@
 <span class="sd">        Labels for the dendrogram.</span>
 <span class="sd">    ax : matplotlib.Axes, optional</span>
 <span class="sd">        Figure axes upon which to plot.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function is a wrapper on the scipy `dendrogram` plot function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">linkage_data</span> <span class="o">=</span> <span class="n">hier</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>

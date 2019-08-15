@@ -18,8 +18,9 @@ Analyzing collected text data and metadata.
 
 ###################################################################################################
 
-from lisc import SCDB, load_object
-from lisc.data import Data, DataAll
+from lisc.data import Articles, ArticlesAll
+from lisc.utils.db import SCDB
+from lisc.utils.io import load_object
 
 from lisc.plts.words import plot_wordcloud
 
@@ -43,8 +44,8 @@ db = SCDB('lisc_db')
 
 # Load raw data for a particular term
 term = 'frontal lobe'
-data = Data(term)
-data.load(db)
+arts = Articles(term)
+arts.load(db)
 
 ###################################################################################################
 #
@@ -60,13 +61,13 @@ data.load(db)
 ###################################################################################################
 
 # Collapse data across papers
-data_all = DataAll(data)
+arts_all = ArticlesAll(arts)
 
 ###################################################################################################
 
 # Check an example summary
-data_all.create_summary()
-data_all.print_summary()
+arts_all.create_summary()
+arts_all.print_summary()
 
 ###################################################################################################
 #
@@ -93,12 +94,12 @@ for ind in range(words.n_terms):
 ###################################################################################################
 
 # Collect into list of aggragated data objects
-all_dat = [DataAll(words[label]) for label in words.labels]
+all_articles = [ArticlesAll(words[label]) for label in words.labels]
 
 ###################################################################################################
 
 # Plot a WordCloud of the collected data for the first term
-plot_wordcloud(all_dat[0].words, 25)
+plot_wordcloud(all_articles[0].words, 25)
 
 ###################################################################################################
 #

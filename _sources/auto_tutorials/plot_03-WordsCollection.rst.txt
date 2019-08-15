@@ -26,7 +26,8 @@ all papers found for a given set of terms.
 
 
     from lisc import Words
-    from lisc import SCDB, save_object
+    from lisc.utils.db import SCDB
+    from lisc.utils.io import save_object
 
 
 
@@ -92,12 +93,19 @@ and exclusion words, is used as for Counts, as described in the first tutorial.
 
 
     # Words also saves the same list of Data objects
-    words.results
+    print(words.results)
 
 
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [<lisc.data.articles.Articles object at 0x13319cc88>, <lisc.data.articles.Articles object at 0x133b32f28>]
 
 
 Word Collections
@@ -201,7 +209,7 @@ We will analyze our words data in the next tutorial, so for now lets save out th
 
 
 
-**Total running time of the script:** ( 0 minutes  16.513 seconds)
+**Total running time of the script:** ( 0 minutes  14.960 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_03-WordsCollection.py:

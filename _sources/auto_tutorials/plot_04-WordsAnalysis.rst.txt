@@ -27,8 +27,9 @@ in the last tutorial.
 .. code-block:: python
 
 
-    from lisc import SCDB, load_object
-    from lisc.data import Data, DataAll
+    from lisc.data import Articles, ArticlesAll
+    from lisc.utils.db import SCDB
+    from lisc.utils.io import load_object
 
     from lisc.plts.words import plot_wordcloud
 
@@ -59,8 +60,8 @@ objects can be loaded individually, using the label of the search term.
 
     # Load raw data for a particular term
     term = 'frontal lobe'
-    data = Data(term)
-    data.load(db)
+    arts = Articles(term)
+    arts.load(db)
 
 
 
@@ -83,7 +84,7 @@ The DataAll also have methods to create and check summaries created from the agg
 
 
     # Collapse data across papers
-    data_all = DataAll(data)
+    arts_all = ArticlesAll(arts)
 
 
 
@@ -96,8 +97,8 @@ The DataAll also have methods to create and check summaries created from the agg
 
 
     # Check an example summary
-    data_all.create_summary()
-    data_all.print_summary()
+    arts_all.create_summary()
+    arts_all.print_summary()
 
 
 
@@ -160,7 +161,7 @@ Data objects, one for each term.
 
 
     # Collect into list of aggragated data objects
-    all_dat = [DataAll(words[label]) for label in words.labels]
+    all_articles = [ArticlesAll(words[label]) for label in words.labels]
 
 
 
@@ -173,7 +174,7 @@ Data objects, one for each term.
 
 
     # Plot a WordCloud of the collected data for the first term
-    plot_wordcloud(all_dat[0].words, 25)
+    plot_wordcloud(all_articles[0].words, 25)
 
 
 
@@ -208,7 +209,7 @@ The words object also has a couple convenience methods for exploring the data.
 
  .. code-block:: none
 
-    <lisc.data.data.Data object at 0x135c3aac8>
+    <lisc.data.articles.Articles object at 0x134152eb8>
 
 
 
@@ -229,6 +230,10 @@ The words object also has a couple convenience methods for exploring the data.
 
  .. code-block:: none
 
+    Encapsulated Neuroprotection to the Rescue-or How to Safely Protect a Brain From Seizing.
+    Reality Is in the Posterior Hippocampus: Who Knew?
+    Adult Neurogenesis in the Development of Epilepsy.
+    What Is the Best Target for Ablation of Mesial Temporal Lobe Epilepsy?
     Quantitative imaging biomarkers of damage to ritical memory regions associated with post-radiotherapy memory performance in brain tumor patients.
     Neurons and networks in the entorhinal cortex: A reappraisal of the lateral and medial entorhinal subdivisions mediating parallel cortical pathways.
     microRNA-132 is overexpressed in glia in temporal lobe epilepsy and reduces the expression of pro-epileptogenic factors in human cultured astrocytes.
@@ -240,13 +245,9 @@ The words object also has a couple convenience methods for exploring the data.
     Early ictal recruitment of midline thalamus in mesial temporal lobe epilepsy.
     Visualizing modules of coordinated structural brain atrophy during the course of conversion to Alzheimer's disease by applying methodology from gene co-expression analysis.
     Implicit guidance of attention in contextual cueing: Neuropsychological and developmental evidence.
-    AQP4-IgG-seropositive neuromyelitis optica spectrum disorder (NMOSD) coexisting with anti-N-methyl-D-aspartate receptor (NMDAR) encephalitis: A case report and literature review.
-    Developing, mature, and unique functions of the child's brain in reading and mathematics.
-    Behaviour outcomes in children with epilepsy 1 year after surgical resection of the ventromedial prefrontal cortex.
-    Lipid peroxidation biomarkers correlation with medial temporal atrophy in early Alzheimer Disease.
 
 
-**Total running time of the script:** ( 0 minutes  0.093 seconds)
+**Total running time of the script:** ( 0 minutes  2.230 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_04-WordsAnalysis.py:

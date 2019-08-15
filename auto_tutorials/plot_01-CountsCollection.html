@@ -97,9 +97,8 @@
 <p>Term co-occurence searches the literature, and checks how often terms of interest appear together.</p>
 <p>This type of analysis can be used to infer associations and relationships between terms.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Counts</span>
-
-<span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.core.io</span> <span class="kn">import</span> <span class="n">save_object</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
 </pre></div>
 </div>
 </div>
@@ -153,7 +152,7 @@ Running counts for:  occipital lobe
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
   &#39;frontal lobe&#39;     -   13940
-  &#39;temporal lobe&#39;    -   26971
+  &#39;temporal lobe&#39;    -   26975
   &#39;parietal lobe&#39;    -    4827
   &#39;occipital lobe&#39;   -    3648
 </pre></div>
@@ -163,7 +162,7 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  26971  papers.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  26975  articles.
 </pre></div>
 </div>
 </div>
@@ -200,7 +199,7 @@ might be related to different sensory systems.</p>
 <span class="n">save_object</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  8.247 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 1 minutes  5.097 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-countscollection-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/83308ac02557408bfb75ec818c73ec3c/plot_01-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-CountsCollection.py</span></code></a></div>

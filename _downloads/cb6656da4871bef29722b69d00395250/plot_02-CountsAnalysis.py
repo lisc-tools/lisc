@@ -15,7 +15,8 @@ Analyzing scraped co-occurence data.
 
 ###################################################################################################
 
-from lisc import SCDB, load_object
+from lisc.utils.db import SCDB
+from lisc.utils.io import load_object
 
 from lisc.plts.counts import *
 
@@ -43,8 +44,8 @@ counts.check_data(data_type='counts', dim='B')
 
 ###################################################################################################
 #
-# Scores
-# ------
+# Normalization & Scores
+# ----------------------
 #
 # The Counts co-occurence data collection gives us a raw data matrix of the number of
 # papers in with terms co-occur, as well as counts of the number of total papers using
@@ -54,8 +55,8 @@ counts.check_data(data_type='counts', dim='B')
 # measures, and/or some kind of similarity score.
 #
 # To normalize the data, we can divide the co-occurence counts by the number of papers
-# per term. This allows us the examine and analyze, for example, the proportion of papers
-# with a given term that also include a secondary term of interest.
+# per term. This allows us the examine and analyze, for example, the proportions of papers
+# that include particular co-occurence patterns.
 #
 # We can also calculate some kind of association index or score. For example, the
 # `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard meassure
@@ -64,6 +65,29 @@ counts.check_data(data_type='counts', dim='B')
 # When using the counts object, both of these measures are available, through the
 # `compute_score` method. You can indicate which kind of score (normalization or association)
 # index) as an input to the method.
+#
+
+###################################################################################################
+
+# Compute a normalization of the co-occurence data
+counts.compute_score('normalize', dim='A')
+
+###################################################################################################
+
+# Check out the computed normalization
+print(counts.score)
+
+###################################################################################################
+#
+# The normalization is the number of papers with both terms, divided by the number of
+# papers for each term alone. It can therefore be interpreted as a proportion of papers
+# with term `a` that also have term `b`, or as `a & b / a`.
+#
+# Note that when using two different terms lists, you have to choose which list of
+# terms to normalize by. That is controlled by the 'dim' input.
+#
+# In this case, we have calculated the number normalized data as the proportion of
+# papers for each anatomical term that include each perception term.
 #
 
 ###################################################################################################
@@ -78,6 +102,14 @@ print(counts.score)
 
 ###################################################################################################
 #
+# The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.
+#
+# One benefit of the Jaccard index is that you do not have to choose a terms list
+# to normalize by - the calulated measure considers both terms lists.
+#
+
+###################################################################################################
+#
 # Plotting and Clustering for Counts Data
 # ---------------------------------------
 #
@@ -87,7 +119,7 @@ print(counts.score)
 #
 # In addition to plotting the data, we can also do clustering analysis and visualizations,
 # that attempt to find structure in the data. LISC also offers some common clustering
-# approaches to sort and visualize collected co-occurnce data.
+# approaches to sort and visualize collected co-occurence data.
 #
 
 ###################################################################################################

@@ -106,9 +106,10 @@
 <span class="sd">    terms : dict</span>
 <span class="sd">        Search terms to use.</span>
 <span class="sd">    counts : 2d array</span>
-<span class="sd">        The numbers of papers found for each combination of terms.</span>
+<span class="sd">        The numbers of articles found for each combination of terms.</span>
 <span class="sd">    score : 2d array</span>
-<span class="sd">        The percentage of papers for each term that include the corresponding term.</span>
+<span class="sd">        A transformed &#39;score&#39; of co-occurence data</span>
+<span class="sd">        This can be a normalized version of the data, and/or a computed association index.</span>
 <span class="sd">    square : bool</span>
 <span class="sd">        Whether the count data matrix is symmetrical.</span>
 <span class="sd">    meta_data : MetaData object</span>
@@ -175,9 +176,9 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        db : str, optional, default: &#39;pubmed&#39;</span>
-<span class="sd">            Which pubmed database to use.</span>
+<span class="sd">            Which database to access from EUtils.</span>
 <span class="sd">        field : str, optional, default: &#39;TIAB&#39;</span>
-<span class="sd">            Field to search for term within.</span>
+<span class="sd">            Field to search for term in.</span>
 <span class="sd">            Defaults to &#39;TIAB&#39;, which is Title/Abstract.</span>
 <span class="sd">        api_key : str</span>
 <span class="sd">            An API key for a NCBI account.</span>
@@ -245,7 +246,7 @@
 
 
 <div class="viewcode-block" id="Counts.check_top"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check the terms with the most papers.</span>
+        <span class="sd">&quot;&quot;&quot;Check the terms with the most articles.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -254,13 +255,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">max_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{}</span><span class="s2">  with  </span><span class="si">{}</span><span class="s2">  papers.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{}</span><span class="s2">  with  </span><span class="si">{}</span><span class="s2">  articles.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]))</span></div>
 
 
 <div class="viewcode-block" id="Counts.check_counts"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.check_counts">[docs]</a>    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check how many papers found for each term.</span>
+        <span class="sd">&quot;&quot;&quot;Check how many articles were found for each term.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

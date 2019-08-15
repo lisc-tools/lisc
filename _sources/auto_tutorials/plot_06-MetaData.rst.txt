@@ -17,7 +17,8 @@ Exploring the meta data saved during data collections.
 .. code-block:: python
 
 
-    from lisc import SCDB, load_object
+    from lisc.utils.db import SCDB
+    from lisc.utils.io import load_object
 
 
 
@@ -74,7 +75,7 @@ object, this collection information is attached and saved to the object, as the
 
  .. code-block:: none
 
-    2019-08-14_22:25:44
+    2019-08-15_13:35:41
 
 
 

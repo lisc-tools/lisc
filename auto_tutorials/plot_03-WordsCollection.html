@@ -97,7 +97,8 @@
 <p>Another way to scrape the literature is to collect text and meta-data from
 all papers found for a given set of terms.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Words</span>
-<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">save_object</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
 </pre></div>
 </div>
 </div>
@@ -122,7 +123,11 @@ and exclusion words, is used as for Counts, as described in the first tutorial.<
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Words also saves the same list of Data objects</span>
-<span class="n">words</span><span class="o">.</span><span class="n">results</span>
+<span class="k">print</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x13319cc88&gt;, &lt;lisc.data.articles.Articles object at 0x133b32f28&gt;]
 </pre></div>
 </div>
 </div>
@@ -181,7 +186,7 @@ can use that to help manage and reload our data, so it’s worth saving as well.
 <span class="n">save_object</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  16.513 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  14.960 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-wordscollection-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/4cc954ab5c985e7aaf2b419f11ed1bad/plot_03-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-WordsCollection.py</span></code></a></div>

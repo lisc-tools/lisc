@@ -100,7 +100,7 @@ Citations here refer to the papers that are cited by a particular paper.
 
     # Check out the number of citations per DOI
     for doi, n_cites in citations.items():
-        print('{} \t : {}'.format(doi, n_cites))
+        print('{:25s} \t : {}'.format(doi, n_cites))
 
 
 
@@ -113,7 +113,7 @@ Citations here refer to the papers that are cited by a particular paper.
  .. code-block:: none
 
     10.1007/s00228-017-2226-2        : 3
-    10.1186/1756-8722-6-59   : 67
+    10.1186/1756-8722-6-59           : 67
 
 
 Reference Data
@@ -142,7 +142,7 @@ References here refer to papers that are cited by a specified paper.
 
     # Check out the number of references per DOI
     for doi, n_refs in references.items():
-        print('{} \t : {}'.format(doi, n_refs))
+        print('{:25s} \t : {}'.format(doi, n_refs))
 
 
 
@@ -155,7 +155,7 @@ References here refer to papers that are cited by a specified paper.
  .. code-block:: none
 
     10.1007/s00228-017-2226-2        : 22
-    10.1186/1756-8722-6-59   : 53
+    10.1186/1756-8722-6-59           : 53
 
 
 More Complex Data Collection
@@ -173,7 +173,7 @@ feel free to get involved with the project on `Github <https://github.com/lisc-t
 
 
 
-**Total running time of the script:** ( 0 minutes  4.729 seconds)
+**Total running time of the script:** ( 0 minutes  4.422 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_05-Citations.py:

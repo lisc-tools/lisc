@@ -119,7 +119,7 @@ ensure requests respect API limits, as well as metadata collection, and URL logg
 
     Requester object is active:      True
     Number of requests sent:         3
-    Requester opened:                22:25:31 Wednesday 14 August 2019
+    Requester opened:                13:35:29 Thursday 15 August 2019
     Requester closed:
 
 
@@ -140,7 +140,7 @@ ensure requests respect API limits, as well as metadata collection, and URL logg
 
  .. code-block:: none
 
-    {'is_active': True, 'n_requests': 3, 'wait_time': 0.5, 'start_time': '22:25:31 Wednesday 14 August 2019', 'end_time': '', 'logging': None, 'log': None}
+    {'is_active': True, 'n_requests': 3, 'wait_time': 0.5, 'start_time': '13:35:29 Thursday 15 August 2019', 'end_time': '', 'logging': None, 'log': None}
 
 
 URLs Object
@@ -320,7 +320,7 @@ new API object using the core from the `URLs` object.
 
 
 
-**Total running time of the script:** ( 0 minutes  2.928 seconds)
+**Total running time of the script:** ( 0 minutes  2.531 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_requester_urls.py:

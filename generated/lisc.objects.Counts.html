@@ -108,7 +108,7 @@
 <dl class="attribute">
 <dt id="lisc.objects.Counts.counts">
 <code class="descname">counts</code><a class="headerlink" href="#lisc.objects.Counts.counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The numbers of papers found for each combination of terms.</p>
+<dd><p>The numbers of articles found for each combination of terms.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -122,7 +122,8 @@
 <dl class="attribute">
 <dt id="lisc.objects.Counts.score">
 <code class="descname">score</code><a class="headerlink" href="#lisc.objects.Counts.score" title="Permalink to this definition">¶</a></dt>
-<dd><p>The percentage of papers for each term that include the corresponding term.</p>
+<dd><p>A transformed ‘score’ of co-occurence data
+This can be a normalized version of the data, and/or a computed association index.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -184,13 +185,13 @@
 <td>Load terms from a text file.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.check_counts" title="lisc.objects.Counts.check_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_counts</span></code></a>([dim])</td>
-<td>Check how many papers found for each term.</td>
+<td>Check how many articles were found for each term.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.check_data" title="lisc.objects.Counts.check_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_data</span></code></a>([data_type,&nbsp;dim])</td>
 <td>Prints out the highest value count or score for each term.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.check_top" title="lisc.objects.Counts.check_top"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_top</span></code></a>([dim])</td>
-<td>Check the terms with the most papers.</td>
+<td>Check the terms with the most articles.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.compute_score" title="lisc.objects.Counts.compute_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_score</span></code></a>([score_type,&nbsp;dim])</td>
 <td>Compute a score (index or normalization) of the co-occurence data.</td>
@@ -233,7 +234,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>f_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – File name to load terms from.</li>
 <li><strong>term_type</strong> (<em>{'terms'</em><em>, </em><em>'inclusions'</em><em>, </em><em>'exclusions'}</em>) – Which type of terms to use.</li>
-<li><strong>directory</strong> (<a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – A string or object containing a file path.</li>
+<li><strong>directory</strong> (<a class="reference internal" href="lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><em>SCDB</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – A string or object containing a file path.</li>
 <li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
 </ul>
 </td>
@@ -245,7 +246,7 @@
 <dl class="method">
 <dt id="lisc.objects.Counts.check_counts">
 <code class="descname">check_counts</code><span class="sig-paren">(</span><em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.check_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.check_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check how many papers found for each term.</p>
+<dd><p>Check how many articles were found for each term.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -277,7 +278,7 @@
 <dl class="method">
 <dt id="lisc.objects.Counts.check_top">
 <code class="descname">check_top</code><span class="sig-paren">(</span><em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.check_top"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.check_top" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check the terms with the most papers.</p>
+<dd><p>Check the terms with the most articles.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -334,8 +335,8 @@ Only used if ‘score’ is ‘normalize’.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which pubmed database to use.</li>
-<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term within.
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which database to access from EUtils.</li>
+<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term in.
 Defaults to ‘TIAB’, which is Title/Abstract.</li>
 <li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
 <li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>

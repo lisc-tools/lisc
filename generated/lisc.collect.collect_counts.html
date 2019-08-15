@@ -90,7 +90,7 @@
 <dl class="function">
 <dt id="lisc.collect.collect_counts">
 <code class="descclassname">lisc.collect.</code><code class="descname">collect_counts</code><span class="sig-paren">(</span><em>terms_a</em>, <em>inclusions_a=[]</em>, <em>exclusions_a=[]</em>, <em>terms_b=[]</em>, <em>inclusions_b=[]</em>, <em>exclusions_b=[]</em>, <em>db='pubmed'</em>, <em>field='TIAB'</em>, <em>api_key=None</em>, <em>logging=None</em>, <em>directory=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/counts.html#collect_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collect word co-occurence data from pubmed.</p>
+<dd><p>Collect word co-occurence data from EUtils.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -102,7 +102,7 @@
 <li><strong>terms_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Secondary list of search terms.</li>
 <li><strong>inclusions_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Inclusions words for secondary lis of search terms.</li>
 <li><strong>exclusions_b</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for secondary list of search terms.</li>
-<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which pubmed database to use.</li>
+<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which database to access from EUtils.</li>
 <li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term within.
 Defaults to ‘TIAB’, which is Title/Abstract.</li>
 <li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
@@ -113,8 +113,8 @@ Defaults to ‘TIAB’, which is Title/Abstract.</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>data_numbers</strong> (<em>2d array</em>) – The numbers of papers found for each combination of terms.</li>
-<li><strong>counts</strong> (<em>1d array or list of 1d array</em>) – Number of papers for each term independently.</li>
+<li><strong>data_numbers</strong> (<em>2d array</em>) – The numbers of articles found for each combination of terms.</li>
+<li><strong>counts</strong> (<em>1d array or list of 1d array</em>) – Number of articles for each term independently.</li>
 <li><strong>meta_data</strong> (<em>dict</em>) – Meta data from the data collection.</li>
 </ul>
 </p>
@@ -124,8 +124,8 @@ Defaults to ‘TIAB’, which is Title/Abstract.</li>
 </table>
 <p class="rubric">Notes</p>
 <p>The collection does an exact word search for two terms.</p>
-<p>The HTML page returned by the pubmed search includes a ‘count’ field.
-This field contains the number of papers with both terms. This is extracted.</p>
+<p>The HTML page returned by the EUtils search includes a ‘count’ field.
+This field contains the number of articles with both terms. This is extracted.</p>
 </dd></dl>
 
 </div>

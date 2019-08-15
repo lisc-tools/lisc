@@ -14,6 +14,10 @@ Collect article text data and metadata, using a function oriented approach.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
+# The parameters for the `collect_words` function are the same as available and described
+# in the `Words` tutorial. Here we will briefly explore collecting data directly using
+# the function approach.
+#
 
 ###################################################################################################
 
@@ -28,7 +32,7 @@ terms = [['brain'], ['body']]
 ###################################################################################################
 
 # Collect words data, setting the collection return data for at most 5 papers per term
-dat, meta_data = collect_words(terms, retmax='5', usehistory=False,
+results, meta_data = collect_words(terms, retmax='5', usehistory=False,
                                save_and_clear=False, verbose=True)
 
 ###################################################################################################
@@ -37,17 +41,28 @@ dat, meta_data = collect_words(terms, retmax='5', usehistory=False,
 meta_data['db_info']
 
 ###################################################################################################
-
-# The function returns a list of LISC Data objects
-dat
+#
+# LISC uses custom `Data` objects to store collected article data.
+#
 
 ###################################################################################################
 
-# Each data object holds the data for the collected papers
-d1 = dat[0]
+# The function returns a list of Articles objects
+print(results)
+
+###################################################################################################
+
+# Each `Articles` object holds the data for the collected papers for a given term
+res1 = results[0]
 
 ###################################################################################################
 
 # Print out some of the data
-print(d1.n_articles, '\n')
-print('\n'.join(d1.titles), '\n')
+print(res1.n_articles, '\n')
+print('\n'.join(res1.titles), '\n')
+
+###################################################################################################
+#
+# To further explore the data collected and available, and what can be accessed,
+# check out the documentation for the `Articles` object, and what attributes it contains.
+#

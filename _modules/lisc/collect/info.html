@@ -86,7 +86,7 @@
     <div class="col-md-12 content">
       
   <h1>Source code for lisc.collect.info</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Collect info &amp; meta data from Pubmed.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Collect info &amp; meta data from EUtils.&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
 
@@ -99,12 +99,12 @@
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="collect_info"><a class="viewcode-back" href="../../../generated/lisc.collect.collect_info.html#lisc.collect.collect_info">[docs]</a><span class="k">def</span> <span class="nf">collect_info</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collect database information &amp; metadata from pubmed.</span>
+    <span class="sd">&quot;&quot;&quot;Collect database information &amp; metadata from EUtils.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    db : str, optional, default: &#39;pubmed&#39;</span>
-<span class="sd">        Which pubmed database to use.</span>
+<span class="sd">        Which database to access from EUtils.</span>
 <span class="sd">    api_key : str</span>
 <span class="sd">        An API key for a NCBI account.</span>
 <span class="sd">    logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}</span>
@@ -137,12 +137,12 @@
 
 
 <span class="k">def</span> <span class="nf">get_db_info</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">info_url</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calls EInfo to get info and status of db to be used for scraping.</span>
+    <span class="sd">&quot;&quot;&quot;Calls EInfo to get info and status of the database to be used for data collection.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    req : Requester object</span>
-<span class="sd">        Requester object to launch requests from.</span>
+<span class="sd">        Object to launch requests from.</span>
 <span class="sd">    info_url : str</span>
 <span class="sd">        URL to request db information from.</span>
 

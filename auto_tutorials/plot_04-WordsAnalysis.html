@@ -97,8 +97,9 @@
 <p>This tutorial covers exploring &amp; anayzing words data.</p>
 <p>For this tutorial, we will reload and use the <cite>Words</cite> data that we collected
 in the last tutorial.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
-<span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Data</span><span class="p">,</span> <span class="n">DataAll</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Articles</span><span class="p">,</span> <span class="n">ArticlesAll</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_object</span>
 
 <span class="kn">from</span> <span class="nn">lisc.plts.words</span> <span class="kn">import</span> <span class="n">plot_wordcloud</span>
 </pre></div>
@@ -114,8 +115,8 @@ objects can be loaded individually, using the label of the search term.</p>
 
 <span class="c1"># Load raw data for a particular term</span>
 <span class="n">term</span> <span class="o">=</span> <span class="s1">&#39;frontal lobe&#39;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+<span class="n">arts</span> <span class="o">=</span> <span class="n">Articles</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+<span class="n">arts</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -125,12 +126,12 @@ objects can be loaded individually, using the label of the search term.</p>
 aggregate collected data across all articles collected for a given search term.</p>
 <p>The DataAll also have methods to create and check summaries created from the aggregate data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collapse data across papers</span>
-<span class="n">data_all</span> <span class="o">=</span> <span class="n">DataAll</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">arts_all</span> <span class="o">=</span> <span class="n">ArticlesAll</span><span class="p">(</span><span class="n">arts</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check an example summary</span>
-<span class="n">data_all</span><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span>
-<span class="n">data_all</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+<span class="n">arts_all</span><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span>
+<span class="n">arts_all</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -159,11 +160,11 @@ Data objects, one for each term.</p>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect into list of aggragated data objects</span>
-<span class="n">all_dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">DataAll</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">words</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
+<span class="n">all_articles</span> <span class="o">=</span> <span class="p">[</span><span class="n">ArticlesAll</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">words</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a WordCloud of the collected data for the first term</span>
-<span class="n">plot_wordcloud</span><span class="p">(</span><span class="n">all_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">words</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">plot_wordcloud</span><span class="p">(</span><span class="n">all_articles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">words</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_04-WordsAnalysis_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_04-WordsAnalysis_001.png" />
@@ -177,7 +178,7 @@ Data objects, one for each term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.data.Data object at 0x135c3aac8&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x134152eb8&gt;
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through papers found from a particular search term</span>
@@ -187,7 +188,11 @@ Data objects, one for each term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Quantitative imaging biomarkers of damage to ritical memory regions associated with post-radiotherapy memory performance in brain tumor patients.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Encapsulated Neuroprotection to the Rescue-or How to Safely Protect a Brain From Seizing.
+Reality Is in the Posterior Hippocampus: Who Knew?
+Adult Neurogenesis in the Development of Epilepsy.
+What Is the Best Target for Ablation of Mesial Temporal Lobe Epilepsy?
+Quantitative imaging biomarkers of damage to ritical memory regions associated with post-radiotherapy memory performance in brain tumor patients.
 Neurons and networks in the entorhinal cortex: A reappraisal of the lateral and medial entorhinal subdivisions mediating parallel cortical pathways.
 microRNA-132 is overexpressed in glia in temporal lobe epilepsy and reduces the expression of pro-epileptogenic factors in human cultured astrocytes.
 Forward Processing of Object-Location Association from the Ventral Stream to Medial Temporal Lobe in Nonhuman Primates.
@@ -198,13 +203,9 @@ Intertemporal decision-making-related brain states predict adolescent drug abuse
 Early ictal recruitment of midline thalamus in mesial temporal lobe epilepsy.
 Visualizing modules of coordinated structural brain atrophy during the course of conversion to Alzheimer&#39;s disease by applying methodology from gene co-expression analysis.
 Implicit guidance of attention in contextual cueing: Neuropsychological and developmental evidence.
-AQP4-IgG-seropositive neuromyelitis optica spectrum disorder (NMOSD) coexisting with anti-N-methyl-D-aspartate receptor (NMDAR) encephalitis: A case report and literature review.
-Developing, mature, and unique functions of the child&#39;s brain in reading and mathematics.
-Behaviour outcomes in children with epilepsy 1 year after surgical resection of the ventromedial prefrontal cortex.
-Lipid peroxidation biomarkers correlation with medial temporal atrophy in early Alzheimer Disease.
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.093 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  2.230 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/1ce65694381d2739d70267357f7a6fc8/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></div>

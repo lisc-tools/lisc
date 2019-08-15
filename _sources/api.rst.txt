@@ -36,8 +36,8 @@ Custom objects for storing extracted data.
   :toctree: generated/
 
   Term
-  Data
-  DataAll
+  Articles
+  ArticlesAll
   MetaData
 
 Collect
@@ -138,7 +138,7 @@ Utilities and file management.
 File IO
 ~~~~~~~
 
-.. currentmodule:: lisc
+.. currentmodule:: lisc.utils.io
 
 .. autosummary::
   :toctree: generated/
@@ -149,7 +149,7 @@ File IO
 Database Management
 ~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: lisc.core.db
+.. currentmodule:: lisc.utils.db
 
 .. autosummary::
   :toctree: generated/

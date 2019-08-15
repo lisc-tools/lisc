@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.data.DataAll &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.data.ArticlesAll &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -85,15 +85,15 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="lisc-data-dataall">
-<h1>lisc.data.DataAll<a class="headerlink" href="#lisc-data-dataall" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="lisc-data-articlesall">
+<h1>lisc.data.ArticlesAll<a class="headerlink" href="#lisc-data-articlesall" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="lisc.data.DataAll">
-<em class="property">class </em><code class="descclassname">lisc.data.</code><code class="descname">DataAll</code><span class="sig-paren">(</span><em>term_data</em>, <em>exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object to hold term data, aggregated across papers.</p>
+<dt id="lisc.data.ArticlesAll">
+<em class="property">class </em><code class="descclassname">lisc.data.</code><code class="descname">ArticlesAll</code><span class="sig-paren">(</span><em>term_data</em>, <em>exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object to hold term data, aggregated across articles.</p>
 <dl class="attribute">
-<dt id="lisc.data.DataAll.label">
-<code class="descname">label</code><a class="headerlink" href="#lisc.data.DataAll.label" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.label">
+<code class="descname">label</code><a class="headerlink" href="#lisc.data.ArticlesAll.label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Label for the current term.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -106,8 +106,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.term">
-<code class="descname">term</code><a class="headerlink" href="#lisc.data.DataAll.term" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.term">
+<code class="descname">term</code><a class="headerlink" href="#lisc.data.ArticlesAll.term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Definition of the search term, with inclusions and exclusion words.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -120,9 +120,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.n_articles">
-<code class="descname">n_articles</code><a class="headerlink" href="#lisc.data.DataAll.n_articles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of articles whos data is included in object.</p>
+<dt id="lisc.data.ArticlesAll.n_articles">
+<code class="descname">n_articles</code><a class="headerlink" href="#lisc.data.ArticlesAll.n_articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of articles included in object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -134,9 +134,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.ids">
-<code class="descname">ids</code><a class="headerlink" href="#lisc.data.DataAll.ids" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pubmed article ids for all articles included in object.</p>
+<dt id="lisc.data.ArticlesAll.ids">
+<code class="descname">ids</code><a class="headerlink" href="#lisc.data.ArticlesAll.ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Article ids for all articles included in object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -148,9 +148,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.journals">
-<code class="descname">journals</code><a class="headerlink" href="#lisc.data.DataAll.journals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counter across all journals.</p>
+<dt id="lisc.data.ArticlesAll.journals">
+<code class="descname">journals</code><a class="headerlink" href="#lisc.data.ArticlesAll.journals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts of occurences of journals.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -162,9 +162,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.authors">
-<code class="descname">authors</code><a class="headerlink" href="#lisc.data.DataAll.authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counter across all authors.</p>
+<dt id="lisc.data.ArticlesAll.authors">
+<code class="descname">authors</code><a class="headerlink" href="#lisc.data.ArticlesAll.authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts of occurences of authors.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -176,9 +176,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.first_authors">
-<code class="descname">first_authors</code><a class="headerlink" href="#lisc.data.DataAll.first_authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counter across all first authors.</p>
+<dt id="lisc.data.ArticlesAll.first_authors">
+<code class="descname">first_authors</code><a class="headerlink" href="#lisc.data.ArticlesAll.first_authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts of occurences of first authors.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -190,9 +190,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.last_authors">
-<code class="descname">last_authors</code><a class="headerlink" href="#lisc.data.DataAll.last_authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counter across all last authors.</p>
+<dt id="lisc.data.ArticlesAll.last_authors">
+<code class="descname">last_authors</code><a class="headerlink" href="#lisc.data.ArticlesAll.last_authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts of occurences of last authors.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -204,8 +204,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.words">
-<code class="descname">words</code><a class="headerlink" href="#lisc.data.DataAll.words" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.words">
+<code class="descname">words</code><a class="headerlink" href="#lisc.data.ArticlesAll.words" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency distribution of all words.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -218,8 +218,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.keywords">
-<code class="descname">keywords</code><a class="headerlink" href="#lisc.data.DataAll.keywords" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.keywords">
+<code class="descname">keywords</code><a class="headerlink" href="#lisc.data.ArticlesAll.keywords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency distribution of all keywords.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -232,9 +232,9 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.years">
-<code class="descname">years</code><a class="headerlink" href="#lisc.data.DataAll.years" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counter across all years of publication.</p>
+<dt id="lisc.data.ArticlesAll.years">
+<code class="descname">years</code><a class="headerlink" href="#lisc.data.ArticlesAll.years" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts of occurences of years of publication.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -246,8 +246,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.dois">
-<code class="descname">dois</code><a class="headerlink" href="#lisc.data.DataAll.dois" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.dois">
+<code class="descname">dois</code><a class="headerlink" href="#lisc.data.ArticlesAll.dois" title="Permalink to this definition">¶</a></dt>
 <dd><p>DOIs of each article included in object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -260,8 +260,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.summary">
-<code class="descname">summary</code><a class="headerlink" href="#lisc.data.DataAll.summary" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.summary">
+<code class="descname">summary</code><a class="headerlink" href="#lisc.data.ArticlesAll.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>A summary of the data associated with the current object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -274,15 +274,15 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.DataAll.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>term_data</em>, <em>exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize DataAll object.</p>
+<dt id="lisc.data.ArticlesAll.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>term_data</em>, <em>exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize ArticlesAll object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>term_data</strong> (<em>Data object</em>) – Data for all papers from a given search term.</li>
+<li><strong>term_data</strong> (<em>Articles object</em>) – Data for all articles from a given search term.</li>
 <li><strong>exclusions</strong> (<em>list of str</em>) – Words to exclude from the word collections.</li>
 </ul>
 </td>
@@ -298,25 +298,25 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.__init__" title="lisc.data.DataAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term_data[,&nbsp;exclusions])</td>
-<td>Initialize DataAll object.</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.ArticlesAll.__init__" title="lisc.data.ArticlesAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term_data[,&nbsp;exclusions])</td>
+<td>Initialize ArticlesAll object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.DataAll.check_frequencies" title="lisc.data.DataAll.check_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_frequencies</span></code></a>([data,&nbsp;n_check])</td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.ArticlesAll.check_frequencies" title="lisc.data.ArticlesAll.check_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_frequencies</span></code></a>([data_type,&nbsp;n_check])</td>
 <td>Prints out the most common items in frequecy distribution.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
 <td>Clear all data attached to object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.DataAll.create_freq_dist" title="lisc.data.DataAll.create_freq_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_freq_dist</span></code></a>(in_lst,&nbsp;exclude)</td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.ArticlesAll.create_freq_dist" title="lisc.data.ArticlesAll.create_freq_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_freq_dist</span></code></a>(in_lst,&nbsp;exclude)</td>
 <td>Create frequency distribution.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.create_summary" title="lisc.data.DataAll.create_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_summary</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.ArticlesAll.create_summary" title="lisc.data.ArticlesAll.create_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_summary</span></code></a>()</td>
 <td>Fill the summary dictionary of the current terms Words data.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.DataAll.print_summary" title="lisc.data.DataAll.print_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.ArticlesAll.print_summary" title="lisc.data.ArticlesAll.print_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code></a>()</td>
 <td>Print out a summary of the collected words data.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.save_summary" title="lisc.data.DataAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>([directory])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.ArticlesAll.save_summary" title="lisc.data.ArticlesAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>([directory])</td>
 <td>Save out a summary of the collected words data.</td>
 </tr>
 </tbody>
@@ -328,24 +328,24 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.label" title="lisc.data.DataAll.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.ArticlesAll.label" title="lisc.data.ArticlesAll.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.data.DataAll.n_articles" title="lisc.data.DataAll.n_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_articles</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.data.ArticlesAll.n_articles" title="lisc.data.ArticlesAll.n_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_articles</span></code></a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="lisc.data.DataAll.check_frequencies">
-<code class="descname">check_frequencies</code><span class="sig-paren">(</span><em>data='words'</em>, <em>n_check=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.check_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.check_frequencies" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.check_frequencies">
+<code class="descname">check_frequencies</code><span class="sig-paren">(</span><em>data_type='words'</em>, <em>n_check=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.check_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.check_frequencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints out the most common items in frequecy distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<em>{'words'</em><em>, </em><em>'keywords'}</em>) – Which frequency distribution to check.</li>
+<li><strong>data_type</strong> (<em>{'words'</em><em>, </em><em>'keywords'}</em>) – Which frequency distribution to check.</li>
 <li><strong>n_check</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of most common items to print out.</li>
 </ul>
 </td>
@@ -355,8 +355,8 @@
 </dd></dl>
 
 <dl class="staticmethod">
-<dt id="lisc.data.DataAll.create_freq_dist">
-<em class="property">static </em><code class="descname">create_freq_dist</code><span class="sig-paren">(</span><em>in_lst</em>, <em>exclude</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.create_freq_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.create_freq_dist" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.create_freq_dist">
+<em class="property">static </em><code class="descname">create_freq_dist</code><span class="sig-paren">(</span><em>in_lst</em>, <em>exclude</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_freq_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_freq_dist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create frequency distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -379,20 +379,20 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.DataAll.create_summary">
-<code class="descname">create_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.create_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.create_summary">
+<code class="descname">create_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fill the summary dictionary of the current terms Words data.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.DataAll.print_summary">
-<code class="descname">print_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.print_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.print_summary">
+<code class="descname">print_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.print_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out a summary of the collected words data.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lisc.data.DataAll.save_summary">
-<code class="descname">save_summary</code><span class="sig-paren">(</span><em>directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.save_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.ArticlesAll.save_summary">
+<code class="descname">save_summary</code><span class="sig-paren">(</span><em>directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.save_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out a summary of the collected words data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

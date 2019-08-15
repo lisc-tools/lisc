@@ -27,9 +27,8 @@ This type of analysis can be used to infer associations and relationships betwee
 
 
     from lisc import Counts
-
-    from lisc.core.db import SCDB
-    from lisc.core.io import save_object
+    from lisc.utils.db import SCDB
+    from lisc.utils.io import save_object
 
 
 
@@ -149,7 +148,7 @@ The Counts object also comes with some helper methods to explore the data.
 
     The number of documents found for each search term is:
       'frontal lobe'     -   13940
-      'temporal lobe'    -   26971
+      'temporal lobe'    -   26975
       'parietal lobe'    -    4827
       'occipital lobe'   -    3648
 
@@ -171,7 +170,7 @@ The Counts object also comes with some helper methods to explore the data.
 
  .. code-block:: none
 
-    The most studied term is  'temporal lobe'  with  26971  papers.
+    The most studied term is  'temporal lobe'  with  26975  articles.
 
 
 Counts: Two Terms Lists
@@ -256,7 +255,7 @@ For now, let's save out our collected counts data, using the LISC utility to sav
 
 
 
-**Total running time of the script:** ( 1 minutes  8.247 seconds)
+**Total running time of the script:** ( 1 minutes  5.097 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_01-CountsCollection.py:

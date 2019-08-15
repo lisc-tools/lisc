@@ -20,6 +20,10 @@ The core function for collecting words data is the `collect_words` function.
 
 Given a list of search terms, this function handles all the requests to collect the data.
 
+The parameters for the `collect_words` function are the same as available and described
+in the `Words` tutorial. Here we will briefly explore collecting data directly using
+the function approach.
+
 
 
 
@@ -53,7 +57,7 @@ Given a list of search terms, this function handles all the requests to collect 
 
 
     # Collect words data, setting the collection return data for at most 5 papers per term
-    dat, meta_data = collect_words(terms, retmax='5', usehistory=False,
+    results, meta_data = collect_words(terms, retmax='5', usehistory=False,
                                    save_and_clear=False, verbose=True)
 
 
@@ -83,16 +87,7 @@ Given a list of search terms, this function handles all the requests to collect 
 
 
 
-
-.. code-block:: python
-
-
-    # The function returns a list of LISC Data objects
-    dat
-
-
-
-
+LISC uses custom `Data` objects to store collected article data.
 
 
 
@@ -100,8 +95,28 @@ Given a list of search terms, this function handles all the requests to collect 
 .. code-block:: python
 
 
-    # Each data object holds the data for the collected papers
-    d1 = dat[0]
+    # The function returns a list of Articles objects
+    print(results)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [<lisc.data.articles.Articles object at 0x1285c0d68>, <lisc.data.articles.Articles object at 0x12889e278>]
+
+
+
+.. code-block:: python
+
+
+    # Each `Articles` object holds the data for the collected papers for a given term
+    res1 = results[0]
 
 
 
@@ -114,8 +129,9 @@ Given a list of search terms, this function handles all the requests to collect 
 
 
     # Print out some of the data
-    print(d1.n_articles, '\n')
-    print('\n'.join(d1.titles), '\n')
+    print(res1.n_articles, '\n')
+    print('\n'.join(res1.titles), '\n')
+
 
 
 
@@ -128,14 +144,19 @@ Given a list of search terms, this function handles all the requests to collect 
 
     5 
 
-    Co-existent pilocytic astrocytoma with acute B-cell leukemia within the cerebellum.
-    Bidirectional relationship between sleep and Alzheimer's disease: role of amyloid, tau, and other factors.
-    Soluble Intercellular Adhesion Molecule-1 (sICAM-1) as a Biomarker of Vascular Cognitive Impairment in Older Adults.
-    Comparison between logistic regression and machine learning algorithms on survival prediction of traumatic brain injuries.
-    Extinction training following cocaine or MDMA self-administration produces discrete changes in D2-like and mGlu5 receptor density in the rat brain.
+    Focused ultrasound in Parkinson's disease: A twofold path toward disease modification.
+    Meningoencephalitis due to spotted fever rickettsioses, including Rocky Mountain spotted fever.
+    Differential Changes in Functional Connectivity of Striatum-Prefrontal and Striatum-Motor Circuits in Premanifest Huntington's Disease.
+    Electroencephalography in Psychiatric Surgery: Past Use and Future Directions.
+    A biohybrid fly-robot interface system that performs active collision avoidance.
 
 
-**Total running time of the script:** ( 0 minutes  5.342 seconds)
+To further explore the data collected and available, and what can be accessed,
+check out the documentation for the `Articles` object, and what attributes it contains.
+
+
+
+**Total running time of the script:** ( 0 minutes  4.781 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_words.py:

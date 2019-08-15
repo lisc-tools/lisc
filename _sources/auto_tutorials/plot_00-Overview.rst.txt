@@ -293,6 +293,13 @@ Now let's update our set of terms, to include some synonyms, inclusions and excl
     cortex   : subcortical
 
 
+Note that each inclusion / exclusion term is mapped to it's associated search term
+based on it's index. Inclusion and exclusion word lists should also be the same length
+as the set of search terms. If there are no inclusions / exclusions for a given search
+term, leave it empty with an empty list.
+
+
+
 Labels
 ~~~~~~
 
@@ -335,10 +342,8 @@ Database Management
 When collecting and analysing literature, there can be a lot of data, and therefore
 a lot of files, to keep track of.
 
-For that reason, LISC offers a database structure
-
-If you use this file structure, LISC functions can automatically load and save files in an
-way using this file structure.
+For that reason, LISC offers a database structure. If you use this file structure,
+LISC functions can automatically load and save files to an organized output structure.
 
 
 
@@ -346,7 +351,7 @@ way using this file structure.
 .. code-block:: python
 
 
-    from lisc.core.db import SCDB, create_file_structure
+    from lisc.utils.db import SCDB, create_file_structure
 
 
 
@@ -391,12 +396,18 @@ way using this file structure.
         figures/
         data/
             words/
+                tutorial_words.p
                 raw/
+                    parietal lobe.json
+                    frontal lobe.json
+                    occipital lobe.json
+                    temporal lobe.json
                 summary/
             counts/
+                tutorial_counts.p
 
 
-**Total running time of the script:** ( 0 minutes  0.002 seconds)
+**Total running time of the script:** ( 0 minutes  0.003 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_00-Overview.py:

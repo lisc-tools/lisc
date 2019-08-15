@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.core.db.create_file_structure &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.utils.io.load_object &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -85,48 +85,27 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="lisc-core-db-create-file-structure">
-<h1>lisc.core.db.create_file_structure<a class="headerlink" href="#lisc-core-db-create-file-structure" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="lisc-utils-io-load-object">
+<h1>lisc.utils.io.load_object<a class="headerlink" href="#lisc-utils-io-load-object" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="lisc.core.db.create_file_structure">
-<code class="descclassname">lisc.core.db.</code><code class="descname">create_file_structure</code><span class="sig-paren">(</span><em>base=None</em>, <em>name='lisc_db'</em>, <em>structure={1: {'base': ['terms'</em>, <em>'logs'</em>, <em>'data'</em>, <em>'figures']}</em>, <em>2: {'data': ['counts'</em>, <em>'words']}</em>, <em>3: {'words': ['raw'</em>, <em>'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#create_file_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.create_file_structure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create the file structure for a SCANR database.</p>
-<dl class="attribute">
-<dt id="lisc.core.db.base">
-<code class="descclassname">lisc.core.db.</code><code class="descname">base</code><a class="headerlink" href="#lisc.core.db.base" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base path for the database directory.
-If None, the structure is created in the current directory.</p>
+<dt id="lisc.utils.io.load_object">
+<code class="descclassname">lisc.utils.io.</code><code class="descname">load_object</code><span class="sig-paren">(</span><em>f_name</em>, <em>directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/io.html#load_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.io.load_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a custom object, from a pickle file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)">None</a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>f_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – File name of the object to be loaded.</li>
+<li><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
+</ul>
+</td>
 </tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.name">
-<code class="descclassname">lisc.core.db.</code><code class="descname">name</code><a class="headerlink" href="#lisc.core.db.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The name of the root folder of the directory structure.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Custom object loaded from pickle file.</p>
+</td>
 </tr>
-</tbody>
-</table>
-</dd></dl>
-
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>db</strong> – A database object for the file structure that was created.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB">SCDB</a>()</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+</td>
 </tr>
 </tbody>
 </table>
