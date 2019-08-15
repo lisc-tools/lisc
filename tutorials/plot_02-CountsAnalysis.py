@@ -5,17 +5,19 @@ Tutorial 02: Counts Analysis
 Analyzing scraped co-occurence data.
 """
 
-from lisc import SCDB, load_object
-
-from lisc.plts.group import *
-
 ###################################################################################################
 #
 # Counts Analyses
 # ---------------
 #
-# This tutorial explores the built in utilities for exploring & anayzing counts data.
+# This tutorial explores the built in utilities for exploring & analyzing counts data.
 #
+
+###################################################################################################
+
+from lisc import SCDB, load_object
+
+from lisc.plts.counts import *
 
 ###################################################################################################
 
@@ -32,12 +34,12 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 ###################################################################################################
 
 # Look at the collect counts data for the first set of terms
-counts.check_data(data_type='counts', dim='A', )
+counts.check_data(data_type='counts', dim='A')
 
 ###################################################################################################
 
 # Look at the collect counts data for the second set of terms
-counts.check_data(data_type='counts', dim='B', )
+counts.check_data(data_type='counts', dim='B')
 
 ###################################################################################################
 #
@@ -48,8 +50,20 @@ counts.check_data(data_type='counts', dim='B', )
 # papers in with terms co-occur, as well as counts of the number of total papers using
 # each term.
 #
+# Once we have this, we often will want to calculate either normalized co-occurence
+# measures, and/or some kind of similarity score.
 #
-# MORE INFORMATION ON SCORES
+# To normalize the data, we can divide the co-occurence counts by the number of papers
+# per term. This allows us the examine and analyze, for example, the proportion of papers
+# with a given term that also include a secondary term of interest.
+#
+# We can also calculate some kind of association index or score. For example, the
+# `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard meassure
+# for measuring the similarity of samples, and is also available to compute and use.
+#
+# When using the counts object, both of these measures are available, through the
+# `compute_score` method. You can indicate which kind of score (normalization or association)
+# index) as an input to the method.
 #
 
 ###################################################################################################
@@ -64,12 +78,16 @@ print(counts.score)
 
 ###################################################################################################
 #
-# Clustering and Plotting Counts Data
-# -----------------------------------
+# Plotting and Clustering for Counts Data
+# ---------------------------------------
 #
-# MORE INFORMATION HERE
+# Co-occurence data is basically a matrix of numbers reflecting the relationship between terms.
 #
-# TODO: FIX UP PLOTS
+# LISC provides some plot function to visualize the co-occurence data, as a matrix.
+#
+# In addition to plotting the data, we can also do clustering analysis and visualizations,
+# that attempt to find structure in the data. LISC also offers some common clustering
+# approaches to sort and visualize collected co-occurnce data.
 #
 
 ###################################################################################################

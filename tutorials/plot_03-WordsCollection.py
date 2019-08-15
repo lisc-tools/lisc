@@ -7,8 +7,8 @@ Collecting literature data, extracting text and metadata for specified search te
 
 ###################################################################################################
 #
-# Words
-# -----
+# Words Analysis
+# --------------
 #
 # Another way to scrape the literature is to collect text and meta-data from
 # all papers found for a given set of terms.
@@ -80,6 +80,7 @@ words.add_terms(terms)
 # ~~~~~~~~~~~~~~~
 #
 # The Pubmed EUtils has several settings that can help control searches, including:
+#
 # - `field` : which part of the record to search for search results
 # - `retmax` : the maximum number of records to return for a given search
 # - `usehistory` : whether to temporarily store results remotely and use them for interim requests
@@ -97,6 +98,7 @@ words.add_terms(terms)
 # data can become quite large.
 #
 # Because of this, the `Words` object offers a setting of how / when to save data:
+#
 # - `save_and_clear` : whether to save out collected data and clear per term
 #
 # Now, let's run our bigger collection, using some of these settings.
@@ -108,7 +110,7 @@ words.add_terms(terms)
 db = SCDB('lisc_db')
 
 # Collect words data
-words.run_collection(usehistory=True, retmax='15', save_and_clear=True, folder=db)
+words.run_collection(usehistory=True, retmax='15', save_and_clear=True, directory=db)
 
 ###################################################################################################
 #
@@ -123,4 +125,5 @@ words.run_collection(usehistory=True, retmax='15', save_and_clear=True, folder=d
 
 ###################################################################################################
 
-save_object(words, 'tutorial_words', folder=db)
+# Save out the words data
+save_object(words, 'tutorial_words', directory=db)

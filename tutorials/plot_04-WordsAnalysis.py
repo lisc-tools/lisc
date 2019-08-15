@@ -21,7 +21,7 @@ Analyzing collected text data and metadata.
 from lisc import SCDB, load_object
 from lisc.data import Data, DataAll
 
-from lisc.plts.wordcloud import plot_wordcloud
+from lisc.plts.words import plot_wordcloud
 
 ###################################################################################################
 #
@@ -82,13 +82,13 @@ data_all.print_summary()
 ###################################################################################################
 
 # Reload the words object
-words = load_object('tutorial_words', folder=SCDB('lisc_db'))
+words = load_object('tutorial_words', directory=SCDB('lisc_db'))
 
 ###################################################################################################
 
 # Reload all data
 for ind in range(words.n_terms):
-    words.results[ind].load(folder=db)
+    words.results[ind].load(directory=db)
 
 ###################################################################################################
 
