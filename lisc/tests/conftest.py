@@ -11,7 +11,7 @@ import nltk
 from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.core.modutils import safe_import
-from lisc.core.db import create_file_structure
+from lisc.utils.db import create_file_structure
 from lisc.tests.utils import create_files, load_base, load_data, load_data_all
 from lisc.tests.utils import TestDB as TDB
 

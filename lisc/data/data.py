@@ -3,11 +3,11 @@
 import os
 import json
 
-from lisc.core.db import check_directory
-from lisc.core.io import parse_json_data, check_ext
-from lisc.core.errors import InconsistentDataError
 from lisc.data.term import Term
 from lisc.data.base_data import BaseData
+from lisc.utils.db import check_directory
+from lisc.utils.io import parse_json_data, check_ext
+from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
 ###################################################################################################

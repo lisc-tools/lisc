@@ -4,7 +4,7 @@ import os
 import json
 import pickle
 
-from lisc.core.db import SCDB, check_directory
+from lisc.utils.db import SCDB, check_directory
 
 ###################################################################################################
 ###################################################################################################

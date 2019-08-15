@@ -1,4 +1,4 @@
-"""Tests for the IO functions from lisc.core."""
+"""Tests for the IO functions from lisc.utils."""
 
 import os
 
@@ -6,7 +6,7 @@ from py.test import raises
 
 from lisc.objects import Counts, Words
 
-from lisc.core.io import *
+from lisc.utils.io import *
 
 ###################################################################################################
 ###################################################################################################

@@ -6,8 +6,8 @@ from copy import deepcopy
 
 import requests
 
-from lisc.core.db import check_directory
-from lisc.core.io import check_ext
+from lisc.utils.db import check_directory
+from lisc.utils.io import check_ext
 
 ###################################################################################################
 ###################################################################################################
