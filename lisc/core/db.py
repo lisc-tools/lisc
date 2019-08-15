@@ -184,7 +184,10 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
     db = SCDB(os.path.join(base, name), structure=structure)
 
     # Create the base path
-    os.mkdir(db.get_folder_path('base'))
+    try:
+        os.mkdir(db.get_folder_path('base'))
+    except(FileExistsError):
+        pass
 
     # Create all paths, following the database structure
     for level in sorted(structure.keys()):
