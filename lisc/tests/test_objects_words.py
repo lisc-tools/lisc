@@ -2,7 +2,7 @@
 
 from py.test import raises
 
-from lisc.data import Data, Term
+from lisc.data import  Term, Articles
 from lisc.objects.words import Words
 
 ###################################################################################################
@@ -20,7 +20,7 @@ def test_get_item():
     with raises(IndexError):
         words['not a thing']
 
-    words.add_results(Data(Term('test', [], [], [])))
+    words.add_results(Articles(Term('test', [], [], [])))
 
     # Test error for wrong key
     with raises(IndexError):
@@ -33,7 +33,7 @@ def test_add_results():
 
     words = Words()
 
-    words.add_results(Data(Term('test', [], [], [])))
+    words.add_results(Articles(Term('test', [], [], [])))
 
     assert words.results
 

@@ -4,7 +4,7 @@ import os
 import json
 
 from lisc.data.term import Term
-from lisc.data.base_data import BaseData
+from lisc.data.base_articles import BaseArticles
 from lisc.utils.db import check_directory
 from lisc.utils.io import parse_json_data, check_ext
 from lisc.core.errors import InconsistentDataError
@@ -12,7 +12,7 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 ###################################################################################################
 
-class Data(BaseData):
+class Articles(BaseArticles):
     """An object to hold the word results for a given term.
 
     Attributes
@@ -53,8 +53,8 @@ class Data(BaseData):
             If input is a string, it is used as the label for the term.
         """
 
-        # Inherit from the BaseData object
-        BaseData.__init__(self, term)
+        # Inherit from the BaseArticles object
+        BaseArticles.__init__(self, term)
 
 
     def __iter__(self):

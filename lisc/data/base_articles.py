@@ -5,7 +5,7 @@ from lisc.data.term import Term
 ###################################################################################################
 ###################################################################################################
 
-class BaseData():
+class BaseArticles():
     """Base object for storing collected article data."""
 
     def __init__(self, term):

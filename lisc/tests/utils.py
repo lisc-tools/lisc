@@ -5,7 +5,7 @@ from functools import wraps
 from os.path import join as pjoin
 
 from lisc.objects.base import Base
-from lisc.data import Data, DataAll, Term
+from lisc.data import Articles, ArticlesAll, Term
 from lisc.core.modutils import safe_import
 from lisc.utils.db import SCDB, create_file_structure, check_directory
 
@@ -15,7 +15,7 @@ plt = safe_import('.pyplot', 'matplotlib')
 ###################################################################################################
 
 class TestDB(SCDB):
-    """Overloads the SCDB object as database object for test data."""
+    """Overloads the SCDB object as database object for tests."""
 
     def __init__(self):
 
@@ -52,32 +52,32 @@ def load_base(set_terms=False, set_clusions=False):
 
     return base
 
-def load_data(add_data=False, n_data=1):
-    """Helper function to load Data object for testing."""
+def load_arts(add_data=False, n_data=1):
+    """Helper function to load Articles object for testing."""
 
-    data = Data(Term('label', ['search'], ['inclusion'], ['exclusion']))
+    arts = Articles(Term('label', ['search'], ['inclusion'], ['exclusion']))
 
     if add_data:
         for ind in range(n_data):
 
-            data.add_data('ids', 1)
-            data.add_data('titles', 'title')
-            data.add_data('journals', ['science', 'sc'])
-            data.add_data('authors', [('A', 'B', 'C', 'D')])
-            data.add_data('words', ['new', 'dat'])
-            data.add_data('keywords', ['lots', 'of', 'erps'])
-            data.add_data('years', 2112)
-            data.add_data('dois', 'doi_str')
+            arts.add_data('ids', 1)
+            arts.add_data('titles', 'title')
+            arts.add_data('journals', ['science', 'sc'])
+            arts.add_data('authors', [('A', 'B', 'C', 'D')])
+            arts.add_data('words', ['new', 'dat'])
+            arts.add_data('keywords', ['lots', 'of', 'erps'])
+            arts.add_data('years', 2112)
+            arts.add_data('dois', 'doi_str')
 
-    return data
+    return arts
 
-def load_data_all():
-    """Helper function to load DataAll object for testing."""
+def load_arts_all():
+    """Helper function to load ArticlesAll object for testing."""
 
-    dat = load_data(add_data=True, n_data=2)
-    dat_all = DataAll(dat)
+    arts = load_arts(add_data=True, n_data=2)
+    arts_all = ArticlesAll(arts)
 
-    return dat_all
+    return arts_all
 
 def plot_test(func):
     """Decorator for simple testing of plotting functions.

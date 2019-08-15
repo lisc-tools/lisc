@@ -11,7 +11,7 @@ class Words(Base):
 
     Attributes
     ----------
-    results : list of Data object
+    results : list of Articles object
         Results for each search term, stored in custom Words object.
     labels : list of str
         Labels for each result data attached to object.
@@ -41,8 +41,8 @@ class Words(Base):
 
         Returns
         -------
-        Data object
-            Data object for the requested result.
+        Articles object
+            Articles object for the requested result.
         """
 
         # Give up if object is empty
@@ -63,7 +63,7 @@ class Words(Base):
 
         Parameters
         ----------
-        new_result : Data object
+        new_result : Articles object
             Object with information about current term.
         """
 

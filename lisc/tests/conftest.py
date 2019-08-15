@@ -12,7 +12,7 @@ from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
-from lisc.tests.utils import create_files, load_base, load_data, load_data_all
+from lisc.tests.utils import create_files, load_base, load_arts, load_arts_all
 from lisc.tests.utils import TestDB as TDB
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -73,13 +73,13 @@ def tbase_terms():
     return load_base(True, True)
 
 @pytest.fixture(scope='function')
-def tdata_empty():
-    return load_data()
+def tarts_empty():
+    return load_arts()
 
 @pytest.fixture(scope='function')
-def tdata_full():
-    return load_data(add_data=True, n_data=2)
+def tarts_full():
+    return load_arts(add_data=True, n_data=2)
 
 @pytest.fixture(scope='function')
-def tdata_all():
-    return load_data_all()
+def tarts_all():
+    return load_arts_all()

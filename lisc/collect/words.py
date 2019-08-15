@@ -2,9 +2,9 @@
 
 from bs4 import BeautifulSoup
 
-from lisc.data.data import Data
 from lisc.data.term import Term
 from lisc.requester import Requester
+from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
 from lisc.collect.utils import mk_term
 from lisc.collect.info import get_db_info
@@ -50,9 +50,9 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
 
     Returns
     -------
-    results : list of lisc Data objects
+    results : list of Articles object
         Results from collecting data for each term.
-    meta_data : dict
+    meta_data : MetaData object
         Meta data from the data collection.
 
     Notes
@@ -94,7 +94,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
             print('Collecting data for: ', term.label)
 
         # Initialize object to store data for current term articles
-        cur_dat = Data(term)
+        cur_dat = Articles(term)
 
         # Request web page
         url = urls.get_url('search', settings={'term' : term_arg})
@@ -153,12 +153,12 @@ def get_articles(req, art_url, cur_dat):
         Requester object to launch requests from.
     art_url : str
         URL for the article to be collected.
-    cur_dat : Data object
-        Data object to add data to
+    cur_dat : Articles object
+        Object to add data to.
 
     Returns
     -------
-    cur_dat : Data object
+    cur_dat : Articles object
         Object to store information for the current term.
     """
 
@@ -182,7 +182,7 @@ def extract_add_info(cur_data, art_id, art):
 
     Parameters
     ----------
-    cur_data : Data object
+    cur_data : Articles object
         Object to store information for the current article.
     art_id : int
         ID of the new article.
@@ -191,7 +191,7 @@ def extract_add_info(cur_data, art_id, art):
 
     Returns
     -------
-    cur_data : Data object
+    cur_data : Articles object
         Object updated with data from the current article.
     """
 

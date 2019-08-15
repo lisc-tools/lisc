@@ -1,4 +1,4 @@
 from .term import Term
-from .data import Data
-from .data_all import DataAll
+from .articles import Articles
 from .meta_data import MetaData
+from .articles_all import ArticlesAll

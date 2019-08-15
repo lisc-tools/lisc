@@ -9,12 +9,12 @@ from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
 from lisc.data.utils import combine_lists
 from lisc.data.count import count_years, count_journals, count_authors, count_end_authors
-from lisc.data.base_data import BaseData
+from lisc.data.base_articles import BaseArticles
 
 ###################################################################################################
 ###################################################################################################
 
-class DataAll(BaseData):
+class ArticlesAll(BaseArticles):
     """An object to hold term data, aggregated across articles.
 
     Attributes
@@ -48,18 +48,18 @@ class DataAll(BaseData):
     """
 
     def __init__(self, term_data, exclusions=[]):
-        """Initialize DataAll object.
+        """Initialize ArticlesAll object.
 
         Parameters
         ----------
-        term_data : Data object
+        term_data : Articles object
             Data for all articles from a given search term.
         exclusions : list of str
             Words to exclude from the word collections.
         """
 
-        # Inherit from the BaseData object
-        BaseData.__init__(self, term_data.term)
+        # Inherit from the BaseArticles object
+        BaseArticles.__init__(self, term_data.term)
 
         # Copy over tracking of included IDs & DOIs
         self.ids = term_data.ids
@@ -80,19 +80,19 @@ class DataAll(BaseData):
         self.summary = dict()
 
 
-    def check_frequencies(self, data='words', n_check=20):
+    def check_frequencies(self, data_type='words', n_check=20):
         """Prints out the most common items in frequecy distribution.
 
         Parameters
         ----------
-        data : {'words', 'keywords'}
+        data_type : {'words', 'keywords'}
             Which frequency distribution to check.
         n_check : int
             Number of most common items to print out.
         """
 
-        if data in ['words', 'keywords']:
-            freqs = getattr(self, data)
+        if data_type in ['words', 'keywords']:
+            freqs = getattr(self, data_type)
         else:
             raise ValueError('Requested data not understood')
 
