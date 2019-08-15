@@ -58,17 +58,6 @@ def test_none_process():
     Test that this is working - returns None when given None.
     """
 
-    assert process_words(None) is None
-    assert process_keywords(None) is None
     assert process_authors(None) is None
     assert process_pub_date(None) == None
     assert process_ids(None, 'doi') == None
-
-def test_process_words():
-
-    words = 'The Last wOrd, in the eRp!'
-
-    words_out = process_words(words)
-    exp_out = ['last', 'word', 'erp']
-
-    assert words_out == exp_out

@@ -1,8 +1,5 @@
 """Functions to process extracted tags from data collected with LISC."""
 
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-
 from lisc.core.decorators import catch_none
 
 ###################################################################################################
@@ -19,10 +16,11 @@ def extract(tag, label, how):
         Label of the tag to extract.
     how : {'raw', 'all' , 'txt', 'str'}
         Method to extract the data.
-            raw    - extract an embedded tag
-            str    - extract text and convert to string
-            all    - extract all embedded tags
-            allstr - extract all embedded tags, and convert to string
+            raw      - extract an embedded tag
+            str      - extract text and convert to string
+            all      - extract all embedded tags
+            all-str  - extract all embedded tags, and convert to string
+            all-list - extract all embedded tags, and collect into a list
 
     Returns
     -------
@@ -30,7 +28,7 @@ def extract(tag, label, how):
         Requested data from the tag. Returns None is requested tag is unavailable.
     """
 
-    if how not in ['raw', 'str', 'all', 'allstr']:
+    if how not in ['raw', 'str', 'all', 'all-str', 'all-list']:
         raise ValueError('Value for how is not understood.')
 
     # Use try to be robust to missing tag
@@ -41,8 +39,10 @@ def extract(tag, label, how):
             return tag.find(label).text
         elif how == 'all':
             return tag.findAll(label)
-        elif how == 'allstr':
-            return ' '.join([part.text for part in tag.findAll('AbstractText')])
+        elif how == 'all-str':
+            return ' '.join([part.text for part in tag.findAll(label)])
+        elif how == 'all-list':
+            return [part.text for part in tag.findAll(label)]
 
     except AttributeError:
         return None
@@ -71,52 +71,6 @@ def ids_to_str(ids):
         ids_str = ids_str + ',' + str(ids[ind].text)
 
     return ids_str
-
-
-@catch_none(1)
-def process_words(text):
-    """Processes abstract text.
-
-    Parameters
-    ----------
-    text : str
-        Text as one long string.
-
-    Returns
-    -------
-    words_cleaned : list of str
-        List of tokenized words, after processing.
-
-    Notes
-    -----
-    This function sets text to lower case, and removes stopwords and punctuation.
-    """
-
-    words = word_tokenize(text)
-
-    # Remove stop words, and non-alphabetical tokens (punctuation)
-    words_cleaned = [word.lower() for word in words if (
-        (not word.lower() in stopwords.words('english')) & word.isalnum())]
-
-    return words_cleaned
-
-
-@catch_none(1)
-def process_keywords(keywords):
-    """Extract and process keywords.
-
-    Parameters
-    ----------
-    keywords : bs4.element.ResultSet
-        List of all the keyword tags.
-
-    Returns
-    -------
-    list of str
-        List of all the keywords.
-    """
-
-    return [kw.text.lower() for kw in keywords]
 
 
 @catch_none(1)

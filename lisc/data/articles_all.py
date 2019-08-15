@@ -7,7 +7,7 @@ import nltk
 
 from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
-from lisc.data.utils import combine_lists
+from lisc.data.utils import combine_lists, convert_string
 from lisc.data.count import count_years, count_journals, count_authors, count_end_authors
 from lisc.data.base_articles import BaseArticles
 
@@ -73,7 +73,8 @@ class ArticlesAll(BaseArticles):
 
         # Convert lists of all words to frequency distributions
         exclusions = exclusions + self.term.search + self.term.inclusions
-        self.words = self.create_freq_dist(combine_lists(term_data.words), exclusions)
+        temp_words = [convert_string(words) for words in term_data.words]
+        self.words = self.create_freq_dist(combine_lists(temp_words), exclusions)
         self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
 
         # Initialize summary dictionary

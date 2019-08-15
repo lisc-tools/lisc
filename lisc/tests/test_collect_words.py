@@ -38,8 +38,8 @@ def test_extract_add_info():
     assert arts.ids[0] == 111111
     assert arts.titles[0] == ("A Neurocomputational Model of the N400"
                               " and the P600 in Language Processing.")
-    assert arts.words[0][0] == "ten"
-    assert arts.keywords[0][0] == "computational modeling"
+    assert arts.words[0][:13] == "Ten years ago"
+    assert arts.keywords[0][0] == "Computational modeling"
     assert arts.years[0] == 2017
     assert arts.dois[0] == '10.1111/cogs.12461'
 

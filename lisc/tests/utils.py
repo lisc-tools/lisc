@@ -64,8 +64,8 @@ def load_arts(add_data=False, n_data=1):
             arts.add_data('titles', 'title')
             arts.add_data('journals', ['science', 'sc'])
             arts.add_data('authors', [('A', 'B', 'C', 'D')])
-            arts.add_data('words', ['new', 'dat'])
-            arts.add_data('keywords', ['lots', 'of', 'erps'])
+            arts.add_data('words', 'Lots of words data.')
+            arts.add_data('keywords', ['lots', 'of', 'keywords'])
             arts.add_data('years', 2112)
             arts.add_data('dois', 'doi_str')
 

@@ -30,7 +30,7 @@ class Articles(BaseArticles):
     journals : list of tuple of (str, str)
         Journals that the articles come from, as (Journal Name, ISO abbreviation).
     authors : list of list of str
-        Authors of all articles, as (Last Name, First Name, Initials, Affiliation)
+        Authors of all articles, as (Last Name, First Name, Initials, Affiliation).
     words : list of list of str
         Words extracted from the abstract of each article.
     keywords : list of list of str
