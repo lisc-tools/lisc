@@ -15,7 +15,6 @@ lisc.data.Data
    
       ~Data.__init__
       ~Data.add_data
-      ~Data.check_results
       ~Data.clear
       ~Data.load
       ~Data.save

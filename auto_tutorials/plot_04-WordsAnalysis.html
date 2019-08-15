@@ -100,7 +100,7 @@ in the last tutorial.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
 <span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Data</span><span class="p">,</span> <span class="n">DataAll</span>
 
-<span class="kn">from</span> <span class="nn">lisc.plts.wordcloud</span> <span class="kn">import</span> <span class="n">plot_wordcloud</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.words</span> <span class="kn">import</span> <span class="n">plot_wordcloud</span>
 </pre></div>
 </div>
 <div class="section" id="data-objects">
@@ -137,9 +137,9 @@ aggregate collected data across all articles collected for a given search term.<
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>frontal lobe :
   Number of articles:            15
   First publication:             2019
-  Most common author:            Y Zhang
-    number of publications:      2
-  Most common journal:           World neurosurgery
+  Most common author:            I Čurović
+    number of publications:      1
+  Most common journal:           No shinkei geka. Neurological surgery
     number of publications:      2
 </pre></div>
 </div>
@@ -150,12 +150,12 @@ aggregate collected data across all articles collected for a given search term.<
 <p>The <cite>results</cite> attribute of the <cite>Words</cite> object, when loaded, contains a list of
 Data objects, one for each term.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the words object</span>
-<span class="n">words</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload all data</span>
 <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
-    <span class="n">words</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+    <span class="n">words</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect into list of aggragated data objects</span>
@@ -177,7 +177,7 @@ Data objects, one for each term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.data.Data object at 0x131cf3208&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.data.Data object at 0x135c3aac8&gt;
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through papers found from a particular search term</span>
@@ -187,24 +187,24 @@ Data objects, one for each term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Uncovering a Role for the Dorsal Hippocampal Commissure in Recognition Memory.
-Migration of lipiodol into lateral ventricles after embolization of cerebral arteriovenous malformation: a case report.
-Circuit-based interventions in the dentate gyrus rescue epilepsy-associated cognitive dysfunction.
-Patterns of retrograde axonal degeneration in the visual system.
-Craniotomy Size for Subdural Grid Electrode Placement in Invasive Epilepsy Diagnostics.
-Pigmented variant of pleomorphic xanthoastrocytoma - A rare long-term epilepsy associated neoplasm.
-Human entorhinal cortex electrical stimulation evoked short-latency potentials in the broad neocortical regions: Evidence from cortico-cortical evoked potential recordings.
-Associations of dietary choline intake with risk of incident dementia and with cognitive performance: the Kuopio Ischaemic Heart Disease Risk Factor Study.
-Neuromodulation with electromagnetic stimulation for seizure suppression: From electrode to magnetic coil.
-The Role of Interictal Epileptiform Discharges in Epilepsy Surgery Outcome.
-Magnetic resonance fingerprinting of temporal lobe white matter in mesial temporal lobe epilepsy.
-Stimulation of the posterior cingulate cortex impairs episodic memory encoding.
-Infratentorial Glioblastoma Metastasis to Bone.
-Tuning GABAergic Inhibition: Gephyrin Molecular Organization and Functions.
-Single-cell memory trace imaging with immediate-early genes.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Quantitative imaging biomarkers of damage to ritical memory regions associated with post-radiotherapy memory performance in brain tumor patients.
+Neurons and networks in the entorhinal cortex: A reappraisal of the lateral and medial entorhinal subdivisions mediating parallel cortical pathways.
+microRNA-132 is overexpressed in glia in temporal lobe epilepsy and reduces the expression of pro-epileptogenic factors in human cultured astrocytes.
+Forward Processing of Object-Location Association from the Ventral Stream to Medial Temporal Lobe in Nonhuman Primates.
+Between persistently active and activity-silent frameworks: novel vistas on the cellular basis of working memory.
+Neuroanatomical abnormalities related to dexamethasone exposure in survivors of childhood acute lymphoblastic leukemia.
+Tracking a changing paradigm and the modern face of epilepsy surgery: A comprehensive and critical review on the hunt for the optimal extent of resection in mesial temporal lobe epilepsy.
+Intertemporal decision-making-related brain states predict adolescent drug abuse intervention responses.
+Early ictal recruitment of midline thalamus in mesial temporal lobe epilepsy.
+Visualizing modules of coordinated structural brain atrophy during the course of conversion to Alzheimer&#39;s disease by applying methodology from gene co-expression analysis.
+Implicit guidance of attention in contextual cueing: Neuropsychological and developmental evidence.
+AQP4-IgG-seropositive neuromyelitis optica spectrum disorder (NMOSD) coexisting with anti-N-methyl-D-aspartate receptor (NMDAR) encephalitis: A case report and literature review.
+Developing, mature, and unique functions of the child&#39;s brain in reading and mathematics.
+Behaviour outcomes in children with epilepsy 1 year after surgical resection of the ventromedial prefrontal cortex.
+Lipid peroxidation biomarkers correlation with medial temporal atrophy in early Alzheimer Disease.
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.107 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.093 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/1ce65694381d2739d70267357f7a6fc8/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></div>

@@ -1,0 +1,6 @@
+lisc.analysis.counts.compute\_normalization
+===========================================
+
+.. currentmodule:: lisc.analysis.counts
+
+.. autofunction:: compute_normalization

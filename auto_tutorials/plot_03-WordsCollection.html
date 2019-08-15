@@ -92,8 +92,8 @@
 <div class="sphx-glr-example-title section" id="tutorial-03-words-collection">
 <span id="sphx-glr-auto-tutorials-plot-03-wordscollection-py"></span><h1>Tutorial 03: Words Collection<a class="headerlink" href="#tutorial-03-words-collection" title="Permalink to this headline">¶</a></h1>
 <p>Collecting literature data, extracting text and metadata for specified search terms.</p>
-<div class="section" id="words">
-<h2>Words<a class="headerlink" href="#words" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="words-analysis">
+<h2>Words Analysis<a class="headerlink" href="#words-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Another way to scrape the literature is to collect text and meta-data from
 all papers found for a given set of terms.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Words</span>
@@ -144,10 +144,12 @@ LISC options to help control how the data collection is done.</p>
 </div>
 <div class="section" id="eutils-settings">
 <h3>EUtils Settings<a class="headerlink" href="#eutils-settings" title="Permalink to this headline">¶</a></h3>
-<p>The Pubmed EUtils has several settings that can help control searches, including:
-- <cite>field</cite> : which part of the record to search for search results
-- <cite>retmax</cite> : the maximum number of records to return for a given search
-- <cite>usehistory</cite> : whether to temporarily store results remotely and use them for interim requests</p>
+<p>The Pubmed EUtils has several settings that can help control searches, including:</p>
+<ul class="simple">
+<li><cite>field</cite> : which part of the record to search for search results</li>
+<li><cite>retmax</cite> : the maximum number of records to return for a given search</li>
+<li><cite>usehistory</cite> : whether to temporarily store results remotely and use them for interim requests</li>
+</ul>
 <p>As some general guidelines, the <cite>field</cite> setting defaults to <cite>TIAB</cite> for titles and abstracts.
 The <cite>retmax</cite> should be set to some upper bound if your search terms are likely to
 return a large number of papers. The <cite>usehistory</cite> parameter should be set to True if
@@ -158,14 +160,16 @@ you are running a large scrape, as this is more efficient.</p>
 <p>If you are collecting data for a large number of search terms, that may return a large
 number of papers, then the <cite>Words</cite> collection can take a while, and the amount of
 data can become quite large.</p>
-<p>Because of this, the <cite>Words</cite> object offers a setting of how / when to save data:
-- <cite>save_and_clear</cite> : whether to save out collected data and clear per term</p>
+<p>Because of this, the <cite>Words</cite> object offers a setting of how / when to save data:</p>
+<ul class="simple">
+<li><cite>save_and_clear</cite> : whether to save out collected data and clear per term</li>
+</ul>
 <p>Now, let’s run our bigger collection, using some of these settings.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up our database object, so we can save out data as we go</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
 
 <span class="c1"># Collect words data</span>
-<span class="n">words</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">usehistory</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">,</span> <span class="n">save_and_clear</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+<span class="n">words</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">usehistory</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">,</span> <span class="n">save_and_clear</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that at this point, our Words object does not actually include the collected data,
@@ -173,10 +177,11 @@ since we were saving and clearing the data out as we went.</p>
 <p>The Words object does still however have all the information about the Term data, and we
 can use that to help manage and reload our data, so it’s worth saving as well.</p>
 <p>We will analyze our words data in the next tutorial, so for now lets save out the Words object.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">save_object</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out the words data</span>
+<span class="n">save_object</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  18.136 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  16.513 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-wordscollection-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/4cc954ab5c985e7aaf2b419f11ed1bad/plot_03-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-WordsCollection.py</span></code></a></div>

@@ -90,7 +90,7 @@
 <dl class="class">
 <dt id="lisc.objects.Counts">
 <em class="property">class </em><code class="descclassname">lisc.objects.</code><code class="descname">Counts</code><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>A class for collecting and analyzing co-occurence data of pre-specified terms list(s).</p>
+<dd><p>A class for collecting and analyzing co-occurence data for specified terms list(s).</p>
 <dl class="attribute">
 <dt id="lisc.objects.Counts.terms">
 <code class="descname">terms</code><a class="headerlink" href="#lisc.objects.Counts.terms" title="Permalink to this definition">¶</a></dt>
@@ -99,7 +99,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a>()</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
 </tr>
 </tbody>
 </table>
@@ -155,7 +155,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData">MetaData</a>() <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">MetaData object</td>
 </tr>
 </tbody>
 </table>
@@ -164,7 +164,7 @@
 <dl class="method">
 <dt id="lisc.objects.Counts.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize LISC Count() object.</p>
+<dd><p>Initialize LISC Counts object.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -175,19 +175,19 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.__init__" title="lisc.objects.Counts.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
-<td>Initialize LISC Count() object.</td>
+<td>Initialize LISC Counts object.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms" title="lisc.objects.Counts.add_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms</span></code></a>(terms[,&nbsp;term_type,&nbsp;dim])</td>
 <td>Add the given list of strings as terms to use.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms_file" title="lisc.objects.Counts.add_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms_file</span></code></a>(f_name[,&nbsp;term_type,&nbsp;folder,&nbsp;dim])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms_file" title="lisc.objects.Counts.add_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms_file</span></code></a>(f_name[,&nbsp;term_type,&nbsp;…])</td>
 <td>Load terms from a text file.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.check_counts" title="lisc.objects.Counts.check_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_counts</span></code></a>([dim])</td>
 <td>Check how many papers found for each term.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.check_data" title="lisc.objects.Counts.check_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_data</span></code></a>([data_type,&nbsp;dim])</td>
-<td>“Prints out the highest value count or score for each term.</td>
+<td>Prints out the highest value count or score for each term.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.check_top" title="lisc.objects.Counts.check_top"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_top</span></code></a>([dim])</td>
 <td>Check the terms with the most papers.</td>
@@ -224,7 +224,7 @@
 
 <dl class="method">
 <dt id="lisc.objects.Counts.add_terms_file">
-<code class="descname">add_terms_file</code><span class="sig-paren">(</span><em>f_name</em>, <em>term_type='terms'</em>, <em>folder=None</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.add_terms_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.add_terms_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_terms_file</code><span class="sig-paren">(</span><em>f_name</em>, <em>term_type='terms'</em>, <em>directory=None</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.add_terms_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.add_terms_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load terms from a text file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -233,7 +233,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>f_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – File name to load terms from.</li>
 <li><strong>term_type</strong> (<em>{'terms'</em><em>, </em><em>'inclusions'</em><em>, </em><em>'exclusions'}</em>) – Which type of terms to use.</li>
-<li><strong>folder</strong> (<a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – A string or object containing a file path.</li>
+<li><strong>directory</strong> (<a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – A string or object containing a file path.</li>
 <li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
 </ul>
 </td>
@@ -259,7 +259,7 @@
 <dl class="method">
 <dt id="lisc.objects.Counts.check_data">
 <code class="descname">check_data</code><span class="sig-paren">(</span><em>data_type='counts'</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.check_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.check_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>“Prints out the highest value count or score for each term.</p>
+<dd><p>Prints out the highest value count or score for each term.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -327,7 +327,7 @@ Only used if ‘score’ is ‘normalize’.</li>
 
 <dl class="method">
 <dt id="lisc.objects.Counts.run_collection">
-<code class="descname">run_collection</code><span class="sig-paren">(</span><em>db='pubmed'</em>, <em>field='TIAB'</em>, <em>api_key=None</em>, <em>logging=None</em>, <em>folder=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.run_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.run_collection" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run_collection</code><span class="sig-paren">(</span><em>db='pubmed'</em>, <em>field='TIAB'</em>, <em>api_key=None</em>, <em>logging=None</em>, <em>directory=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.run_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.run_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect co-occurence data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -339,7 +339,7 @@ Only used if ‘score’ is ‘normalize’.</li>
 Defaults to ‘TIAB’, which is Title/Abstract.</li>
 <li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
 <li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
-<li><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
+<li><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default=False</em>) – Whether to print out updates.</li>
 </ul>
 </td>

@@ -5,6 +5,8 @@
 Examples
 ========
 
+These are a set of stand alone examples exploring different functionality in LISC. 
+
 .. contents:: Contents
    :local:
    :depth: 3
@@ -12,7 +14,27 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Scraping word co-occurence data, using a function oriented approach. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Exploring the LISC database and using files of terms. ">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_db_terms_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_db_terms.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_db_terms
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurence data, using the underlying functions from LISC. ">
 
 .. only:: html
 
@@ -32,7 +54,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Scraping article text data and metadata, using a function oriented approach. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Collect article text data and metadata, using a function oriented approach. ">
 
 .. only:: html
 
@@ -52,7 +74,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="WORDS, WORDS, WORDS. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Exploring LISC utilities for managing URLs and requests. ">
 
 .. only:: html
 
@@ -69,26 +91,6 @@ Examples
    :hidden:
 
    /auto_examples/plot_requester_urls
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Organizing lists of terms to be used for LISC analyses. ">
-
-.. only:: html
-
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_terms_lists_thumb.png
-
-        :ref:`sphx_glr_auto_examples_plot_terms_lists.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_terms_lists
 .. raw:: html
 
     <div style='clear:both'></div>

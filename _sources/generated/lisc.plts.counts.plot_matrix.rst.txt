@@ -1,0 +1,6 @@
+lisc.plts.counts.plot\_matrix
+=============================
+
+.. currentmodule:: lisc.plts.counts
+
+.. autofunction:: plot_matrix

@@ -91,19 +91,25 @@
 </div>
 <div class="sphx-glr-example-title section" id="urls-and-requests">
 <span id="sphx-glr-auto-examples-plot-requester-urls-py"></span><h1>URLs and Requests<a class="headerlink" href="#urls-and-requests" title="Permalink to this headline">¶</a></h1>
-<p>WORDS, WORDS, WORDS.</p>
+<p>Exploring LISC utilities for managing URLs and requests.</p>
 <div class="section" id="urls-requests">
 <h2>URLs &amp; Requests<a class="headerlink" href="#urls-requests" title="Permalink to this headline">¶</a></h2>
-<p>MORE WORDS.</p>
-<p>Note that to use the main LISC functionality, you probably don’t
-have to deal with these objects directly.</p>
-<p>This example is for if WORDS WORDS WORDS.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <span class="n">Requester</span>
+<p>LISC uses custom objects to manage URLs, that can store how to interact with
+APIs, as well as a custom object to manage requests.</p>
+<p>Note that to use the main LISC functionality, you don’t have to deal with these
+objects directly, as they are used ‘under the hood’ by LISC functions for collecting
+data and interacting APIs without requiring user interaction.</p>
+<p>This example can be used if you want to explore custom data collections, and/or
+using LISC for other APIs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the requester object</span>
+<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <span class="n">Requester</span>
 </pre></div>
 </div>
 <div class="section" id="requester-object">
 <h3>Requester Object<a class="headerlink" href="#requester-object" title="Permalink to this headline">¶</a></h3>
-<p>MORE WORDS.</p>
+<p>The Requester object uses the <a class="reference external" href="https://2.python-requests.org/en/master/">requests</a>
+module to launch URL requests, and adds some functionality such as throttling, to
+ensure requests respect API limits, as well as metadata collection, and URL logging.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a requester object</span>
 <span class="n">req</span> <span class="o">=</span> <span class="n">Requester</span><span class="p">()</span>
 </pre></div>
@@ -112,7 +118,8 @@ have to deal with these objects directly.</p>
 <span class="n">req</span><span class="o">.</span><span class="n">set_wait_time</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://www.yahoo.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://duckduckgo.com&#39;</span><span class="p">]:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the Requester object to request some web pages</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://www.yahoo.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://duckduckgo.com&#39;</span><span class="p">]:</span>
     <span class="n">page</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Collecting web page </span><span class="se">\t</span><span class="s1"> {} </span><span class="se">\t</span><span class="s1"> got status code </span><span class="se">\t</span><span class="s1"> {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">page</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
 </pre></div>
@@ -130,7 +137,7 @@ Collecting web page      https://duckduckgo.com/         got status code        
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Requester object is active:      True
 Number of requests sent:         3
-Requester opened:                10:17:15 Thursday 01 August 2019
+Requester opened:                22:25:31 Wednesday 14 August 2019
 Requester closed:
 </pre></div>
 </div>
@@ -139,17 +146,25 @@ Requester closed:
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;10:17:15 Thursday 01 August 2019&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;22:25:31 Wednesday 14 August 2019&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
 </pre></div>
 </div>
 </div>
 <div class="section" id="urls-object">
 <h3>URLs Object<a class="headerlink" href="#urls-object" title="Permalink to this headline">¶</a></h3>
-<p>MORE WORDS.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <span class="n">URLs</span>
+<p>The URLs object is the base object used in LISC to store URLs to interact with APIs.</p>
+<p>It includes functionality to store and use different utilities available through
+an API, and store and use different settings.</p>
+<p>In the example, we can explore using the the URLs object for a new API, in this case
+the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> API.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the URLs object</span>
+<span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <span class="n">URLs</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_path</span> <span class="o">=</span> <span class="s1">&#39;https://api.duckduckgo.com/&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the base path for an API to use</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s1">&#39;https://api.duckduckgo.com/&#39;</span>
+
+<span class="c1"># Create the URLs object for the API, specifying it has a search utility</span>
 <span class="n">urls</span> <span class="o">=</span> <span class="n">URLs</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;search&#39;</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
@@ -162,7 +177,7 @@ Requester closed:
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>https://api.duckduckgo.com/?format=json
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the URL to launch a search request with a specified search term</span>
 <span class="n">api_url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;q&#39;</span> <span class="p">:</span> <span class="s1">&#39;brain&#39;</span><span class="p">})</span>
 <span class="k">print</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
 </pre></div>
@@ -171,15 +186,47 @@ Requester closed:
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>https://api.duckduckgo.com/?format=json&amp;q=brain
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">api_page</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Request the URL with the requester object from before</span>
+<span class="n">api_page</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>WORDS HERE.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the source of the first search result</span>
 <span class="n">api_page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;AbstractSource&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  2.758 seconds)</p>
+</div>
+<div class="section" id="supported-apis">
+<h3>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h3>
+<p>The URLs object can be used to create objects that support external APIs.</p>
+<p>LISC currently supports APIs for the
+<a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">EUtils</a> and
+<a class="reference external" href="https://opencitations.net">OpenCitations</a>.</p>
+<p>These are implemented as custom objects built on top of the URLs object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import URL objects for supported APIs</span>
+<span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <span class="n">EUtils</span><span class="p">,</span> <span class="n">OpenCitations</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an object for the EUtils API</span>
+<span class="n">eutils</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">()</span>
+
+<span class="c1"># Check what utilities are supported for the EUtils API</span>
+<span class="n">eutils</span><span class="o">.</span><span class="n">utils</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an object for the OpenCitations API</span>
+<span class="n">citations</span> <span class="o">=</span> <span class="n">OpenCitations</span><span class="p">()</span>
+
+<span class="c1"># Check what utilities are supported for the OpenCitations API</span>
+<span class="n">citations</span><span class="o">.</span><span class="n">utils</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-new-apis">
+<h3>Adding New APIs<a class="headerlink" href="#adding-new-apis" title="Permalink to this headline">¶</a></h3>
+<p>If you are interested in extending LISC to interact with additional APIs, then
+you can use the <cite>EUtils</cite> and <cite>OpenCitations</cite> objects as examples, and build a
+new API object using the core from the <cite>URLs</cite> object.</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  2.928 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-requester-urls-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/efa7ef431c74ee30e19f7265f40442f3/plot_requester_urls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_requester_urls.py</span></code></a></div>

@@ -1,6 +1,0 @@
-lisc.plts.group.plot\_clustermap
-================================
-
-.. currentmodule:: lisc.plts.group
-
-.. autofunction:: plot_clustermap

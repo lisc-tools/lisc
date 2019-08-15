@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.plts.wordcloud.plot_wordcloud &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.plts.counts.plot_clustermap &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -85,20 +85,21 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="lisc-plts-wordcloud-plot-wordcloud">
-<h1>lisc.plts.wordcloud.plot_wordcloud<a class="headerlink" href="#lisc-plts-wordcloud-plot-wordcloud" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="lisc-plts-counts-plot-clustermap">
+<h1>lisc.plts.counts.plot_clustermap<a class="headerlink" href="#lisc-plts-counts-plot-clustermap" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="lisc.plts.wordcloud.plot_wordcloud">
-<code class="descclassname">lisc.plts.wordcloud.</code><code class="descname">plot_wordcloud</code><span class="sig-paren">(</span><em>freq_dist</em>, <em>n_words</em>, <em>ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/wordcloud.html#plot_wordcloud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.wordcloud.plot_wordcloud" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and display a wordcloud.</p>
+<dt id="lisc.plts.counts.plot_clustermap">
+<code class="descclassname">lisc.plts.counts.</code><code class="descname">plot_clustermap</code><span class="sig-paren">(</span><em>data</em>, <em>x_labels=None</em>, <em>y_labels=None</em>, <em>cmap='purple'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_clustermap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.counts.plot_clustermap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot clustermap.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>freq_dist</strong> (<em>nltk.FreqDist</em><em>(</em><em>)</em>) – Frequency distribution of words to plot.</li>
-<li><strong>n_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of top words to include in the wordcloud.</li>
-<li><strong>ax</strong> (<em>matplotlib.Axes</em><em>, </em><em>optional</em>) – Figure axes upon which to plot.</li>
+<li><strong>data</strong> (<em>2d array</em>) – Data to plot, as a clustermap.</li>
+<li><strong>x_labels</strong> (<em>list of str</em>) – Labels for the x-axis.</li>
+<li><strong>y_labels</strong> (<em>list of str</em>) – Labels for the y-axis.</li>
+<li><strong>cmap</strong> (<em>matplotlib.cmap</em>) – Colormap to use for the plot.</li>
 </ul>
 </td>
 </tr>

@@ -94,7 +94,7 @@
 <span class="kn">import</span> <span class="nn">nltk</span>
 
 <span class="kn">from</span> <span class="nn">lisc.core.io</span> <span class="k">import</span> <span class="n">check_ext</span>
-<span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="k">import</span> <span class="n">check_folder</span>
+<span class="kn">from</span> <span class="nn">lisc.core.db</span> <span class="k">import</span> <span class="n">check_directory</span>
 <span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="k">import</span> <span class="n">combine_lists</span>
 <span class="kn">from</span> <span class="nn">lisc.data.count</span> <span class="k">import</span> <span class="n">count_years</span><span class="p">,</span> <span class="n">count_journals</span><span class="p">,</span> <span class="n">count_authors</span><span class="p">,</span> <span class="n">count_end_authors</span>
 <span class="kn">from</span> <span class="nn">lisc.data.base_data</span> <span class="k">import</span> <span class="n">BaseData</span>
@@ -103,13 +103,13 @@
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="DataAll"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll">[docs]</a><span class="k">class</span> <span class="nc">DataAll</span><span class="p">(</span><span class="n">BaseData</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Object to hold term data, aggregated across papers.</span>
+    <span class="sd">&quot;&quot;&quot;An object to hold term data, aggregated across papers.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    label : str</span>
 <span class="sd">        Label for the current term.</span>
-<span class="sd">    term : Term() object</span>
+<span class="sd">    term : Term object</span>
 <span class="sd">        Definition of the search term, with inclusions and exclusion words.</span>
 <span class="sd">    n_articles : int</span>
 <span class="sd">        Number of articles whos data is included in object.</span>
@@ -125,22 +125,22 @@
 <span class="sd">        Counter across all last authors.</span>
 <span class="sd">    words : nltk.probability.FreqDist</span>
 <span class="sd">        Frequency distribution of all words.</span>
-<span class="sd">    kws : nltk.probability.FreqDist</span>
+<span class="sd">    keywords : nltk.probability.FreqDist</span>
 <span class="sd">        Frequency distribution of all keywords.</span>
 <span class="sd">    years : list of tuple of (int, int)</span>
 <span class="sd">        Counter across all years of publication.</span>
 <span class="sd">    dois : list of str</span>
 <span class="sd">        DOIs of each article included in object.</span>
 <span class="sd">    summary : dict</span>
-<span class="sd">        Summary / overview of data associated with current object.</span>
+<span class="sd">        A summary of the data associated with the current object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DataAll.__init__"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_data</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="p">[]):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize DataAll() object.</span>
+        <span class="sd">&quot;&quot;&quot;Initialize DataAll object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        term_data : Data() object</span>
+<span class="sd">        term_data : Data object</span>
 <span class="sd">            Data for all papers from a given search term.</span>
 <span class="sd">        exclusions : list of str</span>
 <span class="sd">            Words to exclude from the word collections.</span>
@@ -162,7 +162,7 @@
         <span class="c1"># Convert lists of all words to frequency distributions</span>
         <span class="n">exclusions</span> <span class="o">=</span> <span class="n">exclusions</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">search</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">inclusions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">words</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">kws</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">keywords</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
 
         <span class="c1"># Initialize summary dictionary</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></div>
@@ -173,13 +173,13 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        data : {&#39;words&#39;, &#39;kws&#39;}</span>
+<span class="sd">        data : {&#39;words&#39;, &#39;keywords&#39;}</span>
 <span class="sd">            Which frequency distribution to check.</span>
 <span class="sd">        n_check : int</span>
 <span class="sd">            Number of most common items to print out.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="s1">&#39;kws&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="s1">&#39;keywords&#39;</span><span class="p">]:</span>
             <span class="n">freqs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Requested data not understood&#39;</span><span class="p">)</span>
@@ -207,7 +207,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_kws&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kws</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_keywords&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;first_publication&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="n">year</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">]))</span></div>
 
 
@@ -224,18 +224,18 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    number of publications: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DataAll.save_summary"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.save_summary">[docs]</a>    <span class="k">def</span> <span class="nf">save_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DataAll.save_summary"><a class="viewcode-back" href="../../../generated/lisc.data.DataAll.html#lisc.data.DataAll.save_summary">[docs]</a>    <span class="k">def</span> <span class="nf">save_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save out a summary of the collected words data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        folder : str or SCDB() object, optional</span>
+<span class="sd">        directory : str or SCDB object, optional</span>
 <span class="sd">            Folder or database object specifying the save location.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">folder</span> <span class="o">=</span> <span class="n">check_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">)</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div>
 
 

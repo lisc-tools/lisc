@@ -1,0 +1,6 @@
+lisc.analysis.counts.compute\_association\_index
+================================================
+
+.. currentmodule:: lisc.analysis.counts
+
+.. autofunction:: compute_association_index

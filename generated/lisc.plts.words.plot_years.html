@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.plts.group.plot_clustermap &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.plts.words.plot_years &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -85,21 +85,20 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="lisc-plts-group-plot-clustermap">
-<h1>lisc.plts.group.plot_clustermap<a class="headerlink" href="#lisc-plts-group-plot-clustermap" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="lisc-plts-words-plot-years">
+<h1>lisc.plts.words.plot_years<a class="headerlink" href="#lisc-plts-words-plot-years" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="lisc.plts.group.plot_clustermap">
-<code class="descclassname">lisc.plts.group.</code><code class="descname">plot_clustermap</code><span class="sig-paren">(</span><em>data</em>, <em>x_labels=None</em>, <em>y_labels=None</em>, <em>cmap='purple'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/group.html#plot_clustermap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.group.plot_clustermap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot clustermap.</p>
+<dt id="lisc.plts.words.plot_years">
+<code class="descclassname">lisc.plts.words.</code><code class="descname">plot_years</code><span class="sig-paren">(</span><em>years</em>, <em>year_range=None</em>, <em>ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_years"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.words.plot_years" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot publications across years histogram.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<em>2d array</em>) – Data to plot, as a clustermap.</li>
-<li><strong>x_labels</strong> (<em>list of str</em>) – Labels for the x-axis.</li>
-<li><strong>y_labels</strong> (<em>list of str</em>) – Labels for the y-axis.</li>
-<li><strong>cmap</strong> (<em>matplotlib.cmap</em>) – Colormap to use for the plot.</li>
+<li><strong>years</strong> (<em>list of tuple of</em><em> (</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>)</em>) – Data on the number of publications per year.</li>
+<li><strong>year_range</strong> (<em>list of</em><em> [</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>]</em><em>, </em><em>optional</em>) – The range of years to plot on the x-axis.</li>
+<li><strong>ax</strong> (<em>matplotlib.Axes</em><em>, </em><em>optional</em>) – Figure axes upon which to plot.</li>
 </ul>
 </td>
 </tr>

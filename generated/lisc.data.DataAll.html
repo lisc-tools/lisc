@@ -90,7 +90,7 @@
 <dl class="class">
 <dt id="lisc.data.DataAll">
 <em class="property">class </em><code class="descclassname">lisc.data.</code><code class="descname">DataAll</code><span class="sig-paren">(</span><em>term_data</em>, <em>exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object to hold term data, aggregated across papers.</p>
+<dd><p>An object to hold term data, aggregated across papers.</p>
 <dl class="attribute">
 <dt id="lisc.data.DataAll.label">
 <code class="descname">label</code><a class="headerlink" href="#lisc.data.DataAll.label" title="Permalink to this definition">¶</a></dt>
@@ -113,7 +113,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lisc.data.Term.html#lisc.data.Term" title="lisc.data.Term">Term</a>() <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Term object</td>
 </tr>
 </tbody>
 </table>
@@ -218,8 +218,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lisc.data.DataAll.kws">
-<code class="descname">kws</code><a class="headerlink" href="#lisc.data.DataAll.kws" title="Permalink to this definition">¶</a></dt>
+<dt id="lisc.data.DataAll.keywords">
+<code class="descname">keywords</code><a class="headerlink" href="#lisc.data.DataAll.keywords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency distribution of all keywords.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -262,7 +262,7 @@
 <dl class="attribute">
 <dt id="lisc.data.DataAll.summary">
 <code class="descname">summary</code><a class="headerlink" href="#lisc.data.DataAll.summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary / overview of data associated with current object.</p>
+<dd><p>A summary of the data associated with the current object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -276,13 +276,13 @@
 <dl class="method">
 <dt id="lisc.data.DataAll.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>term_data</em>, <em>exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize DataAll() object.</p>
+<dd><p>Initialize DataAll object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>term_data</strong> (<a class="reference internal" href="lisc.data.Data.html#lisc.data.Data" title="lisc.data.Data"><em>Data</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – Data for all papers from a given search term.</li>
+<li><strong>term_data</strong> (<em>Data object</em>) – Data for all papers from a given search term.</li>
 <li><strong>exclusions</strong> (<em>list of str</em>) – Words to exclude from the word collections.</li>
 </ul>
 </td>
@@ -299,7 +299,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.__init__" title="lisc.data.DataAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term_data[,&nbsp;exclusions])</td>
-<td>Initialize DataAll() object.</td>
+<td>Initialize DataAll object.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.data.DataAll.check_frequencies" title="lisc.data.DataAll.check_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_frequencies</span></code></a>([data,&nbsp;n_check])</td>
 <td>Prints out the most common items in frequecy distribution.</td>
@@ -316,7 +316,7 @@
 <tr class="row-even"><td><a class="reference internal" href="#lisc.data.DataAll.print_summary" title="lisc.data.DataAll.print_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code></a>()</td>
 <td>Print out a summary of the collected words data.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.save_summary" title="lisc.data.DataAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>([folder])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.data.DataAll.save_summary" title="lisc.data.DataAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>([directory])</td>
 <td>Save out a summary of the collected words data.</td>
 </tr>
 </tbody>
@@ -345,7 +345,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<em>{'words'</em><em>, </em><em>'kws'}</em>) – Which frequency distribution to check.</li>
+<li><strong>data</strong> (<em>{'words'</em><em>, </em><em>'keywords'}</em>) – Which frequency distribution to check.</li>
 <li><strong>n_check</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of most common items to print out.</li>
 </ul>
 </td>
@@ -392,13 +392,13 @@
 
 <dl class="method">
 <dt id="lisc.data.DataAll.save_summary">
-<code class="descname">save_summary</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.save_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">save_summary</code><span class="sig-paren">(</span><em>directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/data_all.html#DataAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.DataAll.save_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out a summary of the collected words data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</td>
 </tr>
 </tbody>
 </table>

@@ -13,24 +13,24 @@ Tutorial 02: Counts Analysis
 Analyzing scraped co-occurence data.
 
 
+Counts Analyses
+---------------
+
+This tutorial explores the built in utilities for exploring & analyzing counts data.
+
+
+
 
 .. code-block:: python
 
 
     from lisc import SCDB, load_object
 
-    from lisc.plts.group import *
+    from lisc.plts.counts import *
 
 
 
 
-
-
-
-Counts Analyses
----------------
-
-This tutorial explores the built in utilities for exploring & anayzing counts data.
 
 
 
@@ -58,7 +58,7 @@ First lets check the number of counts per term list.
 
 
     # Look at the collect counts data for the first set of terms
-    counts.check_data(data_type='counts', dim='A', )
+    counts.check_data(data_type='counts', dim='A')
 
 
 
@@ -70,10 +70,10 @@ First lets check the number of counts per term list.
 
  .. code-block:: none
 
-    For  'frontal lobe'    the highest association is  'audition'        with       37500
-    For  'temporal lobe'   the highest association is  'audition'        with      129600
-    For  'parietal lobe'   the highest association is  'audition'        with       23100
-    For  'occipital lobe'  the highest association is  'vision'          with       23500
+    For  'frontal lobe'    the highest association is  'audition'        with         376
+    For  'temporal lobe'   the highest association is  'audition'        with        1296
+    For  'parietal lobe'   the highest association is  'audition'        with         231
+    For  'occipital lobe'  the highest association is  'vision'          with         235
 
 
 
@@ -81,7 +81,7 @@ First lets check the number of counts per term list.
 
 
     # Look at the collect counts data for the second set of terms
-    counts.check_data(data_type='counts', dim='B', )
+    counts.check_data(data_type='counts', dim='B')
 
 
 
@@ -93,13 +93,13 @@ First lets check the number of counts per term list.
 
  .. code-block:: none
 
-    For  'vision'          the highest association is  'occipital lobe'  with       23500
-    For  'audition'        the highest association is  'temporal lobe'   with      129600
-    For  'somatosensory'   the highest association is  'parietal lobe'   with       18700
-    For  'olfaction'       the highest association is  'temporal lobe'   with        7000
-    For  'gustation'       the highest association is  'temporal lobe'   with        4400
-    For  'proprioception'  the highest association is  'parietal lobe'   with         900
-    For  'nociception'     the highest association is  'temporal lobe'   with       19700
+    For  'vision'          the highest association is  'occipital lobe'  with         235
+    For  'audition'        the highest association is  'temporal lobe'   with        1296
+    For  'somatosensory'   the highest association is  'parietal lobe'   with         187
+    For  'olfaction'       the highest association is  'temporal lobe'   with          70
+    For  'gustation'       the highest association is  'temporal lobe'   with          44
+    For  'proprioception'  the highest association is  'parietal lobe'   with           9
+    For  'nociception'     the highest association is  'temporal lobe'   with         197
 
 
 Scores
@@ -109,8 +109,20 @@ The Counts co-occurence data collection gives us a raw data matrix of the number
 papers in with terms co-occur, as well as counts of the number of total papers using
 each term.
 
+Once we have this, we often will want to calculate either normalized co-occurence
+measures, and/or some kind of similarity score.
 
-MORE INFORMATION ON SCORES
+To normalize the data, we can divide the co-occurence counts by the number of papers
+per term. This allows us the examine and analyze, for example, the proportion of papers
+with a given term that also include a secondary term of interest.
+
+We can also calculate some kind of association index or score. For example, the
+`Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard meassure
+for measuring the similarity of samples, and is also available to compute and use.
+
+When using the counts object, both of these measures are available, through the
+`compute_score` method. You can indicate which kind of score (normalization or association)
+index) as an input to the method.
 
 
 
@@ -144,22 +156,26 @@ MORE INFORMATION ON SCORES
 
  .. code-block:: none
 
-    [[1.16219315e-03 3.36924197e-03 3.13945803e-03 1.87645425e-03
-      3.78787879e-04 2.15320019e-04 2.63265955e-04]
-     [1.31962075e-03 1.05053256e-02 3.32736578e-03 1.76714127e-03
-      7.97130331e-04 6.33613179e-05 3.19338629e-04]
-     [7.23804658e-04 2.25733634e-03 5.63286945e-03 4.55166136e-04
-      1.81061018e-04 9.51374207e-04 1.88271050e-04]
-     [2.02390795e-03 8.29162842e-04 1.08773347e-03 3.04766549e-04
-      0.00000000e+00 0.00000000e+00 1.04418591e-04]]
+    [[1.15972671e-03 3.37322592e-03 3.13464847e-03 1.87364161e-03
+      3.78188007e-04 2.14949755e-04 2.62723935e-04]
+     [1.32382090e-03 1.04873884e-02 3.32076017e-03 1.76335743e-03
+      7.95516182e-04 6.32071298e-05 3.18671737e-04]
+     [7.22156615e-04 2.25370251e-03 5.62203115e-03 4.54158388e-04
+      1.80701120e-04 9.48266779e-04 1.89555651e-04]
+     [2.01935140e-03 8.27863521e-04 1.08577633e-03 3.04154754e-04
+      0.00000000e+00 0.00000000e+00 1.05881997e-04]]
 
 
-Clustering and Plotting Counts Data
------------------------------------
+Plotting and Clustering for Counts Data
+---------------------------------------
 
-MORE INFORMATION HERE
+Co-occurence data is basically a matrix of numbers reflecting the relationship between terms.
 
-TODO: FIX UP PLOTS
+LISC provides some plot function to visualize the co-occurence data, as a matrix.
+
+In addition to plotting the data, we can also do clustering analysis and visualizations,
+that attempt to find structure in the data. LISC also offers some common clustering
+approaches to sort and visualize collected co-occurnce data.
 
 
 
@@ -210,7 +226,7 @@ TODO: FIX UP PLOTS
 
 
 
-**Total running time of the script:** ( 0 minutes  0.391 seconds)
+**Total running time of the script:** ( 0 minutes  0.321 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_02-CountsAnalysis.py:

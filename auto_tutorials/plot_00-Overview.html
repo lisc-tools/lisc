@@ -195,15 +195,16 @@ is interpreted as ‘(“brain”OR”cortex”)NOT(“body”)’.</p>
 <h3>Putting it all Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
 <p>Synonyms, inclusion and exclusion words can all be used together. Note also that
 you can also specific synonyms for inclusion and exclusion words.</p>
-<p>For example, the following set of search term components:
-- search terms [‘brain’, ‘cortex’]
-- inclusion words [‘biology’, ‘biochemistry’]
-- exclusion words [‘body’, ‘corporeal’]</p>
-<p>All combine to give the seach term of:
-- <cite>‘(“gene”OR”genetic)AND(“biology”OR”biochemistry”)NOT(“body”OR”corporeal)’</cite></p>
-</div>
-<div class="section" id="title">
-<h3>TITLE<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h3>
+<p>For example, the following set of search term components:</p>
+<ul class="simple">
+<li>search terms [‘brain’, ‘cortex’]</li>
+<li>inclusion words [‘biology’, ‘biochemistry’]</li>
+<li>exclusion words [‘body’, ‘corporeal’]</li>
+</ul>
+<p>All combine to give the seach term of:</p>
+<ul class="simple">
+<li><cite>‘(“gene”OR”genetic)AND(“biology”OR”biochemistry”)NOT(“body”OR”corporeal)’</cite></li>
+</ul>
 <p>Note that inclusion and exclusion words are should be lists of the same
 length as the number of search terms. Each inclusion and exclusion term
 is used for the corresponding search term.</p>
@@ -298,10 +299,10 @@ way using this file structure.</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>lisc_db/
-    Terms/
-    Logs/
-    Figures/
-    Data/
+    terms/
+    logs/
+    figures/
+    data/
         words/
             raw/
             summary/

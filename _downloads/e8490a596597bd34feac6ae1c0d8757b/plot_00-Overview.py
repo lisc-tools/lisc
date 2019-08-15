@@ -139,16 +139,14 @@ base.check_terms()
 # you can also specific synonyms for inclusion and exclusion words.
 #
 # For example, the following set of search term components:
+#
 # - search terms ['brain', 'cortex']
 # - inclusion words ['biology', 'biochemistry']
 # - exclusion words ['body', 'corporeal']
 #
 # All combine to give the seach term of:
+#
 # - `'("gene"OR"genetic)AND("biology"OR"biochemistry")NOT("body"OR"corporeal)'`
-#
-# TITLE
-# ~~~~~
-#
 #
 # Note that inclusion and exclusion words are should be lists of the same
 # length as the number of search terms. Each inclusion and exclusion term

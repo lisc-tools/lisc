@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.plts.group &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.plts.counts &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -85,8 +85,8 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <h1>Source code for lisc.plts.group</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;LISC plots - plots for group analysis.&quot;&quot;&quot;</span>
+  <h1>Source code for lisc.plts.counts</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;LISC plots - plots for counts data.&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="k">import</span> <span class="n">check_args</span><span class="p">,</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span><span class="p">,</span> <span class="n">get_cmap</span>
 <span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="k">import</span> <span class="n">safe_import</span>
@@ -98,7 +98,7 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="plot_matrix"><a class="viewcode-back" href="../../../generated/lisc.plts.group.plot_matrix.html#lisc.plts.group.plot_matrix">[docs]</a><span class="nd">@savefig</span>
+<div class="viewcode-block" id="plot_matrix"><a class="viewcode-back" href="../../../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix">[docs]</a><span class="nd">@savefig</span>
 <span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot the matrix of percent asscociations between terms.</span>
 
@@ -116,11 +116,12 @@
 <span class="sd">        Figure axes upon which to plot.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">square</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span>
-                <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="s1">&#39;yticklabels&#39;</span><span class="p">],</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">))</span></div>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">square</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="s1">&#39;yticklabels&#39;</span><span class="p">],</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="plot_clustermap"><a class="viewcode-back" href="../../../generated/lisc.plts.group.plot_clustermap.html#lisc.plts.group.plot_clustermap">[docs]</a><span class="nd">@savefig</span>
+<div class="viewcode-block" id="plot_clustermap"><a class="viewcode-back" href="../../../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap">[docs]</a><span class="nd">@savefig</span>
 <span class="k">def</span> <span class="nf">plot_clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot clustermap.</span>
 
@@ -142,16 +143,17 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">cmap</span> <span class="o">=</span> <span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
 
-    <span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+    <span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span><span class="c1"># figsize=(8, 8),</span>
                         <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="s1">&#39;yticklabels&#39;</span><span class="p">],</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">))</span>
 
-
-    <span class="n">cg</span><span class="o">.</span><span class="n">cax</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">cg</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">cg</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="plot_dendrogram"><a class="viewcode-back" href="../../../generated/lisc.plts.group.plot_dendrogram.html#lisc.plts.group.plot_dendrogram">[docs]</a><span class="nd">@savefig</span>
+<div class="viewcode-block" id="plot_dendrogram"><a class="viewcode-back" href="../../../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram">[docs]</a><span class="nd">@savefig</span>
 <span class="k">def</span> <span class="nf">plot_dendrogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot dendrogram.</span>
 
@@ -168,7 +170,8 @@
     <span class="n">linkage_data</span> <span class="o">=</span> <span class="n">hier</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
 
     <span class="n">hier</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">linkage_data</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">color_threshold</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
-                    <span class="n">leaf_font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">)),</span> <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="p">))</span></div>
+                    <span class="n">leaf_font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">),</span> <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span></div>
 </pre></div>
 
     </div>

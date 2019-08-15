@@ -89,7 +89,7 @@
 <h1>lisc.collect.collect_counts<a class="headerlink" href="#lisc-collect-collect-counts" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="lisc.collect.collect_counts">
-<code class="descclassname">lisc.collect.</code><code class="descname">collect_counts</code><span class="sig-paren">(</span><em>terms_a</em>, <em>inclusions_a=[]</em>, <em>exclusions_a=[]</em>, <em>terms_b=[]</em>, <em>inclusions_b=[]</em>, <em>exclusions_b=[]</em>, <em>db='pubmed'</em>, <em>field='TIAB'</em>, <em>api_key=None</em>, <em>logging=None</em>, <em>folder=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/counts.html#collect_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_counts" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">lisc.collect.</code><code class="descname">collect_counts</code><span class="sig-paren">(</span><em>terms_a</em>, <em>inclusions_a=[]</em>, <em>exclusions_a=[]</em>, <em>terms_b=[]</em>, <em>inclusions_b=[]</em>, <em>exclusions_b=[]</em>, <em>db='pubmed'</em>, <em>field='TIAB'</em>, <em>api_key=None</em>, <em>logging=None</em>, <em>directory=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/counts.html#collect_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect word co-occurence data from pubmed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -107,7 +107,7 @@
 Defaults to ‘TIAB’, which is Title/Abstract.</li>
 <li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
 <li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
-<li><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference internal" href="lisc.core.db.SCDB.html#lisc.core.db.SCDB" title="lisc.core.db.SCDB"><em>SCDB</em></a><em>(</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
+<li><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to print out updates.</li>
 </ul>
 </td>

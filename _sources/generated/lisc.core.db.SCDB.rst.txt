@@ -16,7 +16,9 @@ lisc.core.db.SCDB
       ~SCDB.__init__
       ~SCDB.check_file_structure
       ~SCDB.gen_paths
+      ~SCDB.get_file_path
       ~SCDB.get_files
+      ~SCDB.get_folder_path
    
    
 

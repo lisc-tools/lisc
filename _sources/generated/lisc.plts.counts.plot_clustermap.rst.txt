@@ -1,0 +1,6 @@
+lisc.plts.counts.plot\_clustermap
+=================================
+
+.. currentmodule:: lisc.plts.counts
+
+.. autofunction:: plot_clustermap

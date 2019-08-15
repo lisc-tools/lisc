@@ -92,14 +92,14 @@
 <div class="sphx-glr-example-title section" id="tutorial-02-counts-analysis">
 <span id="sphx-glr-auto-tutorials-plot-02-countsanalysis-py"></span><h1>Tutorial 02: Counts Analysis<a class="headerlink" href="#tutorial-02-counts-analysis" title="Permalink to this headline">¶</a></h1>
 <p>Analyzing scraped co-occurence data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
-
-<span class="kn">from</span> <span class="nn">lisc.plts.group</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
 <div class="section" id="counts-analyses">
 <h2>Counts Analyses<a class="headerlink" href="#counts-analyses" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial explores the built in utilities for exploring &amp; anayzing counts data.</p>
+<p>This tutorial explores the built in utilities for exploring &amp; analyzing counts data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
+
+<span class="kn">from</span> <span class="nn">lisc.plts.counts</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the counts object from the last tutorial</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
@@ -107,28 +107,28 @@
 <p>The <cite>Counts</cite> object has some helper methods to explore the collected data.</p>
 <p>First lets check the number of counts per term list.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collect counts data for the first set of terms</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with       37500
-For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with      129600
-For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with       23100
-For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with       23500
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         376
+For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1296
+For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         231
+For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         235
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collect counts data for the second set of terms</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with       23500
-For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with      129600
-For  &#39;somatosensory&#39;   the highest association is  &#39;parietal lobe&#39;   with       18700
-For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with        7000
-For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with        4400
-For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with         900
-For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with       19700
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         235
+For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1296
+For  &#39;somatosensory&#39;   the highest association is  &#39;parietal lobe&#39;   with         187
+For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          70
+For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          44
+For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with           9
+For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         197
 </pre></div>
 </div>
 </div>
@@ -137,7 +137,17 @@ For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#3
 <p>The Counts co-occurence data collection gives us a raw data matrix of the number of
 papers in with terms co-occur, as well as counts of the number of total papers using
 each term.</p>
-<p>MORE INFORMATION ON SCORES</p>
+<p>Once we have this, we often will want to calculate either normalized co-occurence
+measures, and/or some kind of similarity score.</p>
+<p>To normalize the data, we can divide the co-occurence counts by the number of papers
+per term. This allows us the examine and analyze, for example, the proportion of papers
+with a given term that also include a secondary term of interest.</p>
+<p>We can also calculate some kind of association index or score. For example, the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a> is a standard meassure
+for measuring the similarity of samples, and is also available to compute and use.</p>
+<p>When using the counts object, both of these measures are available, through the
+<cite>compute_score</cite> method. You can indicate which kind of score (normalization or association)
+index) as an input to the method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span><span class="p">(</span><span class="s1">&#39;association&#39;</span><span class="p">)</span>
 </pre></div>
@@ -147,21 +157,24 @@ each term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.16219315e-03 3.36924197e-03 3.13945803e-03 1.87645425e-03
-  3.78787879e-04 2.15320019e-04 2.63265955e-04]
- [1.31962075e-03 1.05053256e-02 3.32736578e-03 1.76714127e-03
-  7.97130331e-04 6.33613179e-05 3.19338629e-04]
- [7.23804658e-04 2.25733634e-03 5.63286945e-03 4.55166136e-04
-  1.81061018e-04 9.51374207e-04 1.88271050e-04]
- [2.02390795e-03 8.29162842e-04 1.08773347e-03 3.04766549e-04
-  0.00000000e+00 0.00000000e+00 1.04418591e-04]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.15972671e-03 3.37322592e-03 3.13464847e-03 1.87364161e-03
+  3.78188007e-04 2.14949755e-04 2.62723935e-04]
+ [1.32382090e-03 1.04873884e-02 3.32076017e-03 1.76335743e-03
+  7.95516182e-04 6.32071298e-05 3.18671737e-04]
+ [7.22156615e-04 2.25370251e-03 5.62203115e-03 4.54158388e-04
+  1.80701120e-04 9.48266779e-04 1.89555651e-04]
+ [2.01935140e-03 8.27863521e-04 1.08577633e-03 3.04154754e-04
+  0.00000000e+00 0.00000000e+00 1.05881997e-04]]
 </pre></div>
 </div>
 </div>
-<div class="section" id="clustering-and-plotting-counts-data">
-<h2>Clustering and Plotting Counts Data<a class="headerlink" href="#clustering-and-plotting-counts-data" title="Permalink to this headline">¶</a></h2>
-<p>MORE INFORMATION HERE</p>
-<p>TODO: FIX UP PLOTS</p>
+<div class="section" id="plotting-and-clustering-for-counts-data">
+<h2>Plotting and Clustering for Counts Data<a class="headerlink" href="#plotting-and-clustering-for-counts-data" title="Permalink to this headline">¶</a></h2>
+<p>Co-occurence data is basically a matrix of numbers reflecting the relationship between terms.</p>
+<p>LISC provides some plot function to visualize the co-occurence data, as a matrix.</p>
+<p>In addition to plotting the data, we can also do clustering analysis and visualizations,
+that attempt to find structure in the data. LISC also offers some common clustering
+approaches to sort and visualize collected co-occurnce data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a matrix of the association index data</span>
 <span class="n">plot_matrix</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
@@ -177,7 +190,7 @@ each term.</p>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" />
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.391 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.321 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-countsanalysis-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/cb6656da4871bef29722b69d00395250/plot_02-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-CountsAnalysis.py</span></code></a></div>

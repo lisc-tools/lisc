@@ -105,7 +105,7 @@
 <div class="viewcode-block" id="collect_counts"><a class="viewcode-back" href="../../../generated/lisc.collect.collect_counts.html#lisc.collect.collect_counts">[docs]</a><span class="k">def</span> <span class="nf">collect_counts</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclusions_a</span><span class="o">=</span><span class="p">[],</span>
                    <span class="n">terms_b</span><span class="o">=</span><span class="p">[],</span> <span class="n">inclusions_b</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclusions_b</span><span class="o">=</span><span class="p">[],</span>
                    <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                   <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collect word co-occurence data from pubmed.</span>
 
 <span class="sd">    Parameters</span>
@@ -131,7 +131,7 @@
 <span class="sd">        An API key for a NCBI account.</span>
 <span class="sd">    logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}</span>
 <span class="sd">        What kind of logging, if any, to do for requested URLs.</span>
-<span class="sd">    folder : str or SCDB() object, optional</span>
+<span class="sd">    directory : str or SCDB object, optional</span>
 <span class="sd">        Folder or database object specifying the save location.</span>
 <span class="sd">    verbose : bool, optional, default: False</span>
 <span class="sd">        Whether to print out updates.</span>
@@ -161,7 +161,7 @@
     <span class="c1"># Initialize meta data &amp; requester</span>
     <span class="n">meta_data</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
     <span class="n">req</span> <span class="o">=</span> <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="n">get_wait_time</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">authenticated</span><span class="p">),</span>
-                    <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="n">folder</span><span class="p">)</span>
+                    <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
 
     <span class="c1"># Sort out terms</span>
     <span class="n">n_terms_a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms_a</span><span class="p">)</span>

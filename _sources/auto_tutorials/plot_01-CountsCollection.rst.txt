@@ -120,10 +120,10 @@ The Counts object will now contain count data for the word coocurence data betwe
 
  .. code-block:: none
 
-    [[   0 1750  757  493]
-     [1750    0  704  596]
-     [ 757  704    0  414]
-     [ 493  596  414    0]]
+    [[   0 1754  758  493]
+     [1754    0  708  597]
+     [ 758  708    0  416]
+     [ 493  597  416    0]]
 
 
 The Counts object also comes with some helper methods to explore the data.
@@ -148,10 +148,10 @@ The Counts object also comes with some helper methods to explore the data.
  .. code-block:: none
 
     The number of documents found for each search term is:
-      'frontal lobe'     -   13928
-      'temporal lobe'    -   26914
-      'parietal lobe'    -    4816
-      'occipital lobe'   -    3643
+      'frontal lobe'     -   13940
+      'temporal lobe'    -   26971
+      'parietal lobe'    -    4827
+      'occipital lobe'   -    3648
 
 
 
@@ -171,7 +171,7 @@ The Counts object also comes with some helper methods to explore the data.
 
  .. code-block:: none
 
-    The most studied term is  'temporal lobe'  with  26914  papers.
+    The most studied term is  'temporal lobe'  with  26971  papers.
 
 
 Counts: Two Terms Lists
@@ -249,14 +249,14 @@ For now, let's save out our collected counts data, using the LISC utility to sav
 
 
     # Save out the counts object
-    save_object(counts, 'tutorial_counts', folder=SCDB('lisc_db'))
+    save_object(counts, 'tutorial_counts', directory=SCDB('lisc_db'))
 
 
 
 
 
 
-**Total running time of the script:** ( 1 minutes  8.138 seconds)
+**Total running time of the script:** ( 1 minutes  8.247 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_01-CountsCollection.py:

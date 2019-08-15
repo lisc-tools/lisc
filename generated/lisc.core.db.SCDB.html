@@ -89,145 +89,53 @@
 <h1>lisc.core.db.SCDB<a class="headerlink" href="#lisc-core-db-scdb" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lisc.core.db.SCDB">
-<em class="property">class </em><code class="descclassname">lisc.core.db.</code><code class="descname">SCDB</code><span class="sig-paren">(</span><em>base_path=None</em>, <em>auto_gen=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">lisc.core.db.</code><code class="descname">SCDB</code><span class="sig-paren">(</span><em>base=None</em>, <em>generate_paths=True</em>, <em>structure={1: {'base': ['terms'</em>, <em>'logs'</em>, <em>'data'</em>, <em>'figures']}</em>, <em>2: {'data': ['counts'</em>, <em>'words']}</em>, <em>3: {'words': ['raw'</em>, <em>'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Database object for a SCANR project.</p>
 <dl class="attribute">
-<dt id="lisc.core.db.SCDB.base_path">
-<code class="descname">base_path</code><a class="headerlink" href="#lisc.core.db.SCDB.base_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base path for the project.</p>
+<dt id="lisc.core.db.SCDB.paths">
+<code class="descname">paths</code><a class="headerlink" href="#lisc.core.db.SCDB.paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of all folder paths in the project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.terms_path">
-<code class="descname">terms_path</code><a class="headerlink" href="#lisc.core.db.SCDB.terms_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the terms folder of the project.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.logs_path">
-<code class="descname">logs_path</code><a class="headerlink" href="#lisc.core.db.SCDB.logs_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to log files of the project.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.data_path">
-<code class="descname">data_path</code><a class="headerlink" href="#lisc.core.db.SCDB.data_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the data folder of the project.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.figs_path">
-<code class="descname">figs_path</code><a class="headerlink" href="#lisc.core.db.SCDB.figs_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the folder to save out figures.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.counts_path">
-<code class="descname">counts_path</code><a class="headerlink" href="#lisc.core.db.SCDB.counts_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the data folder for counts data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.words_path">
-<code class="descname">words_path</code><a class="headerlink" href="#lisc.core.db.SCDB.words_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the data folder for words data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.raw_path">
-<code class="descname">raw_path</code><a class="headerlink" href="#lisc.core.db.SCDB.raw_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the data folder for the raw words data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.core.db.SCDB.summary_path">
-<code class="descname">summary_path</code><a class="headerlink" href="#lisc.core.db.SCDB.summary_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Path to the data folder for summaries of the words data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<p class="rubric">Notes</p>
+<p>The default set of paths for a SCDB object is:
+- terms                 Term files.
+- logs                  Log files.
+- figs                  Figure files.
+- data                  Data files.</p>
+<blockquote>
+<div><ul class="simple">
+<li>counts            Counts data files.</li>
+<li><dl class="first docutils">
+<dt>words             Words data files.</dt>
+<dd><ul class="first last">
+<li>raw           Raw words data files</li>
+<li>summary       Summary files for words data.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
 <dl class="method">
 <dt id="lisc.core.db.SCDB.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>base_path=None</em>, <em>auto_gen=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>base=None</em>, <em>generate_paths=True</em>, <em>structure={1: {'base': ['terms'</em>, <em>'logs'</em>, <em>'data'</em>, <em>'figures']}</em>, <em>2: {'data': ['counts'</em>, <em>'words']}</em>, <em>3: {'words': ['raw'</em>, <em>'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize SCDB object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>base_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The path to where the database is located.</li>
-<li><strong>auto_gen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to automatically generate all the paths for the database folders.</li>
+<li><strong>base</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The base path to where the database is located.</li>
+<li><strong>generate_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to automatically generate all the paths for the database folders.</li>
 </ul>
 </td>
 </tr>
@@ -242,17 +150,23 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.core.db.SCDB.__init__" title="lisc.core.db.SCDB.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([base_path,&nbsp;auto_gen])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.core.db.SCDB.__init__" title="lisc.core.db.SCDB.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([base,&nbsp;generate_paths,&nbsp;structure])</td>
 <td>Initialize SCDB object.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.core.db.SCDB.check_file_structure" title="lisc.core.db.SCDB.check_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_file_structure</span></code></a>()</td>
 <td>Check the file structure of the database.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lisc.core.db.SCDB.gen_paths" title="lisc.core.db.SCDB.gen_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gen_paths</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.core.db.SCDB.gen_paths" title="lisc.core.db.SCDB.gen_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gen_paths</span></code></a>([structure])</td>
 <td>Generate all the full paths for the database object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#lisc.core.db.SCDB.get_files" title="lisc.core.db.SCDB.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(f_type)</td>
-<td>Get a list of avaialable files in a folder in the database.</td>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.core.db.SCDB.get_file_path" title="lisc.core.db.SCDB.get_file_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_path</span></code></a>(folder,&nbsp;file_name)</td>
+<td>Get a path to a file in a designated directory folder.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.core.db.SCDB.get_files" title="lisc.core.db.SCDB.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder)</td>
+<td>Get a list of available files in a folder in the database.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.core.db.SCDB.get_folder_path" title="lisc.core.db.SCDB.get_folder_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_folder_path</span></code></a>(folder)</td>
+<td>Get the path to a folder in the directory.</td>
 </tr>
 </tbody>
 </table>
@@ -264,23 +178,73 @@
 
 <dl class="method">
 <dt id="lisc.core.db.SCDB.gen_paths">
-<code class="descname">gen_paths</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.gen_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.gen_paths" title="Permalink to this definition">¶</a></dt>
+<code class="descname">gen_paths</code><span class="sig-paren">(</span><em>structure={1: {'base': ['terms'</em>, <em>'logs'</em>, <em>'data'</em>, <em>'figures']}</em>, <em>2: {'data': ['counts'</em>, <em>'words']}</em>, <em>3: {'words': ['raw'</em>, <em>'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.gen_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.gen_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate all the full paths for the database object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lisc.core.db.SCDB.get_files">
-<code class="descname">get_files</code><span class="sig-paren">(</span><em>f_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.get_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.get_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a list of avaialable files in a folder in the database.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>f_type</strong> (<em>{'terms'</em><em>, </em><em>'logs'</em><em>, </em><em>'figures'</em><em>, </em><em>'data'</em><em>, </em><em>'counts'</em><em>, </em><em>'words'</em><em>, </em><em>'raw'</em><em>, </em><em>'summary'}</em>) – Which folder to get the list of files from.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>structure</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>, </em><em>optional</em>) – Definition of the folder structure for the database.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.core.db.SCDB.get_file_path">
+<code class="descname">get_file_path</code><span class="sig-paren">(</span><em>folder</em>, <em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.get_file_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.get_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a path to a file in a designated directory folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Which folder path to get the file path from.</li>
+<li><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the file to create the fulle path for</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The full file path to the requested file.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.core.db.SCDB.get_files">
+<code class="descname">get_files</code><span class="sig-paren">(</span><em>folder</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.get_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.get_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of available files in a folder in the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Which folder path to get the list of files from.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of files available in specified folder.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.core.db.SCDB.get_folder_path">
+<code class="descname">get_folder_path</code><span class="sig-paren">(</span><em>folder</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/core/db.html#SCDB.get_folder_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.core.db.SCDB.get_folder_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the path to a folder in the directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Which folder to get the path for.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The path to the requested directory folder.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
 </tr>
 </tbody>
 </table>

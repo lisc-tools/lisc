@@ -91,14 +91,17 @@
 </div>
 <div class="sphx-glr-example-title section" id="words-with-functions">
 <span id="sphx-glr-auto-examples-plot-functions-words-py"></span><h1>Words with Functions<a class="headerlink" href="#words-with-functions" title="Permalink to this headline">¶</a></h1>
-<p>Scraping article text data and metadata, using a function oriented approach.</p>
+<p>Collect article text data and metadata, using a function oriented approach.</p>
 <div class="section" id="function-approach-collect-words">
 <h2>Function Approach: collect_words<a class="headerlink" href="#function-approach-collect-words" title="Permalink to this headline">¶</a></h2>
-<p>MORE WORDS.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_words</span>
+<p>The core function for collecting words data is the <cite>collect_words</cite> function.</p>
+<p>Given a list of search terms, this function handles all the requests to collect the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data</span>
+<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_words</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms to search for</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data, setting the collection return data for at most 5 papers per term</span>
@@ -111,7 +114,7 @@
 Collecting data for:  body
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The meta data includes some information on the database that was scraped</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The meta data includes some information on the database from which data was collected</span>
 <span class="n">meta_data</span><span class="p">[</span><span class="s1">&#39;db_info&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -119,7 +122,7 @@ Collecting data for:  body
 <span class="n">dat</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each data object holds the data for the scraped papers</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each data object holds the data for the collected papers</span>
 <span class="n">d1</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -131,14 +134,14 @@ Collecting data for:  body
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
 
-A BCI based visual-haptic neurofeedback training improves cortical activations and classification performance during motor imagery.
-A computational model of radiolytic oxygen depletion during FLASH irradiation and its effect on the oxygen enhancement ratio.
-MicroRNA-25-5p counteracts oxidized LDL-induced pathological changes by targeting neuronal growth regulator 1 (NEGR1) in human brain micro-vessel endothelial cells.
-Cortex-wide Changes in Extracellular Potassium Ions Parallel Brain State Transitions in Awake Behaving Mice.
-Distinct Connectivity and Functionality of Aldehyde Dehydrogenase 1a1-Positive Nigrostriatal Dopaminergic Neurons in Motor Learning.
+Co-existent pilocytic astrocytoma with acute B-cell leukemia within the cerebellum.
+Bidirectional relationship between sleep and Alzheimer&#39;s disease: role of amyloid, tau, and other factors.
+Soluble Intercellular Adhesion Molecule-1 (sICAM-1) as a Biomarker of Vascular Cognitive Impairment in Older Adults.
+Comparison between logistic regression and machine learning algorithms on survival prediction of traumatic brain injuries.
+Extinction training following cocaine or MDMA self-administration produces discrete changes in D2-like and mGlu5 receptor density in the rat brain.
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  5.326 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  5.342 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/c51bf98dc93483a6be96a3aeaf61fd28/plot_functions_words.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_words.py</span></code></a></div>

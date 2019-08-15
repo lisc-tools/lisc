@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.plts.wordcloud &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.plts.words &#8212; lisc 0.1.0-dev documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -85,27 +85,25 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <h1>Source code for lisc.plts.wordcloud</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;LISC plots - word clouds.&quot;&quot;&quot;</span>
+  <h1>Source code for lisc.plts.words</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;LISC plots - plots for words data.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">random</span>
-
+<span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="k">import</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.wordcloud</span> <span class="k">import</span> <span class="n">create_wordcloud</span><span class="p">,</span> <span class="n">conv_freqs</span>
 <span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="k">import</span> <span class="n">safe_import</span>
-<span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="k">import</span> <span class="n">savefig</span><span class="p">,</span> <span class="n">check_ax</span>
 
 <span class="n">plt</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;.pyplot&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
-<span class="n">wc</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;wordcloud&#39;</span><span class="p">)</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="plot_wordcloud"><a class="viewcode-back" href="../../../generated/lisc.plts.wordcloud.plot_wordcloud.html#lisc.plts.wordcloud.plot_wordcloud">[docs]</a><span class="nd">@savefig</span>
+<div class="viewcode-block" id="plot_wordcloud"><a class="viewcode-back" href="../../../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud">[docs]</a><span class="nd">@savefig</span>
 <span class="k">def</span> <span class="nf">plot_wordcloud</span><span class="p">(</span><span class="n">freq_dist</span><span class="p">,</span> <span class="n">n_words</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create and display a wordcloud.</span>
+    <span class="sd">&quot;&quot;&quot;Plot a wordcloud.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    freq_dist : nltk.FreqDist()</span>
+<span class="sd">    freq_dist : nltk.FreqDist</span>
 <span class="sd">        Frequency distribution of words to plot.</span>
 <span class="sd">    n_words : int</span>
 <span class="sd">        Number of top words to include in the wordcloud.</span>
@@ -120,61 +118,39 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">create_wordcloud</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create WordCloud object.</span>
+<div class="viewcode-block" id="plot_years"><a class="viewcode-back" href="../../../generated/lisc.plts.words.plot_years.html#lisc.plts.words.plot_years">[docs]</a><span class="nd">@savefig</span>
+<span class="k">def</span> <span class="nf">plot_years</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">year_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot publications across years histogram.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    words : list of tuple</span>
-<span class="sd">        Words to plot, with their corresponding frequencies.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    wc : WordCloud() object</span>
-<span class="sd">        Wordcloud definition.</span>
+<span class="sd">    years : list of tuple of (int, int)</span>
+<span class="sd">        Data on the number of publications per year.</span>
+<span class="sd">    year_range : list of [int, int], optional</span>
+<span class="sd">        The range of years to plot on the x-axis.</span>
+<span class="sd">    ax : matplotlib.Axes, optional</span>
+<span class="sd">        Figure axes upon which to plot.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">cloud</span> <span class="o">=</span> <span class="n">wc</span><span class="o">.</span><span class="n">WordCloud</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                         <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;RGBA&#39;</span><span class="p">,</span>
-                         <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
-                         <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
-                         <span class="n">prefer_horizontal</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                         <span class="n">relative_scaling</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                         <span class="n">min_font_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
-                         <span class="n">max_font_size</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-    <span class="n">cloud</span><span class="o">.</span><span class="n">recolor</span><span class="p">(</span><span class="n">color_func</span><span class="o">=</span><span class="n">_grey_color_func</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Extract x &amp; y data to plot</span>
+    <span class="n">x_dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">xd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xd</span> <span class="ow">in</span> <span class="n">years</span><span class="p">]</span>
+    <span class="n">y_dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">yd</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">yd</span> <span class="ow">in</span> <span class="n">years</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">cloud</span>
+    <span class="c1"># Add line and points to plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_dat</span><span class="p">,</span> <span class="n">y_dat</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_dat</span><span class="p">,</span> <span class="n">y_dat</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
+    <span class="c1"># Set plot limits</span>
+    <span class="k">if</span> <span class="n">year_range</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">year_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">year_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_dat</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">conv_freqs</span><span class="p">(</span><span class="n">freq_dist</span><span class="p">,</span> <span class="n">n_words</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert FreqDist into a list of tuple for creating a WordCloud.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    freq_dist : nltk FreqDist() object</span>
-<span class="sd">        Frequency distribution of words from text.</span>
-<span class="sd">    n_words : int</span>
-<span class="sd">        Number of words to extract for plotting.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    dict</span>
-<span class="sd">        All words with their corresponding frequecies.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">freq_dist</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">n_words</span><span class="p">))</span>
-
-<span class="c1">############################################################################################</span>
-<span class="c1">############################################################################################</span>
-
-<span class="k">def</span> <span class="nf">_grey_color_func</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">font_size</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function for custom coloring - use gray pallete.</span>
-<span class="sd">    From here: https://amueller.github.io/word_cloud/auto_examples/a_new_hope.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">return</span> <span class="s2">&quot;hsl(0, 0</span><span class="si">%%</span><span class="s2">, </span><span class="si">%d%%</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="c1"># Add title &amp; labels</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Publication History&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;# Pubs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span></div>
 </pre></div>
 
     </div>

@@ -10,13 +10,15 @@
 Words with Functions
 ====================
 
-Scraping article text data and metadata, using a function oriented approach.
+Collect article text data and metadata, using a function oriented approach.
 
 
 Function Approach: collect_words
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MORE WORDS.
+The core function for collecting words data is the `collect_words` function.
+
+Given a list of search terms, this function handles all the requests to collect the data.
 
 
 
@@ -24,6 +26,7 @@ MORE WORDS.
 .. code-block:: python
 
 
+    # Import function to collect data
     from lisc.collect import collect_words
 
 
@@ -36,6 +39,7 @@ MORE WORDS.
 .. code-block:: python
 
 
+    # Set some terms to search for
     terms = [['brain'], ['body']]
 
 
@@ -70,7 +74,7 @@ MORE WORDS.
 .. code-block:: python
 
 
-    # The meta data includes some information on the database that was scraped
+    # The meta data includes some information on the database from which data was collected
     meta_data['db_info']
 
 
@@ -96,7 +100,7 @@ MORE WORDS.
 .. code-block:: python
 
 
-    # Each data object holds the data for the scraped papers
+    # Each data object holds the data for the collected papers
     d1 = dat[0]
 
 
@@ -124,14 +128,14 @@ MORE WORDS.
 
     5 
 
-    A BCI based visual-haptic neurofeedback training improves cortical activations and classification performance during motor imagery.
-    A computational model of radiolytic oxygen depletion during FLASH irradiation and its effect on the oxygen enhancement ratio.
-    MicroRNA-25-5p counteracts oxidized LDL-induced pathological changes by targeting neuronal growth regulator 1 (NEGR1) in human brain micro-vessel endothelial cells.
-    Cortex-wide Changes in Extracellular Potassium Ions Parallel Brain State Transitions in Awake Behaving Mice.
-    Distinct Connectivity and Functionality of Aldehyde Dehydrogenase 1a1-Positive Nigrostriatal Dopaminergic Neurons in Motor Learning.
+    Co-existent pilocytic astrocytoma with acute B-cell leukemia within the cerebellum.
+    Bidirectional relationship between sleep and Alzheimer's disease: role of amyloid, tau, and other factors.
+    Soluble Intercellular Adhesion Molecule-1 (sICAM-1) as a Biomarker of Vascular Cognitive Impairment in Older Adults.
+    Comparison between logistic regression and machine learning algorithms on survival prediction of traumatic brain injuries.
+    Extinction training following cocaine or MDMA self-administration produces discrete changes in D2-like and mGlu5 receptor density in the rat brain.
 
 
-**Total running time of the script:** ( 0 minutes  5.326 seconds)
+**Total running time of the script:** ( 0 minutes  5.342 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_words.py:
