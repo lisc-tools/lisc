@@ -31,8 +31,7 @@ def count_journals(journals):
     Parameters
     ----------
     journals : list of tuple of (str, str)
-        List of journals articles come from.
-        (journal name, ISO abbreviation)
+        List of journals articles come from, as (journal name, ISO abbreviation).
 
     Returns
     -------
@@ -58,7 +57,7 @@ def count_authors(authors):
     ----------
     authors : list of list of tuple of (str, str, str, str)
         Authors of all articles included in object, as
-        (last name, first name, initials, affiliation)
+        (last name, first name, initials, affiliation).
 
     Returns
     -------
@@ -90,12 +89,12 @@ def count_end_authors(authors):
     ----------
     authors : list of list of tuple of (str, str, str, str)
         Authors of all articles included in object, as
-        (last name, first name, initials, affiliation)
+        (last name, first name, initials, affiliation).
 
     Returns
     -------
     f_counts, l_counts : list of tuple of (int, (str, str))
-        Number of publications for first & last authors, as (count, (last name, initials))
+        Number of publications for first & last authors, as (count, (last name, initials)).
     """
 
     # Drop author lists that are None
@@ -120,12 +119,12 @@ def _fix_author_names(names):
     Parameters
     ----------
     names : list of tuple of (str, str)
-        Author names, as (last name, initials)
+        Author names, as (last name, initials).
 
     Returns
     -------
     names : list of tuple of (str, str)
-        Author names, as (last name, initials)
+        Author names, as (last name, initials).
 
     Notes
     -----

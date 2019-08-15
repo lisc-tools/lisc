@@ -4,10 +4,10 @@ import os
 import json
 
 from lisc.data.term import Term
-from lisc.data.base_articles import BaseArticles
 from lisc.utils.db import check_directory
-from lisc.utils.io import parse_json_data, check_ext
+from lisc.data.base_articles import BaseArticles
 from lisc.core.errors import InconsistentDataError
+from lisc.utils.io import parse_json_data, check_ext
 
 ###################################################################################################
 ###################################################################################################
@@ -22,35 +22,32 @@ class Articles(BaseArticles):
     term : Term object
         Definition of the search term, with inclusions and exclusion words.
     ids : list of int
-        Article ids for all articles included in object.
+        Article ids for all articles.
     n_articles : int
-        Number of articles included in object.
+        Number of articles collected.
     titles : list of str
-        Titles of all articles included in object.
+        Titles of all articles.
     journals : list of tuple of (str, str)
-        Journals that the articles come from.
-        (Journal Name, ISO abbreviation).
+        Journals that the articles come from, as (Journal Name, ISO abbreviation).
     authors : list of list of str
-        Authors of all articles included in object.
-        (Last Name, First Name, Initials, Affiliation)
-    words : list of list of unicode
-        Words extracted from each article.
+        Authors of all articles, as (Last Name, First Name, Initials, Affiliation)
+    words : list of list of str
+        Words extracted from the abstract of each article.
     keywords : list of list of str
-        List of keywords for each article included in the object.
+        Keywords from each article.
     years : list of int
-        Publication year of each article included in object.
+        Publication year of each article.
     dois : list of str
-        DOIs of each article included in object.
+        DOIs of each article.
     """
 
     def __init__(self, term):
-        """Initialize Data object.
+        """Initialize Articles object.
 
         Parameters
         ----------
-        term  : Term object or str.
-            Search term definition.
-            If input is a string, it is used as the label for the term.
+        term : Term object or str
+            Search term definition. If input is a string, it is used as the label for the term.
         """
 
         # Inherit from the BaseArticles object
@@ -70,8 +67,7 @@ class Articles(BaseArticles):
                 'words': self.words[ind],
                 'keywords': self.keywords[ind],
                 'year': self.years[ind],
-                'doi': self.dois[ind]
-            }
+                'doi': self.dois[ind]}
 
 
     def add_data(self, field, new_data):
@@ -149,14 +145,14 @@ class Articles(BaseArticles):
 
 
     def _check_results(self):
-        """Check for consistencty in extracted results.
+        """Check for consistency in extracted results.
 
         Notes
         -----
-        If everything worked, each data field (ids, titles, words, years)
+        If everything worked, each data field (ids, titles, words, etc)
         should have the same length, equal to the number of articles.
         Some entries may be blank (missing data), but if the lengths are not
-        the same then the data does not line up and cannot be trusted.
+        the same then the data does not line up and something went wrong.
         """
 
         # Check that all data fields have length n_articles
