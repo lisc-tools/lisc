@@ -1,34 +1,40 @@
 # LISC - Literature Scanner
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Latest Version](https://img.shields.io/pypi/v/lisc.svg)](https://pypi.python.org/pypi/lisc/)
 [![Build Status](https://travis-ci.org/lisc-tools/lisc.svg)](https://travis-ci.org/lisc-tools/lisc)
 [![codecov](https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg)](https://codecov.io/gh/lisc-tools/lisc)
-[![License](https://img.shields.io/pypi/l/fooof.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/pypi/l/lisc.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/lisc.svg)](https://pypi.python.org/pypi/lisc/)
 
-
-LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.
-
-NOTE: the current version is still a development version (0.1.0-dev) and may not be totally stable.
+LISC is a package for collecting and analyzing the scientific literature.
 
 ## Overview
 
-LISC is a python module for collecting and analzying scientific literature.
+LISC acts as a wrapper and connector between available APIs, allowing users to collect data from and about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.
+
+A curated list of some projects enabled by LISC is available on the [projects](https://github.com/lisc-tools/Projects) page.
+
+#### Supported APIs
+
+Supported APIs through LISC includes:
+- the NCBI [EUtils](https://www.ncbi.nlm.nih.gov/books/NBK25497/). EUtils provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.
+- the [OpenCitations](https://opencitations.net) API. OpenCitations provides access to citation data.
 
 #### Data Collection
 
-For data collection, LISC currently offers support for using the Pubmed E-Utilities.
+For data collection, LISC currently offers support for the following 'types' of literature data collection:
+- 'Counts': collects counts and co-occurrences of specified search terms in the literature.
+- 'Words': collects text data and meta-data from articles identified by specified search terms.
+- 'Citations': collect citation and reference data for articles, based on DOIs.
 
-LISC provides for two different 'types' of literature data collection:
-- 'Counts': popularity and co-occurence analysis of specified search terms.
-- 'Words': collects text data and meta-data from papers identified by specified search terms.
+#### Analysis & Other Functionality
 
-#### Data Analysis
-
-LISC provides support and utities for:
-- Custom data objects for managing and operating on returned data.
-- Save and load utilties for storing collected data.
-- Support and tools for analyzing and plotting returned data.
-- Data visualization utilities.
+In addition to connecting to external APIs, LISC also provides:
+- custom data objects for managing collected data
+- a database structure, and save and load utilties for storing collected data
+- functions and utilities to analyze collected data
+- Data visualization functions for plotting collected data and analysis outputs
 
 ## Documentation
 
@@ -43,17 +49,18 @@ For a curated list of projects that use LISC (or pre-cursors), check out the [pr
 LISC is written in Python 3, and requires Python 3.5 or greater to run.
 
 Requirements:
-- numpy
-- requests
-- lxml
-- beautifulsoup4
-- nltk
+- [numpy](https://pypi.org/project/numpy/)
+- [requests](https://pypi.org/project/requests/)
+- [lxml](https://pypi.org/project/lxml/)
+- [beautifulsoup4](https://pypi.org/project/beautifulsoup4/)
+- [nltk](https://pypi.org/project/nltk/)
 
-Optional dependencies, used for plots & analysis:
-- matplotlib
-- seaborn
-- scipy
-- wordcloud
+Optional dependencies, used for plots, analyses & testing:
+- [matplotlib](https://pypi.org/project/matplotlib/)
+- [seaborn](https://pypi.org/project/seaborn/)
+- [scipy](https://pypi.org/project/scipy/)
+- [wordcloud](https://pypi.org/project/wordcloud/)
+- [pytest](https://pypi.org/project/pytest/)
 
 ## Install
 

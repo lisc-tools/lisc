@@ -9,7 +9,27 @@ with open(os.path.join('lisc', 'version.py')) as vf:
 
 long_description = \
 """
-Literature Scanner.
+LISC, or 'literature scanner' is a package for collecting and analyzing scientific literature.
+
+LISC acts as a wrapper and connector between available APIs, allowing users to collect data from
+and about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.
+
+Supported APIs available through LISC include the NCBI EUtils which provides programmatic access to the
+National Center for Biotechnology Information (NCBI), including the Pubmed database, and the
+OpenCitations API, which provides access to citation data.
+
+For data collection, LISC currently offers support for the following 'types' of literature data collection:
+
+- 'Counts': collects counts and co-occurrences of specified search terms in the literature.
+- 'Words': collects text data and meta-data from articles identified by specified search terms.
+- 'Citations': collect citation and reference data for articles, based on DOIs.
+
+In addition to connecting to external APIs, LISC also provides:
+
+- custom data objects for managing collected data
+- a database structure, and save and load utilties for storing collected data
+- functions and utilities to analyze collected data
+- data visualization functions for plotting collected data and analysis outputs
 """
 
 setup(

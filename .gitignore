@@ -31,3 +31,7 @@ _lint.txt
 # Ignore tutorial & example db
 **/lisc_db/**
 
+# Ignore disribution files
+build/*
+dist/*
+lisc.egg-info/*
