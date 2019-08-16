@@ -3,7 +3,6 @@
 import random
 
 from lisc.core.modutils import safe_import
-from lisc.plts.utils import savefig, check_ax
 
 wc = safe_import('wordcloud')
 

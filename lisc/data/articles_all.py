@@ -171,9 +171,9 @@ class ArticlesAll(BaseArticles):
 
         freqs = nltk.FreqDist(in_lst)
 
-        for it in exclude:
+        for excl in exclude:
             try:
-                freqs.pop(it.lower())
+                freqs.pop(excl.lower())
             except KeyError:
                 pass
 

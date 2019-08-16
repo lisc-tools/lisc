@@ -23,9 +23,9 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
         Figure axes upon which to plot.
     """
 
-    cloud = create_wordcloud(conv_freqs(freq_dist, 20))
+    cloud = create_wordcloud(conv_freqs(freq_dist, n_words))
 
-    ax = check_ax(ax, (10, 10))
+    ax = check_ax(ax, (8, 8))
     ax.imshow(cloud)
     ax.axis("off")
 

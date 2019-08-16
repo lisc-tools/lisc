@@ -186,7 +186,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
     # Create the base path
     try:
         os.mkdir(db.get_folder_path('base'))
-    except(FileExistsError):
+    except FileExistsError:
         pass
 
     # Create all paths, following the database structure
@@ -195,7 +195,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
             for path in group:
                 try:
                     os.mkdir(db.get_folder_path(path))
-                except(FileExistsError):
+                except FileExistsError:
                     pass
 
     return db
