@@ -14,7 +14,7 @@ from lisc.utils.db import SCDB, create_file_structure
 # SCDB Database Structure
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #
-# LISC comes with and uses a custom directory structure.
+# LISC comes with, and uses, a custom directory structure.
 #
 # If you want to store terms in files, place those files into a LISC database structure,
 # and then relevant functions and objects will be able to load and use these terms.
@@ -23,8 +23,7 @@ from lisc.utils.db import SCDB, create_file_structure
 ###################################################################################################
 
 # Create a database file structure.
-#   Note that when called without a path argument input,
-#   the folder structure is made in the current directory.
+#   When called without a path input, the folder structure is created in the current directory.
 db = create_file_structure()
 
 ###################################################################################################
@@ -36,7 +35,7 @@ db = create_file_structure()
 #
 # The typical use case would be to curate and write text files manually.
 #
-# For demonstration here, we will first create an example text file of terms to use.
+# For demonstration here, we will first programmatically create an example text file of terms to use.
 #
 
 ###################################################################################################
@@ -117,7 +116,7 @@ base.check_terms()
 # using one line per term, with comma-separated values for synonyms.
 #
 # Files that reflect the same set of terms, with a file for search terms, and optionally
-# associated files for inclusion and exclusion terms should line up in the number of lines.
-# That is, the `n`th line of each file should refer to the same term. If a given search
+# associated files for inclusion and exclusion terms should line up on the number of lines.
+# That is, the n-th line of each file should refer to the same term. If a given search
 # term does not have an associated inclusion or exclusion term, leave that line blank.
 #
