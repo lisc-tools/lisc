@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.analysis.counts &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.analysis.counts &#8212; lisc 0.1.1-dev documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -86,7 +86,7 @@
     <div class="col-md-12 content">
       
   <h1>Source code for lisc.analysis.counts</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Analysis functions for counts and co-occurence data.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Analysis functions for counts and co-occurrence data.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -94,12 +94,12 @@
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="compute_normalization"><a class="viewcode-back" href="../../../generated/lisc.analysis.counts.compute_normalization.html#lisc.analysis.counts.compute_normalization">[docs]</a><span class="k">def</span> <span class="nf">compute_normalization</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute a normalization of the co-occurence data.</span>
+    <span class="sd">&quot;&quot;&quot;Compute a normalization of the co-occurrence data.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data : 2d array</span>
-<span class="sd">        Counts of co-occurence of terms.</span>
+<span class="sd">        Counts of co-occurrence of terms.</span>
 <span class="sd">    counts : 1d array</span>
 <span class="sd">        Counts for each individual search term.</span>
 <span class="sd">    dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
@@ -108,11 +108,11 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    out : 2d array</span>
-<span class="sd">        The normalized co-occurence data.</span>
+<span class="sd">        The normalized co-occurrence data.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    - This computes a normalized data matrix as a percent of articles expressing co-occurence.</span>
+<span class="sd">    - This computes a normalized data matrix as a percent of articles expressing co-occurrence.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
@@ -138,19 +138,19 @@
 
 
 <div class="viewcode-block" id="compute_association_index"><a class="viewcode-back" href="../../../generated/lisc.analysis.counts.compute_association_index.html#lisc.analysis.counts.compute_association_index">[docs]</a><span class="k">def</span> <span class="nf">compute_association_index</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">counts_a</span><span class="p">,</span> <span class="n">counts_b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the association index from the co-occurence data.</span>
+    <span class="sd">&quot;&quot;&quot;Compute the association index from the co-occurrence data.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data : 2d array</span>
-<span class="sd">        Counts of co-occurence of terms.</span>
+<span class="sd">        Counts of co-occurrence of terms.</span>
 <span class="sd">    counts_a, counts_b : 1d array</span>
 <span class="sd">        Counts for each individual search term.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    index : 2d array</span>
-<span class="sd">        The association score of the co-occurence data.</span>
+<span class="sd">        The association score of the co-occurrence data.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.objects.counts &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.objects.counts &#8212; lisc 0.1.1-dev documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -86,7 +86,7 @@
     <div class="col-md-12 content">
       
   <h1>Source code for lisc.objects.counts</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Class for collectiton and analyses of co-occurences data.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Class for collectiton and analyses of co-occurrences data.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -99,7 +99,7 @@
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="Counts"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts">[docs]</a><span class="k">class</span> <span class="nc">Counts</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;A class for collecting and analyzing co-occurence data for specified terms list(s).</span>
+    <span class="sd">&quot;&quot;&quot;A class for collecting and analyzing co-occurrence data for specified terms list(s).</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -108,7 +108,7 @@
 <span class="sd">    counts : 2d array</span>
 <span class="sd">        The numbers of articles found for each combination of terms.</span>
 <span class="sd">    score : 2d array</span>
-<span class="sd">        A transformed &#39;score&#39; of co-occurence data</span>
+<span class="sd">        A transformed &#39;score&#39; of co-occurrence data</span>
 <span class="sd">        This can be a normalized version of the data, and/or a computed association index.</span>
 <span class="sd">    square : bool</span>
 <span class="sd">        Whether the count data matrix is symmetrical.</span>
@@ -171,7 +171,7 @@
 
 <div class="viewcode-block" id="Counts.run_collection"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Collect co-occurence data.</span>
+        <span class="sd">&quot;&quot;&quot;Collect co-occurrence data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -218,12 +218,12 @@
 
 
 <div class="viewcode-block" id="Counts.compute_score"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.compute_score">[docs]</a>    <span class="k">def</span> <span class="nf">compute_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s1">&#39;association&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Compute a score (index or normalization) of the co-occurence data.</span>
+        <span class="sd">&quot;&quot;&quot;Compute a score (index or normalization) of the co-occurrence data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        score_type : {&#39;association&#39;, &#39;normalize&#39;}, optional</span>
-<span class="sd">            The type of score to apply to the co-occurence data.</span>
+<span class="sd">            The type of score to apply to the co-occurrence data.</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
 <span class="sd">            Which dimension of counts to use.</span>
 <span class="sd">            Only used if &#39;score&#39; is &#39;normalize&#39;.</span>

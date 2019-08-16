@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>LISC - Literature Scanner &#8212; lisc 0.1.0-dev documentation</title>
+    <title>LISC - Literature Scanner &#8212; lisc 0.1.1-dev documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="#">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -88,31 +88,41 @@
   <div class="section" id="lisc-literature-scanner">
 <h1>LISC - Literature Scanner<a class="headerlink" href="#lisc-literature-scanner" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="http://www.repostatus.org/#active"><img alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." src="http://www.repostatus.org/badges/latest/active.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/lisc/"><img alt="Latest Version" src="https://img.shields.io/pypi/v/lisc.svg" /></a>
 <a class="reference external image-reference" href="https://travis-ci.org/lisc-tools/lisc"><img alt="Build Status" src="https://travis-ci.org/lisc-tools/lisc.svg" /></a>
 <a class="reference external image-reference" href="https://codecov.io/gh/lisc-tools/lisc"><img alt="codecov" src="https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg" /></a>
-<a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/fooof.svg" /></a>
-<p>LISC is a package for performing automated meta-analyses of scientific papers, built on top of the Pubmed E-Utils API.</p>
-<p>NOTE: the current version is still a development version (0.1.0-dev) and may not be totally stable.</p>
+<a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/lisc.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/lisc/"><img alt="Supported Python Versions" src="https://img.shields.io/pypi/pyversions/lisc.svg" /></a>
+<p>LISC is a package for collecting and analyzing the scientific literature.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>LISC is a python module for collecting and analzying scientific literature.</p>
-<div class="section" id="data-collection">
-<h3>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h3>
-<p>For data collection, LISC currently offers support for using the Pubmed E-Utilities.</p>
-<p>LISC provides for two different ‘types’ of literature data collection:</p>
+<p>LISC acts as a wrapper and connector between available APIs, allowing users to collect data from and about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.</p>
+<p>A curated list of some projects enabled by LISC is available on the <a class="reference external" href="https://github.com/lisc-tools/Projects">projects</a> page.</p>
+<div class="section" id="supported-apis">
+<h3>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h3>
+<p>Supported APIs through LISC includes:</p>
 <ul class="simple">
-<li>‘Counts’: popularity and co-occurence analysis of specified search terms.</li>
-<li>‘Words’: collects text data and meta-data from papers identified by specified search terms.</li>
+<li>the NCBI <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25497/">EUtils</a>. EUtils provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.</li>
+<li>the <a class="reference external" href="https://opencitations.net">OpenCitations</a> API. OpenCitations provides access to citation data.</li>
 </ul>
 </div>
-<div class="section" id="data-analysis">
-<h3>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this headline">¶</a></h3>
-<p>LISC provides support and utities for:</p>
+<div class="section" id="data-collection">
+<h3>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h3>
+<p>For data collection, LISC currently offers support for the following ‘types’ of literature data collection:</p>
 <ul class="simple">
-<li>Custom data objects for managing and operating on returned data.</li>
-<li>Save and load utilties for storing collected data.</li>
-<li>Support and tools for analyzing and plotting returned data.</li>
-<li>Data visualization utilities.</li>
+<li>‘Counts’: collects counts and co-occurrences of specified search terms in the literature.</li>
+<li>‘Words’: collects text data and meta-data from articles identified by specified search terms.</li>
+<li>‘Citations’: collect citation and reference data for articles, based on DOIs.</li>
+</ul>
+</div>
+<div class="section" id="analysis-other-functionality">
+<h3>Analysis &amp; Other Functionality<a class="headerlink" href="#analysis-other-functionality" title="Permalink to this headline">¶</a></h3>
+<p>In addition to connecting to external APIs, LISC also provides:</p>
+<ul class="simple">
+<li>custom data objects for managing collected data</li>
+<li>a database structure, and save and load utilties for storing collected data</li>
+<li>functions and utilities to analyze collected data</li>
+<li>Data visualization functions for plotting collected data and analysis outputs</li>
 </ul>
 </div>
 </div>
@@ -127,18 +137,19 @@
 <p>LISC is written in Python 3, and requires Python 3.5 or greater to run.</p>
 <p>Requirements:</p>
 <ul class="simple">
-<li>numpy</li>
-<li>requests</li>
-<li>lxml</li>
-<li>beautifulsoup4</li>
-<li>nltk</li>
+<li><a class="reference external" href="https://pypi.org/project/numpy/">numpy</a></li>
+<li><a class="reference external" href="https://pypi.org/project/requests/">requests</a></li>
+<li><a class="reference external" href="https://pypi.org/project/lxml/">lxml</a></li>
+<li><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a></li>
+<li><a class="reference external" href="https://pypi.org/project/nltk/">nltk</a></li>
 </ul>
-<p>Optional dependencies, used for plots &amp; analysis:</p>
+<p>Optional dependencies, used for plots, analyses &amp; testing:</p>
 <ul class="simple">
-<li>matplotlib</li>
-<li>seaborn</li>
-<li>scipy</li>
-<li>wordcloud</li>
+<li><a class="reference external" href="https://pypi.org/project/matplotlib/">matplotlib</a></li>
+<li><a class="reference external" href="https://pypi.org/project/seaborn/">seaborn</a></li>
+<li><a class="reference external" href="https://pypi.org/project/scipy/">scipy</a></li>
+<li><a class="reference external" href="https://pypi.org/project/wordcloud/">wordcloud</a></li>
+<li><a class="reference external" href="https://pypi.org/project/pytest/">pytest</a></li>
 </ul>
 </div>
 <div class="section" id="install">

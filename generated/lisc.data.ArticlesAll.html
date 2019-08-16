@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.data.ArticlesAll &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.data.ArticlesAll &#8212; lisc 0.1.1-dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -150,12 +150,12 @@
 <dl class="attribute">
 <dt id="lisc.data.ArticlesAll.journals">
 <code class="descname">journals</code><a class="headerlink" href="#lisc.data.ArticlesAll.journals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counts of occurences of journals.</p>
+<dd><p>Counts for each journal.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>)</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.7)">collections.Counter</a></td>
 </tr>
 </tbody>
 </table>
@@ -164,12 +164,12 @@
 <dl class="attribute">
 <dt id="lisc.data.ArticlesAll.authors">
 <code class="descname">authors</code><a class="headerlink" href="#lisc.data.ArticlesAll.authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counts of occurences of authors.</p>
+<dd><p>Counts for each author.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>))</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.7)">collections.Counter</a></td>
 </tr>
 </tbody>
 </table>
@@ -178,12 +178,12 @@
 <dl class="attribute">
 <dt id="lisc.data.ArticlesAll.first_authors">
 <code class="descname">first_authors</code><a class="headerlink" href="#lisc.data.ArticlesAll.first_authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counts of occurences of first authors.</p>
+<dd><p>Counts for each first author.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>))</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.7)">collections.Counter</a></td>
 </tr>
 </tbody>
 </table>
@@ -192,12 +192,12 @@
 <dl class="attribute">
 <dt id="lisc.data.ArticlesAll.last_authors">
 <code class="descname">last_authors</code><a class="headerlink" href="#lisc.data.ArticlesAll.last_authors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counts of occurences of last authors.</p>
+<dd><p>Counts for each last author.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>))</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.7)">collections.Counter</a></td>
 </tr>
 </tbody>
 </table>
@@ -234,12 +234,12 @@
 <dl class="attribute">
 <dt id="lisc.data.ArticlesAll.years">
 <code class="descname">years</code><a class="headerlink" href="#lisc.data.ArticlesAll.years" title="Permalink to this definition">¶</a></dt>
-<dd><p>Counts of occurences of years of publication.</p>
+<dd><p>Counts for each year of publication.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple of (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>)</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.7)">collections.Counter</a></td>
 </tr>
 </tbody>
 </table>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.data.articles_all &#8212; lisc 0.1.0-dev documentation</title>
+    <title>lisc.data.articles_all &#8212; lisc 0.1.1-dev documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -95,8 +95,7 @@
 
 <span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">check_ext</span>
 <span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">check_directory</span>
-<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="k">import</span> <span class="n">combine_lists</span><span class="p">,</span> <span class="n">convert_string</span>
-<span class="kn">from</span> <span class="nn">lisc.data.count</span> <span class="k">import</span> <span class="n">count_years</span><span class="p">,</span> <span class="n">count_journals</span><span class="p">,</span> <span class="n">count_authors</span><span class="p">,</span> <span class="n">count_end_authors</span>
+<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="k">import</span> <span class="n">combine_lists</span><span class="p">,</span> <span class="n">convert_string</span><span class="p">,</span> <span class="n">count_elements</span>
 <span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="k">import</span> <span class="n">BaseArticles</span>
 
 <span class="c1">###################################################################################################</span>
@@ -115,20 +114,20 @@
 <span class="sd">        Number of articles included in object.</span>
 <span class="sd">    ids : list of int</span>
 <span class="sd">        Article ids for all articles included in object.</span>
-<span class="sd">    journals : list of tuple of (int, str)</span>
-<span class="sd">        Counts of occurences of journals.</span>
-<span class="sd">    authors : list of tuple of (int, (str, str))</span>
-<span class="sd">        Counts of occurences of authors.</span>
-<span class="sd">    first_authors : list of tuple of (int, (str, str))</span>
-<span class="sd">        Counts of occurences of first authors.</span>
-<span class="sd">    last_authors : list of tuple of (int, (str, str))</span>
-<span class="sd">        Counts of occurences of last authors.</span>
+<span class="sd">    journals : collections.Counter</span>
+<span class="sd">        Counts for each journal.</span>
+<span class="sd">    authors : collections.Counter</span>
+<span class="sd">        Counts for each author.</span>
+<span class="sd">    first_authors : collections.Counter</span>
+<span class="sd">        Counts for each first author.</span>
+<span class="sd">    last_authors : collections.Counter</span>
+<span class="sd">        Counts for each last author.</span>
 <span class="sd">    words : nltk.probability.FreqDist</span>
 <span class="sd">        Frequency distribution of all words.</span>
 <span class="sd">    keywords : nltk.probability.FreqDist</span>
 <span class="sd">        Frequency distribution of all keywords.</span>
-<span class="sd">    years : list of tuple of (int, int)</span>
-<span class="sd">        Counts of occurences of years of publication.</span>
+<span class="sd">    years : collections.Counter</span>
+<span class="sd">        Counts for each year of publication.</span>
 <span class="sd">    dois : list of str</span>
 <span class="sd">        DOIs of each article included in object.</span>
 <span class="sd">    summary : dict</span>
@@ -154,10 +153,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dois</span> <span class="o">=</span> <span class="n">term_data</span><span class="o">.</span><span class="n">dois</span>
 
         <span class="c1"># Get counts of authors, journals, years</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span> <span class="o">=</span> <span class="n">count_journals</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">journals</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">count_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_authors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_authors</span> <span class="o">=</span> <span class="n">count_end_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="n">count_years</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">years</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">([</span><span class="n">journal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">journal</span> <span class="ow">in</span> <span class="n">term_data</span><span class="o">.</span><span class="n">journals</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">years</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">_count_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_authors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_authors</span> <span class="o">=</span> <span class="n">_count_end_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
 
         <span class="c1"># Convert lists of all words to frequency distributions</span>
         <span class="n">exclusions</span> <span class="o">=</span> <span class="n">exclusions</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">search</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">inclusions</span>
@@ -203,13 +202,12 @@
         <span class="c1"># Add data to summary dictionary.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;n_articles&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
-                                                    <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_journal_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_keywords&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;first_publication&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="n">year</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">]))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;first_publication&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span></div>
 
 
 <div class="viewcode-block" id="ArticlesAll.print_summary"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.print_summary">[docs]</a>    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -259,13 +257,92 @@
 
         <span class="n">freqs</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">excl</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">freqs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                <span class="n">freqs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">excl</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="k">pass</span>
 
         <span class="k">return</span> <span class="n">freqs</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_count_authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Count all authors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    authors : list of list of tuple of (str, str, str, str)</span>
+<span class="sd">        Authors, as (last name, first name, initials, affiliation).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    author_counts : collections.Counter</span>
+<span class="sd">        Number of publications per author.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Reduce author fields to pair of tuples (last name, initials) &amp; count # of publications per author</span>
+    <span class="n">all_authors</span> <span class="o">=</span> <span class="p">[(</span><span class="n">author</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">art_authors</span> <span class="ow">in</span> <span class="n">authors</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">art_authors</span><span class="p">]</span>
+    <span class="n">author_counts</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">_fix_author_names</span><span class="p">(</span><span class="n">all_authors</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">author_counts</span>
+
+
+<span class="k">def</span> <span class="nf">_count_end_authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Count first and last authors only.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    authors : list of list of tuple of (str, str, str, str)</span>
+<span class="sd">        Authors, as (last name, first name, initials, affiliation).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    first_counts, last_counts : collections.Counter</span>
+<span class="sd">        Number of publications for each first and last author.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Pull out the full name for the first &amp; last author of each article</span>
+    <span class="c1">#  Last author is only considered if there is more than 1 author</span>
+    <span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">auth</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authors</span><span class="p">]</span>
+    <span class="n">f_names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">author</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">firsts</span><span class="p">]</span>
+
+    <span class="n">lasts</span> <span class="o">=</span> <span class="p">[</span><span class="n">auth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authors</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">l_names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">author</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">lasts</span><span class="p">]</span>
+
+    <span class="n">f_counts</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">_fix_author_names</span><span class="p">(</span><span class="n">f_names</span><span class="p">))</span>
+    <span class="n">l_counts</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">_fix_author_names</span><span class="p">(</span><span class="n">l_names</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">f_counts</span><span class="p">,</span> <span class="n">l_counts</span>
+
+
+<span class="k">def</span> <span class="nf">_fix_author_names</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fix author names.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    names : list of tuple of (str, str)</span>
+<span class="sd">        Author names, as (last name, initials).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    names : list of tuple of (str, str)</span>
+<span class="sd">        Author names, as (last name, initials).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Sometimes full author name ends up in the last name field.</span>
+<span class="sd">    If first name is None, assume this happened:</span>
+<span class="sd">        Split up the text in first name, and grab the first name initial.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Drop names whos data is all None</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+
+    <span class="c1"># Fix names if full name ended up in last name field</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">names</span>
 </pre></div>
 
     </div>

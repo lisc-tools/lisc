@@ -114,7 +114,7 @@ created from the aggregate data, across all articles for a given search term.
     frontal lobe :
       Number of articles:            15
       First publication:             2019
-      Most common author:            I Čurović
+      Most common author:            Lin CY
         number of publications:      1
       Most common journal:           No shinkei geka. Neurological surgery
         number of publications:      2
@@ -210,7 +210,7 @@ The Words object also has some methods for exploring the data.
 
  .. code-block:: none
 
-    <lisc.data.articles.Articles object at 0x12f62ab00>
+    <lisc.data.articles.Articles object at 0x116680f98>
 
 
 
@@ -232,6 +232,8 @@ The Words object also has some methods for exploring the data.
 
  .. code-block:: none
 
+    Corpus callosotomy might have reduced epileptic seizure-induced repetitive shoulder joint dislocation in two patients with medically intractable epilepsy who were not focus resection candidates.
+    [White matter integrity in patients with mild cognitive impairment complicated with lacunar infarctions by diffusion tensor imaging].
     Encapsulated Neuroprotection to the Rescue-or How to Safely Protect a Brain From Seizing.
     Reality Is in the Posterior Hippocampus: Who Knew?
     Adult Neurogenesis in the Development of Epilepsy.
@@ -245,8 +247,6 @@ The Words object also has some methods for exploring the data.
     Tracking a changing paradigm and the modern face of epilepsy surgery: A comprehensive and critical review on the hunt for the optimal extent of resection in mesial temporal lobe epilepsy.
     Intertemporal decision-making-related brain states predict adolescent drug abuse intervention responses.
     Early ictal recruitment of midline thalamus in mesial temporal lobe epilepsy.
-    Visualizing modules of coordinated structural brain atrophy during the course of conversion to Alzheimer's disease by applying methodology from gene co-expression analysis.
-    Implicit guidance of attention in contextual cueing: Neuropsychological and developmental evidence.
 
 
 Analyzing Words Data
@@ -265,15 +265,7 @@ journals, by which authors.
 
 
 
-.. code-block:: python
-
-    #
-
-
-
-
-
-**Total running time of the script:** ( 0 minutes  2.768 seconds)
+**Total running time of the script:** ( 0 minutes  2.374 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_04-WordsAnalysis.py:

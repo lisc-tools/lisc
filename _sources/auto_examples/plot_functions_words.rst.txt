@@ -105,7 +105,7 @@ Here we will briefly explore collecting data directly using the function approac
 
  .. code-block:: none
 
-    [<lisc.data.articles.Articles object at 0x123ab1898>, <lisc.data.articles.Articles object at 0x123d3b2b0>]
+    [<lisc.data.articles.Articles object at 0x127392a58>, <lisc.data.articles.Articles object at 0x127516dd8>]
 
 
 
@@ -141,11 +141,11 @@ Here we will briefly explore collecting data directly using the function approac
 
     5 
 
-    Focused ultrasound in Parkinson's disease: A twofold path toward disease modification.
-    Meningoencephalitis due to spotted fever rickettsioses, including Rocky Mountain spotted fever.
-    Differential Changes in Functional Connectivity of Striatum-Prefrontal and Striatum-Motor Circuits in Premanifest Huntington's Disease.
-    Electroencephalography in Psychiatric Surgery: Past Use and Future Directions.
-    A biohybrid fly-robot interface system that performs active collision avoidance.
+    Generic Homo sapiensand Unique Mus musculus: Establishing the Typicality of the Modeled and the Model Species.
+    Toward Diversification of Species Models in Neuroscience.
+    Magnetic Resonance Fingerprinting to Characterize Childhood and Young Adult Brain Tumors.
+    Spatial Dependence of Stimulus Competition in the Avian Nucleus Isthmi Pars Magnocellularis.
+    Critique of Pure Marmoset.
 
 
 To further explore the data collected and available, and what can be accessed,
@@ -153,7 +153,7 @@ check out the documentation for the `Articles` object, and what attributes it co
 
 
 
-**Total running time of the script:** ( 0 minutes  5.174 seconds)
+**Total running time of the script:** ( 0 minutes  4.324 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_words.py:
