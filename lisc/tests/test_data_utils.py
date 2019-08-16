@@ -5,19 +5,21 @@ from lisc.data.utils import *
 ###################################################################################################
 ###################################################################################################
 
+def test_count_elements():
+
+    tdat = ['a', 'b', 'a', None]
+    out = count_elements(tdat)
+
+    assert out['a'] == 2
+    assert out['b'] == 1
+    assert None not in out
+
 def test_combine_lists():
 
     tdat = [['a', 'b'], None, ['c', 'd']]
     out = combine_lists(tdat)
 
     assert out == ['a', 'b', 'c', 'd']
-
-def test_count_elements():
-
-    tdat = ['a', 'b', 'a']
-    out = count_elements(tdat)
-
-    assert out == [(2, 'a'), (1, 'b')]
 
 def test_convert_string():
 

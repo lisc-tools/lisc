@@ -1,10 +1,43 @@
 """Utilities for data management and data object for LISC."""
 
+from collections import Counter
+
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 ###################################################################################################
 ###################################################################################################
+
+"""Helper functions to count data for LISC."""
+
+from collections import Counter
+
+###################################################################################################
+###################################################################################################
+
+def count_elements(data_lst):
+    """Count how often each element occurs in a list.
+
+    Parameters
+    ----------
+    data_lst : list
+        List of items to count.
+
+    Returns
+    -------
+    counts : collections.Counter
+        Counts for how often each item occurs in the input list.
+    """
+
+    counts = Counter(data_lst)
+
+    try:
+        counts.pop(None)
+    except KeyError:
+        pass
+
+    return counts
+
 
 def combine_lists(in_lst):
     """Combine list of lists into one large list.
@@ -31,26 +64,6 @@ def combine_lists(in_lst):
             out.extend(lower_list(el))
 
     return out
-
-
-def count_elements(data_lst):
-    """Count how often each element appears in a list.
-
-    Parameters
-    ----------
-    data_lst : list of str
-        List of items to count.
-
-    Returns
-    -------
-    counts : list of tuple of (count, item_label)
-        Counts for how often each item occurs in the input list.
-    """
-
-    counts = [(data_lst.count(element), element) for element in set(data_lst)]
-    counts.sort(reverse=True)
-
-    return counts
 
 
 def convert_string(text):
