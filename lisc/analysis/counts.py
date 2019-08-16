@@ -1,4 +1,4 @@
-"""Analysis functions for counts and co-occurence data."""
+"""Analysis functions for counts and co-occurrence data."""
 
 import numpy as np
 
@@ -6,12 +6,12 @@ import numpy as np
 ###################################################################################################
 
 def compute_normalization(data, counts, dim='A'):
-    """Compute a normalization of the co-occurence data.
+    """Compute a normalization of the co-occurrence data.
 
     Parameters
     ----------
     data : 2d array
-        Counts of co-occurence of terms.
+        Counts of co-occurrence of terms.
     counts : 1d array
         Counts for each individual search term.
     dim : {'A', 'B'}, optional
@@ -20,11 +20,11 @@ def compute_normalization(data, counts, dim='A'):
     Returns
     -------
     out : 2d array
-        The normalized co-occurence data.
+        The normalized co-occurrence data.
 
     Notes
     -----
-    - This computes a normalized data matrix as a percent of articles expressing co-occurence.
+    - This computes a normalized data matrix as a percent of articles expressing co-occurrence.
     """
 
     if dim == 'A':
@@ -50,19 +50,19 @@ def compute_normalization(data, counts, dim='A'):
 
 
 def compute_association_index(data, counts_a, counts_b):
-    """Compute the association index from the co-occurence data.
+    """Compute the association index from the co-occurrence data.
 
     Parameters
     ----------
     data : 2d array
-        Counts of co-occurence of terms.
+        Counts of co-occurrence of terms.
     counts_a, counts_b : 1d array
         Counts for each individual search term.
 
     Returns
     -------
     index : 2d array
-        The association score of the co-occurence data.
+        The association score of the co-occurrence data.
 
     Notes
     -----

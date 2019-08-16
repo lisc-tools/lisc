@@ -1,6 +1,6 @@
 """Helper functions to count data for LISC."""
 
-from lisc.data.utils import count_occurences
+from lisc.data.utils import count_elements
 
 ###################################################################################################
 ###################################################################################################
@@ -77,7 +77,7 @@ def count_authors(authors):
     names = [(author[0], author[2]) for authors in authors for author in authors]
 
     # Count how often each author published
-    counts = count_occurences(_fix_author_names(names))
+    counts = count_elements(_fix_author_names(names))
 
     return counts
 
@@ -107,8 +107,8 @@ def count_end_authors(authors):
     lasts = [auth[-1] for auth in authors if len(auth) > 1]
     l_names = [(author[0], author[2]) for author in lasts]
 
-    f_counts = count_occurences(_fix_author_names(f_names))
-    l_counts = count_occurences(_fix_author_names(l_names))
+    f_counts = count_elements(_fix_author_names(f_names))
+    l_counts = count_elements(_fix_author_names(l_names))
 
     return f_counts, l_counts
 

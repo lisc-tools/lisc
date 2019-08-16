@@ -12,10 +12,10 @@ def test_combine_lists():
 
     assert out == ['a', 'b', 'c', 'd']
 
-def test_count_occurences():
+def test_count_elements():
 
     tdat = ['a', 'b', 'a']
-    out = count_occurences(tdat)
+    out = count_elements(tdat)
 
     assert out == [(2, 'a'), (1, 'b')]
 

@@ -33,13 +33,13 @@ def combine_lists(in_lst):
     return out
 
 
-def count_occurences(data_lst):
-    """Count occurences of each item in a list.
+def count_elements(data_lst):
+    """Count how often each element appears in a list.
 
     Parameters
     ----------
     data_lst : list of str
-        List of items to count occurences of.
+        List of items to count.
 
     Returns
     -------

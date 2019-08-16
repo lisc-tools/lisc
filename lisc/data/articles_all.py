@@ -28,19 +28,19 @@ class ArticlesAll(BaseArticles):
     ids : list of int
         Article ids for all articles included in object.
     journals : list of tuple of (int, str)
-        Counts of occurences of journals.
+        Counts for each journal.
     authors : list of tuple of (int, (str, str))
-        Counts of occurences of authors.
+        Counts for each author.
     first_authors : list of tuple of (int, (str, str))
-        Counts of occurences of first authors.
+        Counts for each first author.
     last_authors : list of tuple of (int, (str, str))
-        Counts of occurences of last authors.
+        Counts for each last author.
     words : nltk.probability.FreqDist
         Frequency distribution of all words.
     keywords : nltk.probability.FreqDist
         Frequency distribution of all keywords.
     years : list of tuple of (int, int)
-        Counts of occurences of years of publication.
+        Counts for each year of publication.
     dois : list of str
         DOIs of each article included in object.
     summary : dict

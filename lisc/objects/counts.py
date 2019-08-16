@@ -1,4 +1,4 @@
-"""Class for collectiton and analyses of co-occurences data."""
+"""Class for collectiton and analyses of co-occurrences data."""
 
 import numpy as np
 
@@ -11,7 +11,7 @@ from lisc.analysis.counts import compute_normalization, compute_association_inde
 ###################################################################################################
 
 class Counts():
-    """A class for collecting and analyzing co-occurence data for specified terms list(s).
+    """A class for collecting and analyzing co-occurrence data for specified terms list(s).
 
     Attributes
     ----------
@@ -20,7 +20,7 @@ class Counts():
     counts : 2d array
         The numbers of articles found for each combination of terms.
     score : 2d array
-        A transformed 'score' of co-occurence data
+        A transformed 'score' of co-occurrence data
         This can be a normalized version of the data, and/or a computed association index.
     square : bool
         Whether the count data matrix is symmetrical.
@@ -83,7 +83,7 @@ class Counts():
 
     def run_collection(self, db='pubmed', field='TIAB', api_key=None,
                        logging=None, directory=None, verbose=False):
-        """Collect co-occurence data.
+        """Collect co-occurrence data.
 
         Parameters
         ----------
@@ -130,12 +130,12 @@ class Counts():
 
 
     def compute_score(self, score_type='association', dim='A'):
-        """Compute a score (index or normalization) of the co-occurence data.
+        """Compute a score (index or normalization) of the co-occurrence data.
 
         Parameters
         ----------
         score_type : {'association', 'normalize'}, optional
-            The type of score to apply to the co-occurence data.
+            The type of score to apply to the co-occurrence data.
         dim : {'A', 'B'}, optional
             Which dimension of counts to use.
             Only used if 'score' is 'normalize'.

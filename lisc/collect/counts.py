@@ -18,7 +18,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
                    terms_b=[], inclusions_b=[], exclusions_b=[],
                    db='pubmed', field='TIAB', api_key=None,
                    logging=None, directory=None, verbose=False):
-    """Collect word co-occurence data from EUtils.
+    """Collect word co-occurrence data from EUtils.
 
     Parameters
     ----------
@@ -97,7 +97,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     # Initialize right size matrices to store data
     data_numbers = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
 
-    # Set diagonal to zero if square (term co-occurence with itself)
+    # Set diagonal to zero if square (term co-occurrence with itself)
     if square:
         np.fill_diagonal(data_numbers, 0)
 
