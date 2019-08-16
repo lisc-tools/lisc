@@ -105,7 +105,7 @@ and exclusion words, is used as was introduced and described in the first tutori
 
  .. code-block:: none
 
-    [<lisc.data.articles.Articles object at 0x131ee1a20>, <lisc.data.articles.Articles object at 0x1328759b0>]
+    [<lisc.data.articles.Articles object at 0x13092c588>, <lisc.data.articles.Articles object at 0x130ed0c18>]
 
 
 LISC Data Objects
@@ -253,7 +253,7 @@ We will analyze our words data in the next tutorial, so for now lets save out th
 
 
 
-**Total running time of the script:** ( 0 minutes  13.565 seconds)
+**Total running time of the script:** ( 0 minutes  13.284 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_03-WordsCollection.py:
