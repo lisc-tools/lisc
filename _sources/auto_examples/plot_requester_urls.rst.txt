@@ -23,8 +23,8 @@ Note that to use the main LISC functionality, you don't have to deal with these
 objects directly, as they are used 'under the hood' by LISC functions for collecting
 data and interacting APIs without requiring user interaction.
 
-This example can be used if you want to explore custom data collections, and/or
-using LISC for other APIs.
+This example can be used if you want to explore custom data collections, and/or to
+use LISC for other APIs.
 
 
 
@@ -119,7 +119,7 @@ ensure requests respect API limits, as well as metadata collection, and URL logg
 
     Requester object is active:      True
     Number of requests sent:         3
-    Requester opened:                13:35:29 Thursday 15 August 2019
+    Requester opened:                23:30:08 Thursday 15 August 2019
     Requester closed:
 
 
@@ -140,7 +140,7 @@ ensure requests respect API limits, as well as metadata collection, and URL logg
 
  .. code-block:: none
 
-    {'is_active': True, 'n_requests': 3, 'wait_time': 0.5, 'start_time': '13:35:29 Thursday 15 August 2019', 'end_time': '', 'logging': None, 'log': None}
+    {'is_active': True, 'n_requests': 3, 'wait_time': 0.5, 'start_time': '23:30:08 Thursday 15 August 2019', 'end_time': '', 'logging': None, 'log': None}
 
 
 URLs Object
@@ -258,7 +258,7 @@ Supported APIs
 
 The URLs object can be used to create objects that support external APIs.
 
-LISC currently supports APIs for the
+LISC currently supports APIs for
 `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25500/>`_ and
 `OpenCitations <https://opencitations.net>`_.
 
@@ -287,12 +287,19 @@ These are implemented as custom objects built on top of the URLs object.
     eutils = EUtils()
 
     # Check what utilities are supported for the EUtils API
-    eutils.utils
+    print(eutils.utils)
 
 
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    {'info': 'einfo.fcgi', 'query': 'egquery.fcgi', 'search': 'esearch.fcgi', 'fetch': 'efetch.fcgi', 'base': 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils'}
 
 
 
@@ -303,12 +310,19 @@ These are implemented as custom objects built on top of the URLs object.
     citations = OpenCitations()
 
     # Check what utilities are supported for the OpenCitations API
-    citations.utils
+    print(citations.utils)
 
 
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    {'references': 'references', 'citations': 'citations', 'metadata': 'metadata', 'base': 'https://w3id.org/oc/index/coci/api/v1'}
 
 
 Adding New APIs
@@ -316,11 +330,11 @@ Adding New APIs
 
 If you are interested in extending LISC to interact with additional APIs, then
 you can use the `EUtils` and `OpenCitations` objects as examples, and build a
-new API object using the core from the `URLs` object.
+new API object by inheriting from and using the `URLs` object.
 
 
 
-**Total running time of the script:** ( 0 minutes  2.531 seconds)
+**Total running time of the script:** ( 0 minutes  2.825 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_requester_urls.py:

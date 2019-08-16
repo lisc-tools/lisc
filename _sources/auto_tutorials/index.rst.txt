@@ -36,7 +36,7 @@ Note that this tutorial is designed sequentially, so if you are running locally,
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Scraping term co-occurence data from scientific literature. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Collecting term co-occurrence data from scientific literature. ">
 
 .. only:: html
 
@@ -56,7 +56,7 @@ Note that this tutorial is designed sequentially, so if you are running locally,
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Analyzing scraped co-occurence data. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data. ">
 
 .. only:: html
 
@@ -76,7 +76,7 @@ Note that this tutorial is designed sequentially, so if you are running locally,
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Collecting literature data, extracting text and metadata for specified search terms. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Collecting literature data, including text and metadata for specified search terms. ">
 
 .. only:: html
 
@@ -116,7 +116,7 @@ Note that this tutorial is designed sequentially, so if you are running locally,
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Scraping citation data from OpenCitations. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Collecting citation data from OpenCitations. ">
 
 .. only:: html
 

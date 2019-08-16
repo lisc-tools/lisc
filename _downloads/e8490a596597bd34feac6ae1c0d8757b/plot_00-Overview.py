@@ -10,16 +10,13 @@ An overview of the LISC code organization and approach.
 # LISC Overview
 # -------------
 #
-# LISC, or 'Literature Scanner', is a module for collecting and analyzing data and
-# information from the scientific literature.
+# LISC - or 'Literature Scanner' - is a module for collecting and analyzing scientific literature.
 #
-# In this overview tutorial, we will first explore the main aspects of LISC, and
-# how it handles terms, data, files and requests.
+# LISC serves mainly as a wrapper around available application programmer interfaces (APIs)
+# that provide access to databases of scientific literature and related data.
 #
-# LISC serves as a wrapper around available application programmer interfaces (APIs)
-# for interacting with databases that store scientific literature and related data.
-#
-# In this first overview, we will explore how LISC's code structure.
+# In this overview tutorial, we will first explore the main aspects of LISC, such as
+# how it handles terms, data, files and requests, and the overall code structure.
 #
 
 ###################################################################################################
@@ -27,17 +24,19 @@ An overview of the LISC code organization and approach.
 # Available Analyses
 # ~~~~~~~~~~~~~~~~~~
 #
-# The functionality of LISC is dependent on the APIs that are supported.
+# The functionality of LISC comes from on the APIs that are supported.
 #
 # Currently supported external APIs include the NCBI EUtils, offering access to the Pubmed
 # database, and the OpenCitations API, offering access to citation data.
 #
+# The data collection and analysis approaches available through LISC include:
+#
 # EUtils:
-#   - Counts: collecting word co-occurence data, counting how often terms occur together.
-#   - Words: collecting text data and meta-data from papers.
+#   - Counts: collecting word co-occurrence data, counting how often terms occur together.
+#   - Words: collecting text data and meta-data from scientific articles.
 #
 # OpenCitations:
-#   - Cites: collecting citation data, counting the number of citations papers have
+#   - Citations: collecting citation data, counting the number of citations to and from articles.
 #
 
 ###################################################################################################
@@ -45,11 +44,10 @@ An overview of the LISC code organization and approach.
 # LISC Objects
 # ------------
 #
-# LISC is object oriented, meaning it offers and uses objects in order to handle
-# search terms, collected data, and API requests.
+# LISC is object oriented, meaning it uses objects to handle search terms and collect data.
 #
-# Here we will first explore the `Base` object, the underlying
-# object structure for any data collections using search terms.
+# Here we will first explore the `Base` object, the underlying object used for
+# data collections and analysis with EUtils.
 #
 # Note that you will not otherwise use the `Base` object directly, but that it is the
 # underlying object for the `Counts` and `Words` objects.
@@ -69,10 +67,11 @@ base = Base()
 # Search Terms
 # ------------
 #
-# For collecting papers and literature data, one first has to select search terms to
+# To collect scientific articles and associated data, we first need to use search terms to
 # find the literature of interest.
 #
-# Note that by default, all search terms as used as exact term matches.
+# By default, LISC uses all search terms as used as exact term matches, which is
+# indicated using double quotes, as "search term".
 #
 
 ###################################################################################################
@@ -110,23 +109,23 @@ base.check_terms()
 # For example, the set of search terms ['brain', 'cortex'] is interpreted as:
 # '("brain"OR"cortex")'.
 #
-# Note that being able to include synonyms is the reason each term entry is itself a list.
+# Being able to include synonyms is the reason each term entry is itself a list.
 #
 # Inclusion & Exclusion Words
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # Sometimes we might need to control the results that we get, by including inclusion
-# and exclusion words. Inclusions words are words that must also appear in the document
-# for a result to be returned. Exclusions words are words that must not be included in a
-# result in order for it to be returned.
+# and exclusion words.
 #
-# Inclusions words are combined with the 'AND' operator, meaning entries
+# Inclusions words are words that must also appear in the document for a result
+# to be returned. Inclusions words are combined with the 'AND' operator, meaning entries
 # will only be included if they also include these words.
 #
 # For example, the search terms ['brain', 'cortex'] with the inclusion word ['biology']
 # is interpreted as '("brain"OR"cortex")AND("biology")'.
 #
-# Exclusion words are combined with the 'NOT' operator, meaning entries
+# Exclusions words are words that must not be included in a result in order for it
+# to be returned. Exclusion words are combined with the 'NOT' operator, meaning entries
 # will be excluded if they include these terms.
 #
 # For example, the search terms ['brain', 'cortex'] with the exclusion word ['body']
@@ -135,8 +134,8 @@ base.check_terms()
 # Putting it all Together
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Synonyms, inclusion and exclusion words can all be used together. Note also that
-# you can also specific synonyms for inclusion and exclusion words.
+# Synonyms, inclusion and exclusion words can all be used together.
+# You can also specify synonyms for inclusion and exclusion words.
 #
 # For example, the following set of search term components:
 #
@@ -148,9 +147,10 @@ base.check_terms()
 #
 # - `'("gene"OR"genetic)AND("biology"OR"biochemistry")NOT("body"OR"corporeal)'`
 #
-# Note that inclusion and exclusion words are should be lists of the same
-# length as the number of search terms. Each inclusion and exclusion term
-# is used for the corresponding search term.
+# Inclusion and exclusion words should be lists of the same length as the
+# number of search terms. Each inclusion and exclusion term is used for the
+# corresponding search term, matched by index. If there are no inclusions / exclusions
+# for a given search term, leave it empty with an empty list.
 #
 # Now let's update our set of terms, to include some synonyms, inclusions and exclusions.
 #
@@ -183,24 +183,17 @@ base.check_terms()
 
 # Check inclusion & exclusion words
 base.check_terms('inclusions')
+print('\n')
 base.check_terms('exclusions')
-
-###################################################################################################
-#
-# Note that each inclusion / exclusion term is mapped to it's associated search term
-# based on it's index. Inclusion and exclusion word lists should also be the same length
-# as the set of search terms. If there are no inclusions / exclusions for a given search
-# term, leave it empty with an empty list.
-#
 
 ###################################################################################################
 #
 # Labels
 # ~~~~~~
 #
-# Since search terms with synonyms and exclusions are complex (have multiple parts), LISC
-# will also create 'labels' for each search term, where the label for each term is the
-# first item in each term list.
+# Since search terms with synonyms and exclusions are complex, in that they have multiple parts,
+# LISC also creates and uses 'labels' for each search term. The label for each term is the
+# first word from the search term list.
 #
 
 ###################################################################################################
@@ -213,8 +206,8 @@ base.labels
 # LISC Objects
 # ~~~~~~~~~~~~
 #
-# Though LISC offers an object-oriented approach, note that the core procedures available
-# for scraping and analyzing data are implemented as stand-alone functions.
+# Though LISC offers an object-oriented approach, all the core procedures used for
+# collecting and analyzing data are implemented and available as stand-alone functions.
 #
 # The objects serve primarily to help organize the data and support common analyses.
 #
@@ -231,8 +224,8 @@ base.labels
 # When collecting and analysing literature, there can be a lot of data, and therefore
 # a lot of files, to keep track of.
 #
-# For that reason, LISC offers a database structure. If you use this file structure,
-# LISC functions can automatically load and save files to an organized output structure.
+# LISC offers a database structure. If you use this file structure, LISC functions
+# can automatically load and save files to an organized output structure.
 #
 
 ###################################################################################################
@@ -242,8 +235,7 @@ from lisc.utils.db import SCDB, create_file_structure
 ###################################################################################################
 
 # Create a database file structure.
-#   Note that when called without a path argument input,
-#   the folder structure is made in the current directory.
+#   When called without a path input, the folder structure is made in the current directory.
 db = create_file_structure()
 
 ###################################################################################################

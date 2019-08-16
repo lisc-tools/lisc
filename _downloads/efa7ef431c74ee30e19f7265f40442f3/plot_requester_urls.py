@@ -17,8 +17,8 @@ Exploring LISC utilities for managing URLs and requests.
 # objects directly, as they are used 'under the hood' by LISC functions for collecting
 # data and interacting APIs without requiring user interaction.
 #
-# This example can be used if you want to explore custom data collections, and/or
-# using LISC for other APIs.
+# This example can be used if you want to explore custom data collections, and/or to
+# use LISC for other APIs.
 #
 
 ###################################################################################################
@@ -119,7 +119,7 @@ api_page.json()['AbstractSource']
 #
 # The URLs object can be used to create objects that support external APIs.
 #
-# LISC currently supports APIs for the
+# LISC currently supports APIs for
 # `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25500/>`_ and
 # `OpenCitations <https://opencitations.net>`_.
 #
@@ -137,7 +137,7 @@ from lisc.urls import EUtils, OpenCitations
 eutils = EUtils()
 
 # Check what utilities are supported for the EUtils API
-eutils.utils
+print(eutils.utils)
 
 ###################################################################################################
 
@@ -145,7 +145,7 @@ eutils.utils
 citations = OpenCitations()
 
 # Check what utilities are supported for the OpenCitations API
-citations.utils
+print(citations.utils)
 
 ###################################################################################################
 #
@@ -154,5 +154,5 @@ citations.utils
 #
 # If you are interested in extending LISC to interact with additional APIs, then
 # you can use the `EUtils` and `OpenCitations` objects as examples, and build a
-# new API object using the core from the `URLs` object.
+# new API object by inheriting from and using the `URLs` object.
 #

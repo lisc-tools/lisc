@@ -15,8 +15,9 @@ Collect article text data and metadata, using a function oriented approach.
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
 # The parameters for the `collect_words` function are the same as available and described
-# in the `Words` tutorial. Here we will briefly explore collecting data directly using
-# the function approach.
+# in the `Words` tutorial.
+#
+# Here we will briefly explore collecting data directly using the function approach.
 #
 
 ###################################################################################################
@@ -31,7 +32,7 @@ terms = [['brain'], ['body']]
 
 ###################################################################################################
 
-# Collect words data, setting the collection return data for at most 5 papers per term
+# Collect words data, setting the collection return data for at most 5 articles per term
 results, meta_data = collect_words(terms, retmax='5', usehistory=False,
                                save_and_clear=False, verbose=True)
 
@@ -41,18 +42,13 @@ results, meta_data = collect_words(terms, retmax='5', usehistory=False,
 meta_data['db_info']
 
 ###################################################################################################
-#
-# LISC uses custom `Data` objects to store collected article data.
-#
-
-###################################################################################################
 
 # The function returns a list of Articles objects
 print(results)
 
 ###################################################################################################
 
-# Each `Articles` object holds the data for the collected papers for a given term
+# Each `Articles` object holds the data for the collected articles for a given term
 res1 = results[0]
 
 ###################################################################################################

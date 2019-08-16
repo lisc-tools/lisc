@@ -97,8 +97,8 @@
 <p>The core function for collecting words data is the <cite>collect_words</cite> function.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
 <p>The parameters for the <cite>collect_words</cite> function are the same as available and described
-in the <cite>Words</cite> tutorial. Here we will briefly explore collecting data directly using
-the function approach.</p>
+in the <cite>Words</cite> tutorial.</p>
+<p>Here we will briefly explore collecting data directly using the function approach.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data</span>
 <span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_words</span>
 </pre></div>
@@ -107,7 +107,7 @@ the function approach.</p>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data, setting the collection return data for at most 5 papers per term</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data, setting the collection return data for at most 5 articles per term</span>
 <span class="n">results</span><span class="p">,</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                                <span class="n">save_and_clear</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -121,16 +121,15 @@ Collecting data for:  body
 <span class="n">meta_data</span><span class="p">[</span><span class="s1">&#39;db_info&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>LISC uses custom <cite>Data</cite> objects to store collected article data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function returns a list of Articles objects</span>
 <span class="k">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x1285c0d68&gt;, &lt;lisc.data.articles.Articles object at 0x12889e278&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x123ab1898&gt;, &lt;lisc.data.articles.Articles object at 0x123d3b2b0&gt;]
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each `Articles` object holds the data for the collected papers for a given term</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each `Articles` object holds the data for the collected articles for a given term</span>
 <span class="n">res1</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -151,7 +150,7 @@ A biohybrid fly-robot interface system that performs active collision avoidance.
 </div>
 <p>To further explore the data collected and available, and what can be accessed,
 check out the documentation for the <cite>Articles</cite> object, and what attributes it contains.</p>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  4.781 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  5.174 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/c51bf98dc93483a6be96a3aeaf61fd28/plot_functions_words.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_words.py</span></code></a></div>

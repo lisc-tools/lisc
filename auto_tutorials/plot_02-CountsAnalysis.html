@@ -91,7 +91,7 @@
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-02-counts-analysis">
 <span id="sphx-glr-auto-tutorials-plot-02-countsanalysis-py"></span><h1>Tutorial 02: Counts Analysis<a class="headerlink" href="#tutorial-02-counts-analysis" title="Permalink to this headline">¶</a></h1>
-<p>Analyzing scraped co-occurence data.</p>
+<p>Analyzing collected co-occurrence data.</p>
 <div class="section" id="counts-analyses">
 <h2>Counts Analyses<a class="headerlink" href="#counts-analyses" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial explores the built in utilities for exploring &amp; analyzing counts data.</p>
@@ -107,7 +107,7 @@
 </div>
 <p>The <cite>Counts</cite> object has some helper methods to explore the collected data.</p>
 <p>First lets check the number of counts per term list.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collect counts data for the first set of terms</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the first set of terms</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -118,7 +118,7 @@ For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;   
 For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         235
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collect counts data for the second set of terms</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the second set of terms</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -135,21 +135,20 @@ For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#3
 </div>
 <div class="section" id="normalization-scores">
 <h2>Normalization &amp; Scores<a class="headerlink" href="#normalization-scores" title="Permalink to this headline">¶</a></h2>
-<p>The Counts co-occurence data collection gives us a raw data matrix of the number of
-papers in with terms co-occur, as well as counts of the number of total papers using
-each term.</p>
-<p>Once we have this, we often will want to calculate either normalized co-occurence
-measures, and/or some kind of similarity score.</p>
-<p>To normalize the data, we can divide the co-occurence counts by the number of papers
-per term. This allows us the examine and analyze, for example, the proportions of papers
-that include particular co-occurence patterns.</p>
-<p>We can also calculate some kind of association index or score. For example, the
+<p>The Counts co-occurrence data collection gives us a raw data matrix of the number of
+articles in which terms co-occur, as well as the number of articles for each term independently.</p>
+<p>Once we have the co-occurence matrix, we typically want to calculate a
+normalized co-occurrence measure, and/or some other kind of similarity score.</p>
+<p>To normalize the data, we can divide the co-occurrence counts by the number of articles
+per term. This allows us the examine, for example, the proportion of articles
+that include particular co-occurrence patterns.</p>
+<p>We can also calculate an association index or score. For example, the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a> is a standard meassure
 for measuring the similarity of samples, and is also available to compute and use.</p>
-<p>When using the counts object, both of these measures are available, through the
-<cite>compute_score</cite> method. You can indicate which kind of score (normalization or association)
-index) as an input to the method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute a normalization of the co-occurence data</span>
+<p>With the counts object, both of these measures are available, using the
+<cite>compute_score</cite> method. You can indicate which kind of score - normalization or
+association index - as an input to the method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute a normalization of the co-occurrence data</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span><span class="p">(</span><span class="s1">&#39;normalize&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -168,13 +167,13 @@ index) as an input to the method.</p>
   0.00000000e+00 0.00000000e+00 1.72697368e-02]]
 </pre></div>
 </div>
-<p>The normalization is the number of papers with both terms, divided by the number of
-papers for each term alone. It can therefore be interpreted as a proportion of papers
+<p>The normalization is the number of articles with both terms, divided by the number of
+articles for each term alone. It can therefore be interpreted as a proportion of articles
 with term <cite>a</cite> that also have term <cite>b</cite>, or as <cite>a &amp; b / a</cite>.</p>
 <p>Note that when using two different terms lists, you have to choose which list of
 terms to normalize by. That is controlled by the ‘dim’ input.</p>
-<p>In this case, we have calculated the number normalized data as the proportion of
-papers for each anatomical term that include each perception term.</p>
+<p>In this case, we have calculated the normalized data as the proportion of
+articles for each anatomical term that include each perception term.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span><span class="p">(</span><span class="s1">&#39;association&#39;</span><span class="p">)</span>
 </pre></div>
@@ -196,15 +195,16 @@ papers for each anatomical term that include each perception term.</p>
 </div>
 <p>The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.</p>
 <p>One benefit of the Jaccard index is that you do not have to choose a terms list
-to normalize by - the calulated measure considers both terms lists.</p>
+to normalize by - the calculated measure considers both terms lists.</p>
 </div>
 <div class="section" id="plotting-and-clustering-for-counts-data">
 <h2>Plotting and Clustering for Counts Data<a class="headerlink" href="#plotting-and-clustering-for-counts-data" title="Permalink to this headline">¶</a></h2>
-<p>Co-occurence data is basically a matrix of numbers reflecting the relationship between terms.</p>
-<p>LISC provides some plot function to visualize the co-occurence data, as a matrix.</p>
+<p>Co-occurrence data is basically a matrix of numbers reflecting the relationship between terms.</p>
+<p>LISC provides some plot functions to visualize the co-occurrence data, as a matrix.</p>
 <p>In addition to plotting the data, we can also do clustering analysis and visualizations,
-that attempt to find structure in the data. LISC also offers some common clustering
-approaches to sort and visualize collected co-occurence data.</p>
+that attempt to find structure in the data.</p>
+<p>LISC also offers some common clustering approaches to sort and visualize
+collected co-occurrence data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a matrix of the association index data</span>
 <span class="n">plot_matrix</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
@@ -220,7 +220,7 @@ approaches to sort and visualize collected co-occurence data.</p>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" />
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.317 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.377 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-countsanalysis-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/cb6656da4871bef29722b69d00395250/plot_02-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-CountsAnalysis.py</span></code></a></div>

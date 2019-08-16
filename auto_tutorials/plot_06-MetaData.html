@@ -98,8 +98,9 @@
 </div>
 <div class="section" id="metadata">
 <h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
-<p>Whenever you collect data with LISC, there is some meta data on the
-API requests and databases collected.</p>
+<p>Whenever you collect data with LISC, some meta data is collected about the
+API requests and databases accessed.</p>
+<p>Here we will explore the metadata collected during our previous investigations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the counts object</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
@@ -107,7 +108,7 @@ API requests and databases collected.</p>
 </div>
 <div class="section" id="metadata-object">
 <h2>Metadata Object<a class="headerlink" href="#metadata-object" title="Permalink to this headline">¶</a></h2>
-<p>This collection information is collected into a custom MetaData object,</p>
+<p>Meta data information is collected into a custom MetaData object,</p>
 <p>If you are collecting data using the LISC object, such as the <cite>Counts</cite> or <cite>Words</cite>
 object, this collection information is attached and saved to the object, as the
 <cite>meta_data</cite> attribute.</p>
@@ -116,7 +117,7 @@ object, this collection information is attached and saved to the object, as the
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2019-08-15_13:35:41
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2019-08-15_23:30:21
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the information about the database from which data was collected</span>
@@ -132,9 +133,9 @@ object available.</p>
 <div class="section" id="requester-metadata">
 <h3>Requester MetaData<a class="headerlink" href="#requester-metadata" title="Permalink to this headline">¶</a></h3>
 <p>The collected meta data also includes information from the Requester object,
-which is used to launch URL requests</p>
-<p>The Requester object track information including when URL requests were
-launched and the number of requests that were made.</p>
+which is used to launch URL requests.</p>
+<p>The Requester object tracks information including when URL requests were
+launched and the number of requests made.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check meta data from the requester object</span>
 <span class="n">words</span><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">requester</span>
 </pre></div>
@@ -147,7 +148,7 @@ launched and the number of requests that were made.</p>
 <a class="reference external" href="https://lisc-tools.github.io/lisc/auto_tutorials/index.html">examples</a>
 page.</p>
 <p>If you have any further questions, or find any problems with the code,
-pleas get in touch through the Github
+please get in touch through the Github
 <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">issues</a>
 page.</p>
 <p><strong>Total running time of the script:</strong> ( 0 minutes  0.001 seconds)</p>

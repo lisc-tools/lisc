@@ -97,12 +97,11 @@
 </div>
 <div class="section" id="scdb-database-structure">
 <h2>SCDB Database Structure<a class="headerlink" href="#scdb-database-structure" title="Permalink to this headline">¶</a></h2>
-<p>LISC comes with and uses a custom directory structure.</p>
+<p>LISC comes with, and uses, a custom directory structure.</p>
 <p>If you want to store terms in files, place those files into a LISC database structure,
 and then relevant functions and objects will be able to load and use these terms.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure.</span>
-<span class="c1">#   Note that when called without a path argument input,</span>
-<span class="c1">#   the folder structure is made in the current directory.</span>
+<span class="c1">#   When called without a path input, the folder structure is created in the current directory.</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">create_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -111,7 +110,7 @@ and then relevant functions and objects will be able to load and use these terms
 <h2>Storing Terms in Text Files<a class="headerlink" href="#storing-terms-in-text-files" title="Permalink to this headline">¶</a></h2>
 <p>Here we will explore using files to store terms to use for LISC collections.</p>
 <p>The typical use case would be to curate and write text files manually.</p>
-<p>For demonstration here, we will first create an example text file of terms to use.</p>
+<p>For demonstration here, we will first programmatically create an example text file of terms to use.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms file</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;cortex&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;corporeal&#39;</span><span class="p">]]</span>
 
@@ -198,8 +197,8 @@ body     : body, corporeal
 <p>Exclusion and inclusions words should be stored in their own text files, also
 using one line per term, with comma-separated values for synonyms.</p>
 <p>Files that reflect the same set of terms, with a file for search terms, and optionally
-associated files for inclusion and exclusion terms should line up in the number of lines.
-That is, the <a href="#id1"><span class="problematic" id="id2">`</span></a>n`th line of each file should refer to the same term. If a given search
+associated files for inclusion and exclusion terms should line up on the number of lines.
+That is, the n-th line of each file should refer to the same term. If a given search
 term does not have an associated inclusion or exclusion term, leave that line blank.</p>
 <p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">

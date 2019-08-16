@@ -13,8 +13,10 @@ from lisc.utils.io import load_object
 # Metadata
 # --------
 #
-# Whenever you collect data with LISC, there is some meta data on the
-# API requests and databases collected.
+# Whenever you collect data with LISC, some meta data is collected about the
+# API requests and databases accessed.
+#
+# Here we will explore the metadata collected during our previous investigations.
 #
 
 ###################################################################################################
@@ -27,7 +29,7 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 # Metadata Object
 # ---------------
 #
-# This collection information is collected into a custom MetaData object,
+# Meta data information is collected into a custom MetaData object,
 #
 # If you are collecting data using the LISC object, such as the `Counts` or `Words`
 # object, this collection information is attached and saved to the object, as the
@@ -61,10 +63,10 @@ words = load_object('tutorial_words', SCDB('lisc_db'))
 # ~~~~~~~~~~~~~~~~~~
 #
 # The collected meta data also includes information from the Requester object,
-# which is used to launch URL requests
+# which is used to launch URL requests.
 #
-# The Requester object track information including when URL requests were
-# launched and the number of requests that were made.
+# The Requester object tracks information including when URL requests were
+# launched and the number of requests made.
 #
 
 ###################################################################################################
@@ -84,7 +86,7 @@ words.meta_data.requester
 # page.
 #
 # If you have any further questions, or find any problems with the code,
-# pleas get in touch through the Github
+# please get in touch through the Github
 # `issues <https://github.com/lisc-tools/lisc/issues>`_
 # page.
 #

@@ -99,8 +99,8 @@ APIs, as well as a custom object to manage requests.</p>
 <p>Note that to use the main LISC functionality, you don’t have to deal with these
 objects directly, as they are used ‘under the hood’ by LISC functions for collecting
 data and interacting APIs without requiring user interaction.</p>
-<p>This example can be used if you want to explore custom data collections, and/or
-using LISC for other APIs.</p>
+<p>This example can be used if you want to explore custom data collections, and/or to
+use LISC for other APIs.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the requester object</span>
 <span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <span class="n">Requester</span>
 </pre></div>
@@ -137,7 +137,7 @@ Collecting web page      https://duckduckgo.com/         got status code        
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Requester object is active:      True
 Number of requests sent:         3
-Requester opened:                13:35:29 Thursday 15 August 2019
+Requester opened:                23:30:08 Thursday 15 August 2019
 Requester closed:
 </pre></div>
 </div>
@@ -146,7 +146,7 @@ Requester closed:
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;13:35:29 Thursday 15 August 2019&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;23:30:08 Thursday 15 August 2019&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
 </pre></div>
 </div>
 </div>
@@ -198,7 +198,7 @@ the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> A
 <div class="section" id="supported-apis">
 <h3>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h3>
 <p>The URLs object can be used to create objects that support external APIs.</p>
-<p>LISC currently supports APIs for the
+<p>LISC currently supports APIs for
 <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">EUtils</a> and
 <a class="reference external" href="https://opencitations.net">OpenCitations</a>.</p>
 <p>These are implemented as custom objects built on top of the URLs object.</p>
@@ -210,14 +210,22 @@ the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> A
 <span class="n">eutils</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">()</span>
 
 <span class="c1"># Check what utilities are supported for the EUtils API</span>
-<span class="n">eutils</span><span class="o">.</span><span class="n">utils</span>
+<span class="k">print</span><span class="p">(</span><span class="n">eutils</span><span class="o">.</span><span class="n">utils</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;info&#39;: &#39;einfo.fcgi&#39;, &#39;query&#39;: &#39;egquery.fcgi&#39;, &#39;search&#39;: &#39;esearch.fcgi&#39;, &#39;fetch&#39;: &#39;efetch.fcgi&#39;, &#39;base&#39;: &#39;http://eutils.ncbi.nlm.nih.gov/entrez/eutils&#39;}
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an object for the OpenCitations API</span>
 <span class="n">citations</span> <span class="o">=</span> <span class="n">OpenCitations</span><span class="p">()</span>
 
 <span class="c1"># Check what utilities are supported for the OpenCitations API</span>
-<span class="n">citations</span><span class="o">.</span><span class="n">utils</span>
+<span class="k">print</span><span class="p">(</span><span class="n">citations</span><span class="o">.</span><span class="n">utils</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;references&#39;: &#39;references&#39;, &#39;citations&#39;: &#39;citations&#39;, &#39;metadata&#39;: &#39;metadata&#39;, &#39;base&#39;: &#39;https://w3id.org/oc/index/coci/api/v1&#39;}
 </pre></div>
 </div>
 </div>
@@ -225,8 +233,8 @@ the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> A
 <h3>Adding New APIs<a class="headerlink" href="#adding-new-apis" title="Permalink to this headline">¶</a></h3>
 <p>If you are interested in extending LISC to interact with additional APIs, then
 you can use the <cite>EUtils</cite> and <cite>OpenCitations</cite> objects as examples, and build a
-new API object using the core from the <cite>URLs</cite> object.</p>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  2.531 seconds)</p>
+new API object by inheriting from and using the <cite>URLs</cite> object.</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  2.825 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-requester-urls-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/efa7ef431c74ee30e19f7265f40442f3/plot_requester_urls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_requester_urls.py</span></code></a></div>

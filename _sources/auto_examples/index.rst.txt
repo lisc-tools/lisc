@@ -34,7 +34,7 @@ These are a set of stand alone examples exploring different functionality in LIS
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurence data, using the underlying functions from LISC. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurrence data, using the underlying functions from LISC. ">
 
 .. only:: html
 

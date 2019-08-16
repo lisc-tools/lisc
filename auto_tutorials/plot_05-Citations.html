@@ -91,20 +91,20 @@
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-05-collecting-citation-data">
 <span id="sphx-glr-auto-tutorials-plot-05-citations-py"></span><h1>Tutorial 05: Collecting Citation Data<a class="headerlink" href="#tutorial-05-collecting-citation-data" title="Permalink to this headline">¶</a></h1>
-<p>Scraping citation data from OpenCitations.</p>
+<p>Collecting citation data from OpenCitations.</p>
 <div class="section" id="references-citations">
 <h2>References &amp; Citations<a class="headerlink" href="#references-citations" title="Permalink to this headline">¶</a></h2>
-<p>Another feature of interest about the scientific literature are references and citations.</p>
-<p>That is, which papers are cited by a particular paper, and how many citations a paper
-receives can be a useful measure for investigate the the propogation of ideas.</p>
+<p>Other features of interest about scientific literature are references and citations.</p>
+<p>Which articles are cited by a particular article, and how many citations an article
+receives can be a useful measure to investigate the literature, and explore
+the propogation of ideas.</p>
 <p>Unfortunately, citation data has historically been hard to access and investigate, due to
 the lack of available databases and APIs that provide access to such information.</p>
 <div class="section" id="opencitations-project">
 <h3>OpenCitations Project<a class="headerlink" href="#opencitations-project" title="Permalink to this headline">¶</a></h3>
-<p>Recently, Citation data has become more available with the <a class="reference external" href="https://opencitations.net">OpenCitations</a>
-project, which is an initiative to support and provid open bibliographic and citation data.</p>
-<p>The OpenCitations project maintains a database of citation data, and provides an API
-for programmatic access to this database.</p>
+<p>Recently, citation data has become more available with the <a class="reference external" href="https://opencitations.net">OpenCitations</a>
+project, which is an initiative to support and provide open bibliographic and citation data.</p>
+<p>The OpenCitations project maintains a database of citation data, and provides an API.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_citations</span>
 </pre></div>
 </div>
@@ -113,11 +113,11 @@ for programmatic access to this database.</p>
 <div class="section" id="opencitations-api">
 <h2>OpenCitations API<a class="headerlink" href="#opencitations-api" title="Permalink to this headline">¶</a></h2>
 <p>The OpenCitations <a class="reference external" href="https://opencitations.net/index/coci/api/v1">API</a> offers multiple
-utilities, to collect citation and reference data.</p>
-<p>Papers of interest are specified to the OpenCitations API using
-<a class="reference external" href="https://en.wikipedia.org/wiki/Digital_object_identifier">DOIs.</a></p>
-<p>Current LISC implementations support collecting the number of citations and references
-for papers, specified by their DOIs.</p>
+utilities to collect citation and reference data.</p>
+<p>Articles of interest are specified to the OpenCitations API using
+<a class="reference external" href="https://en.wikipedia.org/wiki/Digital_object_identifier">DOIs</a>.</p>
+<p>Currently, LISC supports collecting the number of citations and references
+for articles from OpenCitations, whereby articles are specified by their DOIs.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a list of DOIs to collect data for</span>
 <span class="n">dois</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.1007/s00228-017-2226-2&#39;</span><span class="p">,</span> <span class="s1">&#39;10.1186/1756-8722-6-59&#39;</span><span class="p">]</span>
 </pre></div>
@@ -125,7 +125,7 @@ for papers, specified by their DOIs.</p>
 </div>
 <div class="section" id="citation-data">
 <h2>Citation Data<a class="headerlink" href="#citation-data" title="Permalink to this headline">¶</a></h2>
-<p>Citations here refer to the papers that are cited by a particular paper.</p>
+<p>Citations refers to articles that are cited by a specified article.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect citation data</span>
 <span class="n">citations</span><span class="p">,</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_citations</span><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;citations&#39;</span><span class="p">)</span>
 </pre></div>
@@ -143,7 +143,7 @@ for papers, specified by their DOIs.</p>
 </div>
 <div class="section" id="reference-data">
 <h2>Reference Data<a class="headerlink" href="#reference-data" title="Permalink to this headline">¶</a></h2>
-<p>References here refer to papers that are cited by a specified paper.</p>
+<p>References refers to articles that are cited by a specified article.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect reference data</span>
 <span class="n">references</span><span class="p">,</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_citations</span><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;references&#39;</span><span class="p">)</span>
 </pre></div>
@@ -164,11 +164,11 @@ for papers, specified by their DOIs.</p>
 <p>Currently the ‘collect’ functions available in LISC support collecting counts of
 references and citations.</p>
 <p>The OpenCitations API tools do provide more information, including meta-data on individual
-papers that are cited and included in references.</p>
+articles that are cited and included in references.</p>
 <p>LISC is also very open to contributions. If you are interested in developing
 more LISC integration to help collect and analyze more citation related data,
 feel free to get involved with the project on <a class="reference external" href="https://github.com/lisc-tools/lisc">Github</a>.</p>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  4.422 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  4.751 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-05-citations-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/b09af02f942829cbf80bceebd0a23c54/plot_05-Citations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_05-Citations.py</span></code></a></div>

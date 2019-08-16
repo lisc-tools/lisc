@@ -91,10 +91,11 @@
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-01-counts-collection">
 <span id="sphx-glr-auto-tutorials-plot-01-countscollection-py"></span><h1>Tutorial 01: Counts Collection<a class="headerlink" href="#tutorial-01-counts-collection" title="Permalink to this headline">¶</a></h1>
-<p>Scraping term co-occurence data from scientific literature.</p>
-<div class="section" id="term-co-occurence">
-<h2>Term Co-Occurence<a class="headerlink" href="#term-co-occurence" title="Permalink to this headline">¶</a></h2>
-<p>Term co-occurence searches the literature, and checks how often terms of interest appear together.</p>
+<p>Collecting term co-occurrence data from scientific literature.</p>
+<div class="section" id="term-co-occurrence">
+<h2>Term Co-occurrence<a class="headerlink" href="#term-co-occurrence" title="Permalink to this headline">¶</a></h2>
+<p>The ‘Counts’ approach, or term co-occurrence searches the literature for
+how often terms of interest appear together.</p>
 <p>This type of analysis can be used to infer associations and relationships between terms.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Counts</span>
 <span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
@@ -104,23 +105,23 @@
 </div>
 <div class="section" id="counts-object">
 <h2>Counts Object<a class="headerlink" href="#counts-object" title="Permalink to this headline">¶</a></h2>
-<p>The ‘Counts’ object is used to handle term co-occurence analyses.</p>
+<p>The ‘Counts’ object is used to handle term co-occurrence analyses.</p>
 <div class="section" id="counts-single-list-of-terms">
 <h3>Counts: Single List of Terms<a class="headerlink" href="#counts-single-list-of-terms" title="Permalink to this headline">¶</a></h3>
 <p>For the first example of running a counts analysis, we will use a single list of terms.</p>
-<p>When a single list of terms is provided, the word co-occurence is collected as the
-co-occurence of each term with every other term in the list.</p>
+<p>When a single list of terms is provided, the word co-occurrence is collected as the
+co-occurrence of each term with every other term in the list.</p>
 <p>Let’s start with an example using different parts of the brain, and examine
 how often these brain regions are talked about together.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms to search for</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
 
-<span class="c1"># Initialize counts object &amp; add the terms that we want to scrape</span>
+<span class="c1"># Initialize counts object &amp; add the terms that we want to collect co-occurrences for</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">Counts</span><span class="p">()</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -132,7 +133,7 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <p>We have now collected some literature data!</p>
-<p>The Counts object will now contain count data for the word coocurence data between terms.</p>
+<p>The Counts object will now contain count data for the word co-occurrence data between terms.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the raw count data</span>
 <span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
 </pre></div>
@@ -145,7 +146,7 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <p>The Counts object also comes with some helper methods to explore the data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many papers were found for each search term</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many articles were found for each search term</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">check_counts</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -157,7 +158,7 @@ Running counts for:  occipital lobe
   &#39;occipital lobe&#39;   -    3648
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the top term</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">check_top</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -171,7 +172,7 @@ Running counts for:  occipital lobe
 <p>In the first example above, we provided a single list of terms.</p>
 <p>Now let’s explore using two different sets of terms.</p>
 <p>In this example, we will keep our list of brain regions, and explore how they
-might be related to different sensory systems.</p>
+relate to different sensory systems.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some new terms</span>
 <span class="n">terms_a</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
 <span class="n">terms_b</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;vision&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;audition&#39;</span><span class="p">,</span> <span class="s1">&#39;auditory&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;somatosensory&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;olfaction&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span><span class="p">],</span>
@@ -188,7 +189,7 @@ might be related to different sensory systems.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading previous terms words.
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurence data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -199,7 +200,7 @@ might be related to different sensory systems.</p>
 <span class="n">save_object</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  5.097 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 1 minutes  5.972 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-countscollection-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/83308ac02557408bfb75ec818c73ec3c/plot_01-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-CountsCollection.py</span></code></a></div>

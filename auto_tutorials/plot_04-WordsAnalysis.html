@@ -94,7 +94,7 @@
 <p>Analyzing collected text data and metadata.</p>
 <div class="section" id="words-analyses">
 <h2>Words Analyses<a class="headerlink" href="#words-analyses" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial covers exploring &amp; anayzing words data.</p>
+<p>This tutorial covers exploring &amp; analyzing words data.</p>
 <p>For this tutorial, we will reload and use the <cite>Words</cite> data that we collected
 in the last tutorial.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Articles</span><span class="p">,</span> <span class="n">ArticlesAll</span>
@@ -104,11 +104,11 @@ in the last tutorial.</p>
 <span class="kn">from</span> <span class="nn">lisc.plts.words</span> <span class="kn">import</span> <span class="n">plot_wordcloud</span>
 </pre></div>
 </div>
-<div class="section" id="data-objects">
-<h3>Data Objects<a class="headerlink" href="#data-objects" title="Permalink to this headline">¶</a></h3>
-<p>LISC uses a custom object to store and organize collected words data.</p>
+<div class="section" id="articles-object">
+<h3>Articles Object<a class="headerlink" href="#articles-object" title="Permalink to this headline">¶</a></h3>
+<p>LISC uses a custom objects to store and organize collected words data.</p>
 <p>These objects are used internally in the <cite>Words</cite> objects.</p>
-<p>If th data collection was set to save out data as it was collected, then these Data
+<p>If the data collection was set to save out data as it was collected, then ‘Articles’
 objects can be loaded individually, using the label of the search term.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up database object</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
@@ -120,12 +120,13 @@ objects can be loaded individually, using the label of the search term.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="dataall-object">
-<h3>DataAll Object<a class="headerlink" href="#dataall-object" title="Permalink to this headline">¶</a></h3>
-<p>There is also the <cite>DataAll</cite> object, which is variant which can be used to
+<div class="section" id="articlesall-object">
+<h3>ArticlesAll Object<a class="headerlink" href="#articlesall-object" title="Permalink to this headline">¶</a></h3>
+<p>There is also the <cite>ArticlesAll</cite> object, which is variant which can be used to
 aggregate collected data across all articles collected for a given search term.</p>
-<p>The DataAll also have methods to create and check summaries created from the aggregate data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collapse data across papers</span>
+<p>The ArticlesAll object also has methods to create and check summaries
+created from the aggregate data, across all articles for a given search term.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collapse data across articles</span>
 <span class="n">arts_all</span> <span class="o">=</span> <span class="n">ArticlesAll</span><span class="p">(</span><span class="n">arts</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -149,7 +150,7 @@ aggregate collected data across all articles collected for a given search term.<
 <h3>Words Object<a class="headerlink" href="#words-object" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>Words</cite> object can also be used to reload and analyze collected data.</p>
 <p>The <cite>results</cite> attribute of the <cite>Words</cite> object, when loaded, contains a list of
-Data objects, one for each term.</p>
+Articles objects, one for each term.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the words object</span>
 <span class="n">words</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
@@ -172,17 +173,17 @@ Data objects, one for each term.</p>
 </div>
 <div class="section" id="exploring-words-data">
 <h2>Exploring Words Data<a class="headerlink" href="#exploring-words-data" title="Permalink to this headline">¶</a></h2>
-<p>The words object also has a couple convenience methods for exploring the data.</p>
+<p>The Words object also has some methods for exploring the data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indexing with labels</span>
 <span class="k">print</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x134152eb8&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x12f62ab00&gt;
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through papers found from a particular search term</span>
-<span class="c1">#  The iteration returns a dictionary with all the paper data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through articles found from a particular search term</span>
+<span class="c1">#  The iteration returns a dictionary with all the article data</span>
 <span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">]:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">art</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
 </pre></div>
@@ -205,7 +206,20 @@ Visualizing modules of coordinated structural brain atrophy during the course of
 Implicit guidance of attention in contextual cueing: Neuropsychological and developmental evidence.
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  2.230 seconds)</p>
+<div class="section" id="analyzing-words-data">
+<h3>Analyzing Words Data<a class="headerlink" href="#analyzing-words-data" title="Permalink to this headline">¶</a></h3>
+<p>Further analysis is mostly determined by what one wants to do with the collected data.</p>
+<p>Words data can be used to, for example, build profiles for search terms, based
+on distributions of words in related articles. This could include methods from
+natural language processing such as vector embeddings, measuring similarities and
+differences between terms.</p>
+<p>Other analyses could explore historical patterns in the literature exploring, for
+exploring the history of when certain topics were written about, and in what
+journals, by which authors.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  2.768 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/1ce65694381d2739d70267357f7a6fc8/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></div>
@@ -213,6 +227,7 @@ Implicit guidance of attention in contextual cueing: Neuropsychological and deve
 <a class="reference download internal" download="" href="../_downloads/74a42ab9fa45d8917bb42cbd44564c97/plot_04-WordsAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-WordsAnalysis.ipynb</span></code></a></div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
 </div>
 </div>
 

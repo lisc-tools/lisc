@@ -10,7 +10,7 @@ Analyzing collected text data and metadata.
 # Words Analyses
 # --------------
 #
-# This tutorial covers exploring & anayzing words data.
+# This tutorial covers exploring & analyzing words data.
 #
 # For this tutorial, we will reload and use the `Words` data that we collected
 # in the last tutorial.
@@ -26,14 +26,14 @@ from lisc.plts.words import plot_wordcloud
 
 ###################################################################################################
 #
-# Data Objects
-# ~~~~~~~~~~~~
+# Articles Object
+# ~~~~~~~~~~~~~~~
 #
-# LISC uses a custom object to store and organize collected words data.
+# LISC uses a custom objects to store and organize collected words data.
 #
 # These objects are used internally in the `Words` objects.
 #
-# If th data collection was set to save out data as it was collected, then these Data
+# If the data collection was set to save out data as it was collected, then 'Articles'
 # objects can be loaded individually, using the label of the search term.
 #
 
@@ -49,18 +49,19 @@ arts.load(db)
 
 ###################################################################################################
 #
-# DataAll Object
-# ~~~~~~~~~~~~~~
+# ArticlesAll Object
+# ~~~~~~~~~~~~~~~~~~
 #
-# There is also the `DataAll` object, which is variant which can be used to
+# There is also the `ArticlesAll` object, which is variant which can be used to
 # aggregate collected data across all articles collected for a given search term.
 #
-# The DataAll also have methods to create and check summaries created from the aggregate data.
+# The ArticlesAll object also has methods to create and check summaries
+# created from the aggregate data, across all articles for a given search term.
 #
 
 ###################################################################################################
 
-# Collapse data across papers
+# Collapse data across articles
 arts_all = ArticlesAll(arts)
 
 ###################################################################################################
@@ -77,7 +78,7 @@ arts_all.print_summary()
 # The `Words` object can also be used to reload and analyze collected data.
 #
 # The `results` attribute of the `Words` object, when loaded, contains a list of
-# Data objects, one for each term.
+# Articles objects, one for each term.
 #
 
 ###################################################################################################
@@ -106,7 +107,7 @@ plot_wordcloud(all_articles[0].words, 25)
 # Exploring Words Data
 # --------------------
 #
-# The words object also has a couple convenience methods for exploring the data.
+# The Words object also has some methods for exploring the data.
 #
 
 ###################################################################################################
@@ -116,7 +117,24 @@ print(words['frontal lobe'])
 
 ###################################################################################################
 
-# Iterating through papers found from a particular search term
-#  The iteration returns a dictionary with all the paper data
+# Iterating through articles found from a particular search term
+#  The iteration returns a dictionary with all the article data
 for art in words['temporal lobe']:
     print(art['title'])
+
+###################################################################################################
+#
+# Analyzing Words Data
+# ~~~~~~~~~~~~~~~~~~~~
+#
+# Further analysis is mostly determined by what one wants to do with the collected data.
+#
+# Words data can be used to, for example, build profiles for search terms, based
+# on distributions of words in related articles. This could include methods from
+# natural language processing such as vector embeddings, measuring similarities and
+# differences between terms.
+#
+# Other analyses could explore historical patterns in the literature exploring, for
+# exploring the history of when certain topics were written about, and in what
+# journals, by which authors.
+#
