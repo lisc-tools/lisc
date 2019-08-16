@@ -28,13 +28,15 @@ database of literature within the bio-medical sciences, holds more than 30 milli
 and continues to grow each year. Given the scale of the literature, work across informatics, information sciences, and
 bibliometrics has explored automated methods for the curation of and inference from the existing literature. This
 work is sometimes referred to as knowledge discovery, literature based discovery,
-or hypothesis generation (@stegmann_hypothesis_2003; @voytek_automated_2012; @spangler_automated_2014).
+or hypothesis generation [@stegmann_hypothesis_2003; @voytek_automated_2012; @spangler_automated_2014].
 
 Here we introduce 'Literature Scanner', or 'LISC', an open-source Python module
 for performing automated meta-analyses of scientific articles, by collecting and analyzing
 data from the scientific literature. LISC seeks to provide an easily accessible interface that
 connects to the APIs from available databases, such as the Pubmed database, to collect literature data
-of interest. LISC also includes support and utilities for analyzing the collected literature data.
+of interest. LISC also provides access to the OpenCitations database [@heibi_coci_2019], and provides
+an extendable approach that can be used to integrate additional APIs. LISC also includes support and
+utilities for analyzing the collected literature data.
 
 For data collection, LISC currently offers the following types of literature data collection:
 - Counts: tools to collect and analyze data on the co-occurence of specified search terms
@@ -58,8 +60,8 @@ individual scientists to be able to keep up with. Common methods for literature 
 including meta-analyses and systematic reviews require time-demanding manual work, and are often
 limited in scope and lag behind the literature. As a way to complement such approaches, multiple
 lines of investigation have shown how automated analyses of scientific literature can be applied
-to summarize and make inference from the existing literature (@stegmann_hypothesis_2003;
-@voytek_automated_2012; @spangler_automated_2014).
+to summarize and make inference from the existing literature [@stegmann_hypothesis_2003;
+@voytek_automated_2012; @spangler_automated_2014].
 
 Despite these established methods for analyzing the continuously growing literature, there is
 currently a relative lack of openly available tools to collect and analyze scientific literature.
@@ -70,7 +72,7 @@ for and collect literature of interest and apply analyses of interest to it.
 
 LISC aims to serve as a complement to other relevant tools, for example Moliere,
 a more sophisticated and also more computationally complex tool for hypothesis
-generation (@sybrandt_moliere_2017), or Meta, a recently developed service for probing
+generation [@sybrandt_moliere_2017], or Meta, a recently developed service for probing
 a pre-built knowledge network inferred from the literature
 (https://chanzuckerberg.com/science/programs-resources/meta/).
 LISC, in contrast to these more complex systems, aims to offer a lightweight and customizable
