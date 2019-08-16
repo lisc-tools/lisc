@@ -116,8 +116,8 @@ class ArticlesAll(BaseArticles):
         self.summary['n_articles'] = str(self.n_articles)
         self.summary['top_author_name'] = ' '.join(self.authors.most_common()[0][0])
         self.summary['top_author_count'] = str(self.authors.most_common()[0][1])
-        self.summary['top_journal_name'] = self.journals.most_common()[0][1]
-        self.summary['top_journal_count'] = str(self.journals.most_common()[0][0])
+        self.summary['top_journal_name'] = self.journals.most_common()[0][0]
+        self.summary['top_journal_count'] = str(self.journals.most_common()[0][1])
         self.summary['top_keywords'] = [freq[0] for freq in self.keywords.most_common()[0:5]]
         self.summary['first_publication'] = str(min(self.years.keys()))
 
