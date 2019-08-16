@@ -2,15 +2,16 @@
 Tutorial 01: Counts Collection
 ==============================
 
-Scraping term co-occurence data from scientific literature.
+Collecting term co-occurrence data from scientific literature.
 """
 
 ###################################################################################################
 #
-# Term Co-Occurence
+# Term Co-occurrence
 # -----------------
 #
-# Term co-occurence searches the literature, and checks how often terms of interest appear together.
+# The 'Counts' approach, or term co-occurrence searches the literature for
+# how often terms of interest appear together.
 #
 # This type of analysis can be used to infer associations and relationships between terms.
 #
@@ -26,7 +27,7 @@ from lisc.utils.io import save_object
 # Counts Object
 # -------------
 #
-# The 'Counts' object is used to handle term co-occurence analyses.
+# The 'Counts' object is used to handle term co-occurrence analyses.
 #
 
 ###################################################################################################
@@ -36,8 +37,8 @@ from lisc.utils.io import save_object
 #
 # For the first example of running a counts analysis, we will use a single list of terms.
 #
-# When a single list of terms is provided, the word co-occurence is collected as the
-# co-occurence of each term with every other term in the list.
+# When a single list of terms is provided, the word co-occurrence is collected as the
+# co-occurrence of each term with every other term in the list.
 #
 # Let's start with an example using different parts of the brain, and examine
 # how often these brain regions are talked about together.
@@ -48,20 +49,20 @@ from lisc.utils.io import save_object
 # Set up some terms to search for
 terms = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lobe']]
 
-# Initialize counts object & add the terms that we want to scrape
+# Initialize counts object & add the terms that we want to collect co-occurrences for
 counts = Counts()
 counts.add_terms(terms)
 
 ###################################################################################################
 
-# Collect data
+# Collect co-occurrence data
 counts.run_collection(verbose=True)
 
 ###################################################################################################
 #
 # We have now collected some literature data!
 #
-# The Counts object will now contain count data for the word coocurence data between terms.
+# The Counts object will now contain count data for the word co-occurrence data between terms.
 #
 
 ###################################################################################################
@@ -76,12 +77,12 @@ print(counts.counts)
 
 ###################################################################################################
 
-# Check how many papers were found for each search term
+# Check how many articles were found for each search term
 counts.check_counts()
 
 ###################################################################################################
 
-# Check the top term
+# Check the most studied term
 counts.check_top()
 
 ###################################################################################################
@@ -94,7 +95,7 @@ counts.check_top()
 # Now let's explore using two different sets of terms.
 #
 # In this example, we will keep our list of brain regions, and explore how they
-# might be related to different sensory systems.
+# relate to different sensory systems.
 #
 
 ###################################################################################################
@@ -113,7 +114,7 @@ counts.add_terms(terms_b, dim='B')
 
 ###################################################################################################
 
-# Collect co-occurence data
+# Collect co-occurrence data
 counts.run_collection()
 
 ###################################################################################################

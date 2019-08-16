@@ -2,7 +2,7 @@
 Tutorial 05: Collecting Citation Data
 =====================================
 
-Scraping citation data from OpenCitations.
+Collecting citation data from OpenCitations.
 """
 
 ###################################################################################################
@@ -10,10 +10,11 @@ Scraping citation data from OpenCitations.
 # References & Citations
 # ----------------------
 #
-# Another feature of interest about the scientific literature are references and citations.
+# Other features of interest about scientific literature are references and citations.
 #
-# That is, which papers are cited by a particular paper, and how many citations a paper
-# receives can be a useful measure for investigate the the propogation of ideas.
+# Which articles are cited by a particular article, and how many citations an article
+# receives can be a useful measure to investigate the literature, and explore
+# the propogation of ideas.
 #
 # Unfortunately, citation data has historically been hard to access and investigate, due to
 # the lack of available databases and APIs that provide access to such information.
@@ -21,11 +22,10 @@ Scraping citation data from OpenCitations.
 # OpenCitations Project
 # ~~~~~~~~~~~~~~~~~~~~~
 #
-# Recently, Citation data has become more available with the `OpenCitations <https://opencitations.net>`_
-# project, which is an initiative to support and provid open bibliographic and citation data.
+# Recently, citation data has become more available with the `OpenCitations <https://opencitations.net>`_
+# project, which is an initiative to support and provide open bibliographic and citation data.
 #
-# The OpenCitations project maintains a database of citation data, and provides an API
-# for programmatic access to this database.
+# The OpenCitations project maintains a database of citation data, and provides an API.
 #
 
 ###################################################################################################
@@ -38,13 +38,13 @@ from lisc.collect import collect_citations
 # -----------------
 #
 # The OpenCitations `API <https://opencitations.net/index/coci/api/v1>`_ offers multiple
-# utilities, to collect citation and reference data.
+# utilities to collect citation and reference data.
 #
-# Papers of interest are specified to the OpenCitations API using
-# `DOIs. <https://en.wikipedia.org/wiki/Digital_object_identifier>`_
+# Articles of interest are specified to the OpenCitations API using
+# `DOIs <https://en.wikipedia.org/wiki/Digital_object_identifier>`_.
 #
-# Current LISC implementations support collecting the number of citations and references
-# for papers, specified by their DOIs.
+# Currently, LISC supports collecting the number of citations and references
+# for articles from OpenCitations, whereby articles are specified by their DOIs.
 #
 
 ###################################################################################################
@@ -57,7 +57,7 @@ dois = ['10.1007/s00228-017-2226-2', '10.1186/1756-8722-6-59']
 # Citation Data
 # -------------
 #
-# Citations here refer to the papers that are cited by a particular paper.
+# Citations refers to articles that are cited by a specified article.
 #
 
 ###################################################################################################
@@ -76,7 +76,7 @@ for doi, n_cites in citations.items():
 # Reference Data
 # --------------
 #
-# References here refer to papers that are cited by a specified paper.
+# References refers to articles that are cited by a specified article.
 #
 
 ###################################################################################################
@@ -99,7 +99,7 @@ for doi, n_refs in references.items():
 # references and citations.
 #
 # The OpenCitations API tools do provide more information, including meta-data on individual
-# papers that are cited and included in references.
+# articles that are cited and included in references.
 #
 # LISC is also very open to contributions. If you are interested in developing
 # more LISC integration to help collect and analyze more citation related data,
