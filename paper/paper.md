@@ -1,5 +1,5 @@
 ---
-title: 'LISC: A Python Package for Scientific Literature Scraping and Analysis'
+title: 'LISC: A Python Package for Scientific Literature Collection and Analysis'
 tags:
   - python
   - literature analysis
