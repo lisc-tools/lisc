@@ -26,8 +26,7 @@ copyright = '2018, Thomas Donoghue'
 author = 'Thomas Donoghue'
 
 # Get the current version number from inside the module
-with open(os.path.join(up(up(__file__)), 'lisc', 'version.py')) as vf:
-    exec(vf.read())
+from lisc import __version__
 
 # The short X.Y version
 version = __version__
