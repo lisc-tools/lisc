@@ -39,11 +39,13 @@ an extendable approach that can be used to integrate additional APIs. LISC also 
 utilities for analyzing the collected literature data.
 
 For data collection, LISC currently offers the following types of literature data collection:
+
 - Counts: tools to collect and analyze data on the co-occurence of specified search terms
 - Words: tools to collect and analyze text and meta-data for articles identified from a set of search terms
 - Citations: tools to collect and analyze citation and reference data
 
 To support use cases for collection and analyzing literature data, LISC includes:
+
 - URL management and requesting for interacting with integrated APIs
 - custom data objects for managing collected data
 - a database structure, as well as save and load utilties for storing collected data
@@ -90,6 +92,7 @@ data and analyzed co-occurences of terms in the neuroscientific literature [@voy
 
 LISC, or it's precursors, has enabled a series of recent studies, including meta-analytic / descriptive
 work and hypothesis driven investigations, including:
+
 - ERPSCANR: An automated meta-analysis of the field of event-related potential (ERP) work,
 in the domain of cognitive neuroscience (https://github.com/TomDonoghue/ERP_SCANR).
 - Conveyed Confidence in Scientific Literature and Press Releases: an analysis of
