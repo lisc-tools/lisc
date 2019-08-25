@@ -53,7 +53,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx_gallery.gen_gallery',
-    'sphinx.ext.napoleon',
+    'numpydoc',
     'm2r'
 ]
 
@@ -103,7 +103,8 @@ html_theme = 'bootstrap'
 # documentation.
 
 html_theme_options = {
-    'navbar_sidebarrel': False,
+
+    # A list of tuples containing pages or urls to link to from the navigation bar
     'navbar_links': [
         ("API", "api"),
         ("Tutorials", "auto_tutorials/index"),
@@ -126,7 +127,7 @@ html_theme_options = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ['_static']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -191,7 +192,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'lisc', 'lisc Documentation',
-     author, 'lisc', 'One line description of project.',
+     author, 'lisc', 'Collection & analyzing the scientific literature.',
      'Miscellaneous'),
 ]
 
