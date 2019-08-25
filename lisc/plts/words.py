@@ -47,8 +47,8 @@ def plot_years(years, year_range=None, ax=None):
     ax = check_ax(ax, (10, 5))
 
     # Extract x & y data to plot
-    x_dat = years.keys()
-    y_dat = years.values()
+    x_dat = list(years.keys())
+    y_dat = list(years.values())
 
     # Add line and points to plot
     plt.plot(x_dat, y_dat)
