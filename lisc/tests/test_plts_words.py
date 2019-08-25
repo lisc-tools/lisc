@@ -1,5 +1,7 @@
 """Tests for the words plots from lisc."""
 
+from collections import Counter
+
 import numpy as np
 from nltk import FreqDist
 
@@ -21,4 +23,5 @@ def test_plot_wordcloud():
 @plot_test
 def test_plot_years():
 
-    plot_years([(1900, 2), (2000, 2)])
+    years = Counter([2000, 2000, 2015, 2016])
+    plot_years(years, year_range=[1999, 2017])
