@@ -91,48 +91,49 @@
 <dt id="lisc.urls.OpenCitations">
 <em class="property">class </em><code class="descclassname">lisc.urls.</code><code class="descname">OpenCitations</code><a class="reference internal" href="../_modules/lisc/urls/open_citations.html#OpenCitations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.OpenCitations" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for the OpenCitations API.</p>
-<dl class="attribute">
-<dt id="lisc.urls.OpenCitations.base">
-<code class="descname">base</code><a class="headerlink" href="#lisc.urls.OpenCitations.base" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base URL for the OpenCitations API.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>base</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Base URL for the OpenCitations API.</p>
+</dd>
+<dt><strong>utils</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">The OpenCitations utilities.</p>
+</dd>
+<dt><strong>urls</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">URLs for each OpenCitations utility.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.urls.OpenCitations.utils">
-<code class="descname">utils</code><a class="headerlink" href="#lisc.urls.OpenCitations.utils" title="Permalink to this definition">¶</a></dt>
-<dd><p>The OpenCitations utilities.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">authenticate</span></code>(url)</td>
+<td>Method to authenticate a URL for a given API.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_url</span></code>(util[,&nbsp;segments,&nbsp;settings])</td>
+<td>Build the URL for a specified utility, with provided settings.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_url</span></code>(util)</td>
+<td>Check the built URL for a specified utility.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_settings</span></code>(**kwargs)</td>
+<td>Put all provided settings values into a dictionary object.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code>(util[,&nbsp;segments,&nbsp;settings])</td>
+<td>Get a requested URL, with any additional segments or settings.</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.urls.OpenCitations.urls">
-<code class="descname">urls</code><a class="headerlink" href="#lisc.urls.OpenCitations.urls" title="Permalink to this definition">¶</a></dt>
-<dd><p>URLs for each OpenCitations utility.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="lisc.urls.OpenCitations.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/open_citations.html#OpenCitations.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.OpenCitations.__init__" title="Permalink to this definition">¶</a></dt>

@@ -91,76 +91,55 @@
 <dt id="lisc.urls.EUtils">
 <em class="property">class </em><code class="descclassname">lisc.urls.</code><code class="descname">EUtils</code><span class="sig-paren">(</span><em>db=None</em>, <em>retmax=None</em>, <em>field=None</em>, <em>retmode=None</em>, <em>usehistory='n'</em>, <em>api_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for the NCBI EUtils API.</p>
-<dl class="attribute">
-<dt id="lisc.urls.EUtils.base">
-<code class="descname">base</code><a class="headerlink" href="#lisc.urls.EUtils.base" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base URL for the EUtils API.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>base</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Base URL for the EUtils API.</p>
+</dd>
+<dt><strong>utils</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">The EUtil utilities.</p>
+</dd>
+<dt><strong>urls</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">URLs for each EUtils utility.</p>
+</dd>
+<dt><strong>settings</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">Dictionary of all defined settings and their values.</p>
+</dd>
+<dt><strong>authenticated</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean</span></dt>
+<dd><p class="first last">Whether using an API key as an authenticated NCBI user.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.urls.EUtils.utils">
-<code class="descname">utils</code><a class="headerlink" href="#lisc.urls.EUtils.utils" title="Permalink to this definition">¶</a></dt>
-<dd><p>The EUtil utilities.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.urls.EUtils.authenticate" title="lisc.urls.EUtils.authenticate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authenticate</span></code></a>(url)</td>
+<td>Authenticate a EUtils URL.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_url</span></code>(util[,&nbsp;segments,&nbsp;settings])</td>
+<td>Build the URL for a specified utility, with provided settings.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_url</span></code>(util)</td>
+<td>Check the built URL for a specified utility.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_settings</span></code>(**kwargs)</td>
+<td>Put all provided settings values into a dictionary object.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code>(util[,&nbsp;segments,&nbsp;settings])</td>
+<td>Get a requested URL, with any additional segments or settings.</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.urls.EUtils.urls">
-<code class="descname">urls</code><a class="headerlink" href="#lisc.urls.EUtils.urls" title="Permalink to this definition">¶</a></dt>
-<dd><p>URLs for each EUtils utility.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.urls.EUtils.settings">
-<code class="descname">settings</code><a class="headerlink" href="#lisc.urls.EUtils.settings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dictionary of all defined settings and their values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.urls.EUtils.authenticated">
-<code class="descname">authenticated</code><a class="headerlink" href="#lisc.urls.EUtils.authenticated" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether using an API key as an authenticated NCBI user.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="lisc.urls.EUtils.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>db=None</em>, <em>retmax=None</em>, <em>field=None</em>, <em>retmode=None</em>, <em>usehistory='n'</em>, <em>api_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.__init__" title="Permalink to this definition">¶</a></dt>
@@ -169,14 +148,26 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – Which database to access from EUtils.</li>
-<li><strong>retmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The maximum number of articles to return.</li>
-<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The search field to search within.</li>
-<li><strong>retmode</strong> (<em>{'lxml'</em><em>, </em><em>'xml'}</em><em>, </em><em>optional</em>) – The return format for the results.</li>
-<li><strong>usehistory</strong> (<em>{'n'</em><em>, </em><em>'y'}</em>) – Whether to use history caching on the EUtils server.</li>
-<li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – An API key for authenticated NCBI user account.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>db</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">Which database to access from EUtils.</p>
+</dd>
+<dt><strong>retmax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">The maximum number of articles to return.</p>
+</dd>
+<dt><strong>field</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">The search field to search within.</p>
+</dd>
+<dt><strong>retmode</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘lxml’, ‘xml’}, optional</span></dt>
+<dd><p class="first last">The return format for the results.</p>
+</dd>
+<dt><strong>usehistory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘n’, ‘y’}</span></dt>
+<dd><p class="first last">Whether to use history caching on the EUtils server.</p>
+</dd>
+<dt><strong>api_key</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">An API key for authenticated NCBI user account.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -218,11 +209,19 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – URL to add authentification to.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>url</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">URL to add authentification to.</p>
+</dd>
+</dl>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Authenticated URL.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">Authenticated URL.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>

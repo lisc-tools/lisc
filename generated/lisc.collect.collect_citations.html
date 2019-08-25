@@ -95,22 +95,35 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dois</strong> (<em>list of str</em>) – DOIs to collect citation data for.</li>
-<li><strong>util</strong> (<em>{'citations'</em><em>, </em><em>'references'}</em>) – Which utility to collect citation data with.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>dois</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
+<dd><p class="first last">DOIs to collect citation data for.</p>
+</dd>
+<dt><strong>util</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘citations’, ‘references’}</span></dt>
+<dd><p class="first last">Which utility to collect citation data with.
 The ‘citations’ utility collects the number of citations citing the specified DOI.
-The ‘references’ utility collects the number of references cited by the specified DOI.</li>
-<li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
-<li><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to print out updates.</li>
-</ul>
+The ‘references’ utility collects the number of references cited by the specified DOI.</p>
+</dd>
+<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt>
+<dd><p class="first last">What kind of logging, if any, to do for requested URLs.</p>
+</dd>
+<dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or SCDB object, optional</span></dt>
+<dd><p class="first last">Folder or database object specifying the save location.</p>
+</dd>
+<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
+<dd><p class="first last">Whether to print out updates.</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>citations</strong> (<em>dict</em>) – The number of citations for each DOI.</li>
-<li><strong>meta_data</strong> (<em>MetaData object</em>) – Meta data about the data collection.</li>
-</ul>
-</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>citations</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">The number of citations for each DOI.</p>
+</dd>
+<dt><strong>meta_data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">MetaData object</span></dt>
+<dd><p class="first last">Meta data about the data collection.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>

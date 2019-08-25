@@ -71,8 +71,8 @@ First lets check the number of counts per term list.
 
  .. code-block:: none
 
-    For  'frontal lobe'    the highest association is  'audition'        with         376
-    For  'temporal lobe'   the highest association is  'audition'        with        1296
+    For  'frontal lobe'    the highest association is  'audition'        with         377
+    For  'temporal lobe'   the highest association is  'audition'        with        1299
     For  'parietal lobe'   the highest association is  'audition'        with         231
     For  'occipital lobe'  the highest association is  'vision'          with         235
 
@@ -95,12 +95,12 @@ First lets check the number of counts per term list.
  .. code-block:: none
 
     For  'vision'          the highest association is  'occipital lobe'  with         235
-    For  'audition'        the highest association is  'temporal lobe'   with        1296
+    For  'audition'        the highest association is  'temporal lobe'   with        1299
     For  'somatosensory'   the highest association is  'parietal lobe'   with         187
-    For  'olfaction'       the highest association is  'temporal lobe'   with          70
+    For  'olfaction'       the highest association is  'temporal lobe'   with          71
     For  'gustation'       the highest association is  'temporal lobe'   with          44
     For  'proprioception'  the highest association is  'parietal lobe'   with           9
-    For  'nociception'     the highest association is  'temporal lobe'   with         197
+    For  'nociception'     the highest association is  'temporal lobe'   with         198
 
 
 Normalization & Scores
@@ -156,14 +156,14 @@ association index - as an input to the method.
 
  .. code-block:: none
 
-    [[1.05444373e-02 2.69708055e-02 9.54020515e-03 3.58654329e-03
-      1.14769385e-03 2.86923463e-04 1.14052077e-02]
-     [6.85769359e-03 4.80409237e-02 6.82062498e-03 2.59480298e-03
-      1.63101902e-03 7.41372280e-05 7.30251696e-03]
-     [1.76092811e-02 4.78558111e-02 3.87404185e-02 1.65734411e-03
-      1.24300808e-03 1.86451212e-03 2.34099855e-02]
-     [6.44012058e-02 2.30200055e-02 9.59166895e-03 1.37023842e-03
-      0.00000000e+00 0.00000000e+00 1.72650041e-02]]
+    [[1.05353687e-02 2.70192790e-02 9.60366946e-03 3.58345875e-03
+      1.14670680e-03 2.86676700e-04 1.14670680e-02]
+     [6.88608345e-03 4.80915183e-02 6.81203954e-03 2.62855874e-03
+      1.62896598e-03 7.40439080e-05 7.33034690e-03]
+     [1.75837815e-02 4.77865122e-02 3.86843194e-02 1.65494415e-03
+      1.24120811e-03 1.86181216e-03 2.33760861e-02]
+     [6.42954856e-02 2.32558140e-02 9.57592339e-03 1.36798906e-03
+      0.00000000e+00 0.00000000e+00 1.72366621e-02]]
 
 
 The normalization is the number of articles with both terms, divided by the number of
@@ -208,14 +208,14 @@ articles for each anatomical term that include each perception term.
 
  .. code-block:: none
 
-    [[1.15919629e-03 3.37246953e-03 3.13420526e-03 1.87336081e-03
-      3.78080768e-04 2.14915109e-04 2.62624561e-04]
-     [1.32322438e-03 1.04848431e-02 3.32010105e-03 1.76295774e-03
-      7.95271748e-04 6.31911532e-05 3.18551158e-04]
-     [7.21807065e-04 2.25317493e-03 5.62118616e-03 4.54081053e-04
-      1.80641277e-04 9.48066997e-04 1.89483180e-04]
-     [2.01834547e-03 8.27659595e-04 1.08557427e-03 3.04080764e-04
-      0.00000000e+00 0.00000000e+00 1.05841262e-04]]
+    [[1.15756235e-03 3.37750065e-03 3.15479694e-03 1.87076739e-03
+      3.77670247e-04 2.14672892e-04 2.63876611e-04]
+     [1.32847654e-03 1.04963760e-02 3.31633113e-03 1.78553465e-03
+      7.94295514e-04 6.31054176e-05 3.19682771e-04]
+     [7.20742110e-04 2.25040917e-03 5.61510975e-03 4.53257790e-04
+      1.80418571e-04 9.46471764e-04 1.89193533e-04]
+     [2.01535097e-03 8.36490676e-04 1.08439708e-03 3.03508559e-04
+      0.00000000e+00 0.00000000e+00 1.05679342e-04]]
 
 
 The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.
@@ -287,7 +287,7 @@ collected co-occurrence data.
 
 
 
-**Total running time of the script:** ( 0 minutes  0.341 seconds)
+**Total running time of the script:** ( 0 minutes  0.366 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_02-CountsAnalysis.py:

@@ -95,28 +95,55 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>terms</strong> (<em>list of list of str</em>) – Search terms.</li>
-<li><strong>inclusions</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Inclusion words for search terms.</li>
-<li><strong>exclusions</strong> (<em>list of list of str</em><em>, </em><em>optional</em>) – Exclusion words for search terms.</li>
-<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which database to access from EUtils.</li>
-<li><strong>retmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of articles to return.</li>
-<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term within.
-Defaults to ‘TIAB’, which is Title/Abstract.</li>
-<li><strong>usehistory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to use EUtils history, storing results on their server.</li>
-<li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
-<li><strong>save_and_clear</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to save words data to disk per term as it goes, instead of holding in memory.</li>
-<li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
-<li><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – Whether to print out updates.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>terms</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list of str</span></dt>
+<dd><p class="first last">Search terms.</p>
+</dd>
+<dt><strong>inclusions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list of str, optional</span></dt>
+<dd><p class="first last">Inclusion words for search terms.</p>
+</dd>
+<dt><strong>exclusions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list of str, optional</span></dt>
+<dd><p class="first last">Exclusion words for search terms.</p>
+</dd>
+<dt><strong>db</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional, default: ‘pubmed’</span></dt>
+<dd><p class="first last">Which database to access from EUtils.</p>
+</dd>
+<dt><strong>retmax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">Maximum number of articles to return.</p>
+</dd>
+<dt><strong>field</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional, default: ‘TIAB’</span></dt>
+<dd><p class="first last">Field to search for term within.
+Defaults to ‘TIAB’, which is Title/Abstract.</p>
+</dd>
+<dt><strong>usehistory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
+<dd><p class="first last">Whether to use EUtils history, storing results on their server.</p>
+</dd>
+<dt><strong>api_key</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">An API key for a NCBI account.</p>
+</dd>
+<dt><strong>save_and_clear</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
+<dd><p class="first last">Whether to save words data to disk per term as it goes, instead of holding in memory.</p>
+</dd>
+<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt>
+<dd><p class="first last">What kind of logging, if any, to do for requested URLs.</p>
+</dd>
+<dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or SCDB object, optional</span></dt>
+<dd><p class="first last">Folder or database object specifying the save location.</p>
+</dd>
+<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
+<dd><p class="first last">Whether to print out updates.</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>results</strong> (<em>list of Articles object</em>) – Results from collecting data for each term.</li>
-<li><strong>meta_data</strong> (<em>MetaData object</em>) – Meta data from the data collection.</li>
-</ul>
-</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>results</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of Articles object</span></dt>
+<dd><p class="first last">Results from collecting data for each term.</p>
+</dd>
+<dt><strong>meta_data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">MetaData object</span></dt>
+<dd><p class="first last">Meta data from the data collection.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>

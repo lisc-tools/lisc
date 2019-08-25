@@ -105,7 +105,7 @@ and exclusion words, is used as was introduced and described in the first tutori
 
  .. code-block:: none
 
-    [<lisc.data.articles.Articles object at 0x13092c588>, <lisc.data.articles.Articles object at 0x130ed0c18>]
+    [<lisc.data.articles.Articles object at 0x128beff98>, <lisc.data.articles.Articles object at 0x133dbdbe0>]
 
 
 LISC Data Objects
@@ -146,7 +146,7 @@ Collected data words data includes:
  .. code-block:: none
 
     5
-    ['Generic Homo sapiensand Unique Mus musculus: Establishing the Typicality of the Modeled and the Model Species.', 'Toward Diversification of Species Models in Neuroscience.', 'Magnetic Resonance Fingerprinting to Characterize Childhood and Young Adult Brain Tumors.', 'Spatial Dependence of Stimulus Competition in the Avian Nucleus Isthmi Pars Magnocellularis.', 'Critique of Pure Marmoset.']
+    ['Disruption of an enhancer associated with addictive behaviour within the cannabinoid receptor-1 gene suggests a possible role in alcohol intake, cannabinoid response and anxiety-related behaviour.', 'Bilingual children access multiplication facts from semantic memory equivalently across languages: Evidence from the N400.', 'Neural responses to social evaluation: The role of fear of positive and negative evaluation.', 'RECK in Neural Precursor Cells Plays a Critical Role in Mouse Forebrain Angiogenesis.', 'Bioimaging of Pb and STIM1 in mice liver, kidney and brain using Laser Ablation Inductively Coupled Plasma Mass Spectrometry (LA-ICP-MS) and immunohistochemistry.']
 
 
 Word Collections
@@ -253,7 +253,7 @@ We will analyze our words data in the next tutorial, so for now lets save out th
 
 
 
-**Total running time of the script:** ( 0 minutes  13.284 seconds)
+**Total running time of the script:** ( 0 minutes  15.132 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_03-WordsCollection.py:

@@ -91,77 +91,65 @@
 <dt id="lisc.objects.Counts">
 <em class="property">class </em><code class="descclassname">lisc.objects.</code><code class="descname">Counts</code><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class for collecting and analyzing co-occurrence data for specified terms list(s).</p>
-<dl class="attribute">
-<dt id="lisc.objects.Counts.terms">
-<code class="descname">terms</code><a class="headerlink" href="#lisc.objects.Counts.terms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Search terms to use.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.objects.Counts.counts">
-<code class="descname">counts</code><a class="headerlink" href="#lisc.objects.Counts.counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The numbers of articles found for each combination of terms.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">2d array</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.objects.Counts.score">
-<code class="descname">score</code><a class="headerlink" href="#lisc.objects.Counts.score" title="Permalink to this definition">¶</a></dt>
-<dd><p>A transformed ‘score’ of co-occurrence data
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>terms</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">Search terms to use.</p>
+</dd>
+<dt><strong>counts</strong> <span class="classifier-delimiter">:</span> <span class="classifier">2d array</span></dt>
+<dd><p class="first last">The numbers of articles found for each combination of terms.</p>
+</dd>
+<dt><strong>score</strong> <span class="classifier-delimiter">:</span> <span class="classifier">2d array</span></dt>
+<dd><p class="first last">A transformed ‘score’ of co-occurrence data
 This can be a normalized version of the data, and/or a computed association index.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">2d array</td>
+</dd>
+<dt><strong>square</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Whether the count data matrix is symmetrical.</p>
+</dd>
+<dt><strong>meta_data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">MetaData object</span></dt>
+<dd><p class="first last">Meta data information about the data collection.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.objects.Counts.square">
-<code class="descname">square</code><a class="headerlink" href="#lisc.objects.Counts.square" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the count data matrix is symmetrical.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms" title="lisc.objects.Counts.add_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms</span></code></a>(terms[,&nbsp;term_type,&nbsp;dim])</td>
+<td>Add the given list of strings as terms to use.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms_file" title="lisc.objects.Counts.add_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms_file</span></code></a>(f_name[,&nbsp;term_type,&nbsp;…])</td>
+<td>Load terms from a text file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.check_counts" title="lisc.objects.Counts.check_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_counts</span></code></a>([dim])</td>
+<td>Check how many articles were found for each term.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.check_data" title="lisc.objects.Counts.check_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_data</span></code></a>([data_type,&nbsp;dim])</td>
+<td>Prints out the highest value count or score for each term.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.check_top" title="lisc.objects.Counts.check_top"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_top</span></code></a>([dim])</td>
+<td>Check the terms with the most articles.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.compute_score" title="lisc.objects.Counts.compute_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_score</span></code></a>([score_type,&nbsp;dim])</td>
+<td>Compute a score (index or normalization) of the co-occurrence data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.drop_data" title="lisc.objects.Counts.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles[,&nbsp;dim])</td>
+<td>Drop terms based on number of article results.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.run_collection" title="lisc.objects.Counts.run_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_collection</span></code></a>([db,&nbsp;field,&nbsp;api_key,&nbsp;…])</td>
+<td>Collect co-occurrence data.</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.objects.Counts.meta_data">
-<code class="descname">meta_data</code><a class="headerlink" href="#lisc.objects.Counts.meta_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Meta data information about the data collection.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">MetaData object</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="lisc.objects.Counts.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.__init__" title="Permalink to this definition">¶</a></dt>
@@ -212,11 +200,17 @@ This can be a normalized version of the data, and/or a computed association inde
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>terms</strong> (<em>list of str OR list of list of str</em>) – List of terms to be used.</li>
-<li><strong>term_type</strong> (<em>{'terms'</em><em>, </em><em>'inclusions'</em><em>, </em><em>'exclusions'}</em>) – Which type of terms to use.</li>
-<li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>terms</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str OR list of list of str</span></dt>
+<dd><p class="first last">List of terms to be used.</p>
+</dd>
+<dt><strong>term_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt>
+<dd><p class="first last">Which type of terms to use.</p>
+</dd>
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which set of terms to operate upon.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -231,12 +225,20 @@ This can be a normalized version of the data, and/or a computed association inde
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>f_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – File name to load terms from.</li>
-<li><strong>term_type</strong> (<em>{'terms'</em><em>, </em><em>'inclusions'</em><em>, </em><em>'exclusions'}</em>) – Which type of terms to use.</li>
-<li><strong>directory</strong> (<a class="reference internal" href="lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><em>SCDB</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – A string or object containing a file path.</li>
-<li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>f_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">File name to load terms from.</p>
+</dd>
+<dt><strong>term_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt>
+<dd><p class="first last">Which type of terms to use.</p>
+</dd>
+<dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">SCDB or str or None</span></dt>
+<dd><p class="first last">A string or object containing a file path.</p>
+</dd>
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which set of terms to operate upon.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -251,7 +253,12 @@ This can be a normalized version of the data, and/or a computed association inde
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which set of terms to operate upon.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
@@ -265,10 +272,14 @@ This can be a normalized version of the data, and/or a computed association inde
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data_type</strong> (<em>{'counts'</em><em>, </em><em>'score'}</em>) – Which data type to use.</li>
-<li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>data_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘counts’, ‘score’}</span></dt>
+<dd><p class="first last">Which data type to use.</p>
+</dd>
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which set of terms to operate upon.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -283,7 +294,12 @@ This can be a normalized version of the data, and/or a computed association inde
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which set of terms to operate upon.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
@@ -297,11 +313,15 @@ This can be a normalized version of the data, and/or a computed association inde
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>score_type</strong> (<em>{'association'</em><em>, </em><em>'normalize'}</em><em>, </em><em>optional</em>) – The type of score to apply to the co-occurrence data.</li>
-<li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which dimension of counts to use.
-Only used if ‘score’ is ‘normalize’.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>score_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘association’, ‘normalize’}, optional</span></dt>
+<dd><p class="first last">The type of score to apply to the co-occurrence data.</p>
+</dd>
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which dimension of counts to use.
+Only used if ‘score’ is ‘normalize’.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -316,10 +336,14 @@ Only used if ‘score’ is ‘normalize’.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>n_articles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Mininum number of articles to keep each term.</li>
-<li><strong>dim</strong> (<em>{'A'</em><em>, </em><em>'B'}</em><em>, </em><em>optional</em>) – Which set of terms to operate upon.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>n_articles</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Mininum number of articles to keep each term.</p>
+</dd>
+<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
+<dd><p class="first last">Which set of terms to operate upon.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -334,15 +358,27 @@ Only used if ‘score’ is ‘normalize’.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'pubmed'</em>) – Which database to access from EUtils.</li>
-<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default: 'TIAB'</em>) – Field to search for term in.
-Defaults to ‘TIAB’, which is Title/Abstract.</li>
-<li><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – An API key for a NCBI account.</li>
-<li><strong>logging</strong> (<em>{None</em><em>, </em><em>'print'</em><em>, </em><em>'store'</em><em>, </em><em>'file'}</em>) – What kind of logging, if any, to do for requested URLs.</li>
-<li><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>SCDB object</em><em>, </em><em>optional</em>) – Folder or database object specifying the save location.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default=False</em>) – Whether to print out updates.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>db</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional, default: ‘pubmed’</span></dt>
+<dd><p class="first last">Which database to access from EUtils.</p>
+</dd>
+<dt><strong>field</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional, default: ‘TIAB’</span></dt>
+<dd><p class="first last">Field to search for term in.
+Defaults to ‘TIAB’, which is Title/Abstract.</p>
+</dd>
+<dt><strong>api_key</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">An API key for a NCBI account.</p>
+</dd>
+<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt>
+<dd><p class="first last">What kind of logging, if any, to do for requested URLs.</p>
+</dd>
+<dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or SCDB object, optional</span></dt>
+<dd><p class="first last">Folder or database object specifying the save location.</p>
+</dd>
+<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default=False</span></dt>
+<dd><p class="first last">Whether to print out updates.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>

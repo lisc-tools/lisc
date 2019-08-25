@@ -91,20 +91,6 @@
 <dt id="lisc.utils.db.SCDB">
 <em class="property">class </em><code class="descclassname">lisc.utils.db.</code><code class="descname">SCDB</code><span class="sig-paren">(</span><em>base=None</em>, <em>generate_paths=True</em>, <em>structure={1: {'base': ['terms'</em>, <em>'logs'</em>, <em>'data'</em>, <em>'figures']}</em>, <em>2: {'data': ['counts'</em>, <em>'words']}</em>, <em>3: {'words': ['raw'</em>, <em>'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Database object for a SCANR project.</p>
-<dl class="attribute">
-<dt id="lisc.utils.db.SCDB.paths">
-<code class="descname">paths</code><a class="headerlink" href="#lisc.utils.db.SCDB.paths" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dictionary of all folder paths in the project.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <p class="rubric">Notes</p>
 <p>The default set of paths for SCDB is:
 - terms                 Term files.
@@ -125,6 +111,43 @@
 </li>
 </ul>
 </div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>paths</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">Dictionary of all folder paths in the project.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.utils.db.SCDB.check_file_structure" title="lisc.utils.db.SCDB.check_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_file_structure</span></code></a>()</td>
+<td>Check the file structure of the database.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.utils.db.SCDB.gen_paths" title="lisc.utils.db.SCDB.gen_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gen_paths</span></code></a>([structure])</td>
+<td>Generate all the full paths for the database object.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.utils.db.SCDB.get_file_path" title="lisc.utils.db.SCDB.get_file_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_path</span></code></a>(folder,&nbsp;file_name)</td>
+<td>Get a path to a file in a designated directory folder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#lisc.utils.db.SCDB.get_files" title="lisc.utils.db.SCDB.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder)</td>
+<td>Get a list of available files in a folder in the database.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lisc.utils.db.SCDB.get_folder_path" title="lisc.utils.db.SCDB.get_folder_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_folder_path</span></code></a>(folder)</td>
+<td>Get the path to a folder in the directory.</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="lisc.utils.db.SCDB.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>base=None</em>, <em>generate_paths=True</em>, <em>structure={1: {'base': ['terms'</em>, <em>'logs'</em>, <em>'data'</em>, <em>'figures']}</em>, <em>2: {'data': ['counts'</em>, <em>'words']}</em>, <em>3: {'words': ['raw'</em>, <em>'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
@@ -133,10 +156,14 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>base</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The base path to where the database is located.</li>
-<li><strong>generate_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to automatically generate all the paths for the database folders.</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>base</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">The base path to where the database is located.</p>
+</dd>
+<dt><strong>generate_paths</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Whether to automatically generate all the paths for the database folders.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -184,7 +211,12 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>structure</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>, </em><em>optional</em>) – Definition of the folder structure for the database.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>structure</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
+<dd><p class="first last">Definition of the folder structure for the database.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
@@ -198,16 +230,21 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Which folder path to get the file path from.</li>
-<li><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the file to create the fulle path for</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>folder</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Which folder path to get the file path from.</p>
+</dd>
+<dt><strong>file_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">The name of the file to create the fulle path for</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The full file path to the requested file.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">The full file path to the requested file.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -222,11 +259,19 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Which folder path to get the list of files from.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>folder</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Which folder path to get the list of files from.</p>
+</dd>
+</dl>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of files available in specified folder.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>list of str</strong></dt>
+<dd><p class="first last">List of files available in specified folder.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
@@ -240,11 +285,19 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Which folder to get the path for.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>folder</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Which folder to get the path for.</p>
+</dd>
+</dl>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The path to the requested directory folder.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">The path to the requested directory folder.</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>

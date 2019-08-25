@@ -91,65 +91,46 @@
 <dt id="lisc.data.Term">
 <em class="property">class </em><code class="descclassname">lisc.data.</code><code class="descname">Term</code><a class="headerlink" href="#lisc.data.Term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search term definition with inclusion &amp; exclusion words.</p>
-<dl class="attribute">
-<dt id="lisc.data.Term.label">
-<code class="descname">label</code><a class="headerlink" href="#lisc.data.Term.label" title="Permalink to this definition">¶</a></dt>
-<dd><p>Label for the term.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#lisc.data.Term.label" title="lisc.data.Term.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Alias for field number 0</p>
+</dd>
+<dt><a class="reference internal" href="#lisc.data.Term.search" title="lisc.data.Term.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
+<dd><p class="first last">Alias for field number 1</p>
+</dd>
+<dt><a class="reference internal" href="#lisc.data.Term.inclusions" title="lisc.data.Term.inclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inclusions</span></code></a> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
+<dd><p class="first last">Alias for field number 2</p>
+</dd>
+<dt><a class="reference internal" href="#lisc.data.Term.exclusions" title="lisc.data.Term.exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exclusions</span></code></a> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
+<dd><p class="first last">Alias for field number 3</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data.Term.search">
-<code class="descname">search</code><a class="headerlink" href="#lisc.data.Term.search" title="Permalink to this definition">¶</a></dt>
-<dd><p>Search terms.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code>($self,&nbsp;value,&nbsp;/)</td>
+<td>Return number of occurrences of value.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code>($self,&nbsp;value[,&nbsp;start,&nbsp;stop])</td>
+<td>Return first index of value.</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data.Term.inclusions">
-<code class="descname">inclusions</code><a class="headerlink" href="#lisc.data.Term.inclusions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inclusion words for search terms.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lisc.data.Term.exclusions">
-<code class="descname">exclusions</code><a class="headerlink" href="#lisc.data.Term.exclusions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Exclusion words for search terms.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of str</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="lisc.data.Term.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lisc.data.Term.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>$self</em>, <em>/</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.data.Term.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -160,10 +141,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code>($self,&nbsp;value,&nbsp;/)</td>
 <td>Return number of occurrences of value.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code>($self,&nbsp;value[,&nbsp;start,&nbsp;stop])</td>
 <td>Return first index of value.</td>
 </tr>
 </tbody>
@@ -190,26 +171,26 @@
 </tbody>
 </table>
 <dl class="attribute">
-<dt>
-<code class="descname">exclusions</code></dt>
+<dt id="lisc.data.Term.exclusions">
+<code class="descname">exclusions</code><a class="headerlink" href="#lisc.data.Term.exclusions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 3</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt>
-<code class="descname">inclusions</code></dt>
+<dt id="lisc.data.Term.inclusions">
+<code class="descname">inclusions</code><a class="headerlink" href="#lisc.data.Term.inclusions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 2</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt>
-<code class="descname">label</code></dt>
+<dt id="lisc.data.Term.label">
+<code class="descname">label</code><a class="headerlink" href="#lisc.data.Term.label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 0</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt>
-<code class="descname">search</code></dt>
+<dt id="lisc.data.Term.search">
+<code class="descname">search</code><a class="headerlink" href="#lisc.data.Term.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 1</p>
 </dd></dl>
 
