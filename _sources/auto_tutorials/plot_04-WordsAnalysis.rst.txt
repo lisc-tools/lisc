@@ -210,7 +210,7 @@ The Words object also has some methods for exploring the data.
 
  .. code-block:: none
 
-    <lisc.data.articles.Articles object at 0x133764780>
+    <lisc.data.articles.Articles object at 0x114a249e8>
 
 
 
@@ -265,7 +265,7 @@ journals, by which authors.
 
 
 
-**Total running time of the script:** ( 0 minutes  2.624 seconds)
+**Total running time of the script:** ( 0 minutes  2.666 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_04-WordsAnalysis.py:
