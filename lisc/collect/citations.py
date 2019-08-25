@@ -17,10 +17,11 @@ def collect_citations(dois, util='citations', logging=None, directory=None, verb
     dois : list of str
         DOIs to collect citation data for.
     util : {'citations', 'references'}
-        Which utility to collect citation data with.
-        The 'citations' utility collects the number of citations citing the specified DOI.
-        The 'references' utility collects the number of references cited by the specified DOI.
-    logging : {None, 'print', 'store', 'file'}
+        Which utility to collect citation data with. Options:
+
+        * 'citations': collects the number of citations citing the specified DOI.
+        * 'references': collects the number of references cited by the specified DOI.
+    logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB object, optional
         Folder or database object specifying the save location.

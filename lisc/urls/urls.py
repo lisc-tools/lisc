@@ -70,8 +70,10 @@ class URLs():
 
         Notes
         -----
-        - All possible settings are set as possible arguments to this function.
-            For each  possible settings, each that is given a value is saved out to the dictionary.
+        Potential parameters to this function include all the possible settings for the given API.
+
+        Any possible setting that is provided a value as an input to this function is
+        saved out to the dictionary of collected and available settings.
         """
 
         self.settings = {ke: va for ke, va in kwargs.items() if va is not None}
@@ -93,9 +95,10 @@ class URLs():
         Notes
         -----
         This is a placeholder method, on the base URLs object, and should be
-        overloaded by any API object that has authentification, with a
-        method that implements whatever is needed to authenticate the URL
-        for the API.
+        overloaded by any API object that has authentification.
+
+        When overloading this method, it should implement whatever is needed
+        to authenticate a URL request for the specified API.
         """
 
         return url

@@ -20,18 +20,21 @@ class SCDB():
     Notes
     -----
     The default set of paths for SCDB is:
+
     - terms                 Term files.
     - logs                  Log files.
     - figs                  Figure files.
     - data                  Data files.
+
         - counts            Counts data files.
         - words             Words data files.
+
             - raw           Raw words data files
             - summary       Summary files for words data.
     """
 
     def __init__(self, base=None, generate_paths=True, structure=STRUCTURE):
-        """Initialize SCDB object.
+        """Initialize a SCDB object.
 
         Parameters
         ----------
@@ -93,7 +96,7 @@ class SCDB():
         folder : str
             Which folder path to get the file path from.
         file_name : str
-            The name of the file to create the fulle path for
+            The name of the file to create the full file path for.
 
         Returns
         -------
@@ -146,6 +149,8 @@ def check_directory(directory, folder):
 
     Notes
     -----
+    The output of this function depends on the input, as:
+
     - If the input is an SCDB object, returns a file path as a string.
     - If the input is already a string, returns the input.
     - If the input is None, returns an empty string.
@@ -164,17 +169,17 @@ def check_directory(directory, folder):
 def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
     """Create the file structure for a SCANR database.
 
-    Attributes
+    Parameters
     ----------
     base : str or None
         Base path for the database directory.
         If None, the structure is created in the current directory.
-    name : str
+    name : str, optional, default: 'lisc_db'
         The name of the root folder of the directory structure.
 
     Returns
     -------
-    db : SCDB()
+    db : SCDB
         A database object for the file structure that was created.
     """
 

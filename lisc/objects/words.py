@@ -12,9 +12,9 @@ class Words(Base):
     Attributes
     ----------
     results : list of Articles object
-        Results for each search term, stored in custom Words object.
+        Results of 'Words' data for each search term.
     labels : list of str
-        Labels for each result data attached to object.
+        Labels for each data object attached to the object.
     meta_data : MetaData object
         Meta data information about the data collection.
     """
@@ -64,7 +64,7 @@ class Words(Base):
         Parameters
         ----------
         new_result : Articles object
-            Object with information about current term.
+            Object with collected data for a specified term.
         """
 
         self.results.append(new_result)
@@ -86,14 +86,14 @@ class Words(Base):
             Defaults to 'TIAB', which is Title/Abstract.
         usehistory : bool, optional, default: False
             Whether to use EUtils history, storing results on their server.
-        api_key : str
+        api_key : str, optional
             An API key for a NCBI account.
         save_and_clear : bool, optional, default: False
             Whether to save words data to disk per term as it goes, instead of holding in memory.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
         directory : str or SCDB object, optional
-            Folder or database object specifying the save location.
+            Folder or database object specifying the save location for any outputs.
         verbose : bool, optional, default: False
             Whether to print out updates.
         """

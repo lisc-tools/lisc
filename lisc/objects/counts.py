@@ -44,14 +44,14 @@ class Counts():
 
 
     def add_terms(self, terms, term_type='terms', dim='A'):
-        """Add the given list of strings as terms to use.
+        """Add the given list of strings as terms.
 
         Parameters
         ----------
         terms : list of str OR list of list of str
-            List of terms to be used.
+            List of terms.
         term_type : {'terms', 'inclusions', 'exclusions'}
-            Which type of terms to use.
+            Which type of terms are being added.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
         """
@@ -69,7 +69,7 @@ class Counts():
         f_name : str
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}
-            Which type of terms to use.
+            Which type of terms are being added.
         directory : SCDB or str or None
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
@@ -92,13 +92,13 @@ class Counts():
         field : str, optional, default: 'TIAB'
             Field to search for term in.
             Defaults to 'TIAB', which is Title/Abstract.
-        api_key : str
+        api_key : str, optional
             An API key for a NCBI account.
-        logging : {None, 'print', 'store', 'file'}
+        logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
         directory : str or SCDB object, optional
             Folder or database object specifying the save location.
-        verbose : bool, optional, default=False
+        verbose : bool, optional, default: False
             Whether to print out updates.
         """
 
@@ -130,14 +130,14 @@ class Counts():
 
 
     def compute_score(self, score_type='association', dim='A'):
-        """Compute a score (index or normalization) of the co-occurrence data.
+        """Compute a score, such as an index or normalization, of the co-occurrence data.
 
         Parameters
         ----------
         score_type : {'association', 'normalize'}, optional
             The type of score to apply to the co-occurrence data.
         dim : {'A', 'B'}, optional
-            Which dimension of counts to use.
+            Which dimension of counts to use to normalize the co-occurence data by.
             Only used if 'score' is 'normalize'.
         """
 
@@ -163,7 +163,7 @@ class Counts():
         Parameters
         ----------
         dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
+            Which set of terms to check.
         """
 
         max_ind = np.argmax(self.terms[dim].counts)
@@ -178,7 +178,7 @@ class Counts():
         Parameters
         ----------
         dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
+            Which set of terms to check.
         """
 
         print("The number of documents found for each search term is:")
@@ -197,7 +197,7 @@ class Counts():
         data_type : {'counts', 'score'}
             Which data type to use.
         dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
+            Which set of terms to check.
         """
 
         if data_type not in ['counts', 'score']:
@@ -231,7 +231,7 @@ class Counts():
         n_articles : int
             Mininum number of articles to keep each term.
         dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
+            Which set of terms to drop.
         """
 
         keep_inds = np.where(self.terms[dim].counts > n_articles)[0]

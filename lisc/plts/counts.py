@@ -18,12 +18,12 @@ hier = safe_import('.cluster.hierarchy', 'scipy')
 
 @savefig
 def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False, ax=None):
-    """Plot the matrix of percent asscociations between terms.
+    """Plot a matrix representation of given data.
 
     Parameters
     ----------
     data : 2d array
-        Data to plot, as a matrix.
+        Data to plot in matrix format.
     x_labels : list of str
         Labels for the x-axis.
     y_labels : list of str
@@ -32,13 +32,13 @@ def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
         Colormap to use for the plot.
         If string, uses a sequential palette of the specified color.
     square : bool
-        Whether to plot each cell as equal sized squares.
+        Whether to plot all the cells as equally sized squares.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
 
     Notes
     -----
-    This function is a wrapper on the seaborn `heatmap` plot function.
+    This function is a wrapper of the seaborn `heatmap` plot function.
     """
 
     if isinstance(cmap, str):
@@ -51,7 +51,7 @@ def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
 
 @savefig
 def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
-    """Plot clustermap.
+    """Plot a clustermap of the given data.
 
     Parameters
     ----------
@@ -67,7 +67,7 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
 
     Notes
     -----
-    This function is a wrapper on the seaborn `clustermap` plot function.
+    This function is a wrapper of the seaborn `clustermap` plot function.
     """
 
     sns.set()
@@ -88,12 +88,12 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
 
 @savefig
 def plot_dendrogram(data, labels=None, ax=None):
-    """Plot dendrogram.
+    """Plot a dendrogram of the given data.
 
     Parameters
     ----------
-    dat : 2d array
-        Data to plot, as a dendrogram.
+    data : 2d array
+        Data to plot in a dendrogram.
     labels : list of str, optional
         Labels for the dendrogram.
     ax : matplotlib.Axes, optional
@@ -101,7 +101,7 @@ def plot_dendrogram(data, labels=None, ax=None):
 
     Notes
     -----
-    This function is a wrapper on the scipy `dendrogram` plot function.
+    This function is a wrapper of the scipy `dendrogram` plot function.
     """
 
     linkage_data = hier.linkage(data, method='complete', metric='cosine')

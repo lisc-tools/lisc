@@ -18,9 +18,9 @@ class Requester():
     Attributes
     ----------
     is_active : bool
-        Status of the requester; whether it is currently being used to make requests.
+        Status of the requester, reflecting whether it is currently being used to make requests.
     n_requests : int
-        Number of requests that have been made.
+        Number of requests that have been made from this object.
     wait_time : float
         Amount of time to wait between requests, in seconds.
     start_time : str
@@ -44,7 +44,7 @@ class Requester():
             Amount of time to wait between requests, in seconds.
         logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
-        directory : SCDB or str or None
+        directory : SCDB or str or None, optional
             A string or object containing a file path.
         """
 
@@ -119,7 +119,7 @@ class Requester():
         Parameters
         ----------
         wait_time : float
-            Time, in seconds, to wait between launching URL requests.
+            Time to wait between launching URL requests, in seconds.
         """
 
         time.sleep(wait_time)

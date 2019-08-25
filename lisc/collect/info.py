@@ -17,9 +17,9 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
     ----------
     db : str, optional, default: 'pubmed'
         Which database to access from EUtils.
-    api_key : str
+    api_key : str, optional
         An API key for a NCBI account.
-    logging : {None, 'print', 'store', 'file'}
+    logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB object, optional
         Folder or database object specifying the save location.

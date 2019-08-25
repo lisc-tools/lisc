@@ -13,14 +13,14 @@ from lisc.utils.io import parse_json_data, check_ext
 ###################################################################################################
 
 class Articles(BaseArticles):
-    """An object to hold the word results for a given term.
+    """An object to hold collected 'words' data for a specified term.
 
     Attributes
     ----------
     label : str
-        Label for the current term.
+        Label for the term.
     term : Term object
-        Definition of the search term, with inclusions and exclusion words.
+        Definition of the search term, with inclusion and exclusion words.
     ids : list of int
         Article ids for all articles.
     n_articles : int

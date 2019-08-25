@@ -86,7 +86,7 @@ class EUtils(URLs):
 
     def __init__(self, db=None, retmax=None, field=None, retmode=None,
                  usehistory='n', api_key=None):
-        """Initialize the ncbi e-utils urls, with provided settings.
+        """Initialize the NCBI EUtils URLs, with provided settings.
 
         Parameters
         ----------
@@ -119,7 +119,7 @@ class EUtils(URLs):
 
 
     def authenticate(self, url):
-        """Authenticate a EUtils URL.
+        """Authenticate a URL for the EUtils API.
 
         Parameters
         ----------

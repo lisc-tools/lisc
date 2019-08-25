@@ -18,20 +18,20 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
                    terms_b=[], inclusions_b=[], exclusions_b=[],
                    db='pubmed', field='TIAB', api_key=None,
                    logging=None, directory=None, verbose=False):
-    """Collect word co-occurrence data from EUtils.
+    """Collect count and term co-occurrence data from EUtils.
 
     Parameters
     ----------
     terms_a : list of list of str
         Search terms.
     inclusions_a : list of list of str, optional
-        Inclusions words for search terms.
+        Inclusion words for search terms.
     exclusions_a : list of list of str, optional
         Exclusion words for search terms.
     terms_b : list of list of str, optional
         Secondary list of search terms.
     inclusions_b : list of list of str, optional
-        Inclusions words for secondary lis of search terms.
+        Inclusion words for secondary lis of search terms.
     exclusions_b : list of list of str, optional
         Exclusion words for secondary list of search terms.
     db : str, optional, default: 'pubmed'
@@ -39,9 +39,9 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     field : str, optional, default: 'TIAB'
         Field to search for term within.
         Defaults to 'TIAB', which is Title/Abstract.
-    api_key : str
+    api_key : str, optional
         An API key for a NCBI account.
-    logging : {None, 'print', 'store', 'file'}
+    logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB object, optional
         Folder or database object specifying the save location.
@@ -50,7 +50,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
     Returns
     -------
-    data_numbers : 2d array
+    co_occurences : 2d array
         The numbers of articles found for each combination of terms.
     counts : 1d array or list of 1d array
         Number of articles for each term independently.
@@ -94,12 +94,12 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     counts_a = np.ones([n_terms_a], dtype=int) * -1
     counts_b = np.ones([n_terms_b], dtype=int) * -1
 
-    # Initialize right size matrices to store data
-    data_numbers = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
+    # Initialize right size matrices to store co-occurence data
+    co_occurences = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
 
     # Set diagonal to zero if square (term co-occurrence with itself)
     if square:
-        np.fill_diagonal(data_numbers, 0)
+        np.fill_diagonal(co_occurences, 0)
 
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
@@ -123,7 +123,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
             # Skip collections of equivalent term combinations - if single term list
             #  This will skip the diagonal row, and any combinations already collected
-            if square and data_numbers[a_ind, b_ind] != -1:
+            if square and co_occurences[a_ind, b_ind] != -1:
                 continue
 
             # Make term arguments
@@ -140,9 +140,9 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
             url = urls.get_url('search', settings={'term' : full_term_arg})
             count = get_count(req, url)
 
-            data_numbers[a_ind, b_ind] = count
+            co_occurences[a_ind, b_ind] = count
             if square:
-                data_numbers[b_ind, a_ind] = count
+                co_occurences[b_ind, a_ind] = count
 
     if square:
         counts = counts_a
@@ -151,7 +151,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
     meta_data.add_requester(req)
 
-    return data_numbers, counts, meta_data
+    return co_occurences, counts, meta_data
 
 
 def get_count(req, url):

@@ -53,12 +53,12 @@ def load_terms_file(f_name, directory=None):
 
 
 def save_object(obj, f_name, directory=None):
-    """Save a custom object from LISC as a pickle file.
+    """Save a custom object as a pickle file.
 
     Parameters
     ----------
     obj : Counts or Words object
-        LISC custom object to save out.
+        Object to save out.
     f_name : str
         Name for the file to be saved out.
     directory : str or SCDB object, optional
@@ -121,7 +121,7 @@ def parse_json_data(f_name):
     Parameters
     ----------
     f_name : str
-        File name of the json file to be loaded.
+        File name of the json file.
 
     Yields
     ------

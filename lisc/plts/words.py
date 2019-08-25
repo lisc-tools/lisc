@@ -32,7 +32,7 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
 
 @savefig
 def plot_years(years, year_range=None, ax=None):
-    """Plot publications across years histogram.
+    """Plot a histogram of the number publications across years.
 
     Parameters
     ----------

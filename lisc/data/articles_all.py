@@ -19,9 +19,9 @@ class ArticlesAll(BaseArticles):
     Attributes
     ----------
     label : str
-        Label for the current term.
+        Label for the term.
     term : Term object
-        Definition of the search term, with inclusions and exclusion words.
+        Definition of the search term, with inclusion and exclusion words.
     n_articles : int
         Number of articles included in object.
     ids : list of int
@@ -81,7 +81,7 @@ class ArticlesAll(BaseArticles):
 
 
     def check_frequencies(self, data_type='words', n_check=20):
-        """Prints out the most common items in frequecy distribution.
+        """Prints out the most common items in a frequency distribution.
 
         Parameters
         ----------
@@ -152,19 +152,19 @@ class ArticlesAll(BaseArticles):
 
     @staticmethod
     def create_freq_dist(in_lst, exclude):
-        """Create frequency distribution.
+        """Create a frequency distribution.
 
         Parameters
         ----------
         in_lst : list of str
-            Word items to create frequecy distribution of.
+            Words to create the frequency distribution from.
         exclude : list of str
-            Words to exclude from list.
+            Words to exclude from the frequency distribution.
 
         Returns
         -------
         freqs : nltk.FreqDist
-            Frequency distribution of the input list.
+            Frequency distribution of the words.
         """
 
         freqs = nltk.FreqDist(in_lst)

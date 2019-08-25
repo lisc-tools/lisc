@@ -37,7 +37,7 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         Defaults to 'TIAB', which is Title/Abstract.
     usehistory : bool, optional, default: False
         Whether to use EUtils history, storing results on their server.
-    api_key : str
+    api_key : str, optional
         An API key for a NCBI account.
     save_and_clear : bool, optional, default: False
         Whether to save words data to disk per term as it goes, instead of holding in memory.
@@ -57,10 +57,11 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
 
     Notes
     -----
-    The collection does an exact word search for the term given.
-    It then loops through all the articles found about that data.
-    For each article, i pulls and saves out data (including title, abstract, authors, etc)
-        It pulls data using the hierarchical tag structure that organizes the articles.
+    The collection does an exact word search for the term given. It then loops through all
+    the articles found for that term.
+
+    For each article, it pulls and saves out data (including title, abstract, authors, etc),
+    using the hierarchical tag structure that organizes the articles.
     """
 
     # Get EUtils URLS object, with desired settings, and build required utility URLs
