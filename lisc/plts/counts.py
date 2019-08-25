@@ -17,7 +17,7 @@ hier = safe_import('.cluster.hierarchy', 'scipy')
 ###################################################################################################
 
 @savefig
-def plot_matrix(data, x_labels=None, y_labels=None, square=False, ax=None):
+def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False, ax=None):
     """Plot the matrix of percent asscociations between terms.
 
     Parameters
@@ -28,6 +28,9 @@ def plot_matrix(data, x_labels=None, y_labels=None, square=False, ax=None):
         Labels for the x-axis.
     y_labels : list of str
         Labels for the y-axis.
+    cmap : {'purple', 'blue'} or matplotlib.cmap
+        Colormap to use for the plot.
+        If string, uses a sequential palette of the specified color.
     square : bool
         Whether to plot each cell as equal sized squares.
     ax : matplotlib.Axes, optional
@@ -38,7 +41,10 @@ def plot_matrix(data, x_labels=None, y_labels=None, square=False, ax=None):
     This function is a wrapper on the seaborn `heatmap` plot function.
     """
 
-    sns.heatmap(data, square=square, ax=check_ax(ax),
+    if isinstance(cmap, str):
+        cmap = get_cmap(cmap)
+
+    sns.heatmap(data, square=square, ax=check_ax(ax), cmap=cmap,
                 **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
     plt.tight_layout()
 
@@ -55,8 +61,9 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
         Labels for the x-axis.
     y_labels : list of str
         Labels for the y-axis.
-    cmap : matplotlib.cmap
+    cmap : {'purple', 'blue'} or matplotlib.cmap
         Colormap to use for the plot.
+        If string, uses a sequential palette of the specified color.
 
     Notes
     -----
