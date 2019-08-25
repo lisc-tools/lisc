@@ -66,7 +66,9 @@ Optional dependencies, used for plots, analyses & testing:
 
 **Stable Release Version**
 
-PIP install coming soon!
+To install the latest stable release of lisc, you can install from pip:
+
+`$ pip install neurodsp`
 
 **Development Version**
 
