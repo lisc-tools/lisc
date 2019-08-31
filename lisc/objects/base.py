@@ -90,8 +90,9 @@ class Base():
 
         print('List of {} used: \n'.format(term_type))
 
-        for lab, word_lst in zip(self.labels, getattr(self, term_type)):
-            print(lab + "\t : " + ", ".join(word for word in word_lst))
+        width = len(max(self.labels, key=len))
+        for label, terms in zip(self.labels, getattr(self, term_type)):
+            print('{:{width}s}  : '.format(label, width=width) + ", ".join(term for term in terms))
 
 
     def unload_terms(self, term_type='terms'):
