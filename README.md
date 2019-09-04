@@ -40,7 +40,7 @@ In addition to connecting to external APIs, LISC also provides:
 
 Documentation for LISC available [here](https://lisc-tools.github.io/lisc/).
 
-The documentation also includes a set of [tutorials](https://lisc-tools.github.io/lisc/auto_tutorial/index.html).
+The documentation also includes a set of [tutorials](https://lisc-tools.github.io/lisc/auto_tutorials/index.html).
 
 For a curated list of projects that use LISC (or pre-cursors), check out the [projects](https://github.com/lisc-tools/Projects) page.
 
