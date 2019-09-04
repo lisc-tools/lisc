@@ -5,6 +5,29 @@ from importlib import import_module
 ###################################################################################################
 ###################################################################################################
 
+class Dependency():
+    """An object to represent optional dependencies that are not available.
+
+
+    Attributes
+    ----------
+    mod_name :str
+        The name of the module that was not imported.
+
+    Notes
+    -----
+    This object raises an error if something tries to use the represented module.
+    """
+
+    def __init__(self, mod_name):
+
+        self.mod_name = mod_name
+
+    def __getattr__(self, val):
+
+        raise ImportError("The {} module is required for this functionality.".format(self.mod_name))
+
+
 def safe_import(*args):
     """Import a module, with a safety net for if the module is not available.
 
@@ -28,7 +51,7 @@ def safe_import(*args):
     try:
         mod = import_module(*args)
     except ImportError:
-        mod = False
+        mod = Dependency(args[-1])
 
     # Prior to py 3.5.4, import module could throw a SystemError
     #  Older approach requires the parent module be imported first
@@ -38,6 +61,6 @@ def safe_import(*args):
             _ = import_module(args[-1])
             mod = import_module(*args)
         except ImportError:
-            mod = False
+            mod = Dependency(args[-1])
 
     return mod
