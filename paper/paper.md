@@ -23,24 +23,26 @@ bibliography: paper.bib
 
 # Summary
 
-The scientific literature is vast, and ever expanding. As a single example, the Pubmed database, a curated
-database of literature within the bio-medical sciences, holds more than 30 million published scientific articles,
-and continues to grow each year. Given the scale of the literature, work across informatics, information sciences, and
-bibliometrics has explored automated methods for the curation of and inference from the existing literature. This
-work is sometimes referred to as knowledge discovery, literature based discovery,
-or hypothesis generation [@stegmann_hypothesis_2003; @voytek_automated_2012; @spangler_automated_2014].
+The scientific literature is vast, and ever expanding. As a single example, the Pubmed database,
+a curated database of literature from the bio-medical sciences, holds more than 30 million
+published scientific articles, and continues to grow each year. Given the scale of the literature,
+work across informatics, information sciences, and bibliometrics has explored automated methods
+for the curation of and inference from the existing literature. This work is sometimes referred
+to as knowledge discovery, literature-based discovery, or hypothesis generation
+[@stegmann_hypothesis_2003; @voytek_automated_2012; @spangler_automated_2014].
 
-Here we introduce 'Literature Scanner', or 'LISC', an open-source Python module
-for performing automated meta-analyses of scientific articles, by collecting and analyzing
-data from the scientific literature. LISC seeks to provide an easily accessible interface that
-connects to the APIs from available databases, such as the Pubmed database, to collect literature data
-of interest. LISC also provides access to the OpenCitations database [@heibi_coci_2019], and provides
-an extendable approach that can be used to integrate additional APIs. LISC also includes support and
-utilities for analyzing the collected literature data.
+Here, we introduce 'Literature Scanner', or 'LISC', an open-source Python module for performing
+automated meta-analyses of scientific articles by collecting and analyzing data from the
+scientific literature. LISC seeks to provide an easily accessible interface that connects to
+external resources that make data available through application programming interfaces (APIs).
+For example, LISC connects to the Pubmed database, providing access to collect and analyze bio-medical
+literature, and to the OpenCitations database [@heibi_coci_2019] providing access to citation data.
+LISC is designed with an extendable approach that can be used to integrate additional APIs.
+LISC also includes support and utilities for analyzing the collected literature data.
 
 For data collection, LISC currently offers the following types of literature data collection:
 
-- Counts: tools to collect and analyze data on the co-occurence of specified search terms
+- Counts: tools to collect and analyze data on the co-occurence of specified search terms in the literature
 - Words: tools to collect and analyze text and meta-data for articles identified from a set of search terms
 - Citations: tools to collect and analyze citation and reference data
 
@@ -59,7 +61,7 @@ be expanded to included new databases, APIs and analyses as new dataset and tool
 
 The size and increasing scale of the scientific literature is prohibitively large for
 individual scientists to be able to keep up with. Common methods for literature summarization,
-including meta-analyses and systematic reviews require time-demanding manual work, and are often
+including meta-analyses and systematic reviews, require time-intensive manual work, and are often
 limited in scope and lag behind the literature. As a way to complement such approaches, multiple
 lines of investigation have shown how automated analyses of scientific literature can be applied
 to summarize and make inference from the existing literature [@stegmann_hypothesis_2003;
@@ -67,10 +69,10 @@ to summarize and make inference from the existing literature [@stegmann_hypothes
 
 Despite these established methods for analyzing the continuously growing literature, there is
 currently a relative lack of openly available tools to collect and analyze scientific literature.
-Although databases such as Pubmed have application programming interfaces (API), it still takes
-considerable work to implement and apply even relatively simple analyses of the literature. LISC
-seeks to help fill this gap, by providing user-friendly access to methods to programmatically search
-for and collect literature of interest and apply analyses of interest to it.
+Although databases such as Pubmed have APIs, it still takes considerable work to implement and
+apply even relatively simple analyses of the literature. LISC seeks to help fill this gap, by
+providing user-friendly access to methods to programmatically search for and collect literature
+of interest and apply analyses of interest to it.
 
 LISC aims to serve as a complement to other relevant tools, for example Moliere,
 a more sophisticated and also more computationally complex tool for hypothesis
@@ -78,11 +80,11 @@ generation [@sybrandt_moliere_2017], or Meta, a recently developed service for p
 a pre-built knowledge network inferred from the literature
 (https://chanzuckerberg.com/science/programs-resources/meta/).
 LISC, in contrast to these more complex systems, aims to offer a lightweight and customizable
-approach for finding and collecting literature of interest, and offering tools for efficiently
-applying analyses on this data. It aims to do so in particular by offering a connective
+approach for finding and collecting literature of interest, and offers tools for efficiently
+performing analyses on this data. It aims to do so in particular by offering a connective
 interface between available APIs and natural language processing (NLP) analyses
-available through other tools. The goal is to allow for simple and rapid literature analyses,
-though it may not be appopriate for more complex analyses and hypothesis generation projects
+available through other tools. The goal is to allow for simple and rapid literature analyses.
+LISC may not be appopriate for more complex analyses and hypothesis generation projects
 that would be best served by tools like Moliere.
 
 # Related Projects
@@ -93,12 +95,12 @@ data and analyzed co-occurences of terms in the neuroscientific literature [@voy
 LISC, or it's precursors, has enabled a series of recent studies, including meta-analytic / descriptive
 work and hypothesis driven investigations, including:
 
-- ERPSCANR: An automated meta-analysis of the field of event-related potential (ERP) work,
+- ERPSCANR: an automated meta-analysis of the field of event-related potential (ERP) work,
 in the domain of cognitive neuroscience (https://github.com/TomDonoghue/ERP_SCANR).
 - Conveyed Confidence in Scientific Literature and Press Releases: an analysis of
 conveyed confidence in primary scienfific literature, as compared to press releases [@fox_confidence_2018]
-- Cognitive Ontology Mapping: An analysis of ontologies of cognitive and neuroscientific terms and
-their use and co-occurences in primary scientific literature and conference proceedings [@gao_automated_2017]
+- Cognitive Ontology Mapping: an analysis of ontologies of cognitive and neuroscientific terms and
+their use in journal articles and conference proceedings [@gao_automated_2017]
 
 # Acknowledgements
 
