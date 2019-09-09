@@ -25,7 +25,7 @@ bibliography: paper.bib
 
 The scientific literature is vast, and ever expanding. As a single example, the Pubmed database,
 a curated database of literature from the bio-medical sciences, holds more than 30 million
-published scientific articles, and continues to grow each year. Given the scale of the literature,
+published scientific articles, and is continuously growing. Given the scale of the literature,
 work across informatics, information sciences, and bibliometrics has explored automated methods
 for the curation of and inference from the existing literature. This work is sometimes referred
 to as knowledge discovery, literature-based discovery, or hypothesis generation
@@ -104,7 +104,7 @@ their use in journal articles and conference proceedings [@gao_automated_2017]
 
 # Acknowledgements
 
-Thank you to Jessica and Bradley Voytek for the inspiration for this codebase from the BRAINSCANR project,
-and to Lakshmi Menon, Will Fox and Richard Gao for helpful insights and feedback from testing and using the codebase.
+Thank you to Jessica and Bradley Voytek for the inspiration from the BRAINSCANR project,
+and to Lakshmi Menon, Will Fox and Richard Gao for helpful insights and feedback.
 
 # References
