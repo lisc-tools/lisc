@@ -88,33 +88,24 @@ If you want to install an editable version, for making contributions, download t
 
 ## Code Tests
 
-An automated test suite for the LISC package is included, written with [pytest](https://docs.pytest.org/).
-
-To check the status of the test suite on the current version of LISC, you can check the continuous
-integration tests on [Travis](https://travis-ci.org/lisc-tools/lisc).
+LISC includes an automated test suite, using [pytest](https://docs.pytest.org/), and continuous
+integration on [Travis](https://travis-ci.org/lisc-tools/lisc).
 
 **Installing pytest**
 
-If you want to run the test suite, for example to check if everything is working on your system, you will need
-to have pytest installed. If you don't already have pytest, install as below.
-
-You can install pytest with pip, as:
+If you want to run the tests yourself, you will need pytest. You can install pytest with pip, as:
 
 `pip install pytest`
 
 **Running tests on an installed copy of LISC**
 
-You might want to run the test suite on an installed version of LISC, to check that everything is working.
-
-If you want to run the test suite, after installing, run:
+To run the test suite on an installed version of LISC, after installing, run:
 
 `pytest lisc`
 
 **Running tests on a local copy of LISC**
 
-If you are working with the development version, and making changes, you might want to run the tests on a local version.
-
-To run the tests on a local copy, move into the LISC folder, and run:
+To run the tests on a local copy of LISC, move into the LISC folder, and run:
 
 `pytest .`
 
