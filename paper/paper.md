@@ -42,8 +42,8 @@ LISC also includes support and utilities for analyzing the collected literature 
 
 For data collection, LISC currently offers the following types of literature data collection:
 
-- Counts: tools to collect and analyze data on the co-occurence of specified search terms in the literature
-- Words: tools to collect and analyze text and meta-data for articles identified from a set of search terms
+- Counts: tools to collect and analyze data on the co-occurence of specified search terms
+- Words: tools to collect and analyze text and meta-data from scientific articles
 - Citations: tools to collect and analyze citation and reference data
 
 To support use cases for collection and analyzing literature data, LISC includes:
@@ -55,7 +55,7 @@ To support use cases for collection and analyzing literature data, LISC includes
 - data visualization functions for plotting collected data and analysis outputs
 
 LISC is organized as an object-oriented tool, and aims to be a general utility that can
-be expanded to included new databases, APIs and analyses as new dataset and tools are integrated.
+be expanded to included new databases, APIs and analyses as new resources and tools are integrated.
 
 # Statement of Need
 
