@@ -71,10 +71,10 @@ First lets check the number of counts per term list.
 
  .. code-block:: none
 
-    For  'frontal lobe'    the highest association is  'audition'        with         377
-    For  'temporal lobe'   the highest association is  'audition'        with        1299
+    For  'frontal lobe'    the highest association is  'audition'        with         378
+    For  'temporal lobe'   the highest association is  'audition'        with        1300
     For  'parietal lobe'   the highest association is  'audition'        with         231
-    For  'occipital lobe'  the highest association is  'vision'          with         235
+    For  'occipital lobe'  the highest association is  'vision'          with         236
 
 
 
@@ -94,13 +94,13 @@ First lets check the number of counts per term list.
 
  .. code-block:: none
 
-    For  'vision'          the highest association is  'occipital lobe'  with         235
-    For  'audition'        the highest association is  'temporal lobe'   with        1299
+    For  'vision'          the highest association is  'occipital lobe'  with         236
+    For  'audition'        the highest association is  'temporal lobe'   with        1300
     For  'somatosensory'   the highest association is  'parietal lobe'   with         187
     For  'olfaction'       the highest association is  'temporal lobe'   with          71
     For  'gustation'       the highest association is  'temporal lobe'   with          44
     For  'proprioception'  the highest association is  'parietal lobe'   with           9
-    For  'nociception'     the highest association is  'temporal lobe'   with         198
+    For  'nociception'     the highest association is  'temporal lobe'   with         199
 
 
 Normalization & Scores
@@ -156,14 +156,14 @@ association index - as an input to the method.
 
  .. code-block:: none
 
-    [[1.05353687e-02 2.70192790e-02 9.60366946e-03 3.58345875e-03
-      1.14670680e-03 2.86676700e-04 1.14670680e-02]
-     [6.88608345e-03 4.80915183e-02 6.81203954e-03 2.62855874e-03
-      1.62896598e-03 7.40439080e-05 7.33034690e-03]
-     [1.75837815e-02 4.77865122e-02 3.86843194e-02 1.65494415e-03
-      1.24120811e-03 1.86181216e-03 2.33760861e-02]
-     [6.42954856e-02 2.32558140e-02 9.57592339e-03 1.36798906e-03
-      0.00000000e+00 0.00000000e+00 1.72366621e-02]]
+    [[1.05895821e-02 2.70463652e-02 9.58786491e-03 3.57756153e-03
+      1.14481969e-03 2.86204923e-04 1.14481969e-02]
+     [6.87590108e-03 4.80573731e-02 6.80196666e-03 2.62467192e-03
+      1.62655724e-03 7.39344202e-05 7.35647481e-03]
+     [1.75656127e-02 4.77371358e-02 3.86443480e-02 1.65323414e-03
+      1.23992560e-03 1.85988841e-03 2.33519322e-02]
+     [6.43929059e-02 2.31923602e-02 9.54979536e-03 1.36425648e-03
+      0.00000000e+00 0.00000000e+00 1.71896317e-02]]
 
 
 The normalization is the number of articles with both terms, divided by the number of
@@ -208,14 +208,14 @@ articles for each anatomical term that include each perception term.
 
  .. code-block:: none
 
-    [[1.15756235e-03 3.37750065e-03 3.15479694e-03 1.87076739e-03
-      3.77670247e-04 2.14672892e-04 2.63876611e-04]
-     [1.32847654e-03 1.04963760e-02 3.31633113e-03 1.78553465e-03
-      7.94295514e-04 6.31054176e-05 3.19682771e-04]
-     [7.20742110e-04 2.25040917e-03 5.61510975e-03 4.53257790e-04
-      1.80418571e-04 9.46471764e-04 1.89193533e-04]
-     [2.01535097e-03 8.36490676e-04 1.08439708e-03 3.03508559e-04
-      0.00000000e+00 0.00000000e+00 1.05679342e-04]]
+    [[1.16267195e-03 3.37985855e-03 3.14960630e-03 1.86720442e-03
+      3.76896259e-04 2.14258932e-04 2.63222835e-04]
+     [1.32544716e-03 1.04845474e-02 3.31113910e-03 1.78248644e-03
+      7.92807078e-04 6.30000630e-05 3.20509723e-04]
+     [7.19004559e-04 2.24601114e-03 5.60635587e-03 4.52411921e-04
+      1.80045011e-04 9.44683531e-04 1.88723362e-04]
+     [2.01892313e-03 8.34798323e-04 1.08248539e-03 3.02810078e-04
+      0.00000000e+00 0.00000000e+00 1.05415336e-04]]
 
 
 The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.
@@ -287,7 +287,7 @@ collected co-occurrence data.
 
 
 
-**Total running time of the script:** ( 0 minutes  0.351 seconds)
+**Total running time of the script:** ( 0 minutes  0.526 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_02-CountsAnalysis.py:

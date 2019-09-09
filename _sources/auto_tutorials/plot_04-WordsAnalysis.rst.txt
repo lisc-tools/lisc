@@ -112,9 +112,9 @@ created from the aggregate data, across all articles for a given search term.
  .. code-block:: none
 
     frontal lobe :
-      Number of articles:            14
+      Number of articles:            15
       First publication:             2019
-      Most common author:            Silveira L
+      Most common author:            Sahar F
         number of publications:      1
       Most common journal:           World neurosurgery
         number of publications:      2
@@ -210,7 +210,7 @@ The Words object also has some methods for exploring the data.
 
  .. code-block:: none
 
-    <lisc.data.articles.Articles object at 0x114a249e8>
+    <lisc.data.articles.Articles object at 0x133a50a20>
 
 
 
@@ -232,21 +232,21 @@ The Words object also has some methods for exploring the data.
 
  .. code-block:: none
 
-    Voxel-based correlation of 18F-THK5351 accumulation and gray matter volume in the brain of cognitively normal older adults.
-    A 9.2-gram Fully-Flexible Wireless Ambulatory EEG Monitoring and Diagnostics Headband with Analog Motion Artifact Detection and Compensation.
-    Connectivity of the human insula: A cortico-cortical evoked potential (CCEP) study.
-    White Matter Topographic Anatomy applied to Temporal Lobe surgery.
-    Analysis of temporobasal vein with short subdural segment for anterior transpetrosal approach.
-    Anxiety and depression in patients with intracranial arachnoid cysts - a prospective study.
-    Cortical network underlying audiovisual semantic integration and modulation of attention: An fMRI and graph-based study.
-    [Isolated effective coherence analysis of epileptogenic networks in temporal lobe epilepsy using stereo-electroencephalography].
-    Olfactory function in focal epilepsies: Understanding mesial temporal lobe epilepsy beyond the hippocampus.
-    Identifying the trajectory of social milestones 15-20 years after epilepsy surgery: Realistic timelines for postsurgical expectations.
-    Anatomical Links between White Matter Hyperintensity and Medial Temporal Atrophy Reveal Impairment of Executive Functions.
-    Lower limb automatism in surgically treated temporal lobe epilepsy patients: Clinical and electrophysiological features.
-    Depersonalization- and derealization-like phenomena of epileptic origin.
-    A case of recurrent epilepsy-associated rosette-forming glioneuronal tumor with anaplastic transformation in the absence of therapy.
-    Clinical Characterization of Definite Autoimmune Limbic Encephalitis: A 30-case Series.
+    Fractional anisotropy of the optic radiations correlates with the visual field after epilepsy surgery.
+    APOE modifies the interaction of entorhinal cerebral blood flow and cortical thickness on memory function in cognitively normal older adults.
+    Phosphorylation of the HCN channel auxiliary subunit TRIP8b is altered in an animal model of temporal lobe epilepsy and modulates channel function.
+    Low-dose ladostigil for mild cognitive impairment: A phase 2 placebo-controlled clinical trial.
+    Case report: a giant arachnoid cyst masking Alzheimer's disease.
+    The infratranstentorial subtemporal approach (ITSTA): a valuable skull base approach to deep-seated non-skull base pathology.
+    Dynorphin-based "release on demand" gene therapy for drug-resistant temporal lobe epilepsy.
+    Antioxidant Capacity and Behavioral Relevance of a Polyphenolic Extract of Chrysanthellum americanum in a Rat Model of Irritable Bowel Syndrome.
+    Reactive Disruption of the Hippocampal Neurogenic Niche After Induction of Seizures by Injection of Kainic Acid in the Amygdala.
+    Epilepsy Mimicking Affective Disorder in a Patient with Amygdala Enlargement.
+    Environmental Enrichment and Brain Neuroplasticity in the Kainate Rat Model of Temporal Lobe Epilepsy.
+    High Frequency Oscillations in Epilepsy: Detection Methods and Considerations in Clinical Application.
+    A Rare Case of Insular Epilepsy: Not To Be Missed in Refractory Epilepsy Patients.
+    Biased Recognition of Surprised Facial Expressions Following Awake Craniotomy of a Right Temporal Lobe Tumor.
+    Assessing the effectiveness of perioperative s-ketamine on new-onset headache after resective epilepsy surgery (ESPAIN-trial): protocol for a randomised, double-blind, placebo-controlled trial.
 
 
 Analyzing Words Data
@@ -265,7 +265,7 @@ journals, by which authors.
 
 
 
-**Total running time of the script:** ( 0 minutes  2.666 seconds)
+**Total running time of the script:** ( 0 minutes  2.961 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_04-WordsAnalysis.py:

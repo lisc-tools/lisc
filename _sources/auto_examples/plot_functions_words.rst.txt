@@ -105,7 +105,7 @@ Here we will briefly explore collecting data directly using the function approac
 
  .. code-block:: none
 
-    [<lisc.data.articles.Articles object at 0x1259246d8>, <lisc.data.articles.Articles object at 0x1257c9208>]
+    [<lisc.data.articles.Articles object at 0x128636a58>, <lisc.data.articles.Articles object at 0x1285764a8>]
 
 
 
@@ -141,11 +141,11 @@ Here we will briefly explore collecting data directly using the function approac
 
     5 
 
-    Disruption of an enhancer associated with addictive behaviour within the cannabinoid receptor-1 gene suggests a possible role in alcohol intake, cannabinoid response and anxiety-related behaviour.
-    Bilingual children access multiplication facts from semantic memory equivalently across languages: Evidence from the N400.
-    Neural responses to social evaluation: The role of fear of positive and negative evaluation.
-    RECK in Neural Precursor Cells Plays a Critical Role in Mouse Forebrain Angiogenesis.
-    Bioimaging of Pb and STIM1 in mice liver, kidney and brain using Laser Ablation Inductively Coupled Plasma Mass Spectrometry (LA-ICP-MS) and immunohistochemistry.
+    The tracking of lipopolysaccharide through the feto-maternal compartment and the involvement of maternal TLR4 in inflammation-induced fetal brain injury.
+    Speech-in-noise understanding in older age: The role of inhibitory cortical responses.
+    Intercomparison of MR-Informed PET Image Reconstruction Methods.
+    mage reconstruction for positron emission tomography based on patch-based regularization and dictionary learning.
+    N-acetylglucosaminyltransferase I promotes glioma cell proliferation and migration through increasing the stability of the glucose transporter GLUT1.
 
 
 To further explore the data collected and available, and what can be accessed,
@@ -153,7 +153,7 @@ check out the documentation for the `Articles` object, and what attributes it co
 
 
 
-**Total running time of the script:** ( 0 minutes  4.702 seconds)
+**Total running time of the script:** ( 0 minutes  6.385 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_words.py:

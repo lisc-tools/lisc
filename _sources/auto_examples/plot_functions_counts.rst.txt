@@ -88,8 +88,8 @@ Given a list of search terms, this function handles all the requests to collect 
 
  .. code-block:: none
 
-    [[     0 530821]
-     [530821      0]]
+    [[     0 531803]
+     [531803      0]]
 
 
 
@@ -110,8 +110,8 @@ Given a list of search terms, this function handles all the requests to collect 
 
  .. code-block:: none
 
-    protein      : 2396997
-    gene         : 1619507
+    protein      : 2401431
+    gene         : 1622676
 
 
 When given a single set of terms, the function collects counts of each term
@@ -176,8 +176,8 @@ are available in `lisc.analysis`, as functions that take in arrays of collected 
 
  .. code-block:: none
 
-    [[0.0246254  0.02933838]
-     [0.02166338 0.02952565]]
+    [[0.02462532 0.02935916]
+     [0.02165805 0.02953455]]
 
 
 
@@ -200,8 +200,8 @@ are available in `lisc.analysis`, as functions that take in arrays of collected 
 
  .. code-block:: none
 
-    [[0.01876724 0.02419766]
-     [0.01466926 0.02222756]]
+    [[0.01876812 0.02421404]
+     [0.01466709 0.02223358]]
 
 
 From here, further analysis of collected co-occurrence data depends on the goal of the analysis.
@@ -210,7 +210,7 @@ There are also plot functions available, same as demonstrated in the Counts tuto
 
 
 
-**Total running time of the script:** ( 0 minutes  14.454 seconds)
+**Total running time of the script:** ( 0 minutes  15.276 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_functions_counts.py:

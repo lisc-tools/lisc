@@ -166,6 +166,20 @@
 <p>If you want to install an editable version, for making contributions, download the development version as above, and run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p>
 </div>
+<div class="section" id="code-tests">
+<h2>Code Tests<a class="headerlink" href="#code-tests" title="Permalink to this headline">¶</a></h2>
+<p>LISC includes an automated test suite, using <a class="reference external" href="https://docs.pytest.org/">pytest</a>, and continuous
+integration on <a class="reference external" href="https://travis-ci.org/lisc-tools/lisc">Travis</a>.</p>
+<p><strong>Installing pytest</strong></p>
+<p>If you want to run the tests yourself, you will need pytest. You can install pytest with pip, as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span></code></p>
+<p><strong>Running tests on an installed copy of LISC</strong></p>
+<p>To run the test suite on an installed version of LISC, after installing, run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">lisc</span></code></p>
+<p><strong>Running tests on a local copy of LISC</strong></p>
+<p>To run the tests on a local copy of LISC, move into the LISC folder, and run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">.</span></code></p>
+</div>
 <div class="section" id="bug-reports">
 <h2>Bug Reports<a class="headerlink" href="#bug-reports" title="Permalink to this headline">¶</a></h2>
 <p>Please use the <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">Github issue tracker</a> to file bug reports and/or ask questions about this project.</p>

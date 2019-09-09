@@ -105,7 +105,7 @@ and exclusion words, is used as was introduced and described in the first tutori
 
  .. code-block:: none
 
-    [<lisc.data.articles.Articles object at 0x13063b6a0>, <lisc.data.articles.Articles object at 0x130bdaba8>]
+    [<lisc.data.articles.Articles object at 0x124869470>, <lisc.data.articles.Articles object at 0x13394bf98>]
 
 
 LISC Data Objects
@@ -146,7 +146,7 @@ Collected data words data includes:
  .. code-block:: none
 
     5
-    ['Disruption of an enhancer associated with addictive behaviour within the cannabinoid receptor-1 gene suggests a possible role in alcohol intake, cannabinoid response and anxiety-related behaviour.', 'Bilingual children access multiplication facts from semantic memory equivalently across languages: Evidence from the N400.', 'Neural responses to social evaluation: The role of fear of positive and negative evaluation.', 'RECK in Neural Precursor Cells Plays a Critical Role in Mouse Forebrain Angiogenesis.', 'Bioimaging of Pb and STIM1 in mice liver, kidney and brain using Laser Ablation Inductively Coupled Plasma Mass Spectrometry (LA-ICP-MS) and immunohistochemistry.']
+    ['The tracking of lipopolysaccharide through the feto-maternal compartment and the involvement of maternal TLR4 in inflammation-induced fetal brain injury.', 'Speech-in-noise understanding in older age: The role of inhibitory cortical responses.', 'Intercomparison of MR-Informed PET Image Reconstruction Methods.', 'mage reconstruction for positron emission tomography based on patch-based regularization and dictionary learning.', 'N-acetylglucosaminyltransferase I promotes glioma cell proliferation and migration through increasing the stability of the glucose transporter GLUT1.']
 
 
 Word Collections
@@ -253,7 +253,7 @@ We will analyze our words data in the next tutorial, so for now lets save out th
 
 
 
-**Total running time of the script:** ( 0 minutes  15.630 seconds)
+**Total running time of the script:** ( 0 minutes  17.380 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_03-WordsCollection.py:
