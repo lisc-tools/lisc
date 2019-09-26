@@ -91,8 +91,8 @@ that would be best served by tools like Moliere.
 LISC is inspired by and based on the BRAIN-SCANR project, a project that collected literature
 data and analyzed co-occurrences of terms in the neuroscientific literature [@voytek_automated_2012].
 
-LISC, or it's precursors, has enabled a series of recent studies, including meta-analytic / descriptive
-work and hypothesis driven investigations, including:
+LISC and its precursors have enabled a series of recent studies, including meta-analytic / descriptive
+work and hypothesis driven investigations, such as:
 
 - ERPSCANR: an automated meta-analysis of the field of event-related potential (ERP) work,
 in the domain of cognitive neuroscience (https://github.com/TomDonoghue/ERP_SCANR).
