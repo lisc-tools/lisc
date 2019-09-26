@@ -122,3 +122,29 @@ If you have an idea of something to add to LISC, please start by opening an [iss
 
 When working on LISC, please follow the [Contribution Guidelines](https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md), and also make sure to follow our
 [Code of Conduct](https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md).
+
+## Reference
+
+If you use this code in your project, please cite:
+
+```
+Donoghue, T. (2019). LISC: A Python Package for Scientific Literature Collection and Analysis.
+Journal of Open Source Software, 4(41), 1674. DOI: 10.21105/joss.01674
+```
+
+Direct Link: https://doi.org/10.21105/joss.01674
+
+Bibtex:
+```
+@article{donoghue_lisc:_2019,
+      	 title = {{LISC}: {A} {Python} {Package} for {Scientific} {Literature} {Collection} and {Analysis}},
+         author = {Donoghue, Thomas},
+         journal = {Journal of Open Source Software},
+         year = {2019},
+         volume = {4},
+         number = {41},
+         issn = {2475-9066},
+         url = {https://joss.theoj.org/papers/10.21105/joss.01674},
+       	 doi = {10.21105/joss.01674}
+}
+```
