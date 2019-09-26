@@ -229,8 +229,8 @@ For a general example, here we will use the underlying 'Base' object.
 
     List of terms used: 
 
-    brain    : brain, cortex
-    body     : body, corporeal
+    brain  : brain, cortex
+    body   : body, corporeal
 
 
 The same structure can be used to store exclusion and inclusion words for terms.
@@ -245,7 +245,7 @@ term does not have an associated inclusion or exclusion term, leave that line bl
 
 
 
-**Total running time of the script:** ( 0 minutes  0.004 seconds)
+**Total running time of the script:** ( 0 minutes  0.003 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_db_terms.py:

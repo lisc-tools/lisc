@@ -120,10 +120,10 @@ The Counts object will now contain count data for the word co-occurrence data be
 
  .. code-block:: none
 
-    [[   0 1760  758  495]
-     [1760    0  709  598]
-     [ 758  709    0  417]
-     [ 495  598  417    0]]
+    [[   0 1763  760  497]
+     [1763    0  709  598]
+     [ 760  709    0  418]
+     [ 497  598  418    0]]
 
 
 The Counts object also comes with some helper methods to explore the data.
@@ -148,10 +148,10 @@ The Counts object also comes with some helper methods to explore the data.
  .. code-block:: none
 
     The number of documents found for each search term is:
-      'frontal lobe'     -   13976
-      'temporal lobe'    -   27051
-      'parietal lobe'    -    4839
-      'occipital lobe'   -    3665
+      'frontal lobe'     -   14002
+      'temporal lobe'    -   27101
+      'parietal lobe'    -    4847
+      'occipital lobe'   -    3672
 
 
 
@@ -171,7 +171,7 @@ The Counts object also comes with some helper methods to explore the data.
 
  .. code-block:: none
 
-    The most studied term is  'temporal lobe'  with  27051  articles.
+    The most studied term is  'temporal lobe'  with  27101  articles.
 
 
 Counts: Two Terms Lists
@@ -256,7 +256,7 @@ For now, let's save out our collected counts data, using the LISC utility to sav
 
 
 
-**Total running time of the script:** ( 1 minutes  36.176 seconds)
+**Total running time of the script:** ( 1 minutes  32.388 seconds)
 
 
 .. _sphx_glr_download_auto_tutorials_plot_01-CountsCollection.py:

@@ -129,8 +129,8 @@ indicated using double quotes, as "search term".
 
     List of terms used: 
 
-    chemistry        : chemistry
-    biology  : biology
+    chemistry  : chemistry
+    biology    : biology
 
 
 Complex Search Terms
@@ -261,8 +261,8 @@ Now let's update our set of terms, to include some synonyms, inclusions and excl
 
     List of terms used: 
 
-    gene     : gene, genetic
-    cortex   : cortex, cortical
+    gene    : gene, genetic
+    cortex  : cortex, cortical
 
 
 
@@ -286,14 +286,14 @@ Now let's update our set of terms, to include some synonyms, inclusions and excl
 
     List of inclusions used: 
 
-    gene     : brain
-    cortex   : body
+    gene    : brain
+    cortex  : body
 
 
     List of exclusions used: 
 
-    gene     : protein
-    cortex   : subcortical
+    gene    : protein
+    cortex  : subcortical
 
 
 Labels
