@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.plts.counts.plot_matrix &#8212; lisc 0.1.0 documentation</title>
+    <title>lisc.plts.counts.plot_matrix &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -89,15 +89,15 @@
 <h1>lisc.plts.counts.plot_matrix<a class="headerlink" href="#lisc-plts-counts-plot-matrix" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="lisc.plts.counts.plot_matrix">
-<code class="descclassname">lisc.plts.counts.</code><code class="descname">plot_matrix</code><span class="sig-paren">(</span><em>data</em>, <em>x_labels=None</em>, <em>y_labels=None</em>, <em>square=False</em>, <em>ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.counts.plot_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot the matrix of percent asscociations between terms.</p>
+<code class="descclassname">lisc.plts.counts.</code><code class="descname">plot_matrix</code><span class="sig-paren">(</span><em>data</em>, <em>x_labels=None</em>, <em>y_labels=None</em>, <em>cmap='purple'</em>, <em>square=False</em>, <em>ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.counts.plot_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a matrix representation of given data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
 <dt><strong>data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">2d array</span></dt>
-<dd><p class="first last">Data to plot, as a matrix.</p>
+<dd><p class="first last">Data to plot in matrix format.</p>
 </dd>
 <dt><strong>x_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
 <dd><p class="first last">Labels for the x-axis.</p>
@@ -105,8 +105,12 @@
 <dt><strong>y_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
 <dd><p class="first last">Labels for the y-axis.</p>
 </dd>
+<dt><strong>cmap</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘purple’, ‘blue’} or matplotlib.cmap</span></dt>
+<dd><p class="first last">Colormap to use for the plot.
+If string, uses a sequential palette of the specified color.</p>
+</dd>
 <dt><strong>square</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Whether to plot each cell as equal sized squares.</p>
+<dd><p class="first last">Whether to plot all the cells as equally sized squares.</p>
 </dd>
 <dt><strong>ax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">matplotlib.Axes, optional</span></dt>
 <dd><p class="first last">Figure axes upon which to plot.</p>
@@ -117,7 +121,7 @@
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>This function is a wrapper on the seaborn <cite>heatmap</cite> plot function.</p>
+<p>This function is a wrapper of the seaborn <cite>heatmap</cite> plot function.</p>
 </dd></dl>
 
 </div>

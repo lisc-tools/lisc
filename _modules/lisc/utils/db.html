@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.utils.db &#8212; lisc 0.1.0 documentation</title>
+    <title>lisc.utils.db &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,18 +108,21 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    The default set of paths for SCDB is:</span>
+
 <span class="sd">    - terms                 Term files.</span>
 <span class="sd">    - logs                  Log files.</span>
 <span class="sd">    - figs                  Figure files.</span>
 <span class="sd">    - data                  Data files.</span>
+
 <span class="sd">        - counts            Counts data files.</span>
 <span class="sd">        - words             Words data files.</span>
+
 <span class="sd">            - raw           Raw words data files</span>
 <span class="sd">            - summary       Summary files for words data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SCDB.__init__"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">generate_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize SCDB object.</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a SCDB object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -181,7 +184,7 @@
 <span class="sd">        folder : str</span>
 <span class="sd">            Which folder path to get the file path from.</span>
 <span class="sd">        file_name : str</span>
-<span class="sd">            The name of the file to create the fulle path for</span>
+<span class="sd">            The name of the file to create the full file path for.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -234,6 +237,8 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
+<span class="sd">    The output of this function depends on the input, as:</span>
+
 <span class="sd">    - If the input is an SCDB object, returns a file path as a string.</span>
 <span class="sd">    - If the input is already a string, returns the input.</span>
 <span class="sd">    - If the input is None, returns an empty string.</span>
@@ -252,17 +257,17 @@
 <div class="viewcode-block" id="create_file_structure"><a class="viewcode-back" href="../../../generated/lisc.utils.db.create_file_structure.html#lisc.utils.db.create_file_structure">[docs]</a><span class="k">def</span> <span class="nf">create_file_structure</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create the file structure for a SCANR database.</span>
 
-<span class="sd">    Attributes</span>
+<span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    base : str or None</span>
 <span class="sd">        Base path for the database directory.</span>
 <span class="sd">        If None, the structure is created in the current directory.</span>
-<span class="sd">    name : str</span>
+<span class="sd">    name : str, optional, default: &#39;lisc_db&#39;</span>
 <span class="sd">        The name of the root folder of the directory structure.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    db : SCDB()</span>
+<span class="sd">    db : SCDB</span>
 <span class="sd">        A database object for the file structure that was created.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 

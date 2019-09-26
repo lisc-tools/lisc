@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.objects.Counts &#8212; lisc 0.1.0 documentation</title>
+    <title>lisc.objects.Counts &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -125,7 +125,7 @@ This can be a normalized version of the data, and/or a computed association inde
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms" title="lisc.objects.Counts.add_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms</span></code></a>(terms[,&nbsp;term_type,&nbsp;dim])</td>
-<td>Add the given list of strings as terms to use.</td>
+<td>Add the given list of strings as terms.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms_file" title="lisc.objects.Counts.add_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms_file</span></code></a>(f_name[,&nbsp;term_type,&nbsp;…])</td>
 <td>Load terms from a text file.</td>
@@ -140,7 +140,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <td>Check the terms with the most articles.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.compute_score" title="lisc.objects.Counts.compute_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_score</span></code></a>([score_type,&nbsp;dim])</td>
-<td>Compute a score (index or normalization) of the co-occurrence data.</td>
+<td>Compute a score, such as an index or normalization, of the co-occurrence data.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.drop_data" title="lisc.objects.Counts.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles[,&nbsp;dim])</td>
 <td>Drop terms based on number of article results.</td>
@@ -167,7 +167,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <td>Initialize LISC Counts object.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms" title="lisc.objects.Counts.add_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms</span></code></a>(terms[,&nbsp;term_type,&nbsp;dim])</td>
-<td>Add the given list of strings as terms to use.</td>
+<td>Add the given list of strings as terms.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.add_terms_file" title="lisc.objects.Counts.add_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms_file</span></code></a>(f_name[,&nbsp;term_type,&nbsp;…])</td>
 <td>Load terms from a text file.</td>
@@ -182,7 +182,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <td>Check the terms with the most articles.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#lisc.objects.Counts.compute_score" title="lisc.objects.Counts.compute_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_score</span></code></a>([score_type,&nbsp;dim])</td>
-<td>Compute a score (index or normalization) of the co-occurrence data.</td>
+<td>Compute a score, such as an index or normalization, of the co-occurrence data.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#lisc.objects.Counts.drop_data" title="lisc.objects.Counts.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles[,&nbsp;dim])</td>
 <td>Drop terms based on number of article results.</td>
@@ -195,17 +195,17 @@ This can be a normalized version of the data, and/or a computed association inde
 <dl class="method">
 <dt id="lisc.objects.Counts.add_terms">
 <code class="descname">add_terms</code><span class="sig-paren">(</span><em>terms</em>, <em>term_type='terms'</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.add_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.add_terms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add the given list of strings as terms to use.</p>
+<dd><p>Add the given list of strings as terms.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
 <dt><strong>terms</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str OR list of list of str</span></dt>
-<dd><p class="first last">List of terms to be used.</p>
+<dd><p class="first last">List of terms.</p>
 </dd>
 <dt><strong>term_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt>
-<dd><p class="first last">Which type of terms to use.</p>
+<dd><p class="first last">Which type of terms are being added.</p>
 </dd>
 <dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
 <dd><p class="first last">Which set of terms to operate upon.</p>
@@ -230,7 +230,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <dd><p class="first last">File name to load terms from.</p>
 </dd>
 <dt><strong>term_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt>
-<dd><p class="first last">Which type of terms to use.</p>
+<dd><p class="first last">Which type of terms are being added.</p>
 </dd>
 <dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">SCDB or str or None</span></dt>
 <dd><p class="first last">A string or object containing a file path.</p>
@@ -255,7 +255,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
 <dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
-<dd><p class="first last">Which set of terms to operate upon.</p>
+<dd><p class="first last">Which set of terms to check.</p>
 </dd>
 </dl>
 </td>
@@ -277,7 +277,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <dd><p class="first last">Which data type to use.</p>
 </dd>
 <dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
-<dd><p class="first last">Which set of terms to operate upon.</p>
+<dd><p class="first last">Which set of terms to check.</p>
 </dd>
 </dl>
 </td>
@@ -296,7 +296,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
 <dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
-<dd><p class="first last">Which set of terms to operate upon.</p>
+<dd><p class="first last">Which set of terms to check.</p>
 </dd>
 </dl>
 </td>
@@ -308,7 +308,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <dl class="method">
 <dt id="lisc.objects.Counts.compute_score">
 <code class="descname">compute_score</code><span class="sig-paren">(</span><em>score_type='association'</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.compute_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.Counts.compute_score" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute a score (index or normalization) of the co-occurrence data.</p>
+<dd><p>Compute a score, such as an index or normalization, of the co-occurrence data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -318,7 +318,7 @@ This can be a normalized version of the data, and/or a computed association inde
 <dd><p class="first last">The type of score to apply to the co-occurrence data.</p>
 </dd>
 <dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
-<dd><p class="first last">Which dimension of counts to use.
+<dd><p class="first last">Which dimension of counts to use to normalize the co-occurence data by.
 Only used if ‘score’ is ‘normalize’.</p>
 </dd>
 </dl>
@@ -341,7 +341,7 @@ Only used if ‘score’ is ‘normalize’.</p>
 <dd><p class="first last">Mininum number of articles to keep each term.</p>
 </dd>
 <dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
-<dd><p class="first last">Which set of terms to operate upon.</p>
+<dd><p class="first last">Which set of terms to drop.</p>
 </dd>
 </dl>
 </td>
@@ -366,16 +366,16 @@ Only used if ‘score’ is ‘normalize’.</p>
 <dd><p class="first last">Field to search for term in.
 Defaults to ‘TIAB’, which is Title/Abstract.</p>
 </dd>
-<dt><strong>api_key</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dt><strong>api_key</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
 <dd><p class="first last">An API key for a NCBI account.</p>
 </dd>
-<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt>
+<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}, optional</span></dt>
 <dd><p class="first last">What kind of logging, if any, to do for requested URLs.</p>
 </dd>
 <dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or SCDB object, optional</span></dt>
 <dd><p class="first last">Folder or database object specifying the save location.</p>
 </dd>
-<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default=False</span></dt>
+<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
 <dd><p class="first last">Whether to print out updates.</p>
 </dd>
 </dl>

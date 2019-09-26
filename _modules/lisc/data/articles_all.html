@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.data.articles_all &#8212; lisc 0.1.0 documentation</title>
+    <title>lisc.data.articles_all &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -107,9 +107,9 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    label : str</span>
-<span class="sd">        Label for the current term.</span>
+<span class="sd">        Label for the term.</span>
 <span class="sd">    term : Term object</span>
-<span class="sd">        Definition of the search term, with inclusions and exclusion words.</span>
+<span class="sd">        Definition of the search term, with inclusion and exclusion words.</span>
 <span class="sd">    n_articles : int</span>
 <span class="sd">        Number of articles included in object.</span>
 <span class="sd">    ids : list of int</span>
@@ -169,7 +169,7 @@
 
 
 <div class="viewcode-block" id="ArticlesAll.check_frequencies"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.check_frequencies">[docs]</a>    <span class="k">def</span> <span class="nf">check_frequencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="n">n_check</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prints out the most common items in frequecy distribution.</span>
+        <span class="sd">&quot;&quot;&quot;Prints out the most common items in a frequency distribution.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -240,19 +240,19 @@
 
 <div class="viewcode-block" id="ArticlesAll.create_freq_dist"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.create_freq_dist">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">create_freq_dist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">,</span> <span class="n">exclude</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create frequency distribution.</span>
+        <span class="sd">&quot;&quot;&quot;Create a frequency distribution.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        in_lst : list of str</span>
-<span class="sd">            Word items to create frequecy distribution of.</span>
+<span class="sd">            Words to create the frequency distribution from.</span>
 <span class="sd">        exclude : list of str</span>
-<span class="sd">            Words to exclude from list.</span>
+<span class="sd">            Words to exclude from the frequency distribution.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        freqs : nltk.FreqDist</span>
-<span class="sd">            Frequency distribution of the input list.</span>
+<span class="sd">            Frequency distribution of the words.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">freqs</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">)</span>

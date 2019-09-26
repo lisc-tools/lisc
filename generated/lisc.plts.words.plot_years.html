@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.plts.words.plot_years &#8212; lisc 0.1.0 documentation</title>
+    <title>lisc.plts.words.plot_years &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -90,13 +90,13 @@
 <dl class="function">
 <dt id="lisc.plts.words.plot_years">
 <code class="descclassname">lisc.plts.words.</code><code class="descname">plot_years</code><span class="sig-paren">(</span><em>years</em>, <em>year_range=None</em>, <em>ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_years"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.words.plot_years" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot publications across years histogram.</p>
+<dd><p>Plot a histogram of the number publications across years.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>years</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of tuple of (int, int)</span></dt>
+<dt><strong>years</strong> <span class="classifier-delimiter">:</span> <span class="classifier">collections.Counter</span></dt>
 <dd><p class="first last">Data on the number of publications per year.</p>
 </dd>
 <dt><strong>year_range</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of [int, int], optional</span></dt>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>API Documentation &#8212; lisc 0.1.0 documentation</title>
+    <title>API Documentation &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -121,7 +121,7 @@
 <td>Search term definition with inclusion &amp; exclusion words.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Articles</span></code></a>(term)</td>
-<td>An object to hold the word results for a given term.</td>
+<td>An object to hold collected ‘words’ data for a specified term.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a>(term_data[,&nbsp;exclusions])</td>
 <td>An object to hold term data, aggregated across articles.</td>
@@ -145,7 +145,7 @@
 <td>Collect database information &amp; metadata from EUtils.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.collect.collect_counts.html#lisc.collect.collect_counts" title="lisc.collect.collect_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_counts</span></code></a>(terms_a[,&nbsp;inclusions_a,&nbsp;…])</td>
-<td>Collect word co-occurrence data from EUtils.</td>
+<td>Collect count and term co-occurrence data from EUtils.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.collect.collect_words.html#lisc.collect.collect_words" title="lisc.collect.collect_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_words</span></code></a>(terms[,&nbsp;inclusions,&nbsp;…])</td>
 <td>Collect text data and metadata from EUtils using specified search term(s).</td>
@@ -229,13 +229,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_matrix</span></code></a>(data[,&nbsp;x_labels,&nbsp;y_labels,&nbsp;…])</td>
-<td>Plot the matrix of percent asscociations between terms.</td>
+<td>Plot a matrix representation of given data.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_clustermap</span></code></a>(data[,&nbsp;x_labels,&nbsp;y_labels,&nbsp;cmap])</td>
-<td>Plot clustermap.</td>
+<td>Plot a clustermap of the given data.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_dendrogram</span></code></a>(data[,&nbsp;labels,&nbsp;ax])</td>
-<td>Plot dendrogram.</td>
+<td>Plot a dendrogram of the given data.</td>
 </tr>
 </tbody>
 </table>
@@ -249,7 +249,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.plts.words.plot_years.html#lisc.plts.words.plot_years" title="lisc.plts.words.plot_years"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_years</span></code></a>(years[,&nbsp;year_range,&nbsp;ax])</td>
-<td>Plot publications across years histogram.</td>
+<td>Plot a histogram of the number publications across years.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud" title="lisc.plts.words.plot_wordcloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_wordcloud</span></code></a>(freq_dist,&nbsp;n_words[,&nbsp;ax])</td>
 <td>Plot a wordcloud.</td>
@@ -270,7 +270,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/lisc.utils.io.save_object.html#lisc.utils.io.save_object" title="lisc.utils.io.save_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_object</span></code></a>(obj,&nbsp;f_name[,&nbsp;directory])</td>
-<td>Save a custom object from LISC as a pickle file.</td>
+<td>Save a custom object as a pickle file.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/lisc.utils.io.load_object.html#lisc.utils.io.load_object" title="lisc.utils.io.load_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_object</span></code></a>(f_name[,&nbsp;directory])</td>
 <td>Load a custom object, from a pickle file.</td>

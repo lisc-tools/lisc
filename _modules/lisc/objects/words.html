@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lisc.objects.words &#8212; lisc 0.1.0 documentation</title>
+    <title>lisc.objects.words &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -100,9 +100,9 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    results : list of Articles object</span>
-<span class="sd">        Results for each search term, stored in custom Words object.</span>
+<span class="sd">        Results of &#39;Words&#39; data for each search term.</span>
 <span class="sd">    labels : list of str</span>
-<span class="sd">        Labels for each result data attached to object.</span>
+<span class="sd">        Labels for each data object attached to the object.</span>
 <span class="sd">    meta_data : MetaData object</span>
 <span class="sd">        Meta data information about the data collection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -152,7 +152,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        new_result : Articles object</span>
-<span class="sd">            Object with information about current term.</span>
+<span class="sd">            Object with collected data for a specified term.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="p">)</span></div>
@@ -174,14 +174,14 @@
 <span class="sd">            Defaults to &#39;TIAB&#39;, which is Title/Abstract.</span>
 <span class="sd">        usehistory : bool, optional, default: False</span>
 <span class="sd">            Whether to use EUtils history, storing results on their server.</span>
-<span class="sd">        api_key : str</span>
+<span class="sd">        api_key : str, optional</span>
 <span class="sd">            An API key for a NCBI account.</span>
 <span class="sd">        save_and_clear : bool, optional, default: False</span>
 <span class="sd">            Whether to save words data to disk per term as it goes, instead of holding in memory.</span>
 <span class="sd">        logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}</span>
 <span class="sd">            What kind of logging, if any, to do for requested URLs.</span>
 <span class="sd">        directory : str or SCDB object, optional</span>
-<span class="sd">            Folder or database object specifying the save location.</span>
+<span class="sd">            Folder or database object specifying the save location for any outputs.</span>
 <span class="sd">        verbose : bool, optional, default: False</span>
 <span class="sd">            Whether to print out updates.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
