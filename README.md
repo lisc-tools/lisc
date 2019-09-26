@@ -6,6 +6,7 @@
 [![codecov](https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg)](https://codecov.io/gh/lisc-tools/lisc)
 [![License](https://img.shields.io/pypi/l/lisc.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/lisc.svg)](https://pypi.python.org/pypi/lisc/)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.01674/status.svg)](https://doi.org/10.21105/joss.01674)
 
 LISC is a package for collecting and analyzing the scientific literature.
 
