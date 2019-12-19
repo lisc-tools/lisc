@@ -53,7 +53,7 @@ def safe_import(*args):
     except ImportError:
         mod = Dependency(args[-1])
 
-    # Prior to py 3.5.4, import module could throw a SystemError
+    # Prior to Python 3.5.4, import module could throw a SystemError
     #  Older approach requires the parent module be imported first
     #  If triggered, re-check for module after first importing the parent
     except SystemError:

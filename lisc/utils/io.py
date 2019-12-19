@@ -22,7 +22,7 @@ def check_ext(f_name, ext):
     Returns
     -------
     str
-        File name with the extenion added.
+        File name with the extension added.
     """
 
     return f_name + ext if not f_name.endswith(ext) else f_name

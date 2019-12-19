@@ -85,7 +85,7 @@ class URLs():
         Parameters
         ----------
         url : str
-            URL to add authentification to.
+            URL to add authentication to.
 
         Returns
         -------
@@ -95,7 +95,7 @@ class URLs():
         Notes
         -----
         This is a placeholder method, on the base URLs object, and should be
-        overloaded by any API object that has authentification.
+        overloaded by any API object that has authentication.
 
         When overloading this method, it should implement whatever is needed
         to authenticate a URL request for the specified API.

@@ -1,4 +1,4 @@
-"""Tests for Requestor functions and classes."""
+"""Tests for Requester functions and classes."""
 
 import os
 import time

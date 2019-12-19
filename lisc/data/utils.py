@@ -54,7 +54,7 @@ def combine_lists(in_lst):
 
     Notes
     -----
-    This functiton also converts all contained strings to lowercase.
+    This function also converts all contained strings to lowercase.
     """
 
     out = []

@@ -165,7 +165,7 @@ def get_articles(req, art_url, arts):
 
     # Get page of all articles
     art_page = req.request_url(art_url)
-    art_page_soup = BeautifulSoup(art_page.content, "xml")
+    art_page_soup = BeautifulSoup(art_page.content, 'xml')
     articles = art_page_soup.findAll('PubmedArticle')
 
     # Loop through each article, extracting relevant information

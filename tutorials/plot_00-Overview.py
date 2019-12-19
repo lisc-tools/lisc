@@ -143,7 +143,7 @@ base.check_terms()
 # - inclusion words ['biology', 'biochemistry']
 # - exclusion words ['body', 'corporeal']
 #
-# All combine to give the seach term of:
+# All combine to give the search term of:
 #
 # - `'("gene"OR"genetic)AND("biology"OR"biochemistry")NOT("body"OR"corporeal)'`
 #
@@ -221,7 +221,7 @@ base.labels
 # Database Management
 # -------------------
 #
-# When collecting and analysing literature, there can be a lot of data, and therefore
+# When collecting and analyzing literature, there can be a lot of data, and therefore
 # a lot of files, to keep track of.
 #
 # LISC offers a database structure. If you use this file structure, LISC functions

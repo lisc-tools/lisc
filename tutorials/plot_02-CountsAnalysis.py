@@ -50,7 +50,7 @@ counts.check_data(data_type='counts', dim='B')
 # The Counts co-occurrence data collection gives us a raw data matrix of the number of
 # articles in which terms co-occur, as well as the number of articles for each term independently.
 #
-# Once we have the co-occurence matrix, we typically want to calculate a
+# Once we have the co-occurrence matrix, we typically want to calculate a
 # normalized co-occurrence measure, and/or some other kind of similarity score.
 #
 # To normalize the data, we can divide the co-occurrence counts by the number of articles
@@ -58,7 +58,7 @@ counts.check_data(data_type='counts', dim='B')
 # that include particular co-occurrence patterns.
 #
 # We can also calculate an association index or score. For example, the
-# `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard meassure
+# `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard measure
 # for measuring the similarity of samples, and is also available to compute and use.
 #
 # With the counts object, both of these measures are available, using the

@@ -94,7 +94,7 @@ for ind in range(words.n_terms):
 
 ###################################################################################################
 
-# Collect into list of aggragated data objects
+# Collect into list of aggregated data objects
 all_articles = [ArticlesAll(words[label]) for label in words.labels]
 
 ###################################################################################################

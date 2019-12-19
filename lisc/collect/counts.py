@@ -31,7 +31,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
     terms_b : list of list of str, optional
         Secondary list of search terms.
     inclusions_b : list of list of str, optional
-        Inclusion words for secondary lis of search terms.
+        Inclusion words for secondary list of search terms.
     exclusions_b : list of list of str, optional
         Exclusion words for secondary list of search terms.
     db : str, optional, default: 'pubmed'

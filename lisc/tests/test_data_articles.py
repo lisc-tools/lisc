@@ -34,7 +34,7 @@ def test_add_data(tarts_empty):
     tarts_empty.add_data('journals', ('Journal name', 'J abbrev'))
     assert tarts_empty.journals
 
-    tarts_empty.add_data('words', ['new', 'dat'])
+    tarts_empty.add_data('words', ['new', 'data'])
     assert tarts_empty.words
 
     tarts_empty.add_data('keywords', ['list', 'of', 'keywords'])

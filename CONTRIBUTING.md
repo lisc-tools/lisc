@@ -1,7 +1,7 @@
 # Contributing Guidelines
 
 Thank you for your interest in contributing to LISC! We welcome any contributions to the
-project that extend or improve code and/or documenation and/or tutorials!
+project that extend or improve code and/or documentation and/or tutorials!
 
 If you have an idea you would like to contribute to LISC, please first check that
 it is in scope for the project, as discussed below.
@@ -22,7 +22,7 @@ Note that contributors to LISC are expected to follow the
 
 In terms of scope, it is currently focused on connecting to APIs that offer access to
 literature databases (currently: Pubmed) and offering simple analysis and plotting utilities
-for collected data. 
+for collected data.
 
 The current scope of LISC is therefore focused on connecting existing tools and utilities.
 That is to say custom or new web scraping and/or natural language processing (NLP) functionality
@@ -54,7 +54,7 @@ To make a contribution:
 At minimum, there should be a sentence describing what the function does and a list of
 parameters and returns.
     * Private functions should be indicated with a leading underscore, and should still include a
-docstrings including at least a sentence describition what the function does.
+docstrings including at least a sentence description what the function does.
     * If you add any new public functions, note this function in the doc/api.rst file,
 so that this function gets included in the documentation site API listing.
 

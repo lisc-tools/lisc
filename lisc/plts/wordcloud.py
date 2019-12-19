@@ -57,7 +57,7 @@ def conv_freqs(freq_dist, n_words):
 
 
 def _grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    """Function for custom coloring - use gray pallete.
+    """Function for custom coloring - use gray pallet.
     From here: https://amueller.github.io/word_cloud/auto_examples/a_new_hope.html
     """
 

@@ -1,4 +1,4 @@
-"""Class for collectiton and analyses of co-occurrences data."""
+"""Class for collection and analyses of co-occurrences data."""
 
 import numpy as np
 
@@ -137,7 +137,7 @@ class Counts():
         score_type : {'association', 'normalize'}, optional
             The type of score to apply to the co-occurrence data.
         dim : {'A', 'B'}, optional
-            Which dimension of counts to use to normalize the co-occurence data by.
+            Which dimension of counts to use to normalize the co-occurrence data by.
             Only used if 'score' is 'normalize'.
         """
 
@@ -229,7 +229,7 @@ class Counts():
         Parameters
         ----------
         n_articles : int
-            Mininum number of articles to keep each term.
+            Minimum number of articles to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
         """

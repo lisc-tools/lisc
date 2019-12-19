@@ -14,7 +14,7 @@ Collecting citation data from OpenCitations.
 #
 # Which articles are cited by a particular article, and how many citations an article
 # receives can be a useful measure to investigate the literature, and explore
-# the propogation of ideas.
+# the propagation of ideas.
 #
 # Unfortunately, citation data has historically been hard to access and investigate, due to
 # the lack of available databases and APIs that provide access to such information.

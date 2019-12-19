@@ -27,7 +27,7 @@ For data collection, LISC currently offers support for the following 'types' of 
 In addition to connecting to external APIs, LISC also provides:
 
 - custom data objects for managing collected data
-- a database structure, and save and load utilties for storing collected data
+- a database structure, and save and load utilities for storing collected data
 - functions and utilities to analyze collected data
 - data visualization functions for plotting collected data and analysis outputs
 """
