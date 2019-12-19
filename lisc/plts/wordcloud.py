@@ -19,7 +19,7 @@ def create_wordcloud(words):
 
     Returns
     -------
-    wc : WordCloud object
+    wc : WordCloud
         Wordcloud definition.
     """
 
@@ -42,7 +42,7 @@ def conv_freqs(freq_dist, n_words):
 
     Parameters
     ----------
-    freq_dist : nltk.FreqDist object
+    freq_dist : nltk.FreqDist
         Frequency distribution of words from text.
     n_words : int
         Number of words to extract for plotting.

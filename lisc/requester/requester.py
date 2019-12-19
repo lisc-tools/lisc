@@ -31,7 +31,7 @@ class Requester():
         Time at which last request was sent.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    log : None or list or file object
+    log : None or list or FileObject
         Log of requested URLs. Format depends on `logging`.
     """
 
@@ -40,7 +40,7 @@ class Requester():
 
         Parameters
         ----------
-        wait_time : float, optional, default: 0.
+        wait_time : float, optional, default: 0.0
             Amount of time to wait between requests, in seconds.
         logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
@@ -135,7 +135,7 @@ class Requester():
 
         Returns
         -------
-        out : requests.models.Response object
+        out : requests.models.Response
             Object containing the requested web page.
         """
 

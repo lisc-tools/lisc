@@ -20,7 +20,7 @@ class ArticlesAll(BaseArticles):
     ----------
     label : str
         Label for the term.
-    term : Term object
+    term : Term
         Definition of the search term, with inclusion and exclusion words.
     n_articles : int
         Number of articles included in object.
@@ -51,7 +51,7 @@ class ArticlesAll(BaseArticles):
 
         Parameters
         ----------
-        term_data : Articles object
+        term_data : Articles
             Data for all articles from a given search term.
         exclusions : list of str
             Words to exclude from the word collections.
@@ -87,7 +87,7 @@ class ArticlesAll(BaseArticles):
         ----------
         data_type : {'words', 'keywords'}
             Which frequency distribution to check.
-        n_check : int
+        n_check : int, optional, default: 20
             Number of most common items to print out.
         """
 
@@ -140,7 +140,7 @@ class ArticlesAll(BaseArticles):
 
         Parameters
         ----------
-        directory : str or SCDB object, optional
+        directory : str or SCDB or None, optional
             Folder or database object specifying the save location.
         """
 
@@ -244,7 +244,7 @@ def _fix_author_names(names):
     -----
     Sometimes full author name ends up in the last name field.
     If first name is None, assume this happened:
-        Split up the text in first name, and grab the first name initial.
+    Split up the text in first name, and grab the first name initial.
     """
 
     # Drop names whos data is all None

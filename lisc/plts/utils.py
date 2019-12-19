@@ -63,7 +63,7 @@ def check_ax(ax, figsize=None):
     ax : matplotlib.Axes or None
         Axes object to check if is defined.
     figsize : (float, float)
-        The figure for a new axis, if ax is not defined.
+        The figure size for a new axis, if ax is not defined.
 
     Returns
     -------

@@ -21,14 +21,14 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
     -------
-    meta_data : MetaData object
+    meta_data : MetaData
         Meta data about the data collection.
     """
 
@@ -53,7 +53,7 @@ def get_db_info(req, info_url):
 
     Parameters
     ----------
-    req : Requester object
+    req : Requester
         Object to launch requests from.
     info_url : str
         URL to request db information from.

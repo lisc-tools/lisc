@@ -7,7 +7,7 @@ from lisc.core.errors import InconsistentDataError
 ###################################################################################################
 
 class Base():
-    """A class for the base object for LISC collections & analyses.
+    """A class for the base object for LISC collections and analyses.
 
     Attributes
     ----------
@@ -26,7 +26,7 @@ class Base():
     """
 
     def __init__(self):
-        """Initialize Base() object."""
+        """Initialize Base object."""
 
         self.terms = list()
         self.inclusions = list()
@@ -50,7 +50,7 @@ class Base():
 
         Parameters
         ----------
-        terms : list of str OR list of list of str
+        terms : list of str or list of list of str
             List of terms to be used.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
@@ -71,7 +71,7 @@ class Base():
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
-        directory : SCDB or str or None
+        directory : SCDB or str or None, optional
             Folder or database object specifying the file location.
         """
 
@@ -126,7 +126,7 @@ class Base():
 
         Parameters
         ----------
-        term : str OR list of str
+        term : str or list of str
             New term to add to the object.
 
         Returns

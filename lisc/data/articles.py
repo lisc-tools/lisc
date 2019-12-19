@@ -19,7 +19,7 @@ class Articles(BaseArticles):
     ----------
     label : str
         Label for the term.
-    term : Term object
+    term : Term
         Definition of the search term, with inclusion and exclusion words.
     ids : list of int
         Article ids for all articles.
@@ -46,7 +46,7 @@ class Articles(BaseArticles):
 
         Parameters
         ----------
-        term : Term object or str
+        term : Term or str
             Search term definition. If input is a string, it is used as the label for the term.
         """
 
@@ -89,7 +89,7 @@ class Articles(BaseArticles):
 
         Parameters
         ----------
-        directory : str or SCDB object, optional
+        directory : str or SCDB, optional
             Folder or database object specifying the save location.
         """
 
@@ -108,7 +108,7 @@ class Articles(BaseArticles):
 
         Parameters
         ----------
-        directory : str or SCDB object, optional
+        directory : str or SCDB, optional
             Folder or database object specifying the save location.
         """
 
@@ -136,7 +136,7 @@ class Articles(BaseArticles):
 
         Parameters
         ----------
-        directory : str or SCDB object, optional
+        directory : str or SCDB, optional
             Folder or database object specifying the save location.
         """
 

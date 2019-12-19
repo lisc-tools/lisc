@@ -11,11 +11,11 @@ class Words(Base):
 
     Attributes
     ----------
-    results : list of Articles object
+    results : list of Articles
         Results of 'Words' data for each search term.
     labels : list of str
         Labels for each data object attached to the object.
-    meta_data : MetaData object
+    meta_data : MetaData
         Meta data information about the data collection.
     """
 
@@ -41,7 +41,7 @@ class Words(Base):
 
         Returns
         -------
-        Articles object
+        Articles
             Articles object for the requested result.
         """
 
@@ -63,7 +63,7 @@ class Words(Base):
 
         Parameters
         ----------
-        new_result : Articles object
+        new_result : Articles
             Object with collected data for a specified term.
         """
 
@@ -92,7 +92,7 @@ class Words(Base):
             Whether to save words data to disk per term as it goes, instead of holding in memory.
         logging : {None, 'print', 'store', 'file'}
             What kind of logging, if any, to do for requested URLs.
-        directory : str or SCDB object, optional
+        directory : str or SCDB, optional
             Folder or database object specifying the save location for any outputs.
         verbose : bool, optional, default: False
             Whether to print out updates.

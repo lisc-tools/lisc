@@ -23,7 +23,7 @@ def collect_citations(dois, util='citations', logging=None, directory=None, verb
         * 'references': collects the number of references cited by the specified DOI.
     logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -32,7 +32,7 @@ def collect_citations(dois, util='citations', logging=None, directory=None, verb
     -------
     citations : dict
         The number of citations for each DOI.
-    meta_data : MetaData object
+    meta_data : MetaData
         Meta data about the data collection.
     """
 
@@ -57,7 +57,7 @@ def get_citation_data(req, citation_url):
 
     Parameters
     ----------
-    req : Requester object
+    req : Requester
         Requester to launch requests from.
     citation_url : str
         URL to collect citation data from.

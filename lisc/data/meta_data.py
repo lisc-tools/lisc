@@ -45,11 +45,11 @@ class MetaData():
 
 
     def add_requester(self, requester):
-        """Add a requester object to self.
+        """Add a requester to the MetaData object.
 
         Parameters
         ----------
-        requester : Requester object
+        requester : Requester
             The object used to launch URL requests.
         """
 

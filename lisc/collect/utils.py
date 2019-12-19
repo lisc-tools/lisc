@@ -8,7 +8,7 @@ def mk_term(term, incl_joiner='OR'):
 
     Parameters
     ----------
-    term : Term object
+    term : Term
         Term information.
     incl_joiner : {'OR', 'AND'}
         The joiner to use to combine the inclusion words.
@@ -69,7 +69,7 @@ def join(front, back, joiner='AND'):
 
     Notes
     -----
-    - This function only adds the join if both strings are non-empty.
+    This function only adds the join if both strings are non-empty.
     """
 
     return front + joiner + back if (front and back) else front + back

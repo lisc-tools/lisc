@@ -80,7 +80,7 @@ class EUtils(URLs):
         URLs for each EUtils utility.
     settings : dict
         Dictionary of all defined settings and their values.
-    authenticated : boolean
+    authenticated : bool
         Whether using an API key as an authenticated NCBI user.
     """
 
@@ -98,8 +98,9 @@ class EUtils(URLs):
             The search field to search within.
         retmode : {'lxml', 'xml'}, optional
             The return format for the results.
-        usehistory : {'n', 'y'}
+        usehistory : {'n', 'y'}, optional
             Whether to use history caching on the EUtils server.
+            'n' indicates 'no', do not use history. 'y' indicates 'yes', to use history.
         api_key : str, optional
             An API key for authenticated NCBI user account.
         """

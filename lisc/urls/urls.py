@@ -22,7 +22,7 @@ class URLs():
         The URLs for each utility.
     settings : dict
         The available settings for the API.
-    authenticated : boolean
+    authenticated : bool
         Whether acting as an authenticated user for the API.
     """
 

@@ -43,7 +43,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
         An API key for a NCBI account.
     logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
@@ -159,7 +159,7 @@ def get_count(req, url):
 
     Parameters
     ----------
-    req : Requester object
+    req : Requester
         Object to launch requests from.
     url : str
         URL to request count data from.

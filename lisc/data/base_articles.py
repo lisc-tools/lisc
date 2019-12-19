@@ -13,9 +13,8 @@ class BaseArticles():
 
         Parameters
         ----------
-        term : Term() object or str
-            Search term definition.
-            If input is a string, it is used as the label for the term.
+        term : Term or str
+            Search term definition. If input is a string, it is used as the label for the term.
         """
 
         # If term provided is a string, consider it the label and make a Term object

@@ -20,11 +20,11 @@ class Counts():
     counts : 2d array
         The numbers of articles found for each combination of terms.
     score : 2d array
-        A transformed 'score' of co-occurrence data
+        A transformed 'score' of co-occurrence data.
         This can be a normalized version of the data, and/or a computed association index.
     square : bool
         Whether the count data matrix is symmetrical.
-    meta_data : MetaData object
+    meta_data : MetaData
         Meta data information about the data collection.
     """
 
@@ -48,7 +48,7 @@ class Counts():
 
         Parameters
         ----------
-        terms : list of str OR list of list of str
+        terms : list of str or list of list of str
             List of terms.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms are being added.
@@ -96,7 +96,7 @@ class Counts():
             An API key for a NCBI account.
         logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
-        directory : str or SCDB object, optional
+        directory : str or SCDB, optional
             Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.

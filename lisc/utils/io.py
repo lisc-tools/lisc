@@ -35,7 +35,7 @@ def load_terms_file(f_name, directory=None):
     ----------
     f_name : str
         Name of the file to load.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
 
     Returns
@@ -57,11 +57,11 @@ def save_object(obj, f_name, directory=None):
 
     Parameters
     ----------
-    obj : Counts or Words object
+    obj : Counts or Words
         Object to save out.
     f_name : str
         Name for the file to be saved out.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
     """
 
@@ -86,7 +86,7 @@ def load_object(f_name, directory=None):
     ----------
     f_name : str
         File name of the object to be loaded.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
 
     Returns

@@ -43,16 +43,16 @@ def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
         Whether to save words data to disk per term as it goes, instead of holding in memory.
     logging : {None, 'print', 'store', 'file'}
         What kind of logging, if any, to do for requested URLs.
-    directory : str or SCDB object, optional
+    directory : str or SCDB, optional
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
 
     Returns
     -------
-    results : list of Articles object
+    results : list of Articles
         Results from collecting data for each term.
-    meta_data : MetaData object
+    meta_data : MetaData
         Meta data from the data collection.
 
     Notes
@@ -150,16 +150,16 @@ def get_articles(req, art_url, arts):
 
     Parameters
     ----------
-    req : Requester object
+    req : Requester
         Requester object to launch requests from.
     art_url : str
         URL for the article to be collected.
-    arts : Articles object
+    arts : Articles
         Object to add data to.
 
     Returns
     -------
-    arts : Articles object
+    arts : Articles
         Object to store information for the current term.
     """
 
@@ -183,16 +183,16 @@ def extract_add_info(arts, art_id, art):
 
     Parameters
     ----------
-    arts : Articles object
+    arts : Articles
         Object to store information for the current article.
     art_id : int
         ID of the new article.
-    art : bs4.element.Tag object
+    art : bs4.element.Tag
         Extracted article.
 
     Returns
     -------
-    arts : Articles object
+    arts : Articles
         Object updated with data from the current article.
     """
 
