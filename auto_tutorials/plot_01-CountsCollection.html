@@ -2,27 +2,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Tutorial 01: Counts Collection &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
@@ -62,8 +61,14 @@
               
             
             
+              
+                
+              
             
             
+            
+            
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -83,11 +88,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-01-countscollection-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-01-countscollection-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-01-counts-collection">
 <span id="sphx-glr-auto-tutorials-plot-01-countscollection-py"></span><h1>Tutorial 01: Counts Collection<a class="headerlink" href="#tutorial-01-counts-collection" title="Permalink to this headline">¶</a></h1>
@@ -97,15 +102,15 @@
 <p>The ‘Counts’ approach, or term co-occurrence searches the literature for
 how often terms of interest appear together.</p>
 <p>This type of analysis can be used to infer associations and relationships between terms.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Counts</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc</span> <span class="k">import</span> <span class="n">Counts</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">save_object</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="counts-object">
 <h2>Counts Object<a class="headerlink" href="#counts-object" title="Permalink to this headline">¶</a></h2>
-<p>The ‘Counts’ object is used to handle term co-occurrence analyses.</p>
+<p>The <a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts" title="lisc.objects.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object is used to handle term co-occurrence analyses.</p>
 <div class="section" id="counts-single-list-of-terms">
 <h3>Counts: Single List of Terms<a class="headerlink" href="#counts-single-list-of-terms" title="Permalink to this headline">¶</a></h3>
 <p>For the first example of running a counts analysis, we will use a single list of terms.</p>
@@ -113,7 +118,7 @@ how often terms of interest appear together.</p>
 co-occurrence of each term with every other term in the list.</p>
 <p>Let’s start with an example using different parts of the brain, and examine
 how often these brain regions are talked about together.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms to search for</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms to search for</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Initialize counts object &amp; add the terms that we want to collect co-occurrences for</span>
@@ -121,8 +126,8 @@ how often these brain regions are talked about together.</p>
 <span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -133,37 +138,39 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <p>We have now collected some literature data!</p>
-<p>The Counts object will now contain count data for the word co-occurrence data between terms.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the raw count data</span>
-<span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+<p>The <a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts" title="lisc.objects.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object will now contain count data
+for the word co-occurrence data between terms.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the raw count data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 1763  760  497]
- [1763    0  709  598]
- [ 760  709    0  418]
- [ 497  598  418    0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 1807  788  509]
+ [1807    0  734  613]
+ [ 788  734    0  427]
+ [ 509  613  427    0]]
 </pre></div>
 </div>
-<p>The Counts object also comes with some helper methods to explore the data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many articles were found for each search term</span>
+<p>The <a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts" title="lisc.objects.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object also comes with some helper
+methods to explore the data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many articles were found for each search term</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">check_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
-  &#39;frontal lobe&#39;     -   14002
-  &#39;temporal lobe&#39;    -   27101
-  &#39;parietal lobe&#39;    -    4847
-  &#39;occipital lobe&#39;   -    3672
+  &#39;frontal lobe&#39;     -   14279
+  &#39;temporal lobe&#39;    -   27700
+  &#39;parietal lobe&#39;    -    4984
+  &#39;occipital lobe&#39;   -    3747
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">check_top</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  27101  articles.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  27700  articles.
 </pre></div>
 </div>
 </div>
@@ -173,13 +180,13 @@ Running counts for:  occipital lobe
 <p>Now let’s explore using two different sets of terms.</p>
 <p>In this example, we will keep our list of brain regions, and explore how they
 relate to different sensory systems.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some new terms</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some new terms</span>
 <span class="n">terms_a</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
 <span class="n">terms_b</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;vision&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;audition&#39;</span><span class="p">,</span> <span class="s1">&#39;auditory&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;somatosensory&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;olfaction&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span><span class="p">],</span>
            <span class="p">[</span><span class="s1">&#39;gustation&#39;</span><span class="p">,</span> <span class="s1">&#39;taste&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;proprioception&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;nociception&#39;</span><span class="p">,</span> <span class="s1">&#39;pain&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set terms lists</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set terms lists</span>
 <span class="c1">#  Different terms lists are indexed by the &#39;A&#39; and &#39;B&#39; labels</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms_b</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
@@ -189,25 +196,27 @@ relate to different sensory systems.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading previous terms words.
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>From there you can use all the same methods to explore the data we just collected.</p>
 <p>In the next tutorial, we explore analyzing our collected counts data.</p>
 <p>For now, let’s save out our collected counts data, using the LISC utility to save the object.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out the counts object</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out the counts object</span>
 <span class="n">save_object</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  32.388 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  7.623 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-countscollection-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../_downloads/83308ac02557408bfb75ec818c73ec3c/plot_01-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-CountsCollection.py</span></code></a></div>
-<div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../_downloads/7552d96f2c81006ed01557ec44ee3a70/plot_01-CountsCollection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_01-CountsCollection.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../_downloads/56499906aaa92cf9e9424417cb98272c/plot_01-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-CountsCollection.py</span></code></a></p>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/f47f6d25721171e3a7b9c512a4b44de8/plot_01-CountsCollection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_01-CountsCollection.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 </div>
 </div>
@@ -224,8 +233,8 @@ relate to different sensory systems.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

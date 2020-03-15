@@ -2,27 +2,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>LISC - Literature Scanner &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
@@ -62,8 +61,14 @@
               
             
             
+              
+                
+              
             
             
+            
+            
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -83,7 +88,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="lisc-literature-scanner">
 <h1>LISC - Literature Scanner<a class="headerlink" href="#lisc-literature-scanner" title="Permalink to this headline">¶</a></h1>
@@ -93,6 +98,7 @@
 <a class="reference external image-reference" href="https://codecov.io/gh/lisc-tools/lisc"><img alt="codecov" src="https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg" /></a>
 <a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/lisc.svg" /></a>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/lisc/"><img alt="Supported Python Versions" src="https://img.shields.io/pypi/pyversions/lisc.svg" /></a>
+<a class="reference external image-reference" href="https://doi.org/10.21105/joss.01674"><img alt="DOI" src="https://joss.theoj.org/papers/10.21105/joss.01674/status.svg" /></a>
 <p>LISC is a package for collecting and analyzing the scientific literature.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
@@ -102,27 +108,27 @@
 <h3>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h3>
 <p>Supported APIs through LISC includes:</p>
 <ul class="simple">
-<li>the NCBI <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25497/">EUtils</a>. EUtils provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.</li>
-<li>the <a class="reference external" href="https://opencitations.net">OpenCitations</a> API. OpenCitations provides access to citation data.</li>
+<li><p>the NCBI <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25497/">EUtils</a>. EUtils provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.</p></li>
+<li><p>the <a class="reference external" href="https://opencitations.net">OpenCitations</a> API. OpenCitations provides access to citation data.</p></li>
 </ul>
 </div>
 <div class="section" id="data-collection">
 <h3>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h3>
 <p>For data collection, LISC currently offers support for the following ‘types’ of literature data collection:</p>
 <ul class="simple">
-<li>‘Counts’: collects counts and co-occurrences of specified search terms in the literature.</li>
-<li>‘Words’: collects text data and meta-data from articles identified by specified search terms.</li>
-<li>‘Citations’: collect citation and reference data for articles, based on DOIs.</li>
+<li><p>‘Counts’: collects counts and co-occurrences of specified search terms in the literature.</p></li>
+<li><p>‘Words’: collects text data and meta-data from articles identified by specified search terms.</p></li>
+<li><p>‘Citations’: collect citation and reference data for articles, based on DOIs.</p></li>
 </ul>
 </div>
 <div class="section" id="analysis-other-functionality">
 <h3>Analysis &amp; Other Functionality<a class="headerlink" href="#analysis-other-functionality" title="Permalink to this headline">¶</a></h3>
 <p>In addition to connecting to external APIs, LISC also provides:</p>
 <ul class="simple">
-<li>custom data objects for managing collected data</li>
-<li>a database structure, and save and load utilties for storing collected data</li>
-<li>functions and utilities to analyze collected data</li>
-<li>Data visualization functions for plotting collected data and analysis outputs</li>
+<li><p>custom data objects for managing collected data</p></li>
+<li><p>a database structure, and save and load utilities for storing collected data</p></li>
+<li><p>functions and utilities to analyze collected data</p></li>
+<li><p>Data visualization functions for plotting collected data and analysis outputs</p></li>
 </ul>
 </div>
 </div>
@@ -137,19 +143,19 @@
 <p>LISC is written in Python 3, and requires Python 3.5 or greater to run.</p>
 <p>Requirements:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://pypi.org/project/numpy/">numpy</a></li>
-<li><a class="reference external" href="https://pypi.org/project/requests/">requests</a></li>
-<li><a class="reference external" href="https://pypi.org/project/lxml/">lxml</a></li>
-<li><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a></li>
-<li><a class="reference external" href="https://pypi.org/project/nltk/">nltk</a></li>
+<li><p><a class="reference external" href="https://pypi.org/project/numpy/">numpy</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/requests/">requests</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/lxml/">lxml</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/nltk/">nltk</a></p></li>
 </ul>
 <p>Optional dependencies, used for plots, analyses &amp; testing:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://pypi.org/project/matplotlib/">matplotlib</a></li>
-<li><a class="reference external" href="https://pypi.org/project/seaborn/">seaborn</a></li>
-<li><a class="reference external" href="https://pypi.org/project/scipy/">scipy</a></li>
-<li><a class="reference external" href="https://pypi.org/project/wordcloud/">wordcloud</a></li>
-<li><a class="reference external" href="https://pypi.org/project/pytest/">pytest</a></li>
+<li><p><a class="reference external" href="https://pypi.org/project/matplotlib/">matplotlib</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/seaborn/">seaborn</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/scipy/">scipy</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/wordcloud/">wordcloud</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pytest/">pytest</a></p></li>
 </ul>
 </div>
 <div class="section" id="install">
@@ -191,6 +197,28 @@ integration on <a class="reference external" href="https://travis-ci.org/lisc-to
 <p>When working on LISC, please follow the <a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md">Contribution Guidelines</a>, and also make sure to follow our
 <a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
 </div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>If you use this code in your project, please cite:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">Donoghue</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span> <span class="p">(</span><span class="mi">2019</span><span class="p">).</span> <span class="n">LISC</span><span class="p">:</span> <span class="n">A</span> <span class="n">Python</span> <span class="n">Package</span> <span class="k">for</span> <span class="n">Scientific</span> <span class="n">Literature</span> <span class="n">Collection</span> <span class="k">and</span> <span class="n">Analysis</span><span class="p">.</span> <span class="n">Journal</span> <span class="k">of</span> <span class="k">Open</span> <span class="k">Source</span> <span class="n">Software</span><span class="p">,</span> <span class="mi">4</span><span class="p">(</span><span class="mi">41</span><span class="p">),</span> <span class="mi">1674</span><span class="p">.</span> <span class="n">DOI</span><span class="p">:</span> <span class="mi">10</span><span class="p">.</span><span class="mi">21105</span><span class="o">/</span><span class="n">joss</span><span class="p">.</span><span class="mi">01674</span>
+</pre></div>
+</div>
+<p>Direct Link: <a class="reference external" href="https://doi.org/10.21105/joss.01674">https://doi.org/10.21105/joss.01674</a></p>
+<p>Bibtex:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>@article{donoghue_lisc:_2019,
+         title = {{LISC}: {A} {Python} {Package} for {Scientific} {Literature} {Collection} and {Analysis}},
+         author = {Donoghue, Thomas},
+         journal = {Journal of Open Source Software},
+         year = {2019},
+         volume = {4},
+         number = {41},
+         issn = {2475-9066},
+         url = {https://joss.theoj.org/papers/10.21105/joss.01674},
+         doi = {10.21105/joss.01674}
+}
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -205,8 +233,8 @@ integration on <a class="reference external" href="https://travis-ci.org/lisc-to
       
     </p>
     <p>
-        &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

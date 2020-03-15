@@ -2,27 +2,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lisc.collect.collect_words &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
@@ -62,8 +61,14 @@
               
             
             
+              
+                
+              
             
             
+            
+            
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -83,71 +88,53 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="lisc-collect-collect-words">
 <h1>lisc.collect.collect_words<a class="headerlink" href="#lisc-collect-collect-words" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="lisc.collect.collect_words">
-<code class="descclassname">lisc.collect.</code><code class="descname">collect_words</code><span class="sig-paren">(</span><em>terms</em>, <em>inclusions=[]</em>, <em>exclusions=[]</em>, <em>db='pubmed'</em>, <em>retmax=None</em>, <em>field='TIAB'</em>, <em>usehistory=False</em>, <em>api_key=None</em>, <em>save_and_clear=False</em>, <em>logging=None</em>, <em>directory=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_words" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.collect.</code><code class="sig-name descname">collect_words</code><span class="sig-paren">(</span><em class="sig-param">terms</em>, <em class="sig-param">inclusions=[]</em>, <em class="sig-param">exclusions=[]</em>, <em class="sig-param">db='pubmed'</em>, <em class="sig-param">retmax=None</em>, <em class="sig-param">field='TIAB'</em>, <em class="sig-param">usehistory=False</em>, <em class="sig-param">api_key=None</em>, <em class="sig-param">save_and_clear=False</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_words" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect text data and metadata from EUtils using specified search term(s).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>terms</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list of str</span></dt>
-<dd><p class="first last">Search terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>terms</strong><span class="classifier">list of list of str</span></dt><dd><p>Search terms.</p>
 </dd>
-<dt><strong>inclusions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list of str, optional</span></dt>
-<dd><p class="first last">Inclusion words for search terms.</p>
+<dt><strong>inclusions</strong><span class="classifier">list of list of str, optional</span></dt><dd><p>Inclusion words for search terms.</p>
 </dd>
-<dt><strong>exclusions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list of str, optional</span></dt>
-<dd><p class="first last">Exclusion words for search terms.</p>
+<dt><strong>exclusions</strong><span class="classifier">list of list of str, optional</span></dt><dd><p>Exclusion words for search terms.</p>
 </dd>
-<dt><strong>db</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional, default: ‘pubmed’</span></dt>
-<dd><p class="first last">Which database to access from EUtils.</p>
+<dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
 </dd>
-<dt><strong>retmax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
-<dd><p class="first last">Maximum number of articles to return.</p>
+<dt><strong>retmax</strong><span class="classifier">int, optional</span></dt><dd><p>Maximum number of articles to return.</p>
 </dd>
-<dt><strong>field</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional, default: ‘TIAB’</span></dt>
-<dd><p class="first last">Field to search for term within.
+<dt><strong>field</strong><span class="classifier">str, optional, default: ‘TIAB’</span></dt><dd><p>Field to search for term within.
 Defaults to ‘TIAB’, which is Title/Abstract.</p>
 </dd>
-<dt><strong>usehistory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
-<dd><p class="first last">Whether to use EUtils history, storing results on their server.</p>
+<dt><strong>usehistory</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to use EUtils history, storing results on their server.</p>
 </dd>
-<dt><strong>api_key</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd><p class="first last">An API key for a NCBI account.</p>
+<dt><strong>api_key</strong><span class="classifier">str, optional</span></dt><dd><p>An API key for a NCBI account.</p>
 </dd>
-<dt><strong>save_and_clear</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
-<dd><p class="first last">Whether to save words data to disk per term as it goes, instead of holding in memory.</p>
+<dt><strong>save_and_clear</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to save words data to disk per term as it goes, instead of holding in memory.</p>
 </dd>
-<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt>
-<dd><p class="first last">What kind of logging, if any, to do for requested URLs.</p>
+<dt><strong>logging</strong><span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt><dd><p>What kind of logging, if any, to do for requested URLs.</p>
 </dd>
-<dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or SCDB object, optional</span></dt>
-<dd><p class="first last">Folder or database object specifying the save location.</p>
+<dt><strong>directory</strong><span class="classifier">str or SCDB object, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>
-<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
-<dd><p class="first last">Whether to print out updates.</p>
+<dt><strong>verbose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out updates.</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>results</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of Articles object</span></dt>
-<dd><p class="first last">Results from collecting data for each term.</p>
 </dd>
-<dt><strong>meta_data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">MetaData object</span></dt>
-<dd><p class="first last">Meta data from the data collection.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">list of Articles object</span></dt><dd><p>Results from collecting data for each term.</p>
+</dd>
+<dt><strong>meta_data</strong><span class="classifier">MetaData object</span></dt><dd><p>Meta data from the data collection.</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>The collection does an exact word search for the term given. It then loops through all
 the articles found for that term.</p>
@@ -169,8 +156,8 @@ using the hierarchical tag structure that organizes the articles.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

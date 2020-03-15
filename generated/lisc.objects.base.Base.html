@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lisc.objects.base.Base &#8212; lisc 0.1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="lisc-objects-base-base">
+<h1>lisc.objects.base.Base<a class="headerlink" href="#lisc-objects-base-base" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lisc.objects.base.Base">
+<em class="property">class </em><code class="sig-prename descclassname">lisc.objects.base.</code><code class="sig-name descname">Base</code><a class="reference internal" href="../_modules/lisc/objects/base.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for the base object for LISC collections &amp; analyses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>terms</strong><span class="classifier">list of list of str</span></dt><dd><p>Terms words.</p>
+</dd>
+<dt><strong>labels</strong><span class="classifier">list of str</span></dt><dd><p>Label to reference each term.</p>
+</dd>
+<dt><strong>inclusions</strong><span class="classifier">list of str</span></dt><dd><p>Inclusion words for each term.</p>
+</dd>
+<dt><strong>exclusions</strong><span class="classifier">list of list str</span></dt><dd><p>Exclusion words for each term.</p>
+</dd>
+<dt><strong>has_data</strong><span class="classifier">bool</span></dt><dd><p>Whether there is any terms and/or data loaded.</p>
+</dd>
+<dt><strong>n_terms</strong><span class="classifier">int</span></dt><dd><p>Number of terms.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lisc.objects.base.Base.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize Base() object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.objects.base.Base.__init__" title="lisc.objects.base.Base.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self)</p></td>
+<td><p>Initialize Base() object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms</span></code></a>(self, terms[, term_type])</p></td>
+<td><p>Add the given list of strings as terms to use.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.objects.base.Base.add_terms_file" title="lisc.objects.base.Base.add_terms_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms_file</span></code></a>(self, f_name[, term_type, …])</p></td>
+<td><p>Load terms from a text file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_terms</span></code></a>(self[, term_type])</p></td>
+<td><p>Print out the current list of terms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.objects.base.Base.unload_terms" title="lisc.objects.base.Base.unload_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code></a>(self[, term_type])</p></td>
+<td><p>Unload the current set of terms.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_terms</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lisc.objects.base.Base.add_terms">
+<code class="sig-name descname">add_terms</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">terms</em>, <em class="sig-param">term_type='terms'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.add_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.add_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the given list of strings as terms to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>terms</strong><span class="classifier">list of str OR list of list of str</span></dt><dd><p>List of terms to be used.</p>
+</dd>
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to use.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.objects.base.Base.add_terms_file">
+<code class="sig-name descname">add_terms_file</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">f_name</em>, <em class="sig-param">term_type='terms'</em>, <em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.add_terms_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.add_terms_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load terms from a text file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f_name</strong><span class="classifier">str</span></dt><dd><p>File name to load terms from.</p>
+</dd>
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to use.</p>
+</dd>
+<dt><strong>directory</strong><span class="classifier">SCDB or str or None</span></dt><dd><p>Folder or database object specifying the file location.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.objects.base.Base.check_terms">
+<code class="sig-name descname">check_terms</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">term_type='terms'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.check_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.check_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out the current list of terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to use.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lisc.objects.base.Base.unload_terms">
+<code class="sig-name descname">unload_terms</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">term_type='terms'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.unload_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.unload_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unload the current set of terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to use.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

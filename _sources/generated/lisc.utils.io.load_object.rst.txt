@@ -1,6 +1,0 @@
-lisc.utils.io.load\_object
-==========================
-
-.. currentmodule:: lisc.utils.io
-
-.. autofunction:: load_object

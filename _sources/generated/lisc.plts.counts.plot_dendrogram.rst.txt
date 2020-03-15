@@ -1,6 +1,0 @@
-lisc.plts.counts.plot\_dendrogram
-=================================
-
-.. currentmodule:: lisc.plts.counts
-
-.. autofunction:: plot_dendrogram

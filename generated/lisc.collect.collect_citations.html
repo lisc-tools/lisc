@@ -2,27 +2,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lisc.collect.collect_citations &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
@@ -62,8 +61,14 @@
               
             
             
+              
+                
+              
             
             
+            
+            
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -83,53 +88,42 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="lisc-collect-collect-citations">
 <h1>lisc.collect.collect_citations<a class="headerlink" href="#lisc-collect-collect-citations" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="lisc.collect.collect_citations">
-<code class="descclassname">lisc.collect.</code><code class="descname">collect_citations</code><span class="sig-paren">(</span><em>dois</em>, <em>util='citations'</em>, <em>logging=None</em>, <em>directory=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/citations.html#collect_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_citations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.collect.</code><code class="sig-name descname">collect_citations</code><span class="sig-paren">(</span><em class="sig-param">dois</em>, <em class="sig-param">util='citations'</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/citations.html#collect_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_citations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect citation data from OpenCitations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>dois</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
-<dd><p class="first last">DOIs to collect citation data for.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dois</strong><span class="classifier">list of str</span></dt><dd><p>DOIs to collect citation data for.</p>
 </dd>
-<dt><strong>util</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘citations’, ‘references’}</span></dt>
-<dd><p class="first">Which utility to collect citation data with. Options:</p>
-<ul class="last simple">
-<li>‘citations’: collects the number of citations citing the specified DOI.</li>
-<li>‘references’: collects the number of references cited by the specified DOI.</li>
+<dt><strong>util</strong><span class="classifier">{‘citations’, ‘references’}</span></dt><dd><p>Which utility to collect citation data with. Options:</p>
+<ul class="simple">
+<li><p>‘citations’: collects the number of citations citing the specified DOI.</p></li>
+<li><p>‘references’: collects the number of references cited by the specified DOI.</p></li>
 </ul>
 </dd>
-<dt><strong>logging</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘print’, ‘store’, ‘file’}, optional</span></dt>
-<dd><p class="first last">What kind of logging, if any, to do for requested URLs.</p>
+<dt><strong>logging</strong><span class="classifier">{None, ‘print’, ‘store’, ‘file’}, optional</span></dt><dd><p>What kind of logging, if any, to do for requested URLs.</p>
 </dd>
-<dt><strong>directory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or SCDB object, optional</span></dt>
-<dd><p class="first last">Folder or database object specifying the save location.</p>
+<dt><strong>directory</strong><span class="classifier">str or SCDB object, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>
-<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional, default: False</span></dt>
-<dd><p class="first last">Whether to print out updates.</p>
+<dt><strong>verbose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out updates.</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>citations</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
-<dd><p class="first last">The number of citations for each DOI.</p>
 </dd>
-<dt><strong>meta_data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">MetaData object</span></dt>
-<dd><p class="first last">Meta data about the data collection.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>citations</strong><span class="classifier">dict</span></dt><dd><p>The number of citations for each DOI.</p>
+</dd>
+<dt><strong>meta_data</strong><span class="classifier">MetaData object</span></dt><dd><p>Meta data about the data collection.</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -146,8 +140,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

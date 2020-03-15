@@ -1,6 +1,0 @@
-lisc.utils.db.create\_file\_structure
-=====================================
-
-.. currentmodule:: lisc.utils.db
-
-.. autofunction:: create_file_structure

@@ -1,6 +1,0 @@
-lisc.plts.words.plot\_wordcloud
-===============================
-
-.. currentmodule:: lisc.plts.words
-
-.. autofunction:: plot_wordcloud

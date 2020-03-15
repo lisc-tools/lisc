@@ -2,27 +2,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Counts with Functions &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
@@ -62,8 +61,14 @@
               
             
             
+              
+                
+              
             
             
+            
+            
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -83,31 +88,32 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-counts-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-counts-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="counts-with-functions">
 <span id="sphx-glr-auto-examples-plot-functions-counts-py"></span><h1>Counts with Functions<a class="headerlink" href="#counts-with-functions" title="Permalink to this headline">¶</a></h1>
 <p>Collect word co-occurrence data, using the underlying functions from LISC.</p>
 <div class="section" id="function-approach-collect-counts">
 <h2>Function Approach: collect_counts<a class="headerlink" href="#function-approach-collect-counts" title="Permalink to this headline">¶</a></h2>
-<p>The core function for collecting co-occurrence data is the <cite>collect_counts</cite> function.</p>
+<p>The core function for collecting co-occurrence data is the
+<a class="reference internal" href="../generated/lisc.collect.collect_counts.html#lisc.collect.collect_counts" title="lisc.collect.collect_counts"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_counts()</span></code></a> function.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data, and helper functions to analyze co-occurrence data</span>
-<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_counts</span>
-<span class="kn">from</span> <span class="nn">lisc.analysis.counts</span> <span class="kn">import</span> <span class="n">compute_normalization</span><span class="p">,</span> <span class="n">compute_association_index</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data, and helper functions to analyze co-occurrence data</span>
+<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <span class="n">collect_counts</span>
+<span class="kn">from</span> <span class="nn">lisc.analysis.counts</span> <span class="k">import</span> <a href="../generated/lisc.analysis.counts.compute_normalization.html#lisc.analysis.counts.compute_normalization" title="View documentation for lisc.analysis.counts.compute_normalization"><span class="n">compute_normalization</span></a><span class="p">,</span> <a href="../generated/lisc.analysis.counts.compute_association_index.html#lisc.analysis.counts.compute_association_index" title="View documentation for lisc.analysis.counts.compute_association_index"><span class="n">compute_association_index</span></a>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms to search for</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms to search for</span>
 <span class="n">terms_a</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;protein&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">]]</span>
 <span class="n">terms_b</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;heart&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;lung&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect &#39;counts&#39; (co-occurrence data) - across a single list of terms</span>
-<span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">,</span> <span class="n">meta_dat</span> <span class="o">=</span> <span class="n">collect_counts</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect &#39;counts&#39; (co-occurrence data) - across a single list of terms</span>
+<span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="View documentation for lisc.data.MetaData"><span class="n">meta_dat</span></a> <span class="o">=</span> <span class="n">collect_counts</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -115,32 +121,32 @@
 Running counts for:  gene
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many articles were found for each combination</span>
-<span class="k">print</span><span class="p">(</span><span class="n">coocs</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many articles were found for each combination</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coocs</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 533047]
- [533047      0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 545481]
+ [545481      0]]
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out how many articles found for each term</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out how many articles found for each term</span>
 <span class="k">for</span> <span class="n">term</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{:12} : {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:12}</span><span class="s1"> : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2406802
-gene         : 1626716
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2461592
+gene         : 1669779
 </pre></div>
 </div>
 <p>When given a single set of terms, the function collects counts of each term
 against every other term in the list.</p>
 <p>You can also specify different sets of terms to collect. In the example below,
 each term in list A is collected measuring co-occurrences with each term in list B.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect &#39;counts&#39; (co-occurrence data) across two different lists of terms</span>
-<span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">,</span> <span class="n">meta_dat</span> <span class="o">=</span> <span class="n">collect_counts</span><span class="p">(</span>
-    <span class="n">terms_a</span><span class="o">=</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">terms_b</span><span class="o">=</span><span class="n">terms_b</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect &#39;counts&#39; (co-occurrence data) across two different lists of terms</span>
+<span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="View documentation for lisc.data.MetaData"><span class="n">meta_dat</span></a> <span class="o">=</span> <span class="n">collect_counts</span><span class="p">(</span>
+    <span class="n">terms_a</span><span class="o">=</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">terms_b</span><span class="o">=</span><span class="n">terms_b</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -156,40 +162,42 @@ or transform of the data.</p>
 <p>More details on the measures available in LISC are available in the <cite>Counts</cite>
 tutorial. When using the functions approach, all implemented scores and transforms
 are available in <cite>lisc.analysis</cite>, as functions that take in arrays of collected data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the normalized data measure, normalizing the co-occurrences by the term counts</span>
-<span class="n">normed_coocs</span> <span class="o">=</span> <span class="n">compute_normalization</span><span class="p">(</span><span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the normalized data measure, normalizing the co-occurrences by the term counts</span>
+<span class="n">normed_coocs</span> <span class="o">=</span> <a href="../generated/lisc.analysis.counts.compute_normalization.html#lisc.analysis.counts.compute_normalization" title="View documentation for lisc.analysis.counts.compute_normalization"><span class="n">compute_normalization</span></a><span class="p">(</span><span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 
 <span class="c1"># Check the computed score measure for the co-occurrence collection</span>
-<span class="k">print</span><span class="p">(</span><span class="n">normed_coocs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">normed_coocs</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02462978 0.02937342]
- [0.02164238 0.02955341]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.0246564  0.02960726]
+ [0.02160046 0.02979197]]
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index score, calculating the Jaccard index from the co-occurrences</span>
-<span class="n">score</span> <span class="o">=</span> <span class="n">compute_association_index</span><span class="p">(</span><span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">term_counts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index score, calculating the Jaccard index from the co-occurrences</span>
+<span class="n">score</span> <span class="o">=</span> <a href="../generated/lisc.analysis.counts.compute_association_index.html#lisc.analysis.counts.compute_association_index" title="View documentation for lisc.analysis.counts.compute_association_index"><span class="n">compute_association_index</span></a><span class="p">(</span><span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">term_counts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="c1"># Check the computed score measure for the co-occurrence collection</span>
-<span class="k">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01877302 0.02422491]
- [0.01465905 0.02224816]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01880212 0.02440003]
+ [0.0146567  0.02242584]]
 </pre></div>
 </div>
 <p>From here, further analysis of collected co-occurrence data depends on the goal of the analysis.</p>
 <p>There are also plot functions available, same as demonstrated in the Counts tutorial.</p>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  17.717 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.346 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-counts-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../_downloads/9a2919236bfe06d151da34109d6daa6c/plot_functions_counts.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_counts.py</span></code></a></div>
-<div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../_downloads/4bee41fd622a7993222773f4308581f4/plot_functions_counts.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_functions_counts.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../_downloads/2fa321f235fa85157f1fdd9ef345e8f4/plot_functions_counts.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_counts.py</span></code></a></p>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/988ec86886c522c852110aa170ca348e/plot_functions_counts.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_functions_counts.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 </div>
 
@@ -205,8 +213,8 @@ are available in <cite>lisc.analysis</cite>, as functions that take in arrays of
       
     </p>
     <p>
-        &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

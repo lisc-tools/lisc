@@ -1,6 +1,0 @@
-lisc.collect.collect\_counts
-============================
-
-.. currentmodule:: lisc.collect
-
-.. autofunction:: collect_counts

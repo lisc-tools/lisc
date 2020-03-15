@@ -2,27 +2,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lisc.analysis.counts.compute_normalization &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
@@ -62,8 +61,14 @@
               
             
             
+              
+                
+              
             
             
+            
+            
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -83,40 +88,32 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="lisc-analysis-counts-compute-normalization">
 <h1>lisc.analysis.counts.compute_normalization<a class="headerlink" href="#lisc-analysis-counts-compute-normalization" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="lisc.analysis.counts.compute_normalization">
-<code class="descclassname">lisc.analysis.counts.</code><code class="descname">compute_normalization</code><span class="sig-paren">(</span><em>data</em>, <em>counts</em>, <em>dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/analysis/counts.html#compute_normalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.analysis.counts.compute_normalization" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.analysis.counts.</code><code class="sig-name descname">compute_normalization</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">counts</em>, <em class="sig-param">dim='A'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/analysis/counts.html#compute_normalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.analysis.counts.compute_normalization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a normalization of the co-occurrence data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">2d array</span></dt>
-<dd><p class="first last">Counts of co-occurrence of terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">2d array</span></dt><dd><p>Counts of co-occurrence of terms.</p>
 </dd>
-<dt><strong>counts</strong> <span class="classifier-delimiter">:</span> <span class="classifier">1d array</span></dt>
-<dd><p class="first last">Counts for each individual search term.</p>
+<dt><strong>counts</strong><span class="classifier">1d array</span></dt><dd><p>Counts for each individual search term.</p>
 </dd>
-<dt><strong>dim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘A’, ‘B’}, optional</span></dt>
-<dd><p class="first last">Which set of terms to operate upon.</p>
+<dt><strong>dim</strong><span class="classifier">{‘A’, ‘B’}, optional</span></dt><dd><p>Which set of terms to operate upon.</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>out</strong> <span class="classifier-delimiter">:</span> <span class="classifier">2d array</span></dt>
-<dd><p class="first last">The normalized co-occurrence data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">2d array</span></dt><dd><p>The normalized co-occurrence data.</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>This computes a normalized data matrix as a percent of articles expressing co-occurrence.</p>
 </dd></dl>
@@ -135,8 +132,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>

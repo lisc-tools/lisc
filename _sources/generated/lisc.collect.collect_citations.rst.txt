@@ -1,6 +1,0 @@
-lisc.collect.collect\_citations
-===============================
-
-.. currentmodule:: lisc.collect
-
-.. autofunction:: collect_citations
