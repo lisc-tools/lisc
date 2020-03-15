@@ -9,7 +9,9 @@ with open(os.path.join('lisc', 'version.py')) as vf:
 
 long_description = \
 """
-LISC, or 'literature scanner' is a package for collecting and analyzing scientific literature.
+LISC: Literature Scanner
+
+LISC is a package for collecting and analyzing scientific literature.
 
 LISC acts as a wrapper and connector between available APIs, allowing users to collect data from
 and about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.
@@ -46,7 +48,7 @@ setup(
     packages = find_packages(),
     license = 'Apache License, 2.0',
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering',
         'License :: OSI Approved :: Apache Software License',
@@ -57,7 +59,8 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7'
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8'
         ],
 
     keywords = ['web-scraping', 'meta-analysis', 'text-mining', 'scientific-publications',
