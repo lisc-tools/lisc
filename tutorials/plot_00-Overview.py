@@ -6,7 +6,6 @@ An overview of the LISC code organization and approach.
 """
 
 ###################################################################################################
-#
 # LISC Overview
 # -------------
 #
@@ -20,7 +19,6 @@ An overview of the LISC code organization and approach.
 #
 
 ###################################################################################################
-#
 # Available Analyses
 # ~~~~~~~~~~~~~~~~~~
 #
@@ -40,17 +38,17 @@ An overview of the LISC code organization and approach.
 #
 
 ###################################################################################################
-#
 # LISC Objects
 # ------------
 #
 # LISC is object oriented, meaning it uses objects to handle search terms and collect data.
 #
-# Here we will first explore the `Base` object, the underlying object used for
-# data collections and analysis with EUtils.
+# Here we will first explore the :class:`~lisc.objects.base.Base` object, the underlying object
+# used for data collections and analysis with EUtils.
 #
-# Note that you will not otherwise use the `Base` object directly, but that it is the
-# underlying object for the `Counts` and `Words` objects.
+# Note that you will not otherwise use the :class:`~lisc.objects.base.Base` object directly,
+# but that it is the underlying object for the :class:`~lisc.objects.Counts` and
+# :class:`~lisc.objects.Words` objects that we will use later.
 #
 
 ###################################################################################################
@@ -67,8 +65,8 @@ base = Base()
 # Search Terms
 # ------------
 #
-# To collect scientific articles and associated data, we first need to use search terms to
-# find the literature of interest.
+# To collect scientific articles and associated data, we first need to use search
+# terms to find the literature of interest.
 #
 # By default, LISC uses all search terms as used as exact term matches, which is
 # indicated using double quotes, as "search term".
@@ -88,7 +86,6 @@ base.add_terms(terms)
 base.check_terms()
 
 ###################################################################################################
-#
 # Complex Search Terms
 # --------------------
 #
@@ -187,7 +184,6 @@ print('\n')
 base.check_terms('exclusions')
 
 ###################################################################################################
-#
 # Labels
 # ~~~~~~
 #
@@ -202,7 +198,6 @@ base.check_terms('exclusions')
 base.labels
 
 ###################################################################################################
-#
 # LISC Objects
 # ~~~~~~~~~~~~
 #
@@ -217,7 +212,6 @@ base.labels
 #
 
 ###################################################################################################
-#
 # Database Management
 # -------------------
 #

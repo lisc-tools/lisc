@@ -6,11 +6,11 @@ Collect word co-occurrence data, using the underlying functions from LISC.
 """
 
 ###################################################################################################
-#
 # Function Approach: collect_counts
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# The core function for collecting co-occurrence data is the `collect_counts` function.
+# The core function for collecting co-occurrence data is the
+# :func:`~lisc.collect.collect_counts` function.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
@@ -59,7 +59,6 @@ coocs, term_counts, meta_dat = collect_counts(
     terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)
 
 ###################################################################################################
-#
 # Calculating Co-occurrence Scores
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #

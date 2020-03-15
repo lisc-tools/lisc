@@ -6,9 +6,8 @@ Collecting term co-occurrence data from scientific literature.
 """
 
 ###################################################################################################
-#
 # Term Co-occurrence
-# -----------------
+# ------------------
 #
 # The 'Counts' approach, or term co-occurrence searches the literature for
 # how often terms of interest appear together.
@@ -23,15 +22,13 @@ from lisc.utils.db import SCDB
 from lisc.utils.io import save_object
 
 ###################################################################################################
-#
 # Counts Object
 # -------------
 #
-# The 'Counts' object is used to handle term co-occurrence analyses.
+# The :class:`~lisc.objects.Counts` object is used to handle term co-occurrence analyses.
 #
 
 ###################################################################################################
-#
 # Counts: Single List of Terms
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -62,7 +59,8 @@ counts.run_collection(verbose=True)
 #
 # We have now collected some literature data!
 #
-# The Counts object will now contain count data for the word co-occurrence data between terms.
+# The :class:`~lisc.objects.Counts` object will now contain count data
+# for the word co-occurrence data between terms.
 #
 
 ###################################################################################################
@@ -72,7 +70,8 @@ print(counts.counts)
 
 ###################################################################################################
 #
-# The Counts object also comes with some helper methods to explore the data.
+# The :class:`~lisc.objects.Counts` object also comes with some helper
+# methods to explore the data.
 #
 
 ###################################################################################################
@@ -86,7 +85,6 @@ counts.check_counts()
 counts.check_top()
 
 ###################################################################################################
-#
 # Counts: Two Terms Lists
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #

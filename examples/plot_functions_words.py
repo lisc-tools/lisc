@@ -6,11 +6,10 @@ Collect article text data and metadata, using a function oriented approach.
 """
 
 ###################################################################################################
-#
 # Function Approach: collect_words
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# The core function for collecting words data is the `collect_words` function.
+# The core function for collecting words data is the :func:`~lisc.collect.collect_words` function.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #

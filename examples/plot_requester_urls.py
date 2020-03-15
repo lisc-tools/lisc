@@ -6,7 +6,6 @@ Exploring LISC utilities for managing URLs and requests.
 """
 
 ###################################################################################################
-#
 # URLs & Requests
 # ---------------
 #
@@ -27,11 +26,11 @@ Exploring LISC utilities for managing URLs and requests.
 from lisc.requester import Requester
 
 ###################################################################################################
-#
 # Requester Object
 # ~~~~~~~~~~~~~~~~
 #
-# The Requester object uses the `requests <https://2.python-requests.org/en/master/>`_
+# The :class:`~lisc.requester.Requester` object uses the
+# `requests <https://2.python-requests.org/en/master/>`_
 # module to launch URL requests, and adds some functionality such as throttling, to
 # ensure requests respect API limits, as well as metadata collection, and URL logging.
 #
@@ -64,11 +63,11 @@ req.check()
 print(req.as_dict())
 
 ###################################################################################################
-#
 # URLs Object
 # ~~~~~~~~~~~
 #
-# The URLs object is the base object used in LISC to store URLs to interact with APIs.
+# The :class:`~lisc.urls.URLs` object is the base object used in LISC to store
+# URLs to interact with APIs.
 #
 # It includes functionality to store and use different utilities available through
 # an API, and store and use different settings.
@@ -113,11 +112,10 @@ api_page = req.request_url(api_url)
 api_page.json()['AbstractSource']
 
 ###################################################################################################
-#
 # Supported APIs
 # ~~~~~~~~~~~~~~
 #
-# The URLs object can be used to create objects that support external APIs.
+# The :class:`~lisc.urls.URLs` object can be used to create objects that support external APIs.
 #
 # LISC currently supports APIs for
 # `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25500/>`_ and
@@ -148,7 +146,6 @@ citations = OpenCitations()
 print(citations.utils)
 
 ###################################################################################################
-#
 # Adding New APIs
 # ~~~~~~~~~~~~~~~
 #

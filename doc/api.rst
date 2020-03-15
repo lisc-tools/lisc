@@ -25,6 +25,13 @@ Custom objects for collecting & analyzing literature data.
   Counts
   Words
 
+.. currentmodule:: lisc.objects.base
+
+.. autosummary::
+  :toctree: generated/
+
+  Base
+
 Data
 ----
 

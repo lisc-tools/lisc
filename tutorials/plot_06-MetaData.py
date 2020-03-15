@@ -9,7 +9,6 @@ from lisc.utils.db import SCDB
 from lisc.utils.io import load_object
 
 ###################################################################################################
-#
 # Metadata
 # --------
 #
@@ -25,15 +24,14 @@ from lisc.utils.io import load_object
 counts = load_object('tutorial_counts', SCDB('lisc_db'))
 
 ###################################################################################################
-#
 # Metadata Object
 # ---------------
 #
 # Meta data information is collected into a custom MetaData object,
 #
-# If you are collecting data using the LISC object, such as the `Counts` or `Words`
-# object, this collection information is attached and saved to the object, as the
-# `meta_data` attribute.
+# If you are collecting data using the LISC object, such as the :class:`~lisc.objects.Counts`
+# or :class:`~lisc.objects.Words` object, this collection information is attached and saved
+# to the object, as the `meta_data` attribute.
 #
 
 ###################################################################################################
@@ -48,7 +46,7 @@ counts.meta_data.db_info
 
 ###################################################################################################
 #
-# For the next part, we'll reload the `Words` object, which has the same meta data
+# For the next part, we'll reload the Words object, which has the same meta data
 # object available.
 #
 
@@ -58,12 +56,11 @@ counts.meta_data.db_info
 words = load_object('tutorial_words', SCDB('lisc_db'))
 
 ###################################################################################################
-#
 # Requester MetaData
 # ~~~~~~~~~~~~~~~~~~
 #
-# The collected meta data also includes information from the Requester object,
-# which is used to launch URL requests.
+# The collected meta data also includes information from the :class:`~lisc.requester.Requester`
+# object, which is used to launch URL requests.
 #
 # The Requester object tracks information including when URL requests were
 # launched and the number of requests made.
@@ -75,7 +72,6 @@ words = load_object('tutorial_words', SCDB('lisc_db'))
 words.meta_data.requester
 
 ###################################################################################################
-#
 # The End!
 # ~~~~~~~~
 #

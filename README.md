@@ -128,8 +128,7 @@ When working on LISC, please follow the [Contribution Guidelines](https://github
 If you use this code in your project, please cite:
 
 ```
-Donoghue, T. (2019). LISC: A Python Package for Scientific Literature Collection and Analysis.
-Journal of Open Source Software, 4(41), 1674. DOI: 10.21105/joss.01674
+Donoghue, T. (2019). LISC: A Python Package for Scientific Literature Collection and Analysis. Journal of Open Source Software, 4(41), 1674. DOI: 10.21105/joss.01674
 ```
 
 Direct Link: https://doi.org/10.21105/joss.01674

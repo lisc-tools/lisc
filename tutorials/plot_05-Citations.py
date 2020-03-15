@@ -6,7 +6,6 @@ Collecting citation data from OpenCitations.
 """
 
 ###################################################################################################
-#
 # References & Citations
 # ----------------------
 #
@@ -22,8 +21,9 @@ Collecting citation data from OpenCitations.
 # OpenCitations Project
 # ~~~~~~~~~~~~~~~~~~~~~
 #
-# Recently, citation data has become more available with the `OpenCitations <https://opencitations.net>`_
-# project, which is an initiative to support and provide open bibliographic and citation data.
+# Recently, citation data has become more available with the
+# `OpenCitations <https://opencitations.net>`_ project, which
+# is an initiative to support and provide open bibliographic and citation data.
 #
 # The OpenCitations project maintains a database of citation data, and provides an API.
 #
@@ -33,7 +33,6 @@ Collecting citation data from OpenCitations.
 from lisc.collect import collect_citations
 
 ###################################################################################################
-#
 # OpenCitations API
 # -----------------
 #
@@ -53,7 +52,6 @@ from lisc.collect import collect_citations
 dois = ['10.1007/s00228-017-2226-2', '10.1186/1756-8722-6-59']
 
 ###################################################################################################
-#
 # Citation Data
 # -------------
 #
@@ -72,7 +70,6 @@ for doi, n_cites in citations.items():
     print('{:25s} \t : {}'.format(doi, n_cites))
 
 ###################################################################################################
-#
 # Reference Data
 # --------------
 #
@@ -91,7 +88,6 @@ for doi, n_refs in references.items():
     print('{:25s} \t : {}'.format(doi, n_refs))
 
 ###################################################################################################
-#
 # More Complex Data Collection
 # ----------------------------
 #

@@ -6,7 +6,6 @@ Collecting literature data, including text and metadata for specified search ter
 """
 
 ###################################################################################################
-#
 # Words Analysis
 # --------------
 #
@@ -21,11 +20,11 @@ from lisc.utils.db import SCDB
 from lisc.utils.io import save_object
 
 ###################################################################################################
-#
 # Words Object
 # ------------
 #
-# The 'Words' object is used to collect and analyze text data and article metadata.
+# The :class:`~lisc.objects.Words` object is used to collect and analyze
+# text data and article metadata.
 #
 # Search terms are specified to find articles of interest, from which text data
 # and meta-data is collected.
@@ -56,13 +55,13 @@ words.run_collection(retmax='5')
 print(words.results)
 
 ###################################################################################################
-#
 # LISC Data Objects
 # ~~~~~~~~~~~~~~~~~
 #
 # LISC uses custom objects to store collected words data.
 #
-# The `Articles` object stores data for each article collected from a given search term.
+# The :obj:`~lisc.data.Articles` object stores data for each article
+# collected from a given search term.
 #
 # Collected data words data includes:
 #
@@ -82,7 +81,6 @@ print(words.results[0].n_articles)
 print(words.results[0].titles)
 
 ###################################################################################################
-#
 # Word Collections
 # ----------------
 #
@@ -102,7 +100,6 @@ terms = [['frontal lobe'], ['temporal lobe'], ['parietal lobe'], ['occipital lob
 words.add_terms(terms)
 
 ###################################################################################################
-#
 # EUtils Settings
 # ~~~~~~~~~~~~~~~
 #
@@ -116,9 +113,9 @@ words.add_terms(terms)
 #
 # - the `field` setting defaults to `TIAB` for titles and abstracts
 # - the `retmax` should be set to some upper bound if your search terms are likely to
-# return a large number of articles.
+#   return a large number of articles.
 # - the `usehistory` parameter should be set to True if you are running a large collection,
-# as this is more efficient.
+#   as this is more efficient.
 #
 # Word Collection Settings
 # ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,7 +124,8 @@ words.add_terms(terms)
 # that may return a large number of articles, then the `Words` collection can take a while,
 # and the amount of data can become quite large.
 #
-# Because of this, the `Words` object offers a setting of how / when to save data.
+# Because of this, the :class:`~lisc.objects.Words`  object offers a setting of
+# how / when to save data.
 # The `save_and_clear` controls whether to save out collected data and clear per term,
 # and can be useful for large collections to not have to store all the collected data in RAM.
 #

@@ -6,7 +6,6 @@ Analyzing collected co-occurrence data.
 """
 
 ###################################################################################################
-#
 # Counts Analyses
 # ---------------
 #
@@ -27,9 +26,10 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 
 ###################################################################################################
 #
-# The `Counts` object has some helper methods to explore the collected data.
+# The :class:`~lisc.objects.Counts` object has some helper methods to explore the collected data.
 #
-# First lets check the number of counts per term list.
+# First lets check the number of counts per term list, which we can do with the
+# :meth:`~lisc.objects.Counts.check_data` method.
 #
 
 ###################################################################################################
@@ -43,12 +43,12 @@ counts.check_data(data_type='counts', dim='A')
 counts.check_data(data_type='counts', dim='B')
 
 ###################################################################################################
-#
 # Normalization & Scores
 # ----------------------
 #
-# The Counts co-occurrence data collection gives us a raw data matrix of the number of
-# articles in which terms co-occur, as well as the number of articles for each term independently.
+# The Counts co-occurrence data collection gives us a raw data matrix of the number
+# of articles in which terms co-occur, as well as the number of articles for each
+# term independently.
 #
 # Once we have the co-occurrence matrix, we typically want to calculate a
 # normalized co-occurrence measure, and/or some other kind of similarity score.
@@ -62,8 +62,8 @@ counts.check_data(data_type='counts', dim='B')
 # for measuring the similarity of samples, and is also available to compute and use.
 #
 # With the counts object, both of these measures are available, using the
-# `compute_score` method. You can indicate which kind of score - normalization or
-# association index - as an input to the method.
+# :meth:`~lisc.objects.Counts.compute_score` method. You can indicate which kind of score
+# - normalization or association index - as an input to the method.
 #
 
 ###################################################################################################
@@ -108,7 +108,6 @@ print(counts.score)
 #
 
 ###################################################################################################
-#
 # Plotting and Clustering for Counts Data
 # ---------------------------------------
 #

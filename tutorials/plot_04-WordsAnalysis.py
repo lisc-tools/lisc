@@ -6,14 +6,13 @@ Analyzing collected text data and metadata.
 """
 
 ###################################################################################################
-#
 # Words Analyses
 # --------------
 #
 # This tutorial covers exploring & analyzing words data.
 #
-# For this tutorial, we will reload and use the `Words` data that we collected
-# in the last tutorial.
+# For this tutorial, we will reload and use the :class:`~lisc.objects.Words` object with
+# the data that we collected in the last tutorial.
 #
 
 ###################################################################################################
@@ -25,16 +24,16 @@ from lisc.utils.io import load_object
 from lisc.plts.words import plot_wordcloud
 
 ###################################################################################################
-#
 # Articles Object
 # ~~~~~~~~~~~~~~~
 #
 # LISC uses a custom objects to store and organize collected words data.
 #
-# These objects are used internally in the `Words` objects.
+# These objects are used internally in the :class:`~lisc.objects.Words` objects.
 #
-# If the data collection was set to save out data as it was collected, then 'Articles'
-# objects can be loaded individually, using the label of the search term.
+# If the data collection was set to save out data as it was collected, then
+# :obj:`~lisc.data.Articles` objects can be loaded individually, using the label
+# of the search term.
 #
 
 ###################################################################################################
@@ -48,14 +47,13 @@ arts = Articles(term)
 arts.load(db)
 
 ###################################################################################################
-#
 # ArticlesAll Object
 # ~~~~~~~~~~~~~~~~~~
 #
-# There is also the `ArticlesAll` object, which is variant which can be used to
-# aggregate collected data across all articles collected for a given search term.
+# There is also the :obj:`~lisc.data.ArticlesAll` object, which is variant which can be used
+# to aggregate collected data across all articles collected for a given search term.
 #
-# The ArticlesAll object also has methods to create and check summaries
+# The :obj:`~lisc.data.ArticlesAll` object also has methods to create and check summaries
 # created from the aggregate data, across all articles for a given search term.
 #
 
@@ -71,13 +69,12 @@ arts_all.create_summary()
 arts_all.print_summary()
 
 ###################################################################################################
-#
 # Words Object
 # ~~~~~~~~~~~~
 #
-# The `Words` object can also be used to reload and analyze collected data.
+# The :class:`~lisc.objects.Words` object can also be used to reload and analyze collected data.
 #
-# The `results` attribute of the `Words` object, when loaded, contains a list of
+# The `results` attribute of the Words object, when loaded, contains a list of
 # Articles objects, one for each term.
 #
 
@@ -103,11 +100,10 @@ all_articles = [ArticlesAll(words[label]) for label in words.labels]
 plot_wordcloud(all_articles[0].words, 25)
 
 ###################################################################################################
-#
 # Exploring Words Data
 # --------------------
 #
-# The Words object also has some methods for exploring the data.
+# The :class:`~lisc.objects.Words` object also has some methods for exploring the data.
 #
 
 ###################################################################################################
@@ -123,7 +119,6 @@ for art in words['temporal lobe']:
     print(art['title'])
 
 ###################################################################################################
-#
 # Analyzing Words Data
 # ~~~~~~~~~~~~~~~~~~~~
 #

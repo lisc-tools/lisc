@@ -10,7 +10,6 @@ Exploring the LISC database and using files of terms.
 from lisc.utils.db import SCDB, create_file_structure
 
 ###################################################################################################
-#
 # SCDB Database Structure
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -18,6 +17,10 @@ from lisc.utils.db import SCDB, create_file_structure
 #
 # If you want to store terms in files, place those files into a LISC database structure,
 # and then relevant functions and objects will be able to load and use these terms.
+#
+# You can create a :func:`~lisc.utils.db.create_file_structure`.
+#
+# LISC also uses a database object, :class:`~lisc.utils.db.SCDB`, to manage these databases.
 #
 
 ###################################################################################################
@@ -27,7 +30,6 @@ from lisc.utils.db import SCDB, create_file_structure
 db = create_file_structure()
 
 ###################################################################################################
-#
 # Storing Terms in Text Files
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -35,7 +37,8 @@ db = create_file_structure()
 #
 # The typical use case would be to curate and write text files manually.
 #
-# For demonstration here, we will first programmatically create an example text file of terms to use.
+# For demonstration here, we will first programmatically create an example text
+# file of terms to use.
 #
 
 ###################################################################################################
@@ -66,7 +69,6 @@ print(term_files)
 db.get_file_path('terms', 'terms.txt')
 
 ###################################################################################################
-#
 # Term File Structure
 # ~~~~~~~~~~~~~~~~~~~
 #
@@ -81,13 +83,13 @@ with open(db.get_file_path('terms', 'terms.txt'), 'r') as term_file:
     print(term_file.read())
 
 ###################################################################################################
-#
 # Loading Terms from File
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Text files of Terms can be loaded and used with LISC objects, such as 'Counts' and 'Words'.
+# Text files of Terms can be loaded and used with LISC objects, such as
+# :class:`~lisc.objects.Counts` and :class:`~lisc.objects.Words`.
 #
-# For a general example, here we will use the underlying 'Base' object.
+# For a general example, here we will use the underlying :class:`~lisc.objects.base.Base` object.
 #
 
 ###################################################################################################
