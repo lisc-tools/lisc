@@ -23,7 +23,7 @@ from lisc.utils.io import save_object
 # Words Object
 # ------------
 #
-# The :class:`~lisc.objects.Words` object is used to collect and analyze
+# The :class:`~.Words` object is used to collect and analyze
 # text data and article metadata.
 #
 # Search terms are specified to find articles of interest, from which text data
@@ -60,7 +60,7 @@ print(words.results)
 #
 # LISC uses custom objects to store collected words data.
 #
-# The :obj:`~lisc.data.Articles` object stores data for each article
+# The :obj:`~.Articles` object stores data for each article
 # collected from a given search term.
 #
 # Collected data words data includes:
@@ -124,7 +124,7 @@ words.add_terms(terms)
 # that may return a large number of articles, then the `Words` collection can take a while,
 # and the amount of data can become quite large.
 #
-# Because of this, the :class:`~lisc.objects.Words`  object offers a setting of
+# Because of this, the :class:`~.Words`  object offers a setting of
 # how / when to save data.
 # The `save_and_clear` controls whether to save out collected data and clear per term,
 # and can be useful for large collections to not have to store all the collected data in RAM.

@@ -11,7 +11,7 @@ Analyzing collected text data and metadata.
 #
 # This tutorial covers exploring & analyzing words data.
 #
-# For this tutorial, we will reload and use the :class:`~lisc.objects.Words` object with
+# For this tutorial, we will reload and use the :class:`~.Words` object with
 # the data that we collected in the last tutorial.
 #
 
@@ -29,10 +29,10 @@ from lisc.plts.words import plot_wordcloud
 #
 # LISC uses a custom objects to store and organize collected words data.
 #
-# These objects are used internally in the :class:`~lisc.objects.Words` objects.
+# These objects are used internally in the :class:`~.Words` objects.
 #
 # If the data collection was set to save out data as it was collected, then
-# :obj:`~lisc.data.Articles` objects can be loaded individually, using the label
+# :obj:`~.Articles` objects can be loaded individually, using the label
 # of the search term.
 #
 
@@ -50,10 +50,10 @@ arts.load(db)
 # ArticlesAll Object
 # ~~~~~~~~~~~~~~~~~~
 #
-# There is also the :obj:`~lisc.data.ArticlesAll` object, which is variant which can be used
+# There is also the :obj:`~.ArticlesAll` object, which is variant which can be used
 # to aggregate collected data across all articles collected for a given search term.
 #
-# The :obj:`~lisc.data.ArticlesAll` object also has methods to create and check summaries
+# The :obj:`~.ArticlesAll` object also has methods to create and check summaries
 # created from the aggregate data, across all articles for a given search term.
 #
 
@@ -72,7 +72,7 @@ arts_all.print_summary()
 # Words Object
 # ~~~~~~~~~~~~
 #
-# The :class:`~lisc.objects.Words` object can also be used to reload and analyze collected data.
+# The :class:`~.Words` object can also be used to reload and analyze collected data.
 #
 # The `results` attribute of the Words object, when loaded, contains a list of
 # Articles objects, one for each term.
@@ -103,7 +103,7 @@ plot_wordcloud(all_articles[0].words, 25)
 # Exploring Words Data
 # --------------------
 #
-# The :class:`~lisc.objects.Words` object also has some methods for exploring the data.
+# The :class:`~.Words` object also has some methods for exploring the data.
 #
 
 ###################################################################################################

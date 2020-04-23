@@ -29,8 +29,8 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 #
 # Meta data information is collected into a custom MetaData object,
 #
-# If you are collecting data using the LISC object, such as the :class:`~lisc.objects.Counts`
-# or :class:`~lisc.objects.Words` object, this collection information is attached and saved
+# If you are collecting data using the LISC object, such as the :class:`~.Counts`
+# or :class:`~.Words` object, this collection information is attached and saved
 # to the object, as the `meta_data` attribute.
 #
 
@@ -59,7 +59,7 @@ words = load_object('tutorial_words', SCDB('lisc_db'))
 # Requester MetaData
 # ~~~~~~~~~~~~~~~~~~
 #
-# The collected meta data also includes information from the :class:`~lisc.requester.Requester`
+# The collected meta data also includes information from the :class:`~.Requester`
 # object, which is used to launch URL requests.
 #
 # The Requester object tracks information including when URL requests were

@@ -37,6 +37,7 @@ install:
 	#   -b gh-pages fetches only the branch for the gh-pages
 	git clone -b gh-pages --single-branch --no-checkout --depth 1 https://github.com/lisc-tools/lisc _build/tmp_html
 	touch _build/tmp_html/.nojekyll
+	make clean
 	make html
 	cd _build/ && \
 	cp -r html/* tmp_html && \

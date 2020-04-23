@@ -10,7 +10,7 @@ Collect word co-occurrence data, using the underlying functions from LISC.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # The core function for collecting co-occurrence data is the
-# :func:`~lisc.collect.collect_counts` function.
+# :func:`~.collect_counts` function.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #

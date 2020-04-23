@@ -46,8 +46,8 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx_gallery.gen_gallery',
-    'numpydoc',
-    'm2r'
+    'sphinx_copybutton',
+    'numpydoc'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -65,7 +65,7 @@ numpydoc_show_class_members = False
 # Set to generate sphinx docs for class members (methods)
 autodoc_default_options = {
     'members': None,
-    'no-inherited-members': None,
+    'inherited-members': None,
 }
 
 # generate autosummary even if no references
@@ -80,6 +80,8 @@ master_doc = 'index'
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Settings for sphinx_copybutton
+copybutton_prompt_text = "$ "
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -102,6 +104,9 @@ html_theme_options = {
         ("GitHub", "https://github.com/lisc-tools/lisc", True)
     ],
 
+    # Set the page width to not be restricted to hardset value
+    'body_max_width': None,
+
     # Bootswatch (http://bootswatch.com/) theme to apply
     'bootswatch_theme': "flatly",
 
@@ -122,7 +127,7 @@ sphinx_gallery_conf = {
     'gallery_dirs': ['auto_examples', 'auto_tutorials'],
     'within_subsection_order': FileNameSortKey,
     # Settings for linking between examples & API examples
-    'backreferences_dir': 'backrefs',
+    'backreferences_dir': 'generated',
     'doc_module': ('lisc',),
     'reference_url': {'lisc': None}
 }
