@@ -27,6 +27,11 @@ clean:
 	rm -rf generated
 	rm -rf backrefs
 
+# Check that builds site with nitpicky checking, and also does post-hoc link check
+check:
+	make SPHINXOPTS="-n" html
+	make linkcheck
+
 # Build the html site, and push it to gh-pages branch of repo to deploy
 install:
 	rm -rf _build/doctrees _build/tmp_html
