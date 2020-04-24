@@ -14,8 +14,8 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
-                   terms_b=[], inclusions_b=[], exclusions_b=[],
+def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
+                   terms_b=None, inclusions_b=None, exclusions_b=None,
                    db='pubmed', field='TIAB', api_key=None,
                    logging=None, directory=None, verbose=False):
     """Collect count and term co-occurrence data from EUtils.
@@ -77,7 +77,7 @@ def collect_counts(terms_a, inclusions_a=[], exclusions_a=[],
 
     # Sort out terms
     n_terms_a = len(terms_a)
-    if len(terms_b) == 0:
+    if not terms_b:
         square = True
         terms_b, inclusions_b, exclusions_b = terms_a, inclusions_a, exclusions_a
     else:

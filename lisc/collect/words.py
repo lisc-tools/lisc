@@ -15,7 +15,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_words(terms, inclusions=[], exclusions=[], db='pubmed',
+def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
                   retmax=None, field='TIAB', usehistory=False, api_key=None,
                   save_and_clear=False, logging=None, directory=None, verbose=False):
     """Collect text data and metadata from EUtils using specified search term(s).
@@ -199,7 +199,8 @@ def extract_add_info(arts, art_id, art):
     arts.add_data('ids', art_id)
     arts.add_data('titles', extract(art, 'ArticleTitle', 'str'))
     arts.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
-    arts.add_data('journals', (extract(art, 'Title', 'str'), extract(art, 'ISOAbbreviation', 'str')))
+    arts.add_data('journals', (extract(art, 'Title', 'str'),
+                               extract(art, 'ISOAbbreviation', 'str')))
     arts.add_data('words', extract(art, 'AbstractText', 'all-str'))
     arts.add_data('keywords', extract(art, 'Keyword', 'all-list'))
     arts.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))

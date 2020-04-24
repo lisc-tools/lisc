@@ -4,7 +4,7 @@ Segments : section added to the URL, separated by '/'.
 Settings : settings added to the URL, as key value pairs, following a '?' and added with '&'.
 """
 
-from lisc.urls.utils import make_segments, make_settings
+from lisc.urls.utils import check_none, make_segments, make_settings
 
 ###################################################################################################
 ###################################################################################################
@@ -26,7 +26,7 @@ class URLs():
         Whether acting as an authenticated user for the API.
     """
 
-    def __init__(self, base, utils={}, authenticated=None):
+    def __init__(self, base, utils, authenticated=None):
         """Initialize a URLs object.
 
         Parameters
@@ -35,7 +35,7 @@ class URLs():
             Base URL for the API.
         utils : dict
             Utilities for the utility, a dictionary with names and URL extensions.
-        authenticated : bool
+        authenticated : bool, optional
             Whether acting as an authenticated user for the API.
         """
 
@@ -104,16 +104,16 @@ class URLs():
         return url
 
 
-    def build_url(self, util, segments=[], settings=[]):
+    def build_url(self, util, segments=None, settings=None):
         """Build the URL for a specified utility, with provided settings.
 
         Parameters
         ----------
         util : str
             Which utility to build the URL for.
-        segments : list of str
+        segments : list of str, optional
             Segments to add to the URL.
-        settings : dict or list of str
+        settings : dict or list of str, optional
             Settings to use to build the URL.
             If list, the settings values are taken from the objects settings attribute.
         """
@@ -125,7 +125,8 @@ class URLs():
                 raise ValueError('Not all requested settings available - can not proceed.')
             settings = {ke : va for ke, va in self.settings.items() if ke in settings}
 
-        url = self.base + make_segments([self.utils[util]] + segments) + make_settings(settings)
+        url = self.base + make_segments([self.utils[util]] + check_none(segments, [])) + \
+            make_settings(check_none(settings, {}))
 
         if self.authenticated:
             url = self.authenticate(url)
@@ -133,7 +134,7 @@ class URLs():
         self.urls[util] = url
 
 
-    def get_url(self, util, segments=[], settings={}):
+    def get_url(self, util, segments=None, settings=None):
         """Get a requested URL, with any additional segments or settings.
 
         Parameters
@@ -157,7 +158,8 @@ class URLs():
         url = self.urls[util]
         settings_join = '?' if not '?' in url else '&'
 
-        full_url = url + make_segments(segments) + make_settings(settings, settings_join)
+        full_url = url + make_segments(check_none(segments, [])) + \
+            make_settings(check_none(settings, {}), settings_join)
 
         return full_url
 
