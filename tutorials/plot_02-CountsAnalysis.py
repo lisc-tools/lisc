@@ -17,7 +17,7 @@ Analyzing collected co-occurrence data.
 from lisc.utils.db import SCDB
 from lisc.utils.io import load_object
 
-from lisc.plts.counts import *
+from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram
 
 ###################################################################################################
 

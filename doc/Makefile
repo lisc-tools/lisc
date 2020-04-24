@@ -25,7 +25,6 @@ clean:
 	rm -rf auto_tutorials
 	rm -rf auto_examples
 	rm -rf generated
-	rm -rf backrefs
 
 # Check that builds site with nitpicky checking, and also does post-hoc link check
 check:

@@ -2,9 +2,9 @@
 LISC - Literature Scanner
 =========================
 
-|ProjectStatus|_ |Version|_ |BuildStatus|_ |BuildStatus|_ |codecov|_ |License|_ |PythonVersions|_
+|ProjectStatus|_ |Version|_ |BuildStatus|_ |codecov|_ |License|_ |PythonVersions|_ |DOI|_
 
-.. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/active.svg
+.. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
 .. _ProjectStatus: https://www.repostatus.org/#active
 
 .. |Version| image:: https://img.shields.io/pypi/v/lisc.svg

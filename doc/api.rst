@@ -23,13 +23,27 @@ Objects
 
 Custom objects for collecting & analyzing literature data.
 
+Counts Object
+~~~~~~~~~~~~~
+
 .. currentmodule:: lisc
 
 .. autosummary::
     :toctree: generated/
 
     Counts
+
+Words Object
+~~~~~~~~~~~~
+.. currentmodule:: lisc
+
+.. autosummary::
+    :toctree: generated/
+
     Words
+
+Base Object
+~~~~~~~~~~~
 
 .. currentmodule:: lisc.objects.base
 
@@ -38,23 +52,45 @@ Custom objects for collecting & analyzing literature data.
 
     Base
 
-Data
-----
+Extracted Data Storage
+----------------------
 
 Custom objects for storing extracted data.
+
+Term Object
+~~~~~~~~~~~
+
+.. currentmodule:: lisc.data
+
+.. autosummary::
+    :toctree: generated/
+    :template: data_object.rst
+
+    Term
+
+Articles Objects
+~~~~~~~~~~~~~~~~
 
 .. currentmodule:: lisc.data
 
 .. autosummary::
     :toctree: generated/
 
-    Term
     Articles
     ArticlesAll
+
+Metadata Object
+~~~~~~~~~~~~~~~
+
+.. currentmodule:: lisc.data
+
+.. autosummary::
+    :toctree: generated/
+
     MetaData
 
-Collect
--------
+Data Collection Functions
+-------------------------
 
 Functions for collecting data from supported APIs.
 
@@ -68,12 +104,13 @@ Functions for collecting data from supported APIs.
     collect_words
     collect_citations
 
-URLs & Requests
----------------
+URLs & Requests Objects
+-----------------------
 
 Object to manage URLs & requests.
 
-**URLs**
+URLs Objects
+~~~~~~~~~~~~
 
 URL management for supported APIs.
 
@@ -86,7 +123,8 @@ URL management for supported APIs.
     EUtils
     OpenCitations
 
-**Requester**
+Requester Object
+~~~~~~~~~~~~~~~~
 
 Request management for interacting with APIs.
 
@@ -97,12 +135,13 @@ Request management for interacting with APIs.
 
     Requester
 
-Analysis
---------
+Analysis Functions
+------------------
 
 Functions to analyze collected data.
 
-**Counts**
+Normalization
+~~~~~~~~~~~~~
 
 .. currentmodule:: lisc.analysis.counts
 
@@ -110,14 +149,24 @@ Functions to analyze collected data.
     :toctree: generated/
 
     compute_normalization
+
+Association
+~~~~~~~~~~~
+
+.. currentmodule:: lisc.analysis.counts
+
+.. autosummary::
+    :toctree: generated/
+
     compute_association_index
 
-Plotting
---------
+Plotting Functions
+------------------
 
 Plotting functions for collected data.
 
-**Counts**
+Counts
+~~~~~~
 
 .. currentmodule:: lisc.plts.counts
 
@@ -128,7 +177,8 @@ Plotting functions for collected data.
     plot_clustermap
     plot_dendrogram
 
-**Words**
+Words
+~~~~~
 
 .. currentmodule:: lisc.plts.words
 
@@ -143,7 +193,8 @@ Utilities
 
 Utilities and file management.
 
-**File IO**
+File IO
+~~~~~~~
 
 .. currentmodule:: lisc.utils
 
@@ -153,7 +204,8 @@ Utilities and file management.
     save_object
     load_object
 
-**Database Management**
+Database Management
+~~~~~~~~~~~~~~~~~~~
 
 .. currentmodule:: lisc.utils
 

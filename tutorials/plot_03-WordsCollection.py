@@ -90,7 +90,7 @@ print(words.results[0].titles)
 # LISC options to help control how the data collection is done.
 #
 # In the next example, we'll revisit the same search terms we used in the previous
-# `Counts` analysis, and explore some of these settings.
+# :class:`~.Counts` analysis, and explore some of these settings.
 #
 
 ###################################################################################################
@@ -121,7 +121,7 @@ words.add_terms(terms)
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # If you are collecting data for a large number of search terms, and/or using search terms
-# that may return a large number of articles, then the `Words` collection can take a while,
+# that may return a large number of articles, then the :class:`~.Words` collection can take a while,
 # and the amount of data can become quite large.
 #
 # Because of this, the :class:`~.Words`  object offers a setting of

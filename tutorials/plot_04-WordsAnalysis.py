@@ -74,8 +74,8 @@ arts_all.print_summary()
 #
 # The :class:`~.Words` object can also be used to reload and analyze collected data.
 #
-# The `results` attribute of the Words object, when loaded, contains a list of
-# Articles objects, one for each term.
+# The `results` attribute of the :class:`~.Words` object, when loaded, contains a list of
+# :class:`~.Articles` objects, one for each term.
 #
 
 ###################################################################################################

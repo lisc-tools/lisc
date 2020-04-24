@@ -18,7 +18,7 @@ from lisc.utils.db import SCDB, create_file_structure
 # If you want to store terms in files, place those files into a LISC database structure,
 # and then relevant functions and objects will be able to load and use these terms.
 #
-# You can create a :func:`~.create_file_structure`.
+# You can create a database structure using the :func:`~.create_file_structure` function.
 #
 # LISC also uses a database object, :class:`~.SCDB`, to manage these databases.
 #
