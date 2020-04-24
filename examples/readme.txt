@@ -3,7 +3,7 @@
 Examples
 ========
 
-These are a set of stand alone examples exploring different functionality in LISC. 
+Stand alone examples exploring available functionality in the LISC module.
 
 .. contents:: Contents
    :local:

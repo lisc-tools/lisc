@@ -27,7 +27,7 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 # Metadata Object
 # ---------------
 #
-# Meta data information is collected into a custom MetaData object,
+# Meta data information is collected into a custom :class:`~.MetaData` object.
 #
 # If you are collecting data using the LISC object, such as the :class:`~.Counts`
 # or :class:`~.Words` object, this collection information is attached and saved
@@ -46,7 +46,7 @@ counts.meta_data.db_info
 
 ###################################################################################################
 #
-# For the next part, we'll reload the Words object, which has the same meta data
+# For the next part, we'll reload the :class:`~.Words` object, which has the same meta data
 # object available.
 #
 

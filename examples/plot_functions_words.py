@@ -9,7 +9,7 @@ Collect article text data and metadata, using a function oriented approach.
 # Function Approach: collect_words
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# The core function for collecting words data is the :func:`~.collect_words` function.
+# The function for collecting words data is :func:`~.collect_words`.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
@@ -33,7 +33,7 @@ terms = [['brain'], ['body']]
 
 # Collect words data, setting the collection return data for at most 5 articles per term
 results, meta_data = collect_words(terms, retmax='5', usehistory=False,
-                               save_and_clear=False, verbose=True)
+                                   save_and_clear=False, verbose=True)
 
 ###################################################################################################
 

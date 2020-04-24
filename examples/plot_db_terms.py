@@ -7,7 +7,7 @@ Exploring the LISC database and using files of terms.
 
 ###################################################################################################
 
-from lisc.utils.db import SCDB, create_file_structure
+from lisc.utils.db import create_file_structure
 
 ###################################################################################################
 # SCDB Database Structure
@@ -18,9 +18,11 @@ from lisc.utils.db import SCDB, create_file_structure
 # If you want to store terms in files, place those files into a LISC database structure,
 # and then relevant functions and objects will be able to load and use these terms.
 #
-# You can create a database structure using the :func:`~.create_file_structure` function.
-#
 # LISC also uses a database object, :class:`~.SCDB`, to manage these databases.
+#
+# You can create a database structure using the :func:`~.create_file_structure` function.
+# When you call this function, a :class:`~.SCDB` object is returned, that describes
+# the built database structure.
 #
 
 ###################################################################################################

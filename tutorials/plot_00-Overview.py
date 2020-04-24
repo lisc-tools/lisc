@@ -9,7 +9,7 @@ An overview of the LISC code organization and approach.
 # LISC Overview
 # -------------
 #
-# LISC - or 'Literature Scanner' - is a module for collecting and analyzing scientific literature.
+# LISC, or 'Literature Scanner', is a module for collecting and analyzing scientific literature.
 #
 # LISC serves mainly as a wrapper around available application programmer interfaces (APIs)
 # that provide access to databases of scientific literature and related data.
@@ -61,7 +61,6 @@ from lisc.objects.base import Base
 base = Base()
 
 ###################################################################################################
-#
 # Search Terms
 # ------------
 #

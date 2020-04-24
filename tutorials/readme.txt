@@ -3,7 +3,7 @@
 Tutorials
 =========
 
-This tutorial steps through the core functionality of LISC. 
+This tutorial steps through the core functionality of LISC.
 
 Note that this tutorial is designed sequentially, so if you are running locally, you should run these files in order.
 

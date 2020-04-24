@@ -70,8 +70,7 @@ print(counts.counts)
 
 ###################################################################################################
 #
-# The :class:`~.Counts` object also comes with some helper
-# methods to explore the data.
+# The :class:`~.Counts` object also comes with some helper methods to explore the data.
 #
 
 ###################################################################################################
