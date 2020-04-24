@@ -2,20 +2,20 @@
 Counts with Functions
 =====================
 
-Collect word co-occurrence data, using the underlying functions from LISC.
+Collect word co-occurrence data, using a function oriented approach.
 """
 
 ###################################################################################################
 # Function Approach: collect_counts
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# The core function for collecting co-occurrence data is the
-# :func:`~.collect_counts` function.
+# The function for collecting co-occurrence data is :func:`~.collect_counts`.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
 # The :func:`~.compute_normalization` and :func:`~.compute_association_index` functions
 # take in co-occurance data returned by the :func:`~.collect_counts` function.
+#
 
 ###################################################################################################
 

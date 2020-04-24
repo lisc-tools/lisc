@@ -6,9 +6,9 @@ from collections import namedtuple
 ###################################################################################################
 
 class Term(namedtuple('Term', ['label', 'search', 'inclusions', 'exclusions'])):
-    """ Search term definition with inclusion & exclusion words.
+    """Search term definition with inclusion & exclusion words.
 
-    Attributes
+    Parameters
     ----------
     label : str
         Label for the term.

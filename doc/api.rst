@@ -18,8 +18,8 @@ Table of Contents
 
 .. currentmodule:: lisc
 
-Objects
--------
+Collection Objects
+------------------
 
 Custom objects for collecting & analyzing literature data.
 
@@ -52,8 +52,8 @@ Base Object
 
     Base
 
-Extracted Data Storage
-----------------------
+Data Objects
+------------
 
 Custom objects for storing extracted data.
 

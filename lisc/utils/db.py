@@ -44,7 +44,7 @@ class SCDB():
     +-----------+---------------+------------------+-----------------------------+
     |           |               |summary           |Summary files for words data.|
     +-----------+---------------+------------------+-----------------------------+
-    
+
     """
 
     def __init__(self, base=None, generate_paths=True, structure=STRUCTURE):

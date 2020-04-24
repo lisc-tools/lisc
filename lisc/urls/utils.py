@@ -3,6 +3,30 @@
 ###################################################################################################
 ###################################################################################################
 
+def check_none(val, default):
+    """Check an input for if it is None, and if so return a default object.
+
+    Parameters
+    ----------
+    val : collection object or None
+        An object to check whether is None.
+    default : collection object
+        What to defaul to if `val` is None.
+
+    Returns
+    -------
+    collection object
+        Either the original input item, or the default input.
+
+    Notes
+    -----
+    This function is used to catch unused inputs (that end up as None), before they
+    are passed into subsequent functions that presume collection objects.
+    """
+
+    return val if val else default
+
+
 def prepend(string, prefix):
     """Append something to the beginning of another string.
 

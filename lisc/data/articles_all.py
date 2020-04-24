@@ -46,14 +46,14 @@ class ArticlesAll(BaseArticles):
         A summary of the data associated with the current object.
     """
 
-    def __init__(self, term_data, exclusions=[]):
+    def __init__(self, term_data, exclusions=None):
         """Initialize ArticlesAll object.
 
         Parameters
         ----------
         term_data : Articles
             Data for all articles from a given search term.
-        exclusions : list of str
+        exclusions : list of str, optional
             Words to exclude from the word collections.
         """
 
@@ -71,7 +71,7 @@ class ArticlesAll(BaseArticles):
         self.first_authors, self.last_authors = _count_end_authors(term_data.authors)
 
         # Convert lists of all words to frequency distributions
-        exclusions = exclusions + self.term.search + self.term.inclusions
+        exclusions = exclusions if exclusions else [] + self.term.search + self.term.inclusions
         temp_words = [convert_string(words) for words in term_data.words]
         self.words = self.create_freq_dist(combine_lists(temp_words), exclusions)
         self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
@@ -192,7 +192,7 @@ def _count_authors(authors):
         Number of publications per author.
     """
 
-    # Reduce author fields to pair of tuples (last name, initials) & count # of publications per author
+    # Reduce author fields to pair of tuples (last name, initials) & count # of pubs per author
     all_authors = [(author[0], author[2]) for art_authors in authors for author in art_authors]
     author_counts = count_elements(_fix_author_names(all_authors))
 
@@ -252,6 +252,6 @@ def _fix_author_names(names):
 
     # Fix names if full name ended up in last name field
     names = [(name[0].split(' ')[-1], ''.join([temp[0] for temp in name[0].split(' ')[:-1]]))
-        if name[1] is None else name for name in names]
+             if name[1] is None else name for name in names]
 
     return names

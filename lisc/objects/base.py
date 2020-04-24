@@ -34,14 +34,20 @@ class Base():
 
     @property
     def has_data(self):
+        """Indicator for if the object has data."""
+
         return bool(self.terms)
 
     @property
     def n_terms(self):
+        """How many terms are included in the object."""
+
         return len(self.terms)
 
     @property
     def labels(self):
+        """The labels for each term."""
+
         return [term[0] for term in self.terms]
 
 

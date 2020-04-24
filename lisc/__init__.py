@@ -1,4 +1,4 @@
-"""LISC: Literatur Scanner."""
+"""LISC: Literature Scanner."""
 
 from .version import __version__
 

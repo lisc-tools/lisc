@@ -27,9 +27,13 @@ class Words(Base):
         self.results = list()
         self.meta_data = None
 
+
     @property
     def labels(self):
+        """The labels for each term."""
+
         return [result.label for result in self.results]
+
 
     def __getitem__(self, key):
         """Index into Words object with term result key.

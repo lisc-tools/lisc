@@ -32,12 +32,18 @@ class BaseArticles():
         self.years = list()
         self.dois = list()
 
+
     @property
     def label(self):
+        """The label for the current term."""
+
         return self.term.label
+
 
     @property
     def n_articles(self):
+        """The number of articles included in the object."""
+
         return len(self.ids)
 
 
