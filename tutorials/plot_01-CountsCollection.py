@@ -25,7 +25,7 @@ from lisc.utils.io import save_object
 # Counts Object
 # -------------
 #
-# The :class:`~lisc.objects.Counts` object is used to handle term co-occurrence analyses.
+# The :class:`~.Counts` object is used to handle term co-occurrence analyses.
 #
 
 ###################################################################################################
@@ -59,7 +59,7 @@ counts.run_collection(verbose=True)
 #
 # We have now collected some literature data!
 #
-# The :class:`~lisc.objects.Counts` object will now contain count data
+# The :class:`~.Counts` object will now contain count data
 # for the word co-occurrence data between terms.
 #
 
@@ -70,7 +70,7 @@ print(counts.counts)
 
 ###################################################################################################
 #
-# The :class:`~lisc.objects.Counts` object also comes with some helper
+# The :class:`~.Counts` object also comes with some helper
 # methods to explore the data.
 #
 

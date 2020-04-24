@@ -10,10 +10,12 @@ Collect word co-occurrence data, using the underlying functions from LISC.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # The core function for collecting co-occurrence data is the
-# :func:`~lisc.collect.collect_counts` function.
+# :func:`~.collect_counts` function.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
+# The :func:`~.compute_normalization` and :func:`~.compute_association_index` functions
+# take in co-occurance data returned by the :func:`~.collect_counts` function.
 
 ###################################################################################################
 
@@ -65,7 +67,7 @@ coocs, term_counts, meta_dat = collect_counts(
 # Once the co-occurrence data is collected, we often want to compute a normalization
 # or transform of the data.
 #
-# More details on the measures available in LISC are available in the `Counts`
+# More details on the measures available in LISC are available in the :class:`~.Counts`
 # tutorial. When using the functions approach, all implemented scores and transforms
 # are available in `lisc.analysis`, as functions that take in arrays of collected data.
 #

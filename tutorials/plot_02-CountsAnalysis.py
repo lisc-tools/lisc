@@ -17,7 +17,7 @@ Analyzing collected co-occurrence data.
 from lisc.utils.db import SCDB
 from lisc.utils.io import load_object
 
-from lisc.plts.counts import *
+from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram
 
 ###################################################################################################
 
@@ -26,10 +26,10 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 
 ###################################################################################################
 #
-# The :class:`~lisc.objects.Counts` object has some helper methods to explore the collected data.
+# The :class:`~.Counts` object has some helper methods to explore the collected data.
 #
 # First lets check the number of counts per term list, which we can do with the
-# :meth:`~lisc.objects.Counts.check_data` method.
+# :meth:`~.Counts.check_data` method.
 #
 
 ###################################################################################################
@@ -62,7 +62,7 @@ counts.check_data(data_type='counts', dim='B')
 # for measuring the similarity of samples, and is also available to compute and use.
 #
 # With the counts object, both of these measures are available, using the
-# :meth:`~lisc.objects.Counts.compute_score` method. You can indicate which kind of score
+# :meth:`~.Counts.compute_score` method. You can indicate which kind of score
 # - normalization or association index - as an input to the method.
 #
 

@@ -25,7 +25,11 @@ clean:
 	rm -rf auto_tutorials
 	rm -rf auto_examples
 	rm -rf generated
-	rm -rf backrefs
+
+# Check that builds site with nitpicky checking, and also does post-hoc link check
+check:
+	make SPHINXOPTS="-n" html
+	make linkcheck
 
 # Build the html site, and push it to gh-pages branch of repo to deploy
 install:
@@ -37,6 +41,7 @@ install:
 	#   -b gh-pages fetches only the branch for the gh-pages
 	git clone -b gh-pages --single-branch --no-checkout --depth 1 https://github.com/lisc-tools/lisc _build/tmp_html
 	touch _build/tmp_html/.nojekyll
+	make clean
 	make html
 	cd _build/ && \
 	cp -r html/* tmp_html && \

@@ -10,6 +10,12 @@ Many of the elements listed here are objects, as indicated by being in CamelCase
 
 If you click on the object names, it will take you to a new page describing their attributes and methods.
 
+Table of Contents
+=================
+.. contents::
+    :local:
+    :depth: 2
+
 .. currentmodule:: lisc
 
 Objects
@@ -17,100 +23,145 @@ Objects
 
 Custom objects for collecting & analyzing literature data.
 
-.. currentmodule:: lisc.objects
+Counts Object
+~~~~~~~~~~~~~
+
+.. currentmodule:: lisc
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  Counts
-  Words
+    Counts
+
+Words Object
+~~~~~~~~~~~~
+.. currentmodule:: lisc
+
+.. autosummary::
+    :toctree: generated/
+
+    Words
+
+Base Object
+~~~~~~~~~~~
 
 .. currentmodule:: lisc.objects.base
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  Base
+    Base
 
-Data
-----
+Extracted Data Storage
+----------------------
 
 Custom objects for storing extracted data.
+
+Term Object
+~~~~~~~~~~~
 
 .. currentmodule:: lisc.data
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
+    :template: data_object.rst
 
-  Term
-  Articles
-  ArticlesAll
-  MetaData
+    Term
 
-Collect
--------
+Articles Objects
+~~~~~~~~~~~~~~~~
+
+.. currentmodule:: lisc.data
+
+.. autosummary::
+    :toctree: generated/
+
+    Articles
+    ArticlesAll
+
+Metadata Object
+~~~~~~~~~~~~~~~
+
+.. currentmodule:: lisc.data
+
+.. autosummary::
+    :toctree: generated/
+
+    MetaData
+
+Data Collection Functions
+-------------------------
 
 Functions for collecting data from supported APIs.
 
-.. currentmodule:: lisc.collect
+.. currentmodule:: lisc
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  collect_info
-  collect_counts
-  collect_words
-  collect_citations
+    collect_info
+    collect_counts
+    collect_words
+    collect_citations
 
-URLs & Requests
----------------
+URLs & Requests Objects
+-----------------------
 
 Object to manage URLs & requests.
 
-URLs
-~~~~
+URLs Objects
+~~~~~~~~~~~~
 
 URL management for supported APIs.
 
 .. currentmodule:: lisc.urls
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  URLs
-  EUtils
-  OpenCitations
+    URLs
+    EUtils
+    OpenCitations
 
-Requester
-~~~~~~~~~
+Requester Object
+~~~~~~~~~~~~~~~~
 
 Request management for interacting with APIs.
 
 .. currentmodule:: lisc.requester
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  Requester
+    Requester
 
-Analysis
---------
+Analysis Functions
+------------------
 
 Functions to analyze collected data.
 
-Counts
-~~~~~~
+Normalization
+~~~~~~~~~~~~~
 
 .. currentmodule:: lisc.analysis.counts
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  compute_normalization
-  compute_association_index
+    compute_normalization
 
-Plotting
---------
+Association
+~~~~~~~~~~~
+
+.. currentmodule:: lisc.analysis.counts
+
+.. autosummary::
+    :toctree: generated/
+
+    compute_association_index
+
+Plotting Functions
+------------------
 
 Plotting functions for collected data.
 
@@ -120,11 +171,11 @@ Counts
 .. currentmodule:: lisc.plts.counts
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  plot_matrix
-  plot_clustermap
-  plot_dendrogram
+    plot_matrix
+    plot_clustermap
+    plot_dendrogram
 
 Words
 ~~~~~
@@ -132,10 +183,10 @@ Words
 .. currentmodule:: lisc.plts.words
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  plot_years
-  plot_wordcloud
+    plot_years
+    plot_wordcloud
 
 Utilities
 ---------
@@ -145,21 +196,21 @@ Utilities and file management.
 File IO
 ~~~~~~~
 
-.. currentmodule:: lisc.utils.io
+.. currentmodule:: lisc.utils
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  save_object
-  load_object
+    save_object
+    load_object
 
 Database Management
 ~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: lisc.utils.db
+.. currentmodule:: lisc.utils
 
 .. autosummary::
-  :toctree: generated/
+    :toctree: generated/
 
-  SCDB
-  create_file_structure
+    SCDB
+    create_file_structure

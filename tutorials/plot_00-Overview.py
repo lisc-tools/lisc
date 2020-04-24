@@ -43,12 +43,12 @@ An overview of the LISC code organization and approach.
 #
 # LISC is object oriented, meaning it uses objects to handle search terms and collect data.
 #
-# Here we will first explore the :class:`~lisc.objects.base.Base` object, the underlying object
+# Here we will first explore the :class:`~.Base` object, the underlying object
 # used for data collections and analysis with EUtils.
 #
-# Note that you will not otherwise use the :class:`~lisc.objects.base.Base` object directly,
-# but that it is the underlying object for the :class:`~lisc.objects.Counts` and
-# :class:`~lisc.objects.Words` objects that we will use later.
+# Note that you will not otherwise use the :class:`~.Base` object directly,
+# but that it is the underlying object for the :class:`~.Counts` and
+# :class:`~.Words` objects that we will use later.
 #
 
 ###################################################################################################
@@ -224,7 +224,7 @@ base.labels
 
 ###################################################################################################
 
-from lisc.utils.db import SCDB, create_file_structure
+from lisc.utils.db import create_file_structure
 
 ###################################################################################################
 
