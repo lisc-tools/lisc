@@ -129,5 +129,6 @@ sphinx_gallery_conf = {
     # Settings for linking between examples & API examples
     'backreferences_dir': 'generated',
     'doc_module': ('lisc',),
-    'reference_url': {'lisc': None}
+    'reference_url': {'lisc': None},
+    'remove_config_comments': True
 }
