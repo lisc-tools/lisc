@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>lisc.utils.SCDB &#8212; lisc 0.1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="lisc-utils-scdb">
+<h1>lisc.utils.SCDB<a class="headerlink" href="#lisc-utils-scdb" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="lisc.utils.SCDB">
+<em class="property">class </em><code class="sig-prename descclassname">lisc.utils.</code><code class="sig-name descname">SCDB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">generate_paths</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database object for a SCANR project.</p>
+<p class="rubric">Notes</p>
+<p>The default set of paths for SCDB is:</p>
+<ul>
+<li><p>terms                 Term files.</p></li>
+<li><p>logs                  Log files.</p></li>
+<li><p>figs                  Figure files.</p></li>
+<li><p>data                  Data files.</p>
+<blockquote>
+<div><ul>
+<li><p>counts            Counts data files.</p></li>
+<li><p>words             Words data files.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>raw           Raw words data files</p></li>
+<li><p>summary       Summary files for words data.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>paths</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of all folder paths in the project.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="lisc.utils.SCDB.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">generate_paths</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a SCDB object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>base</strong><span class="classifier">str</span></dt><dd><p>The base path to where the database is located.</p>
+</dd>
+<dt><strong>generate_paths</strong><span class="classifier">bool</span></dt><dd><p>Whether to automatically generate all the paths for the database folders.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.utils.SCDB.__init__" title="lisc.utils.SCDB.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, base, generate_paths, structure])</p></td>
+<td><p>Initialize a SCDB object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.utils.SCDB.check_file_structure" title="lisc.utils.SCDB.check_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_file_structure</span></code></a>(self)</p></td>
+<td><p>Check the file structure of the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.utils.SCDB.gen_paths" title="lisc.utils.SCDB.gen_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gen_paths</span></code></a>(self[, structure])</p></td>
+<td><p>Generate all the full paths for the database object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.utils.SCDB.get_file_path" title="lisc.utils.SCDB.get_file_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_path</span></code></a>(self, folder, file_name)</p></td>
+<td><p>Get a path to a file in a designated directory folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.utils.SCDB.get_files" title="lisc.utils.SCDB.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(self, folder)</p></td>
+<td><p>Get a list of available files in a folder in the database.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.utils.SCDB.get_folder_path" title="lisc.utils.SCDB.get_folder_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_folder_path</span></code></a>(self, folder)</p></td>
+<td><p>Get the path to a folder in the directory.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="lisc.utils.SCDB.check_file_structure">
+<code class="sig-name descname">check_file_structure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.check_file_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB.check_file_structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the file structure of the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.SCDB.gen_paths">
+<code class="sig-name descname">gen_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.gen_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB.gen_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate all the full paths for the database object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>structure</strong><span class="classifier">dict, optional</span></dt><dd><p>Definition of the folder structure for the database.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.SCDB.get_file_path">
+<code class="sig-name descname">get_file_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_file_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB.get_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a path to a file in a designated directory folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder path to get the file path from.</p>
+</dd>
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>The name of the file to create the full file path for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>str</dt><dd><p>The full file path to the requested file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.SCDB.get_files">
+<code class="sig-name descname">get_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB.get_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of available files in a folder in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder path to get the list of files from.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of str</dt><dd><p>List of files available in specified folder.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.SCDB.get_folder_path">
+<code class="sig-name descname">get_folder_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_folder_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.SCDB.get_folder_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the path to a folder in the directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder to get the path for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>str</dt><dd><p>The path to the requested directory folder.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="examples-using-lisc-utils-scdb">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.utils.SCDB</span></code><a class="headerlink" href="#examples-using-lisc-utils-scdb" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Exploring the LISC database and using files of terms."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_db_terms_thumb.png" src="../_images/sphx_glr_plot_db_terms_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_db_terms.html#sphx-glr-auto-examples-plot-db-terms-py"><span class="std std-ref">Database and Terms Lists</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An overview of the LISC code organization and approach."><div class="figure align-default" id="id2">
+<img alt="../_images/sphx_glr_plot_00-Overview_thumb.png" src="../_images/sphx_glr_plot_00-Overview_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_00-Overview.html#sphx-glr-auto-tutorials-plot-00-overview-py"><span class="std std-ref">Tutorial 00: LISC Overview</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Collecting term co-occurrence data from scientific literature."><div class="figure align-default" id="id3">
+<img alt="../_images/sphx_glr_plot_01-CountsCollection_thumb.png" src="../_images/sphx_glr_plot_01-CountsCollection_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_01-CountsCollection.html#sphx-glr-auto-tutorials-plot-01-countscollection-py"><span class="std std-ref">Tutorial 01: Counts Collection</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><div class="figure align-default" id="id4">
+<img alt="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" src="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_02-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-02-countsanalysis-py"><span class="std std-ref">Tutorial 02: Counts Analysis</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Collecting literature data, including text and metadata for specified search terms."><div class="figure align-default" id="id5">
+<img alt="../_images/sphx_glr_plot_03-WordsCollection_thumb.png" src="../_images/sphx_glr_plot_03-WordsCollection_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_03-WordsCollection.html#sphx-glr-auto-tutorials-plot-03-wordscollection-py"><span class="std std-ref">Tutorial 03: Words Collection</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected text data and metadata."><div class="figure align-default" id="id6">
+<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" src="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">Tutorial 04: Words Analysis</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Exploring the meta data saved during data collections."><div class="figure align-default" id="id7">
+<img alt="../_images/sphx_glr_plot_06-MetaData_thumb.png" src="../_images/sphx_glr_plot_06-MetaData_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_06-MetaData.html#sphx-glr-auto-tutorials-plot-06-metadata-py"><span class="std std-ref">Tutorial 06: MetaData</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

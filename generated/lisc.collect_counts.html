@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>lisc.collect.collect_counts &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect_counts &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -90,11 +95,11 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-collect-collect-counts">
-<h1>lisc.collect.collect_counts<a class="headerlink" href="#lisc-collect-collect-counts" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="lisc.collect.collect_counts">
-<code class="sig-prename descclassname">lisc.collect.</code><code class="sig-name descname">collect_counts</code><span class="sig-paren">(</span><em class="sig-param">terms_a</em>, <em class="sig-param">inclusions_a=[]</em>, <em class="sig-param">exclusions_a=[]</em>, <em class="sig-param">terms_b=[]</em>, <em class="sig-param">inclusions_b=[]</em>, <em class="sig-param">exclusions_b=[]</em>, <em class="sig-param">db='pubmed'</em>, <em class="sig-param">field='TIAB'</em>, <em class="sig-param">api_key=None</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/counts.html#collect_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_counts" title="Permalink to this definition">¶</a></dt>
+  <div class="section" id="lisc-collect-counts">
+<h1>lisc.collect_counts<a class="headerlink" href="#lisc-collect-counts" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="lisc.collect_counts">
+<code class="sig-prename descclassname">lisc.</code><code class="sig-name descname">collect_counts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">terms_a</span></em>, <em class="sig-param"><span class="n">inclusions_a</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">exclusions_a</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">terms_b</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">inclusions_b</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">exclusions_b</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">'pubmed'</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">'TIAB'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/counts.html#collect_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect_counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect count and term co-occurrence data from EUtils.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -143,6 +148,13 @@ Defaults to ‘TIAB’, which is Title/Abstract.</p>
 This field contains the number of articles with both terms. This is extracted.</p>
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-collect-counts">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.collect_counts</span></code><a class="headerlink" href="#examples-using-lisc-collect-counts" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurrence data, using a function oriented approach."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_functions_counts_thumb.png" src="../_images/sphx_glr_plot_functions_counts_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_counts.html#sphx-glr-auto-examples-plot-functions-counts-py"><span class="std std-ref">Counts with Functions</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -158,7 +170,7 @@ This field contains the number of articles with both terms. This is extracted.</
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

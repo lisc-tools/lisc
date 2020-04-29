@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.plts.counts.plot_matrix &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,9 +97,9 @@
       
   <div class="section" id="lisc-plts-counts-plot-matrix">
 <h1>lisc.plts.counts.plot_matrix<a class="headerlink" href="#lisc-plts-counts-plot-matrix" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="lisc.plts.counts.plot_matrix">
-<code class="sig-prename descclassname">lisc.plts.counts.</code><code class="sig-name descname">plot_matrix</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">x_labels=None</em>, <em class="sig-param">y_labels=None</em>, <em class="sig-param">cmap='purple'</em>, <em class="sig-param">square=False</em>, <em class="sig-param">ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.counts.plot_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.plts.counts.</code><code class="sig-name descname">plot_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">x_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cmap</span><span class="o">=</span><span class="default_value">'purple'</span></em>, <em class="sig-param"><span class="n">square</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.counts.plot_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a matrix representation of given data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -119,6 +124,13 @@ If string, uses a sequential palette of the specified color.</p>
 <p>This function is a wrapper of the seaborn <cite>heatmap</cite> plot function.</p>
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-plts-counts-plot-matrix">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.plts.counts.plot_matrix</span></code><a class="headerlink" href="#examples-using-lisc-plts-counts-plot-matrix" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" src="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_02-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-02-countsanalysis-py"><span class="std std-ref">Tutorial 02: Counts Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -134,7 +146,7 @@ If string, uses a sequential palette of the specified color.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

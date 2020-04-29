@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.data.MetaData &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,7 +97,7 @@
       
   <div class="section" id="lisc-data-metadata">
 <h1>lisc.data.MetaData<a class="headerlink" href="#lisc-data-metadata" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="lisc.data.MetaData">
 <em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">MetaData</code><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object to hold the meta data for data collection.</p>
@@ -110,9 +115,9 @@
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.MetaData.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -137,9 +142,9 @@
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.MetaData.add_db_info">
-<code class="sig-name descname">add_db_info</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">db_info</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.add_db_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.add_db_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_db_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">db_info</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.add_db_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.add_db_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a database information to self.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -151,9 +156,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.MetaData.add_requester">
-<code class="sig-name descname">add_requester</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">requester</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.add_requester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.add_requester" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_requester</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">requester</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.add_requester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.add_requester" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a requester object to self.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -165,14 +170,29 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.MetaData.get_date">
-<code class="sig-name descname">get_date</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.get_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.get_date" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_date</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/meta_data.html#MetaData.get_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.MetaData.get_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the current data and attach to object.</p>
 </dd></dl>
 
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-data-metadata">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.data.MetaData</span></code><a class="headerlink" href="#examples-using-lisc-data-metadata" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurrence data, using a function oriented approach."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_functions_counts_thumb.png" src="../_images/sphx_glr_plot_functions_counts_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_counts.html#sphx-glr-auto-examples-plot-functions-counts-py"><span class="std std-ref">Counts with Functions</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Collect article text data and metadata, using a function oriented approach."><div class="figure align-default" id="id2">
+<img alt="../_images/sphx_glr_plot_functions_words_thumb.png" src="../_images/sphx_glr_plot_functions_words_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_words.html#sphx-glr-auto-examples-plot-functions-words-py"><span class="std std-ref">Words with Functions</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Collecting citation data from OpenCitations."><div class="figure align-default" id="id3">
+<img alt="../_images/sphx_glr_plot_05-Citations_thumb.png" src="../_images/sphx_glr_plot_05-Citations_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_05-Citations.html#sphx-glr-auto-tutorials-plot-05-citations-py"><span class="std std-ref">Tutorial 05: Collecting Citation Data</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
 </div>
 
 
@@ -188,7 +208,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

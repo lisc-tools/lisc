@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.collect.words &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 <meta charset='utf-8'>
@@ -108,7 +113,7 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="collect_words"><a class="viewcode-back" href="../../../generated/lisc.collect.collect_words.html#lisc.collect.collect_words">[docs]</a><span class="k">def</span> <span class="nf">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">inclusions</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclusions</span><span class="o">=</span><span class="p">[],</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="collect_words"><a class="viewcode-back" href="../../../generated/lisc.collect_words.html#lisc.collect_words">[docs]</a><span class="k">def</span> <span class="nf">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">inclusions</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclusions</span><span class="o">=</span><span class="p">[],</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span>
                   <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collect text data and metadata from EUtils using specified search term(s).</span>
@@ -313,7 +318,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

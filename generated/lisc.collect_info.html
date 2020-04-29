@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>lisc.utils.db.create_file_structure &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect_info &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -90,32 +95,37 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-utils-db-create-file-structure">
-<h1>lisc.utils.db.create_file_structure<a class="headerlink" href="#lisc-utils-db-create-file-structure" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="lisc.utils.db.create_file_structure">
-<code class="sig-prename descclassname">lisc.utils.db.</code><code class="sig-name descname">create_file_structure</code><span class="sig-paren">(</span><em class="sig-param">base=None</em>, <em class="sig-param">name='lisc_db'</em>, <em class="sig-param">structure={1: {'base': ['terms'</em>, <em class="sig-param">'logs'</em>, <em class="sig-param">'data'</em>, <em class="sig-param">'figures']}</em>, <em class="sig-param">2: {'data': ['counts'</em>, <em class="sig-param">'words']}</em>, <em class="sig-param">3: {'words': ['raw'</em>, <em class="sig-param">'summary']}}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#create_file_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.create_file_structure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create the file structure for a SCANR database.</p>
+  <div class="section" id="lisc-collect-info">
+<h1>lisc.collect_info<a class="headerlink" href="#lisc-collect-info" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="lisc.collect_info">
+<code class="sig-prename descclassname">lisc.</code><code class="sig-name descname">collect_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">'pubmed'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/info.html#collect_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect database information &amp; metadata from EUtils.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>base</strong><span class="classifier">str or None</span></dt><dd><p>Base path for the database directory.
-If None, the structure is created in the current directory.</p>
+<dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
 </dd>
-<dt><strong>name</strong><span class="classifier">str, optional, default: ‘lisc_db’</span></dt><dd><p>The name of the root folder of the directory structure.</p>
+<dt><strong>api_key</strong><span class="classifier">str, optional</span></dt><dd><p>An API key for a NCBI account.</p>
+</dd>
+<dt><strong>logging</strong><span class="classifier">{None, ‘print’, ‘store’, ‘file’}, optional</span></dt><dd><p>What kind of logging, if any, to do for requested URLs.</p>
+</dd>
+<dt><strong>directory</strong><span class="classifier">str or SCDB object, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out updates.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>db</strong><span class="classifier">SCDB</span></dt><dd><p>A database object for the file structure that was created.</p>
+<dt><strong>meta_data</strong><span class="classifier">MetaData object</span></dt><dd><p>Meta data about the data collection.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
+<div style='clear:both'></div></div>
 
 
     </div>
@@ -130,7 +140,7 @@ If None, the structure is created in the current directory.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

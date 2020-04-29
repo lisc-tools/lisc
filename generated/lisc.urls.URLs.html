@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.urls.URLs &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,9 +97,9 @@
       
   <div class="section" id="lisc-urls-urls">
 <h1>lisc.urls.URLs<a class="headerlink" href="#lisc-urls-urls" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="lisc.urls.URLs">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.urls.</code><code class="sig-name descname">URLs</code><span class="sig-paren">(</span><em class="sig-param">base</em>, <em class="sig-param">utils={}</em>, <em class="sig-param">authenticated=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.urls.</code><code class="sig-name descname">URLs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base</span></em>, <em class="sig-param"><span class="n">utils</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">authenticated</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for an API interface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -112,9 +117,9 @@
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.URLs.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">base</em>, <em class="sig-param">utils={}</em>, <em class="sig-param">authenticated=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">base</span></em>, <em class="sig-param"><span class="n">utils</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">authenticated</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a URLs object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -157,9 +162,9 @@
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.URLs.authenticate">
-<code class="sig-name descname">authenticate</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.authenticate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">authenticate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.authenticate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to authenticate a URL for a given API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -182,9 +187,9 @@ overloaded by any API object that has authentification.</p>
 to authenticate a URL request for the specified API.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.URLs.build_url">
-<code class="sig-name descname">build_url</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">util</em>, <em class="sig-param">segments=[]</em>, <em class="sig-param">settings=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.build_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.build_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">build_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.build_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.build_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the URL for a specified utility, with provided settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -201,9 +206,9 @@ If list, the settings values are taken from the objects settings attribute.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.URLs.check_url">
-<code class="sig-name descname">check_url</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">util</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.check_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.check_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.check_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.check_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the built URL for a specified utility.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -215,9 +220,9 @@ If list, the settings values are taken from the objects settings attribute.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.URLs.fill_settings">
-<code class="sig-name descname">fill_settings</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.fill_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.fill_settings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fill_settings</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.fill_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.fill_settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Put all provided settings values into a dictionary object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -233,9 +238,9 @@ If list, the settings values are taken from the objects settings attribute.</p>
 saved out to the dictionary of collected and available settings.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.URLs.get_url">
-<code class="sig-name descname">get_url</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">util</em>, <em class="sig-param">segments=[]</em>, <em class="sig-param">settings={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.get_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.get_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/urls.html#URLs.get_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.URLs.get_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a requested URL, with any additional segments or settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -259,6 +264,13 @@ saved out to the dictionary of collected and available settings.</p>
 
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-urls-urls">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.urls.URLs</span></code><a class="headerlink" href="#examples-using-lisc-urls-urls" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Exploring LISC utilities for managing URLs and requests."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_requester_urls_thumb.png" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_requester_urls.html#sphx-glr-auto-examples-plot-requester-urls-py"><span class="std std-ref">URLs and Requests</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
 </div>
 
 
@@ -274,7 +286,7 @@ saved out to the dictionary of collected and available settings.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

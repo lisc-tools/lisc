@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>LISC - Literature Scanner &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -92,28 +97,24 @@
       
   <div class="section" id="lisc-literature-scanner">
 <h1>LISC - Literature Scanner<a class="headerlink" href="#lisc-literature-scanner" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="http://www.repostatus.org/#active"><img alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." src="http://www.repostatus.org/badges/latest/active.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/lisc/"><img alt="Latest Version" src="https://img.shields.io/pypi/v/lisc.svg" /></a>
-<a class="reference external image-reference" href="https://travis-ci.org/lisc-tools/lisc"><img alt="Build Status" src="https://travis-ci.org/lisc-tools/lisc.svg" /></a>
-<a class="reference external image-reference" href="https://codecov.io/gh/lisc-tools/lisc"><img alt="codecov" src="https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg" /></a>
-<a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/lisc.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/lisc/"><img alt="Supported Python Versions" src="https://img.shields.io/pypi/pyversions/lisc.svg" /></a>
-<a class="reference external image-reference" href="https://doi.org/10.21105/joss.01674"><img alt="DOI" src="https://joss.theoj.org/papers/10.21105/joss.01674/status.svg" /></a>
+<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="ProjectStatus" src="https://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/lisc/"><img alt="Version" src="https://img.shields.io/pypi/v/lisc.svg" /></a> <a class="reference external" href="https://travis-ci.org/lisc-tools/lisc"><img alt="BuildStatus" src="https://travis-ci.org/lisc-tools/lisc.svg" /></a> <a class="reference external" href="https://codecov.io/gh/fooof-tools/fooof"><img alt="codecov" src="https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/lisc.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/lisc/"><img alt="PythonVersions" src="https://img.shields.io/pypi/pyversions/lisc.svg" /></a> <a class="reference external" href="https://doi.org/10.21105/joss.01674"><img alt="DOI" src="https://joss.theoj.org/papers/10.21105/joss.01674/status.svg" /></a></p>
 <p>LISC is a package for collecting and analyzing the scientific literature.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>LISC acts as a wrapper and connector between available APIs, allowing users to collect data from and about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.</p>
+<p>LISC acts as a wrapper and connector between available APIs, allowing users to collect data from and
+about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.</p>
 <p>A curated list of some projects enabled by LISC is available on the <a class="reference external" href="https://github.com/lisc-tools/Projects">projects</a> page.</p>
+</div>
 <div class="section" id="supported-apis">
-<h3>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h3>
+<h2>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h2>
 <p>Supported APIs through LISC includes:</p>
 <ul class="simple">
-<li><p>the NCBI <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25497/">EUtils</a>. EUtils provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.</p></li>
-<li><p>the <a class="reference external" href="https://opencitations.net">OpenCitations</a> API. OpenCitations provides access to citation data.</p></li>
+<li><p>The NCBI <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25497/">EUtils</a> provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.</p></li>
+<li><p>The <a class="reference external" href="https://opencitations.net">OpenCitations</a> API provides access to citation data.</p></li>
 </ul>
 </div>
 <div class="section" id="data-collection">
-<h3>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h3>
+<h2>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h2>
 <p>For data collection, LISC currently offers support for the following ‘types’ of literature data collection:</p>
 <ul class="simple">
 <li><p>‘Counts’: collects counts and co-occurrences of specified search terms in the literature.</p></li>
@@ -122,15 +123,14 @@
 </ul>
 </div>
 <div class="section" id="analysis-other-functionality">
-<h3>Analysis &amp; Other Functionality<a class="headerlink" href="#analysis-other-functionality" title="Permalink to this headline">¶</a></h3>
+<h2>Analysis &amp; Other Functionality<a class="headerlink" href="#analysis-other-functionality" title="Permalink to this headline">¶</a></h2>
 <p>In addition to connecting to external APIs, LISC also provides:</p>
 <ul class="simple">
-<li><p>custom data objects for managing collected data</p></li>
-<li><p>a database structure, and save and load utilities for storing collected data</p></li>
-<li><p>functions and utilities to analyze collected data</p></li>
+<li><p>Custom data objects for managing collected data</p></li>
+<li><p>A database structure, and save and load utilities for storing collected data</p></li>
+<li><p>Functions and utilities to analyze collected data</p></li>
 <li><p>Data visualization functions for plotting collected data and analysis outputs</p></li>
 </ul>
-</div>
 </div>
 <div class="section" id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
@@ -162,15 +162,24 @@
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p><strong>Stable Release Version</strong></p>
 <p>To install the latest stable release of lisc, you can install from pip:</p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">lisc</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install lisc
+</pre></div>
+</div>
 <p><strong>Development Version</strong></p>
 <p>To get the development version (updates that are not yet published to pip), you can clone this repo.</p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/lisc-tools/lisc</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/lisc-tools/lisc
+</pre></div>
+</div>
 <p>To install this cloned copy of LISC, move into the directory you just cloned, and run:</p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install .
+</pre></div>
+</div>
 <p><strong>Editable Version</strong></p>
-<p>If you want to install an editable version, for making contributions, download the development version as above, and run:</p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p>
+<p>If you want to install an editable version, for making contributions, download the development
+version as above, and run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install -e .
+</pre></div>
+</div>
 </div>
 <div class="section" id="code-tests">
 <h2>Code Tests<a class="headerlink" href="#code-tests" title="Permalink to this headline">¶</a></h2>
@@ -178,34 +187,43 @@
 integration on <a class="reference external" href="https://travis-ci.org/lisc-tools/lisc">Travis</a>.</p>
 <p><strong>Installing pytest</strong></p>
 <p>If you want to run the tests yourself, you will need pytest. You can install pytest with pip, as:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install pytest
+</pre></div>
+</div>
 <p><strong>Running tests on an installed copy of LISC</strong></p>
 <p>To run the test suite on an installed version of LISC, after installing, run:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">lisc</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pytest lisc
+</pre></div>
+</div>
 <p><strong>Running tests on a local copy of LISC</strong></p>
 <p>To run the tests on a local copy of LISC, move into the LISC folder, and run:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">.</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pytest .
+</pre></div>
+</div>
 </div>
 <div class="section" id="bug-reports">
 <h2>Bug Reports<a class="headerlink" href="#bug-reports" title="Permalink to this headline">¶</a></h2>
-<p>Please use the <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">Github issue tracker</a> to file bug reports and/or ask questions about this project.</p>
+<p>Please use the <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">Github issue tracker</a> to file bug
+reports and/or ask questions about this project.</p>
 </div>
 <div class="section" id="contribute">
 <h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">LISC</span></code> welcomes and encourages contributions from the community!</p>
-<p>If you have an idea of something to add to LISC, please start by opening an <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">issue</a>.</p>
-<p>When working on LISC, please follow the <a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md">Contribution Guidelines</a>, and also make sure to follow our
-<a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
+<p>If you have an idea of something to add to LISC, please start by opening an
+<a class="reference external" href="https://github.com/lisc-tools/lisc/issues">issue</a>.</p>
+<p>When working on LISC, please follow the <a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md">Contribution Guidelines</a>,
+and also make sure to follow our <a class="reference external" href="https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
 </div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<p>If you use this code in your project, please cite:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">Donoghue</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span> <span class="p">(</span><span class="mi">2019</span><span class="p">).</span> <span class="n">LISC</span><span class="p">:</span> <span class="n">A</span> <span class="n">Python</span> <span class="n">Package</span> <span class="k">for</span> <span class="n">Scientific</span> <span class="n">Literature</span> <span class="n">Collection</span> <span class="k">and</span> <span class="n">Analysis</span><span class="p">.</span> <span class="n">Journal</span> <span class="k">of</span> <span class="k">Open</span> <span class="k">Source</span> <span class="n">Software</span><span class="p">,</span> <span class="mi">4</span><span class="p">(</span><span class="mi">41</span><span class="p">),</span> <span class="mi">1674</span><span class="p">.</span> <span class="n">DOI</span><span class="p">:</span> <span class="mi">10</span><span class="p">.</span><span class="mi">21105</span><span class="o">/</span><span class="n">joss</span><span class="p">.</span><span class="mi">01674</span>
+<p>If you use this code in your project, please cite</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Donoghue</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span> <span class="p">(</span><span class="mi">2018</span><span class="p">)</span>  <span class="n">LISC</span><span class="p">:</span> <span class="n">A</span> <span class="n">Python</span> <span class="n">Package</span> <span class="k">for</span> <span class="n">Scientific</span> <span class="n">Literature</span> <span class="n">Collection</span> <span class="ow">and</span> <span class="n">Analysis</span><span class="o">.</span>
+<span class="n">Journal</span> <span class="n">of</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">,</span> <span class="mi">4</span><span class="p">(</span><span class="mi">41</span><span class="p">),</span> <span class="mf">1674.</span> <span class="n">DOI</span><span class="p">:</span> <span class="mf">10.21105</span><span class="o">/</span><span class="n">joss</span><span class="o">.</span><span class="mi">01674</span>
 </pre></div>
 </div>
 <p>Direct Link: <a class="reference external" href="https://doi.org/10.21105/joss.01674">https://doi.org/10.21105/joss.01674</a></p>
 <p>Bibtex:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>@article{donoghue_lisc:_2019,
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@article{donoghue_lisc:_2019,
          title = {{LISC}: {A} {Python} {Package} for {Scientific} {Literature} {Collection} and {Analysis}},
          author = {Donoghue, Thomas},
          journal = {Journal of Open Source Software},
@@ -215,7 +233,7 @@ integration on <a class="reference external" href="https://travis-ci.org/lisc-to
          issn = {2475-9066},
          url = {https://joss.theoj.org/papers/10.21105/joss.01674},
          doi = {10.21105/joss.01674}
-}
+         }
 </pre></div>
 </div>
 </div>
@@ -234,7 +252,7 @@ integration on <a class="reference external" href="https://travis-ci.org/lisc-to
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

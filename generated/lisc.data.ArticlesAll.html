@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.data.ArticlesAll &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,9 +97,9 @@
       
   <div class="section" id="lisc-data-articlesall">
 <h1>lisc.data.ArticlesAll<a class="headerlink" href="#lisc-data-articlesall" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="lisc.data.ArticlesAll">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">ArticlesAll</code><span class="sig-paren">(</span><em class="sig-param">term_data</em>, <em class="sig-param">exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">ArticlesAll</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">term_data</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object to hold term data, aggregated across articles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -128,9 +133,9 @@
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.ArticlesAll.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">term_data</em>, <em class="sig-param">exclusions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">term_data</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize ArticlesAll object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -157,7 +162,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.check_frequencies" title="lisc.data.ArticlesAll.check_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_frequencies</span></code></a>(self[, data_type, n_check])</p></td>
 <td><p>Prints out the most common items in a frequency distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.clear" title="lisc.data.ArticlesAll.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>(self)</p></td>
 <td><p>Clear all data attached to object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.create_freq_dist" title="lisc.data.ArticlesAll.create_freq_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_freq_dist</span></code></a>(in_lst, exclude)</p></td>
@@ -189,9 +194,9 @@
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.ArticlesAll.check_frequencies">
-<code class="sig-name descname">check_frequencies</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">data_type='words'</em>, <em class="sig-param">n_check=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.check_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.check_frequencies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_frequencies</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">'words'</span></em>, <em class="sig-param"><span class="n">n_check</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.check_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.check_frequencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints out the most common items in a frequency distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -205,9 +210,15 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="lisc.data.ArticlesAll.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.data.ArticlesAll.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear all data attached to object.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="lisc.data.ArticlesAll.create_freq_dist">
-<em class="property">static </em><code class="sig-name descname">create_freq_dist</code><span class="sig-paren">(</span><em class="sig-param">in_lst</em>, <em class="sig-param">exclude</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_freq_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_freq_dist" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">create_freq_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_lst</span></em>, <em class="sig-param"><span class="n">exclude</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_freq_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_freq_dist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a frequency distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -227,21 +238,21 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.ArticlesAll.create_summary">
-<code class="sig-name descname">create_summary</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fill the summary dictionary of the current terms Words data.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.ArticlesAll.print_summary">
-<code class="sig-name descname">print_summary</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.print_summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.print_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out a summary of the collected words data.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.data.ArticlesAll.save_summary">
-<code class="sig-name descname">save_summary</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.save_summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.save_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out a summary of the collected words data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -255,6 +266,13 @@
 
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-data-articlesall">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.data.ArticlesAll</span></code><a class="headerlink" href="#examples-using-lisc-data-articlesall" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected text data and metadata."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" src="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">Tutorial 04: Words Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
 </div>
 
 
@@ -270,7 +288,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

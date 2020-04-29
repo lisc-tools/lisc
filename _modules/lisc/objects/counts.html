@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.objects.counts &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 <meta charset='utf-8'>
@@ -103,7 +108,7 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="Counts"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts">[docs]</a><span class="k">class</span> <span class="nc">Counts</span><span class="p">():</span>
+<div class="viewcode-block" id="Counts"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts">[docs]</a><span class="k">class</span> <span class="nc">Counts</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;A class for collecting and analyzing co-occurrence data for specified terms list(s).</span>
 
 <span class="sd">    Attributes</span>
@@ -121,7 +126,7 @@
 <span class="sd">        Meta data information about the data collection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Counts.__init__"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.__init__"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize LISC Counts object.&quot;&quot;&quot;</span>
 
         <span class="c1"># Initialize dictionary to store search terms</span>
@@ -136,7 +141,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="Counts.add_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.add_terms"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add the given list of strings as terms.</span>
 
 <span class="sd">        Parameters</span>
@@ -154,7 +159,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Counts.add_terms_file"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.add_terms_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f_name</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.add_terms_file"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_terms_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f_name</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load terms from a text file.</span>
 
 <span class="sd">        Parameters</span>
@@ -174,7 +179,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Counts.run_collection"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Counts.run_collection"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect co-occurrence data.</span>
 
@@ -222,7 +227,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">term_counts</span></div>
 
 
-<div class="viewcode-block" id="Counts.compute_score"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.compute_score">[docs]</a>    <span class="k">def</span> <span class="nf">compute_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s1">&#39;association&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.compute_score"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.compute_score">[docs]</a>    <span class="k">def</span> <span class="nf">compute_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s1">&#39;association&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Compute a score, such as an index or normalization, of the co-occurrence data.</span>
 
 <span class="sd">        Parameters</span>
@@ -250,7 +255,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Score type not understood.&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Counts.check_top"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.check_top"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check the terms with the most articles.</span>
 
 <span class="sd">        Parameters</span>
@@ -265,7 +270,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]))</span></div>
 
 
-<div class="viewcode-block" id="Counts.check_counts"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.check_counts">[docs]</a>    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.check_counts"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_counts">[docs]</a>    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check how many articles were found for each term.</span>
 
 <span class="sd">        Parameters</span>
@@ -282,7 +287,7 @@
                 <span class="n">nwd</span><span class="o">=</span><span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)))</span></div>
 
 
-<div class="viewcode-block" id="Counts.check_data"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.check_data">[docs]</a>    <span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.check_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_data">[docs]</a>    <span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prints out the highest value count or score for each term.</span>
 
 <span class="sd">        Parameters</span>
@@ -316,7 +321,7 @@
                 <span class="n">nwd</span><span class="o">=</span><span class="s1">&#39;&gt;10.0f&#39;</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;counts&#39;</span> <span class="k">else</span> <span class="s1">&#39;06.3f&#39;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Counts.drop_data"><a class="viewcode-back" href="../../../generated/lisc.objects.Counts.html#lisc.objects.Counts.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Drop terms based on number of article results.</span>
 
 <span class="sd">        Parameters</span>
@@ -352,7 +357,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

@@ -1,18 +1,23 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Index &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -118,20 +123,16 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.data.Articles.html#lisc.data.Articles.__init__">__init__() (lisc.data.Articles method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.__init__">__init__() (lisc.Counts method)</a>
 
       <ul>
+        <li><a href="generated/lisc.data.Articles.html#lisc.data.Articles.__init__">(lisc.data.Articles method)</a>
+</li>
         <li><a href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.__init__">(lisc.data.ArticlesAll method)</a>
 </li>
         <li><a href="generated/lisc.data.MetaData.html#lisc.data.MetaData.__init__">(lisc.data.MetaData method)</a>
 </li>
-        <li><a href="generated/lisc.data.Term.html#lisc.data.Term.__init__">(lisc.data.Term method)</a>
-</li>
         <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.__init__">(lisc.objects.base.Base method)</a>
-</li>
-        <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.__init__">(lisc.objects.Counts method)</a>
-</li>
-        <li><a href="generated/lisc.objects.Words.html#lisc.objects.Words.__init__">(lisc.objects.Words method)</a>
 </li>
         <li><a href="generated/lisc.requester.Requester.html#lisc.requester.Requester.__init__">(lisc.requester.Requester method)</a>
 </li>
@@ -141,7 +142,9 @@
 </li>
         <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.__init__">(lisc.urls.URLs method)</a>
 </li>
-        <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.__init__">(lisc.utils.db.SCDB method)</a>
+        <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB.__init__">(lisc.utils.SCDB method)</a>
+</li>
+        <li><a href="generated/lisc.Words.html#lisc.Words.__init__">(lisc.Words method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -156,22 +159,26 @@
 </li>
       <li><a href="generated/lisc.data.MetaData.html#lisc.data.MetaData.add_requester">add_requester() (lisc.data.MetaData method)</a>
 </li>
-      <li><a href="generated/lisc.objects.Words.html#lisc.objects.Words.add_results">add_results() (lisc.objects.Words method)</a>
+      <li><a href="generated/lisc.Words.html#lisc.Words.add_results">add_results() (lisc.Words method)</a>
 </li>
-      <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms">add_terms() (lisc.objects.base.Base method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.add_terms">add_terms() (lisc.Counts method)</a>
 
       <ul>
-        <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.add_terms">(lisc.objects.Counts method)</a>
+        <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms">(lisc.objects.base.Base method)</a>
+</li>
+        <li><a href="generated/lisc.Words.html#lisc.Words.add_terms">(lisc.Words method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.add_terms_file">add_terms_file() (lisc.Counts method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms_file">(lisc.objects.base.Base method)</a>
+</li>
+        <li><a href="generated/lisc.Words.html#lisc.Words.add_terms_file">(lisc.Words method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms_file">add_terms_file() (lisc.objects.base.Base method)</a>
-
-      <ul>
-        <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.add_terms_file">(lisc.objects.Counts method)</a>
-</li>
-      </ul></li>
       <li><a href="generated/lisc.data.Articles.html#lisc.data.Articles">Articles (class in lisc.data)</a>
 </li>
       <li><a href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll">ArticlesAll (class in lisc.data)</a>
@@ -181,6 +188,8 @@
       <li><a href="generated/lisc.urls.EUtils.html#lisc.urls.EUtils.authenticate">authenticate() (lisc.urls.EUtils method)</a>
 
       <ul>
+        <li><a href="generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations.authenticate">(lisc.urls.OpenCitations method)</a>
+</li>
         <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.authenticate">(lisc.urls.URLs method)</a>
 </li>
       </ul></li>
@@ -192,10 +201,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base">Base (class in lisc.objects.base)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.build_url">build_url() (lisc.urls.URLs method)</a>
+      <li><a href="generated/lisc.urls.EUtils.html#lisc.urls.EUtils.build_url">build_url() (lisc.urls.EUtils method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations.build_url">(lisc.urls.OpenCitations method)</a>
 </li>
+        <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.build_url">(lisc.urls.URLs method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -204,41 +217,57 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/lisc.requester.Requester.html#lisc.requester.Requester.check">check() (lisc.requester.Requester method)</a>
 </li>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.check_counts">check_counts() (lisc.objects.Counts method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.check_counts">check_counts() (lisc.Counts method)</a>
 </li>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.check_data">check_data() (lisc.objects.Counts method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.check_data">check_data() (lisc.Counts method)</a>
 </li>
-      <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.check_file_structure">check_file_structure() (lisc.utils.db.SCDB method)</a>
+      <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB.check_file_structure">check_file_structure() (lisc.utils.SCDB method)</a>
 </li>
       <li><a href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.check_frequencies">check_frequencies() (lisc.data.ArticlesAll method)</a>
 </li>
       <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms">check_terms() (lisc.objects.base.Base method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.Words.html#lisc.Words.check_terms">(lisc.Words method)</a>
 </li>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.check_top">check_top() (lisc.objects.Counts method)</a>
+      </ul></li>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.check_top">check_top() (lisc.Counts method)</a>
 </li>
-      <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.check_url">check_url() (lisc.urls.URLs method)</a>
+      <li><a href="generated/lisc.urls.EUtils.html#lisc.urls.EUtils.check_url">check_url() (lisc.urls.EUtils method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations.check_url">(lisc.urls.OpenCitations method)</a>
 </li>
-      <li><a href="generated/lisc.requester.Requester.html#lisc.requester.Requester.close">close() (lisc.requester.Requester method)</a>
+        <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.check_url">(lisc.urls.URLs method)</a>
 </li>
-      <li><a href="generated/lisc.collect.collect_citations.html#lisc.collect.collect_citations">collect_citations() (in module lisc.collect)</a>
+      </ul></li>
+      <li><a href="generated/lisc.data.Articles.html#lisc.data.Articles.clear">clear() (lisc.data.Articles method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.clear">(lisc.data.ArticlesAll method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.collect.collect_counts.html#lisc.collect.collect_counts">collect_counts() (in module lisc.collect)</a>
+      <li><a href="generated/lisc.requester.Requester.html#lisc.requester.Requester.close">close() (lisc.requester.Requester method)</a>
 </li>
-      <li><a href="generated/lisc.collect.collect_info.html#lisc.collect.collect_info">collect_info() (in module lisc.collect)</a>
+      <li><a href="generated/lisc.collect_citations.html#lisc.collect_citations">collect_citations() (in module lisc)</a>
 </li>
-      <li><a href="generated/lisc.collect.collect_words.html#lisc.collect.collect_words">collect_words() (in module lisc.collect)</a>
+      <li><a href="generated/lisc.collect_counts.html#lisc.collect_counts">collect_counts() (in module lisc)</a>
+</li>
+      <li><a href="generated/lisc.collect_info.html#lisc.collect_info">collect_info() (in module lisc)</a>
+</li>
+      <li><a href="generated/lisc.collect_words.html#lisc.collect_words">collect_words() (in module lisc)</a>
 </li>
       <li><a href="generated/lisc.analysis.counts.compute_association_index.html#lisc.analysis.counts.compute_association_index">compute_association_index() (in module lisc.analysis.counts)</a>
 </li>
       <li><a href="generated/lisc.analysis.counts.compute_normalization.html#lisc.analysis.counts.compute_normalization">compute_normalization() (in module lisc.analysis.counts)</a>
 </li>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.compute_score">compute_score() (lisc.objects.Counts method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.compute_score">compute_score() (lisc.Counts method)</a>
 </li>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts">Counts (class in lisc.objects)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts">Counts (class in lisc)</a>
 </li>
-      <li><a href="generated/lisc.utils.db.create_file_structure.html#lisc.utils.db.create_file_structure">create_file_structure() (in module lisc.utils.db)</a>
+      <li><a href="generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure">create_file_structure() (in module lisc.utils)</a>
 </li>
       <li><a href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.create_freq_dist">create_freq_dist() (lisc.data.ArticlesAll static method)</a>
 </li>
@@ -250,7 +279,7 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.drop_data">drop_data() (lisc.objects.Counts method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.drop_data">drop_data() (lisc.Counts method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -270,28 +299,40 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.fill_settings">fill_settings() (lisc.urls.URLs method)</a>
+      <li><a href="generated/lisc.urls.EUtils.html#lisc.urls.EUtils.fill_settings">fill_settings() (lisc.urls.EUtils method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations.fill_settings">(lisc.urls.OpenCitations method)</a>
 </li>
+        <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.fill_settings">(lisc.urls.URLs method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.gen_paths">gen_paths() (lisc.utils.db.SCDB method)</a>
+      <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB.gen_paths">gen_paths() (lisc.utils.SCDB method)</a>
 </li>
       <li><a href="generated/lisc.data.MetaData.html#lisc.data.MetaData.get_date">get_date() (lisc.data.MetaData method)</a>
 </li>
-      <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.get_file_path">get_file_path() (lisc.utils.db.SCDB method)</a>
+      <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_file_path">get_file_path() (lisc.utils.SCDB method)</a>
+</li>
+      <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_files">get_files() (lisc.utils.SCDB method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.get_files">get_files() (lisc.utils.db.SCDB method)</a>
+      <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_folder_path">get_folder_path() (lisc.utils.SCDB method)</a>
 </li>
-      <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.get_folder_path">get_folder_path() (lisc.utils.db.SCDB method)</a>
+      <li><a href="generated/lisc.urls.EUtils.html#lisc.urls.EUtils.get_url">get_url() (lisc.urls.EUtils method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations.get_url">(lisc.urls.OpenCitations method)</a>
 </li>
-      <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.get_url">get_url() (lisc.urls.URLs method)</a>
+        <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs.get_url">(lisc.urls.URLs method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -312,7 +353,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/lisc.data.Articles.html#lisc.data.Articles.load">load() (lisc.data.Articles method)</a>
 </li>
-      <li><a href="generated/lisc.utils.io.load_object.html#lisc.utils.io.load_object">load_object() (in module lisc.utils.io)</a>
+      <li><a href="generated/lisc.utils.load_object.html#lisc.utils.load_object">load_object() (in module lisc.utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -366,10 +407,10 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.objects.Counts.html#lisc.objects.Counts.run_collection">run_collection() (lisc.objects.Counts method)</a>
+      <li><a href="generated/lisc.Counts.html#lisc.Counts.run_collection">run_collection() (lisc.Counts method)</a>
 
       <ul>
-        <li><a href="generated/lisc.objects.Words.html#lisc.objects.Words.run_collection">(lisc.objects.Words method)</a>
+        <li><a href="generated/lisc.Words.html#lisc.Words.run_collection">(lisc.Words method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -382,13 +423,13 @@
 </li>
       <li><a href="generated/lisc.data.Articles.html#lisc.data.Articles.save_and_clear">save_and_clear() (lisc.data.Articles method)</a>
 </li>
-      <li><a href="generated/lisc.utils.io.save_object.html#lisc.utils.io.save_object">save_object() (in module lisc.utils.io)</a>
+      <li><a href="generated/lisc.utils.save_object.html#lisc.utils.save_object">save_object() (in module lisc.utils)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.save_summary">save_summary() (lisc.data.ArticlesAll method)</a>
 </li>
-      <li><a href="generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB">SCDB (class in lisc.utils.db)</a>
+      <li><a href="generated/lisc.utils.SCDB.html#lisc.utils.SCDB">SCDB (class in lisc.utils)</a>
 </li>
       <li><a href="generated/lisc.data.Term.html#lisc.data.Term.search">search() (lisc.data.Term property)</a>
 </li>
@@ -413,7 +454,11 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/lisc.objects.base.Base.html#lisc.objects.base.Base.unload_terms">unload_terms() (lisc.objects.base.Base method)</a>
+
+      <ul>
+        <li><a href="generated/lisc.Words.html#lisc.Words.unload_terms">(lisc.Words method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/lisc.urls.URLs.html#lisc.urls.URLs">URLs (class in lisc.urls)</a>
@@ -428,7 +473,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/lisc.objects.Words.html#lisc.objects.Words">Words (class in lisc.objects)</a>
+      <li><a href="generated/lisc.Words.html#lisc.Words">Words (class in lisc)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -447,7 +492,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

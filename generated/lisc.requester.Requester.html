@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.requester.Requester &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,9 +97,9 @@
       
   <div class="section" id="lisc-requester-requester">
 <h1>lisc.requester.Requester<a class="headerlink" href="#lisc-requester-requester" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="lisc.requester.Requester">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.requester.</code><code class="sig-name descname">Requester</code><span class="sig-paren">(</span><em class="sig-param">wait_time=0.0</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.requester.</code><code class="sig-name descname">Requester</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wait_time</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object to handle URL requests.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -118,9 +123,9 @@
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">wait_time=0.0</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">wait_time</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a requester object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -172,33 +177,33 @@
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.as_dict">
-<code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.as_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.as_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the attributes of the Requester object as a dictionary.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.check" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out basic check of requester object.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.close">
-<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.close" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.close" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the current object as inactive.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.open">
-<code class="sig-name descname">open</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.open" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">open</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the current object as active.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.request_url">
-<code class="sig-name descname">request_url</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.request_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.request_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">request_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.request_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.request_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request a URL.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -216,9 +221,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.set_wait_time">
-<code class="sig-name descname">set_wait_time</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">wait_time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.set_wait_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.set_wait_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_wait_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">wait_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.set_wait_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.set_wait_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the amount of time to rest between requests.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -230,15 +235,15 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.throttle">
-<code class="sig-name descname">throttle</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.throttle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.throttle" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">throttle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.throttle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.throttle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slow down rate of requests by waiting if a new request is initiated too soon.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.requester.Requester.wait">
-<em class="property">static </em><code class="sig-name descname">wait</code><span class="sig-paren">(</span><em class="sig-param">wait_time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.wait" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wait_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/requester/requester.html#Requester.wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.requester.Requester.wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pause for specified amount of  time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -252,6 +257,13 @@
 
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-requester-requester">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.requester.Requester</span></code><a class="headerlink" href="#examples-using-lisc-requester-requester" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Exploring LISC utilities for managing URLs and requests."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_requester_urls_thumb.png" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_requester_urls.html#sphx-glr-auto-examples-plot-requester-urls-py"><span class="std std-ref">URLs and Requests</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
 </div>
 
 
@@ -267,7 +279,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

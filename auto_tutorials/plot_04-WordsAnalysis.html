@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Tutorial 04: Words Analysis &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,7 +97,7 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-04-words-analysis">
 <span id="sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"></span><h1>Tutorial 04: Words Analysis<a class="headerlink" href="#tutorial-04-words-analysis" title="Permalink to this headline">¶</a></h1>
@@ -100,29 +105,29 @@
 <div class="section" id="words-analyses">
 <h2>Words Analyses<a class="headerlink" href="#words-analyses" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial covers exploring &amp; analyzing words data.</p>
-<p>For this tutorial, we will reload and use the <a class="reference internal" href="../generated/lisc.objects.Words.html#lisc.objects.Words" title="lisc.objects.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object with
+<p>For this tutorial, we will reload and use the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object with
 the data that we collected in the last tutorial.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.data</span> <span class="k">import</span> <a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">Articles</span></a><span class="p">,</span> <a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="View documentation for lisc.data.ArticlesAll"><span class="n">ArticlesAll</span></a>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">load_object</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.data</span> <span class="k">import</span> <a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">Articles</span></a><span class="p">,</span> <a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">ArticlesAll</span></a>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class"><span class="n">SCDB</span></a>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <a href="../generated/lisc.utils.load_object.html#lisc.utils.load_object" title="lisc.utils.load_object" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">load_object</span></a>
 
-<span class="kn">from</span> <span class="nn">lisc.plts.words</span> <span class="k">import</span> <a href="../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud" title="View documentation for lisc.plts.words.plot_wordcloud"><span class="n">plot_wordcloud</span></a>
+<span class="kn">from</span> <span class="nn">lisc.plts.words</span> <span class="k">import</span> <a href="../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud" title="lisc.plts.words.plot_wordcloud" class="sphx-glr-backref-module-lisc-plts-words sphx-glr-backref-type-py-function"><span class="n">plot_wordcloud</span></a>
 </pre></div>
 </div>
 <div class="section" id="articles-object">
 <h3>Articles Object<a class="headerlink" href="#articles-object" title="Permalink to this headline">¶</a></h3>
 <p>LISC uses a custom objects to store and organize collected words data.</p>
-<p>These objects are used internally in the <a class="reference internal" href="../generated/lisc.objects.Words.html#lisc.objects.Words" title="lisc.objects.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> objects.</p>
+<p>These objects are used internally in the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> objects.</p>
 <p>If the data collection was set to save out data as it was collected, then
 <a class="reference internal" href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Articles</span></code></a> objects can be loaded individually, using the label
 of the search term.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up database object</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a> <span class="o">=</span> <a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class"><span class="n">SCDB</span></a><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
 
 <span class="c1"># Load raw data for a particular term</span>
 <span class="n">term</span> <span class="o">=</span> <span class="s1">&#39;frontal lobe&#39;</span>
-<a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">arts</span></a> <span class="o">=</span> <a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">Articles</span></a><span class="p">(</span><span class="n">term</span><span class="p">)</span>
-<a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">arts</span></a><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+<a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">arts</span></a> <span class="o">=</span> <a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">Articles</span></a><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+<a href="../generated/lisc.data.Articles.html#lisc.data.Articles.load" title="lisc.data.Articles.load" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-method"><span class="n">arts</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -133,45 +138,45 @@ to aggregate collected data across all articles collected for a given search ter
 <p>The <a class="reference internal" href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a> object also has methods to create and check summaries
 created from the aggregate data, across all articles for a given search term.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collapse data across articles</span>
-<a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="View documentation for lisc.data.ArticlesAll"><span class="n">arts_all</span></a> <span class="o">=</span> <a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="View documentation for lisc.data.ArticlesAll"><span class="n">ArticlesAll</span></a><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">arts</span></a><span class="p">)</span>
+<a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">arts_all</span></a> <span class="o">=</span> <a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">ArticlesAll</span></a><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">arts</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check an example summary</span>
-<a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="View documentation for lisc.data.ArticlesAll"><span class="n">arts_all</span></a><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span>
-<a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="View documentation for lisc.data.ArticlesAll"><span class="n">arts_all</span></a><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+<a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.create_summary" title="lisc.data.ArticlesAll.create_summary" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-method"><span class="n">arts_all</span><span class="o">.</span><span class="n">create_summary</span></a><span class="p">()</span>
+<a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.print_summary" title="lisc.data.ArticlesAll.print_summary" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-method"><span class="n">arts_all</span><span class="o">.</span><span class="n">print_summary</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>frontal lobe :
-  Number of articles:            15
+  Number of articles:            14
   First publication:             2020
-  Most common author:            Fellows LK
+  Most common author:            Zhao X
     number of publications:      2
-  Most common journal:           Journal of neurosurgery
-    number of publications:      1
+  Most common journal:           World neurosurgery
+    number of publications:      2
 </pre></div>
 </div>
 </div>
 <div class="section" id="words-object">
 <h3>Words Object<a class="headerlink" href="#words-object" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference internal" href="../generated/lisc.objects.Words.html#lisc.objects.Words" title="lisc.objects.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object can also be used to reload and analyze collected data.</p>
-<p>The <cite>results</cite> attribute of the Words object, when loaded, contains a list of
-Articles objects, one for each term.</p>
+<p>The <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object can also be used to reload and analyze collected data.</p>
+<p>The <cite>results</cite> attribute of the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object, when loaded, contains a list of
+<a class="reference internal" href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Articles</span></code></a> objects, one for each term.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the words object</span>
-<span class="n">words</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
+<a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a> <span class="o">=</span> <a href="../generated/lisc.utils.load_object.html#lisc.utils.load_object" title="lisc.utils.load_object" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">load_object</span></a><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class"><span class="n">SCDB</span></a><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload all data</span>
-<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
-    <span class="n">words</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
+    <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect into list of aggregated data objects</span>
-<span class="n">all_articles</span> <span class="o">=</span> <span class="p">[</span><a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="View documentation for lisc.data.ArticlesAll"><span class="n">ArticlesAll</span></a><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">words</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
+<span class="n">all_articles</span> <span class="o">=</span> <span class="p">[</span><a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">ArticlesAll</span></a><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a WordCloud of the collected data for the first term</span>
-<a href="../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud" title="View documentation for lisc.plts.words.plot_wordcloud"><span class="n">plot_wordcloud</span></a><span class="p">(</span><span class="n">all_articles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">words</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<a href="../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud" title="lisc.plts.words.plot_wordcloud" class="sphx-glr-backref-module-lisc-plts-words sphx-glr-backref-type-py-function"><span class="n">plot_wordcloud</span></a><span class="p">(</span><span class="n">all_articles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_04-WordsAnalysis_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_04-WordsAnalysis_001.png" />
@@ -179,37 +184,37 @@ Articles objects, one for each term.</p>
 </div>
 <div class="section" id="exploring-words-data">
 <h2>Exploring Words Data<a class="headerlink" href="#exploring-words-data" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="../generated/lisc.objects.Words.html#lisc.objects.Words" title="lisc.objects.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object also has some methods for exploring the data.</p>
+<p>The <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object also has some methods for exploring the data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indexing with labels</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x1a23ee2e90&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x1a1c6f0510&gt;
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through articles found from a particular search term</span>
 <span class="c1">#  The iteration returns a dictionary with all the article data</span>
-<span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">art</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Subsecond EEG-fMRI analysis for presurgical evaluation in focal epilepsy.
-Modeling the influence of the hippocampal memory system on the oculomotor system.
-Zygomatic-meatal perpendicular projection lines: bony landmarks for early identification of the temporal horn of the lateral ventricle.
-Optogenetic control of perforant pathway kindled seizures by photoinhibition of CA3 after insertion of Jaws into CA3 neuronal cells.
-Medial temporal lobe regions mediate complex visual discriminations for both objects and scenes: A process-based view.
-Effects of hippocampus-sparing resections in the temporal lobe: Hippocampal atrophy is associated with a decline in memory performance.
-Personalizing Heart Rate-Based Seizure Detection Using Supervised SVM Transfer Learning.
-Age-Related Decreases in Interhemispheric Resting-State Functional Connectivity and Their Relationship With Executive Function.
-Rapidly Progressing Neurocognitive Disorder in a Male with FXTAS and Alzheimer&#39;s Disease.
-Clinical significance of anti-NMDAR concurrent with glial or neuronal surface antibodies.
-Isolating syntax in natural language: MEG evidence for an early contribution of left posterior temporal cortex.
-Visual seizure annotation and automated seizure detection using behind-the-ear electroencephalographic channels.
-Memory Function and Brain Functional Connectivity Adaptations Following Multiple-Modality Exercise and Mind-Motor Training in Older Adults at Risk of Dementia: An Exploratory Sub-Study.
-Acute Effects and the Dreamy State Evoked by Deep Brain Electrical Stimulation of the Amygdala: Associations of the Amygdala in Human Dreaming, Consciousness, Emotions, and Creativity.
-Low-frequency Stimulation at the Subiculum is Anti-convulsant and Anti-drug-resistant in a Mouse Model of Lamotrigine-resistant Temporal Lobe Epilepsy.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Accuracy of Biomarker Testing for Neuropathologically Defined Alzheimer Disease in Older Adults With Dementia: A Systematic Review.
+Performance of Topological Perception in the Myopic Population.
+Multidisciplinary Management of Low-velocity Nonmissile Penetrating Head Injuries.
+Differential diagnosis of temporal lobe lesions with hyperintense signal on T2-weighted and FLAIR sequences: pictorial essay.
+Dti-mri findings in synthetic cannabinoid users.
+A quantitative MRI index for assessing the severity of hippocampal sclerosis in temporal lobe epilepsy.
+Brain morphologic abnormalities in migraine patients: an observational study.
+Neural fatigue influences memory encoding in the human hippocampus.
+Longitudinal Associations between Brain Volume and Knee Extension Peak Torque.
+Heritability of alpha and sensorimotor network changes in temporal lobe epilepsy.
+The relationship between physical activity, apolipoprotein E ε4 carriage, and brain health.
+The Sodium Channel B4-Subunits are Dysregulated in Temporal Lobe Epilepsy Drug-Resistant Patients.
+130 Temporal Lobe Epilepsy: Is It in Your Differential Diagnosis? Two Case Reports.
+Effects of serotonin and dopamine depletion on neural prediction computations during social learning.
+Dissecting the default mode network: direct structural evidence on the morphology and axonal connectivity of the fifth component of the cingulum bundle.
 </pre></div>
 </div>
 <div class="section" id="analyzing-words-data">
@@ -222,12 +227,12 @@ differences between terms.</p>
 <p>Other analyses could explore historical patterns in the literature exploring, for
 exploring the history of when certain topics were written about, and in what
 journals, by which authors.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.941 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.755 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py">
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4d3f46ceca311403c9193554b687b08c/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1959f79d6a621c760c75d1d9f0c23f30/plot_04-WordsAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-WordsAnalysis.ipynb</span></code></a></p>
 </div>
 </div>
@@ -249,7 +254,7 @@ journals, by which authors.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

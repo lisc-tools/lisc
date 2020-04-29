@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Tutorial 00: LISC Overview &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,14 +97,14 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-00-overview-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-00-overview-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-00-lisc-overview">
 <span id="sphx-glr-auto-tutorials-plot-00-overview-py"></span><h1>Tutorial 00: LISC Overview<a class="headerlink" href="#tutorial-00-lisc-overview" title="Permalink to this headline">¶</a></h1>
 <p>An overview of the LISC code organization and approach.</p>
 <div class="section" id="lisc-overview">
 <h2>LISC Overview<a class="headerlink" href="#lisc-overview" title="Permalink to this headline">¶</a></h2>
-<p>LISC - or ‘Literature Scanner’ - is a module for collecting and analyzing scientific literature.</p>
+<p>LISC, or ‘Literature Scanner’, is a module for collecting and analyzing scientific literature.</p>
 <p>LISC serves mainly as a wrapper around available application programmer interfaces (APIs)
 that provide access to databases of scientific literature and related data.</p>
 <p>In this overview tutorial, we will first explore the main aspects of LISC, such as
@@ -129,13 +134,13 @@ database, and the OpenCitations API, offering access to citation data.</p>
 <p>Here we will first explore the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object, the underlying object
 used for data collections and analysis with EUtils.</p>
 <p>Note that you will not otherwise use the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object directly,
-but that it is the underlying object for the <a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts" title="lisc.objects.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> and
-<a class="reference internal" href="../generated/lisc.objects.Words.html#lisc.objects.Words" title="lisc.objects.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> objects that we will use later.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="k">import</span> <span class="n">Base</span>
+but that it is the underlying object for the <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> and
+<a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> objects that we will use later.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="k">import</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a base object</span>
-<span class="n">base</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">base</span></a> <span class="o">=</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -149,11 +154,11 @@ indicated using double quotes, as “search term”.</p>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;chemistry&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;biology&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Add terms to the object</span>
-<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the terms added to the base object</span>
-<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">()</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -217,7 +222,7 @@ for a given search term, leave it empty with an empty list.</p>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;genetic&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;cortex&#39;</span><span class="p">,</span> <span class="s1">&#39;cortical&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Add the terms</span>
-<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -230,12 +235,12 @@ for a given search term, leave it empty with an empty list.</p>
 <span class="n">exclusions</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;protein&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;subcortical&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Add the inclusion and exclusions</span>
-<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">inclusions</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
-<span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">exclusions</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">inclusions</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">exclusions</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the loaded terms</span>
-<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">()</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -246,9 +251,9 @@ cortex  : cortex, cortical
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check inclusion &amp; exclusion words</span>
-<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">(</span><span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">(</span><span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">(</span><span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">(</span><span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -271,7 +276,7 @@ cortex  : subcortical
 LISC also creates and uses ‘labels’ for each search term. The label for each term is the
 first word from the search term list.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the label for the current terms</span>
-<span class="n">base</span><span class="o">.</span><span class="n">labels</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">base</span></a><span class="o">.</span><span class="n">labels</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -294,16 +299,16 @@ collecting and analyzing data are implemented and available as stand-alone funct
 a lot of files, to keep track of.</p>
 <p>LISC offers a database structure. If you use this file structure, LISC functions
 can automatically load and save files to an organized output structure.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">create_file_structure</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <a href="../generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure" title="lisc.utils.create_file_structure" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">create_file_structure</span></a>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure.</span>
 <span class="c1">#   When called without a path input, the folder structure is made in the current directory.</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">create_file_structure</span><span class="p">()</span>
+<a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a> <span class="o">=</span> <a href="../generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure" title="lisc.utils.create_file_structure" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">create_file_structure</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the file structure for the created database</span>
-<span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span><span class="p">()</span>
+<a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.check_file_structure" title="lisc.utils.SCDB.check_file_structure" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-method"><span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -324,12 +329,12 @@ can automatically load and save files to an organized output structure.</p>
             tutorial_counts.p
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.006 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.010 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-00-overview-py">
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/821a03dc58124cbddb2f426de44e27da/plot_00-Overview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_00-Overview.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/661767b749262d4501aee2cc3fbc61ed/plot_00-Overview.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_00-Overview.ipynb</span></code></a></p>
 </div>
 </div>
@@ -350,7 +355,7 @@ can automatically load and save files to an organized output structure.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

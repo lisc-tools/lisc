@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>lisc.utils.io.save_object &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.utils.load_object &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -90,26 +95,45 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-utils-io-save-object">
-<h1>lisc.utils.io.save_object<a class="headerlink" href="#lisc-utils-io-save-object" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="lisc.utils.io.save_object">
-<code class="sig-prename descclassname">lisc.utils.io.</code><code class="sig-name descname">save_object</code><span class="sig-paren">(</span><em class="sig-param">obj</em>, <em class="sig-param">f_name</em>, <em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/io.html#save_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.io.save_object" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a custom object as a pickle file.</p>
+  <div class="section" id="lisc-utils-load-object">
+<h1>lisc.utils.load_object<a class="headerlink" href="#lisc-utils-load-object" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="lisc.utils.load_object">
+<code class="sig-prename descclassname">lisc.utils.</code><code class="sig-name descname">load_object</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f_name</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/io.html#load_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.load_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a custom object, from a pickle file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>obj</strong><span class="classifier">Counts or Words object</span></dt><dd><p>Object to save out.</p>
-</dd>
-<dt><strong>f_name</strong><span class="classifier">str</span></dt><dd><p>Name for the file to be saved out.</p>
+<dt><strong>f_name</strong><span class="classifier">str</span></dt><dd><p>File name of the object to be loaded.</p>
 </dd>
 <dt><strong>directory</strong><span class="classifier">str or SCDB object, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Custom object loaded from pickle file.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-utils-load-object">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.utils.load_object</span></code><a class="headerlink" href="#examples-using-lisc-utils-load-object" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" src="../_images/sphx_glr_plot_02-CountsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_02-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-02-countsanalysis-py"><span class="std std-ref">Tutorial 02: Counts Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected text data and metadata."><div class="figure align-default" id="id2">
+<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" src="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">Tutorial 04: Words Analysis</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Exploring the meta data saved during data collections."><div class="figure align-default" id="id3">
+<img alt="../_images/sphx_glr_plot_06-MetaData_thumb.png" src="../_images/sphx_glr_plot_06-MetaData_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_06-MetaData.html#sphx-glr-auto-tutorials-plot-06-metadata-py"><span class="std std-ref">Tutorial 06: MetaData</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -125,7 +149,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

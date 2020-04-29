@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Tutorial 05: Collecting Citation Data &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,7 +97,7 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-05-citations-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-05-citations-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-05-collecting-citation-data">
 <span id="sphx-glr-auto-tutorials-plot-05-citations-py"></span><h1>Tutorial 05: Collecting Citation Data<a class="headerlink" href="#tutorial-05-collecting-citation-data" title="Permalink to this headline">¶</a></h1>
@@ -111,7 +116,7 @@ the lack of available databases and APIs that provide access to such information
 <a class="reference external" href="https://opencitations.net">OpenCitations</a> project, which
 is an initiative to support and provide open bibliographic and citation data.</p>
 <p>The OpenCitations project maintains a database of citation data, and provides an API.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <span class="n">collect_citations</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <a href="../generated/lisc.collect_citations.html#lisc.collect_citations" title="lisc.collect_citations" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_citations</span></a>
 </pre></div>
 </div>
 </div>
@@ -133,7 +138,7 @@ for articles from OpenCitations, whereby articles are specified by their DOIs.</
 <h2>Citation Data<a class="headerlink" href="#citation-data" title="Permalink to this headline">¶</a></h2>
 <p>Citations refers to articles that are cited by a specified article.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect citation data</span>
-<span class="n">citations</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="View documentation for lisc.data.MetaData"><span class="n">meta_data</span></a> <span class="o">=</span> <span class="n">collect_citations</span><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;citations&#39;</span><span class="p">)</span>
+<span class="n">citations</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">meta_data</span></a> <span class="o">=</span> <a href="../generated/lisc.collect_citations.html#lisc.collect_citations" title="lisc.collect_citations" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_citations</span></a><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;citations&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the number of citations per DOI</span>
@@ -151,7 +156,7 @@ for articles from OpenCitations, whereby articles are specified by their DOIs.</
 <h2>Reference Data<a class="headerlink" href="#reference-data" title="Permalink to this headline">¶</a></h2>
 <p>References refers to articles that are cited by a specified article.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect reference data</span>
-<span class="n">references</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="View documentation for lisc.data.MetaData"><span class="n">meta_data</span></a> <span class="o">=</span> <span class="n">collect_citations</span><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;references&#39;</span><span class="p">)</span>
+<span class="n">references</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">meta_data</span></a> <span class="o">=</span> <a href="../generated/lisc.collect_citations.html#lisc.collect_citations" title="lisc.collect_citations" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_citations</span></a><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;references&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the number of references per DOI</span>
@@ -174,12 +179,12 @@ articles that are cited and included in references.</p>
 <p>LISC is also very open to contributions. If you are interested in developing
 more LISC integration to help collect and analyze more citation related data,
 feel free to get involved with the project on <a class="reference external" href="https://github.com/lisc-tools/lisc">Github</a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.593 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.949 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-05-citations-py">
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cf28685dc3c67e93e863aaab0ed72dbb/plot_05-Citations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_05-Citations.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/0a423e0811d2cf950ad22f2cf187a060/plot_05-Citations.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_05-Citations.ipynb</span></code></a></p>
 </div>
 </div>
@@ -200,7 +205,7 @@ feel free to get involved with the project on <a class="reference external" href
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

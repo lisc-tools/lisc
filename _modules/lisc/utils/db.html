@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.utils.db &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 <meta charset='utf-8'>
@@ -102,7 +107,7 @@
              <span class="mi">2</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;data&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="s1">&#39;words&#39;</span><span class="p">]},</span>
              <span class="mi">3</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;words&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">]}}</span>
 
-<div class="viewcode-block" id="SCDB"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB">[docs]</a><span class="k">class</span> <span class="nc">SCDB</span><span class="p">():</span>
+<div class="viewcode-block" id="SCDB"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB">[docs]</a><span class="k">class</span> <span class="nc">SCDB</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Database object for a SCANR project.</span>
 
 <span class="sd">    Attributes</span>
@@ -126,7 +131,7 @@
 <span class="sd">            - summary       Summary files for words data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SCDB.__init__"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">generate_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
+<div class="viewcode-block" id="SCDB.__init__"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">generate_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a SCDB object.</span>
 
 <span class="sd">        Parameters</span>
@@ -146,7 +151,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">gen_paths</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SCDB.gen_paths"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.gen_paths">[docs]</a>    <span class="k">def</span> <span class="nf">gen_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
+<div class="viewcode-block" id="SCDB.gen_paths"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.gen_paths">[docs]</a>    <span class="k">def</span> <span class="nf">gen_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate all the full paths for the database object.</span>
 
 <span class="sd">        Parameters</span>
@@ -161,7 +166,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">upper</span><span class="p">],</span> <span class="n">label</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SCDB.get_folder_path"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.get_folder_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_folder_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
+<div class="viewcode-block" id="SCDB.get_folder_path"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_folder_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_folder_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the path to a folder in the directory.</span>
 
 <span class="sd">        Parameters</span>
@@ -181,7 +186,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">folder</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="SCDB.get_file_path"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.get_file_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SCDB.get_file_path"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_file_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a path to a file in a designated directory folder.</span>
 
 <span class="sd">        Parameters</span>
@@ -200,7 +205,7 @@
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="n">folder</span><span class="p">),</span> <span class="n">file_name</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SCDB.get_files"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.get_files">[docs]</a>    <span class="k">def</span> <span class="nf">get_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
+<div class="viewcode-block" id="SCDB.get_files"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_files">[docs]</a>    <span class="k">def</span> <span class="nf">get_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a list of available files in a folder in the database.</span>
 
 <span class="sd">        Parameters</span>
@@ -217,7 +222,7 @@
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="SCDB.check_file_structure"><a class="viewcode-back" href="../../../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB.check_file_structure">[docs]</a>    <span class="k">def</span> <span class="nf">check_file_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SCDB.check_file_structure"><a class="viewcode-back" href="../../../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.check_file_structure">[docs]</a>    <span class="k">def</span> <span class="nf">check_file_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check the file structure of the database.&quot;&quot;&quot;</span>
 
         <span class="n">check_file_structure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">])</span></div></div>
@@ -259,7 +264,7 @@
     <span class="k">return</span> <span class="n">path</span>
 
 
-<div class="viewcode-block" id="create_file_structure"><a class="viewcode-back" href="../../../generated/lisc.utils.db.create_file_structure.html#lisc.utils.db.create_file_structure">[docs]</a><span class="k">def</span> <span class="nf">create_file_structure</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
+<div class="viewcode-block" id="create_file_structure"><a class="viewcode-back" href="../../../generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure">[docs]</a><span class="k">def</span> <span class="nf">create_file_structure</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">STRUCTURE</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create the file structure for a SCANR database.</span>
 
 <span class="sd">    Parameters</span>
@@ -335,7 +340,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

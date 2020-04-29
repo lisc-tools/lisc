@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>lisc.collect.collect_words &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect_words &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -90,11 +95,11 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-collect-collect-words">
-<h1>lisc.collect.collect_words<a class="headerlink" href="#lisc-collect-collect-words" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="lisc.collect.collect_words">
-<code class="sig-prename descclassname">lisc.collect.</code><code class="sig-name descname">collect_words</code><span class="sig-paren">(</span><em class="sig-param">terms</em>, <em class="sig-param">inclusions=[]</em>, <em class="sig-param">exclusions=[]</em>, <em class="sig-param">db='pubmed'</em>, <em class="sig-param">retmax=None</em>, <em class="sig-param">field='TIAB'</em>, <em class="sig-param">usehistory=False</em>, <em class="sig-param">api_key=None</em>, <em class="sig-param">save_and_clear=False</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_words" title="Permalink to this definition">¶</a></dt>
+  <div class="section" id="lisc-collect-words">
+<h1>lisc.collect_words<a class="headerlink" href="#lisc-collect-words" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="lisc.collect_words">
+<code class="sig-prename descclassname">lisc.</code><code class="sig-name descname">collect_words</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">terms</span></em>, <em class="sig-param"><span class="n">inclusions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">'pubmed'</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">'TIAB'</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">save_and_clear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect_words" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect text data and metadata from EUtils using specified search term(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -142,6 +147,13 @@ the articles found for that term.</p>
 using the hierarchical tag structure that organizes the articles.</p>
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-collect-words">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.collect_words</span></code><a class="headerlink" href="#examples-using-lisc-collect-words" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Collect article text data and metadata, using a function oriented approach."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_functions_words_thumb.png" src="../_images/sphx_glr_plot_functions_words_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_words.html#sphx-glr-auto-examples-plot-functions-words-py"><span class="std std-ref">Words with Functions</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -157,7 +169,7 @@ using the hierarchical tag structure that organizes the articles.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.urls.EUtils &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,9 +97,9 @@
       
   <div class="section" id="lisc-urls-eutils">
 <h1>lisc.urls.EUtils<a class="headerlink" href="#lisc-urls-eutils" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="lisc.urls.EUtils">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.urls.</code><code class="sig-name descname">EUtils</code><span class="sig-paren">(</span><em class="sig-param">db=None</em>, <em class="sig-param">retmax=None</em>, <em class="sig-param">field=None</em>, <em class="sig-param">retmode=None</em>, <em class="sig-param">usehistory='n'</em>, <em class="sig-param">api_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.urls.</code><code class="sig-name descname">EUtils</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for the NCBI EUtils API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -112,9 +117,9 @@
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.EUtils.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">db=None</em>, <em class="sig-param">retmax=None</em>, <em class="sig-param">field=None</em>, <em class="sig-param">retmode=None</em>, <em class="sig-param">usehistory='n'</em>, <em class="sig-param">api_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the NCBI EUtils URLs, with provided settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -149,23 +154,23 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.authenticate" title="lisc.urls.EUtils.authenticate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authenticate</span></code></a>(self, url)</p></td>
 <td><p>Authenticate a URL for the EUtils API.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_url</span></code>(self, util[, segments, settings])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.build_url" title="lisc.urls.EUtils.build_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_url</span></code></a>(self, util[, segments, settings])</p></td>
 <td><p>Build the URL for a specified utility, with provided settings.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_url</span></code>(self, util)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.check_url" title="lisc.urls.EUtils.check_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_url</span></code></a>(self, util)</p></td>
 <td><p>Check the built URL for a specified utility.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_settings</span></code>(self, \*\*kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.fill_settings" title="lisc.urls.EUtils.fill_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_settings</span></code></a>(self, \*\*kwargs)</p></td>
 <td><p>Put all provided settings values into a dictionary object.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code>(self, util[, segments, settings])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.get_url" title="lisc.urls.EUtils.get_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code></a>(self, util[, segments, settings])</p></td>
 <td><p>Get a requested URL, with any additional segments or settings.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.urls.EUtils.authenticate">
-<code class="sig-name descname">authenticate</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.authenticate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">authenticate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.authenticate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Authenticate a URL for the EUtils API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -183,8 +188,90 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="lisc.urls.EUtils.build_url">
+<code class="sig-name descname">build_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.build_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the URL for a specified utility, with provided settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to build the URL for.</p>
+</dd>
+<dt><strong>segments</strong><span class="classifier">list of str</span></dt><dd><p>Segments to add to the URL.</p>
+</dd>
+<dt><strong>settings</strong><span class="classifier">dict or list of str</span></dt><dd><p>Settings to use to build the URL.
+If list, the settings values are taken from the objects settings attribute.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="lisc.urls.EUtils.check_url">
+<code class="sig-name descname">check_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.check_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the built URL for a specified utility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to check the URL for.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.urls.EUtils.fill_settings">
+<code class="sig-name descname">fill_settings</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.fill_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put all provided settings values into a dictionary object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments for all settings, with their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Potential parameters to this function include all the possible settings for the given API.</p>
+<p>Any possible setting that is provided a value as an input to this function is
+saved out to the dictionary of collected and available settings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.urls.EUtils.get_url">
+<code class="sig-name descname">get_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.get_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a requested URL, with any additional segments or settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to get the URL for.</p>
+</dd>
+<dt><strong>segments</strong><span class="classifier">list of str, optional</span></dt><dd><p>Any additional segments to add to the URL.</p>
+</dd>
+<dt><strong>settings</strong><span class="classifier">dict, optional</span></dt><dd><p>Any additional settings to add to the URL.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>full_url</strong><span class="classifier">str</span></dt><dd><p>The requested URL, with any extra segments and settings added.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="examples-using-lisc-urls-eutils">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.urls.EUtils</span></code><a class="headerlink" href="#examples-using-lisc-urls-eutils" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Exploring LISC utilities for managing URLs and requests."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_requester_urls_thumb.png" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_requester_urls.html#sphx-glr-auto-examples-plot-requester-urls-py"><span class="std std-ref">URLs and Requests</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
 </div>
 
 
@@ -200,7 +287,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

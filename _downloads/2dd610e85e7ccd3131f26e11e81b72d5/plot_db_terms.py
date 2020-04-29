@@ -7,7 +7,7 @@ Exploring the LISC database and using files of terms.
 
 ###################################################################################################
 
-from lisc.utils.db import SCDB, create_file_structure
+from lisc.utils.db import create_file_structure
 
 ###################################################################################################
 # SCDB Database Structure
@@ -18,9 +18,11 @@ from lisc.utils.db import SCDB, create_file_structure
 # If you want to store terms in files, place those files into a LISC database structure,
 # and then relevant functions and objects will be able to load and use these terms.
 #
-# You can create a :func:`~lisc.utils.db.create_file_structure`.
+# LISC also uses a database object, :class:`~.SCDB`, to manage these databases.
 #
-# LISC also uses a database object, :class:`~lisc.utils.db.SCDB`, to manage these databases.
+# You can create a database structure using the :func:`~.create_file_structure` function.
+# When you call this function, a :class:`~.SCDB` object is returned, that describes
+# the built database structure.
 #
 
 ###################################################################################################
@@ -87,9 +89,9 @@ with open(db.get_file_path('terms', 'terms.txt'), 'r') as term_file:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #
 # Text files of Terms can be loaded and used with LISC objects, such as
-# :class:`~lisc.objects.Counts` and :class:`~lisc.objects.Words`.
+# :class:`~.Counts` and :class:`~.Words`.
 #
-# For a general example, here we will use the underlying :class:`~lisc.objects.base.Base` object.
+# For a general example, here we will use the underlying :class:`~.Base` object.
 #
 
 ###################################################################################################

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.objects.base.Base &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,7 +97,7 @@
       
   <div class="section" id="lisc-objects-base-base">
 <h1>lisc.objects.base.Base<a class="headerlink" href="#lisc-objects-base-base" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="lisc.objects.base.Base">
 <em class="property">class </em><code class="sig-prename descclassname">lisc.objects.base.</code><code class="sig-name descname">Base</code><a class="reference internal" href="../_modules/lisc/objects/base.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class for the base object for LISC collections &amp; analyses.</p>
@@ -114,9 +119,9 @@
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.objects.base.Base.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize Base() object.</p>
 </dd></dl>
 
@@ -162,9 +167,9 @@
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.objects.base.Base.add_terms">
-<code class="sig-name descname">add_terms</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">terms</em>, <em class="sig-param">term_type='terms'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.add_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.add_terms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_terms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">terms</span></em>, <em class="sig-param"><span class="n">term_type</span><span class="o">=</span><span class="default_value">'terms'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.add_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.add_terms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the given list of strings as terms to use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -178,9 +183,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.objects.base.Base.add_terms_file">
-<code class="sig-name descname">add_terms_file</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">f_name</em>, <em class="sig-param">term_type='terms'</em>, <em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.add_terms_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.add_terms_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_terms_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">f_name</span></em>, <em class="sig-param"><span class="n">term_type</span><span class="o">=</span><span class="default_value">'terms'</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.add_terms_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.add_terms_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load terms from a text file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -196,9 +201,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.objects.base.Base.check_terms">
-<code class="sig-name descname">check_terms</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">term_type='terms'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.check_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.check_terms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_terms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">term_type</span><span class="o">=</span><span class="default_value">'terms'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.check_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.check_terms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out the current list of terms.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -210,9 +215,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="lisc.objects.base.Base.unload_terms">
-<code class="sig-name descname">unload_terms</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">term_type='terms'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.unload_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.unload_terms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">unload_terms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">term_type</span><span class="o">=</span><span class="default_value">'terms'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/base.html#Base.unload_terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.objects.base.Base.unload_terms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unload the current set of terms.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -226,6 +231,21 @@
 
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-objects-base-base">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.objects.base.Base</span></code><a class="headerlink" href="#examples-using-lisc-objects-base-base" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Exploring the LISC database and using files of terms."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_db_terms_thumb.png" src="../_images/sphx_glr_plot_db_terms_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_db_terms.html#sphx-glr-auto-examples-plot-db-terms-py"><span class="std std-ref">Database and Terms Lists</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An overview of the LISC code organization and approach."><div class="figure align-default" id="id2">
+<img alt="../_images/sphx_glr_plot_00-Overview_thumb.png" src="../_images/sphx_glr_plot_00-Overview_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_00-Overview.html#sphx-glr-auto-tutorials-plot-00-overview-py"><span class="std std-ref">Tutorial 00: LISC Overview</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Collecting literature data, including text and metadata for specified search terms."><div class="figure align-default" id="id3">
+<img alt="../_images/sphx_glr_plot_03-WordsCollection_thumb.png" src="../_images/sphx_glr_plot_03-WordsCollection_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_03-WordsCollection.html#sphx-glr-auto-tutorials-plot-03-wordscollection-py"><span class="std std-ref">Tutorial 03: Words Collection</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div></div>
 </div>
 
 
@@ -241,7 +261,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.objects.words &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 <meta charset='utf-8'>
@@ -99,7 +104,7 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="Words"><a class="viewcode-back" href="../../../generated/lisc.objects.Words.html#lisc.objects.Words">[docs]</a><span class="k">class</span> <span class="nc">Words</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Words"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words">[docs]</a><span class="k">class</span> <span class="nc">Words</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class for collecting and analyzing words data for specified terms list(s).</span>
 
 <span class="sd">    Attributes</span>
@@ -112,7 +117,7 @@
 <span class="sd">        Meta data information about the data collection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Words.__init__"><a class="viewcode-back" href="../../../generated/lisc.objects.Words.html#lisc.objects.Words.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Words.__init__"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize LISC Words object.&quot;&quot;&quot;</span>
 
         <span class="n">Base</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -151,7 +156,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Words.add_results"><a class="viewcode-back" href="../../../generated/lisc.objects.Words.html#lisc.objects.Words.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_result</span><span class="p">):</span>
+<div class="viewcode-block" id="Words.add_results"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_result</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new results object.</span>
 
 <span class="sd">        Parameters</span>
@@ -163,7 +168,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Words.run_collection"><a class="viewcode-back" href="../../../generated/lisc.objects.Words.html#lisc.objects.Words.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<div class="viewcode-block" id="Words.run_collection"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                        <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect words data.</span>
@@ -210,7 +215,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

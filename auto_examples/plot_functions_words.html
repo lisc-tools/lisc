@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Words with Functions &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,20 +97,20 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-words-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-words-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="words-with-functions">
 <span id="sphx-glr-auto-examples-plot-functions-words-py"></span><h1>Words with Functions<a class="headerlink" href="#words-with-functions" title="Permalink to this headline">¶</a></h1>
 <p>Collect article text data and metadata, using a function oriented approach.</p>
 <div class="section" id="function-approach-collect-words">
 <h2>Function Approach: collect_words<a class="headerlink" href="#function-approach-collect-words" title="Permalink to this headline">¶</a></h2>
-<p>The core function for collecting words data is the <a class="reference internal" href="../generated/lisc.collect.collect_words.html#lisc.collect.collect_words" title="lisc.collect.collect_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_words()</span></code></a> function.</p>
+<p>The function for collecting words data is <a class="reference internal" href="../generated/lisc.collect_words.html#lisc.collect_words" title="lisc.collect_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_words()</span></code></a>.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
-<p>The parameters for the <cite>collect_words</cite> function are the same as available and described
-in the <cite>Words</cite> tutorial.</p>
+<p>The parameters for the <a class="reference internal" href="../generated/lisc.collect_words.html#lisc.collect_words" title="lisc.collect_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_words()</span></code></a> function are the same as available and described
+in the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> tutorial.</p>
 <p>Here we will briefly explore collecting data directly using the function approach.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data</span>
-<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <span class="n">collect_words</span>
+<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <a href="../generated/lisc.collect_words.html#lisc.collect_words" title="lisc.collect_words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_words</span></a>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms to search for</span>
@@ -113,8 +118,8 @@ in the <cite>Words</cite> tutorial.</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data, setting the collection return data for at most 5 articles per term</span>
-<span class="n">results</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="View documentation for lisc.data.MetaData"><span class="n">meta_data</span></a> <span class="o">=</span> <span class="n">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                               <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">results</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">meta_data</span></a> <span class="o">=</span> <a href="../generated/lisc.collect_words.html#lisc.collect_words" title="lisc.collect_words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_words</span></a><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                   <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -123,11 +128,11 @@ Collecting data for:  body
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The meta data includes some information on the database from which data was collected</span>
-<a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="View documentation for lisc.data.MetaData"><span class="n">meta_data</span></a><span class="p">[</span><span class="s1">&#39;db_info&#39;</span><span class="p">]</span>
+<a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">meta_data</span></a><span class="p">[</span><span class="s1">&#39;db_info&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build200313-2212m.3&#39;, &#39;count&#39;: &#39;30763843&#39;, &#39;lastupdate&#39;: &#39;2020/03/14 15:15&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build200428-2207m.3&#39;, &#39;count&#39;: &#39;30932414&#39;, &#39;lastupdate&#39;: &#39;2020/04/29 15:31&#39;}
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function returns a list of Articles objects</span>
@@ -135,36 +140,36 @@ Collecting data for:  body
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x1a224d9f90&gt;, &lt;lisc.data.articles.Articles object at 0x1a224d9e10&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x1a1bb980d0&gt;, &lt;lisc.data.articles.Articles object at 0x1a1bb98250&gt;]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each `Articles` object holds the data for the collected articles for a given term</span>
-<a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">res1</span></a> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res1</span></a> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out some of the data</span>
-<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">res1</span></a><span class="o">.</span><span class="n">n_articles</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="View documentation for lisc.data.Articles"><span class="n">res1</span></a><span class="o">.</span><span class="n">titles</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res1</span></a><span class="o">.</span><span class="n">n_articles</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res1</span></a><span class="o">.</span><span class="n">titles</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
 
-Microvascular Effects of Echinodorus grandiflorus on Cardiovascular Disorders.
-Effects of case volume and comprehensive stroke center capabilities on patient outcomes of clipping and coiling for subarachnoid hemorrhage.
-Hospital volume-outcome relationship in severe traumatic brain injury: stratified analysis by level of trauma center.
-Response of the cerebral vasculature to systemic carbon monoxide administration - regional differences and sexual dimorphism.
-Selective exposure shapes the Facebook news diet.
+TNF-α-induced p53 activation induces apoptosis in neurological injury.
+The Hyperdense Middle Cerebral Artery Sign in Drip-and-Ship Models of Acute Stroke Management.
+Sporadic Creutzfeldt-Jakob Disease: A Retrospective Analysis of 104 Cases.
+Differential Effects of Electroconvulsive Therapy in the Treatment of Major Depressive Disorder.
+Nwd1 Regulates Neuronal Differentiation and Migration through Purinosome Formation in the Developing Cerebral Cortex.
 </pre></div>
 </div>
 <p>To further explore the data collected and available, and what can be accessed,
-check out the documentation for the <cite>Articles</cite> object, and what attributes it contains.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.661 seconds)</p>
+check out the documentation for the <a class="reference internal" href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Articles</span></code></a> object, and what attributes it contains.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.136 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5f10c9c5df213661cc6b3aadff25c189/plot_functions_words.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_words.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/c9dfe899cd7b441604df59d192ccbfb6/plot_functions_words.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_functions_words.ipynb</span></code></a></p>
 </div>
 </div>
@@ -185,7 +190,7 @@ check out the documentation for the <cite>Articles</cite> object, and what attri
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

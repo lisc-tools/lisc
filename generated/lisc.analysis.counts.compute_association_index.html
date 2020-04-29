@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>lisc.analysis.counts.compute_association_index &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,9 +97,9 @@
       
   <div class="section" id="lisc-analysis-counts-compute-association-index">
 <h1>lisc.analysis.counts.compute_association_index<a class="headerlink" href="#lisc-analysis-counts-compute-association-index" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="lisc.analysis.counts.compute_association_index">
-<code class="sig-prename descclassname">lisc.analysis.counts.</code><code class="sig-name descname">compute_association_index</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">counts_a</em>, <em class="sig-param">counts_b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/analysis/counts.html#compute_association_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.analysis.counts.compute_association_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.analysis.counts.</code><code class="sig-name descname">compute_association_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">counts_a</span></em>, <em class="sig-param"><span class="n">counts_b</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/analysis/counts.html#compute_association_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.analysis.counts.compute_association_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the association index from the co-occurrence data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -113,10 +118,17 @@
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>This computes a the Jaccard index, as AI_ij = <a href="#id1"><span class="problematic" id="id2">|c_ij N d_ij|</span></a> / <a href="#id3"><span class="problematic" id="id4">|c_ij U d_ij|</span></a></p>
-<p>The denominator, <a href="#id5"><span class="problematic" id="id6">|c_ij U d_ij|</span></a>, is equivalent to <a href="#id7"><span class="problematic" id="id8">|c_ij|</span></a> + <a href="#id9"><span class="problematic" id="id10">|d_ij|</span></a> - <a href="#id11"><span class="problematic" id="id12">|c_ij N d_ij|</span></a></p>
+<p>This computes a the Jaccard index, as AI_ij = <a href="#id2"><span class="problematic" id="id3">|c_ij N d_ij|</span></a> / <a href="#id4"><span class="problematic" id="id5">|c_ij U d_ij|</span></a></p>
+<p>The denominator, <a href="#id6"><span class="problematic" id="id7">|c_ij U d_ij|</span></a>, is equivalent to <a href="#id8"><span class="problematic" id="id9">|c_ij|</span></a> + <a href="#id10"><span class="problematic" id="id11">|d_ij|</span></a> - <a href="#id12"><span class="problematic" id="id13">|c_ij N d_ij|</span></a></p>
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-analysis-counts-compute-association-index">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.analysis.counts.compute_association_index</span></code><a class="headerlink" href="#examples-using-lisc-analysis-counts-compute-association-index" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurrence data, using a function oriented approach."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_functions_counts_thumb.png" src="../_images/sphx_glr_plot_functions_counts_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_counts.html#sphx-glr-auto-examples-plot-functions-counts-py"><span class="std std-ref">Counts with Functions</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -132,7 +144,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

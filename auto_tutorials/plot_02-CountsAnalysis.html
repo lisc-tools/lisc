@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Tutorial 02: Counts Analysis &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -92,7 +97,7 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-02-countsanalysis-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-02-countsanalysis-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="tutorial-02-counts-analysis">
 <span id="sphx-glr-auto-tutorials-plot-02-countsanalysis-py"></span><h1>Tutorial 02: Counts Analysis<a class="headerlink" href="#tutorial-02-counts-analysis" title="Permalink to this headline">¶</a></h1>
@@ -100,42 +105,42 @@
 <div class="section" id="counts-analyses">
 <h2>Counts Analyses<a class="headerlink" href="#counts-analyses" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial explores the built in utilities for exploring &amp; analyzing counts data.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">load_object</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class"><span class="n">SCDB</span></a>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <a href="../generated/lisc.utils.load_object.html#lisc.utils.load_object" title="lisc.utils.load_object" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">load_object</span></a>
 
-<span class="kn">from</span> <span class="nn">lisc.plts.counts</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.counts</span> <span class="k">import</span> <a href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_matrix</span></a><span class="p">,</span> <a href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_clustermap</span></a><span class="p">,</span> <a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the counts object from the last tutorial</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a> <span class="o">=</span> <a href="../generated/lisc.utils.load_object.html#lisc.utils.load_object" title="lisc.utils.load_object" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">load_object</span></a><span class="p">(</span><span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class"><span class="n">SCDB</span></a><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts" title="lisc.objects.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object has some helper methods to explore the collected data.</p>
+<p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object has some helper methods to explore the collected data.</p>
 <p>First lets check the number of counts per term list, which we can do with the
-<a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts.check_data" title="lisc.objects.Counts.check_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">check_data()</span></code></a> method.</p>
+<a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">check_data()</span></code></a> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the first set of terms</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_data</span></a><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         388
-For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1329
-For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         238
-For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         242
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         390
+For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1339
+For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         242
+For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         243
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the second set of terms</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_data</span></a><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         242
-For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1329
-For  &#39;somatosensory&#39;   the highest association is  &#39;parietal lobe&#39;   with         190
-For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          74
-For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          47
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         243
+For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1339
+For  &#39;somatosensory&#39;   the highest association is  &#39;parietal lobe&#39;   with         191
+For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          75
+For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          48
 For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with          10
-For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         206
+For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         207
 </pre></div>
 </div>
 </div>
@@ -153,25 +158,25 @@ that include particular co-occurrence patterns.</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a> is a standard measure
 for measuring the similarity of samples, and is also available to compute and use.</p>
 <p>With the counts object, both of these measures are available, using the
-<a class="reference internal" href="../generated/lisc.objects.Counts.html#lisc.objects.Counts.compute_score" title="lisc.objects.Counts.compute_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_score()</span></code></a> method. You can indicate which kind of score
+<a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_score()</span></code></a> method. You can indicate which kind of score
 - normalization or association index - as an input to the method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute a normalization of the co-occurrence data</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span><span class="p">(</span><span class="s1">&#39;normalize&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span></a><span class="p">(</span><span class="s1">&#39;normalize&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the computed normalization</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.08551019e-02 2.71727712e-02 9.52447650e-03 3.50164577e-03
-  1.12052665e-03 2.80131662e-04 1.14153652e-02]
- [7.07581227e-03 4.79783394e-02 6.78700361e-03 2.67148014e-03
-  1.69675090e-03 7.22021661e-05 7.43682310e-03]
- [1.74558587e-02 4.77528090e-02 3.81219904e-02 1.60513644e-03
-  1.40449438e-03 2.00642055e-03 2.34751204e-02]
- [6.45850013e-02 2.37523352e-02 9.87456632e-03 1.33440085e-03
-  0.00000000e+00 0.00000000e+00 1.73472111e-02]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.09461061e-02 2.71909642e-02 9.48197727e-03 3.55574148e-03
+  1.18524716e-03 2.78881684e-04 1.15735899e-02]
+ [7.03593352e-03 4.80669132e-02 6.74875256e-03 2.69232150e-03
+  1.72308576e-03 7.17952400e-05 7.43080734e-03]
+ [1.73341303e-02 4.82167763e-02 3.80553895e-02 1.59394302e-03
+  1.59394302e-03 1.99242877e-03 2.37099024e-02]
+ [6.44220573e-02 2.43902439e-02 1.00742312e-02 1.32555673e-03
+  0.00000000e+00 0.00000000e+00 1.74973489e-02]]
 </pre></div>
 </div>
 <p>The normalization is the number of articles with both terms, divided by the number of
@@ -182,22 +187,22 @@ terms to normalize by. That is controlled by the ‘dim’ input.</p>
 <p>In this case, we have calculated the normalized data as the proportion of
 articles for each anatomical term that include each perception term.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span><span class="p">(</span><span class="s1">&#39;association&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span></a><span class="p">(</span><span class="s1">&#39;association&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the computed score</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.17810697e-03 3.39048218e-03 3.12449744e-03 1.81507968e-03
-  3.66426199e-04 2.08594076e-04 2.59322072e-04]
- [1.35221840e-03 1.04713279e-02 3.30427447e-03 1.80734662e-03
-  8.23766541e-04 6.13515752e-05 3.20902265e-04]
- [7.11132908e-04 2.26035919e-03 5.55913161e-03 4.37301848e-04
-  2.03612671e-04 1.01265823e-03 1.88919012e-04]
- [2.00085987e-03 8.54085696e-04 1.11802744e-03 2.93083236e-04
-  0.00000000e+00 0.00000000e+00 1.05156214e-04]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.18360147e-03 3.39000730e-03 3.10935321e-03 1.83492840e-03
+  3.86179324e-04 2.07501167e-04 2.62039202e-04]
+ [1.34135408e-03 1.04929903e-02 3.28665583e-03 1.81668443e-03
+  8.34724541e-04 6.09886256e-05 3.19954990e-04]
+ [7.05070021e-04 2.28586542e-03 5.55878929e-03 4.32128774e-04
+  2.30507693e-04 1.00532824e-03 1.90639138e-04]
+ [1.99198288e-03 8.78105583e-04 1.14230746e-03 2.89536163e-04
+  0.00000000e+00 0.00000000e+00 1.05935264e-04]]
 </pre></div>
 </div>
 <p>The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.</p>
@@ -213,26 +218,26 @@ that attempt to find structure in the data.</p>
 <p>LISC also offers some common clustering approaches to sort and visualize
 collected co-occurrence data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a matrix of the association index data</span>
-<span class="n">plot_matrix</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+<a href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_matrix</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">,</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_02-CountsAnalysis_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_02-CountsAnalysis_001.png" />
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a clustermap of the association index data</span>
-<span class="n">plot_clustermap</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+<a href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_clustermap</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">,</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_02-CountsAnalysis_002.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_02-CountsAnalysis_002.png" />
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a dendrogram, to cluster the terms</span>
-<span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+<a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">,</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.488 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.621 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-countsanalysis-py">
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/88dcbf3a23aef83ace374f0ad835aad6/plot_02-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-CountsAnalysis.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/0057b85351538481bdeb666849fc1555/plot_02-CountsAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_02-CountsAnalysis.ipynb</span></code></a></p>
 </div>
 </div>
@@ -253,7 +258,7 @@ collected co-occurrence data.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>

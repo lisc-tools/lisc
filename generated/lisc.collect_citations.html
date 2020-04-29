@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>lisc.collect.collect_info &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect_citations &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -90,18 +95,22 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-collect-collect-info">
-<h1>lisc.collect.collect_info<a class="headerlink" href="#lisc-collect-collect-info" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="lisc.collect.collect_info">
-<code class="sig-prename descclassname">lisc.collect.</code><code class="sig-name descname">collect_info</code><span class="sig-paren">(</span><em class="sig-param">db='pubmed'</em>, <em class="sig-param">api_key=None</em>, <em class="sig-param">logging=None</em>, <em class="sig-param">directory=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/info.html#collect_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect.collect_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collect database information &amp; metadata from EUtils.</p>
+  <div class="section" id="lisc-collect-citations">
+<h1>lisc.collect_citations<a class="headerlink" href="#lisc-collect-citations" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="lisc.collect_citations">
+<code class="sig-prename descclassname">lisc.</code><code class="sig-name descname">collect_citations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dois</span></em>, <em class="sig-param"><span class="n">util</span><span class="o">=</span><span class="default_value">'citations'</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/citations.html#collect_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect_citations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect citation data from OpenCitations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
+<dt><strong>dois</strong><span class="classifier">list of str</span></dt><dd><p>DOIs to collect citation data for.</p>
 </dd>
-<dt><strong>api_key</strong><span class="classifier">str, optional</span></dt><dd><p>An API key for a NCBI account.</p>
+<dt><strong>util</strong><span class="classifier">{‘citations’, ‘references’}</span></dt><dd><p>Which utility to collect citation data with. Options:</p>
+<ul class="simple">
+<li><p>‘citations’: collects the number of citations citing the specified DOI.</p></li>
+<li><p>‘references’: collects the number of references cited by the specified DOI.</p></li>
+</ul>
 </dd>
 <dt><strong>logging</strong><span class="classifier">{None, ‘print’, ‘store’, ‘file’}, optional</span></dt><dd><p>What kind of logging, if any, to do for requested URLs.</p>
 </dd>
@@ -113,6 +122,8 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
+<dt><strong>citations</strong><span class="classifier">dict</span></dt><dd><p>The number of citations for each DOI.</p>
+</dd>
 <dt><strong>meta_data</strong><span class="classifier">MetaData object</span></dt><dd><p>Meta data about the data collection.</p>
 </dd>
 </dl>
@@ -120,6 +131,13 @@
 </dl>
 </dd></dl>
 
+<div class="section" id="examples-using-lisc-collect-citations">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.collect_citations</span></code><a class="headerlink" href="#examples-using-lisc-collect-citations" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Collecting citation data from OpenCitations."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_05-Citations_thumb.png" src="../_images/sphx_glr_plot_05-Citations_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_05-Citations.html#sphx-glr-auto-tutorials-plot-05-citations-py"><span class="std std-ref">Tutorial 05: Collecting Citation Data</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -135,7 +153,7 @@
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
     </p>
   </div>
 </footer>
