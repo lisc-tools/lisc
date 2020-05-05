@@ -76,7 +76,7 @@ class Counts():
             Which set of terms to operate upon.
         """
 
-        self.terms[dim].add_terms_file(f_name, directory, term_type)
+        self.terms[dim].add_terms_file(f_name, term_type, directory)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
