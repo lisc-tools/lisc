@@ -239,9 +239,13 @@ class Counts():
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
-        if dim == 'A':
+        if dim == 'A' and len(self.score) != 0.0:
             self.counts = self.counts[keep_inds, :]
             self.score = self.score[keep_inds, :]
-        if dim == 'B':
+        elif dim == 'A' and len(self.score) == 0.0:
+            self.counts = self.counts[keep_inds, :]
+        if dim == 'B' and len(self.score) != 0.0:
             self.counts = self.counts[:, keep_inds]
             self.score = self.score[:, keep_inds]
+        elif dim == 'B' and len(self.score) == 0.0:
+            self.counts = self.counts[:, keep_inds]
