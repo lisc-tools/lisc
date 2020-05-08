@@ -66,9 +66,9 @@ def compute_association_index(data, counts_a, counts_b):
 
     Notes
     -----
-    This computes a the Jaccard index, as `AI_ij = |c_ij N d_ij| / |c_ij U d_ij|`
+    This computes a the Jaccard index, as :math:`AI_ij = |c_ij N d_ij| / |c_ij U d_ij|`
 
-    The denominator, `|c_ij U d_ij|`, is equivalent to `|c_ij| + |d_ij| - |c_ij N d_ij|`
+    The denominator, :math:`|c_ij U d_ij|`, is equivalent to :math:`|c_ij| + |d_ij| - |c_ij N d_ij|`
     """
 
     n_a = len(counts_a)
