@@ -17,6 +17,10 @@ printf "\n\n\n RUN TESTS & TEST COVERAGE: \n"
 coverage run --source lisc  -m py.test
 coverage report
 
+# Check doctests - runs doctests with pytest, skipping normal tests
+printf "\n\n\nCHECK DOCTEST EXAMPLES: \n"
+pytest --doctest-modules --ignore=lisc/tests --ignore=lisc/data/utils.py lisc
+
 # Run pylint and print summary
 printf "\n\n\n RUN PYLINT ACROSS MODULE: \n"
 pylint lisc --ignore tests -> _lint.txt
