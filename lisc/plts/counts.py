@@ -39,6 +39,16 @@ def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
     Notes
     -----
     This function is a wrapper of the seaborn `heatmap` plot function.
+
+    Examples
+    --------
+    Plot a matrix of association scores:
+
+    >>> from lisc.utils import load_object, SCDB
+    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+    >>> counts.compute_score('association')
+    >>> plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
+
     """
 
     if isinstance(cmap, str):
@@ -68,6 +78,16 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
     Notes
     -----
     This function is a wrapper of the seaborn `clustermap` plot function.
+
+    Examples
+    --------
+    Plot a clustermap of association scores:
+
+    >>> from lisc.utils import load_object, SCDB
+    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+    >>> counts.compute_score('association')
+    >>> plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
+
     """
 
     sns.set()
@@ -102,6 +122,16 @@ def plot_dendrogram(data, labels=None, ax=None):
     Notes
     -----
     This function is a wrapper of the scipy `dendrogram` plot function.
+
+    Examples
+    --------
+    Plot a dendrogram of association scores:
+
+    >>> from lisc.utils import load_object, SCDB
+    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+    >>> counts.compute_score('association')
+    >>> plot_dendrogram(counts.score, counts.terms['B'].labels)
+
     """
 
     linkage_data = hier.linkage(data, method='complete', metric='cosine')

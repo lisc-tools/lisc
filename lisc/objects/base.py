@@ -60,6 +60,15 @@ class Base():
             List of terms to be used.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
+
+        Examples
+        --------
+        Add terms from a list:
+
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> base = Base()
+        >>> base.add_terms(terms)
+
         """
 
         self.unload_terms(term_type)
@@ -79,6 +88,19 @@ class Base():
             Which type of terms to use.
         directory : SCDB or str or None, optional
             Folder or database object specifying the file location.
+
+        Examples
+        --------
+        Load terms from a temporary text file:
+
+        >>> from tempfile import NamedTemporaryFile
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> with NamedTemporaryFile(suffix='.txt', mode='w+') as file: # doctest: +SKIP
+        ...     [file.write(term + '\\n') for term in terms]
+        ...     file.seek(0)
+        ...     base = Base()
+        ...     base.add_terms_file(file.name)
+
         """
 
         terms = load_terms_file(f_name, directory)
@@ -92,6 +114,22 @@ class Base():
         ----------
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
+
+        Examples
+        --------
+        Check added terms:
+
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> base = Base()
+        >>> base.add_terms(terms)
+        >>> base.check_terms() #doctest: +NORMALIZE_WHITESPACE
+        List of terms used:
+        <BLANKLINE>
+        frontal lobe    : frontal lobe
+        temporal lobe   : temporal lobe
+        parietal lobe   : parietal lobe
+        occipital lobe  : occipital lobe
+
         """
 
         print('List of {} used: \n'.format(term_type))
@@ -108,6 +146,17 @@ class Base():
         ----------
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to use.
+
+        Examples
+        --------
+        Unload terms:
+
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> base = Base()
+        >>> base.add_terms(terms)
+        >>> base.unload_terms()
+        Unloading previous terms words.
+
         """
 
         if getattr(self, term_type):

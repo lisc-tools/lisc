@@ -25,6 +25,17 @@ def compute_normalization(data, counts, dim='A'):
     Notes
     -----
     This computes a normalized data matrix as a percent of articles expressing co-occurrence.
+
+    Examples
+    --------
+    Compute normalized co-occurrences between two lists of terms:
+
+    >>> from lisc.collect import collect_counts
+    >>> terms_a = [['frontal lobe'], ['parietal lobe']]
+    >>> terms_b = [['decision making'], ['sensory']]
+    >>> coocs, counts, meta_dat = collect_counts(terms_a=terms_a, terms_b=terms_b, db='pubmed')
+    >>> normed_coocs = compute_normalization(coocs, counts[0])
+
     """
 
     if dim == 'A':
@@ -69,6 +80,17 @@ def compute_association_index(data, counts_a, counts_b):
     This computes a the Jaccard index, as :math:`AI_ij = |c_ij N d_ij| / |c_ij U d_ij|`
 
     The denominator, :math:`|c_ij U d_ij|`, is equivalent to :math:`|c_ij| + |d_ij| - |c_ij N d_ij|`
+
+    Examples
+    --------
+    Compute the association index between two lists of terms:
+
+    >>> from lisc.collect import collect_counts
+    >>> terms_a = [['frontal lobe'], ['parietal lobe']]
+    >>> terms_b = [['decision making'], ['sensory']]
+    >>> coocs, counts, meta_dat = collect_counts(terms_a=terms_a, terms_b=terms_b, db='pubmed')
+    >>> index = compute_association_index(coocs, counts[0], counts[1])
+
     """
 
     n_a = len(counts_a)

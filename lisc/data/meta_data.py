@@ -51,6 +51,15 @@ class MetaData():
         ----------
         requester : Requester
             The object used to launch URL requests.
+
+        Examples
+        --------
+        Add a requester:
+
+        >>> from lisc.requester import Requester
+        >>> meta_data = MetaData()
+        >>> meta_data.add_requester(Requester())
+
         """
 
         requester.close()
@@ -71,6 +80,17 @@ class MetaData():
         ----------
         db_info : dict
             Information about the database from which the data was collected.
+
+        Examples
+        --------
+        Add database info from pubmed:
+
+        >>> from lisc.requester import Requester
+        >>> from lisc.collect.info import get_db_info
+        >>> url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=pubmed'
+        >>> meta_data = MetaData()
+        >>> meta_data.add_db_info(get_db_info(Requester(), url))
+
         """
 
         self.db_info = db_info

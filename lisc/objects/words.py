@@ -69,6 +69,19 @@ class Words(Base):
         ----------
         new_result : Articles
             Object with collected data for a specified term.
+
+        Examples
+        --------
+        Copy results from one object to another:
+
+        >>> terms = [['brain'], ['body']]
+        >>> words = Words()
+        >>> words.add_terms(terms)
+        >>> words.run_collection(retmax='5')
+        >>> words_new = Words()
+        >>> for result in words.results:
+        ...     words_new.add_results(result)
+
         """
 
         self.results.append(new_result)
@@ -100,6 +113,16 @@ class Words(Base):
             Folder or database object specifying the save location for any outputs.
         verbose : bool, optional, default: False
             Whether to print out updates.
+
+        Examples
+        --------
+        Collect words data for five articles with the following terms:
+
+        >>> terms = [['brain'], ['body']]
+        >>> words = Words()
+        >>> words.add_terms(terms)
+        >>> words.run_collection(retmax='5')
+
         """
 
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,

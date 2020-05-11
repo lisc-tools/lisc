@@ -63,6 +63,14 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
 
     The HTML page returned by the EUtils search includes a 'count' field.
     This field contains the number of articles with both terms. This is extracted.
+
+    Examples
+    --------
+    Collect counts, co-occurrences, and metadata for two terms:
+
+    >>> terms = ['frontal lobe', 'temporal lobe']
+    >>> co_occurences, counts, meta_data = collect_counts(terms)
+
     """
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts

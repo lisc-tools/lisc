@@ -37,6 +37,14 @@ class URLs():
             Utilities for the utility, a dictionary with names and URL extensions.
         authenticated : bool, optional
             Whether acting as an authenticated user for the API.
+
+        Examples
+        --------
+        Initialize a URLs object with the Github API:
+
+        >>> base_path = 'https://api.github.com'
+        >>> urls = URLs(base_path, {'search_repos': "search/repositories"})
+
         """
 
         self.base = base
@@ -54,6 +62,18 @@ class URLs():
         ----------
         util : str
             Which utility to check the URL for.
+
+        Examples
+        --------
+        Check the url built for a Github repository search:
+
+        >>> base_path = 'https://api.github.com'
+        >>> urls = URLs(base_path, {'search_repos': "search/repositories"})
+        >>> urls.fill_settings(q='lisc', sort='stars', order='desc')
+        >>> urls.build_url('search_repos', settings=['q', 'sort', 'order'])
+        >>> urls.check_url('search_repos')
+        https://api.github.com/search/repositories?q=lisc&sort=stars&order=desc
+
         """
 
         self._check_util(util)
@@ -74,6 +94,15 @@ class URLs():
 
         Any possible setting that is provided a value as an input to this function is
         saved out to the dictionary of collected and available settings.
+
+        Examples
+        --------
+        Provide settings to set the query, sort, and order of a Github search:
+
+        >>> base_path = 'https://api.github.com'
+        >>> urls = URLs(base_path, {'search_repos': "search/repositories"})
+        >>> urls.fill_settings(q='lisc', sort='stars', order='desc')
+
         """
 
         self.settings = {ke: va for ke, va in kwargs.items() if va is not None}
@@ -116,6 +145,16 @@ class URLs():
         settings : dict or list of str, optional
             Settings to use to build the URL.
             If list, the settings values are taken from the objects settings attribute.
+
+        Examples
+        --------
+        Build the URL for the a Github repository search:
+
+        >>> base_path = 'https://api.github.com'
+        >>> urls = URLs(base_path, {'search_repos': "search/repositories"})
+        >>> urls.fill_settings(q='lisc', sort='stars', order='desc')
+        >>> urls.build_url('search_repos', settings=['q', 'sort', 'order'])
+
         """
 
         self._check_util(util)
@@ -150,6 +189,18 @@ class URLs():
         -------
         full_url : str
             The requested URL, with any extra segments and settings added.
+
+        Examples
+        --------
+        Get the url built for a Github repository search:
+
+        >>> base_path = 'https://api.github.com'
+        >>> urls = URLs(base_path, {'search_repos': "search/repositories"})
+        >>> urls.fill_settings(q='lisc', sort='stars', order='desc')
+        >>> urls.build_url('search_repos', settings=['q', 'sort', 'order'])
+        >>> urls.get_url('search_repos')
+        'https://api.github.com/search/repositories?q=lisc&sort=stars&order=desc'
+
         """
 
         if not util in self.utils.keys():

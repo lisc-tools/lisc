@@ -48,6 +48,13 @@ class Articles(BaseArticles):
         ----------
         term : Term or str
             Search term definition. If input is a string, it is used as the label for the term.
+
+        Examples
+        --------
+        Intialize an Articles object with a search term:
+
+        >>> articles = Articles('frontal lobe')
+
         """
 
         # Inherit from the BaseArticles object
@@ -79,6 +86,14 @@ class Articles(BaseArticles):
             The attribute of the object to add data to.
         new_data : str or int or list
             Data to add to object.
+
+        Examples
+        --------
+        Add a journal to an articles object:
+
+        >>> articles = Articles('frontal lobe')
+        >>> articles.add_data('journals', 'Nature')
+
         """
 
         getattr(self, field).append(new_data)
@@ -91,6 +106,18 @@ class Articles(BaseArticles):
         ----------
         directory : str or SCDB, optional
             Folder or database object specifying the save location.
+
+        Examples
+        --------
+        Save articles data to a temporary directory:
+
+        >>> from tempfile import TemporaryDirectory
+        >>> from lisc.utils import SCDB
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> with TemporaryDirectory() as dirpath:
+        ...     articles.save(directory=dirpath)
+
         """
 
         directory = check_directory(directory, 'raw')
@@ -110,6 +137,15 @@ class Articles(BaseArticles):
         ----------
         directory : str or SCDB, optional
             Folder or database object specifying the save location.
+
+        Examples
+        --------
+        Load articles data from a SCANR database:
+
+        >>> from lisc.utils import SCDB
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+
         """
 
         directory = check_directory(directory, 'raw')
@@ -138,6 +174,18 @@ class Articles(BaseArticles):
         ----------
         directory : str or SCDB, optional
             Folder or database object specifying the save location.
+
+        Examples
+        --------
+        Save and clear data from articles object:
+
+        >>> from tempfile import TemporaryDirectory
+        >>> from lisc.utils import SCDB
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> with TemporaryDirectory() as dirpath:
+        ...     articles.save_and_clear(directory=dirpath)
+
         """
 
         self.save(directory)

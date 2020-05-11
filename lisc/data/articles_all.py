@@ -55,6 +55,17 @@ class ArticlesAll(BaseArticles):
             Data for all articles from a given search term.
         exclusions : list of str, optional
             Words to exclude from the word collections.
+
+        Examples
+        --------
+        Initialize an ArticlesAll object from a SCANR database:
+
+        >>> from lisc.utils import SCDB
+        >>> from lisc.data import Articles
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> articles_all = ArticlesAll(articles)
+
         """
 
         # Inherit from the BaseArticles object
@@ -89,6 +100,19 @@ class ArticlesAll(BaseArticles):
             Which frequency distribution to check.
         n_check : int, optional, default: 20
             Number of most common items to print out.
+
+        Examples
+        --------
+        Print the most frequent words:
+
+        >>> from lisc.utils import SCDB
+        >>> from lisc.data import Articles
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> articles_all = ArticlesAll(articles)
+        >>> articles_all.check_frequencies(n_check=5)
+        frontal lobe : frontal , brain , lobe , patients , connectivity
+
         """
 
         if data_type in ['words', 'keywords']:
@@ -109,7 +133,20 @@ class ArticlesAll(BaseArticles):
 
 
     def create_summary(self):
-        """Fill the summary dictionary of the current terms Words data."""
+        """Fill the summary dictionary of the current terms Words data.
+
+        Examples
+        --------
+        Create a summary for a term's Words data:
+
+        >>> from lisc.utils import SCDB
+        >>> from lisc.data import Articles
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> articles_all = ArticlesAll(articles)
+        >>> articles_all.create_summary()
+
+        """
 
         # Add data to summary dictionary.
         self.summary['label'] = self.label
@@ -123,7 +160,29 @@ class ArticlesAll(BaseArticles):
 
 
     def print_summary(self):
-        """Print out a summary of the collected words data."""
+        """Print out a summary of the collected words data.
+
+        Examples
+        --------
+        Print a summary for a term's Words data:
+
+        >>> from lisc.utils import SCDB
+        >>> from lisc.data import Articles
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> articles_all = ArticlesAll(articles)
+        >>> articles_all.create_summary()
+        >>> articles_all.print_summary() #doctest: +NORMALIZE_WHITESPACE
+        frontal lobe :
+          Number of articles:       14
+          First publication:        2020
+          Most common author:       Zhao X
+           number of publications:  2
+          Most common journal:      Human brain mapping
+           number of publications:  2
+        <BLANKLINE>
+
+        """
 
         # Print out summary information
         print(self.summary['label'], ':')
@@ -142,6 +201,21 @@ class ArticlesAll(BaseArticles):
         ----------
         directory : str or SCDB or None, optional
             Folder or database object specifying the save location.
+
+        Examples
+        --------
+        Save a summary for a term's Words data:
+
+        >>> from tempfile import TemporaryDirectory
+        >>> from lisc.utils import SCDB
+        >>> from lisc.data import Articles
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> articles_all = ArticlesAll(articles)
+        >>> articles_all.create_summary()
+        >>> with TemporaryDirectory() as dirpath:
+        ...     articles_all.save_summary(directory=dirpath)
+
         """
 
         directory = check_directory(directory, 'summary')
@@ -165,6 +239,19 @@ class ArticlesAll(BaseArticles):
         -------
         freqs : nltk.FreqDist
             Frequency distribution of the words.
+
+        Examples
+        --------
+        Compute the frequency distribution of words:
+
+        >>> from lisc.data.utils import convert_string, combine_lists
+        >>> from lisc.data import Articles
+        >>> from lisc.utils import SCDB
+        >>> articles = Articles('frontal lobe')
+        >>> articles.load(SCDB('tutorials/lisc_db'))
+        >>> words = [convert_string(words) for words in articles.words]
+        >>> words_freq = ArticlesAll.create_freq_dist(combine_lists(words), '')
+
         """
 
         freqs = nltk.FreqDist(in_lst)

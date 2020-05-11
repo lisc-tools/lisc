@@ -103,6 +103,13 @@ class EUtils(URLs):
             'n' indicates 'no', do not use history. 'y' indicates 'yes', to use history.
         api_key : str, optional
             An API key for authenticated NCBI user account.
+
+        Examples
+        --------
+        Initialze a URL EUtils object:
+
+        >>> urls = EUtils(db='pubmed', retmax=5)
+
         """
 
         base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils'

@@ -54,6 +54,15 @@ class Counts():
             Which type of terms are being added.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
+
+        Examples
+        --------
+        Add terms from a list:
+
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> counts = Counts()
+        >>> counts.add_terms(terms)
+
         """
 
         self.terms[dim].add_terms(terms, term_type)
@@ -74,6 +83,19 @@ class Counts():
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
+
+        Examples
+        --------
+        Load terms from a temporary text file:
+
+        >>> from tempfile import NamedTemporaryFile
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> with NamedTemporaryFile(suffix='.txt', mode='w+') as file: # doctest: +SKIP
+        ...     [file.write(term + '\\n') for term in terms]
+        ...     file.seek(0)
+        ...     counts = Counts()
+        ...     counts.add_terms_file(file.name)
+
         """
 
         self.terms[dim].add_terms_file(f_name, term_type, directory)
@@ -100,6 +122,16 @@ class Counts():
             Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.
+
+        Examples
+        -------
+        Collect co-occurrence data from added terms:
+
+        >>> terms = ['frontal lobe', 'temporal lobe']
+        >>> counts = Counts()
+        >>> counts.add_terms(terms)
+        >>> counts.run_collection()
+
         """
 
         # Run single list of terms against themselves, in 'square' mode
@@ -139,6 +171,15 @@ class Counts():
         dim : {'A', 'B'}, optional
             Which dimension of counts to use to normalize the co-occurrence data by.
             Only used if 'score' is 'normalize'.
+
+        Examples
+        --------
+        Compute association scores of co-occurrence data:
+
+        >>> from lisc.utils import load_object, SCDB
+        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+        >>> counts.compute_score()
+
         """
 
         if score_type == 'association':
@@ -164,6 +205,16 @@ class Counts():
         ----------
         dim : {'A', 'B'}, optional
             Which set of terms to check.
+
+        Examples
+        -------
+        Determine which term has the most articles:
+
+        >>> from lisc.utils import load_object, SCDB
+        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+        >>> counts.check_top()
+        The most studied term is  'temporal lobe'  with  27841  articles.
+
         """
 
         max_ind = np.argmax(self.terms[dim].counts)
@@ -179,6 +230,20 @@ class Counts():
         ----------
         dim : {'A', 'B'}, optional
             Which set of terms to check.
+
+        Examples
+        -------
+        Collect co-occurrence data from added terms:
+
+        >>> from lisc.utils import load_object, SCDB
+        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+        >>> counts.check_counts()
+        The number of documents found for each search term is:
+          'frontal lobe'     -   14339
+          'temporal lobe'    -   27841
+          'parietal lobe'    -    5018
+          'occipital lobe'   -    3771
+
         """
 
         print("The number of documents found for each search term is:")
@@ -198,6 +263,19 @@ class Counts():
             Which data type to use.
         dim : {'A', 'B'}, optional
             Which set of terms to check.
+
+        Examples
+        -------
+        Collect co-occurrence data from added terms:
+
+        >>> from lisc.utils import load_object, SCDB
+        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+        >>> counts.check_data()
+        For  'frontal lobe'    the highest association is  'audition'        with         390
+        For  'temporal lobe'   the highest association is  'audition'        with        1337
+        For  'parietal lobe'   the highest association is  'audition'        with         242
+        For  'occipital lobe'  the highest association is  'vision'          with         243
+
         """
 
         if data_type not in ['counts', 'score']:
@@ -232,6 +310,17 @@ class Counts():
             Minimum number of articles to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
+
+        Examples
+        --------
+        Drop terms with the fewest number of articles:
+
+        >>> import numpy as np
+        >>> from lisc.utils import load_object, SCDB
+        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+        >>> min_articles = np.amin(counts.terms['A'].counts)
+        >>> counts.drop_data(min_articles)
+
         """
 
         keep_inds = np.where(self.terms[dim].counts > n_articles)[0]

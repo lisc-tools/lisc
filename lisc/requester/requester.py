@@ -46,6 +46,13 @@ class Requester():
             What kind of logging, if any, to do for requested URLs.
         directory : SCDB or str or None, optional
             A string or object containing a file path.
+
+        Examples
+        --------
+        Initlaize a requester object:
+
+        >>> requester = Requester(wait_time=0.1)
+
         """
 
         self.is_active = bool()
@@ -87,6 +94,14 @@ class Requester():
         ----------
         wait_time : float
             Time, in seconds, to wait between launching URL requests.
+
+        Examples
+        --------
+        Set the wait time to 0.1 seconds:
+
+        >>> requester = Requester()
+        >>> requester.set_wait_time(0.1)
+
         """
 
         self.wait_time = wait_time
@@ -137,6 +152,13 @@ class Requester():
         -------
         out : requests.models.Response
             Object containing the requested web page.
+
+        Examples
+        --------
+        Request the LISC Github repository url:
+
+        >>> response = Requester().request_url('https://github.com/lisc-tools/lisc')
+
         """
 
         # Check if current object is active
