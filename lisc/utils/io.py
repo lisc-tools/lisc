@@ -42,6 +42,15 @@ def load_terms_file(f_name, directory=None):
     -------
     terms : list of list of str
         Data from the file.
+
+    Examples
+    --------
+    Load a Counts object:
+
+    >>> from tempfile import TemporaryDirectory
+    >>> from lisc.utils import SCDB
+    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+
     """
 
     terms_file = open(os.path.join(check_directory(directory, 'terms'),
@@ -63,6 +72,17 @@ def save_object(obj, f_name, directory=None):
         Name for the file to be saved out.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+
+    Examples
+    --------
+    Save a Counts object:
+
+    >>> from tempfile import TemporaryDirectory
+    >>> from lisc.utils import SCDB
+    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+    >>> with TemporaryDirectory() as dirpath:
+    ...     save_object(counts, 'counts_tmp.txt', directory=dirpath)
+
     """
 
     # Set the save path based on object type
