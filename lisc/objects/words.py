@@ -74,14 +74,12 @@ class Words(Base):
         --------
         Copy results from one object to another:
 
-        >>> terms = [['brain'], ['body']]
         >>> words = Words()
-        >>> words.add_terms(terms)
-        >>> words.run_collection(retmax='5')
+        >>> words.add_terms([['brain'], ['body']])
+        >>> words.run_collection(retmax='5') # doctest: +SKIP
         >>> words_new = Words()
         >>> for result in words.results:
         ...     words_new.add_results(result)
-
         """
 
         self.results.append(new_result)
@@ -118,11 +116,9 @@ class Words(Base):
         --------
         Collect words data for five articles with the following terms:
 
-        >>> terms = [['brain'], ['body']]
         >>> words = Words()
-        >>> words.add_terms(terms)
-        >>> words.run_collection(retmax='5')
-
+        >>> words.add_terms([['brain'], ['body']])
+        >>> words.run_collection(retmax='5') # doctest: +SKIP
         """
 
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,

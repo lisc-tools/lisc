@@ -68,9 +68,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     --------
     Collect counts, co-occurrences, and metadata for two terms:
 
-    >>> terms = ['frontal lobe', 'temporal lobe']
-    >>> co_occurences, counts, meta_data = collect_counts(terms)
-
+    >>> co_occurences, counts, meta_data = collect_counts(['frontal lobe', 'temporal lobe'])
     """
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts

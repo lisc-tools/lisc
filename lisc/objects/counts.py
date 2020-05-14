@@ -59,10 +59,8 @@ class Counts():
         --------
         Add terms from a list:
 
-        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
         >>> counts = Counts()
-        >>> counts.add_terms(terms)
-
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
         """
 
         self.terms[dim].add_terms(terms, term_type)
@@ -95,7 +93,6 @@ class Counts():
         ...     file.seek(0)
         ...     counts = Counts()
         ...     counts.add_terms_file(file.name)
-
         """
 
         self.terms[dim].add_terms_file(f_name, term_type, directory)
@@ -124,14 +121,12 @@ class Counts():
             Whether to print out updates.
 
         Examples
-        -------
+        --------
         Collect co-occurrence data from added terms:
 
-        >>> terms = ['frontal lobe', 'temporal lobe']
         >>> counts = Counts()
-        >>> counts.add_terms(terms)
-        >>> counts.run_collection()
-
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
         """
 
         # Run single list of terms against themselves, in 'square' mode
@@ -176,10 +171,17 @@ class Counts():
         --------
         Compute association scores of co-occurrence data:
 
-        >>> from lisc.utils import load_object, SCDB
-        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
-        >>> counts.compute_score()
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+        >>> counts.compute_score() # doctest: +SKIP
 
+        Plot the results as a matrix, clustermap, and dendrogram:
+
+        >>> from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram  # doctest:+SKIP
+        >>> plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
+        >>> plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
+        >>> plot_dendrogram(counts.score, counts.terms['B'].labels) # doctest:+SKIP
         """
 
         if score_type == 'association':
@@ -207,14 +209,13 @@ class Counts():
             Which set of terms to check.
 
         Examples
-        -------
+        --------
         Determine which term has the most articles:
 
-        >>> from lisc.utils import load_object, SCDB
-        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
-        >>> counts.check_top()
-        The most studied term is  'temporal lobe'  with  27841  articles.
-
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+        >>> counts.check_top() # doctest: +SKIP
         """
 
         max_ind = np.argmax(self.terms[dim].counts)
@@ -232,18 +233,13 @@ class Counts():
             Which set of terms to check.
 
         Examples
-        -------
-        Collect co-occurrence data from added terms:
+        --------
+        Print the number of articles found for each term:
 
-        >>> from lisc.utils import load_object, SCDB
-        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
-        >>> counts.check_counts()
-        The number of documents found for each search term is:
-          'frontal lobe'     -   14339
-          'temporal lobe'    -   27841
-          'parietal lobe'    -    5018
-          'occipital lobe'   -    3771
-
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+        >>> counts.check_counts() # doctest: +SKIP
         """
 
         print("The number of documents found for each search term is:")
@@ -265,17 +261,13 @@ class Counts():
             Which set of terms to check.
 
         Examples
-        -------
-        Collect co-occurrence data from added terms:
+        --------
+        Print the highest count for each term:
 
-        >>> from lisc.utils import load_object, SCDB
-        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
-        >>> counts.check_data()
-        For  'frontal lobe'    the highest association is  'audition'        with         390
-        For  'temporal lobe'   the highest association is  'audition'        with        1337
-        For  'parietal lobe'   the highest association is  'audition'        with         242
-        For  'occipital lobe'  the highest association is  'vision'          with         243
-
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+        >>> counts.check_data() # doctest: +SKIP
         """
 
         if data_type not in ['counts', 'score']:
@@ -313,14 +305,12 @@ class Counts():
 
         Examples
         --------
-        Drop terms with the fewest number of articles:
+        Drop terms with less than or equal to 20 article results:
 
-        >>> import numpy as np
-        >>> from lisc.utils import load_object, SCDB
-        >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
-        >>> min_articles = np.amin(counts.terms['A'].counts)
-        >>> counts.drop_data(min_articles)
-
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+        >>> counts.drop_data(20) # doctest: +SKIP
         """
 
         keep_inds = np.where(self.terms[dim].counts > n_articles)[0]

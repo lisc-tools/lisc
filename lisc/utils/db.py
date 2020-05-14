@@ -59,10 +59,9 @@ class SCDB():
 
         Examples
         --------
-        Intialize a SCDB object:
+        Intialize a ``SCDB`` object:
 
-        >>> db = SCDB('tutorials/lisc_db')
-
+        >>> db = SCDB('lisc_db')
         """
 
         # Create paths dictionary, and set base path for the project
@@ -84,11 +83,20 @@ class SCDB():
 
         Examples
         --------
-        Generate paths for the database object. Note that this is called during initialization:
+        Generate paths for a ``SCDB`` object:
 
-        >>> db = SCDB('tutorials/lisc_db')
+        >>> db = SCDB('lisc_db')
         >>> db.gen_paths()
-
+        >>> db.paths # doctest: +NORMALIZE_WHITESPACE
+        {'base': 'lisc_db',
+         'terms': 'lisc_db/terms',
+         'logs': 'lisc_db/logs',
+         'data': 'lisc_db/data',
+         'figures': 'lisc_db/figures',
+         'counts': 'lisc_db/data/counts',
+         'words': 'lisc_db/data/words',
+         'raw': 'lisc_db/data/words/raw',
+         'summary': 'lisc_db/data/words/summary'}
         """
 
         for level in structure:
@@ -112,12 +120,11 @@ class SCDB():
 
         Examples
         --------
-        Get the path to the folder containing counts data:
+        Get the path to the folder containing :class:`~.Counts` data:
 
-        >>> db = SCDB('tutorials/lisc_db')
+        >>> db = SCDB('lisc_db')
         >>> db.get_folder_path('counts')
-        'tutorials/lisc_db/data/counts'
-
+        'lisc_db/data/counts'
         """
 
         if folder not in self.paths.keys():
@@ -143,12 +150,11 @@ class SCDB():
 
         Examples
         --------
-        Get the path to the tutorial counts file:
+        Get the path to a :class:`~.Counts` file:
 
-        >>> db = SCDB('tutorials/lisc_db')
+        >>> db = SCDB('lisc_db')
         >>> db.get_file_path('counts', 'tutorial_counts.p')
-        'tutorials/lisc_db/data/counts/tutorial_counts.p'
-
+        'lisc_db/data/counts/tutorial_counts.p'
         """
 
         return os.path.join(self.get_folder_path(folder), file_name)
@@ -169,12 +175,10 @@ class SCDB():
 
         Examples
         --------
-        Get a list of raw words json files:
+        Get a list of raw json files:
 
-        >>> db = SCDB('tutorials/lisc_db')
-        >>> db.get_files('raw')
-        ['occipital lobe.json', 'temporal lobe.json', 'parietal lobe.json', 'frontal lobe.json']
-
+        >>> db = SCDB('lisc_db')
+        >>> db.get_files('raw') # doctest:+SKIP
         """
 
         return os.listdir(self.get_folder_path(folder))
@@ -240,7 +244,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     Examples
     --------
-    Create a temporary file stucture for a SCANR database:
+    Create a temporary file stucture for a :class:`~.SCDB` object:
 
     >>> import os
     >>> from tempfile import TemporaryDirectory
@@ -258,7 +262,6 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
     lisc_db/data/counts
     lisc_db/logs
     lisc_db/terms
-
     """
 
     if not base:

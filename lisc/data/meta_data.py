@@ -21,6 +21,7 @@ class MetaData():
     """
 
     def __init__(self):
+        """Initialize a MetaData object."""
 
         self.date = None
         self.requester = None
@@ -59,7 +60,6 @@ class MetaData():
         >>> from lisc.requester import Requester
         >>> meta_data = MetaData()
         >>> meta_data.add_requester(Requester())
-
         """
 
         requester.close()
@@ -90,7 +90,6 @@ class MetaData():
         >>> url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=pubmed'
         >>> meta_data = MetaData()
         >>> meta_data.add_db_info(get_db_info(Requester(), url))
-
         """
 
         self.db_info = db_info

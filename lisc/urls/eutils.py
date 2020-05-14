@@ -106,10 +106,9 @@ class EUtils(URLs):
 
         Examples
         --------
-        Initialze a URL EUtils object:
+        Initialize a ``EUtils`` URL object:
 
         >>> urls = EUtils(db='pubmed', retmax=5)
-
         """
 
         base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils'

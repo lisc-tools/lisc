@@ -45,12 +45,11 @@ def load_terms_file(f_name, directory=None):
 
     Examples
     --------
-    Load a Counts object:
+    Load a ``Counts`` object from a SCANR database saved in a folder named 'lisc_db':
 
     >>> from tempfile import TemporaryDirectory
     >>> from lisc.utils import SCDB
-    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
-
+    >>> counts = load_object('tutorial_counts', directory=SCDB('lisc_db')) # doctest:+SKIP
     """
 
     terms_file = open(os.path.join(check_directory(directory, 'terms'),
@@ -75,14 +74,12 @@ def save_object(obj, f_name, directory=None):
 
     Examples
     --------
-    Save a Counts object:
+    Save a ``Counts`` object:
 
     >>> from tempfile import TemporaryDirectory
-    >>> from lisc.utils import SCDB
-    >>> counts = load_object('tutorial_counts', SCDB('tutorials/lisc_db'))
+    >>> from lisc.objects import Counts
     >>> with TemporaryDirectory() as dirpath:
-    ...     save_object(counts, 'counts_tmp.txt', directory=dirpath)
-
+    ...     save_object(Counts(), 'counts.p', directory=dirpath)
     """
 
     # Set the save path based on object type
@@ -113,6 +110,16 @@ def load_object(f_name, directory=None):
     -------
     object
         Custom object loaded from pickle file.
+
+    Examples
+    --------
+    Load a :class:`~.Counts` object:
+
+    >>> from tempfile import TemporaryDirectory
+    >>> from lisc.objects import Counts
+    >>> with TemporaryDirectory() as dirpath:
+    ...     save_object(Counts(), 'counts.p', directory=dirpath)
+    ...     counts = load_object('counts.p', directory=dirpath)
     """
 
     load_path = None

@@ -67,9 +67,7 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
     --------
     Collect words data and metadata for two terms:
 
-    >>> terms = [['frontal lobe'], ['temporal lobe']]
-    >>> results, meta_data = collect_words(terms, retmax=5)
-
+    >>> results, meta_data = collect_words([['frontal lobe'], ['temporal lobe']], retmax=5)
     """
 
     # Get EUtils URLS object, with desired settings, and build required utility URLs

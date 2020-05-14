@@ -58,14 +58,11 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Initialize an ArticlesAll object from a SCANR database:
+        Initialize an ``ArticlesAll`` object:
 
-        >>> from lisc.utils import SCDB
         >>> from lisc.data import Articles
         >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
         >>> articles_all = ArticlesAll(articles)
-
         """
 
         # Inherit from the BaseArticles object
@@ -103,16 +100,10 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Print the most frequent words:
+        Print the most frequent words, assuming an initialized ``ArticlesAll`` object with collected
+        ``Words`` data:
 
-        >>> from lisc.utils import SCDB
-        >>> from lisc.data import Articles
-        >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
-        >>> articles_all = ArticlesAll(articles)
-        >>> articles_all.check_frequencies(n_check=5)
-        frontal lobe : frontal , brain , lobe , patients , connectivity
-
+        >>> articles_all.check_frequencies() # doctest:+SKIP
         """
 
         if data_type in ['words', 'keywords']:
@@ -137,15 +128,10 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Create a summary for a term's Words data:
+        Create a summary for a term, assuming an initialized ``ArticlesAll`` object with collected
+        ``Words`` data:
 
-        >>> from lisc.utils import SCDB
-        >>> from lisc.data import Articles
-        >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
-        >>> articles_all = ArticlesAll(articles)
-        >>> articles_all.create_summary()
-
+        >>> articles_all.create_summary() # doctest:+SKIP
         """
 
         # Add data to summary dictionary.
@@ -164,24 +150,11 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Print a summary for a term's Words data:
+        Print a summary for a term, assuming an initialized ``ArticlesAll`` object with collected
+        ``Words`` data:
 
-        >>> from lisc.utils import SCDB
-        >>> from lisc.data import Articles
-        >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
-        >>> articles_all = ArticlesAll(articles)
-        >>> articles_all.create_summary()
-        >>> articles_all.print_summary() #doctest: +NORMALIZE_WHITESPACE
-        frontal lobe :
-          Number of articles:       14
-          First publication:        2020
-          Most common author:       Zhao X
-           number of publications:  2
-          Most common journal:      Human brain mapping
-           number of publications:  2
-        <BLANKLINE>
-
+        >>> articles_all.create_summary() # doctest:+SKIP
+        >>> articles_all.print_summary() # doctest:+SKIP
         """
 
         # Print out summary information
@@ -204,18 +177,11 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Save a summary for a term's Words data:
+        Save a summary for a term, assuming an initialized ``ArticlesAll`` object with collected
+        ``Words`` data::
 
-        >>> from tempfile import TemporaryDirectory
-        >>> from lisc.utils import SCDB
-        >>> from lisc.data import Articles
-        >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
-        >>> articles_all = ArticlesAll(articles)
-        >>> articles_all.create_summary()
-        >>> with TemporaryDirectory() as dirpath:
-        ...     articles_all.save_summary(directory=dirpath)
-
+        >>> articles_all.create_summary() # doctest:+SKIP
+        >>> articles_all.save_summary() # doctest:+SKIP
         """
 
         directory = check_directory(directory, 'summary')
@@ -244,14 +210,14 @@ class ArticlesAll(BaseArticles):
         --------
         Compute the frequency distribution of words:
 
-        >>> from lisc.data.utils import convert_string, combine_lists
-        >>> from lisc.data import Articles
-        >>> from lisc.utils import SCDB
-        >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
-        >>> words = [convert_string(words) for words in articles.words]
-        >>> words_freq = ArticlesAll.create_freq_dist(combine_lists(words), '')
+        >>> ArticlesAll.create_freq_dist(in_lst=['a', 'a', 'b', 'c'], exclude=['c'])
+        FreqDist({'a': 2, 'b': 1})
 
+        Plot a frequency distribution as a wordcloud:
+
+        >>> from lisc.plts.words import plot_wordcloud
+        >>> freq_dist = nltk.FreqDist({'frontal': 26, 'brain': 26, 'lobe': 23, 'patients': 19})
+        >>> plot_wordcloud(freq_dist, len(freq_dist))
         """
 
         freqs = nltk.FreqDist(in_lst)

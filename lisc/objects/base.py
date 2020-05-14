@@ -65,10 +65,8 @@ class Base():
         --------
         Add terms from a list:
 
-        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
         >>> base = Base()
-        >>> base.add_terms(terms)
-
+        >>> base.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
         """
 
         self.unload_terms(term_type)
@@ -100,7 +98,6 @@ class Base():
         ...     file.seek(0)
         ...     base = Base()
         ...     base.add_terms_file(file.name)
-
         """
 
         terms = load_terms_file(f_name, directory)
@@ -119,17 +116,15 @@ class Base():
         --------
         Check added terms:
 
-        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
         >>> base = Base()
-        >>> base.add_terms(terms)
-        >>> base.check_terms() #doctest: +NORMALIZE_WHITESPACE
+        >>> base.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> base.check_terms() # doctest: +NORMALIZE_WHITESPACE
         List of terms used:
         <BLANKLINE>
         frontal lobe    : frontal lobe
         temporal lobe   : temporal lobe
         parietal lobe   : parietal lobe
         occipital lobe  : occipital lobe
-
         """
 
         print('List of {} used: \n'.format(term_type))
@@ -149,14 +144,12 @@ class Base():
 
         Examples
         --------
-        Unload terms:
+        Unload added terms:
 
-        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
         >>> base = Base()
-        >>> base.add_terms(terms)
+        >>> base.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
         >>> base.unload_terms()
         Unloading previous terms words.
-
         """
 
         if getattr(self, term_type):

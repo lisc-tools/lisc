@@ -40,7 +40,6 @@ def collect_citations(dois, util='citations', logging=None, directory=None, verb
     Collect citation data:
 
     >>> citations, meta_data = collect_citations(['10.1038/nmeth.1635'])
-
     """
 
     urls = OpenCitations()

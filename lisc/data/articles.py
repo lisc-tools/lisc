@@ -51,10 +51,9 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Intialize an Articles object with a search term:
+        Intialize an ``Articles`` object with a search term:
 
         >>> articles = Articles('frontal lobe')
-
         """
 
         # Inherit from the BaseArticles object
@@ -89,11 +88,10 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Add a journal to an articles object:
+        Add a journal to an ``Articles`` object:
 
         >>> articles = Articles('frontal lobe')
         >>> articles.add_data('journals', 'Nature')
-
         """
 
         getattr(self, field).append(new_data)
@@ -109,15 +107,12 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Save articles data to a temporary directory:
+        Save ``Articles`` data to a temporary directory:
 
         >>> from tempfile import TemporaryDirectory
-        >>> from lisc.utils import SCDB
         >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
         >>> with TemporaryDirectory() as dirpath:
         ...     articles.save(directory=dirpath)
-
         """
 
         directory = check_directory(directory, 'raw')
@@ -140,12 +135,12 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Load articles data from a SCANR database:
+        Load ``Articles`` data from a :class:`~.SCDB` folder named 'lisc_db', located in the working
+        directory:
 
         >>> from lisc.utils import SCDB
         >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
-
+        >>> articles.load(SCDB('lisc_db')) # doctest:+SKIP
         """
 
         directory = check_directory(directory, 'raw')
@@ -177,15 +172,12 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Save and clear data from articles object:
+        Save and clear data from an ``Articles`` object:
 
         >>> from tempfile import TemporaryDirectory
-        >>> from lisc.utils import SCDB
         >>> articles = Articles('frontal lobe')
-        >>> articles.load(SCDB('tutorials/lisc_db'))
         >>> with TemporaryDirectory() as dirpath:
         ...     articles.save_and_clear(directory=dirpath)
-
         """
 
         self.save(directory)

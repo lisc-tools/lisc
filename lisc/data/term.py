@@ -25,6 +25,5 @@ class Term(namedtuple('Term', ['label', 'search', 'inclusions', 'exclusions'])):
 
     >>> Term('brain', ['frontal lobe', 'temporal lobe'], ['EEG'], ['MRI'])
     Term(label='brain', search=['frontal lobe', 'temporal lobe'], inclusions=['EEG'], exclusions=['MRI'])
-
     """
     __slots__ = ()

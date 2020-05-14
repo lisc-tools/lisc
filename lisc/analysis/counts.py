@@ -33,9 +33,8 @@ def compute_normalization(data, counts, dim='A'):
     >>> from lisc.collect import collect_counts
     >>> terms_a = [['frontal lobe'], ['parietal lobe']]
     >>> terms_b = [['decision making'], ['sensory']]
-    >>> coocs, counts, meta_dat = collect_counts(terms_a=terms_a, terms_b=terms_b, db='pubmed')
-    >>> normed_coocs = compute_normalization(coocs, counts[0])
-
+    >>> coocs, counts, meta_dat = collect_counts(terms_a=terms_a, terms_b=terms_b, db='pubmed')  # doctest:+SKIP
+    >>> normed_coocs = compute_normalization(coocs, counts[0]) # doctest:+SKIP
     """
 
     if dim == 'A':
@@ -77,9 +76,10 @@ def compute_association_index(data, counts_a, counts_b):
 
     Notes
     -----
-    This computes a the Jaccard index, as :math:`AI_ij = |c_ij N d_ij| / |c_ij U d_ij|`
+    This computes a the Jaccard index, as :math:`AI_{ij} = |c_{ij} N d_{ij}| / |c_{ij} U d_{ij}|`
 
-    The denominator, :math:`|c_ij U d_ij|`, is equivalent to :math:`|c_ij| + |d_ij| - |c_ij N d_ij|`
+    The denominator, :math:`|c_{ij} U d_{ij}|`, is equivalent to
+    :math:`|c_{ij}| + |d_{ij}| - |c_{ij} N d_{ij}|`
 
     Examples
     --------
@@ -88,9 +88,8 @@ def compute_association_index(data, counts_a, counts_b):
     >>> from lisc.collect import collect_counts
     >>> terms_a = [['frontal lobe'], ['parietal lobe']]
     >>> terms_b = [['decision making'], ['sensory']]
-    >>> coocs, counts, meta_dat = collect_counts(terms_a=terms_a, terms_b=terms_b, db='pubmed')
-    >>> index = compute_association_index(coocs, counts[0], counts[1])
-
+    >>> coocs, counts, meta_dat = collect_counts(terms_a=terms_a, terms_b=terms_b, db='pubmed') # doctest:+SKIP
+    >>> index = compute_association_index(coocs, counts[0], counts[1]) # doctest:+SKIP
     """
 
     n_a = len(counts_a)

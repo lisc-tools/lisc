@@ -24,15 +24,7 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
 
     Examples
     --------
-    Plot a wordcloud for 'frontal lobe':
-
-    >>> from lisc.data import ArticlesAll
-    >>> from lisc.utils import load_object, SCDB
-    >>> words = load_object('tutorial_words', SCDB('tutorials/lisc_db'))
-    >>> words.results[0].load(directory=SCDB('tutorials/lisc_db'))
-    >>> all_articles = ArticlesAll(words['frontal lobe'])
-    >>> plot_wordcloud(all_articles.words, 25)
-
+    See the :meth:`~.create_freq_dist` method of the :class:`~.ArticlesAll` object:
     """
 
     cloud = create_wordcloud(conv_freqs(freq_dist, n_words))
@@ -57,14 +49,11 @@ def plot_years(years, year_range=None, ax=None):
 
     Examples
     --------
-    Plot a histogram of publication years:
+    Plot a histogram of publication years, which is an attribute set at the initilization of an
+    :class:`~.ArticlesAll` class.
 
-    >>> from lisc.data import ArticlesAll
-    >>> from lisc.utils import load_object, SCDB
-    >>> words = load_object('tutorial_words', SCDB('tutorials/lisc_db'))
-    >>> words.results[0].load(directory=SCDB('tutorials/lisc_db'))
-    >>> plot_years(ArticlesAll(words['frontal lobe']).years)
-
+    >>> import nltk
+    >>> plot_years(years=nltk.Counter({'2018': 25, '2019': 50, '2020':75}))
     """
 
     ax = check_ax(ax, (10, 5))

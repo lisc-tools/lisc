@@ -36,7 +36,6 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
     Collect metadata from EUtils:
 
     >>> meta_data = collect_info()
-
     """
 
     urls = EUtils(db=db, retmode='xml', api_key=api_key)
@@ -77,7 +76,6 @@ def get_db_info(req, info_url):
     >>> from lisc.requester import Requester
     >>> url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=pubmed'
     >>> db_info = get_db_info(Requester(), url)
-
     """
 
     # Get the info page and parse with BeautifulSoup
