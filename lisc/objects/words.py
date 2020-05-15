@@ -63,23 +63,12 @@ class Words(Base):
 
 
     def add_results(self, new_result):
-        """Add a new results object.
+        """Add new results for a term to the current object.
 
         Parameters
         ----------
         new_result : Articles
             Object with collected data for a specified term.
-
-        Examples
-        --------
-        Copy results from one object to another:
-
-        >>> words = Words()
-        >>> words.add_terms([['brain'], ['body']])
-        >>> words.run_collection(retmax='5') # doctest: +SKIP
-        >>> words_new = Words()
-        >>> for result in words.results:
-        ...     words_new.add_results(result)
         """
 
         self.results.append(new_result)
@@ -114,7 +103,7 @@ class Words(Base):
 
         Examples
         --------
-        Collect words data for five articles with the following terms:
+        Collect words data for a set of terms, set to collect up to five articles each:
 
         >>> words = Words()
         >>> words.add_terms([['brain'], ['body']])

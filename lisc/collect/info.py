@@ -33,9 +33,9 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
 
     Examples
     --------
-    Collect metadata from EUtils:
+    Collect metadata from EUtils, from the pubmed database:
 
-    >>> meta_data = collect_info()
+    >>> meta_data = collect_info(db='pubmed')
     """
 
     urls = EUtils(db=db, retmode='xml', api_key=api_key)

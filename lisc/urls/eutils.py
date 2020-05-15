@@ -106,7 +106,7 @@ class EUtils(URLs):
 
         Examples
         --------
-        Initialize a ``EUtils`` URL object:
+        Initialize a ``EUtils`` URL object, setting the max number of returned items:
 
         >>> urls = EUtils(db='pubmed', retmax=5)
         """

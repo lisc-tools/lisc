@@ -175,10 +175,10 @@ class SCDB():
 
         Examples
         --------
-        Get a list of raw json files:
+        Get a list of available terms files:
 
         >>> db = SCDB('lisc_db')
-        >>> db.get_files('raw') # doctest:+SKIP
+        >>> db.get_files('terms') # doctest:+SKIP
         """
 
         return os.listdir(self.get_folder_path(folder))
@@ -248,7 +248,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     >>> import os
     >>> from tempfile import TemporaryDirectory
-    >>> with TemporaryDirectory() as dirpath:
+    >>> with TemporaryDirectory() as dirpath: # doctest: +SKIP
     ...     db = create_file_structure(dirpath)
     ...     for path, _, _ in os.walk(dirpath):
     ...         print(path[len(dirpath)+1:])

@@ -63,10 +63,18 @@ class Base():
 
         Examples
         --------
-        Add terms from a list:
+        Add search terms, from a list:
 
         >>> base = Base()
         >>> base.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+
+        Add inclusion terms, from a list:
+
+        >>> base.add_terms([[], ['brain'], [], []], term_type='inclusions')
+
+        Add exclusion terms, from a list:
+
+        >>> base.add_terms([['prefrontal'], [], [], []], term_type='exclusions')
         """
 
         self.unload_terms(term_type)
@@ -89,7 +97,7 @@ class Base():
 
         Examples
         --------
-        Load terms from a temporary text file:
+        Load terms from a text file, using a temporary file:
 
         >>> from tempfile import NamedTemporaryFile
         >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']

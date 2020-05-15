@@ -57,10 +57,18 @@ class Counts():
 
         Examples
         --------
-        Add terms from a list:
+        Add one set of terms, from a list:
 
         >>> counts = Counts()
         >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+
+        Add a second set of terms, from a list:
+
+        >>> counts.add_terms(['attention', 'perception'], dim='B')
+
+        Add some exclusion words, for the second set of terms, from a list:
+
+        >>> counts.add_terms(['', 'extrasensory'], term_type='exclusions', dim='B')
         """
 
         self.terms[dim].add_terms(terms, term_type)
@@ -84,7 +92,7 @@ class Counts():
 
         Examples
         --------
-        Load terms from a temporary text file:
+        Load terms from a text file, using a temporary file:
 
         >>> from tempfile import NamedTemporaryFile
         >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
@@ -122,10 +130,17 @@ class Counts():
 
         Examples
         --------
-        Collect co-occurrence data from added terms:
+        Collect co-occurrence data from added terms, across one set of terms:
 
         >>> counts = Counts()
         >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+
+        Collect co-occurrence data from added terms, across two sets of terms:
+
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.add_terms(['attention', 'perception', 'cognition'], dim='B')
         >>> counts.run_collection() # doctest: +SKIP
         """
 
@@ -169,14 +184,16 @@ class Counts():
 
         Examples
         --------
-        Compute association scores of co-occurrence data:
+        Compute association scores of co-occurrence data collected for two lists of terms:
 
         >>> counts = Counts()
         >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.add_terms(['attention', 'perception'], dim='B')
         >>> counts.run_collection() # doctest: +SKIP
         >>> counts.compute_score() # doctest: +SKIP
 
-        Plot the results as a matrix, clustermap, and dendrogram:
+        Once you have co-occurence scores calculated, you might want to plot this data.
+        You can plot the results as a matrix, as a clustermap, and/or as a dendrogram:
 
         >>> from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram  # doctest:+SKIP
         >>> plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
@@ -210,11 +227,8 @@ class Counts():
 
         Examples
         --------
-        Determine which term has the most articles:
+        Print which term has the most articles (assuming `counts` already has data):
 
-        >>> counts = Counts()
-        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
-        >>> counts.run_collection() # doctest: +SKIP
         >>> counts.check_top() # doctest: +SKIP
         """
 
@@ -234,11 +248,8 @@ class Counts():
 
         Examples
         --------
-        Print the number of articles found for each term:
+        Print the number of articles found for each term (assuming `counts` already has data):
 
-        >>> counts = Counts()
-        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
-        >>> counts.run_collection() # doctest: +SKIP
         >>> counts.check_counts() # doctest: +SKIP
         """
 
@@ -262,12 +273,13 @@ class Counts():
 
         Examples
         --------
-        Print the highest count for each term:
+        Print the highest count for each term (assuming `counts` already has data):
 
-        >>> counts = Counts()
-        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
-        >>> counts.run_collection() # doctest: +SKIP
         >>> counts.check_data() # doctest: +SKIP
+
+        Print the highest score value for each term (assuming `counts` already has data):
+
+        >>> counts.check_data(data_type='score') # doctest: +SKIP
         """
 
         if data_type not in ['counts', 'score']:
@@ -305,11 +317,8 @@ class Counts():
 
         Examples
         --------
-        Drop terms with less than or equal to 20 article results:
+        Drop terms with less than or equal to 20 articles (assuming `counts` already has data):
 
-        >>> counts = Counts()
-        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
-        >>> counts.run_collection() # doctest: +SKIP
         >>> counts.drop_data(20) # doctest: +SKIP
         """
 
@@ -318,13 +327,13 @@ class Counts():
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
-        if dim == 'A' and len(self.score) != 0.0:
+        # Drop data based on dim given, and also check for score data, and drop if calculated
+        if dim == 'A':
             self.counts = self.counts[keep_inds, :]
-            self.score = self.score[keep_inds, :]
-        elif dim == 'A' and len(self.score) == 0.0:
-            self.counts = self.counts[keep_inds, :]
-        if dim == 'B' and len(self.score) != 0.0:
+            if self.score.any():
+                self.score = self.score[keep_inds, :]
+
+        if dim == 'B':
             self.counts = self.counts[:, keep_inds]
-            self.score = self.score[:, keep_inds]
-        elif dim == 'B' and len(self.score) == 0.0:
-            self.counts = self.counts[:, keep_inds]
+            if self.score.any():
+                self.score = self.score[:, keep_inds]

@@ -65,7 +65,7 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
 
     Examples
     --------
-    Collect words data and metadata for two terms:
+    Collect words data for two terms, limiting the results to 5 articles per term:
 
     >>> results, meta_data = collect_words([['frontal lobe'], ['temporal lobe']], retmax=5)
     """

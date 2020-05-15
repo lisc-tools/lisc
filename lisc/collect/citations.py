@@ -37,7 +37,7 @@ def collect_citations(dois, util='citations', logging=None, directory=None, verb
 
     Examples
     --------
-    Collect citation data:
+    Collect citation data for a specified article:
 
     >>> citations, meta_data = collect_citations(['10.1038/nmeth.1635'])
     """

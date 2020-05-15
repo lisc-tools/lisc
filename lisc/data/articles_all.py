@@ -58,7 +58,7 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Initialize an ``ArticlesAll`` object:
+        Create an ``ArticlesAll`` object from an :class:`~.Articles` object:
 
         >>> from lisc.data import Articles
         >>> articles = Articles('frontal lobe')
@@ -100,8 +100,7 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Print the most frequent words, assuming an initialized ``ArticlesAll`` object with collected
-        ``Words`` data:
+        Print the most frequent words, assuming an initialized ``ArticlesAll`` object with data:
 
         >>> articles_all.check_frequencies() # doctest:+SKIP
         """
@@ -150,8 +149,7 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Print a summary for a term, assuming an initialized ``ArticlesAll`` object with collected
-        ``Words`` data:
+        Print a summary for a term, assuming an initialized ``ArticlesAll`` object with data:
 
         >>> articles_all.create_summary() # doctest:+SKIP
         >>> articles_all.print_summary() # doctest:+SKIP
@@ -177,8 +175,7 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Save a summary for a term, assuming an initialized ``ArticlesAll`` object with collected
-        ``Words`` data::
+        Save a summary for a term, assuming an initialized ``ArticlesAll`` object with data::
 
         >>> articles_all.create_summary() # doctest:+SKIP
         >>> articles_all.save_summary() # doctest:+SKIP
@@ -208,12 +205,12 @@ class ArticlesAll(BaseArticles):
 
         Examples
         --------
-        Compute the frequency distribution of words:
+        Compute the frequency distribution of a collection of words:
 
-        >>> ArticlesAll.create_freq_dist(in_lst=['a', 'a', 'b', 'c'], exclude=['c'])
-        FreqDist({'a': 2, 'b': 1})
+        >>> ArticlesAll.create_freq_dist(in_lst=['brain', 'brain', 'head', 'body'], exclude=['body'])
+        FreqDist({'brain': 2, 'head': 1})
 
-        Plot a frequency distribution as a wordcloud:
+        If you want to visualize a frequency distribution, you can plot them as a wordcloud:
 
         >>> from lisc.plts.words import plot_wordcloud
         >>> freq_dist = nltk.FreqDist({'frontal': 26, 'brain': 26, 'lobe': 23, 'patients': 19})
@@ -300,7 +297,7 @@ def _fix_author_names(names):
     Split up the text in first name, and grab the first name initial.
     """
 
-    # Drop names whos data is all None
+    # Drop names where the contents is all None
     names = [name for name in names if name != (None, None)]
 
     # Fix names if full name ended up in last name field

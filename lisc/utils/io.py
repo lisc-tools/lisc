@@ -42,14 +42,6 @@ def load_terms_file(f_name, directory=None):
     -------
     terms : list of list of str
         Data from the file.
-
-    Examples
-    --------
-    Load a ``Counts`` object from a SCANR database saved in a folder named 'lisc_db':
-
-    >>> from tempfile import TemporaryDirectory
-    >>> from lisc.utils import SCDB
-    >>> counts = load_object('tutorial_counts', directory=SCDB('lisc_db')) # doctest:+SKIP
     """
 
     terms_file = open(os.path.join(check_directory(directory, 'terms'),
@@ -74,7 +66,7 @@ def save_object(obj, f_name, directory=None):
 
     Examples
     --------
-    Save a ``Counts`` object:
+    Save a :class:`~.Counts` object, using a temporary directory:
 
     >>> from tempfile import TemporaryDirectory
     >>> from lisc.objects import Counts
@@ -113,7 +105,7 @@ def load_object(f_name, directory=None):
 
     Examples
     --------
-    Load a :class:`~.Counts` object:
+    Load a :class:`~.Counts` object, using a temporary directory:
 
     >>> from tempfile import TemporaryDirectory
     >>> from lisc.objects import Counts

@@ -24,7 +24,7 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
 
     Examples
     --------
-    See the :meth:`~.create_freq_dist` method of the :class:`~.ArticlesAll` object:
+    See the :meth:`~.create_freq_dist` method of the :class:`~.ArticlesAll` object.
     """
 
     cloud = create_wordcloud(conv_freqs(freq_dist, n_words))
@@ -49,11 +49,11 @@ def plot_years(years, year_range=None, ax=None):
 
     Examples
     --------
-    Plot a histogram of publication years, which is an attribute set at the initilization of an
-    :class:`~.ArticlesAll` class.
+    Plot a histogram of publication years.
+    Publication years are collected together in the :class:`~.ArticlesAll` class.
 
-    >>> import nltk
-    >>> plot_years(years=nltk.Counter({'2018': 25, '2019': 50, '2020':75}))
+    >>> from collections import Counter
+    >>> plot_years(years=Counter({'2018': 25, '2019': 50, '2020':75}))
     """
 
     ax = check_ax(ax, (10, 5))

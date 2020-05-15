@@ -49,7 +49,7 @@ class Requester():
 
         Examples
         --------
-        Initlaize a ``Requester`` object, specifiying 0.1 seconds between requests:
+        Initialize a ``Requester`` object, specifying a wait time of 0.1 seconds between requests:
 
         >>> requester = Requester(wait_time=0.1)
         """
@@ -153,9 +153,10 @@ class Requester():
 
         Examples
         --------
-        Request the LISC Github repository url:
+        Use a ``Requester`` object to request the LISC Github repository url:
 
-        >>> response = Requester().request_url('https://github.com/lisc-tools/lisc')
+        >>> requester = Requester()
+        >>> response = requester.request_url('https://github.com/lisc-tools/lisc')
         """
 
         # Check if current object is active

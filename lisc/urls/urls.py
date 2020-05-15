@@ -40,7 +40,7 @@ class URLs():
 
         Examples
         --------
-        Initialize a ``URLs`` object with the Github API:
+        Initialize a ``URLs`` object for the Github API:
 
         >>> urls = URLs('https://api.github.com', {'search_repos': "search/repositories"})
         """
@@ -63,7 +63,7 @@ class URLs():
 
         Examples
         --------
-        Check the URL built for a Github repository search:
+        Check the URL that gets built for a Github repository search:
 
         >>> urls = URLs('https://api.github.com', {'search_repos': "search/repositories"})
         >>> urls.fill_settings(q='lisc', sort='stars', order='desc')
@@ -142,7 +142,7 @@ class URLs():
 
         Examples
         --------
-        Build the URL for a Github repository search:
+        Build the url for the Github API to search for a repository search:
 
         >>> urls = URLs('https://api.github.com', {'search_repos': "search/repositories"})
         >>> urls.fill_settings(q='lisc', sort='stars', order='desc')

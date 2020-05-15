@@ -51,7 +51,7 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Intialize an ``Articles`` object with a search term:
+        Intialize an ``Articles`` object, with a label for the search term it represents:
 
         >>> articles = Articles('frontal lobe')
         """
@@ -107,7 +107,7 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Save ``Articles`` data to a temporary directory:
+        Save an ``Articles`` object, using a temporary directory:
 
         >>> from tempfile import TemporaryDirectory
         >>> articles = Articles('frontal lobe')
@@ -135,8 +135,7 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Load ``Articles`` data from a :class:`~.SCDB` folder named 'lisc_db', located in the working
-        directory:
+        Load an ``Articles`` object, assuming an :class:`~.SCDB` organization named 'lisc_db':
 
         >>> from lisc.utils import SCDB
         >>> articles = Articles('frontal lobe')
