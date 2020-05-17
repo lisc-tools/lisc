@@ -63,6 +63,15 @@ def save_object(obj, f_name, directory=None):
         Name for the file to be saved out.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+
+    Examples
+    --------
+    Save a :class:`~.Counts` object, using a temporary directory:
+
+    >>> from tempfile import TemporaryDirectory
+    >>> from lisc.objects import Counts
+    >>> with TemporaryDirectory() as dirpath:
+    ...     save_object(Counts(), 'counts.p', directory=dirpath)
     """
 
     # Set the save path based on object type
@@ -93,6 +102,16 @@ def load_object(f_name, directory=None):
     -------
     object
         Custom object loaded from pickle file.
+
+    Examples
+    --------
+    Load a :class:`~.Counts` object, using a temporary directory:
+
+    >>> from tempfile import TemporaryDirectory
+    >>> from lisc.objects import Counts
+    >>> with TemporaryDirectory() as dirpath:
+    ...     save_object(Counts(), 'counts.p', directory=dirpath)
+    ...     counts = load_object('counts.p', directory=dirpath)
     """
 
     load_path = None

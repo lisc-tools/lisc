@@ -21,6 +21,7 @@ class MetaData():
     """
 
     def __init__(self):
+        """Initialize a MetaData object."""
 
         self.date = None
         self.requester = None
@@ -65,7 +66,7 @@ class MetaData():
 
 
     def add_db_info(self, db_info):
-        """Add a database information to self.
+        """Add database information to the MetaData object.
 
         Parameters
         ----------

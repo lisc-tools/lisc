@@ -55,6 +55,14 @@ class ArticlesAll(BaseArticles):
             Data for all articles from a given search term.
         exclusions : list of str, optional
             Words to exclude from the word collections.
+
+        Examples
+        --------
+        Create an ``ArticlesAll`` object from an :class:`~.Articles` object:
+
+        >>> from lisc.data import Articles
+        >>> articles = Articles('frontal lobe')
+        >>> articles_all = ArticlesAll(articles)
         """
 
         # Inherit from the BaseArticles object
@@ -89,6 +97,12 @@ class ArticlesAll(BaseArticles):
             Which frequency distribution to check.
         n_check : int, optional, default: 20
             Number of most common items to print out.
+
+        Examples
+        --------
+        Print the most frequent words, assuming an initialized ``ArticlesAll`` object with data:
+
+        >>> articles_all.check_frequencies() # doctest:+SKIP
         """
 
         if data_type in ['words', 'keywords']:
@@ -109,7 +123,15 @@ class ArticlesAll(BaseArticles):
 
 
     def create_summary(self):
-        """Fill the summary dictionary of the current terms Words data."""
+        """Fill the summary dictionary of the current terms Words data.
+
+        Examples
+        --------
+        Create a summary for a term, assuming an initialized ``ArticlesAll`` object with collected
+        ``Words`` data:
+
+        >>> articles_all.create_summary() # doctest:+SKIP
+        """
 
         # Add data to summary dictionary.
         self.summary['label'] = self.label
@@ -123,7 +145,15 @@ class ArticlesAll(BaseArticles):
 
 
     def print_summary(self):
-        """Print out a summary of the collected words data."""
+        """Print out a summary of the collected words data.
+
+        Examples
+        --------
+        Print a summary for a term, assuming an initialized ``ArticlesAll`` object with data:
+
+        >>> articles_all.create_summary() # doctest:+SKIP
+        >>> articles_all.print_summary() # doctest:+SKIP
+        """
 
         # Print out summary information
         print(self.summary['label'], ':')
@@ -142,6 +172,13 @@ class ArticlesAll(BaseArticles):
         ----------
         directory : str or SCDB or None, optional
             Folder or database object specifying the save location.
+
+        Examples
+        --------
+        Save a summary for a term, assuming an initialized ``ArticlesAll`` object with data::
+
+        >>> articles_all.create_summary() # doctest:+SKIP
+        >>> articles_all.save_summary() # doctest:+SKIP
         """
 
         directory = check_directory(directory, 'summary')
@@ -165,6 +202,19 @@ class ArticlesAll(BaseArticles):
         -------
         freqs : nltk.FreqDist
             Frequency distribution of the words.
+
+        Examples
+        --------
+        Compute the frequency distribution of a collection of words:
+
+        >>> ArticlesAll.create_freq_dist(in_lst=['brain', 'brain', 'head', 'body'], exclude=['body'])
+        FreqDist({'brain': 2, 'head': 1})
+
+        If you want to visualize a frequency distribution, you can plot them as a wordcloud:
+
+        >>> from lisc.plts.words import plot_wordcloud
+        >>> freq_dist = nltk.FreqDist({'frontal': 26, 'brain': 26, 'lobe': 23, 'patients': 19})
+        >>> plot_wordcloud(freq_dist, len(freq_dist))
         """
 
         freqs = nltk.FreqDist(in_lst)
@@ -247,7 +297,7 @@ def _fix_author_names(names):
     Split up the text in first name, and grab the first name initial.
     """
 
-    # Drop names whos data is all None
+    # Drop names where the contents is all None
     names = [name for name in names if name != (None, None)]
 
     # Fix names if full name ended up in last name field

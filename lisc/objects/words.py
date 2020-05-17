@@ -63,7 +63,7 @@ class Words(Base):
 
 
     def add_results(self, new_result):
-        """Add a new results object.
+        """Add new results for a term to the current object.
 
         Parameters
         ----------
@@ -100,6 +100,14 @@ class Words(Base):
             Folder or database object specifying the save location for any outputs.
         verbose : bool, optional, default: False
             Whether to print out updates.
+
+        Examples
+        --------
+        Collect words data for a set of terms, set to collect up to five articles each:
+
+        >>> words = Words()
+        >>> words.add_terms([['brain'], ['body']])
+        >>> words.run_collection(retmax='5') # doctest: +SKIP
         """
 
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,

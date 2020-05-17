@@ -62,6 +62,12 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
 
     For each article, it pulls and saves out data (including title, abstract, authors, etc),
     using the hierarchical tag structure that organizes the articles.
+
+    Examples
+    --------
+    Collect words data for two terms, limiting the results to 5 articles per term:
+
+    >>> results, meta_data = collect_words([['frontal lobe'], ['temporal lobe']], retmax=5)
     """
 
     # Get EUtils URLS object, with desired settings, and build required utility URLs

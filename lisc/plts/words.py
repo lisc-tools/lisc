@@ -21,6 +21,10 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
         Number of top words to include in the wordcloud.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
+
+    Examples
+    --------
+    See the :meth:`~.create_freq_dist` method of the :class:`~.ArticlesAll` object.
     """
 
     cloud = create_wordcloud(conv_freqs(freq_dist, n_words))
@@ -42,6 +46,14 @@ def plot_years(years, year_range=None, ax=None):
         The range of years to plot on the x-axis.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
+
+    Examples
+    --------
+    Plot a histogram of publication years.
+    Publication years are collected together in the :class:`~.ArticlesAll` class.
+
+    >>> from collections import Counter
+    >>> plot_years(years=Counter({'2018': 25, '2019': 50, '2020':75}))
     """
 
     ax = check_ax(ax, (10, 5))

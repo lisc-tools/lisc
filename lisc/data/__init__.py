@@ -1,3 +1,5 @@
+"""Data objects."""
+
 from .term import Term
 from .articles import Articles
 from .meta_data import MetaData

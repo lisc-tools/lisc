@@ -39,6 +39,10 @@ def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
     Notes
     -----
     This function is a wrapper of the seaborn `heatmap` plot function.
+
+    Examples
+    --------
+    See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
     if isinstance(cmap, str):
@@ -68,6 +72,10 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple'):
     Notes
     -----
     This function is a wrapper of the seaborn `clustermap` plot function.
+
+    Examples
+    --------
+    See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
     sns.set()
@@ -102,6 +110,10 @@ def plot_dendrogram(data, labels=None, ax=None):
     Notes
     -----
     This function is a wrapper of the scipy `dendrogram` plot function.
+
+    Examples
+    --------
+    See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
     linkage_data = hier.linkage(data, method='complete', metric='cosine')

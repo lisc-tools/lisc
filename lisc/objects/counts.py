@@ -54,6 +54,21 @@ class Counts():
             Which type of terms are being added.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
+
+        Examples
+        --------
+        Add one set of terms, from a list:
+
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+
+        Add a second set of terms, from a list:
+
+        >>> counts.add_terms(['attention', 'perception'], dim='B')
+
+        Add some exclusion words, for the second set of terms, from a list:
+
+        >>> counts.add_terms(['', 'extrasensory'], term_type='exclusions', dim='B')
         """
 
         self.terms[dim].add_terms(terms, term_type)
@@ -74,9 +89,21 @@ class Counts():
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
+
+        Examples
+        --------
+        Load terms from a text file, using a temporary file:
+
+        >>> from tempfile import NamedTemporaryFile
+        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
+        >>> with NamedTemporaryFile(suffix='.txt', mode='w+') as file: # doctest: +SKIP
+        ...     [file.write(term + '\\n') for term in terms]
+        ...     file.seek(0)
+        ...     counts = Counts()
+        ...     counts.add_terms_file(file.name)
         """
 
-        self.terms[dim].add_terms_file(f_name, directory, term_type)
+        self.terms[dim].add_terms_file(f_name, term_type, directory)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
@@ -100,6 +127,21 @@ class Counts():
             Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.
+
+        Examples
+        --------
+        Collect co-occurrence data from added terms, across one set of terms:
+
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+
+        Collect co-occurrence data from added terms, across two sets of terms:
+
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.add_terms(['attention', 'perception', 'cognition'], dim='B')
+        >>> counts.run_collection() # doctest: +SKIP
         """
 
         # Run single list of terms against themselves, in 'square' mode
@@ -139,6 +181,24 @@ class Counts():
         dim : {'A', 'B'}, optional
             Which dimension of counts to use to normalize the co-occurrence data by.
             Only used if 'score' is 'normalize'.
+
+        Examples
+        --------
+        Compute association scores of co-occurrence data collected for two lists of terms:
+
+        >>> counts = Counts()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.add_terms(['attention', 'perception'], dim='B')
+        >>> counts.run_collection() # doctest: +SKIP
+        >>> counts.compute_score() # doctest: +SKIP
+
+        Once you have co-occurence scores calculated, you might want to plot this data.
+        You can plot the results as a matrix, as a clustermap, and/or as a dendrogram:
+
+        >>> from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram  # doctest:+SKIP
+        >>> plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
+        >>> plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
+        >>> plot_dendrogram(counts.score, counts.terms['B'].labels) # doctest:+SKIP
         """
 
         if score_type == 'association':
@@ -164,6 +224,12 @@ class Counts():
         ----------
         dim : {'A', 'B'}, optional
             Which set of terms to check.
+
+        Examples
+        --------
+        Print which term has the most articles (assuming `counts` already has data):
+
+        >>> counts.check_top() # doctest: +SKIP
         """
 
         max_ind = np.argmax(self.terms[dim].counts)
@@ -179,6 +245,12 @@ class Counts():
         ----------
         dim : {'A', 'B'}, optional
             Which set of terms to check.
+
+        Examples
+        --------
+        Print the number of articles found for each term (assuming `counts` already has data):
+
+        >>> counts.check_counts() # doctest: +SKIP
         """
 
         print("The number of documents found for each search term is:")
@@ -198,6 +270,16 @@ class Counts():
             Which data type to use.
         dim : {'A', 'B'}, optional
             Which set of terms to check.
+
+        Examples
+        --------
+        Print the highest count for each term (assuming `counts` already has data):
+
+        >>> counts.check_data() # doctest: +SKIP
+
+        Print the highest score value for each term (assuming `counts` already has data):
+
+        >>> counts.check_data(data_type='score') # doctest: +SKIP
         """
 
         if data_type not in ['counts', 'score']:
@@ -232,6 +314,12 @@ class Counts():
             Minimum number of articles to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
+
+        Examples
+        --------
+        Drop terms with less than or equal to 20 articles (assuming `counts` already has data):
+
+        >>> counts.drop_data(20) # doctest: +SKIP
         """
 
         keep_inds = np.where(self.terms[dim].counts > n_articles)[0]
@@ -239,9 +327,13 @@ class Counts():
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
+        # Drop data based on dim given, and also check for score data, and drop if calculated
         if dim == 'A':
             self.counts = self.counts[keep_inds, :]
-            self.score = self.score[keep_inds, :]
+            if self.score.any():
+                self.score = self.score[keep_inds, :]
+
         if dim == 'B':
             self.counts = self.counts[:, keep_inds]
-            self.score = self.score[:, keep_inds]
+            if self.score.any():
+                self.score = self.score[:, keep_inds]

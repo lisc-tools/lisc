@@ -56,6 +56,12 @@ class SCDB():
             The base path to where the database is located.
         generate_paths : bool
             Whether to automatically generate all the paths for the database folders.
+
+        Examples
+        --------
+        Intialize a ``SCDB`` object:
+
+        >>> db = SCDB('lisc_db')
         """
 
         # Create paths dictionary, and set base path for the project
@@ -74,6 +80,23 @@ class SCDB():
         ----------
         structure : dict, optional
             Definition of the folder structure for the database.
+
+        Examples
+        --------
+        Generate paths for a ``SCDB`` object:
+
+        >>> db = SCDB('lisc_db')
+        >>> db.gen_paths()
+        >>> db.paths # doctest: +NORMALIZE_WHITESPACE
+        {'base': 'lisc_db',
+         'terms': 'lisc_db/terms',
+         'logs': 'lisc_db/logs',
+         'data': 'lisc_db/data',
+         'figures': 'lisc_db/figures',
+         'counts': 'lisc_db/data/counts',
+         'words': 'lisc_db/data/words',
+         'raw': 'lisc_db/data/words/raw',
+         'summary': 'lisc_db/data/words/summary'}
         """
 
         for level in structure:
@@ -94,6 +117,14 @@ class SCDB():
         -------
         str
             The path to the requested directory folder.
+
+        Examples
+        --------
+        Get the path to the folder containing :class:`~.Counts` data:
+
+        >>> db = SCDB('lisc_db')
+        >>> db.get_folder_path('counts')
+        'lisc_db/data/counts'
         """
 
         if folder not in self.paths.keys():
@@ -116,6 +147,14 @@ class SCDB():
         -------
         str
             The full file path to the requested file.
+
+        Examples
+        --------
+        Get the path to a :class:`~.Counts` file:
+
+        >>> db = SCDB('lisc_db')
+        >>> db.get_file_path('counts', 'tutorial_counts.p')
+        'lisc_db/data/counts/tutorial_counts.p'
         """
 
         return os.path.join(self.get_folder_path(folder), file_name)
@@ -133,6 +172,13 @@ class SCDB():
         -------
         list of str
             List of files available in specified folder.
+
+        Examples
+        --------
+        Get a list of available terms files:
+
+        >>> db = SCDB('lisc_db')
+        >>> db.get_files('terms') # doctest:+SKIP
         """
 
         return os.listdir(self.get_folder_path(folder))
@@ -195,6 +241,27 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
     -------
     db : SCDB
         A database object for the file structure that was created.
+
+    Examples
+    --------
+    Create a temporary file stucture for a :class:`~.SCDB` object:
+
+    >>> import os
+    >>> from tempfile import TemporaryDirectory
+    >>> with TemporaryDirectory() as dirpath: # doctest: +SKIP
+    ...     db = create_file_structure(dirpath)
+    ...     for path, _, _ in os.walk(dirpath):
+    ...         print(path[len(dirpath)+1:])
+    <BLANKLINE>
+    lisc_db
+    lisc_db/figures
+    lisc_db/data
+    lisc_db/data/words
+    lisc_db/data/words/summary
+    lisc_db/data/words/raw
+    lisc_db/data/counts
+    lisc_db/logs
+    lisc_db/terms
     """
 
     if not base:

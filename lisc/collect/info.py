@@ -30,6 +30,12 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
     -------
     meta_data : MetaData
         Meta data about the data collection.
+
+    Examples
+    --------
+    Collect metadata from EUtils, from the pubmed database:
+
+    >>> meta_data = collect_info(db='pubmed')
     """
 
     urls = EUtils(db=db, retmode='xml', api_key=api_key)
@@ -62,6 +68,14 @@ def get_db_info(req, info_url):
     -------
     db_info : dict
         Information about the database from which the data was accessed.
+
+    Examples
+    --------
+    Get info on the pubmed database:
+
+    >>> from lisc.requester import Requester
+    >>> url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=pubmed'
+    >>> db_info = get_db_info(Requester(), url)
     """
 
     # Get the info page and parse with BeautifulSoup

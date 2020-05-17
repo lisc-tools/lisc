@@ -34,6 +34,12 @@ def collect_citations(dois, util='citations', logging=None, directory=None, verb
         The number of citations for each DOI.
     meta_data : MetaData
         Meta data about the data collection.
+
+    Examples
+    --------
+    Collect citation data for a specified article:
+
+    >>> citations, meta_data = collect_citations(['10.1038/nmeth.1635'])
     """
 
     urls = OpenCitations()
