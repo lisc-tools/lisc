@@ -4,41 +4,23 @@ import os
 from setuptools import setup, find_packages
 
 # Get the current version number from inside the module
-with open(os.path.join('lisc', 'version.py')) as vf:
-    exec(vf.read())
+with open(os.path.join('lisc', 'version.py')) as version_file:
+    exec(version_file.read())
 
-long_description = \
-"""
-LISC: Literature Scanner
+# Load the long description from the README
+with open('README.rst') as readme_file:
+    long_description = readme_file.read()
 
-LISC is a package for collecting and analyzing scientific literature.
-
-LISC acts as a wrapper and connector between available APIs, allowing users to collect data from
-and about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.
-
-Supported APIs available through LISC include the NCBI EUtils which provides programmatic access to the
-National Center for Biotechnology Information (NCBI), including the Pubmed database, and the
-OpenCitations API, which provides access to citation data.
-
-For data collection, LISC currently offers support for the following 'types' of literature data collection:
-
-- 'Counts': collects counts and co-occurrences of specified search terms in the literature.
-- 'Words': collects text data and meta-data from articles identified by specified search terms.
-- 'Citations': collect citation and reference data for articles, based on DOIs.
-
-In addition to connecting to external APIs, LISC also provides:
-
-- custom data objects for managing collected data
-- a database structure, and save and load utilities for storing collected data
-- functions and utilities to analyze collected data
-- data visualization functions for plotting collected data and analysis outputs
-"""
+# Load the required dependencies from the requirements file
+with open("requirements.txt") as requirements_file:
+    install_requires = requirements_file.read().splitlines()
 
 setup(
     name = 'lisc',
     version = __version__,
     description = 'Literature Scanner',
     long_description = long_description,
+    python_requires = '>=3.5',
     author = 'Thomas Donoghue',
     author_email = 'tdonoghue.research@gmail.com',
     maintainer = 'Thomas Donoghue',
@@ -62,10 +44,10 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8'
         ],
-
+    platforms = 'any',
     keywords = ['web-scraping', 'meta-analysis', 'text-mining', 'scientific-publications',
                 'literature-mining', 'literature-review'],
-    install_requires = ['numpy', 'nltk', 'beautifulsoup4', 'requests', 'lxml'],
+    install_requires = install_requires,
     tests_require = ['pytest'],
     extras_require = {
         'plot'     : ['matplotlib', 'seaborn', 'wordcloud'],
