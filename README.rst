@@ -2,7 +2,7 @@
 LISC - Literature Scanner
 =========================
 
-|ProjectStatus|_ |Version|_ |BuildStatus|_ |codecov|_ |License|_ |PythonVersions|_ |DOI|_
+|ProjectStatus|_ |Version|_ |BuildStatus|_ |Coverage|_ |License|_ |PythonVersions|_ |Publication|_
 
 .. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
 .. _ProjectStatus: https://www.repostatus.org/#active
@@ -10,11 +10,11 @@ LISC - Literature Scanner
 .. |Version| image:: https://img.shields.io/pypi/v/lisc.svg
 .. _Version: https://pypi.python.org/pypi/lisc/
 
-.. |BuildStatus| image:: https://travis-ci.org/lisc-tools/lisc.svg
-.. _BuildStatus: https://travis-ci.org/lisc-tools/lisc
+.. |BuildStatus| image:: https://travis-ci.com/lisc-tools/lisc.svg
+.. _BuildStatus: https://travis-ci.com/lisc-tools/lisc
 
-.. |codecov| image:: https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg
-.. _codecov : https://codecov.io/gh/fooof-tools/fooof
+.. |Coverage| image:: https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg
+.. _Coverage: https://codecov.io/gh/fooof-tools/fooof
 
 .. |License| image:: https://img.shields.io/pypi/l/lisc.svg
 .. _License: https://opensource.org/licenses/Apache-2.0
@@ -22,8 +22,8 @@ LISC - Literature Scanner
 .. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/lisc.svg
 .. _PythonVersions: https://pypi.python.org/pypi/lisc/
 
-.. |DOI| image:: https://joss.theoj.org/papers/10.21105/joss.01674/status.svg
-.. _DOI: https://doi.org/10.21105/joss.01674
+.. |Publication| image:: https://joss.theoj.org/papers/10.21105/joss.01674/status.svg
+.. _Publication: https://doi.org/10.21105/joss.01674
 
 LISC is a package for collecting and analyzing the scientific literature.
 
