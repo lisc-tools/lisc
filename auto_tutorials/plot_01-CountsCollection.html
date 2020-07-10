@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial 01: Counts Collection &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -19,6 +20,7 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -27,6 +29,18 @@
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
 
   </head><body>
 
@@ -150,10 +164,10 @@ for the word co-occurrence data between terms.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 1818  795  513]
- [1818    0  738  620]
- [ 795  738    0  434]
- [ 513  620  434    0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 1836  805  519]
+ [1836    0  746  625]
+ [ 805  746    0  440]
+ [ 519  625  440    0]]
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object also comes with some helper methods to explore the data.</p>
@@ -163,10 +177,10 @@ for the word co-occurrence data between terms.</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
-  &#39;frontal lobe&#39;     -   14343
-  &#39;temporal lobe&#39;    -   27857
-  &#39;parietal lobe&#39;    -    5019
-  &#39;occipital lobe&#39;   -    3772
+  &#39;frontal lobe&#39;     -   14461
+  &#39;temporal lobe&#39;    -   28130
+  &#39;parietal lobe&#39;    -    5073
+  &#39;occipital lobe&#39;   -    3809
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
@@ -174,7 +188,7 @@ for the word co-occurrence data between terms.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  27857  articles.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  28130  articles.
 </pre></div>
 </div>
 </div>
@@ -211,7 +225,7 @@ relate to different sensory systems.</p>
 <a href="../generated/lisc.utils.save_object.html#lisc.utils.save_object" title="lisc.utils.save_object" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">save_object</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class"><span class="n">SCDB</span></a><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  13.054 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  25.588 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-countscollection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/56499906aaa92cf9e9424417cb98272c/plot_01-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-CountsCollection.py</span></code></a></p>
@@ -238,7 +252,7 @@ relate to different sensory systems.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
     </p>
   </div>
 </footer>

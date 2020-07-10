@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counts with Functions &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -19,6 +20,7 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -27,6 +29,18 @@
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
 
   </head><body>
 
@@ -132,8 +146,8 @@ Running counts for:  gene
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 548950]
- [548950      0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 554702]
+ [554702      0]]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out how many articles found for each term</span>
@@ -142,8 +156,8 @@ Running counts for:  gene
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2477186
-gene         : 1681801
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2502773
+gene         : 1701944
 </pre></div>
 </div>
 <p>When given a single set of terms, the function collects counts of each term
@@ -176,8 +190,8 @@ are available in <cite>lisc.analysis</cite>, as functions that take in arrays of
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02465903 0.02966875]
- [0.02158163 0.02989117]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02468862 0.02979415]
+ [0.02156886 0.03002802]]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index score, calculating the Jaccard index from the co-occurrences</span>
@@ -188,13 +202,13 @@ are available in <cite>lisc.analysis</cite>, as functions that take in arrays of
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01880842 0.02444883]
- [0.01465231 0.02250356]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01883327 0.02453738]
+ [0.01465343 0.0225974 ]]
 </pre></div>
 </div>
 <p>From here, further analysis of collected co-occurrence data depends on the goal of the analysis.</p>
 <p>There are also plot functions available, same as demonstrated in the Counts tutorial.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.046 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.378 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-counts-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2fa321f235fa85157f1fdd9ef345e8f4/plot_functions_counts.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_counts.py</span></code></a></p>
@@ -220,7 +234,7 @@ are available in <cite>lisc.analysis</cite>, as functions that take in arrays of
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
     </p>
   </div>
 </footer>

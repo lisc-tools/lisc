@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial 03: Words Collection &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -19,6 +20,7 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -27,6 +29,18 @@
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
 
   </head><body>
 
@@ -138,7 +152,7 @@ and exclusion words, is used as was introduced and described in the first tutori
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x1a1cb088d0&gt;, &lt;lisc.data.articles.Articles object at 0x1a1bfc84d0&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x1a1ab123d0&gt;, &lt;lisc.data.articles.Articles object at 0x1a1ab26750&gt;]
 </pre></div>
 </div>
 <div class="section" id="lisc-data-objects">
@@ -162,8 +176,8 @@ collected from a given search term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
-[&#39;TNF-α-induced p53 activation induces apoptosis in neurological injury.&#39;, &#39;The Hyperdense Middle Cerebral Artery Sign in Drip-and-Ship Models of Acute Stroke Management.&#39;, &#39;Sporadic Creutzfeldt-Jakob Disease: A Retrospective Analysis of 104 Cases.&#39;, &#39;Differential Effects of Electroconvulsive Therapy in the Treatment of Major Depressive Disorder.&#39;, &#39;Nwd1 Regulates Neuronal Differentiation and Migration through Purinosome Formation in the Developing Cerebral Cortex.&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0
+[]
 </pre></div>
 </div>
 </div>
@@ -227,7 +241,7 @@ can use that to help manage and reload our data, so it’s still worth saving as
 <a href="../generated/lisc.utils.save_object.html#lisc.utils.save_object" title="lisc.utils.save_object" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">save_object</span></a><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  18.873 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  18.098 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-wordscollection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/139a43eef685f12de08b72ebf81360c6/plot_03-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-WordsCollection.py</span></code></a></p>
@@ -254,7 +268,7 @@ can use that to help manage and reload our data, so it’s still worth saving as
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
     </p>
   </div>
 </footer>

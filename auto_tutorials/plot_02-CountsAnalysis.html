@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial 02: Counts Analysis &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -19,6 +20,7 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -27,6 +29,18 @@
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
 
   </head><body>
 
@@ -123,10 +137,10 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         390
-For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1339
-For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         242
-For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         243
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         393
+For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1355
+For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         244
+For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         246
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the second set of terms</span>
@@ -134,13 +148,13 @@ For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;     
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         243
-For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1339
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         246
+For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1355
 For  &#39;somatosensory&#39;   the highest association is  &#39;parietal lobe&#39;   with         191
 For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          75
 For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          48
 For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with          10
-For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         207
+For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         208
 </pre></div>
 </div>
 </div>
@@ -169,14 +183,14 @@ for measuring the similarity of samples, and is also available to compute and us
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.09461061e-02 2.71909642e-02 9.48197727e-03 3.55574148e-03
-  1.18524716e-03 2.78881684e-04 1.15735899e-02]
- [7.03593352e-03 4.80669132e-02 6.74875256e-03 2.69232150e-03
-  1.72308576e-03 7.17952400e-05 7.43080734e-03]
- [1.73341303e-02 4.82167763e-02 3.80553895e-02 1.59394302e-03
-  1.59394302e-03 1.99242877e-03 2.37099024e-02]
- [6.44220573e-02 2.43902439e-02 1.00742312e-02 1.32555673e-03
-  0.00000000e+00 0.00000000e+00 1.74973489e-02]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.10642418e-02 2.71765438e-02 9.40460549e-03 3.59587857e-03
+  1.17557569e-03 2.76606044e-04 1.16174538e-02]
+ [7.03874867e-03 4.81692144e-02 6.71880555e-03 2.66619268e-03
+  1.70636331e-03 7.10984714e-05 7.39424102e-03]
+ [1.77409817e-02 4.80977725e-02 3.76503055e-02 1.57697615e-03
+  1.57697615e-03 1.97122019e-03 2.38517642e-02]
+ [6.45838803e-02 2.44158572e-02 9.97637175e-03 1.31268049e-03
+  0.00000000e+00 0.00000000e+00 1.75899186e-02]]
 </pre></div>
 </div>
 <p>The normalization is the number of articles with both terms, divided by the number of
@@ -195,14 +209,14 @@ articles for each anatomical term that include each perception term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.18360147e-03 3.39000730e-03 3.10935321e-03 1.83492840e-03
-  3.86179324e-04 2.07501167e-04 2.62039202e-04]
- [1.34135408e-03 1.04929903e-02 3.28665583e-03 1.81668443e-03
-  8.34724541e-04 6.09886256e-05 3.19954990e-04]
- [7.05070021e-04 2.28586542e-03 5.55878929e-03 4.32128774e-04
-  2.30507693e-04 1.00532824e-03 1.90639138e-04]
- [1.99198288e-03 8.78105583e-04 1.14230746e-03 2.89536163e-04
-  0.00000000e+00 0.00000000e+00 1.05935264e-04]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.18903413e-03 3.38518787e-03 3.08383030e-03 1.83973112e-03
+  3.81037768e-04 2.05433722e-04 2.61452556e-04]
+ [1.33608648e-03 1.05201047e-02 3.27459847e-03 1.78950633e-03
+  8.23991897e-04 6.03463883e-05 3.16979913e-04]
+ [7.18591561e-04 2.28346825e-03 5.51099313e-03 4.22810634e-04
+  2.27040527e-04 9.92358837e-04 1.91085921e-04]
+ [1.98667474e-03 8.79499158e-04 1.13273914e-03 2.83125708e-04
+  0.00000000e+00 0.00000000e+00 1.06010478e-04]]
 </pre></div>
 </div>
 <p>The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.</p>
@@ -232,7 +246,7 @@ collected co-occurrence data.</p>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_02-CountsAnalysis_003.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.621 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.531 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-countsanalysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/88dcbf3a23aef83ace374f0ad835aad6/plot_02-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-CountsAnalysis.py</span></code></a></p>
@@ -258,7 +272,7 @@ collected co-occurrence data.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
     </p>
   </div>
 </footer>

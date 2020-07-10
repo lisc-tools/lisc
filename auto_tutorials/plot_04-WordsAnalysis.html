@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial 04: Words Analysis &#8212; lisc 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -19,6 +20,7 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -27,6 +29,18 @@
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
 
   </head><body>
 
@@ -150,10 +164,10 @@ created from the aggregate data, across all articles for a given search term.</p
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>frontal lobe :
   Number of articles:            14
   First publication:             2020
-  Most common author:            Zhao X
+  Most common author:            Li Q
     number of publications:      2
-  Most common journal:           World neurosurgery
-    number of publications:      2
+  Most common journal:           Neurology India
+    number of publications:      1
 </pre></div>
 </div>
 </div>
@@ -190,7 +204,7 @@ created from the aggregate data, across all articles for a given search term.</p
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x1a1c6f0510&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x1a19f2afd0&gt;
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating through articles found from a particular search term</span>
@@ -200,21 +214,21 @@ created from the aggregate data, across all articles for a given search term.</p
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Accuracy of Biomarker Testing for Neuropathologically Defined Alzheimer Disease in Older Adults With Dementia: A Systematic Review.
-Performance of Topological Perception in the Myopic Population.
-Multidisciplinary Management of Low-velocity Nonmissile Penetrating Head Injuries.
-Differential diagnosis of temporal lobe lesions with hyperintense signal on T2-weighted and FLAIR sequences: pictorial essay.
-Dti-mri findings in synthetic cannabinoid users.
-A quantitative MRI index for assessing the severity of hippocampal sclerosis in temporal lobe epilepsy.
-Brain morphologic abnormalities in migraine patients: an observational study.
-Neural fatigue influences memory encoding in the human hippocampus.
-Longitudinal Associations between Brain Volume and Knee Extension Peak Torque.
-Heritability of alpha and sensorimotor network changes in temporal lobe epilepsy.
-The relationship between physical activity, apolipoprotein E ε4 carriage, and brain health.
-The Sodium Channel B4-Subunits are Dysregulated in Temporal Lobe Epilepsy Drug-Resistant Patients.
-130 Temporal Lobe Epilepsy: Is It in Your Differential Diagnosis? Two Case Reports.
-Effects of serotonin and dopamine depletion on neural prediction computations during social learning.
-Dissecting the default mode network: direct structural evidence on the morphology and axonal connectivity of the fifth component of the cingulum bundle.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Interrelationships between molecular subtype, anatomical location, and extent of resection in diffuse glioma: a systematic review and meta-analysis.
+Cognitive and behavioral outcome of stereotactic laser amydalohippocampotomy in a pediatric setting.
+A case of herpes simplex 2 encephalitis with an unusual radiographic manifestation.
+Cost effectiveness of surgery for drug resistant temporal lobe epilepsy in the US.
+Ictal SPECT in Psychogenic Nonepileptic and Epileptic Seizures.
+The effects of insular and mesiotemporal lesions on affective information processing: Preliminary evidence from patients with epilepsy surgery.
+Automatic Encoding of a View-Centered Background Image in the Macaque Temporal Lobe.
+Clinical and laboratory findings in tick-borne encephalitis virus infection.
+Outcome of cranial firearm injuries in civilian population based on a novel classification system.
+Prevalence and Incidence of Drug-Resistant Temporal Lobe Epilepsy in Qatar.
+Ultrasonic Assessment of the Medial Temporal Lobe Tissue Displacements in Alzheimer&#39;s Disease.
+Progesterone shapes medial temporal lobe volume across the human menstrual cycle.
+Long-term efficacy and cognitive effects of bilateral hippocampal deep brain stimulation in patients with drug-resistant temporal lobe epilepsy.
+The Study of Genetic Susceptibility and Mitochondrial Dysfunction in Mesial Temporal Lobe Epilepsy.
+The Runx1/Notch1 Signaling Pathway Participates in M1/M2 Microglia Polarization in a Mouse Model of Temporal Lobe Epilepsy and in BV-2 Cells.
 </pre></div>
 </div>
 <div class="section" id="analyzing-words-data">
@@ -227,7 +241,7 @@ differences between terms.</p>
 <p>Other analyses could explore historical patterns in the literature exploring, for
 exploring the history of when certain topics were written about, and in what
 journals, by which authors.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.755 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.731 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-wordsanalysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4d3f46ceca311403c9193554b687b08c/plot_04-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-WordsAnalysis.py</span></code></a></p>
@@ -254,7 +268,7 @@ journals, by which authors.</p>
     </p>
     <p>
         &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
     </p>
   </div>
 </footer>
