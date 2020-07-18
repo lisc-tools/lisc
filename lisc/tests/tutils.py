@@ -7,7 +7,7 @@ from os.path import join as pjoin
 from lisc.objects.base import Base
 from lisc.data import Articles, ArticlesAll, Term
 from lisc.core.modutils import safe_import
-from lisc.utils.db import SCDB, create_file_structure, check_directory
+from lisc.utils.db import SCDB, check_directory
 
 plt = safe_import('.pyplot', 'matplotlib')
 

@@ -2,10 +2,9 @@
 
 from collections import Counter
 
-import numpy as np
 from nltk import FreqDist
 
-from lisc.tests.utils import plot_test, optional_test
+from lisc.tests.tutils import plot_test, optional_test
 
 from lisc.plts.words import *
 

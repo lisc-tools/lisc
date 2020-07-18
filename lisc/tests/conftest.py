@@ -12,8 +12,8 @@ from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
-from lisc.tests.utils import create_files, load_base, load_arts, load_arts_all
-from lisc.tests.utils import TestDB as TDB
+from lisc.tests.tutils import create_files, load_base, load_arts, load_arts_all
+from lisc.tests.tutils import TestDB as TDB
 
 plt = safe_import('.pyplot', 'matplotlib')
 

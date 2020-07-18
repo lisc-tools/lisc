@@ -12,10 +12,10 @@ def test_prepend():
 
 def test_make_segments():
 
-    make_segments(['section', 'other']) == '/section/other'
-    make_segments([]) == ''
+    assert make_segments(['section', 'other']) == '/section/other'
+    assert make_segments([]) == ''
 
 def test_make_settings():
 
-    make_settings({'setting' : 'val1', 'other' : 'val2'}) == '?setting=val1&other=val2'
-    make_settings({}) == ''
+    assert make_settings({'setting' : 'val1', 'other' : 'val2'}) == '?setting=val1&other=val2'
+    assert make_settings({}) == ''

@@ -2,7 +2,7 @@
 
 from py.test import raises
 
-from lisc.data import  Term, Articles
+from lisc.data import Term, Articles
 from lisc.objects.words import Words
 
 ###################################################################################################

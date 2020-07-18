@@ -32,7 +32,7 @@ def test_convert_string():
 
 def test_lower_list():
 
-    words = ['The',  'Cool',  'Project']
+    words = ['The', 'Cool', 'Project']
 
     words_out = lower_list(words)
     expected = ['the', 'cool', 'project']

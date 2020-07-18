@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from lisc.tests.utils import plot_test, optional_test
+from lisc.tests.tutils import plot_test, optional_test
 
 from lisc.plts.counts import *
 
