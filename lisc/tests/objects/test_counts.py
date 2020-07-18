@@ -1,7 +1,5 @@
 """Tests for the Count class and related functions from lisc."""
 
-import numpy as np
-
 from lisc.objects.counts import Counts
 
 ###################################################################################################

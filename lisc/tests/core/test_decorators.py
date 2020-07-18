@@ -12,7 +12,7 @@ def test_catch_none_one():
         return inp + 1
 
     assert test_1(1) == 2
-    assert test_1(None) == None
+    assert test_1(None) is None
 
 def test_catch_none_two():
 

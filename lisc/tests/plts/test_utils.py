@@ -2,7 +2,7 @@
 
 from py.test import raises
 
-from lisc.tests.utils import optional_test
+from lisc.tests.tutils import optional_test
 
 from lisc.plts.utils import *
 

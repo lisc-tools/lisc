@@ -59,5 +59,5 @@ def test_none_process():
     """
 
     assert process_authors(None) is None
-    assert process_pub_date(None) == None
-    assert process_ids(None, 'doi') == None
+    assert process_pub_date(None) is None
+    assert process_ids(None, 'doi') is None
