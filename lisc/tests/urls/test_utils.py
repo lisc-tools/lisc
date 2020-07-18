@@ -17,5 +17,8 @@ def test_make_segments():
 
 def test_make_settings():
 
-    assert make_settings({'setting' : 'val1', 'other' : 'val2'}) == '?setting=val1&other=val2'
+    settings = make_settings({'setting' : 'val1', 'other' : 'val2'})
+    assert settings[0] == '?'
+    assert 'setting=val1' in settings
+    assert 'other=val2' in settings
     assert make_settings({}) == ''
