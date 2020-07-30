@@ -97,11 +97,17 @@ Install
 
 **Stable Release Version**
 
-To install the latest stable release of lisc, you can install from pip:
+To install the latest stable release, you can install from pip:
 
 .. code-block:: shell
 
     $ pip install lisc
+    
+LISC can also be installed with conda, from the conda-forge channel:
+
+.. code-block:: shell
+
+    $ conda install -c conda-forge lisc
 
 **Development Version**
 
