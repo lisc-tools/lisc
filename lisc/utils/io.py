@@ -88,7 +88,7 @@ def save_object(obj, f_name, directory=None):
                                        check_ext(f_name, '.p')), 'wb'))
 
 
-def load_object(f_name, directory=None):
+def load_object(f_name, directory=None, reload_results=False):
     """Load a custom object, from a pickle file.
 
     Parameters
@@ -100,7 +100,7 @@ def load_object(f_name, directory=None):
 
     Returns
     -------
-    object
+    custom_object
         Custom object loaded from pickle file.
 
     Examples
@@ -131,7 +131,14 @@ def load_object(f_name, directory=None):
     if not load_path:
         raise ValueError('Can not find requested file name.')
 
-    return pickle.load(open(check_ext(load_path, '.p'), 'rb'))
+    custom_object = pickle.load(open(check_ext(load_path, '.p'), 'rb'))
+
+    if reload_results:
+
+        for result in custom_object.results:
+            result.load(directory=directory)
+
+    return custom_object
 
 
 def parse_json_data(f_name):
