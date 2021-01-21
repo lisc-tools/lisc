@@ -1,4 +1,4 @@
-"""LISC plots - utilities."""
+"""Plot utilities."""
 
 import os
 from functools import wraps

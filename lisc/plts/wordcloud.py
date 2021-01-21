@@ -1,4 +1,4 @@
-"""LISC plots - word clouds."""
+"""Word cloud plots."""
 
 import random
 

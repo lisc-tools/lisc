@@ -1,4 +1,4 @@
-"""Object to handle URL requests."""
+"""Object for handling URL requests."""
 
 import os
 import time
@@ -127,7 +127,7 @@ class Requester():
 
     @staticmethod
     def wait(wait_time):
-        """Pause for specified amount of  time.
+        """Pause for specified amount of time.
 
         Parameters
         ----------

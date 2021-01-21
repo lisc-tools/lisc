@@ -11,7 +11,7 @@ def check_none(val, default):
     val : collection object or None
         An object to check whether is None.
     default : collection object
-        What to defaul to if `val` is None.
+        What to default to if `val` is None.
 
     Returns
     -------

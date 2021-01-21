@@ -59,7 +59,7 @@ class SCDB():
 
         Examples
         --------
-        Intialize a ``SCDB`` object:
+        Initialize a ``SCDB`` object:
 
         >>> db = SCDB('lisc_db')
         """
@@ -244,7 +244,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     Examples
     --------
-    Create a temporary file stucture for a :class:`~.SCDB` object:
+    Create a temporary file structure for a :class:`~.SCDB` object:
 
     >>> import os
     >>> from tempfile import TemporaryDirectory

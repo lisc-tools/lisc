@@ -1,4 +1,4 @@
-"""LISC plots - plots for words data."""
+"""Plots for words data."""
 
 from lisc.plts.utils import check_ax, savefig
 from lisc.plts.wordcloud import create_wordcloud, conv_freqs

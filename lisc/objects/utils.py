@@ -39,7 +39,7 @@ def get_max_length(lst, add=0):
 
     Notes
     -----
-    - Longest element is in terms of the length of the element as a string.
+    - The longest element is in terms of the length of the element as a string.
     - If the first list element is not a string, all elements are typecast to str.
     """
 

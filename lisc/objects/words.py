@@ -86,15 +86,15 @@ class Words(Base):
         retmax : int, optional
             Maximum number of records to return.
         field : str, optional, default: 'TIAB'
-            Field to search for term within.
+            Field(s) to search for term.
             Defaults to 'TIAB', which is Title/Abstract.
         usehistory : bool, optional, default: False
-            Whether to use EUtils history, storing results on their server.
+            Whether to use EUtils history, storing results on the EUtils server.
         api_key : str, optional
             An API key for a NCBI account.
         save_and_clear : bool, optional, default: False
-            Whether to save words data to disk per term as it goes, instead of holding in memory.
-        logging : {None, 'print', 'store', 'file'}
+            Whether to save words data to disk per term, instead of holding in memory.
+        logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
         directory : str or SCDB, optional
             Folder or database object specifying the save location for any outputs.

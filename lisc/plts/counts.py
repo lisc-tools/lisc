@@ -1,4 +1,4 @@
-"""LISC plots - plots for counts data.
+"""Plots for counts data.
 
 Notes
 -----

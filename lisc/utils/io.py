@@ -74,9 +74,10 @@ def save_object(obj, f_name, directory=None):
     ...     save_object(Counts(), 'counts.p', directory=dirpath)
     """
 
-    # Set the save path based on object type
-    # Note: imports done here to stop circular imports
+    # Import objects locally, to avoid circular imports
     from lisc.objects import Counts, Words
+
+    # Set the save path based on object type
     if isinstance(obj, Counts):
         obj_type = 'counts'
     elif isinstance(obj, Words):
