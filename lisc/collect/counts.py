@@ -105,7 +105,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     counts_a = np.ones([n_terms_a], dtype=int) * -1
     counts_b = np.ones([n_terms_b], dtype=int) * -1
 
-    # Initialize right size matrices to store co-occurence data
+    # Initialize right size matrices to store co-occurrence data
     co_occurences = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
 
     # Set diagonal to zero if square (term co-occurrence with itself)

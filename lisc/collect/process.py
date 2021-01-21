@@ -6,7 +6,7 @@ from lisc.core.decorators import catch_none
 ###################################################################################################
 
 def extract(tag, label, how):
-    """Extract data from HTML tag.
+    """Extract data from a HTML tag.
 
     Parameters
     ----------
@@ -135,7 +135,7 @@ def process_ids(ids, id_type):
 
     Returns
     -------
-    out : str or lst or None
+    out : str or list or None
         A str or list of available IDs, if any are available, otherwise None.
     """
 

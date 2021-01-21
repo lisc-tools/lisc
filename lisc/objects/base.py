@@ -59,7 +59,7 @@ class Base():
         terms : list of str or list of list of str
             List of terms to be used.
         term_type : {'terms', 'inclusions', 'exclusions'}
-            Which type of terms to use.
+            Which type of terms to are being added.
 
         Examples
         --------
@@ -91,8 +91,8 @@ class Base():
         f_name : str
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}
-            Which type of terms to use.
-        directory : SCDB or str or None, optional
+            Which type of terms file to load.
+        directory : SCDB or str, optional
             Folder or database object specifying the file location.
 
         Examples

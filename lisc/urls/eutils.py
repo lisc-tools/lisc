@@ -3,11 +3,11 @@
 External Documentation
 ----------------------
 EUtils Quick Start:
-    http://www.ncbi.nlm.nih.gov/books/NBK25500/
+    https://www.ncbi.nlm.nih.gov/books/NBK25500/
 EUtils in Depth:
     https://www.ncbi.nlm.nih.gov/books/NBK25499/
 Usage Policies and Disclaimers:
-    https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+    https://www.ncbi.nlm.nih.gov/home/about/policies/
 A list of all the valid databases:
     https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi
 
@@ -28,8 +28,8 @@ db : the target database.
     Most relevant database are: 'pubmed' & 'pmc'
         - pubmed: is a database of over 25 million references
         - pmc: an archive of freely available full text articles
-    More info here: https://www.nlm.nih.gov/pubs/factsheets/dif_med_pub.html
-    FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/#q1
+    More info here: https://www.nlm.nih.gov/bsd/difference.html
+    FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/
 id : list of UIDs (comma separated).
 field : the search field to search within.
 retmax : maximum number of records to return.

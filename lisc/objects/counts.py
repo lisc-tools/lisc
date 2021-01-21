@@ -18,7 +18,7 @@ class Counts():
     terms : dict
         Search terms to use.
     counts : 2d array
-        The numbers of articles found for each combination of terms.
+        The number of articles found for each combination of terms.
     score : 2d array
         A transformed 'score' of co-occurrence data.
         This can be a normalized version of the data, and/or a computed association index.
@@ -50,7 +50,7 @@ class Counts():
         ----------
         terms : list of str or list of list of str
             List of terms.
-        term_type : {'terms', 'inclusions', 'exclusions'}
+        term_type : {'terms', 'inclusions', 'exclusions'}, optional
             Which type of terms are being added.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
@@ -83,12 +83,12 @@ class Counts():
         ----------
         f_name : str
             File name to load terms from.
-        term_type : {'terms', 'inclusions', 'exclusions'}
+        term_type : {'terms', 'inclusions', 'exclusions'}, optional
             Which type of terms are being added.
-        directory : SCDB or str or None
+        directory : SCDB or str, optional
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
+            Which set of terms to add.
 
         Examples
         --------
@@ -192,7 +192,7 @@ class Counts():
         >>> counts.run_collection() # doctest: +SKIP
         >>> counts.compute_score() # doctest: +SKIP
 
-        Once you have co-occurence scores calculated, you might want to plot this data.
+        Once you have co-occurrence scores calculated, you might want to plot this data.
         You can plot the results as a matrix, as a clustermap, and/or as a dendrogram:
 
         >>> from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram  # doctest:+SKIP
@@ -243,7 +243,7 @@ class Counts():
 
         Parameters
         ----------
-        dim : {'A', 'B'}, optional
+        dim : {'A', 'B'}
             Which set of terms to check.
 
         Examples
