@@ -15,12 +15,12 @@ def create_wordcloud(words):
     Parameters
     ----------
     words : dict
-        Words to plot, with their corresponding frequencies.
+        Words for the wordcloud, with their corresponding frequencies.
 
     Returns
     -------
     wc : WordCloud
-        Wordcloud definition.
+        Wordcloud object.
     """
 
     cloud = wc.WordCloud(background_color=None,
@@ -38,26 +38,26 @@ def create_wordcloud(words):
 
 
 def conv_freqs(freq_dist, n_words):
-    """Convert FreqDist into a dictionary for creating a WordCloud.
+    """Convert FreqDist into a dictionary.
 
     Parameters
     ----------
     freq_dist : nltk.FreqDist
-        Frequency distribution of words from text.
+        Frequency distribution of words.
     n_words : int
-        Number of words to extract for plotting.
+        Number of words to extract.
 
     Returns
     -------
     dict
-        All words with their corresponding frequencies.
+        Words with their corresponding frequencies.
     """
 
     return dict(freq_dist.most_common(n_words))
 
 
 def _grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    """Function for custom coloring - use gray pallet.
+    """Function for custom coloring with a gray pallet.
     From here: https://amueller.github.io/word_cloud/auto_examples/a_new_hope.html
     """
 

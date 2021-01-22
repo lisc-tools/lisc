@@ -49,22 +49,25 @@ def plot_years(years, year_range=None, ax=None):
 
     Examples
     --------
-    Plot a histogram of publication years.
-    Publication years are collected together in the :class:`~.ArticlesAll` class.
+    Plot a histogram of publication years:
 
     >>> from collections import Counter
     >>> plot_years(years=Counter({'2018': 25, '2019': 50, '2020':75}))
+
+    Notes
+    -----
+    Publication years are collected together in the :class:`~.ArticlesAll` class.
     """
 
     ax = check_ax(ax, (10, 5))
 
     # Extract x & y data to plot
-    x_dat = list(years.keys())
-    y_dat = list(years.values())
+    x_data = list(years.keys())
+    y_data = list(years.values())
 
     # Add line and points to plot
-    plt.plot(x_dat, y_dat)
-    plt.plot(x_dat, y_dat, '.', markersize=16)
+    plt.plot(x_data, y_data)
+    plt.plot(x_data, y_data, '.', markersize=16)
 
     # Set plot limits
     if year_range:
