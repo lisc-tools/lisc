@@ -56,7 +56,7 @@ def get_cmap(cmap):
     return cmap
 
 
-def counts_data_helper(data, x_labels, y_labels, transpose):
+def counts_data_helper(data, x_labels, y_labels, attribute, transpose):
     """A helper function for checking data inputs for counts plots.
 
     Parameters
@@ -65,6 +65,8 @@ def counts_data_helper(data, x_labels, y_labels, transpose):
         Data to plot in matrix format.
     x_labels, y_labels : list of str
         Labels for the axes.
+    attribute : {'score', 'counts'}
+        Which data attribute from the data object to extract.
     transpose : bool
         Whether to transpose the data.
 
