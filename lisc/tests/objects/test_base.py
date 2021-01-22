@@ -1,4 +1,4 @@
-"""Tests for the Base Class from lisc."""
+"""Tests for lisc.objects.base."""
 
 from py.test import raises
 

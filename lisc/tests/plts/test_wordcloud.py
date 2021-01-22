@@ -1,12 +1,15 @@
-"""Tests for the wordcloud plots from lisc."""
+"""Tests for the lisc.plts.wordcloud."""
 
 from nltk import FreqDist
+
+from lisc.tests.tutils import optional_test
 
 from lisc.plts.wordcloud import *
 
 ###################################################################################################
 ###################################################################################################
 
+@optional_test('wordcloud')
 def test_create_wordcloud():
 
     words = {'words' : 2, 'yay' : 3}

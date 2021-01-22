@@ -1,4 +1,4 @@
-"""Tests for OpenCitatons URLs LISC."""
+"""Tests for lisc.urls.open_citations."""
 
 from lisc.urls.open_citations import *
 

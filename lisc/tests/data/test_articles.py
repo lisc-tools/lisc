@@ -1,4 +1,4 @@
-"""Tests for the Articles class and related functions from lisc."""
+"""Tests for lisc.data.articles."""
 
 import os
 

@@ -1,4 +1,4 @@
-"""Tests for the objects utilities."""
+"""Tests for lisc.objects.utils."""
 
 from lisc.objects.utils import *
 

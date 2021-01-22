@@ -1,4 +1,4 @@
-"""Test for the analysis functions for counts, for LISC."""
+"""Tests for the lisc.analysis.counts."""
 
 from py.test import raises
 
@@ -21,11 +21,11 @@ def test_compute_normalization():
     out = compute_normalization(data, counts_b, 'B')
     assert np.array_equal(out, np.array([[10, 5, 2], [20, 10, 4]]))
 
-    # Test error is shapes don't work
+    # Test error if data shapes are inconsistent
     with raises(ValueError):
         compute_normalization(data, counts_b, 'A')
 
-    # Test error for if dimension specifier is bad
+    # Test error if the 'dim' inputis bad
     with raises(ValueError):
         compute_normalization(data, counts_b, 'C')
 
@@ -39,6 +39,6 @@ def test_compute_association_index():
     assert np.array_equal(out, np.array([[5/(20-5), 10/(20-10), 5/(20-5)],
                                          [0/(20-0), 5/(20-5), 0/(20-0)]]))
 
-    # Test error if shapes don't work
+    # Test error if data shapes are not consistent
     with raises(ValueError):
         compute_association_index(data, counts_b, counts_a)

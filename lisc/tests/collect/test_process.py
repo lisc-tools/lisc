@@ -1,4 +1,4 @@
-"""Tests for the process functions for collections."""
+"""Tests for lisc.collect.process."""
 
 from py.test import raises
 
@@ -22,20 +22,20 @@ def test_extract():
     out.append(inn1)
     out.append(inn2)
 
-    # Test error - bad how
+    # Test error with a bad 'how' input
     with raises(ValueError):
         out_err = extract(out, 'Inn', 'bad')
 
-    # Test how = 'raw'
+    # Test with how = 'raw'
     out_raw = extract(out, 'Inn', 'raw')
     assert type(out_raw) is bs4.element.Tag
 
-    # Test how = 'str'
+    # Test with how = 'str'
     out_str = extract(out, 'Inn', 'str')
     assert isinstance(out_str, str)
     assert out_str == 'words words'
 
-    # Test how = 'all'
+    # Test with how = 'all'
     out_all = extract(out, 'Inn', 'all')
     assert type(out_all) is bs4.element.ResultSet
 
@@ -54,10 +54,9 @@ def test_ids_to_str():
     assert out == '1111,1111'
 
 def test_none_process():
-    """The _process functions have a decorator to catch & return None inputs.
-    Test that this is working - returns None when given None.
-    """
+    """Test the decorator on '_process' functions that catches & return None inputs."""
 
+    # None inputs should give a None output
     assert process_authors(None) is None
     assert process_pub_date(None) is None
     assert process_ids(None, 'doi') is None

@@ -1,4 +1,4 @@
-"""Tests for counts collections."""
+"""Tests for lisc.collect.counts."""
 
 from lisc.collect.counts import *
 

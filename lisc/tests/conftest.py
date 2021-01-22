@@ -1,4 +1,4 @@
-""""Configuration file for pytest, for testing LISC."""
+""""Configuration file for pytest."""
 
 import pytest
 

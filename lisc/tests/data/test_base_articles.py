@@ -1,4 +1,4 @@
-"""Tests for the BaseArticles class and related functions from lisc."""
+"""Tests for lisc.data.base_articles."""
 
 from lisc.data.base_articles import *
 

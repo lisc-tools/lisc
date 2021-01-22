@@ -1,4 +1,4 @@
-"""Tests for the IO functions from lisc.utils."""
+"""Tests for lisc.utils.io."""
 
 import os
 

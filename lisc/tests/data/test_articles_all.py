@@ -1,4 +1,4 @@
-"""Tests for the ArticlesAll class and related functions from lisc."""
+"""Tests for lisc.data.articles_all."""
 
 from lisc.data.articles_all import *
 from lisc.data.articles_all import _count_authors, _count_end_authors, _fix_author_names
@@ -8,8 +8,8 @@ from lisc.data.articles_all import _count_authors, _count_end_authors, _fix_auth
 
 def test_articles_all(tarts_full):
 
-    dat_all = ArticlesAll(tarts_full)
-    assert dat_all
+    data_all = ArticlesAll(tarts_full)
+    assert data_all
 
 def test_check(tarts_all):
 
@@ -27,30 +27,30 @@ def test_summary(tdb, tarts_all):
 
 def test_count_authors():
 
-    tdat = [[('Smith', 'Alfred', 'AS', 'Python'),
-             ('Doe', 'Jane', 'JR', 'JavaScript')],
-            [('Smith', 'Alfred', 'AS', 'Python')]]
-    out = _count_authors(tdat)
+    tdata = [[('Smith', 'Alfred', 'AS', 'Python'),
+              ('Doe', 'Jane', 'JR', 'JavaScript')],
+             [('Smith', 'Alfred', 'AS', 'Python')]]
+    out = _count_authors(tdata)
 
     assert out[('Smith', 'AS')] == 2
     assert out[('Doe', 'JR')] == 1
 
 def test_count_end_authors():
 
-    tdat = [[('Smith', 'Alfred', 'AS', 'Python'),
-             ('Middle', 'Arthur', 'AA', 'Matlab'),
-             ('Doe', 'Jane', 'JR', 'JavaScript')],
-            [('Smith', 'Alfred', 'AS', 'Python')]]
+    tdata = [[('Smith', 'Alfred', 'AS', 'Python'),
+              ('Middle', 'Arthur', 'AA', 'Matlab'),
+              ('Doe', 'Jane', 'JR', 'JavaScript')],
+             [('Smith', 'Alfred', 'AS', 'Python')]]
 
-    f_authors, l_authors = _count_end_authors(tdat)
+    f_authors, l_authors = _count_end_authors(tdata)
 
     assert f_authors[('Smith', 'AS')] == 2
     assert l_authors[('Doe', 'JR')] == 1
 
 def test_fix_author_names():
 
-    tdat = [('Smith', 'AS'), (None, None), ('Doe', 'JR'), ('First Middle Last', None)]
-    out = _fix_author_names(tdat)
+    tdata = [('Smith', 'AS'), (None, None), ('Doe', 'JR'), ('First Middle Last', None)]
+    out = _fix_author_names(tdata)
 
     assert out[0] == ('Smith', 'AS')
     assert out[1] == ('Doe', 'JR')
