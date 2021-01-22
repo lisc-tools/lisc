@@ -72,7 +72,7 @@ def plot_years(years, year_range=None, ax=None):
     # Set plot limits
     if year_range:
         plt.xlim([year_range[0], year_range[1]])
-    plt.ylim([0, max(y_dat)+3])
+    plt.ylim([0, max(y_data)+3])
 
     # Add title & labels
     plt.title('Publication History', fontsize=24, fontweight='bold')
