@@ -1,4 +1,4 @@
-"""Tests for the plot utilities from lisc."""
+"""Tests for the lisc.plts.utils."""
 
 from py.test import raises
 

@@ -1,4 +1,4 @@
-"""Tests for the words plots from lisc."""
+"""Tests for lisc.plts.words."""
 
 from collections import Counter
 

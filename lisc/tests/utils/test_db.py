@@ -1,4 +1,4 @@
-"""Tests for the database classes and functions from lisc.core."""
+"""Tests for lisc.core.db"""
 
 from lisc.utils.db import *
 

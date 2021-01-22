@@ -1,4 +1,4 @@
-"""Tests for citations collections."""
+"""Tests for lisc.collect.citations."""
 
 from lisc.collect.citations import *
 

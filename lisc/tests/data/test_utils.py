@@ -1,4 +1,4 @@
-"""Tests for the data utilities from lisc."""
+"""Tests for lisc.data.utils."""
 
 from lisc.data.utils import *
 

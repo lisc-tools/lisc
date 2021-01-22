@@ -1,4 +1,4 @@
-"""Tests for the MetaData class and related functions from lisc."""
+"""Tests for lisc.data.meta_data."""
 
 from lisc.data.meta_data import *
 

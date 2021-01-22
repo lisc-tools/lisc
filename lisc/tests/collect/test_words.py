@@ -1,4 +1,4 @@
-"""Tests for words collections."""
+"""Tests for lisc.collect.words."""
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,12 +13,12 @@ def test_collect_words(tdb):
     terms = ['science', 'engineering']
     excls = ['philosophy', []]
 
-    # Without history, nor save & clearing
+    # Test without using history, and without saving & clearing
     res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2',
                                    save_and_clear=False, usehistory=False)
     assert res
 
-    # With history, and using save and clear
+    # Test with using history, and with using save and clear
     res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2',
                                    usehistory=True, directory=tdb)
     assert res

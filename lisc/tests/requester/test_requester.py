@@ -1,4 +1,4 @@
-"""Tests for Requester functions and classes."""
+"""Tests for lisc.requester.requester."""
 
 import os
 import time

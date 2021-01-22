@@ -1,4 +1,4 @@
-"""Test for the analysis functions for counts, for LISC."""
+"""Tests for lisc.analysis.words."""
 
 from collections import Counter
 
@@ -23,22 +23,22 @@ def test_get_all_counts(tarts_all):
 
     lst = [tarts_all, tarts_all]
 
-    # Test Counter, non-combined outputs
+    # Test for attribute stored with Counter, with non-combined outputs
     counts = get_all_counts(lst, 'journals')
     assert isinstance(counts, list)
     assert len(counts) == len(lst)
 
-    # Test Counter, combined outputs
+    # Test for attribute stored with Counter, with combined output
     counts = get_all_counts(lst, 'journals', combine=True)
     assert isinstance(counts, Counter)
     assert len(counts) == len(tarts_all.journals)
 
-    # Test FreqDist, non-combined ouputs
+    # Test for attribute stored with FreqDist, with non-combined ouputs
     counts = get_all_counts(lst, 'words')
     assert isinstance(counts, list)
     assert len(counts) == len(lst)
 
-    # Test FreqDist, combined ouputs
+    # Test for attribute stored with FreqDist, with combined ouput
     counts = get_all_counts(lst, 'words', combine=True)
     assert isinstance(counts, FreqDist)
     assert len(counts) == len(tarts_all.words)

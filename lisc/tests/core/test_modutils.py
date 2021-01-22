@@ -1,4 +1,4 @@
-"""Tests for the module utilities from lisc.core."""
+"""Tests for the lisc.core.modutils."""
 
 from py.test import raises
 

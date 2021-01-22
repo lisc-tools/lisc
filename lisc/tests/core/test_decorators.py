@@ -1,4 +1,4 @@
-"""Tests for the decorators from lisc.core."""
+"""Tests for the lisc.core.decorators."""
 
 from lisc.core.decorators import *
 

@@ -1,4 +1,4 @@
-"""Tests for the counts plots from lisc."""
+"""Tests for the lisc.plts.counts."""
 
 import numpy as np
 

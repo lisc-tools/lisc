@@ -1,4 +1,4 @@
-"""Tests for the collection utilities."""
+"""Tests for the lisc.collect.utils."""
 
 from lisc.data.term import Term
 
@@ -10,9 +10,9 @@ from lisc.collect.utils import *
 def test_mk_term():
 
     term = Term('label', ['search1', 'search2'], ['incl1', 'incl2'], ['excl1', 'excl2'])
-    term_arg = mk_term(term)
+    arg = mk_term(term)
 
-    assert term_arg == "(\"search1\"OR\"search2\")AND(\"incl1\"OR\"incl2\")NOT(\"excl1\"OR\"excl2\")"
+    assert arg == "(\"search1\"OR\"search2\")AND(\"incl1\"OR\"incl2\")NOT(\"excl1\"OR\"excl2\")"
 
 def test_mk_comp():
 

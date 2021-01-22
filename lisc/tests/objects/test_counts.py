@@ -1,4 +1,4 @@
-"""Tests for the Count class and related functions from lisc."""
+"""Tests for lisc.objects.counts."""
 
 from lisc.objects.counts import Counts
 

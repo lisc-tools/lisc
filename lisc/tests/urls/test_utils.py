@@ -1,4 +1,4 @@
-"""Tests for URL utilities for LISC."""
+"""Tests for lisc.urls.utils."""
 
 from lisc.urls.utils import *
 
