@@ -126,6 +126,7 @@ def load_object(f_name, directory=None, reload_results=False):
 
     elif isinstance(directory, str) or directory is None:
 
+        directory = '' if directory is None else directory
         if f_name in os.listdir(directory):
             load_path = os.path.join(directory, f_name)
 
