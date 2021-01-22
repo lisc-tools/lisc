@@ -3,6 +3,7 @@
 import os
 from functools import wraps
 
+from lisc import Counts
 from lisc.utils.db import SCDB
 from lisc.core.modutils import safe_import
 
@@ -53,6 +54,39 @@ def get_cmap(cmap):
         raise ValueError('Requested colormap not understood.')
 
     return cmap
+
+
+def counts_data_helper(data, x_labels, y_labels, attribute, transpose):
+    """A helper function for checking data inputs for counts plots.
+
+    Parameters
+    ----------
+    data : Counts or 2d array
+        Data to plot in matrix format.
+    x_labels, y_labels : list of str
+        Labels for the axes.
+    attribute : {'score', 'counts'}
+        Which data attribute from the data object to extract.
+    transpose : bool
+        Whether to transpose the data.
+
+    Returns
+    -------
+    data : 2d array
+        Array of data to plot.
+    x_labels, y_labels : list of str
+        Labels for the axes
+    """
+
+    if isinstance(data, Counts):
+        x_labels = data.terms['B' if not transpose else 'A'].labels if not x_labels else x_labels
+        y_labels = data.terms['A' if not transpose else 'B'].labels if not y_labels else y_labels
+        data = getattr(data, attribute)
+
+    if transpose:
+        data = data.T
+
+    return data, x_labels, y_labels
 
 
 def check_ax(ax, figsize=None):
