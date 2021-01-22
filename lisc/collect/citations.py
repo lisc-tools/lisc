@@ -22,6 +22,8 @@ def collect_citations(dois, util='citations', collect_dois=False,
 
         * 'citations': collects the number of citations citing the specified DOI.
         * 'references': collects the number of references cited by the specified DOI.
+    collect_dois : bool, optional, default: False
+        Whether to also collect the list of DOIs of cited or referenced papers.
     logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB, optional
@@ -32,7 +34,10 @@ def collect_citations(dois, util='citations', collect_dois=False,
     Returns
     -------
     n_citations : dict
-        The number of citations for each DOI.
+        The number of citations or references for each article.
+    cite_dois : dict
+        The DOIs of the citing or references articles.
+        Only returned if `collect_dois` is True.
     meta_data : MetaData
         Meta data about the data collection.
     """
@@ -46,25 +51,28 @@ def collect_citations(dois, util='citations', collect_dois=False,
     if verbose:
         print('Collecting citation data.')
 
-    n_citations, citing_dois = {}, {}
+    # Initialize dictionaries to store collected data
+    n_citations = {}
+    cite_dois = {}
+
     for doi in dois:
-        outputs = get_citation_data(req, urls.get_url(util, [doi]), collect_dois=collect_dois)
-        if collect_dois:
-            n_citations[doi] = outputs[0]
-            citing_dois[doi] = outputs[1]
-        else:
-            n_citations[doi] = outputs
+
+        # Make the URL request for each DOI, and collect results
+        outputs = get_citation_data(req, urls.get_url(util, [doi]), collect_dois)
+
+        # Unpack outputs depending on wether DOIs were collected
+        n_citations[doi], cite_dois[doi] = outputs if collect_dois else (outputs, None)
 
     meta_data.add_requester(req)
 
     if not collect_dois:
         return n_citations, meta_data
     else:
-        return n_citations, citing_dois, meta_data
+        return n_citations, cite_dois, meta_data
 
 
 def get_citation_data(req, citation_url, collect_dois=False):
-    """Extract citations from an OpenCitations URL request.
+    """Extract citations using an OpenCitations URL request.
 
     Parameters
     ----------
@@ -72,26 +80,35 @@ def get_citation_data(req, citation_url, collect_dois=False):
         Requester to launch requests from.
     citation_url : str
         URL to collect citation data from.
+    collect_dois : bool, optional, default: False
+        Whether to also collect the list of DOIs of cited or referenced papers.
 
     Returns
     -------
     n_citations : int
-        The number of citations the article has received.
+        The number of citations or references of the article.
     citing_dois : list of str
-        The DOIs of the citing articles.
+        The DOIs of the citing or references articles.
+        Only returned if `collect_dois` is True.
     """
 
     page = req.request_url(citation_url)
     jpage = json.loads(page.content.decode('utf-8'))
     n_citations = len(jpage)
 
-    # If the return is empty, encode as None instead of zero
-    #   This is because we don't want to treat missing data as 0 citations
+    if collect_dois:
+
+        # Set which tag to extract, based on whether URL is for 'citations' or 'references'
+        cite_tag = 'citing' if 'citations' in citation_url else 'cited'
+
+        # Extract and collect the DOI for each citing or referenced article
+        citing_dois = [art_cite[cite_tag] for art_cite in jpage]
+
+    # If the DOI is not found, the return is empty is empty (length of zero)
+    #   Therefore, re-encode outputs to None, to not treat missing entries as 0 cites / refs
     if n_citations == 0:
         n_citations = None
-    else:
-        if collect_dois:
-            citing_dois = [acite['citing'] for acite in jpage]
+        citing_dois = None
 
     if not collect_dois:
         return n_citations
