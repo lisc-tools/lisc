@@ -103,9 +103,11 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple',
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
-    data, x_labels, y_labels =  counts_data_helper(data, x_labels, y_labels, attribute, transpose)
+    data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
-    cg = sns.clustermap(data, cmap=cmap, method='complete', metric='cosine',
+    cg = sns.clustermap(data, cmap=cmap,
+                        method=kwargs.pop('method', 'complete'),
+                        metric=kwargs.pop('metric', 'cosine'),
                         **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
                         **kwargs)
 
@@ -117,8 +119,8 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple',
 
 
 @savefig
-def plot_dendrogram(data, labels=None, ax=None):
-    """Plot a dendrogram of the given data.
+def plot_dendrogram(data, labels=None, method='complete', metric='cosine', ax=None, **kwargs):
+    """Plot a dendrogram of the given data based on hierarchical clustering.
 
     Parameters
     ----------
@@ -126,10 +128,14 @@ def plot_dendrogram(data, labels=None, ax=None):
         Data to plot in a dendrogram.
     labels : list of str, optional
         Labels for the dendrogram.
+    method : str
+        The linkage algorithm to use. See `scipy.cluster.hierarchy.linkage` for options.
+    metric : str or function
+        The distance metric to use. See `scipy.cluster.hierarchy.linkage` for options.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
     **kwargs
-        Additional keyword arguments to pass through to scipy.cluster.hierarchy.
+        Additional keyword arguments to pass through to scipy.cluster.hierarchy.dendrogram.
 
     Notes
     -----
@@ -144,8 +150,12 @@ def plot_dendrogram(data, labels=None, ax=None):
         labels = data.terms['B' if not transpose else 'A'].labels
         data = getattr(data, attribute).T if transpose else getattr(data, attribute)
 
-    linkage_data = hier.linkage(data, method='complete', metric='cosine')
+    linkage_data = hier.linkage(data, method='complete', metric=metric)
 
-    hier.dendrogram(linkage_data, orientation='left', color_threshold=0.25,
-                    leaf_font_size=12, ax=check_ax(ax), **check_args(['labels'], labels))
+    hier.dendrogram(linkage_data,
+                    orientation=kwargs.pop('orientation', 'left'),
+                    color_threshold=kwargs.pop('color_threshold', 0.25),
+                    leaf_font_size=kwargs.pop('leaf_font_size', 12),
+                    ax=check_ax(ax), **check_args(['labels'], labels),
+                    **kwargs)
     plt.tight_layout()
