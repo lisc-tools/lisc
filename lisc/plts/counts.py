@@ -153,7 +153,7 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
     """
 
     if isinstance(data, Counts):
-        labels = data.terms['B' if not transpose else 'A'].labels
+        labels = data.terms['A' if not transpose else 'B'].labels
         data = getattr(data, attribute).T if transpose else getattr(data, attribute)
 
     linkage_data = hier.linkage(data, method='complete', metric=metric)
