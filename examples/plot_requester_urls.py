@@ -2,22 +2,22 @@
 URLs and Requests
 =================
 
-Exploring LISC utilities for managing URLs and requests.
+Explore LISC utilities for managing URLs and requests.
 """
 
 ###################################################################################################
 # URLs & Requests
 # ---------------
 #
-# LISC uses custom objects to manage URLs, that can store how to interact with
-# APIs, as well as a custom object to manage requests.
+# LISC uses custom objects to manage URLs and launch requests. These can be used to
+# define how to interact with APIs of interest.
 #
-# Note that to use the main LISC functionality, you don't have to deal with these
-# objects directly, as they are used 'under the hood' by LISC functions for collecting
-# data and interacting APIs without requiring user interaction.
+# For the main LISC functionality, you don't have to deal with these objects directly.
+# They are used 'under the hood' by LISC functions for collecting data and interacting with
+# APIs without requiring direct user interaction.
 #
-# This example can be used if you want to explore custom data collections, and/or to
-# use LISC for other APIs.
+# In this example, we will explore using these objects directly, which may be useful for
+# creating custom data collections, and/or to connect LISC with other APIs.
 #
 
 ###################################################################################################
@@ -34,7 +34,7 @@ from lisc.requester import Requester
 # module to launch URL requests.
 #
 # The :class:`~.Requester` object also adds some functionality such as throttling, to
-# ensure requests respect API limits, as well as metadata collection, and URL logging.
+# ensure requests respect API limits, as well as metadata collection and URL logging.
 #
 
 ###################################################################################################
@@ -68,13 +68,13 @@ print(req.as_dict())
 # URLs Object
 # ~~~~~~~~~~~
 #
-# The :class:`~.URLs` object is the base object used in LISC to store URLs to interact with APIs.
+# The :class:`~.URLs` object is used in LISC to store URLs used for interacting with APIs.
 #
 # It includes functionality to store and use different utilities available through
 # an API, and store and use different settings.
 #
-# In the example, we can explore using the the URLs object for a new API, in this case
-# the `duckduckgo <https://duckduckgo.com>`_ API.
+# In this example, we will explore using the the URLs object to access the
+# `duckduckgo <https://duckduckgo.com>`_ API.
 #
 
 ###################################################################################################
@@ -132,7 +132,7 @@ from lisc.urls import EUtils, OpenCitations
 
 ###################################################################################################
 
-# Initialize an object for the EUtils API
+# Initialize EUtils API object
 eutils = EUtils()
 
 # Check what utilities are supported for the EUtils API
@@ -140,7 +140,7 @@ print(eutils.utils)
 
 ###################################################################################################
 
-# Initialize an object for the OpenCitations API
+# Initialize an OpenCitations API object
 citations = OpenCitations()
 
 # Check what utilities are supported for the OpenCitations API
@@ -150,7 +150,7 @@ print(citations.utils)
 # Adding New APIs
 # ~~~~~~~~~~~~~~~
 #
-# If you are interested in extending LISC to interact with additional APIs, then
-# you can use the `EUtils` and `OpenCitations` objects as examples, and build a
-# new API object by inheriting from and using the `URLs` object.
+# The `EUtils` and `OpenCitations` objects can be used examples for potentially adding
+# new APIs to LISC. New API objects can be created by inheriting from the `URLs` object,
+# and added information on the utilities and settings available for that particular API.
 #

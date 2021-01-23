@@ -2,11 +2,12 @@
 Database and Terms Lists
 ========================
 
-Exploring the LISC database and using files of terms.
+Exploring the LISC database, and using search terms loaded from files.
 """
 
 ###################################################################################################
 
+# Import a function to create a LISC database file structure
 from lisc.utils.db import create_file_structure
 
 ###################################################################################################
