@@ -11,6 +11,9 @@ Analyzing collected co-occurrence data.
 #
 # This tutorial explores analyzing collected co-occurrence data.
 #
+# Note that this tutorials requires some optional dependencies, including
+# matplotlib, seaborn and scipy.
+#
 
 ###################################################################################################
 

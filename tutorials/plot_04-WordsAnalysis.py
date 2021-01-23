@@ -14,6 +14,9 @@ Analyzing collected text data and metadata.
 # For this tutorial, we will reload and use the :class:`~.Words` object with
 # the data that we collected in the last tutorial.
 #
+# Note that this tutorial requires some optional dependencies, including the
+# `WordCloud <https://github.com/amueller/word_cloud>`_ module.
+#
 
 ###################################################################################################
 
@@ -26,6 +29,18 @@ from lisc.utils.io import load_object
 
 # Import plots that are available for words data
 from lisc.plts.words import plot_wordcloud
+
+# Import a helper function to install required nltk data
+from lisc.utils.download import download_nltk_data
+
+###################################################################################################
+# NLTK Data
+# ~~~~~~~~~
+#
+# This tutorial analyzes and tokenizes collected text which, if you are running locally,
+# requires some data be available from NLTK. If you don't already have this data installed,
+# you can run the :func:`~.download_nltk_data` function.
+#
 
 ###################################################################################################
 # Articles Object
