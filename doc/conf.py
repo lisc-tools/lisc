@@ -101,6 +101,7 @@ html_theme_options = {
         ("API", "api"),
         ("Tutorials", "auto_tutorials/index"),
         ("Examples", "auto_examples/index"),
+        ("Reference", "reference"),
         ("GitHub", "https://github.com/lisc-tools/lisc", True)
     ],
 
