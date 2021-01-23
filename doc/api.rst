@@ -140,8 +140,8 @@ Analysis Functions
 
 Functions to analyze collected data.
 
-Normalization
-~~~~~~~~~~~~~
+Co-Occurence Data
+~~~~~~~~~~~~~~~~~
 
 .. currentmodule:: lisc.analysis.counts
 
@@ -149,16 +149,18 @@ Normalization
     :toctree: generated/
 
     compute_normalization
+    compute_association_index
 
-Association
-~~~~~~~~~~~
+Words Data
+~~~~~~~~~~
 
-.. currentmodule:: lisc.analysis.counts
+.. currentmodule:: lisc.analysis.words
 
 .. autosummary::
     :toctree: generated/
 
-    compute_association_index
+    get_all_values
+    get_all_counts
 
 Plotting Functions
 ------------------
@@ -214,3 +216,13 @@ Database Management
 
     SCDB
     create_file_structure
+
+Downloads
+~~~~~~~~~
+
+.. currentmodule:: lisc.utils
+
+.. autosummary::
+    :toctree: generated/
+
+    download_nltk_data

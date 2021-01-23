@@ -12,8 +12,8 @@ from lisc.utils.io import load_object
 # Metadata
 # --------
 #
-# Whenever you collect data with LISC, some meta data is collected about the
-# API requests and databases accessed.
+# Whenever you collect data with LISC, meta data is collected about the API requests
+# and databases accessed.
 #
 # Here we will explore the metadata collected during our previous investigations.
 #
@@ -31,7 +31,7 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 #
 # If you are collecting data using the LISC object, such as the :class:`~.Counts`
 # or :class:`~.Words` object, this collection information is attached and saved
-# to the object, as the `meta_data` attribute.
+# to the object as the `meta_data` attribute.
 #
 
 ###################################################################################################
@@ -46,8 +46,7 @@ counts.meta_data.db_info
 
 ###################################################################################################
 #
-# For the next part, we'll reload the :class:`~.Words` object, which has the same meta data
-# object available.
+# For the next part, we'll reload the :class:`~.Words` object, which also has stored meta data.
 #
 
 ###################################################################################################

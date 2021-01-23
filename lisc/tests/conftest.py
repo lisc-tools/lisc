@@ -12,6 +12,7 @@ from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
+from lisc.utils.download import download_nltk_data
 from lisc.tests.tutils import create_files, load_base, load_arts, load_arts_all
 from lisc.tests.tutils import TestDB as TDB
 
@@ -30,8 +31,7 @@ def pytest_configure(config):
 def download_data():
 
     # Download required nltk data for tokenizing
-    nltk.download('punkt')
-    nltk.download('stopwords')
+    download_nltk_data()
 
 @pytest.fixture(scope='session', autouse=True)
 def check_db():

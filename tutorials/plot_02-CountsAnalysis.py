@@ -9,14 +9,19 @@ Analyzing collected co-occurrence data.
 # Counts Analyses
 # ---------------
 #
-# This tutorial explores the built in utilities for exploring & analyzing counts data.
+# This tutorial explores analyzing collected co-occurrence data.
+#
+# Note that this tutorials requires some optional dependencies, including
+# matplotlib, seaborn and scipy.
 #
 
 ###################################################################################################
 
+# Import database and IO utilities to reload our previously collected data
 from lisc.utils.db import SCDB
 from lisc.utils.io import load_object
 
+# Import plots that are available for co-occurrence analysis
 from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram
 
 ###################################################################################################
@@ -46,12 +51,11 @@ counts.check_data(data_type='counts', dim='B')
 # Normalization & Scores
 # ----------------------
 #
-# The Counts co-occurrence data collection gives us a raw data matrix of the number
-# of articles in which terms co-occur, as well as the number of articles for each
-# term independently.
+# The collected co-occurrence data includes information on the number of articles in which
+# terms co-occur, as well as the number of articles for each term independently.
 #
-# Once we have the co-occurrence matrix, we typically want to calculate a
-# normalized co-occurrence measure, and/or some other kind of similarity score.
+# Once we have this data, we typically want to calculate a normalized measures,
+# and/or other kinds of similarity score, to compare between terms.
 #
 # To normalize the data, we can divide the co-occurrence counts by the number of articles
 # per term. This allows us the examine, for example, the proportion of articles
@@ -59,11 +63,11 @@ counts.check_data(data_type='counts', dim='B')
 #
 # We can also calculate an association index or score. For example, the
 # `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard measure
-# for measuring the similarity of samples, and is also available to compute and use.
+# for measuring the similarity of samples.
 #
-# With the counts object, both of these measures are available, using the
-# :meth:`~.Counts.compute_score` method. You can indicate which kind of score
-# - normalization or association index - as an input to the method.
+# These measures are available using the :meth:`~.Counts.compute_score` method.
+# The type of score to compute is indicated in the first input to the method,
+# which can be set to either 'normalize' or 'association'.
 #
 
 ###################################################################################################
@@ -79,11 +83,11 @@ print(counts.score)
 ###################################################################################################
 #
 # The normalization is the number of articles with both terms, divided by the number of
-# articles for each term alone. It can therefore be interpreted as a proportion of articles
+# articles for a single term. It can therefore be interpreted as a proportion of articles
 # with term `a` that also have term `b`, or as `a & b / a`.
 #
 # Note that when using two different terms lists, you have to choose which list of
-# terms to normalize by. That is controlled by the 'dim' input.
+# terms to normalize by, which is controlled by the `dim` input.
 #
 # In this case, we have calculated the normalized data as the proportion of
 # articles for each anatomical term that include each perception term.
@@ -108,31 +112,33 @@ print(counts.score)
 #
 
 ###################################################################################################
-# Plotting and Clustering for Counts Data
-# ---------------------------------------
+# Clustering and Plotting Co-occurrence Data
+# ------------------------------------------
 #
-# Co-occurrence data is basically a matrix of numbers reflecting the relationship between terms.
+# The collected co-occurrence data is a 2D matrix of numbers reflecting the relationship
+# between terms. This makes it amenable to visualizations and analyses, such as clustering,
+# that look to find structure in the data.
 #
-# LISC provides some plot functions to visualize the co-occurrence data, as a matrix.
+# LISC provides some functions to visualize and cluster co-occurrence data. These functions
+# are use functionality offered by optional dependencies, including scipy and seaborn, which
+# need to be installed for these to run.
 #
-# In addition to plotting the data, we can also do clustering analysis and visualizations,
-# that attempt to find structure in the data.
-#
-# LISC also offers some common clustering approaches to sort and visualize
-# collected co-occurrence data.
+# The functions :func:`~.plot_matrix`, :func:`~.plot_clustermap`, and :func:`~.plot_dendrogram`
+# offer visualizations and clustering. You can check through each function for details on what
+# each one is doing.
 #
 
 ###################################################################################################
 
 # Plot a matrix of the association index data
-plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
+plot_matrix(counts, attribute='score')
 
 ###################################################################################################
 
 # Plot a clustermap of the association index data
-plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels)
+plot_clustermap(counts, attribute='score')
 
 ###################################################################################################
 
 # Plot a dendrogram, to cluster the terms
-plot_dendrogram(counts.score, counts.terms['B'].labels)
+plot_dendrogram(counts, attribute='score')

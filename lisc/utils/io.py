@@ -98,6 +98,9 @@ def load_object(f_name, directory=None, reload_results=False):
         File name of the object to be loaded.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+    reload_results : bool, optional, default: False
+        Whether to reload individual results into the loaded object.
+        Only applies if loading a Words object.
 
     Returns
     -------
