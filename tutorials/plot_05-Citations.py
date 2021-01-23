@@ -9,14 +9,12 @@ Collecting citation data from OpenCitations.
 # References & Citations
 # ----------------------
 #
-# Other features of interest about scientific literature are references and citations.
+# Another potential feature of interest in the scientific literature are pattern of
+# references and citations. Which articles are cited by a particular article, and how
+# many citations an article receives may be useful measures to investigate the literature.
 #
-# Which articles are cited by a particular article, and how many citations an article
-# receives can be a useful measure to investigate the literature, and explore
-# the propagation of ideas.
-#
-# Unfortunately, citation data has historically been hard to access and investigate, due to
-# the lack of available databases and APIs that provide access to such information.
+# Unfortunately, citation data has historically been hard to access and investigate, due
+# to a lack of available databases and APIs that provide access to such information.
 #
 # OpenCitations Project
 # ~~~~~~~~~~~~~~~~~~~~~
@@ -26,10 +24,14 @@ Collecting citation data from OpenCitations.
 # is an initiative to support and provide open bibliographic and citation data.
 #
 # The OpenCitations project maintains a database of citation data, and provides an API.
+# that can be accessed using LISC.
+#
+# The main function for accessing the OpenCitations API is :func:`~.collect_citations`.
 #
 
 ###################################################################################################
 
+# Import the function used to access the OpenCitations API
 from lisc.collect import collect_citations
 
 ###################################################################################################
@@ -39,11 +41,14 @@ from lisc.collect import collect_citations
 # The OpenCitations `API <https://opencitations.net/index/coci/api/v1>`_ offers multiple
 # utilities to collect citation and reference data.
 #
-# Articles of interest are specified to the OpenCitations API using
+# Articles of interest can be searched for in the OpenCitations database using their
 # `DOIs <https://en.wikipedia.org/wiki/Digital_object_identifier>`_.
 #
-# Currently, LISC supports collecting the number of citations and references
-# for articles from OpenCitations, whereby articles are specified by their DOIs.
+# LISC supports collecting the number of citations and references, as well as lists of DOIs
+# that cite or are cited by requested articles.
+#
+# In the following example, we will specify some DOIs or articles of interest, and collect
+# citation and reference information about them with OpenCitations.
 #
 
 ###################################################################################################
@@ -57,29 +62,60 @@ dois = ['10.1007/s00228-017-2226-2', '10.1186/1756-8722-6-59']
 #
 # Citations refers to articles that are cited by a specified article.
 #
+# To do so, we need to pass our list of DOIs to the :func:`~.collect_citations` function.
+# To get citations for these DOIs, we will use the 'citations' operation, which we specify
+# in by setting the 'util' argument to 'citations'.
+#
 
 ###################################################################################################
 
-# Collect citation data
-citations, meta_data = collect_citations(dois, util='citations')
+# Collect citation data from OpenCitations
+n_citations, meta_data = collect_citations(dois, util='citations')
+
+###################################################################################################
+#
+# By default, :func:`~.collect_citations` returns a dictionary which stores the number
+# of citations per input DOI, as well as a :class:`~.MetaData` object describing the collection.
+#
 
 ###################################################################################################
 
 # Check out the number of citations per DOI
-for doi, n_cites in citations.items():
-    print('{:25s} \t : {}'.format(doi, n_cites))
+for doi, n_cite in n_citations.items():
+    print('{:25s} \t : {}'.format(doi, n_cite))
+
+###################################################################################################
+#
+# You can also optionally specify to collect DOIs of the papers that cite our papers of interest.
+#
+# To do so, set the `collect_dois` argument to True, in which case an additional dictionary
+# storing the DOIs of the articles that cite our searched articles will be returned.
+#
+
+###################################################################################################
+
+# Collect citations, including the list of cited DOIs
+n_cites, cite_dois, meta_data = collect_citations(dois, util='citations', collect_dois=True)
+
+###################################################################################################
+
+# Check the collected list of citing DOIs
+cite_dois[dois[0]]
 
 ###################################################################################################
 # Reference Data
 # --------------
 #
-# References refers to articles that are cited by a specified article.
+# Instead of searching for citations to a specified articles, we can also search for
+# references, which refers to articles that are cited by specified articles.
+#
+# To do so, set the `util` argument to use the 'references' operation.
 #
 
 ###################################################################################################
 
 # Collect reference data
-references, meta_data = collect_citations(dois, util='references')
+n_refs, ref_dois, meta_data = collect_citations(dois, util='references', collect_dois=True)
 
 ###################################################################################################
 
@@ -88,16 +124,13 @@ for doi, n_refs in references.items():
     print('{:25s} \t : {}'.format(doi, n_refs))
 
 ###################################################################################################
-# More Complex Data Collection
-# ----------------------------
+# Additional Operations
+# ---------------------
 #
-# Currently the 'collect' functions available in LISC support collecting counts of
-# references and citations.
+# There is additional information in the OpenCitations database, including meta-data- on
+# individual articles that are cited and included in references.
 #
-# The OpenCitations API tools do provide more information, including meta-data on individual
-# articles that are cited and included in references.
-#
-# LISC is also very open to contributions. If you are interested in developing
-# more LISC integration to help collect and analyze more citation related data,
-# feel free to get involved with the project on `Github <https://github.com/lisc-tools/lisc>`_.
+# This information is not yet accessible through LISC. Contributions are always
+# welcome to extend the functionality. If you might be interested, feel free to get in
+# touch on `Github <https://github.com/lisc-tools/lisc>`_.
 #
