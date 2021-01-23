@@ -15,9 +15,9 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
-                  retmax=None, field='TIAB', usehistory=False, api_key=None,
-                  save_and_clear=False, logging=None, directory=None, verbose=False):
+def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=None,
+                  field='TIAB', usehistory=False, api_key=None, save_and_clear=False,
+                  logging=None, directory=None, verbose=False, **eutils_kwargs):
     """Collect text data and metadata from EUtils using specified search term(s).
 
     Parameters
@@ -47,6 +47,8 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
+    **eutils_kwargs
+        Additional settings for the EUtils API.
 
     Returns
     -------
@@ -71,10 +73,11 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed',
     """
 
     # Get EUtils URLS object, with desired settings, and build required utility URLs
-    urls = EUtils(db=db, usehistory='y' if usehistory else 'n', retmax=retmax,
-                  retmode='xml', field=field, api_key=api_key)
+    urls = EUtils(db=db, retmax=retmax, usehistory='y' if usehistory else 'n',
+                  field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
     urls.build_url('info', settings=['db'])
-    urls.build_url('search', settings=['db', 'usehistory', 'retmax', 'retmode', 'field'])
+    search_settings = ['db', 'usehistory', 'retmax', 'retmode', 'field']
+    urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
     urls.build_url('fetch', settings=['db', 'retmode'])
 
     # Initialize results, meta data & requester

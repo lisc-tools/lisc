@@ -108,8 +108,8 @@ class Counts():
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def run_collection(self, db='pubmed', field='TIAB', api_key=None,
-                       logging=None, directory=None, verbose=False):
+    def run_collection(self, db='pubmed', field='TIAB', api_key=None, logging=None,
+                       directory=None, verbose=False, **eutils_kwargs):
         """Collect co-occurrence data.
 
         Parameters
@@ -127,6 +127,8 @@ class Counts():
             Folder or database object specifying the save location.
         verbose : bool, optional, default: False
             Whether to print out updates.
+        **eutils_kwargs
+            Additional settings for the EUtils API.
 
         Examples
         --------
@@ -153,7 +155,7 @@ class Counts():
                 exclusions_a=self.terms['A'].exclusions,
                 db=db, field=field, api_key=api_key,
                 logging=logging, directory=directory,
-                verbose=verbose)
+                verbose=verbose, **eutils_kwargs)
 
         # Run two different sets of terms
         else:
@@ -167,7 +169,7 @@ class Counts():
                 exclusions_b=self.terms['B'].exclusions,
                 db=db, field=field, api_key=api_key,
                 logging=logging, directory=directory,
-                verbose=verbose)
+                verbose=verbose, **eutils_kwargs)
             self.terms['A'].counts, self.terms['B'].counts = term_counts
 
 

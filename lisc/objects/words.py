@@ -76,7 +76,7 @@ class Words(Base):
 
     def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
                        api_key=None, save_and_clear=False, logging=None,
-                       directory=None, verbose=False):
+                       directory=None, verbose=False, **eutils_kwargs):
         """Collect words data.
 
         Parameters
@@ -100,6 +100,8 @@ class Words(Base):
             Folder or database object specifying the save location for any outputs.
         verbose : bool, optional, default: False
             Whether to print out updates.
+        **eutils_kwargs
+            Additional settings for the EUtils API.
 
         Examples
         --------
@@ -111,7 +113,6 @@ class Words(Base):
         """
 
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,
-                                                     db=db, retmax=retmax, field=field,
-                                                     usehistory=usehistory, api_key=api_key,
-                                                     save_and_clear=save_and_clear, logging=logging,
-                                                     directory=directory, verbose=verbose)
+                                                     db=db, retmax=retmax, field=field, usehistory=usehistory,
+                                                     api_key=api_key, save_and_clear=save_and_clear, logging=logging,
+                                                     directory=directory, verbose=verbose, **eutils_kwargs)
