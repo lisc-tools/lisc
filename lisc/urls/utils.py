@@ -27,6 +27,23 @@ def check_none(val, default):
     return val if val else default
 
 
+def check_settings(settings):
+    """Check that all settings are defined as strings.
+
+    Parameters
+    ----------
+    settings : dict
+        Dictionary to check.
+
+    Returns
+    -------
+    dict
+        Dictionary with all values set as strings.
+    """
+
+    return {key : str(val) for key, val in settings.items()}
+
+
 def prepend(string, prefix):
     """Append something to the beginning of another string.
 

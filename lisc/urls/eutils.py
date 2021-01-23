@@ -6,6 +6,8 @@ EUtils Quick Start:
     https://www.ncbi.nlm.nih.gov/books/NBK25500/
 EUtils in Depth:
     https://www.ncbi.nlm.nih.gov/books/NBK25499/
+A quick description of E-utilies
+    https://dataguide.nlm.nih.gov/eutilities/utilities.html
 Usage Policies and Disclaimers:
     https://www.ncbi.nlm.nih.gov/home/about/policies/
 A list of all the valid databases:
@@ -26,15 +28,22 @@ Settings
 --------
 db : the target database.
     Most relevant database are: 'pubmed' & 'pmc'
-        - pubmed: is a database of over 25 million references
-        - pmc: an archive of freely available full text articles
+        - pubmed: is a database of biomedical literature
+        - pmc: is a database openly available full text articles
     More info here: https://www.nlm.nih.gov/bsd/difference.html
     FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/
 id : list of UIDs (comma separated).
 field : the search field to search within.
+    Options include: 'TIAB' (title & abstract), 'TW' (text words), 'ALL', etc
 retmax : maximum number of records to return.
 retmode : format to return.
-usehistory : whether to store findings on remote server.
+    Options include: xml, json
+usehistory : whether to store findings on remote server, as {'y', 'n'}.
+reldate : returns results from the last 'n' days.
+mindate, maxdate : date range to limit results to. Both are required to specify a range.
+    Can be set as YYYY or YYYY/MM or YYYY/MM/DD
+datetype : the type of date to use.
+    Options include: 'pdat' (publication date) and 'edat' (entrez date, when record was added)
 term : search terms to use.
 """
 
@@ -85,7 +94,7 @@ class EUtils(URLs):
     """
 
     def __init__(self, db=None, retmax=None, field=None, retmode=None,
-                 usehistory='n', api_key=None):
+                 usehistory='n', api_key=None, **eutils_kwargs):
         """Initialize the NCBI EUtils URLs, with provided settings.
 
         Parameters
@@ -103,6 +112,8 @@ class EUtils(URLs):
             'n' indicates 'no', do not use history. 'y' indicates 'yes', to use history.
         api_key : str, optional
             An API key for authenticated NCBI user account.
+        **eutils_kwargs
+            Additional settings for the EUtils API.
 
         Examples
         --------
@@ -120,9 +131,13 @@ class EUtils(URLs):
         authenticated = bool(api_key)
         URLs.__init__(self, base, utils, authenticated=authenticated)
 
+        # If there are any date related settings, default to using publication date
+        if 'date' in ''.join(eutils_kwargs.keys()):
+            eutils_kwargs.setdefault('datetype', 'pdat')
+
         # Collect settings, filling in with all defined settings / arguments
-        self.fill_settings(db=db, usehistory=usehistory, retmax=str(retmax),
-                           field=field, retmode=retmode, api_key=api_key)
+        self.fill_settings(db=db, usehistory=usehistory, retmax=retmax, field=field,
+                           retmode=retmode, api_key=api_key, **eutils_kwargs)
 
 
     def authenticate(self, url):

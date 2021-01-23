@@ -16,8 +16,8 @@ from lisc.urls.eutils import EUtils, get_wait_time
 
 def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
                    terms_b=None, inclusions_b=None, exclusions_b=None,
-                   db='pubmed', field='TIAB', api_key=None,
-                   logging=None, directory=None, verbose=False):
+                   db='pubmed', field='TIAB', api_key=None, logging=None,
+                   directory=None, verbose=False, **eutils_kwargs):
     """Collect count and term co-occurrence data from EUtils.
 
     Parameters
@@ -47,6 +47,8 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         Folder or database object specifying the save location.
     verbose : bool, optional, default: False
         Whether to print out updates.
+    **eutils_kwargs
+        Additional settings for the EUtils API.
 
     Returns
     -------
@@ -77,9 +79,10 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     """
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
-    urls = EUtils(db=db, retmax='0', field=field, retmode='xml', api_key=api_key)
+    urls = EUtils(db=db, retmax='0', field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
     urls.build_url('info', settings=['db'])
-    urls.build_url('search', settings=['db', 'retmax', 'retmode', 'field'])
+    search_settings = ['db', 'retmax', 'retmode', 'field']
+    urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
 
     # Initialize meta data & requester
     meta_data = MetaData()
