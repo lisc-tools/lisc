@@ -115,12 +115,12 @@ cite_dois[dois[0]]
 ###################################################################################################
 
 # Collect reference data
-n_refs, ref_dois, meta_data = collect_citations(dois, util='references', collect_dois=True)
+n_references, ref_dois, meta_data = collect_citations(dois, util='references', collect_dois=True)
 
 ###################################################################################################
 
 # Check out the number of references per DOI
-for doi, n_refs in references.items():
+for doi, n_refs in n_references.items():
     print('{:25s} \t : {}'.format(doi, n_refs))
 
 ###################################################################################################

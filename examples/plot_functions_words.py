@@ -13,8 +13,7 @@ Collect article text data and metadata, using a function oriented approach.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
-# The parameters for the :func:`~.collect_words` function are the same as available and
-# described in the :class:`~.Words` tutorial.
+# The parameters for `collect_words` are the same as described in the Words tutorial.
 #
 # Here we will briefly explore collecting data directly using the function approach.
 #

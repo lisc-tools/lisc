@@ -38,8 +38,10 @@ from lisc.utils.download import download_nltk_data
 # ~~~~~~~~~
 #
 # This tutorial analyzes and tokenizes collected text which, if you are running locally,
-# requires some data be available from NLTK. If you don't already have this data installed,
-# you can run the :func:`~.download_nltk_data` function.
+# requires some data be available from NLTK.
+#
+# If you don't already have this data installed, you can run the
+# :func:`~.download_nltk_data` function.
 #
 
 ###################################################################################################
@@ -69,17 +71,19 @@ arts.load(db)
 # ArticlesAll Object
 # ~~~~~~~~~~~~~~~~~~
 #
-# There is also the :obj:`~.ArticlesAll` object, which is used to aggregate collected data
-# across all articles collected for a given search term.
-#
-# The :obj:`~.ArticlesAll` object also has methods to create and check summaries
-# created from the aggregate data.
+# The :obj:`~.ArticlesAll` object aggregates collected data across all articles collected
+# for a given search term.
 #
 
 ###################################################################################################
 
 # Collapse data across articles
 arts_all = ArticlesAll(arts)
+
+###################################################################################################
+#
+# It also has methods to create and check summaries created from the aggregate data.
+#
 
 ###################################################################################################
 
@@ -93,8 +97,7 @@ arts_all.print_summary()
 #
 # The :class:`~.Words` object can also be used to reload and analyze collected data.
 #
-# The `results` attribute of the :class:`~.Words` object, when loaded, contains a list of
-# :class:`~.Articles` objects, one for each term.
+# The `results` attribute contains a list of :class:`~.Articles` objects, one for each term.
 #
 
 ###################################################################################################
