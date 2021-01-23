@@ -18,8 +18,8 @@ hier = safe_import('.cluster.hierarchy', 'scipy')
 ###################################################################################################
 
 @savefig
-def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
-                attribute='score', transpose=False, ax=None, **kwargs):
+def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose=False,
+                cmap='purple', square=False, ax=None, **kwargs):
     """Plot a matrix representation of given data.
 
     Parameters
@@ -30,16 +30,16 @@ def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
         Labels for the x-axis.
     y_labels : list of str, optional
         Labels for the y-axis.
-    cmap : {'purple', 'blue'} or matplotlib.cmap
-        Colormap to use for the plot.
-        If string, uses a sequential palette of the specified color.
-    square : bool
-        Whether to plot all the cells as equally sized squares.
     attribute : {'score', 'counts'}, optional
         Which data attribute from the counts object to plot the data for.
         Only used if the `data` input is a Counts object.
     transpose : bool, optional, default: False
         Whether to transpose the data before plotting.
+    cmap : {'purple', 'blue'} or matplotlib.cmap
+        Colormap to use for the plot.
+        If string, uses a sequential palette of the specified color.
+    square : bool
+        Whether to plot all the cells as equally sized squares.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
     **kwargs
@@ -65,8 +65,8 @@ def plot_matrix(data, x_labels=None, y_labels=None, cmap='purple', square=False,
 
 
 @savefig
-def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple',
-                    attribute='score', transpose=False, **kwargs):
+def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
+                    transpose=False, cmap='purple', **kwargs):
     """Plot a clustermap of the given data.
 
     Parameters
@@ -77,14 +77,14 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple',
         Labels for the x-axis.
     y_labels : list of str, optional
         Labels for the y-axis.
-    cmap : {'purple', 'blue'} or matplotlib.cmap
-        Colormap to use for the plot.
-        If string, uses a sequential palette of the specified color.
     attribute : {'score', 'counts'}, optional
         Which data attribute from the counts object to plot the data for.
         Only used if the `data` input is a Counts object.
     transpose : bool, optional, default: False
         Whether to transpose the data before plotting.
+    cmap : {'purple', 'blue'} or matplotlib.cmap
+        Colormap to use for the plot.
+        If string, uses a sequential palette of the specified color.
     **kwargs
         Additional keyword arguments to pass through to seaborn.clustermap.
 
@@ -119,7 +119,8 @@ def plot_clustermap(data, x_labels=None, y_labels=None, cmap='purple',
 
 
 @savefig
-def plot_dendrogram(data, labels=None, method='complete', metric='cosine', ax=None, **kwargs):
+def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
+                    method='complete', metric='cosine', ax=None, **kwargs):
     """Plot a dendrogram of the given data based on hierarchical clustering.
 
     Parameters
@@ -128,6 +129,11 @@ def plot_dendrogram(data, labels=None, method='complete', metric='cosine', ax=No
         Data to plot in a dendrogram.
     labels : list of str, optional
         Labels for the dendrogram.
+    attribute : {'score', 'counts'}, optional
+        Which data attribute from the counts object to plot the data for.
+        Only used if the `data` input is a Counts object.
+    transpose : bool, optional, default: False
+        Whether to transpose the data before plotting.
     method : str
         The linkage algorithm to use. See `scipy.cluster.hierarchy.linkage` for options.
     metric : str or function
