@@ -4,7 +4,7 @@ Segments : section added to the URL, separated by '/'.
 Settings : settings added to the URL, as key value pairs, following a '?' and added with '&'.
 """
 
-from lisc.urls.utils import check_none, make_segments, make_settings
+from lisc.urls.utils import check_none, check_settings, make_segments, make_settings
 
 ###################################################################################################
 ###################################################################################################
@@ -99,7 +99,7 @@ class URLs():
         >>> urls.fill_settings(q='lisc', sort='stars', order='desc')
         """
 
-        self.settings = {ke: va for ke, va in kwargs.items() if va is not None}
+        self.settings = check_settings({ke: va for ke, va in kwargs.items() if va is not None})
 
 
     def authenticate(self, url):
