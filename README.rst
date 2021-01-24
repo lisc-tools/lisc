@@ -14,7 +14,7 @@ LISC - Literature Scanner
 .. _BuildStatus: https://travis-ci.com/lisc-tools/lisc
 
 .. |Coverage| image:: https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg
-.. _Coverage: https://codecov.io/gh/fooof-tools/fooof
+.. _Coverage: https://codecov.io/gh/lisc-tools/lisc
 
 .. |License| image:: https://img.shields.io/pypi/l/lisc.svg
 .. _License: https://opensource.org/licenses/Apache-2.0
@@ -36,7 +36,7 @@ about scientific articles, and to do analyses on this data, such as performing a
 A curated list of some projects enabled by LISC is available on the `projects <https://github.com/lisc-tools/Projects>`_ page.
 
 Supported APIs
---------------
+~~~~~~~~~~~~~~
 
 Supported APIs through LISC includes:
 
@@ -44,16 +44,16 @@ Supported APIs through LISC includes:
 - The `OpenCitations <https://opencitations.net>`_ API provides access to citation data.
 
 Data Collection
----------------
+~~~~~~~~~~~~~~~
 
-For data collection, LISC currently offers support for the following 'types' of literature data collection:
+The following types of literature data collection are currently supported:
 
 - 'Counts': collects counts and co-occurrences of specified search terms in the literature.
 - 'Words': collects text data and meta-data from articles identified by specified search terms.
 - 'Citations': collect citation and reference data for articles, based on DOIs.
 
 Analysis & Other Functionality
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to connecting to external APIs, LISC also provides:
 
@@ -65,9 +65,18 @@ In addition to connecting to external APIs, LISC also provides:
 Documentation
 -------------
 
-Documentation for LISC available `here <https://lisc-tools.github.io/lisc/>`_.
+Documentation is available on the `documentation site <https://lisc-tools.github.io/lisc/>`_.
 
-The documentation also includes a set of `tutorials <https://lisc-tools.github.io/lisc/auto_tutorials/index.html>`_.
+This documentation includes:
+
+- `Tutorials <https://lisc-tools.github.io/lisc/auto_tutorials/index.html>`_:
+  with a step-by-step guide through the module and how to use
+- `Examples <https://lisc-tools.github.io/lisc/auto_examples/index.html>`_:
+  demonstrating example analyses and use cases, and other functionality
+- `API list <https://lisc-tools.github.io/lisc/api.html>`_:
+  which lists and describes all the code and functionality available in the module
+- `Reference <https://lisc-tools.github.io/lisc/reference.html>`_:
+  with information for how to reference and report on using the module
 
 For a curated list of projects that use LISC (or pre-cursors), check out the `projects <https://github.com/lisc-tools/Projects>`_ page.
 
@@ -102,7 +111,7 @@ To install the latest stable release, you can install from pip:
 .. code-block:: shell
 
     $ pip install lisc
-    
+
 LISC can also be installed with conda, from the conda-forge channel:
 
 .. code-block:: shell
@@ -132,53 +141,6 @@ version as above, and run:
 
     $ pip install -e .
 
-Code Tests
-----------
-
-LISC includes an automated test suite, using `pytest <https://docs.pytest.org/>`__, and continuous
-integration on `Travis <https://travis-ci.org/lisc-tools/lisc>`_.
-
-**Installing pytest**
-
-If you want to run the tests yourself, you will need pytest. You can install pytest with pip, as:
-
-.. code-block:: shell
-
-    $ pip install pytest
-
-**Running tests on an installed copy of LISC**
-
-To run the test suite on an installed version of LISC, after installing, run:
-
-.. code-block:: shell
-
-    $ pytest lisc
-
-**Running tests on a local copy of LISC**
-
-To run the tests on a local copy of LISC, move into the LISC folder, and run:
-
-.. code-block:: shell
-
-    $ pytest .
-
-Bug Reports
------------
-
-Please use the `Github issue tracker <https://github.com/lisc-tools/lisc/issues>`_ to file bug
-reports and/or ask questions about this project.
-
-Contribute
-----------
-
-``LISC`` welcomes and encourages contributions from the community!
-
-If you have an idea of something to add to LISC, please start by opening an
-`issue <https://github.com/lisc-tools/lisc/issues>`_.
-
-When working on LISC, please follow the `Contribution Guidelines <https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md>`_,
-and also make sure to follow our `Code of Conduct <https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md>`_.
-
 Reference
 ---------
 
@@ -189,18 +151,20 @@ If you use this code in your project, please cite
 
 Direct Link: https://doi.org/10.21105/joss.01674
 
-Bibtex:
+Contribute
+----------
 
-.. code-block:: text
+This project welcomes and encourages contributions from the community!
 
-    @article{donoghue_lisc:_2019,
-             title = {{LISC}: {A} {Python} {Package} for {Scientific} {Literature} {Collection} and {Analysis}},
-             author = {Donoghue, Thomas},
-             journal = {Journal of Open Source Software},
-             year = {2019},
-             volume = {4},
-             number = {41},
-             issn = {2475-9066},
-             url = {https://joss.theoj.org/papers/10.21105/joss.01674},
-             doi = {10.21105/joss.01674}
-             }
+To file bug reports and/or ask questions about this project, please use the
+`Github issue tracker <https://github.com/lisc-tools/lisc/issues>`_.
+
+To see and get involved in discussions about the module, check out:
+
+- the `issues board <https://github.com/lisc-tools/lisc/issues>`_ for topics relating to code updates, bugs, and fixes
+- the `development page <https://github.com/lisc-tools/Development>`_ for discussion of potential major updates to the module
+
+When interacting with this project, please use the
+`contribution guidelines <https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md>`_
+and follow the
+`code of conduct <https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md>`_.
