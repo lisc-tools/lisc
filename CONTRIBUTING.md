@@ -1,82 +1,128 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to LISC! We welcome any contributions to the
-project that extend or improve code and/or documentation and/or tutorials!
+Thank you for your interest in contributing to `lisc`!
 
-If you have an idea you would like to contribute to LISC, please first check that
-it is in scope for the project, as discussed below.
+We welcome any contributions to the project that extend or improve code and/or documentation!
 
-If it seems related to the project, it is best to go and open an
-[issue](https://github.com/lisc-tools/lisc/issues),
-suggesting your idea.
+This page includes information for how to get involved and contribute to the project, and guidelines for how to do so.
 
-From there, you can follow the procedures and conventions described below to
-add your contribution to LISC!
+This project adheres to a
+[code of conduct](https://github.com/lisc-tools/liscp/blob/master/CODE_OF_CONDUCT.md)
+that you are expected to uphold when participating in this project.
 
-Note that contributors to LISC are expected to follow the
-[Code of Conduct](https://github.com/lisc-tools/liscp/blob/master/CODE_OF_CONDUCT.md).
+On this page, you can find information on:
 
-## Scope
+* [Reporting a problem](#reporting-a-problem)
+* [Getting involved](#getting-involved)
+* [Project scope](#project-scope)
+* [Making a contribution](#making-a-contribution)
+* [Project conventions](#project-conventions)
 
-`LISC` is a module for accessing and analyzing the scientific literature.
+## Reporting a Problem
 
-In terms of scope, it is currently focused on connecting to APIs that offer access to
-literature databases (currently: Pubmed) and offering simple analysis and plotting utilities
-for collected data.
+To report an issue with the code, please submit it to our [issue tracker](https://github.com/lisc-tools/lisc/issues).
 
-The current scope of LISC is therefore focused on connecting existing tools and utilities.
-That is to say custom or new web scraping and/or natural language processing (NLP) functionality
-is likely to be considered out of scope for this project, but any work on adding / extending access
-to literature APIs and/or existing NLP tools are welcome!
+In doing so, please try to include the following:
 
-## Procedures
+1. A short, top-level summary of the issue (usually 1-2 sentences)
+2. A short, self-contained code snippet to reproduce the issue, ideally allowing a simple copy and paste to reproduce
+   - Please do your best to reduce the code snippet to the minimum required
+3. The actual outcome of the code snippet
+4. The expected outcome of the code snippet
 
-LISC is hosted and developed on Github.
+## Getting Involved
 
-To make a contribution:
+We welcome all kinds of contributions to the project, including suggested features and help with documentation, maintenance, and updates.
 
-1. Make an issue on the LISC repository, stating your intention and getting feedback from maintainers
-2. Make a fork of the LISC repository
-3. Update the fork of the repository with any updates and/or additions to the project
-4. Check that any additions to the project follow the conventions described below
-5. Make a pull request from your fork to the LISC repository
-6. Address any feedback and/or recommendations from reviewers, until the contribution is ready to be merged
+If you have a new idea you would like to suggest or contribute, please do the following:
 
-## Conventions
+1. Check if the idea is already being discussed on the
+   [issues](https://github.com/lisc-tools/lisc/issues) or
+   [development](https://github.com/lisc-tools/Development) page
+2. Check that your idea is within the [project scope](#project-scope)
+3. Open an [issue](https://github.com/lisc-tools/lisc/issues) describing
+   what you would like to see added / changed, and why
+4. Indicate in the issue if the idea is something you would be willing to help implement
+   - if so, project maintainers can give feedback to help make a plan for the contribution
+5. If you want to work on the contribution, follow the [contribution guidelines](#making-a-contribution) to do so
 
-1. Code & Style
-    * All code should be written in Python 3.4+
-    * Code should follow the [PEP8](https://www.python.org/dev/peps/pep-0008/) style guide
+If you are interested in getting involved and helping with the project, a great place to start is to visit the
+[issues](https://github.com/lisc-tools/lisc/issues) or
+[development](https://github.com/lisc-tools/Development) page
+and see if there is anything you would be interested in helping with. If so, join the conversation, and project developers can help get you started.
 
-2. Documentation
-    * Docstrings for public functions should be in
-[Numpy docs](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt) format.
-At minimum, there should be a sentence describing what the function does and a list of
-parameters and returns.
-    * Private functions should be indicated with a leading underscore, and should still include a
-docstrings including at least a sentence description what the function does.
-    * If you add any new public functions, note this function in the doc/api.rst file,
-so that this function gets included in the documentation site API listing.
+## Project Scope
 
-3. Dependencies
-    * Any dependencies outside of the standard Anaconda distribution should be avoided if possible.
-    * If any more packages are needed, they should be added to the `requirements.txt` file.
+All contributions to the module must be within it's scope.
 
-4. API & Naming Conventions
-    * Try to keep the API consistent across LISC in naming and parameter ordering.
-    * Try to keep naming conventions consistent with other modules:
-        * Function names are in snake_case
-        * Classes are in CamelCase
+`lisc` is a module for collecting and analyzing the scientific literature, with a focus on connecting to APIs that offer access to literature databases and offering simple analysis and plotting utilities for collected data. We welcome in particular any extensions that add access to additional relevant APIs and/or existing NLP tools!
 
-5. Tests
-    * All code within LISC requires test code that executes that code
-    * These tests, at a minimum, must be 'smoke tests' that execute the
-code and check that it runs through, without erroring out, and returning appropriate variables.
-    * If possible, including more explicit test code that checks more stringently for accuracy is encouraged,
-but not strictly required.
-    * Before a pull request is merged, code coverage must demonstrate that new code is tested,
-and continuous integration running this test code must all pass
+Procedures and utilities that do not focus on accessing available APIs, and connecting to existing analysis approaches,
+such as custom or custom web scraping and/or novel natural language processing (NLP) implementations will most likely be considered out of scope.
+
+## Making a Contribution
+
+If there is a feature you would like to add, or an issue you saw that you think you can help with, you are ready to make a submission to the project!
+
+If you are working on a feature, please indicate so in the relevant issue, so that we can keep track of who is working on what.
+
+Once you're ready to start working on your contribution, do the following:
+
+1. [Fork this repository](https://help.github.com/articles/fork-a-repo/), which makes your own version of this project you can edit
+2. [Make your changes](https://guides.github.com/activities/forking/#making-changes), updating or adding code to add the desired functionality
+3. [Check the project conventions](#project-conventions), and make sure all new or updated code follows the guidelines
+4. [Submit a pull request](https://help.github.com/articles/proposing-changes-to-a-project-with-pull-requests/), to start the process of merging the new code to the main branch
+
+If it's your first time contributing to open source software, check out this free resource on [how to contribute to an open-source project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+
+## Project Conventions
+
+All code contributed to the module should follow these conventions:
+
+1. Code Requirements
+    * All code should be written in Python, and run on the minimum required version that is noted in the README
+    * New dependencies should be avoided if possible, especially if they are not in the Anaconda distribution
+    * If any new dependencies are needed, they should be added to the `requirements.txt` file
+
+2. Code Style
+    * Code should generally follow [PEP8](https://www.python.org/dev/peps/pep-0008/) style guidelines
+    * Max line length is 100 characters
+    * Merge candidates will be checked using [pylint](https://www.pylint.org)
+
+3. API & Naming Conventions
+    * Try to keep the API consistent with existing code in terms of parameter names and ordering
+    * Use standard casing, for example:
+         * function names should be in snake_case (all lowercase with underscores)
+         * class names should be in CamelCase (leading capitals with no separation)
+    * If passing through arguments to an external function, the naming and ordering of parameters in this module should generally follow that of the external function
+
+4. Code Documentation
+    * All code should be documented, including in-code comments describing procedures, and detailed docstrings
+    * Docstrings should follow the [numpy docs](https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard) format
+        * At minimum, there should be a sentence describing what the function does and a list of parameters and returns
+        * Private functions should be indicated with a leading underscore, and should still include a docstring including at least a sentence describing what the function does
+    * If possible, add an `Examples` section to the docstrings, that demonstrates a simple use case
+        * If so, these examples should be executable, using [doctest](https://docs.python.org/3/library/doctest.html)
+        * If examples cannot be run, use the SKIP directive
+
+5. Code Tests
+    * This project uses the [pytest](https://docs.pytest.org/en/latest/) testing tool for testing module code
+    * All new code requires test code, written as unit tests that check each function and class in the module
+    * Tests should be, at a minimum, 'smoke tests' that execute the code and check that it runs without raising an error
+        * Where possible, accuracy checking is encouraged, though not strictly required
+    * Merge candidates must pass all existing tests, and add new tests such as to not reduce test coverage
+    * To run the tests locally, pytest needs to be installed (`pip install pytest`)
+        * To run the tests on a local copy of the module, move into the folder and run `pytest .`
 
 6. Tutorials
-    * If a new function or module is added, a quick tutorial demonstration of using this
-code should be added to the tutorials section.
+    * This project uses a documentation website, created using [sphinx](https://www.sphinx-doc.org/)
+    * Any new public functions or classes should be added to the `doc/api.rst` file, so they get included in the API list
+    * Any new functionality should be added and described in the tutorials and/or examples
+        * If a new approach is added, a new tutorial or example may be appropriate
+    * To build and check the documentation locally:
+        * Install the requirements for the docsite (`pip install -r requirements-doc.txt`)
+        * Move to the `lisc/doc` directory (`cd doc`)
+        * Run `make html` to create a local copy of the documentation website
+        * The documentation can then be opened in a web browser by opening the file `lisc/doc/_build/html/index.html`
+
+For more guidelines on how to write well formated and organized code, check out the [Python API Checklist](http://python.apichecklist.com).
