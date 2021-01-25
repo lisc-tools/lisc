@@ -25,6 +25,14 @@ def test_load_terms_file(tdb):
     assert isinstance(terms[0], list)
     assert isinstance(terms[0][0], str)
 
+    # Check loading associated exclusions, should be same length
+    excls1 = load_terms_file('test_exclusions', tdb)
+    assert len(terms) == len(excls1)
+
+    # Check loading file with trailing new line, should be same length
+    excls2 = load_terms_file('test_exclusions_line', tdb)
+    assert len(terms) == len(excls2)
+
 def test_save_object(tdb, tcounts, twords):
 
     save_object(tcounts, 'test_counts', directory=tdb)
@@ -34,7 +42,7 @@ def test_save_object(tdb, tcounts, twords):
     assert os.path.exists(os.path.join(tdb.get_folder_path('words'), 'test_words.p'))
 
     with raises(ValueError):
-        save_object(['bad dat'], 'test_bad', directory=tdb)
+        save_object(['bad data'], 'test_bad', directory=tdb)
 
 def test_load_object(tdb):
 
