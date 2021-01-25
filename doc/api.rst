@@ -205,6 +205,7 @@ File IO
 
     save_object
     load_object
+    load_api_key
 
 Database Management
 ~~~~~~~~~~~~~~~~~~~

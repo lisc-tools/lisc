@@ -61,6 +61,52 @@ def load_terms_file(f_name, directory=None):
     return terms
 
 
+def load_api_key(f_name, directory=None, required=False):
+    """"Load an API key from a file.
+
+    Parameters
+    ----------
+    f_name : str
+        Name of the file to load.
+    directory : str or SCDB, optional
+        Folder or database object specifying the location of the file to load.
+    required : bool, optional, default: False
+        Whether loading the API key file is required for continued execution.
+        If True, this function will raise an error if the requested file is not found.
+        If False, this function will return None if the file is not found.
+
+    Returns
+    -------
+    api_key : str or None
+        The loaded API key.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the requested file. Only raised if `required` is True.
+
+    Notes
+    -----
+    This function assumes the API key is in a single-line txt file.
+    """
+
+    file_path = os.path.join(check_directory(directory, 'base'), check_ext(f_name, '.txt'))
+
+    try:
+
+        with open(file_path, 'r') as f_obj:
+            api_key = f_obj.read().strip()
+
+    except Exception as error:
+
+        if required:
+            raise
+        else:
+            api_key = None
+
+    return api_key
+
+
 def save_object(obj, f_name, directory=None):
     """Save a custom object as a pickle file.
 
