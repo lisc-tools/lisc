@@ -23,7 +23,7 @@ class TestDB(SCDB):
         base = pkg.resource_filename(__name__, 'test_db')
         SCDB.__init__(self, base=base)
 
-def create_files(directory):
+def create_term_files(directory):
     """Creates some test term files."""
 
     path = check_directory(directory, 'terms')
@@ -39,6 +39,14 @@ def create_files(directory):
 
     with open(pjoin(path, 'test_exclusions_line.txt'), 'w') as excl_file2:
         excl_file2.write('not\n')
+
+def create_api_files(directory):
+    """Create test API key file."""
+
+    path = check_directory(directory, 'base')
+
+    with open(pjoin(path, 'api_key.txt'), 'w') as term_file:
+        term_file.write('123abc')
 
 def load_base(set_terms=False, set_clusions=False):
     """Helper function to load Base object for testing."""

@@ -13,7 +13,7 @@ from lisc.requester import Requester
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
 from lisc.utils.download import download_nltk_data
-from lisc.tests.tutils import create_files, load_base, load_arts, load_arts_all
+from lisc.tests.tutils import create_term_files, create_api_files, load_base, load_arts, load_arts_all
 from lisc.tests.tutils import TestDB as TDB
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -46,7 +46,8 @@ def check_db():
         shutil.rmtree(os.path.join(tests_dir, test_db_name))
 
     tdb = create_file_structure(tests_dir, test_db_name)
-    create_files(tdb)
+    create_term_files(tdb)
+    create_api_files(tdb)
 
 @pytest.fixture(scope='session')
 def tdb():
