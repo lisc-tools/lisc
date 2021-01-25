@@ -44,9 +44,11 @@ def load_terms_file(f_name, directory=None):
         Data from the file.
     """
 
-    terms_file = open(os.path.join(check_directory(directory, 'terms'),
-                                   check_ext(f_name, '.txt')), 'r')
-    terms = terms_file.read().splitlines()
+    file_path = os.path.join(check_directory(directory, 'terms'), check_ext(f_name, '.txt'))
+
+    with open(file_path, 'r') as terms_file:
+        terms = terms_file.read().splitlines()
+
     terms = [term.split(',') for term in terms]
 
     return terms
@@ -85,8 +87,10 @@ def save_object(obj, f_name, directory=None):
     else:
         raise ValueError('Object type unclear - can not save.')
 
-    pickle.dump(obj, open(os.path.join(check_directory(directory, obj_type),
-                                       check_ext(f_name, '.p')), 'wb'))
+    file_path = os.path.join(check_directory(directory, obj_type), check_ext(f_name, '.p'))
+
+    with open(file_path, 'wb') as file_path:
+        pickle.dump(obj, file_path)
 
 
 def load_object(f_name, directory=None, reload_results=False):
@@ -136,7 +140,10 @@ def load_object(f_name, directory=None, reload_results=False):
     if not load_path:
         raise ValueError('Can not find requested file name.')
 
-    custom_object = pickle.load(open(check_ext(load_path, '.p'), 'rb'))
+    load_path = check_ext(load_path, '.p')
+
+    with open(load_path, 'rb') as load_obj:
+        custom_object = pickle.load(load_obj)
 
     if reload_results:
 
@@ -160,5 +167,6 @@ def parse_json_data(f_name):
         The loaded line of json data.
     """
 
-    for line in open(f_name):
-        yield json.loads(line)
+    with open(f_name) as f_obj:
+        for line in f_obj:
+            yield json.loads(line)
