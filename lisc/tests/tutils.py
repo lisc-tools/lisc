@@ -26,17 +26,19 @@ class TestDB(SCDB):
 def create_files(directory):
     """Creates some test term files."""
 
-    term_file = open(pjoin(check_directory(directory, 'terms'), 'test_terms.txt'), 'w')
-    term_file.write('word\nthing, same')
-    term_file.close()
+    path = check_directory(directory, 'terms')
 
-    excl_file = open(pjoin(check_directory(directory, 'terms'), 'test_inclusions.txt'), 'w')
-    excl_file.write('need\nrequired')
-    excl_file.close()
+    with open(pjoin(path, 'test_terms.txt'), 'w') as term_file:
+        term_file.write('word\nthing, same')
 
-    excl_file = open(pjoin(check_directory(directory, 'terms'), 'test_exclusions.txt'), 'w')
-    excl_file.write('not\navoid')
-    excl_file.close()
+    with open(pjoin(path, 'test_inclusions.txt'), 'w') as incl_file:
+        incl_file.write('need\nrequired')
+
+    with open(pjoin(path, 'test_exclusions.txt'), 'w') as excl_file:
+        excl_file.write('not\navoid')
+
+    with open(pjoin(path, 'test_exclusions_line.txt'), 'w') as excl_file2:
+        excl_file2.write('not\n')
 
 def load_base(set_terms=False, set_clusions=False):
     """Helper function to load Base object for testing."""
