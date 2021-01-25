@@ -33,6 +33,20 @@ def test_load_terms_file(tdb):
     excls2 = load_terms_file('test_exclusions_line', tdb)
     assert len(terms) == len(excls2)
 
+def test_load_api_key(tdb):
+
+    # Test successful load
+    api_key = load_api_key('api_key', tdb)
+    assert isinstance(api_key, str)
+
+    # Test unsuccessful load, that continues
+    api_key = load_api_key('bad_name', tdb)
+    assert api_key is None
+
+    # Test unsuccessful load, that fails
+    with raises(FileNotFoundError):
+        api_key = load_api_key('bad_name', tdb, required=True)
+
 def test_save_object(tdb, tcounts, twords):
 
     save_object(tcounts, 'test_counts', directory=tdb)
