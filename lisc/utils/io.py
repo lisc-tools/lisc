@@ -36,7 +36,7 @@ def load_terms_file(f_name, directory=None):
     f_name : str
         Name of the file to load.
     directory : str or SCDB, optional
-        Folder or database object specifying the save location.
+        Folder or database object specifying the location of the file to load.
 
     Returns
     -------
@@ -47,9 +47,16 @@ def load_terms_file(f_name, directory=None):
     file_path = os.path.join(check_directory(directory, 'terms'), check_ext(f_name, '.txt'))
 
     with open(file_path, 'r') as terms_file:
-        terms = terms_file.read().splitlines()
+        text = terms_file.read()
 
-    terms = [term.split(',') for term in terms]
+        # If the last line is empty, it gets cut off due to no trailing content
+        #   To make sure there is the correct number of lines, add a newline character
+        if text.endswith('\n'):
+            text = text + '\n'
+
+        lines = text.splitlines()
+
+    terms = [term.split(',') for term in lines]
 
     return terms
 
@@ -101,7 +108,7 @@ def load_object(f_name, directory=None, reload_results=False):
     f_name : str
         File name of the object to be loaded.
     directory : str or SCDB, optional
-        Folder or database object specifying the save location.
+        Folder or database object specifying the location to load from.
     reload_results : bool, optional, default: False
         Whether to reload individual results into the loaded object.
         Only applies if loading a Words object.
