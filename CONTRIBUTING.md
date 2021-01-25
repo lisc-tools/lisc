@@ -53,7 +53,7 @@ and see if there is anything you would be interested in helping with. If so, joi
 
 ## Project Scope
 
-All contributions to the module must be within it's scope.
+All contributions must be within the scope of the module.
 
 `lisc` is a module for collecting and analyzing the scientific literature, with a focus on connecting to APIs that offer access to literature databases and offering simple analysis and plotting utilities for collected data. We welcome in particular any extensions that add access to additional relevant APIs and/or existing NLP tools!
 
