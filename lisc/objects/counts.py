@@ -1,5 +1,8 @@
 """Class for collection and analyses of co-occurrences data."""
 
+from copy import deepcopy
+from collections import defaultdict
+
 import numpy as np
 
 from lisc.objects.base import Base
@@ -22,7 +25,9 @@ class Counts():
         The number of articles found for each combination of terms.
     score : 2d array
         A transformed 'score' of co-occurrence data.
-        This can be a normalized version of the data, and/or a computed association index.
+        This may be normalized count data, or a similarity or association measure.
+    score_info : dict
+        Information about the computed score data.
     square : bool
         Whether the count data matrix is symmetrical.
     meta_data : MetaData
@@ -34,14 +39,14 @@ class Counts():
 
         # Initialize dictionary to store search terms
         self.terms = dict()
-        for dat in ['A', 'B']:
-            self.terms[dat] = Base()
-            self.terms[dat].counts = np.zeros(0, dtype=int)
+        for dim in ['A', 'B']:
+            self.terms[dim] = Base()
+            self.terms[dim].counts = np.zeros(0, dtype=int)
 
         self.counts = np.zeros(0)
         self.score = np.zeros(0)
+        self.score_info = {}
         self.square = bool()
-        self.score_type = None
         self.meta_data = None
 
 
@@ -175,7 +180,7 @@ class Counts():
             self.terms['A'].counts, self.terms['B'].counts = term_counts
 
 
-    def compute_score(self, score_type='association', dim='A'):
+    def compute_score(self, score_type='association', dim='A', return_result=False):
         """Compute a score, such as an index or normalization, of the co-occurrence data.
 
         Parameters
@@ -183,8 +188,10 @@ class Counts():
         score_type : {'association', 'normalize', 'similarity'}, optional
             The type of score to apply to the co-occurrence data.
         dim : {'A', 'B'}, optional
-            Which dimension of counts to use to normalize the co-occurrence data by.
-            Only used if 'score' is 'normalize'.
+            Which dimension of counts to use to normalize by or compute similarity across.
+            Only used if 'score' is 'normalize' or 'similarity'.
+        return_result : bool, optional, default: False
+            Whether to return the computed result.
 
         Examples
         --------
@@ -217,12 +224,17 @@ class Counts():
             self.score = compute_normalization(self.counts, self.terms[dim].counts, dim)
 
         elif score_type == 'similarity':
-            self.score = compute_similarity(self.counts)
+            self.score = compute_similarity(self.counts, dim=dim)
 
         else:
             raise ValueError('Score type not understood.')
 
-        self.score_type = score_type
+        self.score_info['type'] = score_type
+        if score_type in ['normalize', 'similarity']:
+            self.score_info['dim'] = dim
+
+        if return_result:
+            return deepcopy(self.score)
 
 
     def check_top(self, dim='A'):
@@ -292,22 +304,26 @@ class Counts():
 
         if data_type not in ['counts', 'score']:
             raise ValueError('Data type not understood - can not proceed.')
-        if data_type == 'score' and self.score.size == 0:
-            raise ValueError('Score is not computed - can not proceed.')
+        if data_type == 'score':
+            if self.score.size == 0:
+                raise ValueError('Score is not computed - can not proceed.')
+            if self.score_info['type'] == 'similarity':
+                raise ValueError('Cannot check value counts for similarity score.')
 
         # Set up which direction to act across
-        dat = getattr(self, data_type) if dim == 'A' else getattr(self, data_type).T
+        data = getattr(self, data_type)
+        data = data.T if dim == 'B' else data
         alt = 'B' if dim == 'A' and not self.square else 'A'
 
         # Loop through each term, find maximally associated term and print out
         for term_ind, term in enumerate(self.terms[dim].labels):
 
             # Find the index of the most common association for current term
-            assoc_ind = np.argmax(dat[term_ind, :])
+            assoc_ind = np.argmax(data[term_ind, :])
 
             print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
                 wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
-                dat[term_ind, assoc_ind],
+                data[term_ind, assoc_ind],
                 twd1=get_max_length(self.terms[dim].labels, 2),
                 twd2=get_max_length(self.terms[alt].labels, 2),
                 nwd='>10.0f' if data_type == 'counts' else '06.3f'))
@@ -319,7 +335,7 @@ class Counts():
         Parameters
         ----------
         n_articles : int
-            Minimum number of articles to keep each term.
+            Minimum number of articles requured to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
 
@@ -330,18 +346,28 @@ class Counts():
         >>> counts.drop_data(20) # doctest: +SKIP
         """
 
+        # Set a flipper dictionary, to flip inds if needed
+        flip_inds = {'A' : 'B', 'B' : 'A'}
+
+        # Finds the indices of the terms with enough data to keep
         keep_inds = np.where(self.terms[dim].counts > n_articles)[0]
 
+        # Drop terms that do not have enough data
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
-        # Drop data based on dim given, and also check for score data, and drop if calculated
-        if dim == 'A':
-            self.counts = self.counts[keep_inds, :]
-            if self.score.any():
-                self.score = self.score[keep_inds, :]
+        # Create an inds dictionary that defaults to all-index slice
+        inds = defaultdict(lambda: np.s_[:])
+        inds[dim] = keep_inds
 
-        if dim == 'B':
-            self.counts = self.counts[:, keep_inds]
-            if self.score.any():
-                self.score = self.score[:, keep_inds]
+        # Drop raw count data for terms without enough data
+        self.counts = self.counts[inds['A'], inds['B']]
+
+        if self.score.any():
+
+            # If score is a similarity matrix check and flip data indices as needed
+            if self.score_info['type'] == 'similarity':
+                inds[flip_inds[self.score_info['dim']]] = inds[self.score_info['dim']]
+
+            # Drop score data for terms without enough data
+            self.score = self.score[inds['A'], inds['B']]

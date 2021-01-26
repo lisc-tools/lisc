@@ -42,7 +42,7 @@ def compute_scores(counts):
     for score_type in ['normalize', 'association', 'similarity']:
         counts.compute_score(score_type)
         assert counts.score.any()
-        assert counts.score_type == score_type
+        assert counts.score_info['type'] == score_type
 
 def check_funcs(counts):
 

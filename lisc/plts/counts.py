@@ -57,7 +57,7 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
-    data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels,  attribute, transpose)
+    data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
     sns.heatmap(data, square=square, ax=check_ax(ax), cmap=cmap,
                 **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels), **kwargs)

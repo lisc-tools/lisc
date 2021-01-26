@@ -15,7 +15,8 @@ def compute_normalization(data, counts, dim='A'):
     counts : 1d array
         Counts for each individual search term.
     dim : {'A', 'B'}, optional
-        Which set of terms to operate upon.
+        Which set of terms to normalize by.
+        'A' is equivalent to normalizing by rows values, 'B' to column values.
 
     Returns
     -------
@@ -84,13 +85,16 @@ def compute_association_index(data, counts_a, counts_b):
     return index
 
 
-def compute_similarity(data):
+def compute_similarity(data, dim='A'):
     """Calculate the similarity across the co-occurrence data.
 
     Parameters
     ----------
     data : 2d array
         Counts of co-occurrence of terms.
+    dim : {'A', 'B'}, optional
+        Which set of terms to compute similarity across.
+        'A' is equivalent to across rows, 'B' to across columns.
 
     Returns
     -------
@@ -99,10 +103,16 @@ def compute_similarity(data):
 
     Notes
     -----
-    This compute the cosine similarity.
+    This function computes the cosine similarity.
+
+    Cosine similarity is normalized, so this function will give the same
+    result if computed on raw counts, or normalized data.
 
     The implementation is adapted from here: https://stackoverflow.com/a/20687984
     """
+
+    # If computing across columns, transpose data
+    data = data.T if dim == 'B' else data
 
     # Calculate similarity
     similarity = np.dot(data, data.T)
@@ -117,5 +127,8 @@ def compute_similarity(data):
     # Calculate cosine similarity as element-wise multiplication by inverse magnitude
     cosine = similarity * inv_mag
     cosine = cosine.T * inv_mag
+
+    # If data was transposed for computation, transpose back
+    data = data.T if dim == 'B' else data
 
     return cosine
