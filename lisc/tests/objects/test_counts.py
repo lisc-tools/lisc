@@ -17,7 +17,8 @@ def test_collect_one():
     counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
 
     counts.run_collection(db='pubmed')
-    counts.compute_score('association')
+
+    compute_scores(counts)
     check_funcs(counts)
     drop_data(counts)
 
@@ -31,8 +32,17 @@ def test_collect_two():
 
     counts.run_collection(db='pubmed')
     counts.compute_score('normalize')
+
+    compute_scores(counts)
     check_funcs(counts)
     drop_data(counts)
+
+def compute_scores(counts):
+
+    for score_type in ['normalize', 'association', 'similarity']:
+        counts.compute_score(score_type)
+        assert counts.score.any()
+        assert counts.score_type == score_type
 
 def check_funcs(counts):
 

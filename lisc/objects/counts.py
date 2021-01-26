@@ -5,7 +5,8 @@ import numpy as np
 from lisc.objects.base import Base
 from lisc.objects.utils import wrap, get_max_length
 from lisc.collect import collect_counts
-from lisc.analysis.counts import compute_normalization, compute_association_index
+from lisc.analysis.counts import (compute_normalization, compute_association_index,
+                                  compute_similarity)
 
 ###################################################################################################
 ###################################################################################################
