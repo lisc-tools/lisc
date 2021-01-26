@@ -13,7 +13,7 @@ LISC - Literature Scanner
 .. |BuildStatus| image:: https://travis-ci.com/lisc-tools/lisc.svg
 .. _BuildStatus: https://travis-ci.com/lisc-tools/lisc
 
-.. |Coverage| image:: https://codecov.io/gh/lisc-tools/lisc/branch/master/graph/badge.svg
+.. |Coverage| image:: https://codecov.io/gh/lisc-tools/lisc/branch/main/graph/badge.svg
 .. _Coverage: https://codecov.io/gh/lisc-tools/lisc
 
 .. |License| image:: https://img.shields.io/pypi/l/lisc.svg
@@ -165,6 +165,6 @@ To see and get involved in discussions about the module, check out:
 - the `development page <https://github.com/lisc-tools/Development>`_ for discussion of potential major updates to the module
 
 When interacting with this project, please use the
-`contribution guidelines <https://github.com/lisc-tools/lisc/blob/master/CONTRIBUTING.md>`_
+`contribution guidelines <https://github.com/lisc-tools/lisc/blob/main/CONTRIBUTING.md>`_
 and follow the
-`code of conduct <https://github.com/lisc-tools/lisc/blob/master/CODE_OF_CONDUCT.md>`_.
+`code of conduct <https://github.com/lisc-tools/lisc/blob/main/CODE_OF_CONDUCT.md>`_.
