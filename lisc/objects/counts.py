@@ -178,7 +178,7 @@ class Counts():
 
         Parameters
         ----------
-        score_type : {'association', 'normalize'}, optional
+        score_type : {'association', 'normalize', 'similarity'}, optional
             The type of score to apply to the co-occurrence data.
         dim : {'A', 'B'}, optional
             Which dimension of counts to use to normalize the co-occurrence data by.
@@ -212,8 +212,10 @@ class Counts():
                     self.counts, self.terms['A'].counts, self.terms['B'].counts)
 
         elif score_type == 'normalize':
-            self.score = compute_normalization(
-                self.counts, self.terms[dim].counts, dim)
+            self.score = compute_normalization(self.counts, self.terms[dim].counts, dim)
+
+        elif score_type == 'similarity':
+            self.score = compute_similarity(self.counts)
 
         else:
             raise ValueError('Score type not understood.')
