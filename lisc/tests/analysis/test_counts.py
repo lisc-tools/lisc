@@ -25,7 +25,7 @@ def test_compute_normalization():
     with raises(ValueError):
         compute_normalization(data, counts_b, 'A')
 
-    # Test error if the 'dim' inputis bad
+    # Test error if the 'dim' input is bad
     with raises(ValueError):
         compute_normalization(data, counts_b, 'C')
 
@@ -42,3 +42,16 @@ def test_compute_association_index():
     # Test error if data shapes are not consistent
     with raises(ValueError):
         compute_association_index(data, counts_b, counts_a)
+
+
+def test_compute_similarity():
+
+    data = np.array([[5, 10, 5], [0, 5, 0]])
+
+    out = compute_similarity(data)
+
+    # Test that diagonal values are 1
+    assert np.all(np.isclose(np.diag(out), 1.))
+
+    # Test that non-diagonal values are not 1
+    assert np.all(out[np.where(~np.eye(out.shape[0], dtype=bool))] != 1.)

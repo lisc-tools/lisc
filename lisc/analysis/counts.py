@@ -102,3 +102,40 @@ def compute_association_index(data, counts_a, counts_b):
     index = data / denominator
 
     return index
+
+
+def compute_similarity(data):
+    """Calculate the similarity across the co-occurrence data.
+
+    Parameters
+    ----------
+    data : 2d array
+        Counts of co-occurrence of terms.
+
+    Returns
+    -------
+    cosine : 2d array
+        The cosine similarity of the co-occurrence data.
+
+    Notes
+    -----
+    This compute the cosine similarity.
+
+    The implementation is adapted from here: https://stackoverflow.com/a/20687984
+    """
+
+    # Calculate similarity
+    similarity = np.dot(data, data.T)
+
+    # Calculate inverse squared magnitude & replace infs to zero
+    inv_square_mag = 1 / np.diag(similarity)
+    inv_square_mag[np.isinf(inv_square_mag)] = 0
+
+    # Calculate inverse of the magnitude
+    inv_mag = np.sqrt(inv_square_mag)
+
+    # Calculate cosine similarity as element-wise multiplication by inverse magnitude
+    cosine = similarity * inv_mag
+    cosine = cosine.T * inv_mag
+
+    return cosine

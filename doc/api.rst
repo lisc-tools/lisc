@@ -150,6 +150,7 @@ Co-Occurence Data
 
     compute_normalization
     compute_association_index
+    compute_similarity
 
 Words Data
 ~~~~~~~~~~
