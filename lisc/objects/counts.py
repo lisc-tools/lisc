@@ -40,6 +40,7 @@ class Counts():
         self.counts = np.zeros(0)
         self.score = np.zeros(0)
         self.square = bool()
+        self.score_type = None
         self.meta_data = None
 
 
@@ -219,6 +220,8 @@ class Counts():
 
         else:
             raise ValueError('Score type not understood.')
+
+        self.score_type = score_type
 
 
     def check_top(self, dim='A'):
