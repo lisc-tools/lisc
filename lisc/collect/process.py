@@ -48,6 +48,56 @@ def get_info(tag, label, how):
         return None
 
 
+def extract_tag(page, label, approach='first', raise_error=False):
+    """Extract a specified tag from a page.
+
+    Parameters
+    ----------
+    page : bs4.BeautifulSoup or bs4.element.Tag
+        Page of information with tags.
+    label : str
+        The name of the tag to extract.
+    approach : {'first', 'all'}, optional
+        Which approach to take for extracting tags.
+        `first` extracts only the first relevant tag, `all` extracts all relevant tags.
+    raise_error : bool, optional, default: False
+        Whether to raise an error if the tag is not found.
+
+    Returns
+    -------
+    page : bs4.BeautifulSoup
+        The page, after extracting the tag.
+    tag : bs4.element.Tag or None
+        The extracted tag from the input page.
+        If the tag was not found in the given page, is None.
+    """
+
+    if approach == 'first':
+
+        try:
+            tag = page.find(label).extract()
+        except AttributeError:
+            if raise_error:
+                raise
+            else:
+                tag = None
+
+    elif approach == 'all':
+
+        tag = []
+        try:
+            while True:
+                tag.append(page.find(label).extract())
+        except AttributeError:
+            if not tag:
+                if raise_error:
+                    raise
+                else:
+                    tag = None
+
+    return page, tag
+
+
 def ids_to_str(ids):
     """Convert a list of article IDs to a comma separated string of IDs.
 

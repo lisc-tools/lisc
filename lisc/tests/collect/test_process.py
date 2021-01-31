@@ -43,6 +43,53 @@ def test_get_info():
     out_none = get_info(out, 'bad', 'raw')
     assert out_none is None
 
+def test_extract_tag_first():
+
+    # Create a complex tag
+    out = bs4.element.Tag(name='Out')
+    inn1a = bs4.element.Tag(name='Inn1')
+    inn1b = bs4.element.Tag(name='Inn1')
+
+    inn1a.append('words words')
+    inn1b.append('more words')
+
+    out.append(inn1a)
+    out.append(inn1b)
+
+    # Test extracting first tag, if it exists
+    _, extracted = extract_tag(out, 'Inn1', 'first')
+    assert isinstance(extracted, bs4.element.Tag)
+
+    # Test extracting first tag, if it doesn't exist
+    _, extracted = extract_tag(out, 'NotInn', 'first')
+    assert extracted is None
+
+    # Test error if attribute not found
+    with raises(AttributeError):
+        _, extracted = extract_tag(out, 'Bad', 'first', True)
+
+def test_extract_tag_all():
+
+    # Create a complex tag
+    out = bs4.element.Tag(name='Out')
+    inn1a = bs4.element.Tag(name='Inn1')
+    inn1b = bs4.element.Tag(name='Inn1')
+
+    inn1a.append('words words')
+    inn1b.append('more words')
+
+    out.append(inn1a)
+    out.append(inn1b)
+
+    # Test extracting all tags
+    _, extracted_all = extract_tag(out, 'Inn1', 'all')
+    assert isinstance(extracted_all, list)
+    assert len(extracted_all) == 2
+
+    # Test error if attribute not found
+    with raises(AttributeError):
+        _, extracted = extract_tag(out, 'Bad', 'all', True)
+
 def test_ids_to_str():
 
     idd = bs4.element.Tag(name='id')
