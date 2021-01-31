@@ -35,7 +35,7 @@ def test_extract_add_info():
 
     arts = extract_add_info(arts, art)
 
-    assert arts.ids[0] == 28000963
+    assert arts.ids[0] == '28000963'
     assert arts.titles[0] == ("A Neurocomputational Model of the N400"
                               " and the P600 in Language Processing.")
     assert arts.words[0][:13] == "Ten years ago"

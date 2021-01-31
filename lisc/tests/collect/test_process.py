@@ -9,7 +9,7 @@ from lisc.collect.process import *
 ###################################################################################################
 ###################################################################################################
 
-def test_extract():
+def test_get_info():
 
     # Create a complex tag
     out = bs4.element.Tag(name='Out')
@@ -24,23 +24,23 @@ def test_extract():
 
     # Test error with a bad 'how' input
     with raises(ValueError):
-        out_err = extract(out, 'Inn', 'bad')
+        out_err = get_info(out, 'Inn', 'bad')
 
     # Test with how = 'raw'
-    out_raw = extract(out, 'Inn', 'raw')
+    out_raw = get_info(out, 'Inn', 'raw')
     assert type(out_raw) is bs4.element.Tag
 
     # Test with how = 'str'
-    out_str = extract(out, 'Inn', 'str')
+    out_str = get_info(out, 'Inn', 'str')
     assert isinstance(out_str, str)
     assert out_str == 'words words'
 
     # Test with how = 'all'
-    out_all = extract(out, 'Inn', 'all')
+    out_all = get_info(out, 'Inn', 'all')
     assert type(out_all) is bs4.element.ResultSet
 
     # Test with non-existent tag name
-    out_none = extract(out, 'bad', 'raw')
+    out_none = get_info(out, 'bad', 'raw')
     assert out_none is None
 
 def test_ids_to_str():

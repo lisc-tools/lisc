@@ -1,26 +1,26 @@
-"""Functions to process extracted tags from data collected with LISC."""
+"""Functions to process tags from collected data."""
 
 from lisc.core.decorators import catch_none
 
 ###################################################################################################
 ###################################################################################################
 
-def extract(tag, label, how):
-    """Extract data from a HTML tag.
+def get_info(tag, label, how):
+    """Get information from a tag.
 
     Parameters
     ----------
     tag : bs4.element.Tag
-        HTML data to pull specific tag out of.
+        The data object to find the information from.
     label : str
-        Label of the tag to extract.
+        The name of the tag to get information from.
     how : {'raw', 'all' , 'txt', 'str'}
-        Method to extract the data.
-            raw      - extract an embedded tag
-            str      - extract text and convert to string
-            all      - extract all embedded tags
-            all-str  - extract all embedded tags, and convert to string
-            all-list - extract all embedded tags, and collect into a list
+        Method to use to get the information.
+            raw      - get an embedded tag
+            str      - get text and convert to string
+            all      - get all embedded tags
+            all-str  - get all embedded tags, and convert to string
+            all-list - get all embedded tags, and collect into a list
 
     Returns
     -------
@@ -38,11 +38,11 @@ def extract(tag, label, how):
         elif how == 'str':
             return tag.find(label).text
         elif how == 'all':
-            return tag.findAll(label)
+            return tag.find_all(label)
         elif how == 'all-str':
-            return ' '.join([part.text for part in tag.findAll(label)])
+            return ' '.join([part.text for part in tag.find_all(label)])
         elif how == 'all-list':
-            return [part.text for part in tag.findAll(label)]
+            return [part.text for part in tag.find_all(label)]
 
     except AttributeError:
         return None
@@ -75,7 +75,7 @@ def ids_to_str(ids):
 
 @catch_none(1)
 def process_authors(authors):
-    """Extract and process authors.
+    """Get information for and process authors.
 
     Parameters
     ----------
@@ -89,20 +89,20 @@ def process_authors(authors):
     """
 
     # Pull out all author tags from the input
-    authors = extract(authors, 'Author', 'all')
+    authors = get_info(authors, 'Author', 'all')
 
-    # Extract data for each author
+    # Get data for each author
     out = []
     for author in authors:
-        out.append((extract(author, 'LastName', 'str'), extract(author, 'ForeName', 'str'),
-                    extract(author, 'Initials', 'str'), extract(author, 'Affiliation', 'str')))
+        out.append((get_info(author, 'LastName', 'str'), get_info(author, 'ForeName', 'str'),
+                    get_info(author, 'Initials', 'str'), get_info(author, 'Affiliation', 'str')))
 
     return out
 
 
 @catch_none(1)
 def process_pub_date(pub_date):
-    """Extract and process publication dates.
+    """Get information for and process publication dates.
 
     Parameters
     ----------
@@ -115,8 +115,8 @@ def process_pub_date(pub_date):
         Year the article was published.
     """
 
-    # Extract year, convert to int if not None
-    year = extract(pub_date, 'Year', 'str')
+    # Get the year, convert to int if not None
+    year = get_info(pub_date, 'Year', 'str')
     year = int(year) if year else year
 
     return year
@@ -124,14 +124,14 @@ def process_pub_date(pub_date):
 
 @catch_none(1)
 def process_ids(ids, id_type):
-    """Extract and process IDs.
+    """Get information for and process IDs.
 
     Parameters
     ----------
     ids : bs4.element.ResultSet
         All the ArticleId tags, with all IDs for the article.
     id_type : {'pubmed', 'doi'}
-        Which type of ID to extract & process.
+        Which type of ID to get & process.
 
     Returns
     -------

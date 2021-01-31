@@ -8,7 +8,7 @@ from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
 from lisc.collect.utils import mk_term
 from lisc.collect.info import get_db_info
-from lisc.collect.process import extract, ids_to_str
+from lisc.collect.process import get_info, ids_to_str
 from lisc.collect.process import process_ids, process_authors, process_pub_date
 from lisc.urls.eutils import EUtils, get_wait_time
 
@@ -202,14 +202,14 @@ def extract_add_info(arts, article):
         Object updated with data from the current article.
     """
 
-    arts.add_data('ids', process_ids(extract(article, 'ArticleId', 'all'), 'pubmed'))
-    arts.add_data('titles', extract(article, 'ArticleTitle', 'str'))
-    arts.add_data('authors', process_authors(extract(article, 'AuthorList', 'raw')))
-    arts.add_data('journals', (extract(article, 'Title', 'str'),
-                               extract(article, 'ISOAbbreviation', 'str')))
-    arts.add_data('words', extract(article, 'AbstractText', 'all-str'))
-    arts.add_data('keywords', extract(article, 'Keyword', 'all-list'))
-    arts.add_data('years', process_pub_date(extract(article, 'PubDate', 'raw')))
-    arts.add_data('dois', process_ids(extract(article, 'ArticleId', 'all'), 'doi'))
+    arts.add_data('ids', process_ids(get_info(article, 'ArticleId', 'all'), 'pubmed'))
+    arts.add_data('titles', get_info(article, 'ArticleTitle', 'str'))
+    arts.add_data('authors', process_authors(get_info(article, 'AuthorList', 'raw')))
+    arts.add_data('journals', (get_info(article, 'Title', 'str'),
+                               get_info(article, 'ISOAbbreviation', 'str')))
+    arts.add_data('words', get_info(article, 'AbstractText', 'all-str'))
+    arts.add_data('keywords', get_info(article, 'Keyword', 'all-list'))
+    arts.add_data('years', process_pub_date(get_info(article, 'PubDate', 'raw')))
+    arts.add_data('dois', process_ids(get_info(article, 'ArticleId', 'all'), 'doi'))
 
     return arts
