@@ -8,7 +8,7 @@ from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
 from lisc.collect.utils import mk_term
 from lisc.collect.info import get_db_info
-from lisc.collect.process import get_info, ids_to_str
+from lisc.collect.process import get_info, extract_tag, ids_to_str
 from lisc.collect.process import process_ids, process_authors, process_pub_date
 from lisc.urls.eutils import EUtils, get_wait_time
 
@@ -201,6 +201,10 @@ def extract_add_info(arts, article):
     arts : Articles
         Object updated with data from the current article.
     """
+
+    # Extract reference list, if present
+    #   Otherwise, tags within this can interfere with collected data
+    refs = extract_tag(article, 'ReferenceList')
 
     arts.add_data('ids', process_ids(get_info(article, 'ArticleId', 'all'), 'pubmed'))
     arts.add_data('titles', get_info(article, 'ArticleTitle', 'str'))
