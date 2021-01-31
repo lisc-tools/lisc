@@ -45,6 +45,4 @@ def test_run_collection():
     words.add_terms(['protein', ''], 'exclusions')
 
     words.run_collection(db='pubmed', retmax='2')
-
     assert words.results
-    assert words.labels

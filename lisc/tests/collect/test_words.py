@@ -10,18 +10,28 @@ from lisc.collect.words import *
 
 def test_collect_words(tdb):
 
-    terms = ['science', 'engineering']
-    excls = ['philosophy', []]
+    terms = [['science'], ['engineering']]
+    excls = [['philosophy'], []]
+    db = 'pubmed'
+    retmax = 2
 
     # Test without using history, and without saving & clearing
-    res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2',
+    res, meta_data = collect_words(terms, excls, db=db, retmax=retmax,
                                    save_and_clear=False, usehistory=False)
-    assert res
+    assert len(res) == len(terms)
+    assert meta_data['requester']['n_requests'] > 0
+    assert res[0].n_articles == retmax
+    for field in ['titles', 'authors', 'ids', 'journals', 'keywords', 'words', 'years']:
+        assert getattr(res[0], field)
 
     # Test with using history, and with using save and clear
-    res, meta_data = collect_words(terms, excls, db='pubmed', retmax='2',
-                                   usehistory=True, directory=tdb)
-    assert res
+    res, meta_data = collect_words(terms, excls, db=db, retmax=retmax,
+                                   save_and_clear=True, usehistory=True, directory=tdb)
+    assert len(res) == len(terms)
+    assert meta_data['requester']['n_requests'] > 0
+    assert res[0].n_articles == 0
+    for field in ['titles', 'authors', 'ids', 'journals', 'keywords', 'words', 'years']:
+        assert getattr(res[0], field) == []
 
 def test_extract_add_info():
 
