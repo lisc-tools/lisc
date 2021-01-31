@@ -165,8 +165,18 @@ def process_pub_date(pub_date):
         Year the article was published.
     """
 
-    # Get the year, convert to int if not None
+    # Check if the date is encoded in a 'Year' tag
     year = get_info(pub_date, 'Year', 'str')
+
+    # Otherwise, check if medline date tag is available
+    if not year:
+        year = get_info(pub_date, 'MedlineDate', 'str')
+
+        # Medline date sometimes includes months - check & restrict if so
+        if len(year) > 4 and year[:4]:
+            year = year[:4]
+
+    # If a year was extracted, typecast to int
     year = int(year) if year else year
 
     return year
