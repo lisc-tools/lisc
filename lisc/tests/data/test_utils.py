@@ -7,17 +7,24 @@ from lisc.data.utils import *
 
 def test_count_elements():
 
-    tdat = ['a', 'b', 'a', None]
-    out = count_elements(tdat)
+    tdata = ['a', 'b', 'a', None]
+    out = count_elements(tdata)
 
     assert out['a'] == 2
     assert out['b'] == 1
     assert None not in out
 
+def test_drop_none():
+
+    tdata = ['A', 'B', 'C', None, 'D', None, 'E']
+    for el in drop_none(tdata):
+        assert el in tdata
+        assert el is not None
+
 def test_combine_lists():
 
-    tdat = [['a', 'b'], None, ['c', 'd']]
-    out = combine_lists(tdat)
+    tdata = [['a', 'b'], None, ['c', 'd']]
+    out = combine_lists(tdata)
 
     assert out == ['a', 'b', 'c', 'd']
 
