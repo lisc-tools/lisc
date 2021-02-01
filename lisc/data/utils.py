@@ -3,12 +3,11 @@
 from collections import Counter
 
 from nltk import word_tokenize
-from nltk.corpus import stopwords
+
+from lisc.data.stopwords import STOPWORDS
 
 ###################################################################################################
 ###################################################################################################
-
-STOPWORDS = stopwords.words('english')
 
 def count_elements(data_lst):
     """Count how often each element occurs in a list.
@@ -100,9 +99,12 @@ def convert_string(text, stopwords=STOPWORDS):
     This function sets text to lower case, and removes stopwords and punctuation.
     """
 
-    words = word_tokenize(text)
-    words_cleaned = [word.lower() for word in words if (
-        (not word.lower() in stopwords) & word.isalnum())]
+    # Converting stopwords to a dictionary makes checking a little quicker
+    stopwords = Counter(stopwords)
+
+    # Tokenize and remove stopwords and punctuation
+    words_cleaned = [word.lower() for word in word_tokenize(text) if \
+        ((not word.lower() in stopwords) and word.isalnum())]
 
     return words_cleaned
 
