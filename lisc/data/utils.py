@@ -8,6 +8,8 @@ from nltk.corpus import stopwords
 ###################################################################################################
 ###################################################################################################
 
+STOPWORDS = stopwords.words('english')
+
 def count_elements(data_lst):
     """Count how often each element occurs in a list.
 
@@ -78,13 +80,15 @@ def combine_lists(in_lst):
     return out
 
 
-def convert_string(text):
-    """Convert a str of text into tokenized and selected list of words.
+def convert_string(text, stopwords=STOPWORDS):
+    """Convert strings of text into tokenized lists of words.
 
     Parameters
     ----------
     text : str
         Text as one long string.
+    stopwords : list of str
+        Stopwords to remove from the text.
 
     Returns
     -------
@@ -98,7 +102,7 @@ def convert_string(text):
 
     words = word_tokenize(text)
     words_cleaned = [word.lower() for word in words if (
-        (not word.lower() in stopwords.words('english')) & word.isalnum())]
+        (not word.lower() in stopwords) & word.isalnum())]
 
     return words_cleaned
 
