@@ -218,13 +218,3 @@ Database Management
 
     SCDB
     create_file_structure
-
-Downloads
-~~~~~~~~~
-
-.. currentmodule:: lisc.utils
-
-.. autosummary::
-    :toctree: generated/
-
-    download_nltk_data
