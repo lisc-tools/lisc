@@ -1,5 +1,7 @@
 """Tests for lisc.data.utils."""
 
+from string import punctuation
+
 from lisc.data.utils import *
 
 ###################################################################################################
@@ -27,6 +29,16 @@ def test_combine_lists():
     out = combine_lists(tdata)
 
     assert out == ['a', 'b', 'c', 'd']
+
+def test_tokenize():
+
+    tdata = "This is a sentence full of stuff. Like, words! And ideas: and things."
+
+    tokens = tokenize(tdata)
+    assert isinstance(tokens, list)
+    assert tokens[0] == 'This'
+    assert tokens[-1] == 'things'
+    assert len(tokens) == 13
 
 def test_convert_string():
 

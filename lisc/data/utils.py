@@ -3,8 +3,6 @@
 from string import punctuation
 from collections import Counter
 
-from nltk import word_tokenize
-
 from lisc.data.stopwords import STOPWORDS
 
 ###################################################################################################
@@ -93,6 +91,38 @@ def combine_lists(in_lst):
     return out
 
 
+def tokenize(text):
+    """Tokenize a string of text into individual words.
+
+    Parameters
+    ----------
+    text : str
+        Text to tokenize.
+
+    Returns
+    -------
+    list of str
+        Tokenized text.
+    """
+
+    punc_keep = ['-', '/']
+    punc_custom = ['.', ',']
+
+    # Drop general punctuation from the string
+    for punc in set(punctuation) - set(punc_keep + punc_custom):
+        text = text.replace(punc, '')
+
+    # For some custom punctuation, replace them with a space
+    for custom_punc in set([el + ' ' for el in punc_custom]):
+        text = text.replace(custom_punc, ' ')
+
+    # The final period may be missed, so check and remove if so
+    if text[-1] == '.':
+        text = text[:-1]
+
+    return text.split()
+
+
 def convert_string(text, stopwords=STOPWORDS):
     """Convert strings of text into tokenized lists of words.
 
@@ -113,12 +143,11 @@ def convert_string(text, stopwords=STOPWORDS):
     This function sets text to lower case, and removes stopwords and punctuation.
     """
 
-    # Converting stopwords to a dictionary makes checking a little quicker
+    # Converting to use a dictionaries makes checking a little more efficient
     stopwords = Counter(stopwords)
 
-    # Tokenize and remove stopwords and punctuation
-    words_cleaned = [word.lower() for word in word_tokenize(text) if \
-        ((not word.lower() in stopwords) and (word.lower() not in punctuation))]
+    # Tokenize and remove stopwords
+    words_cleaned = [word.lower() for word in tokenize(text) if word.lower() not in stopwords]
 
     return words_cleaned
 
