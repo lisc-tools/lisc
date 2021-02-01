@@ -7,7 +7,7 @@ import nltk
 
 from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
-from lisc.data.utils import combine_lists, convert_string, count_elements
+from lisc.data.utils import combine_lists, convert_string, count_elements, drop_none
 from lisc.data.base_articles import BaseArticles
 
 ###################################################################################################
@@ -242,8 +242,11 @@ def _count_authors(authors):
         Number of publications per author.
     """
 
-    # Reduce author fields to pair of tuples (last name, initials) & count # of pubs per author
-    all_authors = [(author[0], author[2]) for art_authors in authors for author in art_authors]
+    # Reduce author fields to pair of tuples (last name, initials)
+    all_authors = [(author[0], author[2]) for art_authors \
+        in drop_none(authors) for author in art_authors]
+
+    # Standardize author names and count number of publications per author
     author_counts = count_elements(_fix_author_names(all_authors))
 
     return author_counts
@@ -265,10 +268,10 @@ def _count_end_authors(authors):
 
     # Pull out the full name for the first & last author of each article
     #  Last author is only considered if there is more than 1 author
-    firsts = [auth[0] for auth in authors]
+    firsts = [auth[0] for auth in drop_none(authors)]
     f_names = [(author[0], author[2]) for author in firsts]
 
-    lasts = [auth[-1] for auth in authors if len(auth) > 1]
+    lasts = [auth[-1] for auth in drop_none(authors) if len(auth) > 1]
     l_names = [(author[0], author[2]) for author in lasts]
 
     f_counts = count_elements(_fix_author_names(f_names))

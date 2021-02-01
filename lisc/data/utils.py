@@ -32,6 +32,25 @@ def count_elements(data_lst):
     return counts
 
 
+def drop_none(lst):
+    """Creates a generator that return elements of an iterable, dropping None values.
+
+    Parameters
+    ----------
+    lst : list
+        Input iterable.
+
+    Yields
+    ------
+    el
+        Elements of the input list. Can be of any type, except None.
+    """
+
+    for el in lst:
+        if el is not None:
+            yield el
+
+
 def combine_lists(in_lst):
     """Combine list of lists into one large list.
 
