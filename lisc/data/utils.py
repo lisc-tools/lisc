@@ -10,13 +10,15 @@ from lisc.data.stopwords import STOPWORDS
 ###################################################################################################
 ###################################################################################################
 
-def count_elements(data_lst):
+def count_elements(lst, exclude=None):
     """Count how often each element occurs in a list.
 
     Parameters
     ----------
-    data_lst : list
+    lst : list
         List of items to count.
+    exclude : list
+        Items to exclude from the frequency distribution.
 
     Returns
     -------
@@ -24,12 +26,23 @@ def count_elements(data_lst):
         Counts for how often each item occurs in the input list.
     """
 
-    counts = Counter(data_lst)
+    counts = Counter(lst)
 
     try:
         counts.pop(None)
     except KeyError:
         pass
+
+    if exclude:
+
+        if isinstance(exclude[0], str):
+            exclude = lower_list(exclude)
+
+        for excl in exclude:
+            try:
+                counts.pop(excl)
+            except KeyError:
+                pass
 
     return counts
 

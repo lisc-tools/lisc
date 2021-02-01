@@ -1,6 +1,6 @@
 """Tests for the lisc.plts.wordcloud."""
 
-from nltk import FreqDist
+from collections import Counter
 
 from lisc.tests.tutils import optional_test
 
@@ -19,7 +19,7 @@ def test_create_wordcloud():
 
 def test_conv_freqs():
 
-    freq_dist = FreqDist(['lots', 'of', 'words', 'words'])
+    freq_dist = Counter(['lots', 'of', 'words', 'words'])
     out = conv_freqs(freq_dist, 2)
 
     assert isinstance(out, dict)

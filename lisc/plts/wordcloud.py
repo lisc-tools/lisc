@@ -38,11 +38,11 @@ def create_wordcloud(words):
 
 
 def conv_freqs(freq_dist, n_words):
-    """Convert FreqDist into a dictionary.
+    """Convert a Counter object into a dictionary.
 
     Parameters
     ----------
-    freq_dist : nltk.FreqDist
+    freq_dist : collections.Counter
         Frequency distribution of words.
     n_words : int
         Number of words to extract.

@@ -45,11 +45,6 @@ def get_all_counts(all_data, attribute, combine=False):
     -------
     counts : list
         Extracted counts from across all the data objects.
-
-    Notes
-    -----
-    This function works for 'counts' stored in different objects, including `Counter` & `FreqDist`.
-    If combining values, the return type is the same as the object in the requested attribute.
     """
 
     counts = [getattr(data, attribute) for data in all_data]

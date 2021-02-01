@@ -15,7 +15,7 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
 
     Parameters
     ----------
-    freq_dist : nltk.FreqDist
+    freq_dist : collections.Counter
         Frequency distribution of words to plot.
     n_words : int
         Number of top words to include in the wordcloud.

@@ -3,8 +3,6 @@
 import os
 import json
 
-import nltk
-
 from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
 from lisc.data.utils import combine_lists, convert_string, count_elements, drop_none
@@ -27,19 +25,19 @@ class ArticlesAll(BaseArticles):
     ids : list of int
         Article ids for all articles included in object.
     journals : collections.Counter
-        Counts for each journal.
+        Frequency distribution for each journal.
     authors : collections.Counter
-        Counts for each author.
+        Frequency distribution for each author.
     first_authors : collections.Counter
-        Counts for each first author.
+        Frequency distribution for each first author.
     last_authors : collections.Counter
-        Counts for each last author.
-    words : nltk.probability.FreqDist
+        Frequency distribution for each last author.
+    words : collections.Counter
         Frequency distribution of all words.
-    keywords : nltk.probability.FreqDist
+    keywords : collections.Counter
         Frequency distribution of all keywords.
     years : collections.Counter
-        Counts for each year of publication.
+        Frequency distribution for each year of publication.
     dois : list of str
         DOIs of each article included in object.
     summary : dict
@@ -81,8 +79,12 @@ class ArticlesAll(BaseArticles):
         # Convert lists of all words to frequency distributions
         exclusions = exclusions if exclusions else [] + self.term.search + self.term.inclusions
         temp_words = [convert_string(words) for words in term_data.words]
-        self.words = self.create_freq_dist(combine_lists(temp_words), exclusions)
-        self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
+
+        self.words = count_elements(combine_lists(temp_words), exclusions)
+        self.keywords = count_elements(combine_lists(term_data.keywords), exclusions)
+
+        #self.words = self.create_freq_dist(combine_lists(temp_words), exclusions)
+        #self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
 
         # Initialize summary dictionary
         self.summary = dict()
@@ -185,47 +187,6 @@ class ArticlesAll(BaseArticles):
 
         with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
             json.dump(self.summary, outfile)
-
-
-    @staticmethod
-    def create_freq_dist(in_lst, exclude):
-        """Create a frequency distribution.
-
-        Parameters
-        ----------
-        in_lst : list of str
-            Words to create the frequency distribution from.
-        exclude : list of str
-            Words to exclude from the frequency distribution.
-
-        Returns
-        -------
-        freqs : nltk.FreqDist
-            Frequency distribution of the words.
-
-        Examples
-        --------
-        Compute the frequency distribution of a collection of words:
-
-        >>> ArticlesAll.create_freq_dist(in_lst=['brain', 'brain', 'head', 'body'], exclude=['body'])
-        FreqDist({'brain': 2, 'head': 1})
-
-        If you want to visualize a frequency distribution, you can plot them as a wordcloud:
-
-        >>> from lisc.plts.words import plot_wordcloud
-        >>> freq_dist = nltk.FreqDist({'frontal': 26, 'brain': 26, 'lobe': 23, 'patients': 19})
-        >>> plot_wordcloud(freq_dist, len(freq_dist))
-        """
-
-        freqs = nltk.FreqDist(in_lst)
-
-        for excl in exclude:
-            try:
-                freqs.pop(excl.lower())
-            except KeyError:
-                pass
-
-        return freqs
 
 
 def _count_authors(authors):

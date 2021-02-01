@@ -2,8 +2,6 @@
 
 from collections import Counter
 
-from nltk import FreqDist
-
 from lisc.tests.tutils import plot_test, optional_test
 
 from lisc.plts.words import *
@@ -15,7 +13,7 @@ from lisc.plts.words import *
 @plot_test
 def test_plot_wordcloud():
 
-    freq_dist = FreqDist(['lots', 'of', 'words', 'words'])
+    freq_dist = Counter(['lots', 'of', 'words', 'words'])
     plot_wordcloud(freq_dist, 5)
 
 @optional_test('matplotlib')
