@@ -1,5 +1,6 @@
 """Utilities for data management and data object for LISC."""
 
+from string import punctuation
 from collections import Counter
 
 from nltk import word_tokenize
@@ -104,7 +105,7 @@ def convert_string(text, stopwords=STOPWORDS):
 
     # Tokenize and remove stopwords and punctuation
     words_cleaned = [word.lower() for word in word_tokenize(text) if \
-        ((not word.lower() in stopwords) and word.isalnum())]
+        ((not word.lower() in stopwords) and (word.lower() not in punctuation))]
 
     return words_cleaned
 
