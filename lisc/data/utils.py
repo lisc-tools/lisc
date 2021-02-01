@@ -117,7 +117,7 @@ def tokenize(text):
         text = text.replace(custom_punc, ' ')
 
     # The final period may be missed, so check and remove if so
-    if text[-1] == '.':
+    if len(text) > 0 and text[-1] == '.':
         text = text[:-1]
 
     return text.split()
