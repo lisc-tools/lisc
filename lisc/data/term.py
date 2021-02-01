@@ -23,7 +23,7 @@ class Term(namedtuple('Term', ['label', 'search', 'inclusions', 'exclusions'])):
     --------
     Define a search term, with inclusions and exclusions:
 
-    >>> Term('brain', ['frontal lobe', 'temporal lobe'], ['EEG'], ['MRI'])
-    Term(label='brain', search=['frontal lobe', 'temporal lobe'], inclusions=['EEG'], exclusions=['MRI'])
+    >>> Term('brain', ['frontal', 'temporal'], ['EEG'], ['MRI'])
+    Term(label='brain', search=['frontal', 'temporal'], inclusions=['EEG'], exclusions=['MRI'])
     """
     __slots__ = ()

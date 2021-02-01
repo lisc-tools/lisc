@@ -3,11 +3,9 @@
 import os
 import json
 
-import nltk
-
 from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
-from lisc.data.utils import combine_lists, convert_string, count_elements
+from lisc.data.utils import combine_lists, convert_string, count_elements, drop_none
 from lisc.data.base_articles import BaseArticles
 
 ###################################################################################################
@@ -27,19 +25,19 @@ class ArticlesAll(BaseArticles):
     ids : list of int
         Article ids for all articles included in object.
     journals : collections.Counter
-        Counts for each journal.
+        Frequency distribution for each journal.
     authors : collections.Counter
-        Counts for each author.
+        Frequency distribution for each author.
     first_authors : collections.Counter
-        Counts for each first author.
+        Frequency distribution for each first author.
     last_authors : collections.Counter
-        Counts for each last author.
-    words : nltk.probability.FreqDist
+        Frequency distribution for each last author.
+    words : collections.Counter
         Frequency distribution of all words.
-    keywords : nltk.probability.FreqDist
+    keywords : collections.Counter
         Frequency distribution of all keywords.
     years : collections.Counter
-        Counts for each year of publication.
+        Frequency distribution for each year of publication.
     dois : list of str
         DOIs of each article included in object.
     summary : dict
@@ -72,7 +70,7 @@ class ArticlesAll(BaseArticles):
         self.ids = term_data.ids
         self.dois = term_data.dois
 
-        # Get counts of authors, journals, years
+        # Get frequency distributions of authors, journals, years
         self.journals = count_elements([journal[0] for journal in term_data.journals])
         self.years = count_elements(term_data.years)
         self.authors = _count_authors(term_data.authors)
@@ -81,8 +79,8 @@ class ArticlesAll(BaseArticles):
         # Convert lists of all words to frequency distributions
         exclusions = exclusions if exclusions else [] + self.term.search + self.term.inclusions
         temp_words = [convert_string(words) for words in term_data.words]
-        self.words = self.create_freq_dist(combine_lists(temp_words), exclusions)
-        self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
+        self.words = count_elements(combine_lists(temp_words), exclusions)
+        self.keywords = count_elements(combine_lists(term_data.keywords), exclusions)
 
         # Initialize summary dictionary
         self.summary = dict()
@@ -187,47 +185,6 @@ class ArticlesAll(BaseArticles):
             json.dump(self.summary, outfile)
 
 
-    @staticmethod
-    def create_freq_dist(in_lst, exclude):
-        """Create a frequency distribution.
-
-        Parameters
-        ----------
-        in_lst : list of str
-            Words to create the frequency distribution from.
-        exclude : list of str
-            Words to exclude from the frequency distribution.
-
-        Returns
-        -------
-        freqs : nltk.FreqDist
-            Frequency distribution of the words.
-
-        Examples
-        --------
-        Compute the frequency distribution of a collection of words:
-
-        >>> ArticlesAll.create_freq_dist(in_lst=['brain', 'brain', 'head', 'body'], exclude=['body'])
-        FreqDist({'brain': 2, 'head': 1})
-
-        If you want to visualize a frequency distribution, you can plot them as a wordcloud:
-
-        >>> from lisc.plts.words import plot_wordcloud
-        >>> freq_dist = nltk.FreqDist({'frontal': 26, 'brain': 26, 'lobe': 23, 'patients': 19})
-        >>> plot_wordcloud(freq_dist, len(freq_dist))
-        """
-
-        freqs = nltk.FreqDist(in_lst)
-
-        for excl in exclude:
-            try:
-                freqs.pop(excl.lower())
-            except KeyError:
-                pass
-
-        return freqs
-
-
 def _count_authors(authors):
     """Count all authors.
 
@@ -242,8 +199,11 @@ def _count_authors(authors):
         Number of publications per author.
     """
 
-    # Reduce author fields to pair of tuples (last name, initials) & count # of pubs per author
-    all_authors = [(author[0], author[2]) for art_authors in authors for author in art_authors]
+    # Reduce author fields to pair of tuples (last name, initials)
+    all_authors = [(author[0], author[2]) for art_authors \
+        in drop_none(authors) for author in art_authors]
+
+    # Standardize author names and count number of publications per author
     author_counts = count_elements(_fix_author_names(all_authors))
 
     return author_counts
@@ -265,10 +225,10 @@ def _count_end_authors(authors):
 
     # Pull out the full name for the first & last author of each article
     #  Last author is only considered if there is more than 1 author
-    firsts = [auth[0] for auth in authors]
+    firsts = [auth[0] for auth in drop_none(authors)]
     f_names = [(author[0], author[2]) for author in firsts]
 
-    lasts = [auth[-1] for auth in authors if len(auth) > 1]
+    lasts = [auth[-1] for auth in drop_none(authors) if len(auth) > 1]
     l_names = [(author[0], author[2]) for author in lasts]
 
     f_counts = count_elements(_fix_author_names(f_names))

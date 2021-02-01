@@ -2,6 +2,8 @@
 
 import pkg_resources as pkg
 
+from bs4.element import Tag
+
 from lisc.objects.base import Base
 from lisc.data import Articles, ArticlesAll, Term
 
@@ -18,6 +20,21 @@ class TestDB(SCDB):
         # Initialize from normal database object
         base = pkg.resource_filename(__name__, 'test_db')
         SCDB.__init__(self, base=base)
+
+def load_tag():
+    """Helper function to create a complex bs4 tag for testing."""
+
+    tag = Tag(name='Out')
+    inn1a = Tag(name='Inn1')
+    inn1b = Tag(name='Inn1')
+
+    inn1a.append('words words')
+    inn1b.append('more words')
+
+    tag.append(inn1a)
+    tag.append(inn1b)
+
+    return tag
 
 def load_base(set_terms=False, set_clusions=False):
     """Helper function to load Base object for testing."""

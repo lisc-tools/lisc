@@ -1,26 +1,26 @@
-"""Functions to process extracted tags from data collected with LISC."""
+"""Functions to process tags from collected data."""
 
 from lisc.core.decorators import catch_none
 
 ###################################################################################################
 ###################################################################################################
 
-def extract(tag, label, how):
-    """Extract data from a HTML tag.
+def get_info(tag, label, how):
+    """Get information from a tag.
 
     Parameters
     ----------
     tag : bs4.element.Tag
-        HTML data to pull specific tag out of.
+        The data object to find the information from.
     label : str
-        Label of the tag to extract.
+        The name of the tag to get information from.
     how : {'raw', 'all' , 'txt', 'str'}
-        Method to extract the data.
-            raw      - extract an embedded tag
-            str      - extract text and convert to string
-            all      - extract all embedded tags
-            all-str  - extract all embedded tags, and convert to string
-            all-list - extract all embedded tags, and collect into a list
+        Method to use to get the information.
+            raw      - get an embedded tag
+            str      - get text and convert to string
+            all      - get all embedded tags
+            all-str  - get all embedded tags, and convert to string
+            all-list - get all embedded tags, and collect into a list
 
     Returns
     -------
@@ -38,14 +38,64 @@ def extract(tag, label, how):
         elif how == 'str':
             return tag.find(label).text
         elif how == 'all':
-            return tag.findAll(label)
+            return tag.find_all(label)
         elif how == 'all-str':
-            return ' '.join([part.text for part in tag.findAll(label)])
+            return ' '.join([part.text for part in tag.find_all(label)])
         elif how == 'all-list':
-            return [part.text for part in tag.findAll(label)]
+            return [part.text for part in tag.find_all(label)]
 
     except AttributeError:
         return None
+
+
+def extract_tag(page, label, approach='first', raise_error=False):
+    """Extract a specified tag from a page.
+
+    Parameters
+    ----------
+    page : bs4.BeautifulSoup or bs4.element.Tag
+        Page of information with tags.
+    label : str
+        The name of the tag to extract.
+    approach : {'first', 'all'}, optional
+        Which approach to take for extracting tags.
+        `first` extracts only the first relevant tag, `all` extracts all relevant tags.
+    raise_error : bool, optional, default: False
+        Whether to raise an error if the tag is not found.
+
+    Returns
+    -------
+    page : bs4.BeautifulSoup
+        The page, after extracting the tag.
+    tag : bs4.element.Tag or None
+        The extracted tag from the input page.
+        If the tag was not found in the given page, is None.
+    """
+
+    if approach == 'first':
+
+        try:
+            tag = page.find(label).extract()
+        except AttributeError:
+            if raise_error:
+                raise
+            else:
+                tag = None
+
+    elif approach == 'all':
+
+        tag = []
+        try:
+            while True:
+                tag.append(page.find(label).extract())
+        except AttributeError:
+            if not tag:
+                if raise_error:
+                    raise
+                else:
+                    tag = None
+
+    return page, tag
 
 
 def ids_to_str(ids):
@@ -75,7 +125,7 @@ def ids_to_str(ids):
 
 @catch_none(1)
 def process_authors(authors):
-    """Extract and process authors.
+    """Get information for and process authors.
 
     Parameters
     ----------
@@ -89,20 +139,20 @@ def process_authors(authors):
     """
 
     # Pull out all author tags from the input
-    authors = extract(authors, 'Author', 'all')
+    authors = get_info(authors, 'Author', 'all')
 
-    # Extract data for each author
+    # Get data for each author
     out = []
     for author in authors:
-        out.append((extract(author, 'LastName', 'str'), extract(author, 'ForeName', 'str'),
-                    extract(author, 'Initials', 'str'), extract(author, 'Affiliation', 'str')))
+        out.append((get_info(author, 'LastName', 'str'), get_info(author, 'ForeName', 'str'),
+                    get_info(author, 'Initials', 'str'), get_info(author, 'Affiliation', 'str')))
 
     return out
 
 
 @catch_none(1)
 def process_pub_date(pub_date):
-    """Extract and process publication dates.
+    """Get information for and process publication dates.
 
     Parameters
     ----------
@@ -115,8 +165,18 @@ def process_pub_date(pub_date):
         Year the article was published.
     """
 
-    # Extract year, convert to int if not None
-    year = extract(pub_date, 'Year', 'str')
+    # Check if the date is encoded in a 'Year' tag
+    year = get_info(pub_date, 'Year', 'str')
+
+    # Otherwise, check if medline date tag is available
+    if not year:
+        year = get_info(pub_date, 'MedlineDate', 'str')
+
+        # Medline date sometimes includes months - check & restrict if so
+        if len(year) > 4 and year[:4]:
+            year = year[:4]
+
+    # If a year was extracted, typecast to int
     year = int(year) if year else year
 
     return year
@@ -124,14 +184,14 @@ def process_pub_date(pub_date):
 
 @catch_none(1)
 def process_ids(ids, id_type):
-    """Extract and process IDs.
+    """Get information for and process IDs.
 
     Parameters
     ----------
     ids : bs4.element.ResultSet
         All the ArticleId tags, with all IDs for the article.
     id_type : {'pubmed', 'doi'}
-        Which type of ID to extract & process.
+        Which type of ID to get & process.
 
     Returns
     -------

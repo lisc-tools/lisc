@@ -91,7 +91,6 @@ Requirements:
 - `requests <https://pypi.org/project/requests/>`_
 - `lxml <https://pypi.org/project/lxml/>`_
 - `beautifulsoup4 <https://pypi.org/project/beautifulsoup4/>`_
-- `nltk <https://pypi.org/project/nltk/>`_
 
 Optional dependencies, used for plots, analyses & testing:
 

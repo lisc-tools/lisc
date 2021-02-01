@@ -2,4 +2,3 @@ numpy >= 1.17.1
 requests
 lxml
 beautifulsoup4
-nltk

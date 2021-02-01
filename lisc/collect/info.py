@@ -3,7 +3,7 @@
 from bs4 import BeautifulSoup
 
 from lisc.requester import Requester
-from lisc.collect.process import extract
+from lisc.collect.process import get_info
 from lisc.data.meta_data import MetaData
 from lisc.urls.eutils import EUtils, get_wait_time
 
@@ -82,12 +82,12 @@ def get_db_info(req, info_url):
     info_page = req.request_url(info_url)
     info_page_soup = BeautifulSoup(info_page.content, 'lxml')
 
-    # Set list of fields to extract from EInfo
+    # Set list of fields to get information on from EInfo
     fields = ['dbname', 'menuname', 'description', 'dbbuild', 'count', 'lastupdate']
 
-    # Extract basic information into a dictionary
+    # Collect basic information into a dictionary
     db_info = dict()
     for field in fields:
-        db_info[field] = extract(info_page_soup, field, 'str')
+        db_info[field] = get_info(info_page_soup, field, 'str')
 
     return db_info

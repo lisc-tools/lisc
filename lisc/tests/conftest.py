@@ -10,10 +10,9 @@ from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
-from lisc.utils.download import download_nltk_data
 
 from lisc.tests.tdata import create_term_files, create_api_files
-from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all
+from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all, load_tag
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -25,12 +24,6 @@ def pytest_configure(config):
     # Set backend for matplotlib tests, if mpl is available
     if plt:
         plt.switch_backend('agg')
-
-@pytest.fixture(scope='session', autouse=True)
-def download_data():
-
-    # Download required nltk data for tokenizing
-    download_nltk_data()
 
 @pytest.fixture(scope='session', autouse=True)
 def check_db():
@@ -84,3 +77,7 @@ def tarts_full():
 @pytest.fixture(scope='function')
 def tarts_all():
     return load_arts_all()
+
+@pytest.fixture(scope='function')
+def ttag():
+    return load_tag()

@@ -204,12 +204,21 @@ class Counts():
         >>> counts.compute_score() # doctest: +SKIP
 
         Once you have co-occurrence scores calculated, you might want to plot this data.
-        You can plot the results as a matrix, as a clustermap, and/or as a dendrogram:
 
-        >>> from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram  # doctest:+SKIP
-        >>> plot_matrix(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
-        >>> plot_clustermap(counts.score, counts.terms['B'].labels, counts.terms['A'].labels) # doctest:+SKIP
-        >>> plot_dendrogram(counts.score, counts.terms['B'].labels) # doctest:+SKIP
+        You can plot the results as a matrix:
+
+        >>> from lisc.plts.counts import plot_matrix  # doctest:+SKIP
+        >>> plot_matrix(counts)  # doctest:+SKIP
+
+        And/or as a clustermap:
+
+        >>> from lisc.plts.counts import plot_clustermap  # doctest:+SKIP
+        >>> plot_clustermap(counts)  # doctest:+SKIP
+
+        And/or as a dendrogram:
+
+        >>> from lisc.plts.counts import plot_dendrogram  # doctest:+SKIP
+        >>> plot_dendrogram(counts)  # doctest:+SKIP
         """
 
         if score_type == 'association':

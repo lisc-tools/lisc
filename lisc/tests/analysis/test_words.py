@@ -2,8 +2,6 @@
 
 from collections import Counter
 
-from nltk import FreqDist
-
 from lisc.analysis.words import *
 
 ###################################################################################################
@@ -23,22 +21,12 @@ def test_get_all_counts(tarts_all):
 
     lst = [tarts_all, tarts_all]
 
-    # Test for attribute stored with Counter, with non-combined outputs
-    counts = get_all_counts(lst, 'journals')
-    assert isinstance(counts, list)
-    assert len(counts) == len(lst)
-
-    # Test for attribute stored with Counter, with combined output
-    counts = get_all_counts(lst, 'journals', combine=True)
-    assert isinstance(counts, Counter)
-    assert len(counts) == len(tarts_all.journals)
-
-    # Test for attribute stored with FreqDist, with non-combined ouputs
+    # Test for non-combined outputs
     counts = get_all_counts(lst, 'words')
     assert isinstance(counts, list)
     assert len(counts) == len(lst)
 
-    # Test for attribute stored with FreqDist, with combined ouput
+    # Test for combined output
     counts = get_all_counts(lst, 'words', combine=True)
-    assert isinstance(counts, FreqDist)
+    assert isinstance(counts, Counter)
     assert len(counts) == len(tarts_all.words)

@@ -25,7 +25,8 @@ class Dependency():
 
     def __getattr__(self, val):
 
-        raise ImportError("The {} module is required for this functionality.".format(self.mod_name))
+        message = "The {} module is required for this functionality."
+        raise ImportError(message.format(self.mod_name))
 
 
 def safe_import(*args):

@@ -8,7 +8,7 @@ from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
 from lisc.collect.utils import mk_term
 from lisc.collect.info import get_db_info
-from lisc.collect.process import extract, ids_to_str
+from lisc.collect.process import get_info, extract_tag, ids_to_str
 from lisc.collect.process import process_ids, process_authors, process_pub_date
 from lisc.urls.eutils import EUtils, get_wait_time
 
@@ -154,14 +154,14 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=N
     return results, meta_data
 
 
-def get_articles(req, art_url, arts):
+def get_articles(req, url, arts):
     """Collect information for each article found for a given term.
 
     Parameters
     ----------
     req : Requester
         Requester object to launch requests from.
-    art_url : str
+    url : str
         URL for the article to be collected.
     arts : Articles
         Object to add data to.
@@ -173,30 +173,27 @@ def get_articles(req, art_url, arts):
     """
 
     # Get page of all articles
-    art_page = req.request_url(art_url)
-    art_page_soup = BeautifulSoup(art_page.content, 'xml')
-    articles = art_page_soup.findAll('PubmedArticle')
+    page = req.request_url(url)
+    page_soup = BeautifulSoup(page.content, 'xml')
 
-    # Loop through each article, extracting relevant information
-    for art in articles:
+    # Get a list of all articles on the page
+    articles = page_soup.findAll('PubmedArticle')
 
-        # Get ID of current article & extract and add info to data object
-        new_id = process_ids(extract(art, 'ArticleId', 'all'), 'pubmed')
-        arts = extract_add_info(arts, new_id, art)
+    # Loop through each article, collecting information from it
+    for article in articles:
+        arts = get_article_info(arts, article)
 
     return arts
 
 
-def extract_add_info(arts, art_id, art):
-    """Extract information from an article and add it to a data object.
+def get_article_info(arts, article):
+    """Get information from an article and add it to a data object.
 
     Parameters
     ----------
     arts : Articles
         Object to store information for the current article.
-    art_id : int
-        ID of the new article.
-    art : bs4.element.Tag
+    article : bs4.element.Tag
         Extracted article.
 
     Returns
@@ -205,14 +202,18 @@ def extract_add_info(arts, art_id, art):
         Object updated with data from the current article.
     """
 
-    arts.add_data('ids', art_id)
-    arts.add_data('titles', extract(art, 'ArticleTitle', 'str'))
-    arts.add_data('authors', process_authors(extract(art, 'AuthorList', 'raw')))
-    arts.add_data('journals', (extract(art, 'Title', 'str'),
-                               extract(art, 'ISOAbbreviation', 'str')))
-    arts.add_data('words', extract(art, 'AbstractText', 'all-str'))
-    arts.add_data('keywords', extract(art, 'Keyword', 'all-list'))
-    arts.add_data('years', process_pub_date(extract(art, 'PubDate', 'raw')))
-    arts.add_data('dois', process_ids(extract(art, 'ArticleId', 'all'), 'doi'))
+    # Extract reference list, if present
+    #   Otherwise, tags within this can interfere with collected data
+    refs = extract_tag(article, 'ReferenceList')
+
+    arts.add_data('ids', process_ids(get_info(article, 'ArticleId', 'all'), 'pubmed'))
+    arts.add_data('titles', get_info(article, 'ArticleTitle', 'str'))
+    arts.add_data('authors', process_authors(get_info(article, 'AuthorList', 'raw')))
+    arts.add_data('journals', (get_info(article, 'Title', 'str'),
+                               get_info(article, 'ISOAbbreviation', 'str')))
+    arts.add_data('words', get_info(article, 'AbstractText', 'all-str'))
+    arts.add_data('keywords', get_info(article, 'Keyword', 'all-list'))
+    arts.add_data('years', process_pub_date(get_info(article, 'PubDate', 'raw')))
+    arts.add_data('dois', process_ids(get_info(article, 'ArticleId', 'all'), 'doi'))
 
     return arts

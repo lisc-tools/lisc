@@ -1,20 +1,22 @@
 """Utilities for data management and data object for LISC."""
 
+from string import punctuation
 from collections import Counter
 
-from nltk import word_tokenize
-from nltk.corpus import stopwords
+from lisc.data.stopwords import STOPWORDS
 
 ###################################################################################################
 ###################################################################################################
 
-def count_elements(data_lst):
+def count_elements(lst, exclude=None):
     """Count how often each element occurs in a list.
 
     Parameters
     ----------
-    data_lst : list
+    lst : list
         List of items to count.
+    exclude : list
+        Items to exclude from the frequency distribution.
 
     Returns
     -------
@@ -22,14 +24,44 @@ def count_elements(data_lst):
         Counts for how often each item occurs in the input list.
     """
 
-    counts = Counter(data_lst)
+    counts = Counter(lst)
 
     try:
         counts.pop(None)
     except KeyError:
         pass
 
+    if exclude:
+
+        if isinstance(exclude[0], str):
+            exclude = lower_list(exclude)
+
+        for excl in exclude:
+            try:
+                counts.pop(excl)
+            except KeyError:
+                pass
+
     return counts
+
+
+def drop_none(lst):
+    """Creates a generator that return elements of an iterable, dropping None values.
+
+    Parameters
+    ----------
+    lst : list
+        Input iterable.
+
+    Yields
+    ------
+    el
+        Elements of the input list. Can be of any type, except None.
+    """
+
+    for el in lst:
+        if el is not None:
+            yield el
 
 
 def combine_lists(in_lst):
@@ -59,13 +91,47 @@ def combine_lists(in_lst):
     return out
 
 
-def convert_string(text):
-    """Convert a str of text into tokenized and selected list of words.
+def tokenize(text):
+    """Tokenize a string of text into individual words.
+
+    Parameters
+    ----------
+    text : str
+        Text to tokenize.
+
+    Returns
+    -------
+    list of str
+        Tokenized text.
+    """
+
+    punc_keep = ['-', '/']
+    punc_custom = ['.', ',']
+
+    # Drop general punctuation from the string
+    for punc in set(punctuation) - set(punc_keep + punc_custom):
+        text = text.replace(punc, '')
+
+    # For some custom punctuation, replace them with a space
+    for custom_punc in set([el + ' ' for el in punc_custom]):
+        text = text.replace(custom_punc, ' ')
+
+    # The final period may be missed, so check and remove if so
+    if text[-1] == '.':
+        text = text[:-1]
+
+    return text.split()
+
+
+def convert_string(text, stopwords=STOPWORDS):
+    """Convert strings of text into tokenized lists of words.
 
     Parameters
     ----------
     text : str
         Text as one long string.
+    stopwords : list of str
+        Stopwords to remove from the text.
 
     Returns
     -------
@@ -77,9 +143,11 @@ def convert_string(text):
     This function sets text to lower case, and removes stopwords and punctuation.
     """
 
-    words = word_tokenize(text)
-    words_cleaned = [word.lower() for word in words if (
-        (not word.lower() in stopwords.words('english')) & word.isalnum())]
+    # Converting to use a dictionaries makes checking a little more efficient
+    stopwords = Counter(stopwords)
+
+    # Tokenize and remove stopwords
+    words_cleaned = [word.lower() for word in tokenize(text) if word.lower() not in stopwords]
 
     return words_cleaned
 

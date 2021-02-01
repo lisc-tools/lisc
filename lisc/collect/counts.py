@@ -8,7 +8,7 @@ from lisc.data.term import Term
 from lisc.data.meta_data import MetaData
 from lisc.collect.info import get_db_info
 from lisc.collect.utils import mk_term, join
-from lisc.collect.process import extract
+from lisc.collect.process import get_info
 from lisc.urls.eutils import EUtils, get_wait_time
 
 ###################################################################################################
@@ -187,7 +187,7 @@ def get_count(req, url):
     page = req.request_url(url)
     page_soup = BeautifulSoup(page.content, 'lxml')
 
-    counts = extract(page_soup, 'count', 'all')
+    counts = get_info(page_soup, 'count', 'all')
 
     try:
         count = int(counts[0].text)

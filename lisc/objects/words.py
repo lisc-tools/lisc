@@ -113,6 +113,8 @@ class Words(Base):
         """
 
         self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,
-                                                     db=db, retmax=retmax, field=field, usehistory=usehistory,
-                                                     api_key=api_key, save_and_clear=save_and_clear, logging=logging,
-                                                     directory=directory, verbose=verbose, **eutils_kwargs)
+                                                     db=db, retmax=retmax, field=field,
+                                                     usehistory=usehistory, api_key=api_key,
+                                                     save_and_clear=save_and_clear,
+                                                     logging=logging, directory=directory,
+                                                     verbose=verbose, **eutils_kwargs)

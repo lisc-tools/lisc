@@ -156,7 +156,7 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
         labels = data.terms['A' if not transpose else 'B'].labels
         data = getattr(data, attribute).T if transpose else getattr(data, attribute)
 
-    linkage_data = hier.linkage(data, method='complete', metric=metric)
+    linkage_data = hier.linkage(data, method=method, metric=metric)
 
     hier.dendrogram(linkage_data,
                     orientation=kwargs.pop('orientation', 'left'),
