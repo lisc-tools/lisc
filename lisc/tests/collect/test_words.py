@@ -23,7 +23,7 @@ def test_collect_words(tdb):
                                    usehistory=True, directory=tdb)
     assert res
 
-def test_extract_add_info():
+def test_get_article_info():
 
     arts = Articles('test')
 
@@ -33,7 +33,7 @@ def test_extract_add_info():
 
     art = page_soup.findAll('PubmedArticle')[0]
 
-    arts = extract_add_info(arts, art)
+    arts = get_article_info(arts, art)
 
     assert arts.ids[0] == '28000963'
     assert arts.titles[0] == ("A Neurocomputational Model of the N400"
@@ -45,7 +45,7 @@ def test_extract_add_info():
 
     # Check page with all fields missing - check error handling
     page = requests.get('http://www.google.com')
-    arts = extract_add_info(arts, page)
+    arts = get_article_info(arts, page)
 
     assert arts.ids[1] == None
     assert arts.titles[1] is None

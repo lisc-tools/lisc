@@ -176,18 +176,18 @@ def get_articles(req, url, arts):
     page = req.request_url(url)
     page_soup = BeautifulSoup(page.content, 'xml')
 
-    # Extract a list of all articles on the page
+    # Get a list of all articles on the page
     articles = page_soup.findAll('PubmedArticle')
 
-    # Loop through each article, extracting and collecting information from it
+    # Loop through each article, collecting information from it
     for article in articles:
-        arts = extract_add_info(arts, article)
+        arts = get_article_info(arts, article)
 
     return arts
 
 
-def extract_add_info(arts, article):
-    """Extract information from an article and add it to a data object.
+def get_article_info(arts, article):
+    """Get information from an article and add it to a data object.
 
     Parameters
     ----------

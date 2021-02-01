@@ -70,7 +70,7 @@ class ArticlesAll(BaseArticles):
         self.ids = term_data.ids
         self.dois = term_data.dois
 
-        # Get counts of authors, journals, years
+        # Get frequency distributions of authors, journals, years
         self.journals = count_elements([journal[0] for journal in term_data.journals])
         self.years = count_elements(term_data.years)
         self.authors = _count_authors(term_data.authors)
@@ -79,12 +79,8 @@ class ArticlesAll(BaseArticles):
         # Convert lists of all words to frequency distributions
         exclusions = exclusions if exclusions else [] + self.term.search + self.term.inclusions
         temp_words = [convert_string(words) for words in term_data.words]
-
         self.words = count_elements(combine_lists(temp_words), exclusions)
         self.keywords = count_elements(combine_lists(term_data.keywords), exclusions)
-
-        #self.words = self.create_freq_dist(combine_lists(temp_words), exclusions)
-        #self.keywords = self.create_freq_dist(combine_lists(term_data.keywords), exclusions)
 
         # Initialize summary dictionary
         self.summary = dict()
