@@ -1,5 +1,7 @@
 """Plots for words data."""
 
+import numpy as np
+
 from lisc.plts.utils import check_ax, savefig
 from lisc.plts.wordcloud import create_wordcloud, conv_freqs
 from lisc.core.modutils import safe_import
@@ -43,7 +45,7 @@ def plot_years(years, year_range=None, ax=None):
     years : collections.Counter
         Data on the number of publications per year.
     year_range : list of [int, int], optional
-        The range of years to plot on the x-axis.
+        The range of years to plot on the x-axis, inclusive.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
 
@@ -61,17 +63,23 @@ def plot_years(years, year_range=None, ax=None):
 
     ax = check_ax(ax, (10, 5))
 
-    # Extract x & y data to plot
-    x_data = list(years.keys())
-    y_data = list(years.values())
+    # Get the plot data, making sure it is sorted
+    sort_inds = np.argsort(list(years.keys()))
+    x_data = np.array(list(years.keys()))[sort_inds]
+    y_data = np.array(list(years.values()))[sort_inds]
+
+    # Restrict the data to the desired plot range
+    if year_range:
+        range_inds = np.logical_and(x_data >= (year_range[0] if year_range[0] else -np.inf),
+                                    x_data <= (year_range[1] if year_range[1] else np.inf))
+        x_data = x_data[range_inds]
+        y_data = y_data[range_inds]
 
     # Add line and points to plot
     plt.plot(x_data, y_data)
     plt.plot(x_data, y_data, '.', markersize=16)
 
     # Set plot limits
-    if year_range:
-        plt.xlim([year_range[0], year_range[1]])
     plt.ylim([0, max(y_data)+3])
 
     # Add title & labels
