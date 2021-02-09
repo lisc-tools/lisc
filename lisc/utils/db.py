@@ -99,7 +99,7 @@ class SCDB():
          'summary': 'lisc_db/data/words/summary'}
         """
 
-        for level in structure:
+        for level in sorted(structure):
             for upper in structure[level]:
                 for label in structure[level][upper]:
                     self.paths[label] = os.path.join(self.paths[upper], label)
@@ -160,17 +160,21 @@ class SCDB():
         return os.path.join(self.get_folder_path(folder), file_name)
 
 
-    def get_files(self, folder):
+    def get_files(self, folder, drop_ext=False, sort_files=True):
         """Get a list of available files in a folder in the database.
 
         Parameters
         ----------
         folder : str
             Which folder path to get the list of files from.
+        drop_ext : bool, optional, default: True
+            Whether to drop the extensions from the list of file names.
+        sort_files : bool, optional, default: True
+            Whether to sort the list of files before returning.
 
         Returns
         -------
-        list of str
+        files : list of str
             List of files available in specified folder.
 
         Examples
@@ -181,7 +185,15 @@ class SCDB():
         >>> db.get_files('terms') # doctest:+SKIP
         """
 
-        return os.listdir(self.get_folder_path(folder))
+        files = os.listdir(self.get_folder_path(folder))
+
+        if drop_ext:
+            files = [file.split('.')[0] for file in files]
+
+        if sort_files:
+            files.sort()
+
+        return files
 
 
     def check_file_structure(self):
