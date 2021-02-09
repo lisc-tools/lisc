@@ -321,3 +321,37 @@ def check_file_structure(base):
             if file[0] == '.':
                 continue
             print('{}{}'.format(subindent, file))
+
+
+def get_structure_info(structure):
+    """Get information from a directory structure definition.
+
+    Parameters
+    ----------
+    structure : dict
+        Definition of the directory.
+
+    Returns
+    -------
+    names : list of str
+        List of all the folder names (at any level).
+    paths : list of str
+        List of all the relative paths for all folders.
+    """
+
+    names, paths = [], []
+
+    for level in sorted(structure):
+
+        for label in structure[level]:
+
+            print(level, label)
+
+            for name in structure[level][label]:
+
+                names.append(name)
+
+                temp = [val for val in paths if val.split('/')[-1] == label]
+                paths.append('/'.join(temp + [name]))
+
+    return names, paths
