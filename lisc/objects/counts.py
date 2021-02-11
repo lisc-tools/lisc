@@ -51,7 +51,7 @@ class Counts():
 
 
     def add_terms(self, terms, term_type='terms', directory=None, dim='A'):
-        """Add the given list of strings as terms.
+        """Add search terms to the object.
 
         Parameters
         ----------
@@ -64,7 +64,7 @@ class Counts():
         directory : SCDB or str, optional
             A string or object containing a file path.
         dim : {'A', 'B'}, optional
-            Which set of terms to operate upon.
+            Which set of terms to add.
 
         Examples
         --------
@@ -82,9 +82,26 @@ class Counts():
         >>> counts.add_terms(['', 'extrasensory'], term_type='exclusions', dim='B')
         """
 
-        self.terms[dim].add_terms(terms, term_type)
+        self.terms[dim].add_terms(terms, term_type, directory)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
+
+    def add_labels(self, terms, directory=None, dim='A'):
+        """Add labels for terms to the object.
+
+        Parameters
+        ----------
+        labels : list of str or str
+            Labels for each term to add to the object.
+            If list, is assumed to be labels.
+            If str, is assumed to be a file name to load from.
+        directory : SCDB or str, optional
+            Folder or database object specifying the file location, if loading from file.
+        dim : {'A', 'B'}, optional
+            Which set of labels to add.
+        """
+
+        self.terms[dim].add_labels(terms, directory)
 
 
     def run_collection(self, db='pubmed', field='TIAB', api_key=None, logging=None,
