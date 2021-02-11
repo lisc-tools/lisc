@@ -31,6 +31,7 @@ class Base():
         self.terms = list()
         self.inclusions = list()
         self.exclusions = list()
+        self._labels = list()
 
     @property
     def has_data(self):
@@ -48,7 +49,10 @@ class Base():
     def labels(self):
         """The labels for each term."""
 
-        return [term[0] for term in self.terms]
+        if self.has_data:
+            return [label if label else term[0] for label, term in zip(self._labels, self.terms)]
+        else:
+            return self._labels
 
 
     def add_terms(self, terms, term_type='terms'):
@@ -78,9 +82,12 @@ class Base():
         """
 
         self.unload_terms(term_type)
+
         for term in terms:
             getattr(self, term_type).append(self._check_type(term))
+
         self._check_term_consistency()
+        self._check_label_consistency()
 
 
     def add_terms_file(self, f_name, term_type='terms', directory=None):
@@ -110,6 +117,31 @@ class Base():
 
         terms = load_terms_file(f_name, directory)
         self.add_terms(terms, term_type)
+
+
+    def add_labels(self, labels, directory=None):
+        """Add the given list of strings as labels for the terms.
+
+        Parameters
+        ----------
+        labels : list of str or str
+            List of labels for each term.
+            If list, is assumed to be labels. If a str, is assumed to be a file name to load from.
+        directory : SCDB or str, optional
+            Folder or database object specifying the file location, if loading from file.
+        """
+
+        # If there are previously loaded labels, then clear them
+        if self._labels != [None] * len(self._labels):
+            self.unload_terms('_labels', verbose=False)
+
+        # If the input is a string, load the requested file
+        if isinstance(labels, str):
+            labels = load_terms_file(labels, directory)
+
+        # Add the labels to the object, and check for consistency, if terms are already loaded
+        self._labels = labels
+        self._check_label_consistency()
 
 
     def check_terms(self, term_type='terms'):
@@ -166,14 +198,32 @@ class Base():
             setattr(self, term_type, list())
 
 
+    def _set_none_labels(self):
+        """Set labels as None."""
+
+        self._labels = [None] * self.n_terms
+
+
     def _check_term_consistency(self):
-        """Check if the loaded terms and inclusions/exclusions are consistent size."""
+        """Check if loaded terms and inclusions/exclusions are consistent lengths."""
 
         if self.inclusions and self.n_terms != len(self.inclusions):
-            raise InconsistentDataError('Mismatch in number of inclusions and terms!')
+            raise InconsistentDataError('There is a mismatch in number of inclusions and terms.')
 
         if self.exclusions and self.n_terms != len(self.exclusions):
-            raise InconsistentDataError('Mismatch in number of exclusions and terms!')
+            raise InconsistentDataError('There is a mismatch in number of exclusions and terms.')
+
+
+    def _check_label_consistency(self):
+        """Check if loaded terms and labels are consistent lengths."""
+
+        # If terms are loaded, and no labels are available, set none labels
+        if self.has_data and not self._labels:
+            self._set_none_labels()
+
+        # If terms are loaded, check the consistency between terms and labels
+        if self.has_data and self.n_terms != len(self._labels):
+            raise InconsistentDataError('There is a mismatch in number of labels and terms.')
 
 
     @staticmethod
