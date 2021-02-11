@@ -32,27 +32,27 @@ def test_counts_data_helper():
     # Use custom test object and add data
     tcounts = Counts()
 
+    terms_a = [['A'], ['B']]
+    terms_b = [['C'], ['D']]
+
+    tcounts.add_terms(terms_a, dim='A')
+    tcounts.add_terms(terms_b, dim='B')
+
     counts = np.array([[1, 1], [2, 2]])
     score = np.array([[3, 3], [4, 4]])
+
     tcounts.counts = counts
     tcounts.score = score
 
-    terms_a = [['A'], ['B']]
-    terms_b = [['C'], ['D']]
-    a_labels = terms_a[0] + terms_a[1]
-    b_labels = terms_b[0] + terms_b[1]
-    tcounts.terms['A'].terms = a_labels
-    tcounts.terms['B'].terms = b_labels
-
     data, x_labels, y_labels = counts_data_helper(tcounts, None, None, 'counts', False)
     assert np.array_equal(data, counts)
-    assert x_labels == b_labels
-    assert y_labels == a_labels
+    assert x_labels == tcounts.terms['B'].labels
+    assert y_labels == tcounts.terms['A'].labels
 
     data, x_labels, y_labels = counts_data_helper(tcounts, None, None, 'score', True)
     assert np.array_equal(data, score.T)
-    assert x_labels == a_labels
-    assert y_labels == b_labels
+    assert x_labels == tcounts.terms['A'].labels
+    assert y_labels == tcounts.terms['B'].labels
 
 @optional_test('matplotlib')
 def test_check_ax():

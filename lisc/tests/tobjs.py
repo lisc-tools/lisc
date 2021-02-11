@@ -36,7 +36,7 @@ def load_tag():
 
     return tag
 
-def load_base(set_terms=False, set_clusions=False):
+def load_base(set_terms=False, set_clusions=False, set_labels=False):
     """Helper function to load Base object for testing."""
 
     base = Base()
@@ -47,6 +47,9 @@ def load_base(set_terms=False, set_clusions=False):
     if set_clusions:
         base.add_terms([['yeh', 'definitely'], ['need', 'required']], 'inclusions')
         base.add_terms([['exc1', 'blehh'], ['exc2', 'meh']], 'exclusions')
+
+    if set_labels:
+        base.add_labels(['label1', 'label2'])
 
     return base
 

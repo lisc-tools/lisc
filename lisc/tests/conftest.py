@@ -64,7 +64,7 @@ def tbase():
 
 @pytest.fixture(scope='function')
 def tbase_terms():
-    return load_base(True, True)
+    return load_base(True, True, True)
 
 @pytest.fixture(scope='function')
 def tarts_empty():
