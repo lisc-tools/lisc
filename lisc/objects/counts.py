@@ -50,15 +50,19 @@ class Counts():
         self.meta_data = None
 
 
-    def add_terms(self, terms, term_type='terms', dim='A'):
+    def add_terms(self, terms, term_type='terms', directory=None, dim='A'):
         """Add the given list of strings as terms.
 
         Parameters
         ----------
-        terms : list of str or list of list of str
-            List of terms.
+        terms : list or str
+            Terms to add to the object.
+            If list, assumed to be terms, which can be a list of str or a list of list of str.
+            If str, assumed to be a file name to load from.
         term_type : {'terms', 'inclusions', 'exclusions'}, optional
             Which type of terms are being added.
+        directory : SCDB or str, optional
+            A string or object containing a file path.
         dim : {'A', 'B'}, optional
             Which set of terms to operate upon.
 
@@ -79,38 +83,6 @@ class Counts():
         """
 
         self.terms[dim].add_terms(terms, term_type)
-        if term_type == 'terms':
-            self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
-
-
-    def add_terms_file(self, f_name, term_type='terms', directory=None, dim='A'):
-        """Load terms from a text file.
-
-        Parameters
-        ----------
-        f_name : str
-            File name to load terms from.
-        term_type : {'terms', 'inclusions', 'exclusions'}, optional
-            Which type of terms are being added.
-        directory : SCDB or str, optional
-            A string or object containing a file path.
-        dim : {'A', 'B'}, optional
-            Which set of terms to add.
-
-        Examples
-        --------
-        Load terms from a text file, using a temporary file:
-
-        >>> from tempfile import NamedTemporaryFile
-        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
-        >>> with NamedTemporaryFile(suffix='.txt', mode='w+') as file: # doctest: +SKIP
-        ...     [file.write(term + '\\n') for term in terms]
-        ...     file.seek(0)
-        ...     counts = Counts()
-        ...     counts.add_terms_file(file.name)
-        """
-
-        self.terms[dim].add_terms_file(f_name, term_type, directory)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 

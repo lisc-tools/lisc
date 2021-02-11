@@ -55,15 +55,19 @@ class Base():
             return self._labels
 
 
-    def add_terms(self, terms, term_type='terms'):
+    def add_terms(self, terms, term_type='terms', directory=None):
         """Add the given list of strings as terms to use.
 
         Parameters
         ----------
-        terms : list of str or list of list of str
-            List of terms to be used.
+        terms : list or str
+            Terms to add to the object.
+            If list, assumed to be terms, which can be a list of str or a list of list of str.
+            If str, assumed to be a file name to load from.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms to are being added.
+        directory : SCDB or str, optional
+            Folder or database object specifying the file location, if loading from file.
 
         Examples
         --------
@@ -83,40 +87,14 @@ class Base():
 
         self.unload_terms(term_type)
 
+        if isinstance(terms, str):
+            terms = load_terms_file(terms, directory)
+
         for term in terms:
             getattr(self, term_type).append(self._check_type(term))
 
         self._check_term_consistency()
         self._check_label_consistency()
-
-
-    def add_terms_file(self, f_name, term_type='terms', directory=None):
-        """Load terms from a text file.
-
-        Parameters
-        ----------
-        f_name : str
-            File name to load terms from.
-        term_type : {'terms', 'inclusions', 'exclusions'}
-            Which type of terms file to load.
-        directory : SCDB or str, optional
-            Folder or database object specifying the file location.
-
-        Examples
-        --------
-        Load terms from a text file, using a temporary file:
-
-        >>> from tempfile import NamedTemporaryFile
-        >>> terms = ['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe']
-        >>> with NamedTemporaryFile(suffix='.txt', mode='w+') as file: # doctest: +SKIP
-        ...     [file.write(term + '\\n') for term in terms]
-        ...     file.seek(0)
-        ...     base = Base()
-        ...     base.add_terms_file(file.name)
-        """
-
-        terms = load_terms_file(f_name, directory)
-        self.add_terms(terms, term_type)
 
 
     def add_labels(self, labels, directory=None):
@@ -125,8 +103,9 @@ class Base():
         Parameters
         ----------
         labels : list of str or str
-            List of labels for each term.
-            If list, is assumed to be labels. If a str, is assumed to be a file name to load from.
+            Labels for each term to add to the object.
+            If list, is assumed to be labels.
+            If str, is assumed to be a file name to load from.
         directory : SCDB or str, optional
             Folder or database object specifying the file location, if loading from file.
         """

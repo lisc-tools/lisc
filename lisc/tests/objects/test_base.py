@@ -13,7 +13,7 @@ def test_base():
 
     assert Base()
 
-def test_add_terms(tbase):
+def test_add_terms_list(tbase):
 
     tbase.add_terms(['word', 'thing'])
     assert tbase.terms == [['word'], ['thing']]
@@ -29,13 +29,13 @@ def test_add_terms(tbase):
 
 def test_add_terms_file(tdb, tbase):
 
-    tbase.add_terms_file('test_terms', directory=tdb)
+    tbase.add_terms('test_terms', directory=tdb)
     assert tbase.terms
 
-    tbase.add_terms_file('test_inclusions', 'inclusions', directory=tdb)
+    tbase.add_terms('test_inclusions', 'inclusions', directory=tdb)
     assert tbase.inclusions
 
-    tbase.add_terms_file('test_exclusions', 'exclusions', directory=tdb)
+    tbase.add_terms('test_exclusions', 'exclusions', directory=tdb)
     assert tbase.exclusions
 
 def test_add_labels(tbase):
