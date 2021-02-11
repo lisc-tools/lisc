@@ -133,7 +133,7 @@ class Base():
 
         # If there are previously loaded labels, then clear them
         if self._labels != [None] * len(self._labels):
-            self.unload_terms('_labels', verbose=False)
+            self.unload_labels()
 
         # If the input is a string, load the requested file
         if isinstance(labels, str):
@@ -174,13 +174,15 @@ class Base():
             print('{:{width}s}  : '.format(label, width=width) + ", ".join(term for term in terms))
 
 
-    def unload_terms(self, term_type='terms'):
-        """Unload the current set of terms.
+    def unload_terms(self, term_type='terms', verbose=True):
+        """Unload terms from the object.
 
         Attributes
         ----------
-        term_type : {'terms', 'inclusions', 'exclusions'}
+        term_type : {'terms', 'inclusions', 'exclusions', 'all'}
             Which type of terms to use.
+        verbose : bool, optional
+            Whether to be verbose in printing out any changes.
 
         Examples
         --------
@@ -189,13 +191,29 @@ class Base():
         >>> base = Base()
         >>> base.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
         >>> base.unload_terms()
-        Unloading previous terms words.
+        Unloading terms.
         """
 
-        if getattr(self, term_type):
+        if term_type == 'all':
+            for term_type in ['terms', 'inclusions', 'exclusions', 'labels']:
+                self.unload_terms(term_type)
 
-            print('Unloading previous {} words.'.format(term_type))
-            setattr(self, term_type, list())
+        elif term_type == 'labels':
+            self.unload_labels(verbose=verbose)
+
+        else:
+            if getattr(self, term_type):
+                if verbose:
+                    print('Unloading {}.'.format(term_type))
+                setattr(self, term_type, list())
+
+
+    def unload_labels(self, verbose=True):
+        """Unload labels from the object."""
+
+        if verbose:
+            print('Unloading labels.')
+        self._set_none_labels()
 
 
     def _set_none_labels(self):
