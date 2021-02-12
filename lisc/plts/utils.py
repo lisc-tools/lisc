@@ -129,6 +129,7 @@ def savefig(func):
         f_name = kwargs.pop('f_name', None)
         f_path = kwargs.pop('directory', None)
         close = kwargs.pop('close', None)
+        transparent = kwargs.pop('transparent', False)
 
         if isinstance(f_path, SCDB):
             f_path = f_path.get_folder_path('figures')
@@ -137,7 +138,7 @@ def savefig(func):
 
         if save_fig:
             full_path = os.path.join(f_path, f_name) if f_path else f_name
-            plt.savefig(full_path)
+            plt.savefig(full_path, bbox_inches='tight', transparent=transparent)
 
         if close:
             plt.close()
