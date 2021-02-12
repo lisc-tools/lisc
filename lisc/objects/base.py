@@ -215,7 +215,7 @@ class Base():
         """Check if loaded terms and labels are consistent lengths."""
 
         # If terms are loaded, and no labels are available, set none labels
-        if self.has_data and not self._labels:
+        if self.has_data and (not self._labels or self._labels == [None] * len(self._labels)):
             self._set_none_labels()
 
         # If terms are loaded, check the consistency between terms and labels
