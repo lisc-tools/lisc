@@ -122,7 +122,7 @@ class EUtils(URLs):
         >>> urls = EUtils(db='pubmed', retmax=5)
         """
 
-        base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils'
+        base = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils'
         utils = {'info' : 'einfo.fcgi',
                  'query' : 'egquery.fcgi',
                  'search' : 'esearch.fcgi',
