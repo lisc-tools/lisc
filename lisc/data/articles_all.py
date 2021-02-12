@@ -66,6 +66,11 @@ class ArticlesAll(BaseArticles):
         # Inherit from the BaseArticles object
         BaseArticles.__init__(self, term_data.term)
 
+        # Collect together search terms to add to exclusions or use as exclusions
+        term = term_data.term
+        searches = list(set(list([term.label] + term.search + term.inclusions)))
+        exclusions = searches if not exclusions else exclusions.extend(searches)
+
         # Copy over tracking of included IDs & DOIs
         self.ids = term_data.ids
         self.dois = term_data.dois
@@ -114,7 +119,7 @@ class ArticlesAll(BaseArticles):
 
         # Get the requested number of most common words, and convert to str
         top = freqs.most_common()[0:n_check]
-        top_str = ' , '.join([word[0] for word in top[:n_check]])
+        top_str = ', '.join([word[0] for word in top[:n_check]])
 
         # Print out the top words for the current term
         print("{:5} : ".format(self.label) + top_str)
