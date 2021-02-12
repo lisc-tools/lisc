@@ -83,6 +83,5 @@ def plot_years(years, year_range=None, ax=None):
     plt.ylim([0, max(y_data)+3])
 
     # Add title & labels
-    plt.title('Publication History', fontsize=24, fontweight='bold')
     plt.xlabel('Year of Publication', fontsize=18)
     plt.ylabel('Number of Articles', fontsize=18)
