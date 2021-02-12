@@ -1,6 +1,6 @@
 """Base object for LISC."""
 
-from lisc.utils.io import load_terms_file
+from lisc.utils.io import load_txt_file
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -88,7 +88,7 @@ class Base():
         self.unload_terms(term_type)
 
         if isinstance(terms, str):
-            terms = load_terms_file(terms, directory)
+            terms = load_txt_file(terms, directory)
 
         for term in terms:
             getattr(self, term_type).append(self._check_type(term))
@@ -116,7 +116,7 @@ class Base():
 
         # If the input is a string, load the requested file
         if isinstance(labels, str):
-            labels = load_terms_file(labels, directory)
+            labels = load_txt_file(labels, directory, split_elements=False)
 
         # Add the labels to the object, and check for consistency, if terms are already loaded
         self._labels = labels

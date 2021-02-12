@@ -24,6 +24,10 @@ def create_term_files(directory):
     with open(os.path.join(path, 'test_exclusions_line.txt'), 'w') as excl_file2:
         excl_file2.write('not\n')
 
+    with open(os.path.join(path, 'test_labels.txt'), 'w') as labels_file:
+        labels_file.write('label1\nlabel2')
+
+
 def create_api_files(directory):
     """Create test API key file."""
 

@@ -28,8 +28,8 @@ def check_ext(f_name, ext):
     return f_name + ext if not f_name.endswith(ext) else f_name
 
 
-def load_terms_file(f_name, directory=None):
-    """Loads terms from a text file.
+def load_txt_file(f_name, directory=None, split_elements=True, split_character=','):
+    """Loads contents from a text file.
 
     Parameters
     ----------
@@ -37,16 +37,21 @@ def load_terms_file(f_name, directory=None):
         Name of the file to load.
     directory : str or SCDB, optional
         Folder or database object specifying the location of the file to load.
+    split_elements : bool, optional, default: True
+        If True, splits elements within a single line.
+    split_character : str, optional, default: ','
+        The character to use to split elements within a line.
 
     Returns
     -------
-    terms : list of list of str
-        Data from the file.
+    contents : list
+        Data loaded from the file.
     """
 
     file_path = os.path.join(check_directory(directory, 'terms'), check_ext(f_name, '.txt'))
 
     with open(file_path, 'r') as terms_file:
+
         text = terms_file.read()
 
         # If the last line is empty, it gets cut off due to no trailing content
@@ -54,11 +59,12 @@ def load_terms_file(f_name, directory=None):
         if text.endswith('\n'):
             text = text + '\n'
 
-        lines = text.splitlines()
+        contents = text.splitlines()
 
-    terms = [term.split(',') for term in lines]
+    if split_elements:
+        contents = [line.split(split_character) for line in contents]
 
-    return terms
+    return contents
 
 
 def load_api_key(f_name, directory=None, required=False):

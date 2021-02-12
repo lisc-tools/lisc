@@ -16,9 +16,9 @@ def test_check_ext():
     assert check_ext('file', '.txt') == 'file.txt'
     assert check_ext('file.txt', '.txt') == 'file.txt'
 
-def test_load_terms_file(tdb):
+def test_load_txt_file(tdb):
 
-    terms = load_terms_file('test_terms', tdb)
+    terms = load_txt_file('test_terms', tdb)
 
     assert terms
     assert isinstance(terms, list)
@@ -26,12 +26,18 @@ def test_load_terms_file(tdb):
     assert isinstance(terms[0][0], str)
 
     # Check loading associated exclusions, should be same length
-    excls1 = load_terms_file('test_exclusions', tdb)
+    excls1 = load_txt_file('test_exclusions', tdb)
     assert len(terms) == len(excls1)
 
     # Check loading file with trailing new line, should be same length
-    excls2 = load_terms_file('test_exclusions_line', tdb)
+    excls2 = load_txt_file('test_exclusions_line', tdb)
     assert len(terms) == len(excls2)
+
+    # Check loading a file without splitting elements within each line
+    labels = load_txt_file('test_labels', tdb, split_elements=False)
+    assert labels
+    assert isinstance(labels, list)
+    assert isinstance(labels[0], str)
 
 def test_load_api_key(tdb):
 
