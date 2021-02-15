@@ -37,6 +37,13 @@ def load_tag():
 
     return tag
 
+def load_term():
+    """Helper function to create a Term object for testing."""
+
+    return Term(label='label', search=['test', 'synonym'],
+                inclusions=['incl', 'incl_synonym'],
+                exclusions=['excl', 'excl_synonym'])
+
 def load_base(set_terms=False, set_clusions=False, set_labels=False, n_terms=2):
     """Helper function to load Base object for testing."""
 
