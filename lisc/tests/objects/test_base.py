@@ -2,6 +2,7 @@
 
 from py.test import raises
 
+from lisc.data.term import Term
 from lisc.objects.base import Base
 
 from lisc.core.errors import InconsistentDataError
@@ -12,6 +13,32 @@ from lisc.core.errors import InconsistentDataError
 def test_base():
 
     assert Base()
+
+def test_get_item(tbase_terms):
+
+    out = tbase_terms['label0']
+    assert isinstance(out, Term)
+    assert out.label == 'label0'
+
+def test_get_index(tbase_terms):
+
+    ind = tbase_terms.get_index('label0')
+    assert ind == 0
+
+def test_get_term(tbase_terms):
+
+    # Test accessing with index
+    out1 = tbase_terms.get_term(0)
+    assert isinstance(out1, Term)
+    assert out1.label == 'label0'
+
+    # Test accessing with label
+    out2 = tbase_terms.get_term('label0')
+    assert isinstance(out2, Term)
+    assert out2.label == 'label0'
+
+    # Check that the same element accessed in different ways is the same
+    assert out1 == out2
 
 def test_add_terms_list(tbase):
 

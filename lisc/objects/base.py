@@ -1,5 +1,6 @@
 """Base object for LISC."""
 
+from lisc.data.term import Term
 from lisc.utils.io import load_txt_file
 from lisc.core.errors import InconsistentDataError
 
@@ -33,17 +34,26 @@ class Base():
         self.exclusions = list()
         self._labels = list()
 
+
+    def __getitem__(self, key):
+        """Index into Base object, accessing Term."""
+
+        return self.get_term(self.get_index(key))
+
+
     @property
     def has_data(self):
         """Indicator for if the object has data."""
 
         return bool(self.terms)
 
+
     @property
     def n_terms(self):
         """How many terms are included in the object."""
 
         return len(self.terms)
+
 
     @property
     def labels(self):
@@ -53,6 +63,55 @@ class Base():
             return [label if label else term[0] for label, term in zip(self._labels, self.terms)]
         else:
             return self._labels
+
+
+    def get_index(self, label):
+        """Get the index for a specified search term.
+
+        Parameters
+        ----------
+        label : str
+            The label of the search term.
+
+        Returns
+        -------
+        ind : int
+            The index of the requested search term.
+
+        Raises
+        ------
+        IndexError
+            If the requested term label is not found.
+        """
+
+        try:
+            ind = self.labels.index(label)
+        except ValueError:
+            raise IndexError('Requested key not available in object.')
+
+        return ind
+
+
+    def get_term(self, label):
+        """Get a search term from the object.
+
+        Parameters
+        ----------
+        label : str or int
+            The requested term.
+            If str, is the label of the term.
+            If int, is used as the index of the term.
+
+        Returns
+        -------
+        term : Term
+            The full search term definition.
+        """
+
+        ind = self.get_index(label) if isinstance(label, str) else label
+        term = Term(self.labels[ind], self.terms[ind], self.inclusions[ind], self.exclusions[ind])
+
+        return term
 
 
     def add_terms(self, terms, term_type='terms', directory=None):
@@ -154,7 +213,7 @@ class Base():
 
 
     def unload_terms(self, term_type='terms', verbose=True):
-        """Unload terms from the object.
+        """Completely unload terms from the object.
 
         Attributes
         ----------
