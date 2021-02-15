@@ -35,13 +35,13 @@ class Words(Base):
         return [result.label for result in self.results]
 
 
-    def __getitem__(self, key):
-        """Index into Words object with term result key.
+    def __getitem__(self, label):
+        """Index into Words object, accessing results.
 
         Parameters
         ----------
-        key : str
-            Term name to get from results data.
+        label : str
+            Label for the term to get from results data.
 
         Returns
         -------
@@ -49,15 +49,13 @@ class Words(Base):
             Articles object for the requested result.
         """
 
-        # Give up if object is empty
-        if len(self.labels) == 0:
+        if len(self.results) == 0:
             raise IndexError('Object is empty - cannot index.')
 
-        # Check if requested key is available
         try:
-            ind = self.labels.index(key)
+            ind = self.labels.index(label)
         except ValueError:
-            raise IndexError('Requested key not available in object.')
+            raise IndexError('Requested label not available in object.')
 
         return self.results[ind]
 
