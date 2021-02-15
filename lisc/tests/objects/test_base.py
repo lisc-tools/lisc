@@ -90,6 +90,14 @@ def tests_check_terms(tbase_terms):
     tbase_terms.check_terms('inclusions')
     tbase_terms.check_terms('exclusions')
 
+def test_drop_term(tbase_terms):
+
+    n_terms = tbase_terms.n_terms
+    tbase_terms.drop_term('label1')
+    assert 'label1' not in tbase_terms.labels
+    for attr in ['terms', '_labels', 'inclusions', 'exclusions']:
+        assert len(getattr(tbase_terms, attr)) == n_terms - 1
+
 def test_unload_terms(tbase_terms):
 
     tbase_terms.unload_terms('inclusions')

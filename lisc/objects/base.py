@@ -212,6 +212,27 @@ class Base():
             print('{:{width}s}  : '.format(label, width=width) + ", ".join(term for term in terms))
 
 
+    def drop_term(self, label):
+        """Drop specified term(s) from the object.
+
+        Parameters
+        ----------
+        label : str or int or list
+            The label of the term to drop.
+            If str, is the label of the term.
+            If int, is used as the index of the term.
+            If list, drops each element of the list.
+        """
+
+        if isinstance(label, list):
+            for ll in label:
+                self.drop_term(ll)
+
+        ind = self.get_index(label) if isinstance(label, str) else label
+        for attr in ['terms', '_labels', 'inclusions', 'exclusions']:
+            getattr(self, attr).pop(ind)
+
+
     def unload_terms(self, term_type='terms', verbose=True):
         """Completely unload terms from the object.
 
