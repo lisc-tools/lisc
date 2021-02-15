@@ -1,6 +1,7 @@
 """Utilties to create objects for testing."""
 
 import pkg_resources as pkg
+from itertools import repeat
 
 from bs4.element import Tag
 
@@ -36,20 +37,20 @@ def load_tag():
 
     return tag
 
-def load_base(set_terms=False, set_clusions=False, set_labels=False):
+def load_base(set_terms=False, set_clusions=False, set_labels=False, n_terms=2):
     """Helper function to load Base object for testing."""
 
     base = Base()
 
     if set_terms:
-        base.add_terms([['test1', 'test sin'], ['test2', 'uh oh']])
+        base.add_terms(repeat_data(['test', 'synonym'], n_terms))
 
     if set_clusions:
-        base.add_terms([['yeh', 'definitely'], ['need', 'required']], 'inclusions')
-        base.add_terms([['exc1', 'blehh'], ['exc2', 'meh']], 'exclusions')
+        base.add_terms(repeat_data(['incl', 'incl_synonym'], n_terms), 'inclusions')
+        base.add_terms(repeat_data(['excl', 'excl_synonym'], n_terms), 'exclusions')
 
     if set_labels:
-        base.add_labels(['label1', 'label2'])
+        base.add_labels([val[0] for val in repeat_data(['label'], n_terms)])
 
     return base
 
@@ -79,3 +80,21 @@ def load_arts_all():
     arts_all = ArticlesAll(arts)
 
     return arts_all
+
+def repeat_data(terms, n_times):
+    """Repeat a list of data, appending index number, a specified number of times.
+
+    Parameters
+    ----------
+    terms : list of str
+        List of elements to repeat.
+    n_times : int
+        Number of times to repeat.
+
+    Returns
+    -------
+    list of list of str
+        List of repeated elements.
+    """
+
+    return [[val + str(ind) for val in vals] for ind, vals in enumerate(repeat(terms, n_times))]
