@@ -72,6 +72,18 @@ def test_add_terms_str(tbase):
     assert tbase.inclusions == incls_expected
     assert tbase.exclusions == excls_expected
 
+def test_add_terms_append(tbase):
+
+    terms1 = [['word'], ['thing', 'same']]
+    terms2 = [['added']]
+
+    tbase.add_terms(terms1)
+    tbase.add_terms(terms2, append=True)
+
+    assert tbase.n_terms == len(terms1) + len(terms2)
+    assert tbase.terms[0] == terms1[0]
+    assert tbase.terms[-1] == terms2[-1]
+
 def test_add_terms_file(tdb, tbase):
 
     tbase.add_terms('test_terms', directory=tdb)

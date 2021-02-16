@@ -114,8 +114,8 @@ class Base():
         return term
 
 
-    def add_terms(self, terms, term_type='terms', directory=None):
-        """Add the given list of strings as terms to use.
+    def add_terms(self, terms, term_type='terms', directory=None, append=False, check_object=True):
+        """Add terms to the object.
 
         Parameters
         ----------
@@ -127,6 +127,9 @@ class Base():
             Which type of terms to are being added.
         directory : SCDB or str, optional
             Folder or database object specifying the file location, if loading from file.
+        append : boolean, optional, default: False
+            Whether to append the new term(s) to any existing terms.
+            If False, any prior terms are cleared prior to adding current term(s).
 
         Examples
         --------
@@ -144,7 +147,8 @@ class Base():
         >>> base.add_terms([['prefrontal'], [], [], []], term_type='exclusions')
         """
 
-        self.unload_terms(term_type)
+        if not append:
+            self.unload_terms(term_type)
 
         if isinstance(terms, str):
             terms = load_txt_file(terms, directory)
