@@ -9,12 +9,10 @@ Collecting citation data from OpenCitations.
 # References & Citations
 # ----------------------
 #
-# Another potential feature of interest in the scientific literature are pattern of
-# references and citations. Which articles are cited by a particular article, and how
-# many citations an article receives may be useful measures to investigate the literature.
-#
-# Unfortunately, citation data has historically been hard to access and investigate, due
-# to a lack of available databases and APIs that provide access to such information.
+# Citation data, such as the list of articles a paper cites, and how many citations it
+# receives, can be another useful measure for investigating the scientific literature.
+# Unfortunately, citation data has historically been hard to access and investigate, due to
+# a lack of available databases and APIs that provide access to such information.
 #
 # OpenCitations Project
 # ~~~~~~~~~~~~~~~~~~~~~
@@ -64,7 +62,7 @@ dois = ['10.1007/s00228-017-2226-2', '10.1186/1756-8722-6-59']
 #
 # To do so, we need to pass our list of DOIs to the :func:`~.collect_citations` function.
 # To get citations for these DOIs, we will use the 'citations' operation, which we specify
-# in by setting the 'util' argument to 'citations'.
+# by setting the 'util' argument to 'citations'.
 #
 
 ###################################################################################################
@@ -86,10 +84,10 @@ for doi, n_cite in n_citations.items():
 
 ###################################################################################################
 #
-# You can also optionally specify to collect DOIs of the papers that cite our papers of interest.
+# You can also specify to collect DOIs of the papers that cite papers of interest.
 #
 # To do so, set the `collect_dois` argument to True, in which case an additional dictionary
-# storing the DOIs of the articles that cite our searched articles will be returned.
+# storing the DOIs of the articles that cite the searched for article(s) will be returned.
 #
 
 ###################################################################################################
@@ -106,8 +104,8 @@ cite_dois[dois[0]]
 # Reference Data
 # --------------
 #
-# Instead of searching for citations to a specified articles, we can also search for
-# references, which refers to articles that are cited by specified articles.
+# Instead of searching for citations to specified articles, we can also search for
+# references, which refers to articles that are cited by the specified article(s).
 #
 # To do so, set the `util` argument to use the 'references' operation.
 #

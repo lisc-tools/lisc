@@ -14,8 +14,8 @@ An overview of the LISC code organization and approach.
 # LISC serves mainly as a wrapper around available application programmer interfaces (APIs)
 # that provide access to databases of scientific literature and related data.
 #
-# In this overview, we will first explore the main aspects of LISC, including the overall
-# code structure, and how the module handles search terms, data, files, and requests.
+# In this overview, we will first introduce LISC, including the overall code structure,
+# and how the module handles search terms, data, files, and requests.
 #
 
 ###################################################################################################
@@ -29,18 +29,18 @@ An overview of the LISC code organization and approach.
 # - the NCBI `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25500/>`_ API,
 #   which provides access to the Pubmed database
 # - the `OpenCitations <https://opencitations.net>`_ API,
-#   which provides access to citation data.
+#   which provides access to citation data
 #
 # There are different ways to interact with these APIs, which each provide different data.
 #
 # Data collection and analysis approaches available through LISC include:
 #
 # EUtils:
-#   - counts: collecting word co-occurrence data, counting how often terms occur together.
-#   - words: collecting text data and meta-data from scientific articles.
+#   - counts: collect word co-occurrence data, counting how often terms occur together
+#   - words: collect text data and meta-data from scientific articles
 #
 # OpenCitations:
-#   - citations: collecting citation data and counts of citations to and from articles.
+#   - citations: collect citation data and counts of citations to and from articles
 #
 
 ###################################################################################################
@@ -49,12 +49,12 @@ An overview of the LISC code organization and approach.
 #
 # LISC is object oriented, meaning it uses objects to handle search terms and collect data.
 #
-# We will first explore the :class:`~.Base` object, which is used for data collection
-# and analyses with EUtils.
+# We will first explore the :class:`~.Base` object, which is the underlying object that is
+# used for data collection and analyses with EUtils.
 #
 # Note that you will typically not use the :class:`~.Base` object directly,
-# but that it is the underlying object for the :class:`~.Counts` and
-# :class:`~.Words` objects that we will use later.
+# but it is the base object for the :class:`~.Counts` and :class:`~.Words` objects
+# that we will use later.
 #
 
 ###################################################################################################
@@ -122,7 +122,7 @@ base.check_terms()
 #
 # Sometimes we might need to control the returned results, by specifically including
 # or excluding certain topics or results. We can do so by adding 'inclusion' and/or
-# and 'exclusion' words.
+# 'exclusion' words.
 #
 # Inclusions words are words that must also appear for a result to be returned.
 # Inclusions words are combined with the 'AND' operator, meaning entries
@@ -200,7 +200,8 @@ base.check_terms('exclusions')
 # Since search terms can have multiple components, LISC also creates and uses 'labels'
 # for each search term.
 #
-# The label for each term is defined as the first word in the search term list.
+# By default, the label for each term is defined as the first word in the search term list.
+# Custom labels can also be added to the object.
 #
 
 ###################################################################################################
@@ -244,7 +245,7 @@ from lisc.utils.db import create_file_structure
 
 ###################################################################################################
 #
-# We can use the :func:`~.create_file_structure` to create a LISC file structure.
+# We can use :func:`~.create_file_structure` to create a LISC file structure.
 #
 # When called without any inputs, a database structure is created in the current directory.
 #

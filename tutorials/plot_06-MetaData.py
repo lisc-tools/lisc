@@ -2,7 +2,7 @@
 Tutorial 06: MetaData
 =====================
 
-Exploring the meta data saved during data collections.
+Exploring metadata collected and saved during data collections.
 """
 
 from lisc.utils.db import SCDB
@@ -27,7 +27,7 @@ counts = load_object('tutorial_counts', SCDB('lisc_db'))
 # Metadata Object
 # ---------------
 #
-# Meta data information is collected into a custom :class:`~.MetaData` object.
+# Metadata information is collected into a custom :class:`~.MetaData` object.
 #
 # If you are collecting data using the LISC object, such as the :class:`~.Counts`
 # or :class:`~.Words` object, this collection information is attached and saved
@@ -58,7 +58,7 @@ words = load_object('tutorial_words', SCDB('lisc_db'))
 # Requester MetaData
 # ~~~~~~~~~~~~~~~~~~
 #
-# The collected meta data also includes information from the :class:`~.Requester`
+# The collected metadata also includes information from the :class:`~.Requester`
 # object, which is used to launch URL requests.
 #
 # The Requester object tracks information including when URL requests were

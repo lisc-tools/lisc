@@ -34,7 +34,7 @@ from lisc.plts.words import plot_wordcloud
 # Articles Object
 # ~~~~~~~~~~~~~~~
 #
-# LISC uses a custom objects to store and organize collected words data.
+# LISC uses custom objects to store and organize collected words data.
 #
 # These objects are used internally in the :class:`~.Words` objects.
 #
@@ -88,7 +88,7 @@ arts_all.print_summary()
 
 ###################################################################################################
 
-# Reload the words object, specifying to reload the results
+# Reload the words object, specifying to also reload the article data
 words = load_object('tutorial_words', directory=SCDB('lisc_db'), reload_results=True)
 
 ###################################################################################################
@@ -133,7 +133,7 @@ for art in words['temporal lobe']:
 #
 # Further analysis depends mostly on what one wants to do with the collected data.
 #
-# This might include, for example, building profiles for each search term, based on
+# For example, this might include building profiles for each search term, based on
 # data in collected articles. It might also include using methods from natural language
 # processing, such as vector embeddings and/or similarity measures.
 #
