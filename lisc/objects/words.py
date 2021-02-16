@@ -117,3 +117,25 @@ class Words(Base):
                                                      save_and_clear=save_and_clear,
                                                      logging=logging, directory=directory,
                                                      verbose=verbose, **eutils_kwargs)
+
+
+    def drop_data(self, n_articles):
+        """Drop terms based on number of article results.
+
+        Parameters
+        ----------
+        n_articles : int
+            Minimum number of articles required to keep each term.
+
+        Examples
+        --------
+        Drop terms with less than or equal to 20 articles (assuming `words` already has data):
+
+        >>> words.drop_data(20) # doctest: +SKIP
+        """
+
+        inds = [ind for ind, res in enumerate(self.results) if res.n_articles < n_articles]
+
+        for ind in list(reversed(sorted(inds))):
+            self.drop_term(ind)
+            self.results.pop(ind)

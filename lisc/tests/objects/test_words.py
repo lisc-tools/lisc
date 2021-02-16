@@ -37,13 +37,23 @@ def test_add_results(tterm):
 
     assert words.results
 
-def test_run_collection():
+def test_collect():
 
     words = Words()
 
-    words.add_terms(['language', 'memory'])
-    words.add_terms(['protein', ''], 'exclusions')
+    terms = ['language', 'memory']
+    excls = ['protein', '']
+    words.add_terms(terms)
+    words.add_terms(excls, 'exclusions')
 
-    words.run_collection(db='pubmed', retmax='2')
-    assert words.results
+    retmax = 2
+    words.run_collection(db='pubmed', retmax=retmax)
     assert words.has_data
+    assert len(words.results) == len(terms)
+
+    drop_data(words, retmax+1)
+
+def drop_data(words, n_articles):
+
+    words.drop_data(n_articles)
+    assert words.n_terms == len(words.results) == 0
