@@ -114,7 +114,7 @@ class Base():
         return term
 
 
-    def add_terms(self, terms, term_type='terms', directory=None, append=False, check_object=True):
+    def add_terms(self, terms, term_type=None, directory=None, append=False):
         """Add terms to the object.
 
         Parameters
@@ -147,14 +147,31 @@ class Base():
         >>> base.add_terms([['prefrontal'], [], [], []], term_type='exclusions')
         """
 
+        if not term_type:
+            if isinstance(terms, list) and isinstance(terms[0], Term):
+                term_type = 'all'
+            else:
+                term_type = 'terms'
+
         if not append:
             self.unload_terms(term_type)
 
         if isinstance(terms, str):
             terms = load_txt_file(terms, directory)
 
-        for term in terms:
-            getattr(self, term_type).append(self._check_type(term))
+        if isinstance(terms, Term):
+            self._add_term(terms)
+
+        else:
+
+            for term in terms:
+
+                if isinstance(term, str):
+                    getattr(self, term_type).append([term])
+                elif isinstance(term, list):
+                    getattr(self, term_type).append(term)
+                elif isinstance(term, Term):
+                    self._add_term(term)
 
         self._check_term_consistency()
         self._check_label_consistency()
@@ -306,23 +323,19 @@ class Base():
         if self.has_terms and self.n_terms != len(self._labels):
             raise InconsistentDataError('There is a mismatch in number of labels and terms.')
 
-
-    @staticmethod
-    def _check_type(term):
-        """Check type of input term, and return as a list.
+    def _add_term(self, term):
+        """Add a term information from a Term object.
 
         Parameters
         ----------
-        term : str or list of str
-            New term to add to the object.
-
-        Returns
-        -------
-        list of str
-            New term, set as a list.
+        term : Term
+            Term information.
         """
 
-        if isinstance(term, str):
-            return [term]
-        elif isinstance(term, list):
-            return term
+        self.terms.append(term.search)
+        self.inclusions.append(term.inclusions)
+        self.exclusions.append(term.exclusions)
+        if term.label != term.search[0]:
+            self._labels.append(term.label)
+        else:
+            self._labels.append(None)

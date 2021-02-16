@@ -12,7 +12,7 @@ def test_words():
 
     assert Words()
 
-def test_get_item():
+def test_get_item(tterm):
 
     words = Words()
 
@@ -20,20 +20,20 @@ def test_get_item():
     with raises(IndexError):
         words['not a thing']
 
-    words.add_results(Articles(Term('test', [], [], [])))
+    words.add_results(Articles(tterm))
 
     # Test error for wrong key
     with raises(IndexError):
         words['wrong']
 
     # Test properly extracting item
-    assert words['test']
+    assert words[tterm.label]
 
-def test_add_results():
+def test_add_results(tterm):
 
     words = Words()
 
-    words.add_results(Articles(Term('test', [], [], [])))
+    words.add_results(Articles(tterm))
 
     assert words.results
 

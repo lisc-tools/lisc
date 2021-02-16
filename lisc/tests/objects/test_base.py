@@ -90,6 +90,22 @@ def test_add_terms_append(tbase):
 
     assert tbase.has_terms
 
+def test_add_terms_term(tbase, tterm):
+
+    tbase.add_terms(tterm)
+    assert tbase.labels[0] == tterm.label
+    assert tbase.terms[0] == tterm.search
+    assert tbase.inclusions[0] == tterm.inclusions
+    assert tbase.exclusions[0] == tterm.exclusions
+
+    terms = [tterm, tterm]
+    tbase.add_terms(terms)
+    assert tbase.n_terms == len(terms)
+    assert tbase.labels[1] == tterm.label
+    assert tbase.terms[1] == tterm.search
+    assert tbase.inclusions[1] == tterm.inclusions
+    assert tbase.exclusions[1] == tterm.exclusions
+
 def test_add_terms_file(tdb, tbase):
 
     tbase.add_terms('test_terms', directory=tdb)
@@ -161,14 +177,6 @@ def test_unload_labels(tbase_terms):
 
     tbase_terms.unload_labels()
     assert tbase_terms._labels == [None, None]
-
-def test_check_type(tbase):
-
-    out = tbase._check_type('string')
-    assert isinstance(out, list)
-
-    out = tbase._check_type(['list'])
-    assert isinstance(out, list)
 
 def test_set_none_labels(tbase):
 
