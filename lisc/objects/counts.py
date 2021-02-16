@@ -287,12 +287,14 @@ class Counts():
         if not self.has_data:
             raise ValueError('No data is available - cannot proceed.')
 
+        # Calculate widths for printing
+        twd = get_max_length(self.terms[dim].labels, 2)
+        nwd = get_max_length(self.terms[dim].counts)
+
         print("The number of documents found for each search term is:")
         for ind, term in enumerate(self.terms[dim].labels):
             print("  {:{twd}}   -   {:{nwd}.0f}".format(
-                wrap(term), self.terms[dim].counts[ind],
-                twd=get_max_length(self.terms[dim].labels, 2),
-                nwd=get_max_length(self.terms[dim].counts)))
+                wrap(term), self.terms[dim].counts[ind], twd=twd, nwd=nwd))
 
 
     def check_data(self, data_type='counts', dim='A'):
@@ -332,6 +334,11 @@ class Counts():
         data = data.T if dim == 'B' else data
         alt = 'B' if dim == 'A' and not self.square else 'A'
 
+        # Calculate widths for printing
+        twd1 = get_max_length(self.terms[dim].labels, 2)
+        twd2 = get_max_length(self.terms[alt].labels, 2)
+        nwd = '>10.0f' if data_type == 'counts' else '06.3f'
+
         # Loop through each term, find maximally associated term and print out
         for term_ind, term in enumerate(self.terms[dim].labels):
 
@@ -340,10 +347,7 @@ class Counts():
 
             print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
                 wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
-                data[term_ind, assoc_ind],
-                twd1=get_max_length(self.terms[dim].labels, 2),
-                twd2=get_max_length(self.terms[alt].labels, 2),
-                nwd='>10.0f' if data_type == 'counts' else '06.3f'))
+                data[term_ind, assoc_ind], twd1=twd1, twd2=twd2, nwd=nwd))
 
 
     def drop_data(self, n_articles, dim='A'):
