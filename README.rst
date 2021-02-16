@@ -40,12 +40,11 @@ Supported APIs & Collection Approaches
 
 Supported APIs and data collection approaches include:
 
-- The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API provides access to literature data, including
-`Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_
-    - The 'Counts' approach collects counts and co-occurrences of specified search terms in the literature
-    - The 'Words' approach collects text data and meta-data from articles identified by specified search terms
-- The `OpenCitations <https://opencitations.net>`_ API provides access to citation data
-    - The 'Citations' approach collects citation and reference data for articles, specified by DOIs
+- The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API, which provides access to literature data, 
+  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which counts and co-occurences 
+  of terms and/or text and meta-data from identified articles can be collected.
+- The `OpenCitations <https://opencitations.net>`_ API, which provides access to citation data, from which
+  citation and reference information can be collected.
 
 Analysis & Other Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
