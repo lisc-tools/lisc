@@ -28,13 +28,6 @@ class Words(Base):
         self.meta_data = None
 
 
-    @property
-    def labels(self):
-        """The labels for each term."""
-
-        return [result.label for result in self.results]
-
-
     def __getitem__(self, label):
         """Index into Words object, accessing results.
 
@@ -77,6 +70,7 @@ class Words(Base):
         """
 
         self.results.append(new_result)
+        self._add_term(new_result.term)
 
 
     def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
