@@ -17,6 +17,7 @@ def test_collect_one():
     counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
 
     counts.run_collection(db='pubmed')
+    assert counts.has_data
 
     compute_scores(counts)
     check_funcs(counts)
@@ -31,6 +32,8 @@ def test_collect_two():
     counts.add_terms(['cognition'], dim='B')
 
     counts.run_collection(db='pubmed')
+    assert counts.has_data
+
     counts.compute_score('normalize')
 
     compute_scores(counts)

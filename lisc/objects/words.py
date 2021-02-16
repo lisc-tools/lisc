@@ -1,7 +1,8 @@
 """Class for LISC word analysis: analyses of text data."""
 
-from lisc.objects.base import Base
 from lisc.collect import collect_words
+from lisc.objects.base import Base
+from lisc.objects.utils import get_max_length
 
 ###################################################################################################
 ###################################################################################################
@@ -28,20 +29,13 @@ class Words(Base):
         self.meta_data = None
 
 
-    @property
-    def labels(self):
-        """The labels for each term."""
-
-        return [result.label for result in self.results]
-
-
-    def __getitem__(self, key):
-        """Index into Words object with term result key.
+    def __getitem__(self, label):
+        """Index into Words object, accessing results.
 
         Parameters
         ----------
-        key : str
-            Term name to get from results data.
+        label : str
+            Label for the term to get from results data.
 
         Returns
         -------
@@ -49,17 +43,22 @@ class Words(Base):
             Articles object for the requested result.
         """
 
-        # Give up if object is empty
-        if len(self.labels) == 0:
-            raise IndexError('Object is empty - cannot index.')
+        if not self.has_data:
+            raise IndexError('No data is available - cannot proceed.')
 
-        # Check if requested key is available
         try:
-            ind = self.labels.index(key)
+            ind = self.labels.index(label)
         except ValueError:
-            raise IndexError('Requested key not available in object.')
+            raise IndexError('Requested label not available.')
 
         return self.results[ind]
+
+
+    @property
+    def has_data(self):
+        """Indicator for if the object has collected data."""
+
+        return bool(self.results)
 
 
     def add_results(self, new_result):
@@ -72,6 +71,7 @@ class Words(Base):
         """
 
         self.results.append(new_result)
+        self._add_term(new_result.term)
 
 
     def run_collection(self, db='pubmed', retmax=None, field='TIAB', usehistory=False,
@@ -118,3 +118,34 @@ class Words(Base):
                                                      save_and_clear=save_and_clear,
                                                      logging=logging, directory=directory,
                                                      verbose=verbose, **eutils_kwargs)
+
+
+    def check_data(self):
+        """Prints out the number of articles collected for each term."""
+
+        twd = get_max_length(self.labels)
+        print("Number of collected articles per term:")
+        for label, data in zip(self.labels, self.results):
+            print("\t{:{twd}} \t\t  {}".format(label, data.n_articles, twd=twd))
+
+
+    def drop_data(self, n_articles):
+        """Drop terms based on number of article results.
+
+        Parameters
+        ----------
+        n_articles : int
+            Minimum number of articles required to keep each term.
+
+        Examples
+        --------
+        Drop terms with less than or equal to 20 articles (assuming `words` already has data):
+
+        >>> words.drop_data(20) # doctest: +SKIP
+        """
+
+        inds = [ind for ind, res in enumerate(self.results) if res.n_articles < n_articles]
+
+        for ind in list(reversed(sorted(inds))):
+            self.drop_term(ind)
+            self.results.pop(ind)

@@ -3,8 +3,8 @@
 ###################################################################################################
 ###################################################################################################
 
-def mk_term(term, incl_joiner='OR'):
-    """Create the full search term argument.
+def make_term(term, incl_joiner='OR'):
+    """Make a full search term argument.
 
     Parameters
     ----------
@@ -19,12 +19,12 @@ def mk_term(term, incl_joiner='OR'):
         The complete search term.
     """
 
-    return join(join(mk_comp(term.search), mk_comp(term.inclusions, incl_joiner), 'AND'),
-                mk_comp(term.exclusions), 'NOT')
+    return join(join(make_comp(term.search), make_comp(term.inclusions, incl_joiner), 'AND'),
+                make_comp(term.exclusions), 'NOT')
 
 
-def mk_comp(terms, joiner='OR'):
-    """Create a search term component.
+def make_comp(terms, joiner='OR'):
+    """Make a search term component.
 
     Parameters
     ----------
@@ -42,12 +42,14 @@ def mk_comp(terms, joiner='OR'):
     -----
     - This function deals with empty list inputs.
     - This function adds "" to terms to make them exact search only.
+    - This function replaces any spaces in terms with '+'.
     """
 
     comp = ''
     if terms and terms[0]:
         terms = ['"'+ item + '"' for item in terms]
         comp = '(' + joiner.join(terms) + ')'
+        comp = comp.replace(' ', '+')
 
     return comp
 

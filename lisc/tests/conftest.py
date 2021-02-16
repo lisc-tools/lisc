@@ -12,7 +12,7 @@ from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
 
 from lisc.tests.tdata import create_term_files, create_api_files
-from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all, load_tag
+from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all, load_tag, load_term
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -77,6 +77,10 @@ def tarts_full():
 @pytest.fixture(scope='function')
 def tarts_all():
     return load_arts_all()
+
+@pytest.fixture(scope='session')
+def tterm():
+    return load_term()
 
 @pytest.fixture(scope='function')
 def ttag():

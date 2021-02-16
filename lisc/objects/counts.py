@@ -50,6 +50,13 @@ class Counts():
         self.meta_data = None
 
 
+    @property
+    def has_data(self):
+        """Indicator for if the object has collected data."""
+
+        return np.any(self.counts)
+
+
     def add_terms(self, terms, term_type='terms', directory=None, dim='A'):
         """Add search terms to the object.
 
@@ -143,7 +150,7 @@ class Counts():
         """
 
         # Run single list of terms against themselves, in 'square' mode
-        if not self.terms['B'].has_data:
+        if not self.terms['B'].has_terms:
             self.square = True
             self.counts, self.terms['A'].counts, self.meta_data = collect_counts(
                 terms_a=self.terms['A'].terms,
@@ -210,6 +217,9 @@ class Counts():
         >>> plot_dendrogram(counts)  # doctest:+SKIP
         """
 
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
         if score_type == 'association':
             if self.square:
                 self.score = compute_association_index(
@@ -250,6 +260,9 @@ class Counts():
         >>> counts.check_top() # doctest: +SKIP
         """
 
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
         max_ind = np.argmax(self.terms[dim].counts)
         print("The most studied term is  {}  with  {}  articles.".format(
             wrap(self.terms[dim].labels[max_ind]),
@@ -271,12 +284,17 @@ class Counts():
         >>> counts.check_counts() # doctest: +SKIP
         """
 
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
+        # Calculate widths for printing
+        twd = get_max_length(self.terms[dim].labels, 2)
+        nwd = get_max_length(self.terms[dim].counts)
+
         print("The number of documents found for each search term is:")
         for ind, term in enumerate(self.terms[dim].labels):
             print("  {:{twd}}   -   {:{nwd}.0f}".format(
-                wrap(term), self.terms[dim].counts[ind],
-                twd=get_max_length(self.terms[dim].labels, 2),
-                nwd=get_max_length(self.terms[dim].counts)))
+                wrap(term), self.terms[dim].counts[ind], twd=twd, nwd=nwd))
 
 
     def check_data(self, data_type='counts', dim='A'):
@@ -300,6 +318,9 @@ class Counts():
         >>> counts.check_data(data_type='score') # doctest: +SKIP
         """
 
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
         if data_type not in ['counts', 'score']:
             raise ValueError('Data type not understood - can not proceed.')
         if data_type == 'score':
@@ -313,6 +334,11 @@ class Counts():
         data = data.T if dim == 'B' else data
         alt = 'B' if dim == 'A' and not self.square else 'A'
 
+        # Calculate widths for printing
+        twd1 = get_max_length(self.terms[dim].labels, 2)
+        twd2 = get_max_length(self.terms[alt].labels, 2)
+        nwd = '>10.0f' if data_type == 'counts' else '06.3f'
+
         # Loop through each term, find maximally associated term and print out
         for term_ind, term in enumerate(self.terms[dim].labels):
 
@@ -321,10 +347,7 @@ class Counts():
 
             print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
                 wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
-                data[term_ind, assoc_ind],
-                twd1=get_max_length(self.terms[dim].labels, 2),
-                twd2=get_max_length(self.terms[alt].labels, 2),
-                nwd='>10.0f' if data_type == 'counts' else '06.3f'))
+                data[term_ind, assoc_ind], twd1=twd1, twd2=twd2, nwd=nwd))
 
 
     def drop_data(self, n_articles, dim='A'):
@@ -333,7 +356,7 @@ class Counts():
         Parameters
         ----------
         n_articles : int
-            Minimum number of articles requured to keep each term.
+            Minimum number of articles required to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
 
