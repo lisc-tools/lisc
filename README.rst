@@ -35,30 +35,25 @@ about scientific articles, and to do analyses on this data, such as performing a
 
 A curated list of some projects enabled by LISC is available on the `projects <https://github.com/lisc-tools/Projects>`_ page.
 
-Supported APIs
-~~~~~~~~~~~~~~
+Supported APIs & Collection Approaches
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Supported APIs through LISC includes:
+Supported APIs and data collection approaches include:
 
-- The NCBI `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ provides programmatic access to the National Center for Biotechnology Information (NCBI), including the Pubmed database.
-- The `OpenCitations <https://opencitations.net>`_ API provides access to citation data.
-
-Data Collection
-~~~~~~~~~~~~~~~
-
-The following types of literature data collection are currently supported:
-
-- 'Counts': collects counts and co-occurrences of specified search terms in the literature.
-- 'Words': collects text data and meta-data from articles identified by specified search terms.
-- 'Citations': collect citation and reference data for articles, based on DOIs.
+- The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API provides access to literature data, including
+`Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_
+    - The 'Counts' approach collects counts and co-occurrences of specified search terms in the literature
+    - The 'Words' approach collects text data and meta-data from articles identified by specified search terms
+- The `OpenCitations <https://opencitations.net>`_ API provides access to citation data
+    - The 'Citations' approach collects citation and reference data for articles, specified by DOIs
 
 Analysis & Other Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to connecting to external APIs, LISC also provides:
 
-- Custom data objects for managing collected data
 - A database structure, and save and load utilities for storing collected data
+- Custom data objects for managing collected data
 - Functions and utilities to analyze collected data
 - Data visualization functions for plotting collected data and analysis outputs
 
@@ -70,7 +65,7 @@ Documentation is available on the `documentation site <https://lisc-tools.github
 This documentation includes:
 
 - `Tutorials <https://lisc-tools.github.io/lisc/auto_tutorials/index.html>`_:
-  with a step-by-step guide through the module and how to use
+  with a step-by-step guide through the module and how to use it
 - `Examples <https://lisc-tools.github.io/lisc/auto_examples/index.html>`_:
   demonstrating example analyses and use cases, and other functionality
 - `API list <https://lisc-tools.github.io/lisc/api.html>`_:
@@ -78,12 +73,12 @@ This documentation includes:
 - `Reference <https://lisc-tools.github.io/lisc/reference.html>`_:
   with information for how to reference and report on using the module
 
-For a curated list of projects that use LISC (or pre-cursors), check out the `projects <https://github.com/lisc-tools/Projects>`_ page.
+For a curated list of projects that use LISC check out the `projects <https://github.com/lisc-tools/Projects>`_ page.
 
 Dependencies
 ------------
 
-LISC is written in Python 3, and requires Python 3.5 or greater to run.
+LISC is written in Python 3, and requires Python >= 3.5 to run.
 
 Requirements:
 
@@ -92,7 +87,7 @@ Requirements:
 - `lxml <https://pypi.org/project/lxml/>`_
 - `beautifulsoup4 <https://pypi.org/project/beautifulsoup4/>`_
 
-Optional dependencies, used for plots, analyses & testing:
+Optional dependencies, used for plotting, analyses & testing:
 
 - `matplotlib <https://pypi.org/project/matplotlib/>`_
 - `seaborn <https://pypi.org/project/seaborn/>`_
@@ -119,7 +114,7 @@ LISC can also be installed with conda, from the conda-forge channel:
 
 **Development Version**
 
-To get the development version (updates that are not yet published to pip), you can clone this repo.
+To get the development version (updates that are not yet published to pip), you can clone this repository.
 
 .. code-block:: shell
 
@@ -149,6 +144,9 @@ If you use this code in your project, please cite
     Journal of Open Source Software, 4(41), 1674. DOI: 10.21105/joss.01674
 
 Direct Link: https://doi.org/10.21105/joss.01674
+
+More information for how to cite this method can be found on the
+`reference page <https://lisc-tools.github.io/lisc/reference.html>`_.
 
 Contribute
 ----------
