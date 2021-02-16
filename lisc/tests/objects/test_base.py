@@ -42,17 +42,35 @@ def test_get_term(tbase_terms):
 
 def test_add_terms_list(tbase):
 
-    tbase.add_terms(['word', 'thing'])
-    assert tbase.terms == [['word'], ['thing']]
+    terms = [['word'], ['thing', 'same']]
+    tbase.add_terms(terms)
+    assert tbase.terms == terms
 
-    tbase.add_terms(['word', ['thing', 'same']])
-    assert tbase.terms == [['word'], ['thing', 'same']]
+    inclusions = [['need'], ['required']]
+    tbase.add_terms(inclusions, 'inclusions')
+    assert tbase.inclusions == inclusions
 
-    tbase.add_terms(['need', 'required'], 'inclusions')
-    assert tbase.inclusions
+    exclusions = [['not'], ['this']]
+    tbase.add_terms(exclusions, 'exclusions')
+    assert tbase.exclusions == exclusions
 
-    tbase.add_terms(['not', 'this'], 'exclusions')
-    assert tbase.exclusions
+def test_add_terms_str(tbase):
+
+    terms = ['word', ['thing', 'same']]
+    incls = ['need', 'required']
+    excls = ['not', 'this']
+
+    terms_expected = [['word'], ['thing', 'same']]
+    incls_expected = [['need'], ['required']]
+    excls_expected = [['not'], ['this']]
+
+    tbase.add_terms(terms, 'terms')
+    tbase.add_terms(incls, 'inclusions')
+    tbase.add_terms(excls, 'exclusions')
+
+    assert tbase.terms == terms_expected
+    assert tbase.inclusions == incls_expected
+    assert tbase.exclusions == excls_expected
 
 def test_add_terms_file(tdb, tbase):
 
