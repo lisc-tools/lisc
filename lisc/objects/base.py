@@ -253,12 +253,17 @@ class Base():
         """
 
         if isinstance(label, list):
+
+            if isinstance(label[0], int):
+                label = list(reversed(sorted(label)))
+
             for ll in label:
                 self.drop_term(ll)
 
         ind = self.get_index(label) if isinstance(label, str) else label
         for attr in ['terms', '_labels', 'inclusions', 'exclusions']:
-            getattr(self, attr).pop(ind)
+            if getattr(self, attr):
+                getattr(self, attr).pop(ind)
 
 
     def unload_terms(self, term_type='terms', verbose=True):
