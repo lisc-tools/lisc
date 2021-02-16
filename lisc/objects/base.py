@@ -114,7 +114,7 @@ class Base():
         return term
 
 
-    def add_terms(self, terms, term_type=None, directory=None, append=False):
+    def add_terms(self, terms, term_type=None, directory=None, append=False, check_consistency=True):
         """Add terms to the object.
 
         Parameters
@@ -130,6 +130,8 @@ class Base():
         append : boolean, optional, default: False
             Whether to append the new term(s) to any existing terms.
             If False, any prior terms are cleared prior to adding current term(s).
+        check_consistency : bool, optional, default: True
+            Whether to check the object for consistency after adding terms.
 
         Examples
         --------
@@ -173,11 +175,12 @@ class Base():
                 elif isinstance(term, Term):
                     self._add_term(term)
 
-        self._check_term_consistency()
-        self._check_label_consistency()
+        self._check_labels()
+        if check_consistency:
+            self._check_term_consistency()
 
 
-    def add_labels(self, labels, directory=None):
+    def add_labels(self, labels, directory=None, check_consistency=True):
         """Add the given list of strings as labels for the terms.
 
         Parameters
@@ -188,6 +191,8 @@ class Base():
             If str, is assumed to be a file name to load from.
         directory : SCDB or str, optional
             Folder or database object specifying the file location, if loading from file.
+        check_consistency : bool, optional, default: True
+            Whether to check the object for consistency after adding labels.
         """
 
         # If there are previously loaded labels, then clear them
@@ -200,7 +205,9 @@ class Base():
 
         # Add the labels to the object, and check for consistency, if terms are already loaded
         self._labels = labels
-        self._check_label_consistency()
+        self._check_labels()
+        if check_consistency:
+            self._check_term_consistency()
 
 
     def check_terms(self, term_type='terms'):
@@ -303,7 +310,7 @@ class Base():
 
 
     def _check_term_consistency(self):
-        """Check if loaded terms and inclusions/exclusions are consistent lengths."""
+        """Check if loaded term definitions are consistent."""
 
         if self.inclusions and self.n_terms != len(self.inclusions):
             raise InconsistentDataError('There is a mismatch in number of inclusions and terms.')
@@ -311,17 +318,17 @@ class Base():
         if self.exclusions and self.n_terms != len(self.exclusions):
             raise InconsistentDataError('There is a mismatch in number of exclusions and terms.')
 
+        if self.n_terms != len(self._labels):
+            raise InconsistentDataError('There is a mismatch in number of labels and terms.')
 
-    def _check_label_consistency(self):
-        """Check if loaded terms and labels are consistent lengths."""
+
+    def _check_labels(self):
+        """Check loaded terms and labels, and set None labels if needed."""
 
         # If terms are loaded, and no labels are available, set none labels
         if self.has_terms and (not self._labels or self._labels == [None] * len(self._labels)):
             self._set_none_labels()
 
-        # If terms are loaded, check the consistency between terms and labels
-        if self.has_terms and self.n_terms != len(self._labels):
-            raise InconsistentDataError('There is a mismatch in number of labels and terms.')
 
     def _add_term(self, term):
         """Add a term information from a Term object.

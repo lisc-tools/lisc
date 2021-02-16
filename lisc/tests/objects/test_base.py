@@ -122,21 +122,26 @@ def test_add_terms_file(tdb, tbase):
 def test_add_labels(tbase):
 
     # Test explicitly added labels, alone
-    tbase.add_labels(['first', 'second'])
-    assert tbase.labels == tbase._labels == ['first', 'second']
+    labels = ['first', 'second']
+    tbase.add_labels(labels, check_consistency=False)
+    assert tbase.labels == tbase._labels == labels
+
+    # Clear object for next test
+    tbase.unload_terms('all', False)
 
     # Test explicitly added labels, when terms are present
-    tbase.add_terms(['word', 'thing'])
-    tbase.add_labels(['first', 'second'])
-    assert tbase.labels == tbase._labels == ['first', 'second']
+    terms = ['word', 'thing']
+    tbase.add_terms(terms)
+    tbase.add_labels(labels)
+    assert tbase.labels == tbase._labels == labels
 
     # Clear object for next test
     tbase.unload_terms('all', False)
 
     # Test not adding labels, when terms are present
-    tbase.add_terms(['word', 'thing'])
+    tbase.add_terms(terms)
     assert tbase._labels == [None, None]
-    assert tbase.labels == ['word', 'thing']
+    assert tbase.labels == terms
 
 def tests_check_terms(tbase_terms):
 
@@ -195,6 +200,9 @@ def test_check_term_consistency(tbase_terms):
     tbase_terms.exclusions = ['not', 'avoid']
     tbase_terms._check_term_consistency()
 
+    tbase_terms._labels = ['label0', 'label1']
+    tbase_terms._check_term_consistency()
+
     with raises(InconsistentDataError):
         tbase_terms.inclusions = ['need']
         tbase_terms._check_term_consistency()
@@ -203,13 +211,16 @@ def test_check_term_consistency(tbase_terms):
         tbase_terms.exclusions = ['not', 'avoid', 'bad']
         tbase_terms._check_term_consistency()
 
-def test_check_label_consistency(tbase_terms):
-
-    tbase_terms._check_label_consistency()
-
-    tbase_terms._labels = ['label1', 'label2']
-    tbase_terms._check_label_consistency()
-
     with raises(InconsistentDataError):
         tbase_terms._labels = ['label1', 'label2', 'label3']
-        tbase_terms._check_label_consistency()
+        tbase_terms._check_term_consistency()
+
+def test_check_labels(tbase, tbase_terms):
+
+    terms = [['search0'], ['search1']]
+    tbase.terms = terms
+    tbase._check_labels()
+    tbase._labels == [None, None]
+
+    tbase_terms._labels = ['label1', 'label2']
+    tbase_terms._check_labels()
