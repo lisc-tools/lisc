@@ -51,7 +51,12 @@ def test_collect():
     assert words.has_data
     assert len(words.results) == len(terms)
 
+    check_funcs(words)
     drop_data(words, retmax+1)
+
+def check_funcs(words):
+
+    words.check_data()
 
 def drop_data(words, n_articles):
 

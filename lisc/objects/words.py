@@ -1,7 +1,8 @@
 """Class for LISC word analysis: analyses of text data."""
 
-from lisc.objects.base import Base
 from lisc.collect import collect_words
+from lisc.objects.base import Base
+from lisc.objects.utils import get_max_length
 
 ###################################################################################################
 ###################################################################################################
@@ -117,6 +118,15 @@ class Words(Base):
                                                      save_and_clear=save_and_clear,
                                                      logging=logging, directory=directory,
                                                      verbose=verbose, **eutils_kwargs)
+
+
+    def check_data(self):
+        """Prints out the number of articles collected for each term."""
+
+        twd = get_max_length(self.labels)
+        print("Number of collected articles per term:")
+        for label, data in zip(self.labels, self.results):
+            print("\t{:{twd}} \t\t  {}".format(label, data.n_articles, twd=twd))
 
 
     def drop_data(self, n_articles):
