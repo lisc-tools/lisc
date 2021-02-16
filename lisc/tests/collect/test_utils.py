@@ -19,6 +19,7 @@ def test_make_comp():
     assert make_comp(['word']) == '("word")'
     assert make_comp(['word', 'syn1']) == '("word"OR"syn1")'
     assert make_comp(['word', 'syn1', 'syn2']) == '("word"OR"syn1"OR"syn2")'
+    assert make_comp(['compound word']) == '("compound+word")'
 
 def test_join():
 

@@ -42,12 +42,14 @@ def make_comp(terms, joiner='OR'):
     -----
     - This function deals with empty list inputs.
     - This function adds "" to terms to make them exact search only.
+    - This function replaces any spaces in terms with '+'.
     """
 
     comp = ''
     if terms and terms[0]:
         terms = ['"'+ item + '"' for item in terms]
         comp = '(' + joiner.join(terms) + ')'
+        comp = comp.replace(' ', '+')
 
     return comp
 
