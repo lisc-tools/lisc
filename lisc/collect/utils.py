@@ -3,8 +3,8 @@
 ###################################################################################################
 ###################################################################################################
 
-def mk_term(term, incl_joiner='OR'):
-    """Create the full search term argument.
+def make_term(term, incl_joiner='OR'):
+    """Make a full search term argument.
 
     Parameters
     ----------
@@ -19,12 +19,12 @@ def mk_term(term, incl_joiner='OR'):
         The complete search term.
     """
 
-    return join(join(mk_comp(term.search), mk_comp(term.inclusions, incl_joiner), 'AND'),
-                mk_comp(term.exclusions), 'NOT')
+    return join(join(make_comp(term.search), make_comp(term.inclusions, incl_joiner), 'AND'),
+                make_comp(term.exclusions), 'NOT')
 
 
-def mk_comp(terms, joiner='OR'):
-    """Create a search term component.
+def make_comp(terms, joiner='OR'):
+    """Make a search term component.
 
     Parameters
     ----------

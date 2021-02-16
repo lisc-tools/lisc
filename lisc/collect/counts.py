@@ -7,7 +7,7 @@ from lisc.requester import Requester
 from lisc.data.term import Term
 from lisc.data.meta_data import MetaData
 from lisc.collect.info import get_db_info
-from lisc.collect.utils import mk_term, join
+from lisc.collect.utils import make_term, join
 from lisc.collect.process import get_info
 from lisc.urls.eutils import EUtils, get_wait_time
 
@@ -123,7 +123,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
 
         # Make term arguments
         term_a = Term(search_a[0], search_a, incl_a, excl_a)
-        term_a_arg = mk_term(term_a)
+        term_a_arg = make_term(term_a)
 
         if verbose:
             print('Running counts for: ', term_a.label)
@@ -142,7 +142,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
 
             # Make term arguments
             term_b = Term(search_b[0], search_b, incl_b, excl_b)
-            term_b_arg = mk_term(term_b)
+            term_b_arg = make_term(term_b)
             full_term_arg = join(term_a_arg, term_b_arg, 'AND')
 
             # Get number of results for current term search

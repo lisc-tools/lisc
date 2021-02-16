@@ -7,18 +7,18 @@ from lisc.collect.utils import *
 ###################################################################################################
 ###################################################################################################
 
-def test_mk_term():
+def test_make_term():
 
     term = Term('label', ['search1', 'search2'], ['incl1', 'incl2'], ['excl1', 'excl2'])
-    arg = mk_term(term)
+    arg = make_term(term)
 
     assert arg == "(\"search1\"OR\"search2\")AND(\"incl1\"OR\"incl2\")NOT(\"excl1\"OR\"excl2\")"
 
-def test_mk_comp():
+def test_make_comp():
 
-    assert mk_comp(['word']) == '("word")'
-    assert mk_comp(['word', 'syn1']) == '("word"OR"syn1")'
-    assert mk_comp(['word', 'syn1', 'syn2']) == '("word"OR"syn1"OR"syn2")'
+    assert make_comp(['word']) == '("word")'
+    assert make_comp(['word', 'syn1']) == '("word"OR"syn1")'
+    assert make_comp(['word', 'syn1', 'syn2']) == '("word"OR"syn1"OR"syn2")'
 
 def test_join():
 

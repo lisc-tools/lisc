@@ -6,7 +6,7 @@ from lisc.data.term import Term
 from lisc.requester import Requester
 from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
-from lisc.collect.utils import mk_term
+from lisc.collect.utils import make_term
 from lisc.collect.info import get_db_info
 from lisc.collect.process import get_info, extract_tag, ids_to_str
 from lisc.collect.process import process_ids, process_authors, process_pub_date
@@ -98,7 +98,7 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=N
 
         # Collect term information and make search term argument
         term = Term(search[0], search, incl, excl)
-        term_arg = mk_term(term)
+        term_arg = make_term(term)
 
         if verbose:
             print('Collecting data for: ', term.label)
