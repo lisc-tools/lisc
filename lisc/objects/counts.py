@@ -50,6 +50,13 @@ class Counts():
         self.meta_data = None
 
 
+    @property
+    def has_data(self):
+        """Indicator for if the object has collected data."""
+
+        return np.any(self.counts)
+
+
     def add_terms(self, terms, term_type='terms', directory=None, dim='A'):
         """Add search terms to the object.
 
@@ -143,7 +150,7 @@ class Counts():
         """
 
         # Run single list of terms against themselves, in 'square' mode
-        if not self.terms['B'].has_data:
+        if not self.terms['B'].has_terms:
             self.square = True
             self.counts, self.terms['A'].counts, self.meta_data = collect_counts(
                 terms_a=self.terms['A'].terms,
@@ -210,6 +217,9 @@ class Counts():
         >>> plot_dendrogram(counts)  # doctest:+SKIP
         """
 
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
         if score_type == 'association':
             if self.square:
                 self.score = compute_association_index(
@@ -250,6 +260,9 @@ class Counts():
         >>> counts.check_top() # doctest: +SKIP
         """
 
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
         max_ind = np.argmax(self.terms[dim].counts)
         print("The most studied term is  {}  with  {}  articles.".format(
             wrap(self.terms[dim].labels[max_ind]),
@@ -270,6 +283,9 @@ class Counts():
 
         >>> counts.check_counts() # doctest: +SKIP
         """
+
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
 
         print("The number of documents found for each search term is:")
         for ind, term in enumerate(self.terms[dim].labels):
@@ -299,6 +315,9 @@ class Counts():
 
         >>> counts.check_data(data_type='score') # doctest: +SKIP
         """
+
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
 
         if data_type not in ['counts', 'score']:
             raise ValueError('Data type not understood - can not proceed.')

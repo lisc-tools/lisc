@@ -54,6 +54,8 @@ def test_add_terms_list(tbase):
     tbase.add_terms(exclusions, 'exclusions')
     assert tbase.exclusions == exclusions
 
+    assert tbase.has_terms
+
 def test_add_terms_str(tbase):
 
     terms = ['word', ['thing', 'same']]
@@ -72,6 +74,8 @@ def test_add_terms_str(tbase):
     assert tbase.inclusions == incls_expected
     assert tbase.exclusions == excls_expected
 
+    assert tbase.has_terms
+
 def test_add_terms_append(tbase):
 
     terms1 = [['word'], ['thing', 'same']]
@@ -84,6 +88,8 @@ def test_add_terms_append(tbase):
     assert tbase.terms[0] == terms1[0]
     assert tbase.terms[-1] == terms2[-1]
 
+    assert tbase.has_terms
+
 def test_add_terms_file(tdb, tbase):
 
     tbase.add_terms('test_terms', directory=tdb)
@@ -94,6 +100,8 @@ def test_add_terms_file(tdb, tbase):
 
     tbase.add_terms('test_exclusions', 'exclusions', directory=tdb)
     assert tbase.exclusions
+
+    assert tbase.has_terms
 
 def test_add_labels(tbase):
 

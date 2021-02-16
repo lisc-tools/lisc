@@ -20,8 +20,8 @@ class Base():
         Inclusion words for each term.
     exclusions : list of list str
         Exclusion words for each term.
-    has_data : bool
-        Whether there is any terms and/or data loaded.
+    has_terms : bool
+        Whether the object has terms loaded.
     n_terms : int
         Number of terms.
     """
@@ -42,8 +42,8 @@ class Base():
 
 
     @property
-    def has_data(self):
-        """Indicator for if the object has data."""
+    def has_terms(self):
+        """Indicator for if the object has terms."""
 
         return bool(self.terms)
 
@@ -59,7 +59,7 @@ class Base():
     def labels(self):
         """The labels for each term."""
 
-        if self.has_data:
+        if self.has_terms:
             return [label if label else term[0] for label, term in zip(self._labels, self.terms)]
         else:
             return self._labels
@@ -299,11 +299,11 @@ class Base():
         """Check if loaded terms and labels are consistent lengths."""
 
         # If terms are loaded, and no labels are available, set none labels
-        if self.has_data and (not self._labels or self._labels == [None] * len(self._labels)):
+        if self.has_terms and (not self._labels or self._labels == [None] * len(self._labels)):
             self._set_none_labels()
 
         # If terms are loaded, check the consistency between terms and labels
-        if self.has_data and self.n_terms != len(self._labels):
+        if self.has_terms and self.n_terms != len(self._labels):
             raise InconsistentDataError('There is a mismatch in number of labels and terms.')
 
 

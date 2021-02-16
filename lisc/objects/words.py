@@ -49,15 +49,22 @@ class Words(Base):
             Articles object for the requested result.
         """
 
-        if len(self.results) == 0:
-            raise IndexError('Object is empty - cannot index.')
+        if not self.has_data:
+            raise IndexError('No data is available - cannot proceed.')
 
         try:
             ind = self.labels.index(label)
         except ValueError:
-            raise IndexError('Requested label not available in object.')
+            raise IndexError('Requested label not available.')
 
         return self.results[ind]
+
+
+    @property
+    def has_data(self):
+        """Indicator for if the object has collected data."""
+
+        return bool(self.results)
 
 
     def add_results(self, new_result):

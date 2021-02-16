@@ -46,3 +46,4 @@ def test_run_collection():
 
     words.run_collection(db='pubmed', retmax='2')
     assert words.results
+    assert words.has_data
