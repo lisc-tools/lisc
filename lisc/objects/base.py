@@ -257,8 +257,8 @@ class Base():
             if isinstance(label[0], int):
                 label = list(reversed(sorted(label)))
 
-            for ll in label:
-                self.drop_term(ll)
+            for element in label:
+                self.drop_term(element)
 
         ind = self.get_index(label) if isinstance(label, str) else label
         for attr in ['terms', '_labels', 'inclusions', 'exclusions']:
@@ -287,8 +287,8 @@ class Base():
         """
 
         if term_type == 'all':
-            for term_type in ['terms', 'inclusions', 'exclusions', 'labels']:
-                self.unload_terms(term_type)
+            for attr in ['terms', 'inclusions', 'exclusions', 'labels']:
+                self.unload_terms(attr)
 
         elif term_type == 'labels':
             self.unload_labels(verbose=verbose)
@@ -330,13 +330,12 @@ class Base():
     def _check_labels(self):
         """Check loaded terms and labels, and set None labels if needed."""
 
-        # If terms are loaded, and no labels are available, set none labels
         if self.has_terms and (not self._labels or self._labels == [None] * len(self._labels)):
             self._set_none_labels()
 
 
     def _add_term(self, term):
-        """Add a term information from a Term object.
+        """Add term information from a Term object.
 
         Parameters
         ----------

@@ -356,7 +356,7 @@ class Counts():
         Parameters
         ----------
         n_articles : int
-            Minimum number of articles requured to keep each term.
+            Minimum number of articles required to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
 
