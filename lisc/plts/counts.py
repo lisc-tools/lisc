@@ -98,9 +98,6 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
     See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
-    sns.set()
-    sns.set_context("paper", font_scale=1.5)
-
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
@@ -114,9 +111,6 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
 
     _ = plt.setp(cg.ax_heatmap.xaxis.get_majorticklabels(), rotation=60, ha='right')
     _ = plt.setp(cg.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-
-    cg.fig.subplots_adjust(bottom=0.25)
-    cg.fig.subplots_adjust(right=0.75)
 
 
 @savefig
