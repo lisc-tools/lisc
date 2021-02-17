@@ -63,6 +63,10 @@ def load_txt_file(f_name, directory=None, split_elements=True, split_character='
 
     if split_elements:
         contents = [line.split(split_character) for line in contents]
+        contents = [[string.strip() for string in temp] for temp in contents]
+
+    else:
+        contents = [string.strip() for string in contents]
 
     return contents
 
