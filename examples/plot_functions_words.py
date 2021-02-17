@@ -30,7 +30,7 @@ terms = [['brain'], ['body']]
 
 ###################################################################################################
 
-# Collect words data, setting the collection return data for at most 5 articles per term
+# Collect words data, setting to collect data for at most 5 articles per term
 results, meta_data = collect_words(terms, retmax='5', usehistory=False,
                                    save_and_clear=False, verbose=True)
 
@@ -41,7 +41,7 @@ meta_data['db_info']
 
 ###################################################################################################
 
-# The function returns a list of Articles objects
+# The collected data is returned as a list of Articles objects
 print(results)
 
 ###################################################################################################
@@ -57,6 +57,7 @@ print('\n'.join(res1.titles), '\n')
 
 ###################################################################################################
 #
-# To further explore the data collected and available, and what can be accessed, check
-# out the documentation for the :class:`~.Articles` object, and what attributes it contains.
+# To further explore the collected data, check out the documentation for the
+# :class:`~.Articles` object. To aggregate data across articles, check out the
+# :class:`~.ArticlesAll` object.
 #

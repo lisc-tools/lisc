@@ -61,15 +61,16 @@ coocs, term_counts, meta_dat = collect_counts(
 # Calculating Co-occurrence Scores
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Once co-occurrence data is collected, we often want to compute a normalization
+# Once co-occurrence data has been collected, we often want to compute a normalization
 # or transform of the data.
 #
-# The :func:`~.compute_normalization` and :func:`~.compute_association_index` functions
-# take in co-occurrence data returned by the :func:`~.collect_counts` function.
+# The :func:`~.compute_normalization`, :func:`~.compute_association_index`
+# and :func:`~.compute_similarity` functions take in co-occurrence data as returned
+# by the :func:`~.collect_counts` function.
 #
 # More details on the measures available in LISC are available in the :class:`~.Counts`
 # tutorial. When using the functions approach, all implemented scores and transforms
-# are available in `lisc.analysis`, as functions that take in arrays of collected data.
+# are available in `lisc.analysis`.
 #
 
 ###################################################################################################
@@ -92,5 +93,5 @@ print(score)
 #
 # From here, further analysis of collected co-occurrence data depends on the goal of the analysis.
 #
-# There are also plot functions available, same as demonstrated in the Counts tutorial.
+# There are also plot functions available, as demonstrated in the Counts tutorial.
 #
