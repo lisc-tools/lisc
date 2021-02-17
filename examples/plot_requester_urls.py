@@ -68,8 +68,8 @@ print(req.as_dict())
 #
 # The :class:`~.URLs` object is used in LISC to store URLs used for interacting with APIs.
 #
-# It includes functionality to store and use different utilities available through
-# an API, and store and use different settings.
+# It includes functionality for using different utilities available through an API,
+# and for storing and using different settings that may be available.
 #
 # In this example, we will explore using the the URLs object to access the
 # `duckduckgo <https://duckduckgo.com>`_ API.
@@ -120,7 +120,7 @@ api_page.json()['AbstractSource']
 # `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25500/>`_ and
 # `OpenCitations <https://opencitations.net>`_.
 #
-# These are implemented as custom objects built on top of the URLs object.
+# These are implemented as custom objects which are built on top of the :class:`~.URLs` object.
 #
 
 ###################################################################################################
@@ -148,7 +148,7 @@ print(citations.utils)
 # Adding New APIs
 # ~~~~~~~~~~~~~~~
 #
-# The `EUtils` and `OpenCitations` objects can be used examples for potentially adding
+# The `EUtils` and `OpenCitations` objects can be used as examples for potentially adding
 # new APIs to LISC. New API objects can be created by inheriting from the `URLs` object,
 # and added information on the utilities and settings available for that particular API.
 #

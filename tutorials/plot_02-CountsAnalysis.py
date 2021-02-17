@@ -61,13 +61,9 @@ counts.check_data(data_type='counts', dim='B')
 # per term. This allows us the examine, for example, the proportion of articles
 # that include particular co-occurrence patterns.
 #
-# We can also calculate an association index or score. For example, the
-# `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_ is a standard measure
-# for measuring the similarity of samples.
-#
-# These measures are available using the :meth:`~.Counts.compute_score` method.
-# The type of score to compute is indicated in the first input to the method,
-# which can be set to either 'normalize' or 'association'.
+# These measures are available using the :meth:`~.Counts.compute_score` method. This method
+# can compute different types of scores, with the type specified by  the first input to the
+# method. Scores available include 'normalize', 'association', or 'similarity'.
 #
 
 ###################################################################################################
@@ -92,6 +88,8 @@ print(counts.score)
 # In this case, we have calculated the normalized data as the proportion of
 # articles for each anatomical term that include each perception term.
 #
+# Alternately, we can also calculate an association index or score, as below:
+#
 
 ###################################################################################################
 
@@ -105,22 +103,27 @@ print(counts.score)
 
 ###################################################################################################
 #
-# The Jaccard index is a normalized measure of similarity, bounded between 0 and 1.
+# Specifying 'association' computes the
+# `Jaccard index <https://en.wikipedia.org/wiki/Jaccard_index>`_,
+# which is a standard measure for measuring the similarity of samples, calculating
+# a normalized measure of similarity, bounded between 0 and 1.
 #
-# One benefit of the Jaccard index is that you do not have to choose a terms list
-# to normalize by - the calculated measure considers both terms lists.
+# One benefit of the Jaccard index is that you do not have to choose a terms list to normalize
+# by - the calculated measure considers both lists of terms to compute an association index.
+#
+# The cosine similarity of the co-occurrence data can also be calculated, with 'similarity'.
 #
 
 ###################################################################################################
 # Clustering and Plotting Co-occurrence Data
 # ------------------------------------------
 #
-# The collected co-occurrence data is a 2D matrix of numbers reflecting the relationship
+# The collected co-occurrence data is a 2D matrix of counts reflecting the relationship
 # between terms. This makes it amenable to visualizations and analyses, such as clustering,
 # that look to find structure in the data.
 #
 # LISC provides some functions to visualize and cluster co-occurrence data. These functions
-# are use functionality offered by optional dependencies, including scipy and seaborn, which
+# use functionality offered by optional dependencies, including scipy and seaborn, which
 # need to be installed for these to run.
 #
 # The functions :func:`~.plot_matrix`, :func:`~.plot_clustermap`, and :func:`~.plot_dendrogram`

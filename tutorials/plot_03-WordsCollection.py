@@ -47,7 +47,7 @@ words.add_terms(terms)
 
 ###################################################################################################
 #
-# To get started, we will run a first collection of words data, collecting up to
+# To get started, we will first run a collection of words data, collecting up to
 # 5 articles for each search term, as specified by the `retmax` parameter.
 #
 
@@ -118,14 +118,14 @@ words.add_terms(terms)
 #
 # - the `field` setting defaults to `TIAB` for titles and abstracts
 # - the `retmax` should be set to an upper bound for the number of articles you would like
-#   to collect, especially if your search terms are likely to return a large number of articles.
+#   to collect, especially if your search terms are likely to return a large number of articles
 # - the `usehistory` parameter should be set to True if you are running a large collection,
-#   as this is more efficient.
+#   as this is more efficient
 #
 # Word Collection Settings
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Collecting words data may also take a while for large collections and collect a lot of data.
+# For larger collections, the collectio my take a while and return a large amount of data.
 #
 # Because of this, the :class:`~.Words` object allows for continuously saving collected data.
 # If set to True, the `save_and_clear` parameter saves out collected data, and clears the
@@ -148,9 +148,9 @@ words.run_collection(usehistory=True, retmax='15', save_and_clear=True, director
 # as the data was saved and cleared throughout the collection.
 #
 # The Words object does still have all the information about the search terms, which we can
-# use to reload our data, so it's still worth saving as well.
+# use to reload our data, so it is still worth saving as well.
 #
-# We will analyze our words data in the next tutorial, so for now lets save out the Words object.
+# We will analyze our words data in the next tutorial. For now lets save out the Words object.
 #
 
 ###################################################################################################

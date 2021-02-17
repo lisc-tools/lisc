@@ -2,7 +2,7 @@
 Tutorial 01: Counts Collection
 ==============================
 
-Collecting term co-occurrence data from scientific literature.
+Collecting term co-occurrence data from the scientific literature.
 """
 
 ###################################################################################################
@@ -20,7 +20,7 @@ Collecting term co-occurrence data from scientific literature.
 # Import the Counts object, which is used for co-occurrence analysis
 from lisc import Counts
 
-# Import the SCDB object, which organizes a database structure for saved data
+# Import the SCDB object, which defines a database structure for saved data
 from lisc.utils.db import SCDB
 
 # Import a utility function for saving out collected data
@@ -30,7 +30,7 @@ from lisc.utils.io import save_object
 # Counts Object
 # -------------
 #
-# The :class:`~.Counts` object is used to handle term co-occurrence analyses.
+# The :class:`~.Counts` object is used to handle term co-occurrence collection and analyses.
 #
 # This object is based on the :class:`~.Base` object introduced in the prior tutorial,
 # meaning we can define and add terms to it like introduced there.
@@ -114,7 +114,7 @@ terms_b = [['vision'], ['audition', 'auditory'], ['somatosensory'], ['olfaction'
 
 ###################################################################################################
 #
-# Now that we have multiple term lists, we have to specify to the object which is which.
+# Now that we have multiple term lists, we have to keep track of and specify which is which.
 #
 # This is done with the `dim` argument (for 'dimension'), and encoded as either 'A' or 'B'.
 #
@@ -134,7 +134,7 @@ counts.run_collection()
 #
 # From here you can use all the same methods to explore the data we just collected.
 #
-# In the next tutorial, we explore analyzing our collected counts data.
+# In the next tutorial, we will explore analyzing our collected counts data.
 #
 # For now, let's save out our collected counts data, using the LISC utility to save the object.
 #
