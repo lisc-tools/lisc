@@ -59,6 +59,7 @@ def test_check_ax():
 
     # Check None input
     ax = check_ax(None)
+    assert ax == None
 
     # Check running with pre-created axis
     _, ax = plt.subplots()

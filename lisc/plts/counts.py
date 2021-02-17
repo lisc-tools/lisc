@@ -59,8 +59,9 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
 
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
-    sns.heatmap(data, square=square, ax=check_ax(ax), cmap=cmap,
-                **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels), **kwargs)
+    sns.heatmap(data, square=square, ax=check_ax(ax, kwargs.pop('figsize', None)), cmap=cmap,
+                **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
+                **kwargs)
     plt.tight_layout()
 
 
@@ -105,7 +106,7 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
 
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
-    cg = sns.clustermap(data, cmap=cmap,
+    cg = sns.clustermap(data, cmap=cmap, figsize=kwargs.pop('figsize', None),
                         method=kwargs.pop('method', 'complete'),
                         metric=kwargs.pop('metric', 'cosine'),
                         **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
@@ -162,6 +163,7 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
                     orientation=kwargs.pop('orientation', 'left'),
                     color_threshold=kwargs.pop('color_threshold', 0.25),
                     leaf_font_size=kwargs.pop('leaf_font_size', 12),
-                    ax=check_ax(ax), **check_args(['labels'], labels),
+                    ax=check_ax(ax, kwargs.pop('figsize', None)),
+                    **check_args(['labels'], labels),
                     **kwargs)
     plt.tight_layout()

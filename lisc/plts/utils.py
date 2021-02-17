@@ -98,7 +98,7 @@ def counts_data_helper(data, x_labels, y_labels, attribute, transpose):
 
 
 def check_ax(ax, figsize=None):
-    """Check whether a figure axes object is defined, define if not.
+    """Check whether a figure axes object is defined, define if given a figsize.
 
     Parameters
     ----------
@@ -109,11 +109,11 @@ def check_ax(ax, figsize=None):
 
     Returns
     -------
-    ax : matplotlib.Axes
+    ax : matplotlib.Axes or None
         Figure axes object to use.
     """
 
-    if not ax:
+    if not ax and figsize:
         _, ax = plt.subplots(figsize=figsize)
 
     return ax
