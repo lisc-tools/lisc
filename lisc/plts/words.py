@@ -12,7 +12,7 @@ plt = safe_import('.pyplot', 'matplotlib')
 ###################################################################################################
 
 @savefig
-def plot_wordcloud(freq_dist, n_words, ax=None):
+def plot_wordcloud(freq_dist, n_words, ax=None, **plt_kwargs):
     """Plot a wordcloud.
 
     Parameters
@@ -23,6 +23,8 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
         Number of top words to include in the wordcloud.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
+    plt_kwargs
+        Additional keyword arguments for the plot.
 
     Examples
     --------
@@ -31,8 +33,8 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
 
     cloud = create_wordcloud(conv_freqs(freq_dist, n_words))
 
-    ax = check_ax(ax, (8, 8))
-    ax.imshow(cloud)
+    ax = check_ax(ax, plt_kwargs.pop('figsize', (8, 8)))
+    ax.imshow(cloud, **plt_kwargs)
     ax.axis("off")
 
 
@@ -63,7 +65,7 @@ def plot_years(years, year_range=None, ax=None, **plt_kwargs):
     Publication years are collected together in the :class:`~.ArticlesAll` class.
     """
 
-    ax = check_ax(ax, (10, 5))
+    ax = check_ax(ax, plt_kwargs.pop('figsize', (10, 5)))
 
     # Get the plot data, making sure it is sorted
     sort_inds = np.argsort(list(years.keys()))
