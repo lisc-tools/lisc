@@ -25,6 +25,6 @@ def test_collect_counts():
     assert meta_data.requester['n_requests'] > 0
 
     # Test coounts without co-occurence
-	counts, meta_data = collect_counts(terms_a, exclusions_a=excls_a, terms_b=terms_b)
-	assert len(counts) == len(terms_a)
-	assert meta_data.requester['n_requests'] > 0
+    counts, meta_data = collect_counts(terms_a, exclusions_a=excls_a, terms_b=terms_b)
+    assert len(counts) == len(terms_a)
+    assert meta_data.requester['n_requests'] > 0
