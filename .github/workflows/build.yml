@@ -1,5 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+# This workflow runs CI tests: it installs Python dependencies and run tests across a variety of Python versions
 
 name: build
 
@@ -16,6 +15,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8, 3.9]
+      # Because this repo launches requests, limit to one concurrent job at a time
       max-parallel: 1
 
     steps:
