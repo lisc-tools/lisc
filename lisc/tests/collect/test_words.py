@@ -8,25 +8,30 @@ from lisc.collect.words import *
 ###################################################################################################
 ###################################################################################################
 
-def test_collect_words(tdb):
+def test_collect_words_history(tdb, test_req):
 
     terms = [['science'], ['engineering']]
     excls = [['philosophy'], []]
-    db = 'pubmed'
     retmax = 2
 
     # Test without using history, and without saving & clearing
-    res, meta_data = collect_words(terms, excls, db=db, retmax=retmax,
-                                   save_and_clear=False, usehistory=False)
+    res, meta_data = collect_words(terms, excls, db='pubmed', retmax=retmax, save_and_clear=False,
+                                   usehistory=False, logging=test_req)
     assert len(res) == len(terms)
     assert meta_data['requester']['n_requests'] > 0
     assert res[0].n_articles == retmax
     for field in ['titles', 'authors', 'ids', 'journals', 'keywords', 'words', 'years']:
         assert getattr(res[0], field)
 
+def test_collect_words_nohistory(tdb, test_req):
+
+    terms = [['science'], ['engineering']]
+    excls = [['philosophy'], []]
+    retmax = 2
+
     # Test with using history, and with using save and clear
-    res, meta_data = collect_words(terms, excls, db=db, retmax=retmax,
-                                   save_and_clear=True, usehistory=True, directory=tdb)
+    res, meta_data = collect_words(terms, excls, db='pubmed', retmax=retmax, save_and_clear=True,
+                                   usehistory=True, directory=tdb, logging=test_req)
     assert len(res) == len(terms)
     assert meta_data['requester']['n_requests'] > 0
     assert res[0].n_articles == 0

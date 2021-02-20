@@ -80,11 +80,14 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=N
     urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
     urls.build_url('fetch', settings=['db', 'retmode'])
 
-    # Initialize results, meta data & requester
+    # Initialize results & meta data
     results = []
     meta_data = MetaData()
-    req = Requester(wait_time=get_wait_time(urls.authenticated),
-                    logging=logging, directory=directory)
+
+    # Check for a Requester object to be passed in as logging, otherwise initialize
+    req = logging if isinstance(logging, Requester) else \
+        Requester(wait_time=get_wait_time(urls.authenticated),
+                  logging=logging, directory=directory)
 
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
