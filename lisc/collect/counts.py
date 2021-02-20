@@ -85,8 +85,14 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
 
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
     urls = EUtils(db=db, retmax='0', field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
-    urls.build_url('info', settings=['db'])
+
+    # Define the settings for the search utility, adding a default for datetype if not provided
     search_settings = ['db', 'retmax', 'retmode', 'field']
+    if 'date' in ''.join(eutils_kwargs.keys()) and 'datetype' not in eutils_kwargs.keys():
+        search_settings.append('datetype')
+
+    # Build the URLs for the utilities that will be used
+    urls.build_url('info', settings=['db'])
     urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
 
     # Initialize meta data object
