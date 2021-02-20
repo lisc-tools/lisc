@@ -42,6 +42,10 @@ def check_db():
     create_term_files(tdb)
     create_api_files(tdb)
 
+@pytest.fixture(scope='function')
+def test_req():
+    return Requester(wait_time=1.0)
+
 @pytest.fixture(scope='session')
 def tdb():
     return TestDB()

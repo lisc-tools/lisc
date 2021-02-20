@@ -9,21 +9,21 @@ def test_counts():
 
     assert Counts()
 
-def test_collect_one():
+def test_collect_one(test_req):
 
     counts = Counts()
 
     counts.add_terms(['language', 'memory'], dim='A')
     counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
 
-    counts.run_collection(db='pubmed')
+    counts.run_collection(db='pubmed', logging=test_req)
     assert counts.has_data
 
     compute_scores(counts)
     check_funcs(counts)
     drop_data(counts)
 
-def test_collect_two():
+def test_collect_two(test_req):
 
     counts = Counts()
 
@@ -31,7 +31,7 @@ def test_collect_two():
     counts.add_terms(['protein', 'protein'], term_type='exclusions', dim='A')
     counts.add_terms(['cognition'], dim='B')
 
-    counts.run_collection(db='pubmed')
+    counts.run_collection(db='pubmed', logging=test_req)
     assert counts.has_data
 
     counts.compute_score('normalize')

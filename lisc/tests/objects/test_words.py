@@ -37,7 +37,7 @@ def test_add_results(tterm):
 
     assert words.results
 
-def test_collect():
+def test_collect(test_req):
 
     words = Words()
 
@@ -47,7 +47,7 @@ def test_collect():
     words.add_terms(excls, 'exclusions')
 
     retmax = 2
-    words.run_collection(db='pubmed', retmax=retmax)
+    words.run_collection(db='pubmed', retmax=retmax, logging=test_req)
     assert words.has_data
     assert len(words.results) == len(terms)
 
