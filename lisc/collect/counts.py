@@ -89,10 +89,13 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     search_settings = ['db', 'retmax', 'retmode', 'field']
     urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
 
-    # Initialize meta data & requester
+    # Initialize meta data object
     meta_data = MetaData()
-    req = Requester(wait_time=get_wait_time(urls.authenticated),
-                    logging=logging, directory=directory)
+
+    # Check for a Requester object to be passed in as logging, otherwise initialize
+    req = logging if isinstance(logging, Requester) else \
+        Requester(wait_time=get_wait_time(urls.authenticated),
+                  logging=logging, directory=directory)
 
     # Sort out terms for list a
     n_terms_a = len(terms_a)
