@@ -75,8 +75,14 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=N
     # Get EUtils URLS object, with desired settings, and build required utility URLs
     urls = EUtils(db=db, retmax=retmax, usehistory='y' if usehistory else 'n',
                   field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
-    urls.build_url('info', settings=['db'])
+
+    # Define the settings for the search utility, adding a default for datetype if not provided
     search_settings = ['db', 'usehistory', 'retmax', 'retmode', 'field']
+    if 'date' in ''.join(eutils_kwargs.keys()) and 'datetype' not in eutils_kwargs.keys():
+        search_settings.append('datetype')
+
+    # Build the URLs for the utilities that will be used
+    urls.build_url('info', settings=['db'])
     urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
     urls.build_url('fetch', settings=['db', 'retmode'])
 
