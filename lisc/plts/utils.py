@@ -26,10 +26,37 @@ def check_args(names, *inputs):
     Returns
     -------
     dict
-        A dictionary with the new names and values, for all non None inputs.
+        A dictionary with the new names and values, for all inputs that are not None.
     """
 
     return {label : value for label, value in zip(names, inputs) if value}
+
+
+def check_aliases(kwargs, aliases, default=None):
+    """Check a dictionary input for a list of potential key aliases.
+
+    Parameters
+    ----------
+    kwargs : dict
+        Dictionary to check for elements labelled with possible aliases.
+    aliases : list
+        List of possible key value labels.
+    default
+        Default value to return if none of the potential labels are present.
+
+    Returns
+    -------
+    value
+        The value of the extracted label, or None if no given labels are present.
+    """
+
+    value = default
+    for alias in aliases:
+        if alias in kwargs:
+            value = kwargs.pop(alias)
+            break
+
+    return value
 
 
 def get_cmap(cmap):
