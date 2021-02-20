@@ -10,8 +10,8 @@ LISC - Literature Scanner
 .. |Version| image:: https://img.shields.io/pypi/v/lisc.svg
 .. _Version: https://pypi.python.org/pypi/lisc/
 
-.. |BuildStatus| image:: https://travis-ci.com/lisc-tools/lisc.svg
-.. _BuildStatus: https://travis-ci.com/lisc-tools/lisc
+.. |BuildStatus| image:: https://github.com/lisc-tools/lisc/actions/workflows/build.yml/badge.svg
+.. _BuildStatus: https://github.com/lisc-tools/lisc/actions/workflows/build.yml
 
 .. |Coverage| image:: https://codecov.io/gh/lisc-tools/lisc/branch/main/graph/badge.svg
 .. _Coverage: https://codecov.io/gh/lisc-tools/lisc
