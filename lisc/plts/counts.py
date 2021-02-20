@@ -59,8 +59,10 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
 
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
-    sns.heatmap(data, square=square, ax=check_ax(ax), cmap=cmap,
-                **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels), **kwargs)
+    with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
+        sns.heatmap(data, square=square, ax=check_ax(ax, kwargs.pop('figsize', None)), cmap=cmap,
+                    **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
+                    **kwargs)
     plt.tight_layout()
 
 
@@ -97,25 +99,20 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
     See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
-    sns.set()
-    sns.set_context("paper", font_scale=1.5)
-
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
-    cg = sns.clustermap(data, cmap=cmap,
-                        method=kwargs.pop('method', 'complete'),
-                        metric=kwargs.pop('metric', 'cosine'),
-                        **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
-                        **kwargs)
+    with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
+        cg = sns.clustermap(data, cmap=cmap, figsize=kwargs.pop('figsize', None),
+                            method=kwargs.pop('method', 'complete'),
+                            metric=kwargs.pop('metric', 'cosine'),
+                            **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
+                            **kwargs)
 
     _ = plt.setp(cg.ax_heatmap.xaxis.get_majorticklabels(), rotation=60, ha='right')
     _ = plt.setp(cg.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-
-    cg.fig.subplots_adjust(bottom=0.25)
-    cg.fig.subplots_adjust(right=0.75)
 
 
 @savefig
@@ -158,10 +155,12 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
 
     linkage_data = hier.linkage(data, method=method, metric=metric)
 
-    hier.dendrogram(linkage_data,
-                    orientation=kwargs.pop('orientation', 'left'),
-                    color_threshold=kwargs.pop('color_threshold', 0.25),
-                    leaf_font_size=kwargs.pop('leaf_font_size', 12),
-                    ax=check_ax(ax), **check_args(['labels'], labels),
-                    **kwargs)
+    with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
+        hier.dendrogram(linkage_data,
+                        orientation=kwargs.pop('orientation', 'left'),
+                        color_threshold=kwargs.pop('color_threshold', 0.25),
+                        leaf_font_size=kwargs.pop('leaf_font_size', 12),
+                        ax=check_ax(ax, kwargs.pop('figsize', None)),
+                        **check_args(['labels'], labels),
+                        **kwargs)
     plt.tight_layout()

@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from lisc.plts.utils import check_ax, savefig
+from lisc.plts.utils import check_aliases, check_ax, savefig
 from lisc.plts.wordcloud import create_wordcloud, conv_freqs
 from lisc.core.modutils import safe_import
 
@@ -37,7 +37,7 @@ def plot_wordcloud(freq_dist, n_words, ax=None):
 
 
 @savefig
-def plot_years(years, year_range=None, ax=None):
+def plot_years(years, year_range=None, ax=None, **plt_kwargs):
     """Plot a histogram of the number publications across years.
 
     Parameters
@@ -48,6 +48,8 @@ def plot_years(years, year_range=None, ax=None):
         The range of years to plot on the x-axis, inclusive.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
+    plt_kwargs
+        Additional keyword arguments for the plot.
 
     Examples
     --------
@@ -75,13 +77,20 @@ def plot_years(years, year_range=None, ax=None):
         x_data = x_data[range_inds]
         y_data = y_data[range_inds]
 
+    # Grab any plot inputs for labels
+    fontsize = plt_kwargs.pop('fontsize', 18)
+
     # Add line and points to plot
-    plt.plot(x_data, y_data)
-    plt.plot(x_data, y_data, '.', markersize=16)
+    plt.plot(x_data, y_data,
+             linewidth=check_aliases(plt_kwargs, ['linewidth', 'lw'], 3),
+             marker=plt_kwargs.pop('marker', '.'),
+             markersize=check_aliases(plt_kwargs, ['markersize', 'ms'], 10),
+             markerfacecolor=plt_kwargs.pop('markerfacecolor', 'white'),
+             **plt_kwargs)
 
     # Set plot limits
-    plt.ylim([0, max(y_data)+3])
+    plt.ylim([0, max(y_data) + int(0.03*(max(y_data) - min(y_data)))])
 
     # Add title & labels
-    plt.xlabel('Year of Publication', fontsize=18)
-    plt.ylabel('Number of Articles', fontsize=18)
+    plt.xlabel('Year of Publication', fontsize=fontsize)
+    plt.ylabel('Number of Articles', fontsize=fontsize)

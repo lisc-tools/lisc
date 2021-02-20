@@ -18,6 +18,14 @@ def test_check_args():
     assert check_args(['new_name'], None) == {}
     assert check_args(['new_name'], [1, 2, 3]) == {'new_name' : [1, 2, 3]}
 
+def test_check_aliases():
+
+    kwargs = {'linewidth' : 3, 'color' : 'black'}
+
+    assert check_aliases(kwargs, ['linewidth', 'lw']) == 3
+    assert check_aliases(kwargs, ['markersize', 'ms']) == None
+    assert check_aliases(kwargs, ['markersize', 'ms'], 10) == 10
+
 @optional_test('seaborn')
 def test_get_cmap():
 
@@ -59,6 +67,7 @@ def test_check_ax():
 
     # Check None input
     ax = check_ax(None)
+    assert ax == None
 
     # Check running with pre-created axis
     _, ax = plt.subplots()

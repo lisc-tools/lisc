@@ -47,5 +47,6 @@ def test_plot_dendrogram():
 
     # test with Counts object input
     counts = Counts()
-    counts.score =  test_data
+    counts.terms['B']._labels = ['A', 'B']
+    counts.score = test_data
     plot_dendrogram(counts, transpose=True)
