@@ -17,7 +17,8 @@ from lisc.urls.eutils import EUtils, get_wait_time
 def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
                    terms_b=None, inclusions_b=None, exclusions_b=None,
                    db='pubmed', field='TIAB', api_key=None, logging=None,
-                   directory=None, verbose=False, **eutils_kwargs):
+                   directory=None, collect_coocs=True, verbose=False,
+                   **eutils_kwargs):
     """Collect count and term co-occurrence data from EUtils.
 
     Parameters
@@ -45,6 +46,9 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+    collect_coocs : bool, optional, default: True
+        Whether to collect co-occurence data.
+        If False, only collects the counts for first term list.
     verbose : bool, optional, default: False
         Whether to print out updates.
     **eutils_kwargs
@@ -54,6 +58,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     -------
     co_occurences : 2d array
         The numbers of articles found for each combination of terms.
+        Only returned if `collect_coocs` is True.
     counts : 1d array or list of 1d array
         Number of articles for each term independently.
     meta_data : dict
@@ -61,7 +66,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
 
     Notes
     -----
-    The collection does an exact word search for two terms.
+    The collection does an exact word search for search terms.
 
     The HTML page returned by the EUtils search includes a 'count' field.
     This field contains the number of articles with both terms. This is extracted.
@@ -89,31 +94,32 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     req = Requester(wait_time=get_wait_time(urls.authenticated),
                     logging=logging, directory=directory)
 
-    # Sort out terms
+    # Sort out terms for list a
     n_terms_a = len(terms_a)
-    if not terms_b:
-        square = True
-        terms_b, inclusions_b, exclusions_b = terms_a, inclusions_a, exclusions_a
-    else:
-        square = False
-    n_terms_b = len(terms_b)
-
-    # Check inclusions & exclusions
-    inclusions_a = [[]] * n_terms_a if not inclusions_a else inclusions_a
-    inclusions_b = [[]] * n_terms_b if not inclusions_b else inclusions_b
-    exclusions_a = [[]] * n_terms_a if not exclusions_a else exclusions_a
-    exclusions_b = [[]] * n_terms_b if not exclusions_b else exclusions_b
-
-    # Initialize count variables to the correct length
     counts_a = np.ones([n_terms_a], dtype=int) * -1
-    counts_b = np.ones([n_terms_b], dtype=int) * -1
+    inclusions_a = [[]] * n_terms_a if not inclusions_a else inclusions_a
+    exclusions_a = [[]] * n_terms_a if not exclusions_a else exclusions_a
 
-    # Initialize right size matrices to store co-occurrence data
-    co_occurences = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
+    # If collecting co-occurences, sort out terms for list b and initialize co-occurence stores
+    if collect_coocs:
 
-    # Set diagonal to zero if square (term co-occurrence with itself)
-    if square:
-        np.fill_diagonal(co_occurences, 0)
+        if not terms_b:
+            square = True
+            terms_b, inclusions_b, exclusions_b = terms_a, inclusions_a, exclusions_a
+        else:
+            square = False
+        n_terms_b = len(terms_b)
+
+        counts_b = np.ones([n_terms_b], dtype=int) * -1
+        inclusions_b = [[]] * n_terms_b if not inclusions_b else inclusions_b
+        exclusions_b = [[]] * n_terms_b if not exclusions_b else exclusions_b
+
+        # Initialize matrices to store co-occurrence data
+        co_occurences = np.ones([n_terms_a, n_terms_b], dtype=int) * -1
+
+        # Set diagonal to zero if square (term co-occurrence with itself)
+        if square:
+            np.fill_diagonal(co_occurences, 0)
 
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
@@ -132,40 +138,46 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         url = urls.get_url('search', settings={'term' : term_a_arg})
         counts_a[a_ind] = get_count(req, url)
 
-        # For each term in list a, loop through each term in list b
-        for b_ind, (search_b, incl_b, excl_b) in enumerate(zip(terms_b, inclusions_b, exclusions_b)):
+        if collect_coocs:
 
-            # Skip collections of equivalent term combinations - if single term list
-            #  This will skip the diagonal row, and any combinations already collected
-            if square and co_occurences[a_ind, b_ind] != -1:
-                continue
+            # For each term in list a, loop through each term in list b
+            for b_ind, (search_b, incl_b, excl_b) in \
+                enumerate(zip(terms_b, inclusions_b, exclusions_b)):
 
-            # Make term arguments
-            term_b = Term(search_b[0], search_b, incl_b, excl_b)
-            term_b_arg = make_term(term_b)
-            full_term_arg = join(term_a_arg, term_b_arg, 'AND')
+                # Skip collections of equivalent term combinations - if single term list
+                #  This will skip the diagonal row, and any combinations already collected
+                if square and co_occurences[a_ind, b_ind] != -1:
+                    continue
 
-            # Get number of results for current term search
-            if not square:
-                url = urls.get_url('search', settings={'term' : term_b_arg})
-                counts_b[b_ind] = get_count(req, url)
+                # Make term arguments
+                term_b = Term(search_b[0], search_b, incl_b, excl_b)
+                term_b_arg = make_term(term_b)
+                full_term_arg = join(term_a_arg, term_b_arg, 'AND')
 
-            # Get number of results for combination of terms
-            url = urls.get_url('search', settings={'term' : full_term_arg})
-            count = get_count(req, url)
+                # Get number of results for current term search
+                if not square:
+                    url = urls.get_url('search', settings={'term' : term_b_arg})
+                    counts_b[b_ind] = get_count(req, url)
 
-            co_occurences[a_ind, b_ind] = count
-            if square:
-                co_occurences[b_ind, a_ind] = count
+                # Get number of results for combination of terms
+                url = urls.get_url('search', settings={'term' : full_term_arg})
+                count = get_count(req, url)
 
-    if square:
-        counts = counts_a
+                co_occurences[a_ind, b_ind] = count
+                if square:
+                    co_occurences[b_ind, a_ind] = count
+
+    if collect_coocs:
+        counts = counts_a if square else [counts_a, counts_b]
     else:
-        counts = [counts_a, counts_b]
+        counts = counts_a
 
     meta_data.add_requester(req)
 
-    return co_occurences, counts, meta_data
+    if not collect_coocs:
+        return counts, meta_data
+    else:
+        return co_occurences, counts, meta_data
 
 
 def get_count(req, url):
