@@ -40,8 +40,8 @@ Supported APIs & Collection Approaches
 
 Supported APIs and data collection approaches include:
 
-- The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API, which provides access to literature data, 
-  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which counts and co-occurences 
+- The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API, which provides access to literature data,
+  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which counts and co-occurences
   of terms and/or text and meta-data from identified articles can be collected.
 - The `OpenCitations <https://opencitations.net>`_ API, which provides access to citation data, from which
   citation and reference information can be collected.
@@ -77,7 +77,7 @@ For a curated list of projects that use LISC check out the `projects <https://gi
 Dependencies
 ------------
 
-LISC is written in Python 3, and requires Python >= 3.5 to run.
+LISC is written in Python 3, and requires Python >= 3.6 to run.
 
 Requirements:
 
