@@ -45,7 +45,7 @@ class Requester():
         logging : {None, 'print', 'store', 'file'}, optional
             What kind of logging, if any, to do for requested URLs.
         directory : SCDB or str or None, optional
-            A string or object containing a file path.
+            A string or object containing a file path, used for logging.
 
         Examples
         --------
@@ -57,7 +57,7 @@ class Requester():
         self.is_active = bool()
         self.n_requests = int()
 
-        self.wait_time = int()
+        self.wait_time = float()
 
         self.start_time = str()
         self.end_time = str()
