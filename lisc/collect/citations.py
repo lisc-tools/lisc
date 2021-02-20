@@ -48,11 +48,16 @@ def collect_citations(dois, util='citations', collect_dois=False,
     >>> citations, meta_data = collect_citations(['10.1038/nmeth.1635'])
     """
 
+    # Get OpenCitations URLs object
     urls = OpenCitations()
     urls.build_url(util)
 
+    # Initialize meta data object
     meta_data = MetaData()
-    req = Requester(wait_time=0.1, logging=logging, directory=directory)
+
+    # Check for a Requester object to be passed in as logging, otherwise initialize
+    req = logging if isinstance(logging, Requester) else \
+        Requester(wait_time=0.1, logging=logging, directory=directory)
 
     if verbose:
         print('Collecting citation data.')

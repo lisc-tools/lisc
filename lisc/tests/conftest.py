@@ -13,6 +13,7 @@ from lisc.utils.db import create_file_structure
 
 from lisc.tests.tdata import create_term_files, create_api_files
 from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all, load_tag, load_term
+from lisc.tests.tsettings import TEST_WAIT_TIME, TEST_DB_NAME
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -31,16 +32,19 @@ def check_db():
 
     # Create the test database directory
     tests_dir = pkg.resource_filename('lisc', 'tests')
-    test_db_name = 'test_db'
 
     # If the directories already exist, clear them
-    if os.path.exists(os.path.join(tests_dir, test_db_name)):
-        shutil.rmtree(os.path.join(tests_dir, test_db_name))
+    if os.path.exists(os.path.join(tests_dir, TEST_DB_NAME)):
+        shutil.rmtree(os.path.join(tests_dir, TEST_DB_NAME))
 
-    tdb = create_file_structure(tests_dir, test_db_name)
+    tdb = create_file_structure(tests_dir, TEST_DB_NAME)
 
     create_term_files(tdb)
     create_api_files(tdb)
+
+@pytest.fixture(scope='function')
+def test_req():
+    return Requester(wait_time=TEST_WAIT_TIME)
 
 @pytest.fixture(scope='session')
 def tdb():
