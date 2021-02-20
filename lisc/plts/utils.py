@@ -29,7 +29,7 @@ def check_args(names, *inputs):
         A dictionary with the new names and values, for all inputs that are not None.
     """
 
-    return {label : value for label, value in zip(names, inputs) if value}
+    return {label : value for label, value in zip(names, inputs) if value is not None}
 
 
 def check_aliases(kwargs, aliases, default=None):
