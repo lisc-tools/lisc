@@ -51,7 +51,7 @@ class MetaData():
             attr = mt_dict.pop(label)
             if attr:
                 for key, val in attr.items():
-                    mt_dict[label + key] = val
+                    mt_dict[label + '_' + key] = val
 
         return mt_dict
 
