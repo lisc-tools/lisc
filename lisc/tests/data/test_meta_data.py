@@ -28,3 +28,20 @@ def test_meta_data_add_db_info(tmetadata):
 
     tmetadata.add_db_info({'db' : 'name'})
     assert tmetadata.db_info
+
+def test_meta_data_as_dict(tmetadata, treq):
+
+	mt_dict = tmetadata.as_dict()
+	assert isinstance(mt_dict, dict)
+
+	# Test with db info added
+	tmetadata.add_db_info({'db' : 'name'})
+
+	# Test with a requester added
+	tmetadata.add_requester(treq)
+	mt_dict = tmetadata.as_dict()
+
+
+
+
+

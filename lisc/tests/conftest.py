@@ -88,7 +88,7 @@ def tterm():
     return load_term()
 
 @pytest.fixture(scope='function')
-def tterm():
+def tmetadata():
     return MetaData()
 
 @pytest.fixture(scope='function')
