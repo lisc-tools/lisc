@@ -8,6 +8,7 @@ import pkg_resources as pkg
 
 from lisc.objects import Counts, Words
 from lisc.requester import Requester
+from lisc.data.meta_data import MetaData
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
 
@@ -85,6 +86,10 @@ def tarts_all():
 @pytest.fixture(scope='session')
 def tterm():
     return load_term()
+
+@pytest.fixture(scope='function')
+def tmetadata():
+    return MetaData()
 
 @pytest.fixture(scope='function')
 def ttag():

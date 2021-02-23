@@ -1,6 +1,7 @@
 """Class to store meta data."""
 
-import datetime
+from copy import deepcopy
+from datetime import datetime
 
 ###################################################################################################
 ###################################################################################################
@@ -39,10 +40,26 @@ class MetaData():
         return str(self.__dict__)
 
 
+    def as_dict(self):
+        """Get the attributes of the MetaData object as a dictionary."""
+
+        # Copy is so that attributes aren't dropped from object itself
+        mt_dict = deepcopy(self.__dict__)
+
+        # Unpack dictionary attributes to flatten dictionary
+        for label in ['requester', 'db_info']:
+            attr = mt_dict.pop(label)
+            if attr:
+                for key, val in attr.items():
+                    mt_dict[label + '_' + key] = val
+
+        return mt_dict
+
+
     def get_date(self):
         """Get the current data and attach to object."""
 
-        self.date = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        self.date = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
 
     def add_requester(self, requester):
