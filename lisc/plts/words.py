@@ -91,7 +91,7 @@ def plot_years(years, year_range=None, ax=None, **plt_kwargs):
              **plt_kwargs)
 
     # Set plot limits
-    plt.ylim([0, max(y_data) + int(0.03*(max(y_data) - min(y_data)))])
+    plt.ylim([0, max(y_data) + int(np.ceil(0.03*(max(y_data) - min(y_data))))])
 
     # Add title & labels
     plt.xlabel('Year of Publication', fontsize=fontsize)
