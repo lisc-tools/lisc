@@ -36,9 +36,15 @@ class Base():
 
 
     def __getitem__(self, key):
-        """Index into Base object, accessing Term."""
+        """Index into Base object, accessing Term.
 
-        return self.get_term(self.get_index(key))
+        Parameters
+        ----------
+        key : str or int
+            Label or index of the element to extract.
+        """
+
+        return self.get_term(self.get_index(key) if isinstance(key, str) else key)
 
 
     @property
