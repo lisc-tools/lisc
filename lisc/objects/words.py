@@ -119,7 +119,8 @@ class Words(Base):
         >>> words.run_collection(retmax='5') # doctest: +SKIP
         """
 
-        self.results, self.meta_data = collect_words(self.terms, self.inclusions, self.exclusions,
+        self.results, self.meta_data = collect_words(self.terms, self.inclusions,
+                                                     self.exclusions, self.labels,
                                                      db=db, retmax=retmax, field=field,
                                                      usehistory=usehistory, api_key=api_key,
                                                      save_and_clear=save_and_clear,

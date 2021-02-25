@@ -14,11 +14,10 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
-                   terms_b=None, inclusions_b=None, exclusions_b=None,
-                   db='pubmed', field='TIAB', api_key=None, logging=None,
-                   directory=None, collect_coocs=True, verbose=False,
-                   **eutils_kwargs):
+def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
+                   terms_b=None, inclusions_b=None, exclusions_b=None, labels_b=None,
+                   db='pubmed', field='TIAB', api_key=None, collect_coocs=True,
+                   logging=None, directory=None, verbose=False, **eutils_kwargs):
     """Collect count and term co-occurrence data from EUtils.
 
     Parameters
@@ -29,12 +28,16 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         Inclusion words for search terms.
     exclusions_a : list of list of str, optional
         Exclusion words for search terms.
+    labels_a : list of str, optional
+        Labels for the search terms.
     terms_b : list of list of str, optional
         Secondary list of search terms.
     inclusions_b : list of list of str, optional
-        Inclusion words for secondary list of search terms.
+        Inclusion words for the second list of search terms.
     exclusions_b : list of list of str, optional
-        Exclusion words for secondary list of search terms.
+        Exclusion words for the second list of search terms.
+    labels_b : list of str
+        Labels for the second list of search terms.
     db : str, optional, default: 'pubmed'
         Which database to access from EUtils.
     field : str, optional, default: 'TIAB'
@@ -42,13 +45,13 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         Defaults to 'TIAB', which is Title/Abstract.
     api_key : str, optional
         An API key for a NCBI account.
+    collect_coocs : bool, optional, default: True
+        Whether to collect co-occurence data.
+        If False, only collects the counts for first term list.
     logging : {None, 'print', 'store', 'file'}, optional
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
-    collect_coocs : bool, optional, default: True
-        Whether to collect co-occurence data.
-        If False, only collects the counts for first term list.
     verbose : bool, optional, default: False
         Whether to print out updates.
     **eutils_kwargs
@@ -106,6 +109,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     # Sort out terms for list a
     n_terms_a = len(terms_a)
     counts_a = np.ones([n_terms_a], dtype=int) * -1
+    labels_a = labels_a if labels_a else [term[0] for term in terms_a]
     inclusions_a = [[]] * n_terms_a if not inclusions_a else inclusions_a
     exclusions_a = [[]] * n_terms_a if not exclusions_a else exclusions_a
 
@@ -120,6 +124,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         n_terms_b = len(terms_b)
 
         counts_b = np.ones([n_terms_b], dtype=int) * -1
+        labels_b = labels_b if labels_b else [term[0] for term in terms_b]
         inclusions_b = [[]] * n_terms_b if not inclusions_b else inclusions_b
         exclusions_b = [[]] * n_terms_b if not exclusions_b else exclusions_b
 
@@ -134,10 +139,11 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Loop through each term (list-A)
-    for a_ind, (search_a, incl_a, excl_a) in enumerate(zip(terms_a, inclusions_a, exclusions_a)):
+    for a_ind, (label_a, search_a, incl_a, excl_a) in \
+        enumerate(zip(labels_a, terms_a, inclusions_a, exclusions_a)):
 
         # Make term arguments
-        term_a = Term(search_a[0], search_a, incl_a, excl_a)
+        term_a = Term(label_a, search_a, incl_a, excl_a)
         term_a_arg = make_term(term_a)
 
         if verbose:
@@ -150,8 +156,8 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
         if collect_coocs:
 
             # For each term in list a, loop through each term in list b
-            for b_ind, (search_b, incl_b, excl_b) in \
-                enumerate(zip(terms_b, inclusions_b, exclusions_b)):
+            for b_ind, (label_b, search_b, incl_b, excl_b) in \
+                enumerate(zip(labels_b, terms_b, inclusions_b, exclusions_b)):
 
                 # Skip collections of equivalent term combinations - if single term list
                 #  This will skip the diagonal row, and any combinations already collected
@@ -159,7 +165,7 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None,
                     continue
 
                 # Make term arguments
-                term_b = Term(search_b[0], search_b, incl_b, excl_b)
+                term_b = Term(label_b, search_b, incl_b, excl_b)
                 term_b_arg = make_term(term_b)
                 full_term_arg = join(term_a_arg, term_b_arg, 'AND')
 
