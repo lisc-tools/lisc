@@ -54,6 +54,13 @@ class Words(Base):
         return self.results[ind]
 
 
+    def __iter__(self):
+        """Allow for iterating across the object by stepping through collected results."""
+
+        for result in self.results:
+            yield result
+
+
     @property
     def has_data(self):
         """Indicator for if the object has collected data."""

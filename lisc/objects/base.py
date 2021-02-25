@@ -36,9 +36,22 @@ class Base():
 
 
     def __getitem__(self, key):
-        """Index into Base object, accessing Term."""
+        """Index into Base object, accessing Term.
 
-        return self.get_term(self.get_index(key))
+        Parameters
+        ----------
+        key : str or int
+            Label or index of the element to extract.
+        """
+
+        return self.get_term(self.get_index(key) if isinstance(key, str) else key)
+
+
+    def __iter__(self):
+        """Allow for iterating across the object by stepping through terms."""
+
+        for ind in range(self.n_terms):
+            yield self.get_term(ind)
 
 
     @property

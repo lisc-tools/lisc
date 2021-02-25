@@ -50,6 +50,28 @@ class Counts():
         self.meta_data = None
 
 
+    def __getitem__(self, keys):
+        """Index into Counts object, accessing count.
+
+        Parameters
+        ----------
+        keys : list of (str, int)
+            Labels or indices for the data to access.
+        """
+
+        if not self.has_data:
+            raise IndexError('No data is available - cannot proceed.')
+
+        if not isinstance(keys, list):
+            return ValueError('Input keys do not match the object.')
+
+        ind0 = self.terms['A'].get_index(keys[0]) if isinstance(keys[0], str) else keys[0]
+        ind1 = self.terms['B' if self.terms['B'].terms else 'A'].get_index(keys[1]) \
+            if isinstance(keys[1], str) else keys[1]
+
+        return self.counts[ind0, ind1]
+
+
     @property
     def has_data(self):
         """Indicator for if the object has collected data."""

@@ -51,8 +51,16 @@ def test_collect(test_req):
     assert words.has_data
     assert len(words.results) == len(terms)
 
+    check_dunders(words)
     check_funcs(words)
     drop_data(words, retmax+1)
+
+def check_dunders(words):
+
+    for ind, result in enumerate(words):
+        ind += 1
+        assert result
+    assert ind == len(words.results)
 
 def check_funcs(words):
 
