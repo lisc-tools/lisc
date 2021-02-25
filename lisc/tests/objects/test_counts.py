@@ -47,6 +47,14 @@ def compute_scores(counts):
         assert counts.score.any()
         assert counts.score_info['type'] == score_type
 
+def check_dunders(counts):
+
+    label0 = counts.terms['A'].labels[0]
+    label1 = counts.terms['B' if counts.terms['B'].terms else 'A'].labels[0]
+
+    out = counts[label0, label1]
+    assert out == self.counts[0, 0]
+
 def check_funcs(counts):
 
     counts.check_data()
