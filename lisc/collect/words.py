@@ -15,9 +15,10 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 ###################################################################################################
 
-def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=None,
-                  field='TIAB', usehistory=False, api_key=None, save_and_clear=False,
-                  logging=None, directory=None, verbose=False, **eutils_kwargs):
+def collect_words(terms, inclusions=None, exclusions=None, labels=None,
+                  db='pubmed', retmax=None, field='TIAB', usehistory=False,
+                  api_key=None, save_and_clear=False, logging=None, directory=None,
+                  verbose=False, **eutils_kwargs):
     """Collect text data and metadata from EUtils using specified search term(s).
 
     Parameters
@@ -28,6 +29,8 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=N
         Inclusion words for search terms.
     exclusions : list of list of str, optional
         Exclusion words for search terms.
+    labels : list of str, optional
+        Labels for the search terms.
     db : str, optional, default: 'pubmed'
         Which database to access from EUtils.
     retmax : int, optional
@@ -98,15 +101,16 @@ def collect_words(terms, inclusions=None, exclusions=None, db='pubmed', retmax=N
     # Get current information about database being used
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
-    # Check inclusions & exclusions
+    # Check labels, inclusions & exclusions
+    labels = labels if labels else [term[0] for term in terms]
     inclusions = inclusions if inclusions else [[]] * len(terms)
     exclusions = exclusions if exclusions else [[]] * len(terms)
 
     # Loop through all the terms
-    for search, incl, excl in zip(terms, inclusions, exclusions):
+    for label, search, incl, excl in zip(labels, terms, inclusions, exclusions):
 
         # Collect term information and make search term argument
-        term = Term(search[0], search, incl, excl)
+        term = Term(label, search, incl, excl)
         term_arg = make_term(term)
 
         if verbose:
