@@ -20,6 +20,11 @@ def test_get_item(tbase_terms):
     assert isinstance(out, Term)
     assert out.label == 'label0'
 
+def test_iter(tbase_terms):
+
+    for term in tbase_terms:
+        assert isinstance(term, Term)
+
 def test_get_index(tbase_terms):
 
     ind = tbase_terms.get_index('label0')

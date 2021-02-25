@@ -47,6 +47,13 @@ class Base():
         return self.get_term(self.get_index(key) if isinstance(key, str) else key)
 
 
+    def __iter__(self):
+        """Allow for iterating across the object by stepping through terms."""
+
+        for ind in range(self.n_terms):
+            yield self.get_term(ind)
+
+
     @property
     def has_terms(self):
         """Indicator for if the object has terms."""
