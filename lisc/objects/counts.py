@@ -190,6 +190,7 @@ class Counts():
                 terms_a=self.terms['A'].terms,
                 inclusions_a=self.terms['A'].inclusions,
                 exclusions_a=self.terms['A'].exclusions,
+                labels_a=self.terms['A'].labels,
                 terms_b=self.terms['B'].terms,
                 inclusions_b=self.terms['B'].inclusions,
                 exclusions_b=self.terms['B'].exclusions,
