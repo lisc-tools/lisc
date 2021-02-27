@@ -126,27 +126,27 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
 
         if usehistory:
 
-            # Get number of articles, and keys to use history
+            # Get number of articles
             count = int(page_soup.find('count').text)
+
+            # Get the information from the page for using history
             web_env = page_soup.find('webenv').text
             query_key = page_soup.find('querykey').text
 
-            # Loop through, collecting article data, using history
-            ret_start_it = 0
-            while ret_start_it < count:
+            # Loop through, collecting 100 articles at a time, using history
+            retmax_it = 100
+            retstart_it = 0
+            while retstart_it < count:
 
-                # Set the number of articles per iteration (the ret_max per call)
-                #  This defaults to 100, but will set to less if fewer needed to reach retmax
-                ret_end_it = min(100, int(retmax) - ret_start_it)
-
-                # Get article page, collect data, update position
+                # Get article page, collect data
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
-                                'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
+                                'retstart' : str(retstart_it), 'retmax' : str(retmax_it)}
                 art_url = urls.get_url('fetch', settings=url_settings)
                 arts = get_articles(req, art_url, arts)
-                ret_start_it += ret_end_it
 
-                if ret_start_it >= int(retmax):
+                # Update position for counting, and break out if passed global retmax
+                retstart_it += retmax_it
+                if retstart_it >= int(retmax):
                     break
 
         # Without using history
