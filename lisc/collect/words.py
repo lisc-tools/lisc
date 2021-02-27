@@ -124,10 +124,11 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         page = req.request_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
 
-        if usehistory:
+        # Get number of articles
+        count = int(page_soup.find('count').text)
 
-            # Get number of articles
-            count = int(page_soup.find('count').text)
+        # Collect articles, using history
+        if usehistory:
 
             # Get the information from the page for using history
             web_env = page_soup.find('webenv').text
@@ -144,7 +145,7 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
                 art_url = urls.get_url('fetch', settings=url_settings)
                 arts = get_articles(req, art_url, arts)
 
-                # Update position for counting, and break out if passed global retmax
+                # Update position for counting, and break out if more than global retmax
                 retstart_it += retmax_it
                 if retstart_it >= int(retmax):
                     break
@@ -153,7 +154,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         else:
 
             ids = page_soup.find_all('id')
-            art_url = urls.get_url('fetch', settings={'id' : ids_to_str(ids)})
+            ids_str = ','.join([el.text for el in ids])
+            art_url = urls.get_url('fetch', settings={'id' : ids_str})
             arts = get_articles(req, art_url, arts)
 
         arts._check_results()

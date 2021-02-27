@@ -98,31 +98,6 @@ def extract_tag(page, label, approach='first', raise_error=False):
     return page, tag
 
 
-def ids_to_str(ids):
-    """Convert a list of article IDs to a comma separated string of IDs.
-
-    Parameters
-    ----------
-    ids : bs4.element.ResultSet
-        List of article IDs.
-
-    Returns
-    -------
-    ids_str : str
-        A string of all concatenated IDs.
-    """
-
-    # Check how many IDs in list & initialize string with first ID
-    n_ids = len(ids)
-    ids_str = str(ids[0].text)
-
-    # Loop through rest of the ID's, appending to end of id_str
-    for ind in range(1, n_ids):
-        ids_str = ids_str + ',' + str(ids[ind].text)
-
-    return ids_str
-
-
 @catch_none(1)
 def process_authors(authors):
     """Get information for and process authors.
