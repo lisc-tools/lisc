@@ -8,7 +8,7 @@ from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
 from lisc.collect.utils import make_term
 from lisc.collect.info import get_db_info
-from lisc.collect.process import get_info, extract_tag, ids_to_str
+from lisc.collect.process import get_info, extract_tag
 from lisc.collect.process import process_ids, process_authors, process_pub_date
 from lisc.urls.eutils import EUtils, get_wait_time
 
