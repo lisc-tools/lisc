@@ -16,7 +16,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 
 def collect_words(terms, inclusions=None, exclusions=None, labels=None,
-                  db='pubmed', retmax=None, field='TIAB', usehistory=False,
+                  db='pubmed', retmax=100, field='TIAB', usehistory=False,
                   api_key=None, save_and_clear=False, logging=None, directory=None,
                   verbose=False, **eutils_kwargs):
     """Collect text data and metadata from EUtils using specified search term(s).
@@ -33,7 +33,7 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         Labels for the search terms.
     db : str, optional, default: 'pubmed'
         Which database to access from EUtils.
-    retmax : int, optional
+    retmax : int, optional, default: 100
         Maximum number of articles to return.
     field : str, optional, default: 'TIAB'
         Field to search for term within.
@@ -77,7 +77,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
 
     # Check for valid database based on what words is set up to collect
     if db != 'pubmed':
-        raise ValueError('Only the `pubmed` database is currently supported for words collection.')
+        msg = 'Only the `pubmed` database is currently supported for words collection.'
+        raise NotImplementedError(msg)
 
     # Get EUtils URLS object, with desired settings, and build required utility URLs
     urls = EUtils(db=db, retmax=retmax, usehistory='y' if usehistory else 'n',
