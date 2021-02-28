@@ -75,6 +75,10 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
     >>> results, meta_data = collect_words([['frontal lobe'], ['temporal lobe']], retmax=5)
     """
 
+    # Check for valid database based on what words is set up to collect
+    if db != 'pubmed':
+        raise ValueError('Only the `pubmed` database is currently supported for words collection.')
+
     # Get EUtils URLS object, with desired settings, and build required utility URLs
     urls = EUtils(db=db, retmax=retmax, usehistory='y' if usehistory else 'n',
                   field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
