@@ -98,31 +98,6 @@ def extract_tag(page, label, approach='first', raise_error=False):
     return page, tag
 
 
-def ids_to_str(ids):
-    """Convert a list of article IDs to a comma separated string of IDs.
-
-    Parameters
-    ----------
-    ids : bs4.element.ResultSet
-        List of article IDs.
-
-    Returns
-    -------
-    ids_str : str
-        A string of all concatenated IDs.
-    """
-
-    # Check how many IDs in list & initialize string with first ID
-    n_ids = len(ids)
-    ids_str = str(ids[0].text)
-
-    # Loop through rest of the ID's, appending to end of id_str
-    for ind in range(1, n_ids):
-        ids_str = ids_str + ',' + str(ids[ind].text)
-
-    return ids_str
-
-
 @catch_none(1)
 def process_authors(authors):
     """Get information for and process authors.
@@ -168,13 +143,22 @@ def process_pub_date(pub_date):
     # Check if the date is encoded in a 'Year' tag
     year = get_info(pub_date, 'Year', 'str')
 
-    # Otherwise, check if medline date tag is available
     if not year:
+
+        # Check for and get date from medline date tag if available
         year = get_info(pub_date, 'MedlineDate', 'str')
 
-        # Medline date sometimes includes months - check & restrict if so
-        if len(year) > 4 and year[:4]:
+        # Sometimes date is year followed by months - so get first part
+        if year[:4].isnumeric():
             year = year[:4]
+
+        # Sometimes date is season followed by year - so get last part
+        elif year[-4:].isnumeric():
+            year = year[-4:]
+
+        # Otherwise, date info is not clear: drop so as to not cause an error
+        else:
+            year = None
 
     # If a year was extracted, typecast to int
     year = int(year) if year else year

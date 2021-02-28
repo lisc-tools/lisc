@@ -57,16 +57,6 @@ def test_extract_tag_all(ttag):
     with raises(AttributeError):
         _, extracted = extract_tag(ttag, 'Bad', 'all', True)
 
-def test_ids_to_str():
-
-    idd = bs4.element.Tag(name='id')
-    idd.append('1111')
-    ids = bs4.element.ResultSet(source=None, result=(idd, idd))
-
-    out = ids_to_str(ids)
-
-    assert out == '1111,1111'
-
 def test_none_process():
     """Test the decorator on '_process' functions that catches & return None inputs."""
 

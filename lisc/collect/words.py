@@ -8,7 +8,7 @@ from lisc.data.articles import Articles
 from lisc.data.meta_data import MetaData
 from lisc.collect.utils import make_term
 from lisc.collect.info import get_db_info
-from lisc.collect.process import get_info, extract_tag, ids_to_str
+from lisc.collect.process import get_info, extract_tag
 from lisc.collect.process import process_ids, process_authors, process_pub_date
 from lisc.urls.eutils import EUtils, get_wait_time
 
@@ -16,7 +16,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 ###################################################################################################
 
 def collect_words(terms, inclusions=None, exclusions=None, labels=None,
-                  db='pubmed', retmax=None, field='TIAB', usehistory=False,
+                  db='pubmed', retmax=100, field='TIAB', usehistory=False,
                   api_key=None, save_and_clear=False, logging=None, directory=None,
                   verbose=False, **eutils_kwargs):
     """Collect text data and metadata from EUtils using specified search term(s).
@@ -33,7 +33,7 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         Labels for the search terms.
     db : str, optional, default: 'pubmed'
         Which database to access from EUtils.
-    retmax : int, optional
+    retmax : int, optional, default: 100
         Maximum number of articles to return.
     field : str, optional, default: 'TIAB'
         Field to search for term within.
@@ -74,6 +74,11 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
 
     >>> results, meta_data = collect_words([['frontal lobe'], ['temporal lobe']], retmax=5)
     """
+
+    # Check for valid database based on what words is set up to collect
+    if db != 'pubmed':
+        msg = 'Only the `pubmed` database is currently supported for words collection.'
+        raise NotImplementedError(msg)
 
     # Get EUtils URLS object, with desired settings, and build required utility URLs
     urls = EUtils(db=db, retmax=retmax, usehistory='y' if usehistory else 'n',
@@ -124,36 +129,38 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         page = req.request_url(url)
         page_soup = BeautifulSoup(page.content, 'lxml')
 
+        # Get number of articles
+        count = int(page_soup.find('count').text)
+
+        # Collect articles, using history
         if usehistory:
 
-            # Get number of articles, and keys to use history
-            count = int(page_soup.find('count').text)
+            # Get the information from the page for using history
             web_env = page_soup.find('webenv').text
             query_key = page_soup.find('querykey').text
 
-            # Loop through, collecting article data, using history
-            ret_start_it = 0
-            while ret_start_it < count:
+            # Loop through, collecting 100 articles at a time, using history
+            retmax_it = 100
+            retstart_it = 0
+            while retstart_it < count:
 
-                # Set the number of articles per iteration (the ret_max per call)
-                #  This defaults to 100, but will set to less if fewer needed to reach retmax
-                ret_end_it = min(100, int(retmax) - ret_start_it)
-
-                # Get article page, collect data, update position
+                # Get article page, collect data
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
-                                'retstart' : str(ret_start_it), 'retmax' : str(ret_end_it)}
+                                'retstart' : str(retstart_it), 'retmax' : str(retmax_it)}
                 art_url = urls.get_url('fetch', settings=url_settings)
                 arts = get_articles(req, art_url, arts)
-                ret_start_it += ret_end_it
 
-                if ret_start_it >= int(retmax):
+                # Update position for counting, and break out if more than global retmax
+                retstart_it += retmax_it
+                if retstart_it >= int(retmax):
                     break
 
         # Without using history
         else:
 
             ids = page_soup.find_all('id')
-            art_url = urls.get_url('fetch', settings={'id' : ids_to_str(ids)})
+            ids_str = ','.join([el.text for el in ids])
+            art_url = urls.get_url('fetch', settings={'id' : ids_str})
             arts = get_articles(req, art_url, arts)
 
         arts._check_results()
