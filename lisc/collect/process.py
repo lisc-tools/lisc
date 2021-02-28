@@ -143,13 +143,22 @@ def process_pub_date(pub_date):
     # Check if the date is encoded in a 'Year' tag
     year = get_info(pub_date, 'Year', 'str')
 
-    # Otherwise, check if medline date tag is available
     if not year:
+
+        # Check for and get date from medline date tag if available
         year = get_info(pub_date, 'MedlineDate', 'str')
 
-        # Medline date sometimes includes months - check & restrict if so
-        if len(year) > 4 and year[:4]:
+        # Sometimes date is year followed by months - so get first part
+        if year[:4].isnumeric():
             year = year[:4]
+
+        # Sometimes date is season followed by year - so get last part
+        elif year[-4:].isnumeric():
+            year = year[-4:]
+
+        # Otherwise, date info is not clear: drop so as to not cause an error
+        else:
+            year = None
 
     # If a year was extracted, typecast to int
     year = int(year) if year else year
