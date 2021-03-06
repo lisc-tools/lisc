@@ -112,7 +112,11 @@ def counts_data_helper(data, x_labels, y_labels, attribute, transpose):
             x_labels = y_labels = data.terms[data.score_info['dim']].labels
 
         else:
-            x_dim, y_dim = ['B', 'A'] if not transpose else ['A', 'B']
+            if data.square:
+                x_dim, y_dim = ['A', 'A']
+            else:
+                x_dim, y_dim = ['B', 'A'] if not transpose else ['A', 'B']
+
             x_labels = data.terms[x_dim].labels if not x_labels else x_labels
             y_labels = data.terms[y_dim].labels if not y_labels else y_labels
 
