@@ -400,11 +400,18 @@ class Counts():
 
         # Drop terms that do not have enough data
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
+        self.terms[dim]._labels = [self.terms[dim]._labels[ind] for ind in keep_inds]
         self.terms[dim].counts = self.terms[dim].counts[keep_inds]
 
         # Create an inds dictionary that defaults to all-index slice
         inds = defaultdict(lambda: np.s_[:])
-        inds[dim] = keep_inds
+
+        # If square, set both dims, and do array orgs needed for fancy indexing
+        if self.square:
+            inds[dim] = keep_inds[:, None]
+            inds[flip_inds[dim]] = keep_inds
+        else:
+            inds[dim] = keep_inds
 
         # Drop raw count data for terms without enough data
         self.counts = self.counts[inds['A'], inds['B']]
