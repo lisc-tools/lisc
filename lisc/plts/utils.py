@@ -166,7 +166,7 @@ def savefig(func):
 
         # Check any collect any other plot keywords
         save_kwargs = kwargs.pop('save_kwargs', {})
-        save_kwargs.setdefault('bbox_inches' : 'tight')
+        save_kwargs.setdefault('bbox_inches', 'tight')
 
         # Check and collect whether to close the plot
         close = kwargs.pop('close', None)
