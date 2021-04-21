@@ -156,11 +156,19 @@ def savefig(func):
     @wraps(func)
     def decorated(*args, **kwargs):
 
-        save_fig = kwargs.pop('save_fig', False)
+        # Grab file name and path arguments, if they are in kwargs
         file_name = kwargs.pop('file_name', None)
         file_path = kwargs.pop('directory', None)
-        close = kwargs.pop('close', None)
+
+        # Check for an explicit argument for whether to save figure or not
+        #   Defaults to saving when file name given (since bool(str)->True; bool(None)->False)
+        save_fig = kwargs.pop('save_fig', bool(file_name))
+
+        # Check any collect any other plot keywords
         transparent = kwargs.pop('transparent', False)
+
+        # Check and collect whether to close the plot
+        close = kwargs.pop('close', None)
 
         if isinstance(f_path, SCDB):
             f_path = f_path.get_folder_path('figures')
