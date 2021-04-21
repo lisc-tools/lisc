@@ -152,7 +152,7 @@ base.check_terms()
 #
 # All combine to give the search term of:
 #
-# - `'("gene"OR"genetic)AND("biology"OR"biochemistry")NOT("body"OR"corporeal)'`
+# - `'("brain"OR"cortex")AND("biology"OR"biochemistry")NOT("body"OR"corporeal")'`
 #
 # Inclusion and exclusion words should be lists of the same length as the number of
 # search terms. Each inclusion and exclusion term is used for the corresponding search
