@@ -117,9 +117,13 @@ def savefig(func):
     @wraps(func)
     def decorated(*args, **kwargs):
 
-        save_fig = kwargs.pop('save_fig', False)
+        # Grab file name and path arguments, if they are in kwargs
         f_name = kwargs.pop('f_name', None)
         f_path = kwargs.pop('directory', None)
+
+        # Check for an explicit argument for whether to save figure or not
+        #   Defaults to saving when file name given (since bool(str)->True; bool(None)->False)
+        save_fig = kwargs.pop('save_fig', bool(file_name))
 
         if isinstance(f_path, SCDB):
             f_path = f_path.get_folder_path('figures')
