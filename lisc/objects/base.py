@@ -83,12 +83,12 @@ class Base():
         self._check_term_consistency()
 
 
-    def add_terms_file(self, f_name, term_type='terms', directory=None):
+    def add_terms_file(self, file_name, term_type='terms', directory=None):
         """Load terms from a text file.
 
         Parameters
         ----------
-        f_name : str
+        file_name : str
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}
             Which type of terms file to load.
@@ -108,7 +108,7 @@ class Base():
         ...     base.add_terms_file(file.name)
         """
 
-        terms = load_terms_file(f_name, directory)
+        terms = load_terms_file(file_name, directory)
         self.add_terms(terms, term_type)
 
 

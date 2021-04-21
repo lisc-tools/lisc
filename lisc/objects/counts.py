@@ -76,12 +76,12 @@ class Counts():
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
 
-    def add_terms_file(self, f_name, term_type='terms', directory=None, dim='A'):
+    def add_terms_file(self, file_name, term_type='terms', directory=None, dim='A'):
         """Load terms from a text file.
 
         Parameters
         ----------
-        f_name : str
+        file_name : str
             File name to load terms from.
         term_type : {'terms', 'inclusions', 'exclusions'}, optional
             Which type of terms are being added.
@@ -103,7 +103,7 @@ class Counts():
         ...     counts.add_terms_file(file.name)
         """
 
-        self.terms[dim].add_terms_file(f_name, term_type, directory)
+        self.terms[dim].add_terms_file(file_name, term_type, directory)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 

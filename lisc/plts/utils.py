@@ -118,8 +118,8 @@ def savefig(func):
     def decorated(*args, **kwargs):
 
         # Grab file name and path arguments, if they are in kwargs
-        f_name = kwargs.pop('f_name', None)
-        f_path = kwargs.pop('directory', None)
+        file_name = kwargs.pop('file_name', None)
+        file_path = kwargs.pop('directory', None)
 
         # Check for an explicit argument for whether to save figure or not
         #   Defaults to saving when file name given (since bool(str)->True; bool(None)->False)
@@ -131,7 +131,7 @@ def savefig(func):
         func(*args, **kwargs)
 
         if save_fig:
-            full_path = os.path.join(f_path, f_name) if f_path else f_name
+            full_path = os.path.join(file_path, file_name) if file_path else file_name
             plt.savefig(full_path)
 
     return decorated
