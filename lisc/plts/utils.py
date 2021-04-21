@@ -165,7 +165,8 @@ def savefig(func):
         save_fig = kwargs.pop('save_fig', bool(file_name))
 
         # Check any collect any other plot keywords
-        transparent = kwargs.pop('transparent', False)
+        save_kwargs = kwargs.pop('save_kwargs', {})
+        save_kwargs.setdefault('bbox_inches' : 'tight')
 
         # Check and collect whether to close the plot
         close = kwargs.pop('close', None)
@@ -177,7 +178,7 @@ def savefig(func):
 
         if save_fig:
             full_path = os.path.join(file_path, file_name) if file_path else file_name
-            plt.savefig(full_path, bbox_inches='tight', transparent=transparent)
+            plt.savefig(full_path, **save_kwargs)
 
         if close:
             plt.close()
