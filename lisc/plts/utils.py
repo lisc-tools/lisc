@@ -157,8 +157,8 @@ def savefig(func):
     def decorated(*args, **kwargs):
 
         save_fig = kwargs.pop('save_fig', False)
-        f_name = kwargs.pop('f_name', None)
-        f_path = kwargs.pop('directory', None)
+        file_name = kwargs.pop('file_name', None)
+        file_path = kwargs.pop('directory', None)
         close = kwargs.pop('close', None)
         transparent = kwargs.pop('transparent', False)
 
@@ -168,7 +168,7 @@ def savefig(func):
         func(*args, **kwargs)
 
         if save_fig:
-            full_path = os.path.join(f_path, f_name) if f_path else f_name
+            full_path = os.path.join(file_path, file_name) if file_path else file_name
             plt.savefig(full_path, bbox_inches='tight', transparent=transparent)
 
         if close:

@@ -9,12 +9,12 @@ from lisc.utils.db import SCDB, check_directory
 ###################################################################################################
 ###################################################################################################
 
-def check_ext(f_name, ext):
+def check_ext(file_name, ext):
     """Check the extension for a file name, and add if missing.
 
     Parameters
     ----------
-    f_name : str
+    file_name : str
         The name of the file.
     ext : str
         The extension to check and add.
@@ -25,15 +25,15 @@ def check_ext(f_name, ext):
         File name with the extension added.
     """
 
-    return f_name + ext if not f_name.endswith(ext) else f_name
+    return file_name + ext if not file_name.endswith(ext) else file_name
 
 
-def load_txt_file(f_name, directory=None, split_elements=True, split_character=','):
+def load_txt_file(file_name, directory=None, split_elements=True, split_character=','):
     """Loads contents from a text file.
 
     Parameters
     ----------
-    f_name : str
+    file_name : str
         Name of the file to load.
     directory : str or SCDB, optional
         Folder or database object specifying the location of the file to load.
@@ -48,7 +48,7 @@ def load_txt_file(f_name, directory=None, split_elements=True, split_character='
         Data loaded from the file.
     """
 
-    file_path = os.path.join(check_directory(directory, 'terms'), check_ext(f_name, '.txt'))
+    file_path = os.path.join(check_directory(directory, 'terms'), check_ext(file_name, '.txt'))
 
     with open(file_path, 'r') as terms_file:
 
@@ -71,12 +71,12 @@ def load_txt_file(f_name, directory=None, split_elements=True, split_character='
     return contents
 
 
-def load_api_key(f_name, directory=None, required=False):
+def load_api_key(file_name, directory=None, required=False):
     """"Load an API key from a file.
 
     Parameters
     ----------
-    f_name : str
+    file_name : str
         Name of the file to load.
     directory : str or SCDB, optional
         Folder or database object specifying the location of the file to load.
@@ -100,7 +100,7 @@ def load_api_key(f_name, directory=None, required=False):
     This function assumes the API key is in a single-line txt file.
     """
 
-    file_path = os.path.join(check_directory(directory, 'base'), check_ext(f_name, '.txt'))
+    file_path = os.path.join(check_directory(directory, 'base'), check_ext(file_name, '.txt'))
 
     try:
 
@@ -117,14 +117,14 @@ def load_api_key(f_name, directory=None, required=False):
     return api_key
 
 
-def save_object(obj, f_name, directory=None):
+def save_object(obj, file_name, directory=None):
     """Save a custom object as a pickle file.
 
     Parameters
     ----------
     obj : Counts or Words
         Object to save out.
-    f_name : str
+    file_name : str
         Name for the file to be saved out.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
@@ -150,18 +150,18 @@ def save_object(obj, f_name, directory=None):
     else:
         raise ValueError('Object type unclear - can not save.')
 
-    file_path = os.path.join(check_directory(directory, obj_type), check_ext(f_name, '.p'))
+    file_path = os.path.join(check_directory(directory, obj_type), check_ext(file_name, '.p'))
 
     with open(file_path, 'wb') as file_path:
         pickle.dump(obj, file_path)
 
 
-def load_object(f_name, directory=None, reload_results=False):
+def load_object(file_name, directory=None, reload_results=False):
     """Load a custom object, from a pickle file.
 
     Parameters
     ----------
-    f_name : str
+    file_name : str
         File name of the object to be loaded.
     directory : str or SCDB, optional
         Folder or database object specifying the location to load from.
@@ -189,16 +189,16 @@ def load_object(f_name, directory=None, reload_results=False):
 
     if isinstance(directory, SCDB):
 
-        if check_ext(f_name, '.p') in directory.get_files('counts'):
-            load_path = os.path.join(directory.get_folder_path('counts'), f_name)
-        elif check_ext(f_name, '.p') in directory.get_files('words'):
-            load_path = os.path.join(directory.get_folder_path('words'), f_name)
+        if check_ext(file_name, '.p') in directory.get_files('counts'):
+            load_path = os.path.join(directory.get_folder_path('counts'), file_name)
+        elif check_ext(file_name, '.p') in directory.get_files('words'):
+            load_path = os.path.join(directory.get_folder_path('words'), file_name)
 
     elif isinstance(directory, str) or directory is None:
 
-        if f_name in os.listdir(directory):
+        if file_name in os.listdir(directory):
             directory = '' if directory is None else directory
-            load_path = os.path.join(directory, f_name)
+            load_path = os.path.join(directory, file_name)
 
     if not load_path:
         raise ValueError('Can not find requested file name.')
@@ -216,12 +216,12 @@ def load_object(f_name, directory=None, reload_results=False):
     return custom_object
 
 
-def parse_json_data(f_name):
+def parse_json_data(file_name):
     """Parse data from a json file.
 
     Parameters
     ----------
-    f_name : str
+    file_name : str
         File name of the json file.
 
     Yields
@@ -230,6 +230,6 @@ def parse_json_data(f_name):
         The loaded line of json data.
     """
 
-    with open(f_name) as f_obj:
+    with open(file_name) as f_obj:
         for line in f_obj:
             yield json.loads(line)
