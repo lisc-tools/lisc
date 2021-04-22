@@ -79,3 +79,27 @@ def test_check_ax():
     ax = check_ax(None, figsize=figsize)
     fig = plt.gcf()
     assert list(fig.get_size_inches()) == figsize
+
+@optional_test('matplotlib')
+def test_savefig(tdb):
+
+    @savefig
+    def example_plot():
+        plt.plot([1, 2], [3, 4])
+
+    # Test defaults to saving given file path & name
+    example_plot(file_name='test_savefig1.pdf', directory=tdb)
+    assert os.path.exists(os.path.join(tdb.paths['figures'], 'test_savefig1.pdf'))
+
+    # Test works the same when explicitly given `save_fig`
+    example_plot(save_fig=True, file_name='test_savefig2.pdf', directory=tdb)
+    assert os.path.exists(os.path.join(tdb.paths['figures'], 'test_savefig2.pdf'))
+
+    # Test giving additional save kwargs
+    example_plot(file_name='test_savefig3.pdf', directory=tdb,
+                 save_kwargs={'transparent' : True, 'facecolor' : 'red'})
+    assert os.path.exists(os.path.join(tdb.paths['figures'], 'test_savefig3.pdf'))
+
+    # Test does not save when `save_fig` set to False
+    example_plot(save_fig=False, file_name='test_savefig_nope.pdf', directory=tdb)
+    assert not os.path.exists(os.path.join(tdb.paths['figures'], 'test_savefig_nope.pdf'))

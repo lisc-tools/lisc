@@ -156,20 +156,29 @@ def savefig(func):
     @wraps(func)
     def decorated(*args, **kwargs):
 
-        save_fig = kwargs.pop('save_fig', False)
-        f_name = kwargs.pop('f_name', None)
-        f_path = kwargs.pop('directory', None)
-        close = kwargs.pop('close', None)
-        transparent = kwargs.pop('transparent', False)
+        # Grab file name and path arguments, if they are in kwargs
+        file_name = kwargs.pop('file_name', None)
+        file_path = kwargs.pop('directory', None)
 
-        if isinstance(f_path, SCDB):
-            f_path = f_path.get_folder_path('figures')
+        # Check for an explicit argument for whether to save figure or not
+        #   Defaults to saving when file name given (since bool(str)->True; bool(None)->False)
+        save_fig = kwargs.pop('save_fig', bool(file_name))
+
+        # Check any collect any other plot keywords
+        save_kwargs = kwargs.pop('save_kwargs', {})
+        save_kwargs.setdefault('bbox_inches', 'tight')
+
+        # Check and collect whether to close the plot
+        close = kwargs.pop('close', None)
+
+        if isinstance(file_path, SCDB):
+            file_path = file_path.get_folder_path('figures')
 
         func(*args, **kwargs)
 
         if save_fig:
-            full_path = os.path.join(f_path, f_name) if f_path else f_name
-            plt.savefig(full_path, bbox_inches='tight', transparent=transparent)
+            full_path = os.path.join(file_path, file_name) if file_path else file_name
+            plt.savefig(full_path, **save_kwargs)
 
         if close:
             plt.close()
