@@ -171,8 +171,8 @@ def savefig(func):
         # Check and collect whether to close the plot
         close = kwargs.pop('close', None)
 
-        if isinstance(f_path, SCDB):
-            f_path = f_path.get_folder_path('figures')
+        if isinstance(file_path, SCDB):
+            file_path = file_path.get_folder_path('figures')
 
         func(*args, **kwargs)
 
