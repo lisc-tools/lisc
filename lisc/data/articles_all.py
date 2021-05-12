@@ -2,6 +2,7 @@
 
 import os
 import json
+from copy import deepcopy
 
 from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
@@ -66,10 +67,9 @@ class ArticlesAll(BaseArticles):
         # Inherit from the BaseArticles object
         BaseArticles.__init__(self, term_data.term)
 
-        # Collect together search terms to add to exclusions or use as exclusions
-        term = term_data.term
-        searches = list(set(list([term.label] + term.search + term.inclusions)))
-        exclusions = searches if not exclusions else exclusions.extend(searches)
+        # Set exclusions, copying input list, if given, and adding current search terms
+        exclusions = list(set((deepcopy(exclusions) if exclusions else []) + \
+            [term_data.term.label] + term_data.term.search + term_data.term.inclusions))
 
         # Copy over tracking of included IDs & DOIs
         self.ids = term_data.ids
@@ -82,7 +82,6 @@ class ArticlesAll(BaseArticles):
         self.first_authors, self.last_authors = _count_end_authors(term_data.authors)
 
         # Convert lists of all words to frequency distributions
-        exclusions = exclusions if exclusions else [] + self.term.search + self.term.inclusions
         temp_words = [convert_string(words) for words in term_data.words]
         self.words = count_elements(combine_lists(temp_words), exclusions)
         self.keywords = count_elements(combine_lists(term_data.keywords), exclusions)
