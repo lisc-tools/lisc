@@ -21,9 +21,9 @@ def test_threshold_counter():
 
     tcounter = Counter({'A' : 2, 'B' : 4})
     out = threshold_counter(tcounter, 3)
-    assert len(tcounter) == 1
-    assert out['A'] == tcounter['A']
-    assert 'B' not in out
+    assert len(out) == 1
+    assert out['B'] == tcounter['B']
+    assert 'A' not in out
 
 def test_drop_none():
 
