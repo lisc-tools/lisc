@@ -45,6 +45,25 @@ def count_elements(lst, exclude=None):
     return counts
 
 
+def threshold_counter(counter, value):
+    """Threshold a Counter to only include elements above a certain count.
+
+    Parameters
+    ----------
+    counter : Counter
+        Counter object containing elements to threshold.
+    value : int
+        Value of the threshold to apply, inclusive.
+
+    Returns
+    -------
+    Counter
+        Counter object with only values above a threshold.
+    """
+
+    return Counter({key: val for key, val in counter.items() if val >= value})
+
+
 def drop_none(lst):
     """Creates a generator that return elements of an iterable, dropping None values.
 

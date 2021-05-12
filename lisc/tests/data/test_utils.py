@@ -1,6 +1,7 @@
 """Tests for lisc.data.utils."""
 
 from string import punctuation
+from collections import Counter
 
 from lisc.data.utils import *
 
@@ -15,6 +16,14 @@ def test_count_elements():
     assert out['a'] == 2
     assert out['b'] == 1
     assert None not in out
+
+def test_threshold_counter():
+
+    tcounter = Counter({'A' : 2, 'B' : 4})
+    out = threshold_counter(tcounter, 3)
+    assert len(tcounter) == 1
+    assert out['A'] == tcounter['A']
+    assert 'B' not in out
 
 def test_drop_none():
 
