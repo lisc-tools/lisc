@@ -284,8 +284,8 @@ class Base():
 
         Attributes
         ----------
-        term_type : {'terms', 'inclusions', 'exclusions', 'all'}
-            Which type of terms to use.
+        term_type : {'terms', 'inclusions', 'exclusions', 'labels', 'all'}
+            Which type of terms to unload.
         verbose : bool, optional
             Whether to be verbose in printing out any changes.
 
@@ -346,8 +346,8 @@ class Base():
         if self.has_terms and (not self._labels or self._labels == [None] * len(self._labels)):
             self._set_none_labels()
 
-        if not self.n_terms == len(set(self.labels)):
-            raise ValueError('Not all labels are unique. Labels must be unique.')
+        if not len(self.labels) == len(set(self.labels)):
+            raise InconsistentDataError('Not all labels are unique. Labels must be unique.')
 
 
     def _add_term(self, term):
