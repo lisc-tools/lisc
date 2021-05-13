@@ -346,6 +346,9 @@ class Base():
         if self.has_terms and (not self._labels or self._labels == [None] * len(self._labels)):
             self._set_none_labels()
 
+        if not self.n_terms == len(set(self.labels)):
+            raise ValueError('Not all labels are unique. Labels must be unique.')
+
 
     def _add_term(self, term):
         """Add term information from a Term object.
