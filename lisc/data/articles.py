@@ -4,9 +4,10 @@ import os
 import json
 
 from lisc.data.term import Term
-from lisc.utils.db import check_directory
+from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles
 from lisc.core.errors import InconsistentDataError
+from lisc.utils.db import check_directory
 from lisc.utils.io import parse_json_data, check_ext
 
 ###################################################################################################
@@ -21,10 +22,12 @@ class Articles(BaseArticles):
         Label for the term.
     term : Term
         Definition of the search term, with inclusion and exclusion words.
-    ids : list of int
-        Article ids for all articles.
+    has_data : bool
+        Whether the object contains data.
     n_articles : int
         Number of articles collected.
+    ids : list of int
+        Article ids for all articles.
     titles : list of str
         Titles of all articles.
     journals : list of tuple of (str, str)
@@ -39,6 +42,8 @@ class Articles(BaseArticles):
         Publication year of each article.
     dois : list of str
         DOIs of each article.
+    processed : bool
+        Whether the article data has been processed.
     """
 
     def __init__(self, term):
@@ -58,6 +63,7 @@ class Articles(BaseArticles):
 
         # Inherit from the BaseArticles object
         BaseArticles.__init__(self, term)
+        self.processed = False
 
 
     def __getitem__(self, ind):
@@ -194,6 +200,23 @@ class Articles(BaseArticles):
 
         self.save(directory)
         self.clear()
+
+
+    def process(self, process_func=None):
+        """Process the data stored in the current object.
+
+        Parameters
+        ----------
+        process_func : callable, optional
+            A function to process the articles. Must take as input an `Articles` object.
+            If not provided, applies the default `process_articles` function.
+        """
+
+        if not process_func:
+            process_func = process_articles
+
+        process_func(self)
+        self.processed = True
 
 
     def _check_results(self):

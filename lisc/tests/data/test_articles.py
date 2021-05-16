@@ -83,3 +83,8 @@ def test_save_and_clear(tdb, tarts_full):
 
     tarts_full.save_and_clear(tdb)
     assert tarts_full.n_articles == 0
+
+def test_process(tarts_full):
+
+    tarts_full.process()
+    assert tarts_full.processed

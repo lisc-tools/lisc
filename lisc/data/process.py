@@ -1,22 +1,29 @@
 """Utilities for processing article data."""
 
+from copy import deepcopy
+
 from lisc.data.utils import convert_string, lower_list
 
 ###################################################################################################
 ###################################################################################################
 
-def process_articles(articles):
+def process_articles(articles, process_copy=False):
     """Process collected data in an Articles object.
 
     Parameters
     ----------
     articles : Articles
         Articles data.
+    process_copy : bool, optional, default: False
+        Whether to process a copy of the input.
 
     Notes
     -----
     Processing includes tokenizing the text data and preprocessing the journal and author names.
     """
+
+    if process_copy:
+        articles = deepcopy(articles)
 
     # Process text data: tokenizing, dropping stopwords, and making lowercase
     articles.words = [convert_string(words) for words in articles.words]

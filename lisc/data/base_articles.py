@@ -47,6 +47,13 @@ class BaseArticles():
 
 
     @property
+    def has_data(self):
+        """Whether the current object contains data."""
+
+        return bool(self.n_articles)
+
+
+    @property
     def n_articles(self):
         """The number of articles included in the object."""
 

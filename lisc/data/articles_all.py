@@ -22,6 +22,8 @@ class ArticlesAll(BaseArticles):
         Label for the term.
     term : Term
         Definition of the search term, with inclusion and exclusion words.
+    has_data : bool
+        Whether the object contains data.
     n_articles : int
         Number of articles included in object.
     ids : list of int
@@ -69,7 +71,8 @@ class ArticlesAll(BaseArticles):
         BaseArticles.__init__(self, articles.term)
 
         # Process the article data
-        articles = process_articles(articles)
+        if not articles.processed:
+            articles = process_articles(articles)
 
         # Set exclusions, copying input list, if given, and adding current search terms
         exclusions = list(set((deepcopy(exclusions) if exclusions else []) + \

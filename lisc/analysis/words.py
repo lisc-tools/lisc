@@ -1,5 +1,7 @@
 """Analysis functions for words data."""
 
+from lisc import Words
+
 ###################################################################################################
 ###################################################################################################
 
@@ -53,18 +55,21 @@ def get_all_counts(data, attribute, combine=False):
 
     Parameters
     ----------
-    data : list of ArticlesAll
-        A list of data objects to extract data from.
+    data : words or list of ArticlesAll
+        Article data to extract counts for an attribute of interest.
     attribute : str
-        The attribute to extract from the data objects.
+        The attribute to extract from the data.
     combine : bool, optional, default: False
-    	Whether to combine the counts.
+    	Whether to combine the counts across all search terms.
 
     Returns
     -------
     counts : list
         Extracted counts from across all the data objects.
     """
+
+    if isinstance(data, Words):
+        data = data.combined_results
 
     counts = [getattr(datum, attribute) for datum in data]
 

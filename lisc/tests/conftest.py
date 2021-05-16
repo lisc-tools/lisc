@@ -4,6 +4,7 @@ import pytest
 
 import os
 import shutil
+from copy import deepcopy
 import pkg_resources as pkg
 
 from lisc.objects import Counts, Words
@@ -59,12 +60,12 @@ def tcounts():
 def twords():
     return Words()
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def twords_full():
 
     words = Words()
     arts = load_arts(add_data=True, n_data=2)
-    words.results = [arts, arts]
+    words.results = [arts, deepcopy(arts)]
 
     return words
 

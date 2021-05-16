@@ -34,16 +34,23 @@ def test_get_all_values(twords_full, tarts_full, tarts_none):
     vals = get_all_values(lst, 'dois', unique=True)
     assert len(vals) == len(set(tarts_full.dois))
 
-def test_get_all_counts(tarts_all):
+def test_get_all_counts(twords_full, tarts_all):
 
+    attr = 'words'
+
+    ## Test ArticlesAll input
     lst = [tarts_all, tarts_all]
 
     # Test for non-combined outputs
-    counts = get_all_counts(lst, 'words')
+    counts = get_all_counts(lst, attr)
     assert isinstance(counts, list)
     assert len(counts) == len(lst)
 
     # Test for combined output
-    counts = get_all_counts(lst, 'words', combine=True)
+    counts = get_all_counts(lst, attr, combine=True)
     assert isinstance(counts, Counter)
     assert len(counts) == len(tarts_all.words)
+
+    ## Test words input
+    counts = get_all_counts(twords_full, attr)
+    assert isinstance(counts, list)
