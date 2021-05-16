@@ -61,7 +61,7 @@ def load_base(set_terms=False, set_clusions=False, set_labels=False, n_terms=2):
 
     return base
 
-def load_arts(add_data=False, n_data=1):
+def load_arts(add_data=False, n_data=1, add_none=False):
     """Helper function to load Articles object for testing."""
 
     arts = Articles(Term('label', ['search'], ['inclusion'], ['exclusion']))
@@ -69,14 +69,21 @@ def load_arts(add_data=False, n_data=1):
     if add_data:
         for ind in range(n_data):
 
-            arts.add_data('ids', 1)
+            arts.add_data('ids', ind)
             arts.add_data('titles', 'title')
             arts.add_data('journals', ['science', 'sc'])
-            arts.add_data('authors', [('A', 'B', 'C', 'D')])
-            arts.add_data('words', 'Lots of words data.')
+            arts.add_data('authors', [['ln1', 'fn1', 'in1', 'af1'], ['ln2', 'fn2', 'in2', 'af2']])
+            arts.add_data('words', 'Lots of words data. Just a continuous text.')
             arts.add_data('keywords', ['lots', 'of', 'keywords'])
             arts.add_data('years', 2112)
             arts.add_data('dois', 'doi_str')
+
+    if add_none:
+        arts.dois[-1] = None
+        arts.years[-1] = None
+        arts.authors[-1] = None
+        arts.words[-1] = str()
+        arts.keywords[-1] = list()
 
     return arts
 

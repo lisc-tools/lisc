@@ -59,6 +59,15 @@ def tcounts():
 def twords():
     return Words()
 
+@pytest.fixture(scope='session')
+def twords_full():
+
+    words = Words()
+    arts = load_arts(add_data=True, n_data=2)
+    words.results = [arts, arts]
+
+    return words
+
 @pytest.fixture(scope='function')
 def treq():
     return Requester()
@@ -78,6 +87,10 @@ def tarts_empty():
 @pytest.fixture(scope='function')
 def tarts_full():
     return load_arts(add_data=True, n_data=2)
+
+@pytest.fixture(scope='function')
+def tarts_none():
+    return load_arts(add_data=True, n_data=2, add_none=True)
 
 @pytest.fixture(scope='function')
 def tarts_all():
