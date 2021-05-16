@@ -1,5 +1,6 @@
 """Utilities for data management and data object for LISC."""
 
+from itertools import chain
 from string import punctuation
 from collections import Counter
 
@@ -15,7 +16,7 @@ def count_elements(lst, exclude=None):
     ----------
     lst : list
         List of items to count.
-    exclude : list
+    exclude : list, optional
         Items to exclude from the frequency distribution.
 
     Returns
@@ -26,11 +27,13 @@ def count_elements(lst, exclude=None):
 
     counts = Counter(lst)
 
+    # Drop the value for None
     try:
         counts.pop(None)
     except KeyError:
         pass
 
+    # Drop any items set as exclusions
     if exclude:
 
         if isinstance(exclude[0], str):
@@ -83,31 +86,21 @@ def drop_none(lst):
             yield el
 
 
-def combine_lists(in_lst):
+def combine_lists(lst):
     """Combine list of lists into one large list.
 
     Parameters
     ----------
-    in_lst : list of list of str
+    lst : list of list
         Embedded lists to combine.
 
     Returns
     -------
-    out : list of str
-        Combined list.
-
-    Notes
-    -----
-    This function also converts all contained strings to lowercase.
+    out : list
+        Combined (flat) list.
     """
 
-    out = []
-
-    for el in in_lst:
-        if el:
-            out.extend(lower_list(el))
-
-    return out
+    return list(chain.from_iterable(drop_none(lst)))
 
 
 def tokenize(text):
@@ -162,7 +155,7 @@ def convert_string(text, stopwords=STOPWORDS):
     This function sets text to lower case, and removes stopwords and punctuation.
     """
 
-    # Converting to use a dictionaries makes checking a little more efficient
+    # Converting to use a dictionary makes checking a little more efficient
     stopwords = Counter(stopwords)
 
     # Tokenize and remove stopwords
