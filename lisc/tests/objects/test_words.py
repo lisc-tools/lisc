@@ -27,7 +27,8 @@ def test_get_item(tterm):
         words['wrong']
 
     # Test properly extracting item
-    assert words[tterm.label]
+    arts = words[tterm.label]
+    assert isinstance(arts, Articles)
 
 def test_add_results(tterm):
 

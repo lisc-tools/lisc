@@ -51,7 +51,7 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Intialize an ``Articles`` object, with a label for the search term it represents:
+        Initialize an ``Articles`` object, with a label for the search term it represents:
 
         >>> articles = Articles('frontal lobe')
         """
@@ -60,13 +60,13 @@ class Articles(BaseArticles):
         BaseArticles.__init__(self, term)
 
 
-    def __iter__(self):
-        """Iterate through collected articles."""
+    def __getitem__(self, ind):
+        """Index into a object, getting a specific article based on it's index."""
 
-        for ind in range(self.n_articles):
+        if len(self) == 0:
+            raise IndexError('No data is available - cannot proceed.')
 
-            yield {
-                'id': self.ids[ind],
+        return {'id': self.ids[ind],
                 'title': self.titles[ind],
                 'journal': self.journals[ind],
                 'authors': self.authors[ind],
@@ -74,6 +74,19 @@ class Articles(BaseArticles):
                 'keywords': self.keywords[ind],
                 'year': self.years[ind],
                 'doi': self.dois[ind]}
+
+
+    def __iter__(self):
+        """Iterate through collected articles."""
+
+        for ind in range(self.n_articles):
+            yield self[ind]
+
+
+    def __len__(self):
+        """Add access to getting length of object as number of articles."""
+
+        return self.n_articles
 
 
     def add_data(self, field, new_data):
@@ -148,15 +161,15 @@ class Articles(BaseArticles):
 
         self.term = Term(*next(data)['term'])
 
-        for dat in data:
-            self.add_data('ids', dat['id'])
-            self.add_data('titles', dat['title'])
-            self.add_data('journals', dat['journal'])
-            self.add_data('authors', dat['authors'])
-            self.add_data('words', dat['words'])
-            self.add_data('keywords', dat['keywords'])
-            self.add_data('years', dat['year'])
-            self.add_data('dois', dat['doi'])
+        for datum in data:
+            self.add_data('ids', datum['id'])
+            self.add_data('titles', datum['title'])
+            self.add_data('journals', datum['journal'])
+            self.add_data('authors', datum['authors'])
+            self.add_data('words', datum['words'])
+            self.add_data('keywords', datum['keywords'])
+            self.add_data('years', datum['year'])
+            self.add_data('dois', datum['doi'])
 
         self._check_results()
 
