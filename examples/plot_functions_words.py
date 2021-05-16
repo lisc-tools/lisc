@@ -31,7 +31,7 @@ terms = [['brain'], ['body']]
 ###################################################################################################
 
 # Collect words data, setting to collect data for at most 5 articles per term
-results, meta_data = collect_words(terms, retmax='5', usehistory=False,
+results, meta_data = collect_words(terms, retmax=5, usehistory=False,
                                    save_and_clear=False, verbose=True)
 
 ###################################################################################################
