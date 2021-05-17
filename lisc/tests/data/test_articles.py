@@ -13,12 +13,24 @@ from lisc.data.articles import *
 
 def test_articles():
 
-    assert Articles(Term('label', ['search'], ['inclusion'], ['exclusion']))
+    arts = Articles(Term('label', ['search'], ['inclusion'], ['exclusion']))
+    assert isinstance(arts, Articles)
+
+def test_get_item(tarts_full):
+
+    for ind in range(tarts_full.n_articles):
+        art = tarts_full[ind]
+        assert art
 
 def test_iter(tarts_full):
 
     for data in tarts_full:
         assert data
+
+def test_len(tarts_empty, tarts_full):
+
+    assert len(tarts_empty) == 0
+    assert len(tarts_full) == len(tarts_full.ids)
 
 def test_add_data(tarts_empty):
 
@@ -71,3 +83,8 @@ def test_save_and_clear(tdb, tarts_full):
 
     tarts_full.save_and_clear(tdb)
     assert tarts_full.n_articles == 0
+
+def test_process(tarts_full):
+
+    tarts_full.process()
+    assert tarts_full.processed

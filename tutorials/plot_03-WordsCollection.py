@@ -54,7 +54,7 @@ words.add_terms(terms)
 ###################################################################################################
 
 # Collect words data
-words.run_collection(retmax='5')
+words.run_collection(retmax=5)
 
 ###################################################################################################
 # LISC Data Objects
@@ -140,7 +140,7 @@ words.add_terms(terms)
 db = SCDB('lisc_db')
 
 # Collect words data
-words.run_collection(usehistory=True, retmax='15', save_and_clear=True, directory=db)
+words.run_collection(usehistory=True, retmax=15, save_and_clear=True, directory=db)
 
 ###################################################################################################
 #

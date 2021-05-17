@@ -27,7 +27,8 @@ def test_get_item(tterm):
         words['wrong']
 
     # Test properly extracting item
-    assert words[tterm.label]
+    arts = words[tterm.label]
+    assert isinstance(arts, Articles)
 
 def test_add_results(tterm):
 
@@ -70,3 +71,15 @@ def drop_data(words, n_articles):
 
     words.drop_data(n_articles)
     assert words.n_terms == len(words.results) == 0
+
+def test_process_articles(twords_full):
+
+    twords_full.process_articles()
+    assert twords_full.results[0].processed
+
+def test_process_combined_results(twords_full):
+
+    twords_full.process_combined_results()
+    assert len(twords_full.results) == len(twords_full.combined_results)
+    assert twords_full.results[0].dois == twords_full.combined_results[0].dois
+    assert twords_full.results[0].authors != twords_full.combined_results[0].authors

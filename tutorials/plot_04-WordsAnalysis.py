@@ -85,6 +85,10 @@ arts_all.print_summary()
 #
 # The `results` attribute contains a list of :class:`~.Articles` objects, one for each term.
 #
+# If you run the :meth:`~.Words.process_combined_results` method, then the
+# `combined_results` attribute will contain the corresponding list of
+# :class:`~.ArticlesAll` objects, also one for each term.
+#
 
 ###################################################################################################
 
@@ -93,13 +97,13 @@ words = load_object('tutorial_words', directory=SCDB('lisc_db'), reload_results=
 
 ###################################################################################################
 
-# Convert collected data into aggregated data objects
-all_articles = [ArticlesAll(words[label]) for label in words.labels]
+# Process collected data into aggregated data objects
+words.process_combined_results()
 
 ###################################################################################################
 
 # Plot a WordCloud of the collected data for the first term
-plot_wordcloud(all_articles[0].words, 25)
+plot_wordcloud(words.combined_results[0].words, 25)
 
 ###################################################################################################
 # Exploring Words Data

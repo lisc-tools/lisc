@@ -3,6 +3,7 @@
 from lisc.collect import collect_words
 from lisc.objects.base import Base
 from lisc.objects.utils import get_max_length
+from lisc.data.articles_all import ArticlesAll
 
 ###################################################################################################
 ###################################################################################################
@@ -12,10 +13,14 @@ class Words(Base):
 
     Attributes
     ----------
-    results : list of Articles
-        Results of 'Words' data for each search term.
     labels : list of str
         Labels for each data object attached to the object.
+    has_data : bool
+        Whether the object contains data.
+    results : list of Articles
+        Results of 'Words' data collection for each search term.
+    combined_results : list of ArticlesAll
+        Results for each search term combined across individual articles.
     meta_data : MetaData
         Meta data information about the data collection.
     """
@@ -26,6 +31,7 @@ class Words(Base):
         Base.__init__(self)
 
         self.results = list()
+        self.combined_results = list()
         self.meta_data = None
 
 
@@ -157,3 +163,31 @@ class Words(Base):
         for ind in list(reversed(sorted(inds))):
             self.drop_term(ind)
             self.results.pop(ind)
+
+
+    def process_articles(self, process_func=None):
+        """Process the articles stored in the object.
+
+        Parameters
+        ----------
+        process_func : callable, optional
+            A function to process article data. Must take as input an `Articles` object.
+            If not provided, applies the default `process_articles` function.
+        """
+
+        for arts in self.results:
+            arts.process(process_func)
+
+
+    def process_combined_results(self):
+        """Process article data to create combined results, across all articles, for each term.
+
+        Notes
+        -----
+        This function will process the article data contained in the object.
+        """
+
+        if not self.has_data:
+            raise ValueError('Object has no data - cannot proceed.')
+
+        self.combined_results = [ArticlesAll(result) for result in self.results]

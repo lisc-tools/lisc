@@ -139,10 +139,15 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
             web_env = page_soup.find('webenv').text
             query_key = page_soup.find('querykey').text
 
-            # Loop through, collecting 100 articles at a time, using history
-            retmax_it = 100
+            # Set default retmax per history iteration
+            retmax_hist = 100
+
+            # Loop through, using history to collect groups of articles at a time
             retstart_it = 0
             while retstart_it < count:
+
+                # Set the retmax for the current iteration
+                retmax_it = min(retmax-retstart_it, retmax_hist)
 
                 # Get article page, collect data
                 url_settings = {'WebEnv' : web_env, 'query_key' : query_key,
@@ -151,7 +156,7 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
                 arts = get_articles(req, art_url, arts)
 
                 # Update position for counting, and break out if more than global retmax
-                retstart_it += retmax_it
+                retstart_it += retmax_hist
                 if retstart_it >= int(retmax):
                     break
 

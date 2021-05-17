@@ -103,13 +103,19 @@ def test_add_terms_term(tbase, tterm):
     assert tbase.inclusions[0] == tterm.inclusions
     assert tbase.exclusions[0] == tterm.exclusions
 
-    terms = [tterm, tterm]
+    # Test with 2 terms. Note second term needs a unique label
+    tterm2 = Term(label='label2', search=['test2', 'synonym2'],
+                  inclusions=['incl2', 'incl_synonym2'],
+                  exclusions=['excl2', 'excl_synonym2'])
+
+    terms = [tterm, tterm2]
     tbase.add_terms(terms)
     assert tbase.n_terms == len(terms)
-    assert tbase.labels[1] == tterm.label
-    assert tbase.terms[1] == tterm.search
-    assert tbase.inclusions[1] == tterm.inclusions
-    assert tbase.exclusions[1] == tterm.exclusions
+    for ind, term in enumerate(terms):
+        assert tbase.labels[ind] == terms[ind].label
+        assert tbase.terms[ind] == terms[ind].search
+        assert tbase.inclusions[ind] == terms[ind].inclusions
+        assert tbase.exclusions[ind] == terms[ind].exclusions
 
 def test_add_terms_file(tdb, tbase):
 
@@ -126,8 +132,11 @@ def test_add_terms_file(tdb, tbase):
 
 def test_add_labels(tbase):
 
-    # Test explicitly added labels, alone
+    # Define test terms & labels
     labels = ['first', 'second']
+    terms = ['word', 'thing']
+
+    # Test explicitly added labels, alone
     tbase.add_labels(labels, check_consistency=False)
     assert tbase.labels == tbase._labels == labels
 
@@ -135,7 +144,6 @@ def test_add_labels(tbase):
     tbase.unload_terms('all', False)
 
     # Test explicitly added labels, when terms are present
-    terms = ['word', 'thing']
     tbase.add_terms(terms)
     tbase.add_labels(labels)
     assert tbase.labels == tbase._labels == labels
@@ -229,3 +237,8 @@ def test_check_labels(tbase, tbase_terms):
 
     tbase_terms._labels = ['label1', 'label2']
     tbase_terms._check_labels()
+
+    # Test error with non-unique labels
+    with raises(InconsistentDataError):
+        tbase_terms._labels = ['label', 'label']
+        tbase_terms._check_labels()

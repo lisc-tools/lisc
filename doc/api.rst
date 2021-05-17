@@ -140,8 +140,8 @@ Analysis Functions
 
 Functions to analyze collected data.
 
-Co-Occurence Data
-~~~~~~~~~~~~~~~~~
+Co-Occurrence Data
+~~~~~~~~~~~~~~~~~~
 
 .. currentmodule:: lisc.analysis.counts
 
@@ -162,6 +162,7 @@ Words Data
 
     get_all_values
     get_all_counts
+    get_attribute_counts
 
 Plotting Functions
 ------------------

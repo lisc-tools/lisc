@@ -4,9 +4,10 @@ import os
 import json
 
 from lisc.data.term import Term
-from lisc.utils.db import check_directory
+from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles
 from lisc.core.errors import InconsistentDataError
+from lisc.utils.db import check_directory
 from lisc.utils.io import parse_json_data, check_ext
 
 ###################################################################################################
@@ -21,10 +22,12 @@ class Articles(BaseArticles):
         Label for the term.
     term : Term
         Definition of the search term, with inclusion and exclusion words.
-    ids : list of int
-        Article ids for all articles.
+    has_data : bool
+        Whether the object contains data.
     n_articles : int
         Number of articles collected.
+    ids : list of int
+        Article ids for all articles.
     titles : list of str
         Titles of all articles.
     journals : list of tuple of (str, str)
@@ -39,6 +42,8 @@ class Articles(BaseArticles):
         Publication year of each article.
     dois : list of str
         DOIs of each article.
+    processed : bool
+        Whether the article data has been processed.
     """
 
     def __init__(self, term):
@@ -51,22 +56,23 @@ class Articles(BaseArticles):
 
         Examples
         --------
-        Intialize an ``Articles`` object, with a label for the search term it represents:
+        Initialize an ``Articles`` object, with a label for the search term it represents:
 
         >>> articles = Articles('frontal lobe')
         """
 
         # Inherit from the BaseArticles object
         BaseArticles.__init__(self, term)
+        self.processed = False
 
 
-    def __iter__(self):
-        """Iterate through collected articles."""
+    def __getitem__(self, ind):
+        """Index into a object, getting a specific article based on it's index."""
 
-        for ind in range(self.n_articles):
+        if len(self) == 0:
+            raise IndexError('No data is available - cannot proceed.')
 
-            yield {
-                'id': self.ids[ind],
+        return {'id': self.ids[ind],
                 'title': self.titles[ind],
                 'journal': self.journals[ind],
                 'authors': self.authors[ind],
@@ -74,6 +80,19 @@ class Articles(BaseArticles):
                 'keywords': self.keywords[ind],
                 'year': self.years[ind],
                 'doi': self.dois[ind]}
+
+
+    def __iter__(self):
+        """Iterate through collected articles."""
+
+        for ind in range(self.n_articles):
+            yield self[ind]
+
+
+    def __len__(self):
+        """Add access to getting length of object as number of articles."""
+
+        return self.n_articles
 
 
     def add_data(self, field, new_data):
@@ -148,15 +167,15 @@ class Articles(BaseArticles):
 
         self.term = Term(*next(data)['term'])
 
-        for dat in data:
-            self.add_data('ids', dat['id'])
-            self.add_data('titles', dat['title'])
-            self.add_data('journals', dat['journal'])
-            self.add_data('authors', dat['authors'])
-            self.add_data('words', dat['words'])
-            self.add_data('keywords', dat['keywords'])
-            self.add_data('years', dat['year'])
-            self.add_data('dois', dat['doi'])
+        for datum in data:
+            self.add_data('ids', datum['id'])
+            self.add_data('titles', datum['title'])
+            self.add_data('journals', datum['journal'])
+            self.add_data('authors', datum['authors'])
+            self.add_data('words', datum['words'])
+            self.add_data('keywords', datum['keywords'])
+            self.add_data('years', datum['year'])
+            self.add_data('dois', datum['doi'])
 
         self._check_results()
 
@@ -181,6 +200,23 @@ class Articles(BaseArticles):
 
         self.save(directory)
         self.clear()
+
+
+    def process(self, process_func=None):
+        """Process the data stored in the current object.
+
+        Parameters
+        ----------
+        process_func : callable, optional
+            A function to process the articles. Must take as input an `Articles` object.
+            If not provided, applies the default `process_articles` function.
+        """
+
+        if not process_func:
+            process_func = process_articles
+
+        process_func(self)
+        self.processed = True
 
 
     def _check_results(self):

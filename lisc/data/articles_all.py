@@ -6,8 +6,9 @@ from copy import deepcopy
 
 from lisc.utils.io import check_ext
 from lisc.utils.db import check_directory
-from lisc.data.utils import combine_lists, convert_string, count_elements, drop_none
+from lisc.data.utils import combine_lists, count_elements, drop_none
 from lisc.data.base_articles import BaseArticles
+from lisc.data.process import process_articles
 
 ###################################################################################################
 ###################################################################################################
@@ -21,6 +22,8 @@ class ArticlesAll(BaseArticles):
         Label for the term.
     term : Term
         Definition of the search term, with inclusion and exclusion words.
+    has_data : bool
+        Whether the object contains data.
     n_articles : int
         Number of articles included in object.
     ids : list of int
@@ -45,12 +48,12 @@ class ArticlesAll(BaseArticles):
         A summary of the data associated with the current object.
     """
 
-    def __init__(self, term_data, exclusions=None):
+    def __init__(self, articles, exclusions=None):
         """Initialize ArticlesAll object.
 
         Parameters
         ----------
-        term_data : Articles
+        articles : Articles
             Data for all articles from a given search term.
         exclusions : list of str, optional
             Words to exclude from the word collections.
@@ -65,26 +68,32 @@ class ArticlesAll(BaseArticles):
         """
 
         # Inherit from the BaseArticles object
-        BaseArticles.__init__(self, term_data.term)
+        BaseArticles.__init__(self, articles.term)
+
+        # Process the article data
+        if not articles.processed:
+            articles = process_articles(articles)
 
         # Set exclusions, copying input list, if given, and adding current search terms
         exclusions = list(set((deepcopy(exclusions) if exclusions else []) + \
-            [term_data.term.label] + term_data.term.search + term_data.term.inclusions))
+            [articles.term.label] + articles.term.search + articles.term.inclusions))
 
         # Copy over tracking of included IDs & DOIs
-        self.ids = term_data.ids
-        self.dois = term_data.dois
+        self.ids = articles.ids
+        self.dois = articles.dois
 
-        # Get frequency distributions of authors, journals, years
-        self.journals = count_elements([journal[0] for journal in term_data.journals])
-        self.years = count_elements(term_data.years)
-        self.authors = _count_authors(term_data.authors)
-        self.first_authors, self.last_authors = _count_end_authors(term_data.authors)
+        # Get frequency distributions of years, journals, authors
+        self.years = count_elements(articles.years)
+        self.journals = count_elements(articles.journals)
+        self.first_authors = count_elements(\
+            auth[0] if auth else None for auth in articles.authors)
+        self.last_authors = count_elements(\
+            auth[-1] if auth and len(auth) > 1 else None for auth in articles.authors)
+        self.authors = count_elements(combine_lists(articles.authors))
 
         # Convert lists of all words to frequency distributions
-        temp_words = [convert_string(words) for words in term_data.words]
-        self.words = count_elements(combine_lists(temp_words), exclusions)
-        self.keywords = count_elements(combine_lists(term_data.keywords), exclusions)
+        self.words = count_elements(combine_lists(articles.words), exclusions)
+        self.keywords = count_elements(combine_lists(articles.keywords), exclusions)
 
         # Initialize summary dictionary
         self.summary = dict()
@@ -187,85 +196,3 @@ class ArticlesAll(BaseArticles):
 
         with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
             json.dump(self.summary, outfile)
-
-
-def _count_authors(authors):
-    """Count all authors.
-
-    Parameters
-    ----------
-    authors : list of list of tuple of (str, str, str, str)
-        Authors, as (last name, first name, initials, affiliation).
-
-    Returns
-    -------
-    author_counts : collections.Counter
-        Number of publications per author.
-    """
-
-    # Reduce author fields to pair of tuples (last name, initials)
-    all_authors = [(author[0], author[2]) for art_authors \
-        in drop_none(authors) for author in art_authors]
-
-    # Standardize author names and count number of publications per author
-    author_counts = count_elements(_fix_author_names(all_authors))
-
-    return author_counts
-
-
-def _count_end_authors(authors):
-    """Count first and last authors only.
-
-    Parameters
-    ----------
-    authors : list of list of tuple of (str, str, str, str)
-        Authors, as (last name, first name, initials, affiliation).
-
-    Returns
-    -------
-    first_counts, last_counts : collections.Counter
-        Number of publications for each first and last author.
-    """
-
-    # Pull out the full name for the first & last author of each article
-    #  Last author is only considered if there is more than 1 author
-    firsts = [auth[0] for auth in drop_none(authors)]
-    f_names = [(author[0], author[2]) for author in firsts]
-
-    lasts = [auth[-1] for auth in drop_none(authors) if len(auth) > 1]
-    l_names = [(author[0], author[2]) for author in lasts]
-
-    f_counts = count_elements(_fix_author_names(f_names))
-    l_counts = count_elements(_fix_author_names(l_names))
-
-    return f_counts, l_counts
-
-
-def _fix_author_names(names):
-    """Fix author names.
-
-    Parameters
-    ----------
-    names : list of tuple of (str, str)
-        Author names, as (last name, initials).
-
-    Returns
-    -------
-    names : list of tuple of (str, str)
-        Author names, as (last name, initials).
-
-    Notes
-    -----
-    Sometimes full author name ends up in the last name field.
-    If first name is None, assume this happened:
-    Split up the text in first name, and grab the first name initial.
-    """
-
-    # Drop names where the contents is all None
-    names = [name for name in names if name != (None, None)]
-
-    # Fix names if full name ended up in last name field
-    names = [(name[0].split(' ')[-1], ''.join([temp[0] for temp in name[0].split(' ')[:-1]]))
-             if name[1] is None else name for name in names]
-
-    return names
