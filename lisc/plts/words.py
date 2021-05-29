@@ -81,6 +81,8 @@ def plot_years(years, year_range=None, ax=None, **plt_kwargs):
 
     # Grab any plot inputs for labels
     fontsize = plt_kwargs.pop('fontsize', 18)
+    xlabel = plt_kwargs.pop('xlabel', 'Year of Publication')
+    ylabel = plt_kwargs.pop('ylabel', 'Number of Articles')
 
     # Add line and points to plot
     plt.plot(x_data, y_data,
@@ -94,5 +96,5 @@ def plot_years(years, year_range=None, ax=None, **plt_kwargs):
     plt.ylim([0, max(y_data) + int(np.ceil(0.03*(max(y_data) - min(y_data))))])
 
     # Add title & labels
-    plt.xlabel('Year of Publication', fontsize=fontsize)
-    plt.ylabel('Number of Articles', fontsize=fontsize)
+    plt.xlabel(xlabel, fontsize=fontsize)
+    plt.ylabel(ylabel, fontsize=fontsize)
