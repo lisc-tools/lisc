@@ -85,16 +85,16 @@ def plot_years(years, year_range=None, ax=None, **plt_kwargs):
     ylabel = plt_kwargs.pop('ylabel', 'Number of Articles')
 
     # Add line and points to plot
-    plt.plot(x_data, y_data,
-             linewidth=check_aliases(plt_kwargs, ['linewidth', 'lw'], 3),
-             marker=plt_kwargs.pop('marker', '.'),
-             markersize=check_aliases(plt_kwargs, ['markersize', 'ms'], 10),
-             markerfacecolor=plt_kwargs.pop('markerfacecolor', 'white'),
-             **plt_kwargs)
+    ax.plot(x_data, y_data,
+            linewidth=check_aliases(plt_kwargs, ['linewidth', 'lw'], 3),
+            marker=plt_kwargs.pop('marker', '.'),
+            markersize=check_aliases(plt_kwargs, ['markersize', 'ms'], 10),
+            markerfacecolor=plt_kwargs.pop('markerfacecolor', 'white'),
+            **plt_kwargs)
 
     # Set plot limits
-    plt.ylim([0, max(y_data) + int(np.ceil(0.03*(max(y_data) - min(y_data))))])
+    ax.set_ylim([0, max(y_data) + int(np.ceil(0.03*(max(y_data) - min(y_data))))])
 
     # Add title & labels
-    plt.xlabel(xlabel, fontsize=fontsize)
-    plt.ylabel(ylabel, fontsize=fontsize)
+    ax.set_xlabel(xlabel, fontsize=fontsize)
+    ax.set_ylabel(ylabel, fontsize=fontsize)
