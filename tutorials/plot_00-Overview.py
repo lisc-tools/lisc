@@ -80,6 +80,8 @@ base = Base()
 # By default, search terms are exact term matches, meaning results need to contain exact
 # matches to the given search terms.
 #
+# Terms can be added to the object with the :meth:`~.Base.add_terms` method.
+#
 
 ###################################################################################################
 
@@ -208,6 +210,22 @@ base.check_terms('exclusions')
 
 # Check the label for the current terms
 base.labels
+
+###################################################################################################
+# Check Full Search Terms
+# ~~~~~~~~~~~~~~~~~~~~~~~
+#
+# If you want to check what the full search term will be, the :meth:`~.Base.make_search_term`
+# can be used to create the combined term.
+#
+# Note that terms can be accessed using either their index or their label.
+#
+
+###################################################################################################
+
+# Print out the full search terms
+print(base.make_search_term(0))
+print(base.make_search_term('cortex'))
 
 ###################################################################################################
 # LISC Objects

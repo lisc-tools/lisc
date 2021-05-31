@@ -1,5 +1,7 @@
 """Utilities for LISC objects."""
 
+from itertools import chain
+
 ###################################################################################################
 ###################################################################################################
 
@@ -49,3 +51,20 @@ def get_max_length(lst, add=0):
     max_len = len(max(lst, key=len))
 
     return max_len + add
+
+
+def flatten(lst):
+    """Flatten embedded lists.
+
+    Parameters
+    ----------
+    lst : list of list
+        List of embedded lists, to flatten.
+
+    Returns
+    -------
+    list
+        Flattened list.
+    """
+
+    return list(chain.from_iterable(lst))

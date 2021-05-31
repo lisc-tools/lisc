@@ -1,7 +1,9 @@
 """Base object for LISC."""
 
 from lisc.data.term import Term
+from lisc.objects.utils import flatten
 from lisc.utils.io import load_txt_file
+from lisc.collect.utils import make_term
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -168,8 +170,8 @@ class Base():
             else:
                 term_type = 'terms'
 
-        if not append:
-            self.unload_terms(term_type)
+        if self.n_terms and not append:
+            self.unload_terms(term_type, reset=False)
 
         if isinstance(terms, str):
             terms = load_txt_file(terms, directory)
@@ -189,6 +191,8 @@ class Base():
                     self._add_term(term)
 
         self._check_labels()
+        self._check_clusions()
+
         if check_consistency:
             self._check_term_consistency()
 
@@ -279,13 +283,15 @@ class Base():
                 getattr(self, attr).pop(ind)
 
 
-    def unload_terms(self, term_type='terms', verbose=True):
+    def unload_terms(self, term_type='terms', reset=True, verbose=True):
         """Completely unload terms from the object.
 
         Attributes
         ----------
         term_type : {'terms', 'inclusions', 'exclusions', 'labels', 'all'}
             Which type of terms to unload.
+        reset : bool, optional, default: True
+            Whether to reset in/exclusions to empty lists.
         verbose : bool, optional
             Whether to be verbose in printing out any changes.
 
@@ -307,10 +313,12 @@ class Base():
             self.unload_labels(verbose=verbose)
 
         else:
-            if getattr(self, term_type):
-                if verbose:
-                    print('Unloading {}.'.format(term_type))
-                setattr(self, term_type, list())
+            if verbose:
+                print('Unloading {}.'.format(term_type))
+            setattr(self, term_type, list())
+
+        if reset:
+            self._check_clusions()
 
 
     def unload_labels(self, verbose=True):
@@ -319,6 +327,20 @@ class Base():
         if verbose:
             print('Unloading labels.')
         self._set_none_labels()
+
+
+    def make_search_term(self, label):
+        """Create the combined search term for a selected term.
+
+        Parameters
+        ----------
+        label : str or int
+            The requested term.
+            If str, is the label of the term.
+            If int, is used as the index of the term.
+        """
+
+        return make_term(self[label])
 
 
     def _set_none_labels(self):
@@ -330,10 +352,10 @@ class Base():
     def _check_term_consistency(self):
         """Check if loaded term definitions are consistent."""
 
-        if self.inclusions and self.n_terms != len(self.inclusions):
+        if self.n_terms != len(self.inclusions):
             raise InconsistentDataError('There is a mismatch in number of inclusions and terms.')
 
-        if self.exclusions and self.n_terms != len(self.exclusions):
+        if self.n_terms != len(self.exclusions):
             raise InconsistentDataError('There is a mismatch in number of exclusions and terms.')
 
         if self.n_terms != len(self._labels):
@@ -348,6 +370,15 @@ class Base():
 
         if not len(self.labels) == len(set(self.labels)):
             raise InconsistentDataError('Not all labels are unique. Labels must be unique.')
+
+
+    def _check_clusions(self):
+        """Check loaded in/exclusion terms, and set as null lists if needed."""
+
+        if not flatten(self.inclusions):
+            self.inclusions = [[]] * self.n_terms
+        if not flatten(self.exclusions):
+            self.exclusions = [[]] * self.n_terms
 
 
     def _add_term(self, term):
