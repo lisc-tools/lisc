@@ -193,6 +193,7 @@ class Requester():
         if self.logging == 'file':
             self.log.write('\nREQUESTER LOG - CLOSED AT:  ' + self.end_time)
             self.log.close()
+            self.log = 'Logging saved to file.'
 
 
     def _set_up_logging(self, logging, directory):
