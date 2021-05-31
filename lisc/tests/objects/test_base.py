@@ -198,6 +198,20 @@ def test_unload_labels(tbase_terms):
     tbase_terms.unload_labels()
     assert tbase_terms._labels == [None, None]
 
+def test_make_search_term(tbase_terms):
+
+    sterm1 = tbase_terms.make_search_term(0)
+    assert isinstance(sterm1, str)
+    for attr in ['search', 'inclusions', 'exclusions']:
+        for el in getattr(tbase_terms.get_term(0), attr):
+            assert el in sterm1
+
+    sterm2 = tbase_terms.make_search_term(tbase_terms.labels[1])
+    assert isinstance(sterm2, str)
+    for attr in ['search', 'inclusions', 'exclusions']:
+        for el in getattr(tbase_terms.get_term(tbase_terms.labels[1]), attr):
+            assert el in sterm2
+
 def test_set_none_labels(tbase):
 
     tbase.terms = [['first'], ['second']]

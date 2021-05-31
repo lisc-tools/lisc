@@ -3,6 +3,7 @@
 from lisc.data.term import Term
 from lisc.objects.utils import flatten
 from lisc.utils.io import load_txt_file
+from lisc.collect.utils import make_term
 from lisc.core.errors import InconsistentDataError
 
 ###################################################################################################
@@ -326,6 +327,20 @@ class Base():
         if verbose:
             print('Unloading labels.')
         self._set_none_labels()
+
+
+    def make_search_term(self, label):
+        """Create the combined search term for a selected term.
+
+        Parameters
+        ----------
+        label : str or int
+            The requested term.
+            If str, is the label of the term.
+            If int, is used as the index of the term.
+        """
+
+        return make_term(self[label])
 
 
     def _set_none_labels(self):
