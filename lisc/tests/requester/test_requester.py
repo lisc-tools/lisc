@@ -53,6 +53,7 @@ def test_logging(tdb):
         for req in [req_1, req_2, req_3]:
             req.request_url(url)
             req.close()
+            req_dict = req.as_dict()
 
     assert req_2.log == ['http://www.google.com']
     assert os.path.exists(os.path.join(tdb.get_folder_path('logs'), 'requester_log.txt'))
