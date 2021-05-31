@@ -179,8 +179,13 @@ class Words(Base):
             arts.process(process_func)
 
 
-    def process_combined_results(self):
+    def process_combined_results(self, exclusions=None):
         """Process article data to create combined results, across all articles, for each term.
+
+        Parameters
+        ----------
+        exclusions : list of str, optional
+            Words to exclude from the combined word collections.
 
         Notes
         -----
@@ -190,4 +195,4 @@ class Words(Base):
         if not self.has_data:
             raise ValueError('Object has no data - cannot proceed.')
 
-        self.combined_results = [ArticlesAll(result) for result in self.results]
+        self.combined_results = [ArticlesAll(result, exclusions) for result in self.results]
