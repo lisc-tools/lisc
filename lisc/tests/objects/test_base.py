@@ -4,6 +4,7 @@ from py.test import raises
 
 from lisc.data.term import Term
 from lisc.objects.base import Base
+from lisc.objects.utils import flatten
 
 from lisc.core.errors import InconsistentDataError
 
@@ -172,14 +173,14 @@ def test_drop_term(tbase_terms):
 
 def test_unload_terms(tbase_terms):
 
-    tbase_terms.unload_terms('inclusions')
+    tbase_terms.unload_terms('inclusions', reset=False)
     assert not tbase_terms.inclusions
 
-    tbase_terms.unload_terms('exclusions')
-    assert not tbase_terms.exclusions
+    tbase_terms.unload_terms('exclusions', reset=True)
+    assert len(tbase_terms.exclusions) == len(tbase_terms.terms)
+    assert not flatten(tbase_terms.exclusions)
 
     tbase_terms.unload_terms('terms')
-
     assert not tbase_terms.terms
     assert not tbase_terms.n_terms
 
@@ -190,6 +191,7 @@ def test_unload_terms_all(tbase_terms):
     assert not tbase_terms.exclusions
     assert not tbase_terms.terms
     assert not tbase_terms.n_terms
+    tbase_terms._check_term_consistency()
 
 def test_unload_labels(tbase_terms):
 
@@ -242,3 +244,14 @@ def test_check_labels(tbase, tbase_terms):
     with raises(InconsistentDataError):
         tbase_terms._labels = ['label', 'label']
         tbase_terms._check_labels()
+
+def test_check_clusions(tbase):
+
+    terms = [['search0'], ['search1']]
+    tbase.terms = terms
+
+    tbase._check_clusions()
+    assert len(tbase.inclusions) == len(terms)
+    assert flatten(tbase.inclusions) == []
+    assert len(tbase.exclusions) == len(terms)
+    assert flatten(tbase.exclusions) == []
