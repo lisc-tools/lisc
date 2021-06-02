@@ -94,14 +94,26 @@ Data Collection Functions
 
 Functions for collecting data from supported APIs.
 
+EUtils
+~~~~~~
+
 .. currentmodule:: lisc
 
 .. autosummary::
     :toctree: generated/
 
     collect_info
-    collect_counts
     collect_words
+    collect_counts
+
+OpenCitations
+~~~~~~~~~~~~~
+
+.. currentmodule:: lisc
+
+.. autosummary::
+    :toctree: generated/
+
     collect_citations
 
 URLs & Requests Objects
@@ -200,22 +212,26 @@ Utilities and file management.
 File IO
 ~~~~~~~
 
-.. currentmodule:: lisc.utils
+.. currentmodule:: lisc.utils.io
 
 .. autosummary::
     :toctree: generated/
 
     save_object
     load_object
+    load_txt_file
     load_api_key
 
 Database Management
 ~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: lisc.utils
+.. currentmodule:: lisc.utils.db
 
 .. autosummary::
     :toctree: generated/
 
     SCDB
     create_file_structure
+    check_file_structure
+    get_structure_info
+    check_directory
