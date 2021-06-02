@@ -1,5 +1,5 @@
 """
-Tutorial 04: Words Analysis
+Tutorial 02: Words Analysis
 ===========================
 
 Analyzing collected text data and metadata.
@@ -85,15 +85,40 @@ arts_all.print_summary()
 #
 # The `results` attribute contains a list of :class:`~.Articles` objects, one for each term.
 #
-# If you run the :meth:`~.Words.process_combined_results` method, then the
-# `combined_results` attribute will contain the corresponding list of
-# :class:`~.ArticlesAll` objects, also one for each term.
-#
 
 ###################################################################################################
 
 # Reload the words object, specifying to also reload the article data
 words = load_object('tutorial_words', directory=SCDB('lisc_db'), reload_results=True)
+
+###################################################################################################
+#
+# Note that the reloaded data is the raw data from the data collection.
+#
+# The :meth:`~.Words.process_articles` method can be used to do some preprocessing on the
+# collected data.
+#
+# By default, the :func:`~.process_articles` function is used to process articles, which
+# preprocesses journal and author names, and tokenizes the text data. You can also pass in
+# a custom function to apply custom processing to the collected articles data.
+#
+# Note that some processing steps, like converting to the ArticlesAll representation,
+# will automatically apply article preprocessing.
+#
+
+###################################################################################################
+
+# Preprocess article data
+words.process_articles()
+
+###################################################################################################
+#
+# We can also aggregate data across articles, just as we did before, directly in the Words object.
+#
+# If you run the :meth:`~.Words.process_combined_results` method, then the
+# `combined_results` attribute will contain the corresponding list of
+# :class:`~.ArticlesAll` objects, also one for each term.
+#
 
 ###################################################################################################
 
