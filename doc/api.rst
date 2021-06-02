@@ -55,7 +55,7 @@ Base Object
 Data Objects
 ------------
 
-Custom objects for storing extracted data.
+Custom objects and related functions for storing and managing extracted data.
 
 Term Object
 ~~~~~~~~~~~
@@ -68,6 +68,16 @@ Term Object
 
     Term
 
+Metadata Object
+~~~~~~~~~~~~~~~
+
+.. currentmodule:: lisc.data
+
+.. autosummary::
+    :toctree: generated/
+
+    MetaData
+
 Articles Objects
 ~~~~~~~~~~~~~~~~
 
@@ -79,15 +89,15 @@ Articles Objects
     Articles
     ArticlesAll
 
-Metadata Object
-~~~~~~~~~~~~~~~
+Articles Processing
+~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: lisc.data
+.. currentmodule:: lisc.data.process
 
 .. autosummary::
     :toctree: generated/
 
-    MetaData
+    process_articles
 
 Data Collection Functions
 -------------------------
