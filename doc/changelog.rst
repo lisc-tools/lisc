@@ -17,10 +17,10 @@ This series is a non-breaking update on the prior release.
 
 The main updates in this update include:
 - Internal updates to the LISC objects, and processing (including PRs #36, #39, #50, #60,  #67, #68)
-- Internal updates to the collection procedures (PR #49, #53, #61)
-- Updates to available plotting utilities and saving (#41, #54, #66)
-- Extended Pubmed collection to use additional settings, including setting date ranges (PR #44)
-- Add OpenCitations option to collect DOIs of citing papers (PR #27)
+- Internal updates to the collection procedures (including PRs  #49, #53, #61)
+- Updates to available plotting utilities and saving (including PRs #41, #54, #66)
+- Extended Pubmed collection to use additional settings, including setting date ranges (including PR #44)
+- Add OpenCitations option to collect DOIs of citing papers (including PR #27)
 - Miscellaneous bug fixes (including PRs #62, #69)
 - General documentation updates (including PRs #30, #31, #38, #43, #45, #46, #64)
 

@@ -31,7 +31,7 @@ Overview
 --------
 
 LISC acts as a wrapper and connector between available APIs, allowing users to collect data from and
-about scientific articles, and to do analyses on this data, such as performing automated meta-analyses.
+about scientific articles, and perform analyses on this data, such as performing automated meta-analyses.
 
 A curated list of some projects enabled by LISC is available on the `projects <https://github.com/lisc-tools/Projects>`_ page.
 
@@ -41,8 +41,8 @@ Supported APIs & Collection Approaches
 Supported APIs and data collection approaches include:
 
 - The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API, which provides access to literature data,
-  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which counts and co-occurences
-  of terms and/or text and meta-data from identified articles can be collected.
+  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which text and meta-data from
+  identified articles can be collected, as well as analyses such as counts and co-occurrences of terms.
 - The `OpenCitations <https://opencitations.net>`_ API, which provides access to citation data, from which
   citation and reference information can be collected.
 
@@ -52,7 +52,7 @@ Analysis & Other Functionality
 In addition to connecting to external APIs, LISC also provides:
 
 - A database structure, and save and load utilities for storing collected data
-- Custom data objects for managing collected data
+- Custom data objects for managing and preprocessing collected data
 - Functions and utilities to analyze collected data
 - Data visualization functions for plotting collected data and analysis outputs
 
@@ -96,6 +96,13 @@ Optional dependencies, used for plotting, analyses & testing:
 
 Install
 -------
+
+Stable releases of LISC are released on the Github
+`release page <https://github.com/lisc-tools/lisc/releases>`_, and on
+`PYPI <https://pypi.org/project/lisc/>`_.
+
+Descriptions of updates and changes across versions are available in the
+`changelog <https://lisc-tools.github.io/lisc/changelog.html>`_.
 
 **Stable Release Version**
 
