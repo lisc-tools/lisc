@@ -129,7 +129,8 @@ class Base():
         return term
 
 
-    def add_terms(self, terms, term_type=None, directory=None, append=False, check_consistency=True):
+    def add_terms(self, terms, term_type=None, directory=None,
+                  append=False, check_consistency=True):
         """Add terms to the object.
 
         Parameters
@@ -313,7 +314,7 @@ class Base():
             self.unload_labels(verbose=verbose)
 
         else:
-            if verbose:
+            if verbose and flatten(getattr(self, term_type)):
                 print('Unloading {}.'.format(term_type))
             setattr(self, term_type, list())
 
