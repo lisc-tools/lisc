@@ -1,5 +1,5 @@
 """
-Tutorial 03: Words Collection
+Tutorial 01: Words Collection
 =============================
 
 Collecting literature data, including text and metadata for specified search terms.
@@ -9,8 +9,7 @@ Collecting literature data, including text and metadata for specified search ter
 # Words Analysis
 # --------------
 #
-# Another way to analyze the literature is to collect text and meta-data from
-# all articles found for requested search terms.
+# The 'Words' approach collects text and meta-data from articles found for requested search terms.
 #
 
 ###################################################################################################

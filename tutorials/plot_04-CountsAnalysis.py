@@ -1,5 +1,5 @@
 """
-Tutorial 02: Counts Analysis
+Tutorial 04: Counts Analysis
 ============================
 
 Analyzing collected co-occurrence data.
