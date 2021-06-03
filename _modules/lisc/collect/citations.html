@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.collect.citations &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect.citations &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -114,14 +117,15 @@
 
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="k">import</span> <span class="n">Requester</span>
-<span class="kn">from</span> <span class="nn">lisc.data.meta_data</span> <span class="k">import</span> <span class="n">MetaData</span>
-<span class="kn">from</span> <span class="nn">lisc.urls.open_citations</span> <span class="k">import</span> <span class="n">OpenCitations</span>
+<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <span class="n">Requester</span>
+<span class="kn">from</span> <span class="nn">lisc.data.meta_data</span> <span class="kn">import</span> <span class="n">MetaData</span>
+<span class="kn">from</span> <span class="nn">lisc.urls.open_citations</span> <span class="kn">import</span> <span class="n">OpenCitations</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="collect_citations"><a class="viewcode-back" href="../../../generated/lisc.collect_citations.html#lisc.collect_citations">[docs]</a><span class="k">def</span> <span class="nf">collect_citations</span><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;citations&#39;</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="collect_citations"><a class="viewcode-back" href="../../../generated/lisc.collect_citations.html#lisc.collect_citations">[docs]</a><span class="k">def</span> <span class="nf">collect_citations</span><span class="p">(</span><span class="n">dois</span><span class="p">,</span> <span class="n">util</span><span class="o">=</span><span class="s1">&#39;citations&#39;</span><span class="p">,</span> <span class="n">collect_dois</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collect citation data from OpenCitations.</span>
 
 <span class="sd">    Parameters</span>
@@ -133,62 +137,109 @@
 
 <span class="sd">        * &#39;citations&#39;: collects the number of citations citing the specified DOI.</span>
 <span class="sd">        * &#39;references&#39;: collects the number of references cited by the specified DOI.</span>
+<span class="sd">    collect_dois : bool, optional, default: False</span>
+<span class="sd">        Whether to also collect the list of DOIs of cited or referenced papers.</span>
 <span class="sd">    logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}, optional</span>
 <span class="sd">        What kind of logging, if any, to do for requested URLs.</span>
-<span class="sd">    directory : str or SCDB object, optional</span>
+<span class="sd">    directory : str or SCDB, optional</span>
 <span class="sd">        Folder or database object specifying the save location.</span>
 <span class="sd">    verbose : bool, optional, default: False</span>
 <span class="sd">        Whether to print out updates.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    citations : dict</span>
-<span class="sd">        The number of citations for each DOI.</span>
-<span class="sd">    meta_data : MetaData object</span>
+<span class="sd">    n_citations : dict</span>
+<span class="sd">        The number of citations or references for each article.</span>
+<span class="sd">    cite_dois : dict</span>
+<span class="sd">        The DOIs of the citing or references articles.</span>
+<span class="sd">        Only returned if `collect_dois` is True.</span>
+<span class="sd">    meta_data : MetaData</span>
 <span class="sd">        Meta data about the data collection.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Collect citation data for a specified article:</span>
+
+<span class="sd">    &gt;&gt;&gt; citations, meta_data = collect_citations([&#39;10.1038/nmeth.1635&#39;])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Get OpenCitations URLs object</span>
     <span class="n">urls</span> <span class="o">=</span> <span class="n">OpenCitations</span><span class="p">()</span>
     <span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">util</span><span class="p">)</span>
 
+    <span class="c1"># Initialize meta data object</span>
     <span class="n">meta_data</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-    <span class="n">req</span> <span class="o">=</span> <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
+
+    <span class="c1"># Check for a Requester object to be passed in as logging, otherwise initialize</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">logging</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">Requester</span><span class="p">)</span> <span class="k">else</span> \
+        <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Collecting citation data.&#39;</span><span class="p">)</span>
 
-    <span class="n">citations</span> <span class="o">=</span> <span class="p">{</span><span class="n">doi</span> <span class="p">:</span> <span class="n">get_citation_data</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="n">util</span><span class="p">,</span> <span class="p">[</span><span class="n">doi</span><span class="p">]))</span> <span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">dois</span><span class="p">}</span>
+    <span class="c1"># Initialize dictionaries to store collected data</span>
+    <span class="n">n_citations</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">cite_dois</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">dois</span><span class="p">:</span>
+
+        <span class="c1"># Make the URL request for each DOI, and collect results</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">get_citation_data</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="n">util</span><span class="p">,</span> <span class="p">[</span><span class="n">doi</span><span class="p">]),</span> <span class="n">collect_dois</span><span class="p">)</span>
+
+        <span class="c1"># Unpack outputs depending on wether DOIs were collected</span>
+        <span class="n">n_citations</span><span class="p">[</span><span class="n">doi</span><span class="p">],</span> <span class="n">cite_dois</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span> <span class="k">if</span> <span class="n">collect_dois</span> <span class="k">else</span> <span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
     <span class="n">meta_data</span><span class="o">.</span><span class="n">add_requester</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">citations</span><span class="p">,</span> <span class="n">meta_data</span></div>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">collect_dois</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n_citations</span><span class="p">,</span> <span class="n">meta_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n_citations</span><span class="p">,</span> <span class="n">cite_dois</span><span class="p">,</span> <span class="n">meta_data</span></div>
 
 
-<span class="k">def</span> <span class="nf">get_citation_data</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">citation_url</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Extract the number of citations from an OpenCitations URL request.</span>
+<span class="k">def</span> <span class="nf">get_citation_data</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">citation_url</span><span class="p">,</span> <span class="n">collect_dois</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract citations using an OpenCitations URL request.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    req : Requester object</span>
+<span class="sd">    req : Requester</span>
 <span class="sd">        Requester to launch requests from.</span>
 <span class="sd">    citation_url : str</span>
 <span class="sd">        URL to collect citation data from.</span>
+<span class="sd">    collect_dois : bool, optional, default: False</span>
+<span class="sd">        Whether to also collect the list of DOIs of cited or referenced papers.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    n_citations : int</span>
-<span class="sd">        The number of citations the article has received.</span>
+<span class="sd">        The number of citations or references of the article.</span>
+<span class="sd">    citing_dois : list of str</span>
+<span class="sd">        The DOIs of the citing or references articles.</span>
+<span class="sd">        Only returned if `collect_dois` is True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">page</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">citation_url</span><span class="p">)</span>
-    <span class="n">n_citations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
+    <span class="n">jpage</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="n">n_citations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">jpage</span><span class="p">)</span>
 
-    <span class="c1"># If the return is empty, encode as None instead of zero</span>
-    <span class="c1">#   This is because we don&#39;t want to treat missing data as 0 citations</span>
+    <span class="k">if</span> <span class="n">collect_dois</span><span class="p">:</span>
+
+        <span class="c1"># Set which tag to extract, based on whether URL is for &#39;citations&#39; or &#39;references&#39;</span>
+        <span class="n">cite_tag</span> <span class="o">=</span> <span class="s1">&#39;citing&#39;</span> <span class="k">if</span> <span class="s1">&#39;citations&#39;</span> <span class="ow">in</span> <span class="n">citation_url</span> <span class="k">else</span> <span class="s1">&#39;cited&#39;</span>
+
+        <span class="c1"># Extract and collect the DOI for each citing or referenced article</span>
+        <span class="n">citing_dois</span> <span class="o">=</span> <span class="p">[</span><span class="n">art_cite</span><span class="p">[</span><span class="n">cite_tag</span><span class="p">]</span> <span class="k">for</span> <span class="n">art_cite</span> <span class="ow">in</span> <span class="n">jpage</span><span class="p">]</span>
+
+    <span class="c1"># If the DOI is not found, the return is empty is empty (length of zero)</span>
+    <span class="c1">#   Therefore, re-encode outputs to None, to not treat missing entries as 0 cites / refs</span>
     <span class="k">if</span> <span class="n">n_citations</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">n_citations</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">citing_dois</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">return</span> <span class="n">n_citations</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">collect_dois</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n_citations</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n_citations</span><span class="p">,</span> <span class="n">citing_dois</span>
 </pre></div>
 
     </div>
@@ -202,8 +253,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

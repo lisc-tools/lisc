@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.utils.io &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.utils.io &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -116,17 +119,17 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">check_directory</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">check_directory</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<span class="k">def</span> <span class="nf">check_ext</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="n">ext</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">check_ext</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">ext</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check the extension for a file name, and add if missing.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    f_name : str</span>
+<span class="sd">    file_name : str</span>
 <span class="sd">        The name of the file.</span>
 <span class="sd">    ext : str</span>
 <span class="sd">        The extension to check and add.</span>
@@ -134,52 +137,127 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    str</span>
-<span class="sd">        File name with the extenion added.</span>
+<span class="sd">        File name with the extension added.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">f_name</span> <span class="o">+</span> <span class="n">ext</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">f_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="k">else</span> <span class="n">f_name</span>
+    <span class="k">return</span> <span class="n">file_name</span> <span class="o">+</span> <span class="n">ext</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="k">else</span> <span class="n">file_name</span>
 
 
-<span class="k">def</span> <span class="nf">load_terms_file</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Loads terms from a text file.</span>
+<div class="viewcode-block" id="load_txt_file"><a class="viewcode-back" href="../../../generated/lisc.utils.io.load_txt_file.html#lisc.utils.io.load_txt_file">[docs]</a><span class="k">def</span> <span class="nf">load_txt_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">split_elements</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">split_character</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads contents from a text file.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    f_name : str</span>
+<span class="sd">    file_name : str</span>
 <span class="sd">        Name of the file to load.</span>
-<span class="sd">    directory : str or SCDB object, optional</span>
-<span class="sd">        Folder or database object specifying the save location.</span>
+<span class="sd">    directory : str or SCDB, optional</span>
+<span class="sd">        Folder or database object specifying the location of the file to load.</span>
+<span class="sd">    split_elements : bool, optional, default: True</span>
+<span class="sd">        If True, splits elements within a single line.</span>
+<span class="sd">    split_character : str, optional, default: &#39;,&#39;</span>
+<span class="sd">        The character to use to split elements within a line.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    terms : list of list of str</span>
-<span class="sd">        Data from the file.</span>
+<span class="sd">    contents : list</span>
+<span class="sd">        Data loaded from the file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">terms_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;terms&#39;</span><span class="p">),</span>
-                                   <span class="n">check_ext</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="s1">&#39;.txt&#39;</span><span class="p">)),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">terms</span> <span class="o">=</span> <span class="n">terms_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-    <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="n">term</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">]</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;terms&#39;</span><span class="p">),</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;.txt&#39;</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="n">terms</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">terms_file</span><span class="p">:</span>
+
+        <span class="n">text</span> <span class="o">=</span> <span class="n">terms_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1"># If the last line is empty, it gets cut off due to no trailing content</span>
+        <span class="c1">#   To make sure there is the correct number of lines, add a newline character</span>
+        <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">split_elements</span><span class="p">:</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">split_character</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">]</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[[</span><span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">]</span> <span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">contents</span></div>
 
 
-<div class="viewcode-block" id="save_object"><a class="viewcode-back" href="../../../generated/lisc.utils.save_object.html#lisc.utils.save_object">[docs]</a><span class="k">def</span> <span class="nf">save_object</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">f_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_api_key"><a class="viewcode-back" href="../../../generated/lisc.utils.io.load_api_key.html#lisc.utils.io.load_api_key">[docs]</a><span class="k">def</span> <span class="nf">load_api_key</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;&quot;Load an API key from a file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        Name of the file to load.</span>
+<span class="sd">    directory : str or SCDB, optional</span>
+<span class="sd">        Folder or database object specifying the location of the file to load.</span>
+<span class="sd">    required : bool, optional, default: False</span>
+<span class="sd">        Whether loading the API key file is required for continued execution.</span>
+<span class="sd">        If True, this function will raise an error if the requested file is not found.</span>
+<span class="sd">        If False, this function will return None if the file is not found.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    api_key : str or None</span>
+<span class="sd">        The loaded API key.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If the requested file. Only raised if `required` is True.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function assumes the API key is in a single-line txt file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">),</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;.txt&#39;</span><span class="p">))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="n">f_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">required</span><span class="p">:</span>
+            <span class="k">raise</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">api_key</span></div>
+
+
+<div class="viewcode-block" id="save_object"><a class="viewcode-back" href="../../../generated/lisc.utils.io.save_object.html#lisc.utils.io.save_object">[docs]</a><span class="k">def</span> <span class="nf">save_object</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Save a custom object as a pickle file.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    obj : Counts or Words object</span>
+<span class="sd">    obj : Counts or Words</span>
 <span class="sd">        Object to save out.</span>
-<span class="sd">    f_name : str</span>
+<span class="sd">    file_name : str</span>
 <span class="sd">        Name for the file to be saved out.</span>
-<span class="sd">    directory : str or SCDB object, optional</span>
+<span class="sd">    directory : str or SCDB, optional</span>
 <span class="sd">        Folder or database object specifying the save location.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Save a :class:`~.Counts` object, using a temporary directory:</span>
+
+<span class="sd">    &gt;&gt;&gt; from tempfile import TemporaryDirectory</span>
+<span class="sd">    &gt;&gt;&gt; from lisc.objects import Counts</span>
+<span class="sd">    &gt;&gt;&gt; with TemporaryDirectory() as dirpath:</span>
+<span class="sd">    ...     save_object(Counts(), &#39;counts.p&#39;, directory=dirpath)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Import objects locally, to avoid circular imports</span>
+    <span class="kn">from</span> <span class="nn">lisc.objects</span> <span class="kn">import</span> <span class="n">Counts</span><span class="p">,</span> <span class="n">Words</span>
+
     <span class="c1"># Set the save path based on object type</span>
-    <span class="c1"># Note: imports done here to stop circular imports</span>
-    <span class="kn">from</span> <span class="nn">lisc.objects</span> <span class="k">import</span> <span class="n">Counts</span><span class="p">,</span> <span class="n">Words</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Counts</span><span class="p">):</span>
         <span class="n">obj_type</span> <span class="o">=</span> <span class="s1">&#39;counts&#39;</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Words</span><span class="p">):</span>
@@ -187,52 +265,78 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Object type unclear - can not save.&#39;</span><span class="p">)</span>
 
-    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">obj_type</span><span class="p">),</span>
-                                       <span class="n">check_ext</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">)),</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span></div>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">obj_type</span><span class="p">),</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_path</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="load_object"><a class="viewcode-back" href="../../../generated/lisc.utils.load_object.html#lisc.utils.load_object">[docs]</a><span class="k">def</span> <span class="nf">load_object</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_object"><a class="viewcode-back" href="../../../generated/lisc.utils.io.load_object.html#lisc.utils.io.load_object">[docs]</a><span class="k">def</span> <span class="nf">load_object</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reload_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load a custom object, from a pickle file.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    f_name : str</span>
+<span class="sd">    file_name : str</span>
 <span class="sd">        File name of the object to be loaded.</span>
-<span class="sd">    directory : str or SCDB object, optional</span>
-<span class="sd">        Folder or database object specifying the save location.</span>
+<span class="sd">    directory : str or SCDB, optional</span>
+<span class="sd">        Folder or database object specifying the location to load from.</span>
+<span class="sd">    reload_results : bool, optional, default: False</span>
+<span class="sd">        Whether to reload individual results into the loaded object.</span>
+<span class="sd">        Only applies if loading a Words object.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    object</span>
+<span class="sd">    custom_object</span>
 <span class="sd">        Custom object loaded from pickle file.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Load a :class:`~.Counts` object, using a temporary directory:</span>
+
+<span class="sd">    &gt;&gt;&gt; from tempfile import TemporaryDirectory</span>
+<span class="sd">    &gt;&gt;&gt; from lisc.objects import Counts</span>
+<span class="sd">    &gt;&gt;&gt; with TemporaryDirectory() as dirpath:</span>
+<span class="sd">    ...     save_object(Counts(), &#39;counts.p&#39;, directory=dirpath)</span>
+<span class="sd">    ...     counts = load_object(&#39;counts.p&#39;, directory=dirpath)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">load_path</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">):</span>
 
-        <span class="k">if</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">directory</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">):</span>
-            <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">),</span> <span class="n">f_name</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">directory</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">):</span>
-            <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">),</span> <span class="n">f_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">directory</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">):</span>
+            <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">),</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">directory</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">):</span>
+            <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">),</span> <span class="n">file_name</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="n">directory</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-        <span class="k">if</span> <span class="n">f_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
-            <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">f_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+            <span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">directory</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">directory</span>
+            <span class="n">load_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">load_path</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Can not find requested file name.&#39;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">check_ext</span><span class="p">(</span><span class="n">load_path</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span></div>
+    <span class="n">load_path</span> <span class="o">=</span> <span class="n">check_ext</span><span class="p">(</span><span class="n">load_path</span><span class="p">,</span> <span class="s1">&#39;.p&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">load_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">load_obj</span><span class="p">:</span>
+        <span class="n">custom_object</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">load_obj</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">reload_results</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">custom_object</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">custom_object</span></div>
 
 
-<span class="k">def</span> <span class="nf">parse_json_data</span><span class="p">(</span><span class="n">f_name</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">parse_json_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse data from a json file.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    f_name : str</span>
+<span class="sd">    file_name : str</span>
 <span class="sd">        File name of the json file.</span>
 
 <span class="sd">    Yields</span>
@@ -241,8 +345,9 @@
 <span class="sd">        The loaded line of json data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_name</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_obj</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -256,8 +361,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

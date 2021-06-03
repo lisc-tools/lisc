@@ -2,21 +2,23 @@
 Database and Terms Lists
 ========================
 
-Exploring the LISC database and using files of terms.
+Exploring the LISC database, and using search terms loaded from files.
 """
 
 ###################################################################################################
 
+# Import a function to create a LISC database file structure
 from lisc.utils.db import create_file_structure
 
 ###################################################################################################
 # SCDB Database Structure
 # ~~~~~~~~~~~~~~~~~~~~~~~
 #
-# LISC comes with, and uses, a custom directory structure.
+# LISC provides and uses a custom directory structure.
 #
-# If you want to store terms in files, place those files into a LISC database structure,
-# and then relevant functions and objects will be able to load and use these terms.
+# If you want to store terms definitions and data, these files can be put into a LISC
+# database structure, and then relevant functions and objects will be able to load and
+# use these files.
 #
 # LISC also uses a database object, :class:`~.SCDB`, to manage these databases.
 #
@@ -27,8 +29,8 @@ from lisc.utils.db import create_file_structure
 
 ###################################################################################################
 
-# Create a database file structure.
-#   When called without a path input, the folder structure is created in the current directory.
+# Create a database file structure
+#   When called without a path input, the folder structure is created in the current directory
 db = create_file_structure()
 
 ###################################################################################################
@@ -39,8 +41,8 @@ db = create_file_structure()
 #
 # The typical use case would be to curate and write text files manually.
 #
-# For demonstration here, we will first programmatically create an example text
-# file of terms to use.
+# For demonstration here, we will first programmatically create an example
+# txt file of terms to use.
 #
 
 ###################################################################################################
@@ -74,8 +76,8 @@ db.get_file_path('terms', 'terms.txt')
 # Term File Structure
 # ~~~~~~~~~~~~~~~~~~~
 #
-# For term files, each line stores a new term, with synonyms for the same file stored
-# as comma-separated values on the same line.
+# For term files, each line should reflect a new term, with synonyms for the same term
+# stored as comma-separated values on the same line.
 #
 
 ###################################################################################################
@@ -105,7 +107,7 @@ from lisc.objects.base import Base
 base = Base()
 
 # Add terms to object, loading from file
-base.add_terms_file('terms.txt', directory=db)
+base.add_terms('terms.txt', directory=db)
 
 ###################################################################################################
 
@@ -120,7 +122,7 @@ base.check_terms()
 # using one line per term, with comma-separated values for synonyms.
 #
 # Files that reflect the same set of terms, with a file for search terms, and optionally
-# associated files for inclusion and exclusion terms should line up on the number of lines.
-# That is, the n-th line of each file should refer to the same term. If a given search
+# associated files for inclusion and exclusion terms should have the same number of lines,
+# and the n-th line of each file should refer to the same term. If a given search
 # term does not have an associated inclusion or exclusion term, leave that line blank.
 #

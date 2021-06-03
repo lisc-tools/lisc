@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.analysis.counts &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.analysis.counts &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -127,7 +130,8 @@
 <span class="sd">    counts : 1d array</span>
 <span class="sd">        Counts for each individual search term.</span>
 <span class="sd">    dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
-<span class="sd">        Which set of terms to operate upon.</span>
+<span class="sd">        Which set of terms to normalize by.</span>
+<span class="sd">        &#39;A&#39; is equivalent to normalizing by rows values, &#39;B&#39; to column values.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -178,9 +182,10 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    This computes a the Jaccard index, as AI_ij = |c_ij N d_ij| / |c_ij U d_ij|</span>
+<span class="sd">    This computes the Jaccard index, as :math:`AI_{ij} = |c_{ij} N d_{ij}| / |c_{ij} U d_{ij}|`.</span>
 
-<span class="sd">    The denominator, |c_ij U d_ij|, is equivalent to |c_ij| + |d_ij| - |c_ij N d_ij|</span>
+<span class="sd">    The denominator, :math:`|c_{ij} U d_{ij}|`, is equivalent to</span>
+<span class="sd">    :math:`|c_{ij}| + |d_{ij}| - |c_{ij} N d_{ij}|`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">n_a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">counts_a</span><span class="p">)</span>
@@ -193,6 +198,55 @@
     <span class="n">index</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="n">denominator</span>
 
     <span class="k">return</span> <span class="n">index</span></div>
+
+
+<div class="viewcode-block" id="compute_similarity"><a class="viewcode-back" href="../../../generated/lisc.analysis.counts.compute_similarity.html#lisc.analysis.counts.compute_similarity">[docs]</a><span class="k">def</span> <span class="nf">compute_similarity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the similarity across the co-occurrence data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : 2d array</span>
+<span class="sd">        Counts of co-occurrence of terms.</span>
+<span class="sd">    dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">        Which set of terms to compute similarity across.</span>
+<span class="sd">        &#39;A&#39; is equivalent to across rows, &#39;B&#39; to across columns.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cosine : 2d array</span>
+<span class="sd">        The cosine similarity of the co-occurrence data.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function computes the cosine similarity.</span>
+
+<span class="sd">    Cosine similarity is normalized, so this function will give the same</span>
+<span class="sd">    result if computed on raw counts, or normalized data.</span>
+
+<span class="sd">    The implementation is adapted from here: https://stackoverflow.com/a/20687984</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># If computing across columns, transpose data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span> <span class="k">else</span> <span class="n">data</span>
+
+    <span class="c1"># Calculate similarity</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="c1"># Calculate inverse squared magnitude &amp; replace infs to zero</span>
+    <span class="n">inv_square_mag</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+    <span class="n">inv_square_mag</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">inv_square_mag</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Calculate inverse of the magnitude</span>
+    <span class="n">inv_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">inv_square_mag</span><span class="p">)</span>
+
+    <span class="c1"># Calculate cosine similarity as element-wise multiplication by inverse magnitude</span>
+    <span class="n">cosine</span> <span class="o">=</span> <span class="n">similarity</span> <span class="o">*</span> <span class="n">inv_mag</span>
+    <span class="n">cosine</span> <span class="o">=</span> <span class="n">cosine</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">inv_mag</span>
+
+    <span class="c1"># If data was transposed for computation, transpose back</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span> <span class="k">else</span> <span class="n">data</span>
+
+    <span class="k">return</span> <span class="n">cosine</span></div>
 </pre></div>
 
     </div>
@@ -206,8 +260,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

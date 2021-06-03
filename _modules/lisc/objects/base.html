@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.objects.base &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.objects.base &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -112,14 +115,17 @@
   <h1>Source code for lisc.objects.base</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Base object for LISC.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">load_terms_file</span>
-<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="k">import</span> <span class="n">InconsistentDataError</span>
+<span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="kn">import</span> <span class="n">Term</span>
+<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="kn">import</span> <span class="n">flatten</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_txt_file</span>
+<span class="kn">from</span> <span class="nn">lisc.collect.utils</span> <span class="kn">import</span> <span class="n">make_term</span>
+<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="Base"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base">[docs]</a><span class="k">class</span> <span class="nc">Base</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;A class for the base object for LISC collections &amp; analyses.</span>
+    <span class="sd">&quot;&quot;&quot;A class for the base object for LISC collections and analyses.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -131,64 +137,210 @@
 <span class="sd">        Inclusion words for each term.</span>
 <span class="sd">    exclusions : list of list str</span>
 <span class="sd">        Exclusion words for each term.</span>
-<span class="sd">    has_data : bool</span>
-<span class="sd">        Whether there is any terms and/or data loaded.</span>
+<span class="sd">    has_terms : bool</span>
+<span class="sd">        Whether the object has terms loaded.</span>
 <span class="sd">    n_terms : int</span>
 <span class="sd">        Number of terms.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Base.__init__"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize Base() object.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Base.__init__"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize Base object.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Index into Base object, accessing Term.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        key : str or int</span>
+<span class="sd">            Label or index of the element to extract.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_term</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">key</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Allow for iterating across the object by stepping through terms.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_term</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">has_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indicator for if the object has terms.&quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">)</span>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;How many terms are included in the object.&quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">)</span>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">]</span>
+        <span class="sd">&quot;&quot;&quot;The labels for each term.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_terms</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">label</span> <span class="k">if</span> <span class="n">label</span> <span class="k">else</span> <span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span>
 
 
-<div class="viewcode-block" id="Base.add_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add the given list of strings as terms to use.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        terms : list of str OR list of list of str</span>
-<span class="sd">            List of terms to be used.</span>
-<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
-<span class="sd">            Which type of terms to use.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">unload_terms</span><span class="p">(</span><span class="n">term_type</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
-            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">term</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_term_consistency</span><span class="p">()</span></div>
-
-
-<div class="viewcode-block" id="Base.add_terms_file"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.add_terms_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f_name</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Load terms from a text file.</span>
+<div class="viewcode-block" id="Base.get_index"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.get_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the index for a specified search term.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        f_name : str</span>
-<span class="sd">            File name to load terms from.</span>
-<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
-<span class="sd">            Which type of terms to use.</span>
-<span class="sd">        directory : SCDB or str or None</span>
-<span class="sd">            Folder or database object specifying the file location.</span>
+<span class="sd">        label : str</span>
+<span class="sd">            The label of the search term.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ind : int</span>
+<span class="sd">            The index of the requested search term.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        IndexError</span>
+<span class="sd">            If the requested term label is not found.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">terms</span> <span class="o">=</span> <span class="n">load_terms_file</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)</span></div>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Requested key not available in object.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ind</span></div>
+
+
+<div class="viewcode-block" id="Base.get_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.get_term">[docs]</a>    <span class="k">def</span> <span class="nf">get_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a search term from the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label : str or int</span>
+<span class="sd">            The requested term.</span>
+<span class="sd">            If str, is the label of the term.</span>
+<span class="sd">            If int, is used as the index of the term.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        term : Term</span>
+<span class="sd">            The full search term definition.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">label</span>
+        <span class="n">term</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">term</span></div>
+
+
+<div class="viewcode-block" id="Base.add_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_consistency</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add terms to the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        terms : list or str</span>
+<span class="sd">            Terms to add to the object.</span>
+<span class="sd">            If list, assumed to be terms, which can be a list of str or a list of list of str.</span>
+<span class="sd">            If str, assumed to be a file name to load from.</span>
+<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
+<span class="sd">            Which type of terms to are being added.</span>
+<span class="sd">        directory : SCDB or str, optional</span>
+<span class="sd">            Folder or database object specifying the file location, if loading from file.</span>
+<span class="sd">        append : boolean, optional, default: False</span>
+<span class="sd">            Whether to append the new term(s) to any existing terms.</span>
+<span class="sd">            If False, any prior terms are cleared prior to adding current term(s).</span>
+<span class="sd">        check_consistency : bool, optional, default: True</span>
+<span class="sd">            Whether to check the object for consistency after adding terms.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Add search terms, from a list:</span>
+
+<span class="sd">        &gt;&gt;&gt; base = Base()</span>
+<span class="sd">        &gt;&gt;&gt; base.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+
+<span class="sd">        Add inclusion terms, from a list:</span>
+
+<span class="sd">        &gt;&gt;&gt; base.add_terms([[], [&#39;brain&#39;], [], []], term_type=&#39;inclusions&#39;)</span>
+
+<span class="sd">        Add exclusion terms, from a list:</span>
+
+<span class="sd">        &gt;&gt;&gt; base.add_terms([[&#39;prefrontal&#39;], [], [], []], term_type=&#39;exclusions&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">term_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Term</span><span class="p">):</span>
+                <span class="n">term_type</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">term_type</span> <span class="o">=</span> <span class="s1">&#39;terms&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">append</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unload_terms</span><span class="p">(</span><span class="n">term_type</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">terms</span> <span class="o">=</span> <span class="n">load_txt_file</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">Term</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_term</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">term</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="n">Term</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_term</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_labels</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_clusions</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">check_consistency</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_term_consistency</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Base.add_labels"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.add_labels">[docs]</a>    <span class="k">def</span> <span class="nf">add_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_consistency</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add the given list of strings as labels for the terms.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        labels : list of str or str</span>
+<span class="sd">            Labels for each term to add to the object.</span>
+<span class="sd">            If list, is assumed to be labels.</span>
+<span class="sd">            If str, is assumed to be a file name to load from.</span>
+<span class="sd">        directory : SCDB or str, optional</span>
+<span class="sd">            Folder or database object specifying the file location, if loading from file.</span>
+<span class="sd">        check_consistency : bool, optional, default: True</span>
+<span class="sd">            Whether to check the object for consistency after adding labels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If there are previously loaded labels, then clear them</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">!=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unload_labels</span><span class="p">()</span>
+
+        <span class="c1"># If the input is a string, load the requested file</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">load_txt_file</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">split_elements</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Add the labels to the object, and check for consistency, if terms are already loaded</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_labels</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">check_consistency</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_term_consistency</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Base.check_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.check_terms">[docs]</a>    <span class="k">def</span> <span class="nf">check_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">):</span>
@@ -198,6 +350,20 @@
 <span class="sd">        ----------</span>
 <span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
 <span class="sd">            Which type of terms to use.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Check added terms:</span>
+
+<span class="sd">        &gt;&gt;&gt; base = Base()</span>
+<span class="sd">        &gt;&gt;&gt; base.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; base.check_terms() # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">        List of terms used:</span>
+<span class="sd">        &lt;BLANKLINE&gt;</span>
+<span class="sd">        frontal lobe    : frontal lobe</span>
+<span class="sd">        temporal lobe   : temporal lobe</span>
+<span class="sd">        parietal lobe   : parietal lobe</span>
+<span class="sd">        occipital lobe  : occipital lobe</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;List of </span><span class="si">{}</span><span class="s1"> used: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term_type</span><span class="p">))</span>
@@ -207,50 +373,146 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;{:</span><span class="si">{width}</span><span class="s1">s}  : &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">term</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Base.unload_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.unload_terms">[docs]</a>    <span class="k">def</span> <span class="nf">unload_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Unload the current set of terms.</span>
-
-<span class="sd">        Attributes</span>
-<span class="sd">        ----------</span>
-<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
-<span class="sd">            Which type of terms to use.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">):</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unloading previous </span><span class="si">{}</span><span class="s1"> words.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term_type</span><span class="p">))</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">,</span> <span class="nb">list</span><span class="p">())</span></div>
-
-
-    <span class="k">def</span> <span class="nf">_check_term_consistency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check if the loaded terms and inclusions/exclusions are consistent size.&quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;Mismatch in number of inclusions and terms!&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;Mismatch in number of exclusions and terms!&#39;</span><span class="p">)</span>
-
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_check_type</span><span class="p">(</span><span class="n">term</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check type of input term, and return as a list.</span>
+<div class="viewcode-block" id="Base.drop_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.drop_term">[docs]</a>    <span class="k">def</span> <span class="nf">drop_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Drop specified term(s) from the object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        term : str OR list of str</span>
-<span class="sd">            New term to add to the object.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        list of str</span>
-<span class="sd">            New term, set as a list.</span>
+<span class="sd">        label : str or int or list</span>
+<span class="sd">            The label of the term to drop.</span>
+<span class="sd">            If str, is the label of the term.</span>
+<span class="sd">            If int, is used as the index of the term.</span>
+<span class="sd">            If list, drops each element of the list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">term</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">term</span></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
+
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">drop_term</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+        <span class="n">ind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">label</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;_labels&#39;</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Base.unload_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.unload_terms">[docs]</a>    <span class="k">def</span> <span class="nf">unload_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Completely unload terms from the object.</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;, &#39;labels&#39;, &#39;all&#39;}</span>
+<span class="sd">            Which type of terms to unload.</span>
+<span class="sd">        reset : bool, optional, default: True</span>
+<span class="sd">            Whether to reset in/exclusions to empty lists.</span>
+<span class="sd">        verbose : bool, optional</span>
+<span class="sd">            Whether to be verbose in printing out any changes.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Unload added terms:</span>
+
+<span class="sd">        &gt;&gt;&gt; base = Base()</span>
+<span class="sd">        &gt;&gt;&gt; base.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; base.unload_terms()</span>
+<span class="sd">        Unloading terms.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unload_terms</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;labels&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unload_labels</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="n">flatten</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unloading </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term_type</span><span class="p">))</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="p">,</span> <span class="nb">list</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">reset</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_clusions</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Base.unload_labels"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.unload_labels">[docs]</a>    <span class="k">def</span> <span class="nf">unload_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Unload labels from the object.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unloading labels.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_none_labels</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Base.make_search_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.make_search_term">[docs]</a>    <span class="k">def</span> <span class="nf">make_search_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create the combined search term for a selected term.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label : str or int</span>
+<span class="sd">            The requested term.</span>
+<span class="sd">            If str, is the label of the term.</span>
+<span class="sd">            If int, is used as the index of the term.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">make_term</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">label</span><span class="p">])</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_set_none_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set labels as None.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span>
+
+
+    <span class="k">def</span> <span class="nf">_check_term_consistency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if loaded term definitions are consistent.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;There is a mismatch in number of inclusions and terms.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;There is a mismatch in number of exclusions and terms.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;There is a mismatch in number of labels and terms.&#39;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_check_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check loaded terms and labels, and set None labels if needed.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_terms</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">==</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_none_labels</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">InconsistentDataError</span><span class="p">(</span><span class="s1">&#39;Not all labels are unique. Labels must be unique.&#39;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_check_clusions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check loaded in/exclusion terms, and set as null lists if needed.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span>
+
+
+    <span class="k">def</span> <span class="nf">_add_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add term information from a Term object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        term : Term</span>
+<span class="sd">            Term information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">search</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">inclusions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">exclusions</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">term</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="n">term</span><span class="o">.</span><span class="n">search</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -264,8 +526,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

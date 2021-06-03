@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.data.Term &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.data.Term &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,46 +116,28 @@
 <h1>lisc.data.Term<a class="headerlink" href="#lisc-data-term" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="lisc.data.Term">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">Term</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label</span></em>, <em class="sig-param"><span class="n">search</span></em>, <em class="sig-param"><span class="n">inclusions</span></em>, <em class="sig-param"><span class="n">exclusions</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.data.Term" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">Term</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label</span></em>, <em class="sig-param"><span class="n">search</span></em>, <em class="sig-param"><span class="n">inclusions</span></em>, <em class="sig-param"><span class="n">exclusions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/term.html#Term"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.Term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search term definition with inclusion &amp; exclusion words.</p>
+<p class="rubric">Examples</p>
+<p>Define a search term, with inclusions and exclusions:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Term</span><span class="p">(</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;frontal&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;EEG&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;MRI&#39;</span><span class="p">])</span>
+<span class="go">Term(label=&#39;brain&#39;, search=[&#39;frontal&#39;, &#39;temporal&#39;], inclusions=[&#39;EEG&#39;], exclusions=[&#39;MRI&#39;])</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="#lisc.data.Term.label" title="lisc.data.Term.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a><span class="classifier">str</span></dt><dd><p>Alias for field number 0</p>
+<dt><strong>label</strong><span class="classifier">str</span></dt><dd><p>Label for the term.</p>
 </dd>
-<dt><a class="reference internal" href="#lisc.data.Term.search" title="lisc.data.Term.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a><span class="classifier">list of str</span></dt><dd><p>Alias for field number 1</p>
+<dt><strong>search</strong><span class="classifier">list of str</span></dt><dd><p>Search terms.</p>
 </dd>
-<dt><a class="reference internal" href="#lisc.data.Term.inclusions" title="lisc.data.Term.inclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inclusions</span></code></a><span class="classifier">list of str</span></dt><dd><p>Alias for field number 2</p>
+<dt><strong>inclusions</strong><span class="classifier">list of str</span></dt><dd><p>Inclusion words for search terms.</p>
 </dd>
-<dt><a class="reference internal" href="#lisc.data.Term.exclusions" title="lisc.data.Term.exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exclusions</span></code></a><span class="classifier">list of str</span></dt><dd><p>Alias for field number 3</p>
-</dd>
-</dl>
+<dt><strong>exclusions</strong><span class="classifier">list of str</span></dt><dd><p>Exclusion words for search terms.</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="lisc.data.Term.exclusions">
-<em class="property">property </em><code class="sig-name descname">exclusions</code><a class="headerlink" href="#lisc.data.Term.exclusions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 3</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="lisc.data.Term.inclusions">
-<em class="property">property </em><code class="sig-name descname">inclusions</code><a class="headerlink" href="#lisc.data.Term.inclusions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 2</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="lisc.data.Term.label">
-<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#lisc.data.Term.label" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 0</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="lisc.data.Term.search">
-<em class="property">property </em><code class="sig-name descname">search</code><a class="headerlink" href="#lisc.data.Term.search" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 1</p>
-</dd></dl>
-
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -169,8 +154,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

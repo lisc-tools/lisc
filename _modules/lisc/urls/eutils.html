@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.urls.eutils &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.urls.eutils &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -115,11 +118,13 @@
 <span class="sd">External Documentation</span>
 <span class="sd">----------------------</span>
 <span class="sd">EUtils Quick Start:</span>
-<span class="sd">    http://www.ncbi.nlm.nih.gov/books/NBK25500/</span>
+<span class="sd">    https://www.ncbi.nlm.nih.gov/books/NBK25500/</span>
 <span class="sd">EUtils in Depth:</span>
 <span class="sd">    https://www.ncbi.nlm.nih.gov/books/NBK25499/</span>
+<span class="sd">A quick description of E-utilies</span>
+<span class="sd">    https://dataguide.nlm.nih.gov/eutilities/utilities.html</span>
 <span class="sd">Usage Policies and Disclaimers:</span>
-<span class="sd">    https://www.ncbi.nlm.nih.gov/home/about/policies.shtml</span>
+<span class="sd">    https://www.ncbi.nlm.nih.gov/home/about/policies/</span>
 <span class="sd">A list of all the valid databases:</span>
 <span class="sd">    https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi</span>
 
@@ -138,25 +143,32 @@
 <span class="sd">--------</span>
 <span class="sd">db : the target database.</span>
 <span class="sd">    Most relevant database are: &#39;pubmed&#39; &amp; &#39;pmc&#39;</span>
-<span class="sd">        - pubmed: is a database of over 25 million references</span>
-<span class="sd">        - pmc: an archive of freely available full text articles</span>
-<span class="sd">    More info here: https://www.nlm.nih.gov/pubs/factsheets/dif_med_pub.html</span>
-<span class="sd">    FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/#q1</span>
+<span class="sd">        - pubmed: is a database of biomedical literature</span>
+<span class="sd">        - pmc: is a database openly available full text articles</span>
+<span class="sd">    More info here: https://www.nlm.nih.gov/bsd/difference.html</span>
+<span class="sd">    FAQ on PMC: https://www.ncbi.nlm.nih.gov/pmc/about/faq/</span>
 <span class="sd">id : list of UIDs (comma separated).</span>
 <span class="sd">field : the search field to search within.</span>
+<span class="sd">    Options include: &#39;TIAB&#39; (title &amp; abstract), &#39;TW&#39; (text words), &#39;ALL&#39;, etc</span>
 <span class="sd">retmax : maximum number of records to return.</span>
 <span class="sd">retmode : format to return.</span>
-<span class="sd">usehistory : whether to store findings on remote server.</span>
+<span class="sd">    Options include: xml, json</span>
+<span class="sd">usehistory : whether to store findings on remote server, as {&#39;y&#39;, &#39;n&#39;}.</span>
+<span class="sd">reldate : returns results from the last &#39;n&#39; days.</span>
+<span class="sd">mindate, maxdate : date range to limit results to. Both are required to specify a range.</span>
+<span class="sd">    Can be set as YYYY or YYYY/MM or YYYY/MM/DD</span>
+<span class="sd">datetype : the type of date to use.</span>
+<span class="sd">    Options include: &#39;pdat&#39; (publication date) and &#39;edat&#39; (entrez date, when record was added)</span>
 <span class="sd">term : search terms to use.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">lisc.urls.urls</span> <span class="k">import</span> <span class="n">URLs</span>
+<span class="kn">from</span> <span class="nn">lisc.urls.urls</span> <span class="kn">import</span> <span class="n">URLs</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
 <span class="k">def</span> <span class="nf">get_wait_time</span><span class="p">(</span><span class="n">authenticated</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the wait time based on whether EUtils API use is autheticated or not.</span>
+    <span class="sd">&quot;&quot;&quot;Get the wait time based on whether EUtils API use is authenticated or not.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -173,7 +185,7 @@
 <span class="sd">    The wait time for requesting is set for the E-Utils API, which allows for:</span>
 <span class="sd">    - 10 requests/second for authenticated users (using an API key)</span>
 <span class="sd">    - 3 requests/second otherwise</span>
-<span class="sd">    More information on rate limits is availabe here: https://www.ncbi.nlm.nih.gov/books/NBK25497/</span>
+<span class="sd">    More information on rate limits is available here: https://www.ncbi.nlm.nih.gov/books/NBK25497/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="k">if</span> <span class="n">authenticated</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
@@ -192,12 +204,12 @@
 <span class="sd">        URLs for each EUtils utility.</span>
 <span class="sd">    settings : dict</span>
 <span class="sd">        Dictionary of all defined settings and their values.</span>
-<span class="sd">    authenticated : boolean</span>
+<span class="sd">    authenticated : bool</span>
 <span class="sd">        Whether using an API key as an authenticated NCBI user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="EUtils.__init__"><a class="viewcode-back" href="../../../generated/lisc.urls.EUtils.html#lisc.urls.EUtils.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">usehistory</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="EUtils.__init__"><a class="viewcode-back" href="../../../generated/lisc.urls.EUtils.html#lisc.urls.EUtils.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">usehistory</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize the NCBI EUtils URLs, with provided settings.</span>
 
 <span class="sd">        Parameters</span>
@@ -210,13 +222,22 @@
 <span class="sd">            The search field to search within.</span>
 <span class="sd">        retmode : {&#39;lxml&#39;, &#39;xml&#39;}, optional</span>
 <span class="sd">            The return format for the results.</span>
-<span class="sd">        usehistory : {&#39;n&#39;, &#39;y&#39;}</span>
+<span class="sd">        usehistory : {&#39;n&#39;, &#39;y&#39;}, optional</span>
 <span class="sd">            Whether to use history caching on the EUtils server.</span>
+<span class="sd">            &#39;n&#39; indicates &#39;no&#39;, do not use history. &#39;y&#39; indicates &#39;yes&#39;, to use history.</span>
 <span class="sd">        api_key : str, optional</span>
 <span class="sd">            An API key for authenticated NCBI user account.</span>
+<span class="sd">        **eutils_kwargs</span>
+<span class="sd">            Additional settings for the EUtils API.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Initialize a ``EUtils`` URL object, setting the max number of returned items:</span>
+
+<span class="sd">        &gt;&gt;&gt; urls = EUtils(db=&#39;pubmed&#39;, retmax=5)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;http://eutils.ncbi.nlm.nih.gov/entrez/eutils&#39;</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;https://eutils.ncbi.nlm.nih.gov/entrez/eutils&#39;</span>
         <span class="n">utils</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;info&#39;</span> <span class="p">:</span> <span class="s1">&#39;einfo.fcgi&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;query&#39;</span> <span class="p">:</span> <span class="s1">&#39;egquery.fcgi&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;search&#39;</span> <span class="p">:</span> <span class="s1">&#39;esearch.fcgi&#39;</span><span class="p">,</span>
@@ -225,9 +246,13 @@
         <span class="n">authenticated</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
         <span class="n">URLs</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">utils</span><span class="p">,</span> <span class="n">authenticated</span><span class="o">=</span><span class="n">authenticated</span><span class="p">)</span>
 
+        <span class="c1"># If there are any date related settings, default to using publication date</span>
+        <span class="k">if</span> <span class="s1">&#39;date&#39;</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">eutils_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">eutils_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;datetype&#39;</span><span class="p">,</span> <span class="s1">&#39;pdat&#39;</span><span class="p">)</span>
+
         <span class="c1"># Collect settings, filling in with all defined settings / arguments</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fill_settings</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="n">usehistory</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">retmax</span><span class="p">),</span>
-                           <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="n">retmode</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_settings</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="n">usehistory</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="n">retmax</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span>
+                           <span class="n">retmode</span><span class="o">=</span><span class="n">retmode</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="EUtils.authenticate"><a class="viewcode-back" href="../../../generated/lisc.urls.EUtils.html#lisc.urls.EUtils.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
@@ -236,7 +261,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        url : str</span>
-<span class="sd">            URL to add authentification to.</span>
+<span class="sd">            URL to add authentication to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -258,8 +283,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

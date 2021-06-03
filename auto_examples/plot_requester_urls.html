@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URLs and Requests &#8212; lisc 0.1.1 documentation</title>
+    <title>URLs and Requests &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -111,31 +114,31 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-requester-urls-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-requester-urls-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="urls-and-requests">
 <span id="sphx-glr-auto-examples-plot-requester-urls-py"></span><h1>URLs and Requests<a class="headerlink" href="#urls-and-requests" title="Permalink to this headline">¶</a></h1>
-<p>Exploring LISC utilities for managing URLs and requests.</p>
+<p>Explore LISC utilities for managing URLs and requests.</p>
 <div class="section" id="urls-requests">
 <h2>URLs &amp; Requests<a class="headerlink" href="#urls-requests" title="Permalink to this headline">¶</a></h2>
-<p>LISC uses custom objects to manage URLs, that can store how to interact with
-APIs, as well as a custom object to manage requests.</p>
-<p>Note that to use the main LISC functionality, you don’t have to deal with these
-objects directly, as they are used ‘under the hood’ by LISC functions for collecting
-data and interacting APIs without requiring user interaction.</p>
-<p>This example can be used if you want to explore custom data collections, and/or to
-use LISC for other APIs.</p>
+<p>LISC uses custom objects to manage URLs and launch requests. These can be used to
+define how to interact with APIs of interest.</p>
+<p>For the main LISC functionality, you don’t have to deal with these objects directly.
+They are used ‘under the hood’ by LISC functions for collecting data and interacting with
+APIs without requiring direct user interaction.</p>
+<p>In this example, we will explore using these objects directly, which may be useful for
+creating custom data collections, and/or to connect LISC with other APIs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the requester object</span>
-<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="k">import</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class"><span class="n">Requester</span></a>
+<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class"><span class="n">Requester</span></a>
 </pre></div>
 </div>
 <div class="section" id="requester-object">
 <h3>Requester Object<a class="headerlink" href="#requester-object" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester"><code class="xref py py-class docutils literal notranslate"><span class="pre">Requester</span></code></a> object uses the
-<a class="reference external" href="https://2.python-requests.org/en/master/">requests</a>
-module to launch URL requests.</p>
-<p>The <a class="reference internal" href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester"><code class="xref py py-class docutils literal notranslate"><span class="pre">Requester</span></code></a> object also adds some functionality such as throttling, to
-ensure requests respect API limits, as well as metadata collection, and URL logging.</p>
+<a class="reference external" href="https://2.python-requests.org/">requests</a>
+module to launch URL requests. It also adds some functionality such as throttling, to
+ensure requests respect API limits, as well as metadata collection and URL logging.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a requester object</span>
 <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">req</span></a> <span class="o">=</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class"><span class="n">Requester</span></a><span class="p">()</span>
 </pre></div>
@@ -163,7 +166,7 @@ Collecting web page      https://duckduckgo.com/         got status code        
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Requester object is active:      True
 Number of requests sent:         3
-Requester opened:                10:50:31 Friday 10 July 2020
+Requester opened:                23:01:16 Wednesday 02 June 2021
 Requester closed:
 </pre></div>
 </div>
@@ -172,19 +175,19 @@ Requester closed:
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;10:50:31 Friday 10 July 2020&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;23:01:16 Wednesday 02 June 2021&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
 </pre></div>
 </div>
 </div>
 <div class="section" id="urls-object">
 <h3>URLs Object<a class="headerlink" href="#urls-object" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference internal" href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLs</span></code></a> object is the base object used in LISC to store URLs to interact with APIs.</p>
-<p>It includes functionality to store and use different utilities available through
-an API, and store and use different settings.</p>
-<p>In the example, we can explore using the the URLs object for a new API, in this case
-the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> API.</p>
+<p>The <a class="reference internal" href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLs</span></code></a> object is used in LISC to store URLs used for interacting with APIs.</p>
+<p>It includes functionality for using different utilities available through an API,
+and for storing and using different settings that may be available.</p>
+<p>In this example, we will explore using the the URLs object to access the
+<a class="reference external" href="https://duckduckgo.com">duckduckgo</a> API.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the URLs object</span>
-<span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="k">import</span> <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">URLs</span></a>
+<span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">URLs</span></a>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the base path for an API to use</span>
@@ -231,12 +234,12 @@ the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> A
 <p>LISC currently supports APIs for
 <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">EUtils</a> and
 <a class="reference external" href="https://opencitations.net">OpenCitations</a>.</p>
-<p>These are implemented as custom objects built on top of the URLs object.</p>
+<p>These are implemented as custom objects which are built on top of the <a class="reference internal" href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLs</span></code></a> object.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import URL objects for supported APIs</span>
-<span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="k">import</span> <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">EUtils</span></a><span class="p">,</span> <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">OpenCitations</span></a>
+<span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">EUtils</span></a><span class="p">,</span> <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">OpenCitations</span></a>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an object for the EUtils API</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize EUtils API object</span>
 <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">eutils</span></a> <span class="o">=</span> <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">EUtils</span></a><span class="p">()</span>
 
 <span class="c1"># Check what utilities are supported for the EUtils API</span>
@@ -244,10 +247,10 @@ the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> A
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;info&#39;: &#39;einfo.fcgi&#39;, &#39;query&#39;: &#39;egquery.fcgi&#39;, &#39;search&#39;: &#39;esearch.fcgi&#39;, &#39;fetch&#39;: &#39;efetch.fcgi&#39;, &#39;base&#39;: &#39;http://eutils.ncbi.nlm.nih.gov/entrez/eutils&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;info&#39;: &#39;einfo.fcgi&#39;, &#39;query&#39;: &#39;egquery.fcgi&#39;, &#39;search&#39;: &#39;esearch.fcgi&#39;, &#39;fetch&#39;: &#39;efetch.fcgi&#39;, &#39;base&#39;: &#39;https://eutils.ncbi.nlm.nih.gov/entrez/eutils&#39;}
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an object for the OpenCitations API</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an OpenCitations API object</span>
 <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">citations</span></a> <span class="o">=</span> <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">OpenCitations</span></a><span class="p">()</span>
 
 <span class="c1"># Check what utilities are supported for the OpenCitations API</span>
@@ -261,10 +264,10 @@ the <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> A
 </div>
 <div class="section" id="adding-new-apis">
 <h3>Adding New APIs<a class="headerlink" href="#adding-new-apis" title="Permalink to this headline">¶</a></h3>
-<p>If you are interested in extending LISC to interact with additional APIs, then
-you can use the <cite>EUtils</cite> and <cite>OpenCitations</cite> objects as examples, and build a
-new API object by inheriting from and using the <cite>URLs</cite> object.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.271 seconds)</p>
+<p>The <cite>EUtils</cite> and <cite>OpenCitations</cite> objects can be used as examples for potentially adding
+new APIs to LISC. New API objects can be created by inheriting from the <cite>URLs</cite> object,
+and added information on the utilities and settings available for that particular API.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.351 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-requester-urls-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4fbc9ac768fbde5467ed80b310f0993d/plot_requester_urls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_requester_urls.py</span></code></a></p>
@@ -290,8 +293,8 @@ new API object by inheriting from and using the <cite>URLs</cite> object.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

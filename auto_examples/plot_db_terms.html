@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database and Terms Lists &#8212; lisc 0.1.1 documentation</title>
+    <title>Database and Terms Lists &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -111,26 +114,29 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-db-terms-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-db-terms-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="database-and-terms-lists">
 <span id="sphx-glr-auto-examples-plot-db-terms-py"></span><h1>Database and Terms Lists<a class="headerlink" href="#database-and-terms-lists" title="Permalink to this headline">¶</a></h1>
-<p>Exploring the LISC database and using files of terms.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <a href="../generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure" title="lisc.utils.create_file_structure" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">create_file_structure</span></a>
+<p>Exploring the LISC database, and using search terms loaded from files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a function to create a LISC database file structure</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">create_file_structure</span>
 </pre></div>
 </div>
 <div class="section" id="scdb-database-structure">
 <h2>SCDB Database Structure<a class="headerlink" href="#scdb-database-structure" title="Permalink to this headline">¶</a></h2>
-<p>LISC comes with, and uses, a custom directory structure.</p>
-<p>If you want to store terms in files, place those files into a LISC database structure,
-and then relevant functions and objects will be able to load and use these terms.</p>
-<p>LISC also uses a database object, <a class="reference internal" href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a>, to manage these databases.</p>
-<p>You can create a database structure using the <a class="reference internal" href="../generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure" title="lisc.utils.create_file_structure"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_file_structure()</span></code></a> function.
-When you call this function, a <a class="reference internal" href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object is returned, that describes
+<p>LISC provides and uses a custom directory structure.</p>
+<p>If you want to store terms definitions and data, these files can be put into a LISC
+database structure, and then relevant functions and objects will be able to load and
+use these files.</p>
+<p>LISC also uses a database object, <a class="reference internal" href="../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a>, to manage these databases.</p>
+<p>You can create a database structure using the <a class="reference internal" href="../generated/lisc.utils.db.create_file_structure.html#lisc.utils.db.create_file_structure" title="lisc.utils.db.create_file_structure"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_file_structure()</span></code></a> function.
+When you call this function, a <a class="reference internal" href="../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object is returned, that describes
 the built database structure.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure.</span>
-<span class="c1">#   When called without a path input, the folder structure is created in the current directory.</span>
-<a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a> <span class="o">=</span> <a href="../generated/lisc.utils.create_file_structure.html#lisc.utils.create_file_structure" title="lisc.utils.create_file_structure" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-function"><span class="n">create_file_structure</span></a><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure</span>
+<span class="c1">#   When called without a path input, the folder structure is created in the current directory</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">create_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -138,20 +144,20 @@ the built database structure.</p>
 <h2>Storing Terms in Text Files<a class="headerlink" href="#storing-terms-in-text-files" title="Permalink to this headline">¶</a></h2>
 <p>Here we will explore using files to store terms to use for LISC collections.</p>
 <p>The typical use case would be to curate and write text files manually.</p>
-<p>For demonstration here, we will first programmatically create an example text
-file of terms to use.</p>
+<p>For demonstration here, we will first programmatically create an example
+txt file of terms to use.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms file</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;cortex&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;corporeal&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Save the terms out to a txt file</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_file_path" title="lisc.utils.SCDB.get_file_path" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-method"><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span></a><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">term_file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">term_file</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
         <span class="n">term_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">term</span><span class="p">))</span>
         <span class="n">term_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the file structure for the created database</span>
-<a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.check_file_structure" title="lisc.utils.SCDB.check_file_structure" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-method"><span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span></a><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -168,7 +174,7 @@ file of terms to use.</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a list of all files available in the &#39;terms&#39; folder</span>
-<span class="n">term_files</span> <span class="o">=</span> <a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_files" title="lisc.utils.SCDB.get_files" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-method"><span class="n">db</span><span class="o">.</span><span class="n">get_files</span></a><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">)</span>
+<span class="n">term_files</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">term_files</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -177,20 +183,20 @@ file of terms to use.</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the full file path for the terms file</span>
-<a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_file_path" title="lisc.utils.SCDB.get_file_path" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-method"><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span></a><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tom/Documents/GitCode/lisc/examples/lisc_db/terms/terms.txt&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tom/Code/ModCode/lisc/examples/lisc_db/terms/terms.txt&#39;
 </pre></div>
 </div>
 </div>
 <div class="section" id="term-file-structure">
 <h2>Term File Structure<a class="headerlink" href="#term-file-structure" title="Permalink to this headline">¶</a></h2>
-<p>For term files, each line stores a new term, with synonyms for the same file stored
-as comma-separated values on the same line.</p>
+<p>For term files, each line should reflect a new term, with synonyms for the same term
+stored as comma-separated values on the same line.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the terms file contents</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB.get_file_path" title="lisc.utils.SCDB.get_file_path" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-method"><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span></a><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">term_file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">term_file</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">term_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -206,14 +212,14 @@ body,corporeal
 <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> and <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a>.</p>
 <p>For a general example, here we will use the underlying <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the base object in LISC</span>
-<span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="k">import</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a>
+<span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a base LISC object</span>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">base</span></a> <span class="o">=</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a><span class="p">()</span>
 
 <span class="c1"># Add terms to object, loading from file</span>
-<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms_file" title="lisc.objects.base.Base.add_terms_file" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms_file</span></a><span class="p">(</span><span class="s1">&#39;terms.txt&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><a href="../generated/lisc.utils.SCDB.html#lisc.utils.SCDB" title="lisc.utils.SCDB" class="sphx-glr-backref-module-lisc-utils sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db</span></a><span class="p">)</span>
+<a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="s1">&#39;terms.txt&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the terms that were loaded from file</span>
@@ -225,16 +231,17 @@ body,corporeal
 
 brain  : brain, cortex
 body   : body, corporeal
+       :
 </pre></div>
 </div>
 <p>The same structure can be used to store exclusion and inclusion words for terms.</p>
 <p>Exclusion and inclusions words should be stored in their own text files, also
 using one line per term, with comma-separated values for synonyms.</p>
 <p>Files that reflect the same set of terms, with a file for search terms, and optionally
-associated files for inclusion and exclusion terms should line up on the number of lines.
-That is, the n-th line of each file should refer to the same term. If a given search
+associated files for inclusion and exclusion terms should have the same number of lines,
+and the n-th line of each file should refer to the same term. If a given search
 term does not have an associated inclusion or exclusion term, leave that line blank.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.007 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.009 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2dd610e85e7ccd3131f26e11e81b72d5/plot_db_terms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_db_terms.py</span></code></a></p>
@@ -259,8 +266,8 @@ term does not have an associated inclusion or exclusion term, leave that line bl
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

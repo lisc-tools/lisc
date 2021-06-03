@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.analysis.counts.compute_normalization &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.analysis.counts.compute_normalization &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -122,7 +125,8 @@
 </dd>
 <dt><strong>counts</strong><span class="classifier">1d array</span></dt><dd><p>Counts for each individual search term.</p>
 </dd>
-<dt><strong>dim</strong><span class="classifier">{‘A’, ‘B’}, optional</span></dt><dd><p>Which set of terms to operate upon.</p>
+<dt><strong>dim</strong><span class="classifier">{‘A’, ‘B’}, optional</span></dt><dd><p>Which set of terms to normalize by.
+‘A’ is equivalent to normalizing by rows values, ‘B’ to column values.</p>
 </dd>
 </dl>
 </dd>
@@ -140,7 +144,7 @@
 <div class="section" id="examples-using-lisc-analysis-counts-compute-normalization">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.analysis.counts.compute_normalization</span></code><a class="headerlink" href="#examples-using-lisc-analysis-counts-compute-normalization" title="Permalink to this headline">¶</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="Collect word co-occurrence data, using a function oriented approach."><div class="figure align-default" id="id1">
-<img alt="../_images/sphx_glr_plot_functions_counts_thumb.png" src="../_images/sphx_glr_plot_functions_counts_thumb.png" />
+<img alt="Counts with Functions" src="../_images/sphx_glr_plot_functions_counts_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_counts.html#sphx-glr-auto-examples-plot-functions-counts-py"><span class="std std-ref">Counts with Functions</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div><div style='clear:both'></div></div>
@@ -158,8 +162,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

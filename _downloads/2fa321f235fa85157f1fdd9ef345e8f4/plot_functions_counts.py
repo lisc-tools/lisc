@@ -13,9 +13,6 @@ Collect word co-occurrence data, using a function oriented approach.
 #
 # Given a list of search terms, this function handles all the requests to collect the data.
 #
-# The :func:`~.compute_normalization` and :func:`~.compute_association_index` functions
-# take in co-occurance data returned by the :func:`~.collect_counts` function.
-#
 
 ###################################################################################################
 
@@ -31,7 +28,7 @@ terms_b = [['heart'], ['lung']]
 
 ###################################################################################################
 
-# Collect 'counts' (co-occurrence data) - across a single list of terms
+# Collect co-occurrence data across a single list of terms
 coocs, term_counts, meta_dat = collect_counts(terms_a, db='pubmed', verbose=True)
 
 ###################################################################################################
@@ -56,7 +53,7 @@ for term, count in zip(terms_a, term_counts):
 
 ###################################################################################################
 
-# Collect 'counts' (co-occurrence data) across two different lists of terms
+# Collect co-occurrence data across two different lists of terms
 coocs, term_counts, meta_dat = collect_counts(
     terms_a=terms_a, terms_b=terms_b, db='pubmed', verbose=True)
 
@@ -64,12 +61,16 @@ coocs, term_counts, meta_dat = collect_counts(
 # Calculating Co-occurrence Scores
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Once the co-occurrence data is collected, we often want to compute a normalization
+# Once co-occurrence data has been collected, we often want to compute a normalization
 # or transform of the data.
+#
+# The :func:`~.compute_normalization`, :func:`~.compute_association_index`
+# and :func:`~.compute_similarity` functions take in co-occurrence data as returned
+# by the :func:`~.collect_counts` function.
 #
 # More details on the measures available in LISC are available in the :class:`~.Counts`
 # tutorial. When using the functions approach, all implemented scores and transforms
-# are available in `lisc.analysis`, as functions that take in arrays of collected data.
+# are available in `lisc.analysis`.
 #
 
 ###################################################################################################
@@ -92,5 +93,5 @@ print(score)
 #
 # From here, further analysis of collected co-occurrence data depends on the goal of the analysis.
 #
-# There are also plot functions available, same as demonstrated in the Counts tutorial.
+# There are also plot functions available, as demonstrated in the Counts tutorial.
 #

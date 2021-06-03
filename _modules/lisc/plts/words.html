@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.plts.words &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.plts.words &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -110,11 +113,13 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for lisc.plts.words</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;LISC plots - plots for words data.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Plots for words data.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="k">import</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span>
-<span class="kn">from</span> <span class="nn">lisc.plts.wordcloud</span> <span class="k">import</span> <span class="n">create_wordcloud</span><span class="p">,</span> <span class="n">conv_freqs</span>
-<span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="k">import</span> <span class="n">safe_import</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="kn">import</span> <span class="n">check_aliases</span><span class="p">,</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.wordcloud</span> <span class="kn">import</span> <span class="n">create_wordcloud</span><span class="p">,</span> <span class="n">conv_freqs</span>
+<span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="kn">import</span> <span class="n">safe_import</span>
 
 <span class="n">plt</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;.pyplot&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
 
@@ -122,28 +127,34 @@
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="plot_wordcloud"><a class="viewcode-back" href="../../../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud">[docs]</a><span class="nd">@savefig</span>
-<span class="k">def</span> <span class="nf">plot_wordcloud</span><span class="p">(</span><span class="n">freq_dist</span><span class="p">,</span> <span class="n">n_words</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_wordcloud</span><span class="p">(</span><span class="n">freq_dist</span><span class="p">,</span> <span class="n">n_words</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot a wordcloud.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    freq_dist : nltk.FreqDist</span>
+<span class="sd">    freq_dist : collections.Counter</span>
 <span class="sd">        Frequency distribution of words to plot.</span>
 <span class="sd">    n_words : int</span>
 <span class="sd">        Number of top words to include in the wordcloud.</span>
 <span class="sd">    ax : matplotlib.Axes, optional</span>
 <span class="sd">        Figure axes upon which to plot.</span>
+<span class="sd">    plt_kwargs</span>
+<span class="sd">        Additional keyword arguments for the plot.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    See the :meth:`~.create_freq_dist` method of the :class:`~.ArticlesAll` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">cloud</span> <span class="o">=</span> <span class="n">create_wordcloud</span><span class="p">(</span><span class="n">conv_freqs</span><span class="p">(</span><span class="n">freq_dist</span><span class="p">,</span> <span class="n">n_words</span><span class="p">))</span>
 
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cloud</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cloud</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="plot_years"><a class="viewcode-back" href="../../../generated/lisc.plts.words.plot_years.html#lisc.plts.words.plot_years">[docs]</a><span class="nd">@savefig</span>
-<span class="k">def</span> <span class="nf">plot_years</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">year_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_years</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">year_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot a histogram of the number publications across years.</span>
 
 <span class="sd">    Parameters</span>
@@ -151,30 +162,57 @@
 <span class="sd">    years : collections.Counter</span>
 <span class="sd">        Data on the number of publications per year.</span>
 <span class="sd">    year_range : list of [int, int], optional</span>
-<span class="sd">        The range of years to plot on the x-axis.</span>
+<span class="sd">        The range of years to plot on the x-axis, inclusive.</span>
 <span class="sd">    ax : matplotlib.Axes, optional</span>
 <span class="sd">        Figure axes upon which to plot.</span>
+<span class="sd">    plt_kwargs</span>
+<span class="sd">        Additional keyword arguments for the plot.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Plot a histogram of publication years:</span>
+
+<span class="sd">    &gt;&gt;&gt; from collections import Counter</span>
+<span class="sd">    &gt;&gt;&gt; plot_years(years=Counter({&#39;2018&#39;: 25, &#39;2019&#39;: 50, &#39;2020&#39;:75}))</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Publication years are collected together in the :class:`~.ArticlesAll` class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
 
-    <span class="c1"># Extract x &amp; y data to plot</span>
-    <span class="n">x_dat</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">years</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="n">y_dat</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">years</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="c1"># Get the plot data, making sure it is sorted</span>
+    <span class="n">sort_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">years</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">years</span><span class="o">.</span><span class="n">keys</span><span class="p">()))[</span><span class="n">sort_inds</span><span class="p">]</span>
+    <span class="n">y_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">years</span><span class="o">.</span><span class="n">values</span><span class="p">()))[</span><span class="n">sort_inds</span><span class="p">]</span>
+
+    <span class="c1"># Restrict the data to the desired plot range</span>
+    <span class="k">if</span> <span class="n">year_range</span><span class="p">:</span>
+        <span class="n">range_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">x_data</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">year_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">year_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">),</span>
+                                    <span class="n">x_data</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">year_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">year_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">))</span>
+        <span class="n">x_data</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[</span><span class="n">range_inds</span><span class="p">]</span>
+        <span class="n">y_data</span> <span class="o">=</span> <span class="n">y_data</span><span class="p">[</span><span class="n">range_inds</span><span class="p">]</span>
+
+    <span class="c1"># Grab any plot inputs for labels</span>
+    <span class="n">fontsize</span> <span class="o">=</span> <span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fontsize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+    <span class="n">xlabel</span> <span class="o">=</span> <span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;xlabel&#39;</span><span class="p">,</span> <span class="s1">&#39;Year of Publication&#39;</span><span class="p">)</span>
+    <span class="n">ylabel</span> <span class="o">=</span> <span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ylabel&#39;</span><span class="p">,</span> <span class="s1">&#39;Number of Articles&#39;</span><span class="p">)</span>
 
     <span class="c1"># Add line and points to plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_dat</span><span class="p">,</span> <span class="n">y_dat</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_dat</span><span class="p">,</span> <span class="n">y_dat</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="n">check_aliases</span><span class="p">(</span><span class="n">plt_kwargs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;linewidth&#39;</span><span class="p">,</span> <span class="s1">&#39;lw&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">),</span>
+            <span class="n">markersize</span><span class="o">=</span><span class="n">check_aliases</span><span class="p">(</span><span class="n">plt_kwargs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;markersize&#39;</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">plt_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;markerfacecolor&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">)</span>
 
     <span class="c1"># Set plot limits</span>
-    <span class="k">if</span> <span class="n">year_range</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">year_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">year_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_dat</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mf">0.03</span><span class="o">*</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">y_data</span><span class="p">))))])</span>
 
     <span class="c1"># Add title &amp; labels</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Publication History&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year of Publication&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Articles&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span></div>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -188,8 +226,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.plts.words.plot_years &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.plts.words.plot_years &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,20 +116,30 @@
 <h1>lisc.plts.words.plot_years<a class="headerlink" href="#lisc-plts-words-plot-years" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="lisc.plts.words.plot_years">
-<code class="sig-prename descclassname">lisc.plts.words.</code><code class="sig-name descname">plot_years</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">years</span></em>, <em class="sig-param"><span class="n">year_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_years"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.words.plot_years" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.plts.words.</code><code class="sig-name descname">plot_years</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">years</span></em>, <em class="sig-param"><span class="n">year_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">plt_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_years"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.words.plot_years" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a histogram of the number publications across years.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>years</strong><span class="classifier">collections.Counter</span></dt><dd><p>Data on the number of publications per year.</p>
 </dd>
-<dt><strong>year_range</strong><span class="classifier">list of [int, int], optional</span></dt><dd><p>The range of years to plot on the x-axis.</p>
+<dt><strong>year_range</strong><span class="classifier">list of [int, int], optional</span></dt><dd><p>The range of years to plot on the x-axis, inclusive.</p>
 </dd>
 <dt><strong>ax</strong><span class="classifier">matplotlib.Axes, optional</span></dt><dd><p>Figure axes upon which to plot.</p>
 </dd>
+<dt><strong>plt_kwargs</strong></dt><dd><p>Additional keyword arguments for the plot.</p>
+</dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>Publication years are collected together in the <a class="reference internal" href="lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a> class.</p>
+<p class="rubric">Examples</p>
+<p>Plot a histogram of publication years:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_years</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">Counter</span><span class="p">({</span><span class="s1">&#39;2018&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;2019&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;2020&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">}))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <div style='clear:both'></div></div>
@@ -143,8 +156,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

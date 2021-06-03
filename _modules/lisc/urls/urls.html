@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.urls.urls &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.urls.urls &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -116,7 +119,7 @@
 <span class="sd">Settings : settings added to the URL, as key value pairs, following a &#39;?&#39; and added with &#39;&amp;&#39;.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">lisc.urls.utils</span> <span class="k">import</span> <span class="n">make_segments</span><span class="p">,</span> <span class="n">make_settings</span>
+<span class="kn">from</span> <span class="nn">lisc.urls.utils</span> <span class="kn">import</span> <span class="n">check_none</span><span class="p">,</span> <span class="n">check_settings</span><span class="p">,</span> <span class="n">make_segments</span><span class="p">,</span> <span class="n">make_settings</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -134,11 +137,11 @@
 <span class="sd">        The URLs for each utility.</span>
 <span class="sd">    settings : dict</span>
 <span class="sd">        The available settings for the API.</span>
-<span class="sd">    authenticated : boolean</span>
+<span class="sd">    authenticated : bool</span>
 <span class="sd">        Whether acting as an authenticated user for the API.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="URLs.__init__"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">utils</span><span class="o">=</span><span class="p">{},</span> <span class="n">authenticated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="URLs.__init__"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">utils</span><span class="p">,</span> <span class="n">authenticated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a URLs object.</span>
 
 <span class="sd">        Parameters</span>
@@ -147,8 +150,14 @@
 <span class="sd">            Base URL for the API.</span>
 <span class="sd">        utils : dict</span>
 <span class="sd">            Utilities for the utility, a dictionary with names and URL extensions.</span>
-<span class="sd">        authenticated : bool</span>
+<span class="sd">        authenticated : bool, optional</span>
 <span class="sd">            Whether acting as an authenticated user for the API.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Initialize a ``URLs`` object for the Github API:</span>
+
+<span class="sd">        &gt;&gt;&gt; urls = URLs(&#39;https://api.github.com&#39;, {&#39;search_repos&#39;: &quot;search/repositories&quot;})</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
@@ -166,6 +175,16 @@
 <span class="sd">        ----------</span>
 <span class="sd">        util : str</span>
 <span class="sd">            Which utility to check the URL for.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Check the URL that gets built for a Github repository search:</span>
+
+<span class="sd">        &gt;&gt;&gt; urls = URLs(&#39;https://api.github.com&#39;, {&#39;search_repos&#39;: &quot;search/repositories&quot;})</span>
+<span class="sd">        &gt;&gt;&gt; urls.fill_settings(q=&#39;lisc&#39;, sort=&#39;stars&#39;, order=&#39;desc&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; urls.build_url(&#39;search_repos&#39;, settings=[&#39;q&#39;, &#39;sort&#39;, &#39;order&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; urls.check_url(&#39;search_repos&#39;)</span>
+<span class="sd">        https://api.github.com/search/repositories?q=lisc&amp;sort=stars&amp;order=desc</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_util</span><span class="p">(</span><span class="n">util</span><span class="p">)</span>
@@ -186,9 +205,16 @@
 
 <span class="sd">        Any possible setting that is provided a value as an input to this function is</span>
 <span class="sd">        saved out to the dictionary of collected and available settings.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Provide settings for the query, sort, and order of a Github search:</span>
+
+<span class="sd">        &gt;&gt;&gt; urls = URLs(&#39;https://api.github.com&#39;, {&#39;search_repos&#39;: &quot;search/repositories&quot;})</span>
+<span class="sd">        &gt;&gt;&gt; urls.fill_settings(q=&#39;lisc&#39;, sort=&#39;stars&#39;, order=&#39;desc&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="n">ke</span><span class="p">:</span> <span class="n">va</span> <span class="k">for</span> <span class="n">ke</span><span class="p">,</span> <span class="n">va</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">va</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">check_settings</span><span class="p">({</span><span class="n">ke</span><span class="p">:</span> <span class="n">va</span> <span class="k">for</span> <span class="n">ke</span><span class="p">,</span> <span class="n">va</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">va</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="URLs.authenticate"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
@@ -197,7 +223,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        url : str</span>
-<span class="sd">            URL to add authentification to.</span>
+<span class="sd">            URL to add authentication to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -207,7 +233,7 @@
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
 <span class="sd">        This is a placeholder method, on the base URLs object, and should be</span>
-<span class="sd">        overloaded by any API object that has authentification.</span>
+<span class="sd">        overloaded by any API object that has authentication.</span>
 
 <span class="sd">        When overloading this method, it should implement whatever is needed</span>
 <span class="sd">        to authenticate a URL request for the specified API.</span>
@@ -216,18 +242,26 @@
         <span class="k">return</span> <span class="n">url</span></div>
 
 
-<div class="viewcode-block" id="URLs.build_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.build_url">[docs]</a>    <span class="k">def</span> <span class="nf">build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="p">[],</span> <span class="n">settings</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="URLs.build_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.build_url">[docs]</a>    <span class="k">def</span> <span class="nf">build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Build the URL for a specified utility, with provided settings.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        util : str</span>
 <span class="sd">            Which utility to build the URL for.</span>
-<span class="sd">        segments : list of str</span>
+<span class="sd">        segments : list of str, optional</span>
 <span class="sd">            Segments to add to the URL.</span>
-<span class="sd">        settings : dict or list of str</span>
+<span class="sd">        settings : dict or list of str, optional</span>
 <span class="sd">            Settings to use to build the URL.</span>
 <span class="sd">            If list, the settings values are taken from the objects settings attribute.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Build the url for the Github API to search for a repository search:</span>
+
+<span class="sd">        &gt;&gt;&gt; urls = URLs(&#39;https://api.github.com&#39;, {&#39;search_repos&#39;: &quot;search/repositories&quot;})</span>
+<span class="sd">        &gt;&gt;&gt; urls.fill_settings(q=&#39;lisc&#39;, sort=&#39;stars&#39;, order=&#39;desc&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; urls.build_url(&#39;search_repos&#39;, settings=[&#39;q&#39;, &#39;sort&#39;, &#39;order&#39;])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_util</span><span class="p">(</span><span class="n">util</span><span class="p">)</span>
@@ -237,7 +271,8 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not all requested settings available - can not proceed.&#39;</span><span class="p">)</span>
             <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="n">ke</span> <span class="p">:</span> <span class="n">va</span> <span class="k">for</span> <span class="n">ke</span><span class="p">,</span> <span class="n">va</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">ke</span> <span class="ow">in</span> <span class="n">settings</span><span class="p">}</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="n">make_segments</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="p">[</span><span class="n">util</span><span class="p">]]</span> <span class="o">+</span> <span class="n">segments</span><span class="p">)</span> <span class="o">+</span> <span class="n">make_settings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="n">make_segments</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="p">[</span><span class="n">util</span><span class="p">]]</span> <span class="o">+</span> <span class="n">check_none</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="p">[]))</span> <span class="o">+</span> \
+            <span class="n">make_settings</span><span class="p">(</span><span class="n">check_none</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="p">{}))</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
             <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -245,7 +280,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="n">util</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span></div>
 
 
-<div class="viewcode-block" id="URLs.get_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.get_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="p">[],</span> <span class="n">settings</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="URLs.get_url"><a class="viewcode-back" href="../../../generated/lisc.urls.URLs.html#lisc.urls.URLs.get_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a requested URL, with any additional segments or settings.</span>
 
 <span class="sd">        Parameters</span>
@@ -261,6 +296,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        full_url : str</span>
 <span class="sd">            The requested URL, with any extra segments and settings added.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Get the url built for a Github repository search:</span>
+
+<span class="sd">        &gt;&gt;&gt; urls = URLs(&#39;https://api.github.com&#39;, {&#39;search_repos&#39;: &quot;search/repositories&quot;})</span>
+<span class="sd">        &gt;&gt;&gt; urls.fill_settings(q=&#39;lisc&#39;, sort=&#39;stars&#39;, order=&#39;desc&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; urls.build_url(&#39;search_repos&#39;, settings=[&#39;q&#39;, &#39;sort&#39;, &#39;order&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; urls.get_url(&#39;search_repos&#39;)</span>
+<span class="sd">        &#39;https://api.github.com/search/repositories?q=lisc&amp;sort=stars&amp;order=desc&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">util</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -269,7 +314,8 @@
         <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="n">util</span><span class="p">]</span>
         <span class="n">settings_join</span> <span class="o">=</span> <span class="s1">&#39;?&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;?&#39;</span> <span class="ow">in</span> <span class="n">url</span> <span class="k">else</span> <span class="s1">&#39;&amp;&#39;</span>
 
-        <span class="n">full_url</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">make_segments</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span> <span class="o">+</span> <span class="n">make_settings</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">settings_join</span><span class="p">)</span>
+        <span class="n">full_url</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">make_segments</span><span class="p">(</span><span class="n">check_none</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="p">[]))</span> <span class="o">+</span> \
+            <span class="n">make_settings</span><span class="p">(</span><span class="n">check_none</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">settings_join</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">full_url</span></div>
 
@@ -298,8 +344,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

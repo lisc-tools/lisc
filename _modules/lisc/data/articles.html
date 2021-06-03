@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.data.articles &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.data.articles &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -115,11 +118,12 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="k">import</span> <span class="n">Term</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">check_directory</span>
-<span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="k">import</span> <span class="n">BaseArticles</span>
-<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="k">import</span> <span class="n">InconsistentDataError</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">parse_json_data</span><span class="p">,</span> <span class="n">check_ext</span>
+<span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="kn">import</span> <span class="n">Term</span>
+<span class="kn">from</span> <span class="nn">lisc.data.process</span> <span class="kn">import</span> <span class="n">process_articles</span>
+<span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="kn">import</span> <span class="n">BaseArticles</span>
+<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">parse_json_data</span><span class="p">,</span> <span class="n">check_ext</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -131,12 +135,14 @@
 <span class="sd">    ----------</span>
 <span class="sd">    label : str</span>
 <span class="sd">        Label for the term.</span>
-<span class="sd">    term : Term object</span>
+<span class="sd">    term : Term</span>
 <span class="sd">        Definition of the search term, with inclusion and exclusion words.</span>
-<span class="sd">    ids : list of int</span>
-<span class="sd">        Article ids for all articles.</span>
+<span class="sd">    has_data : bool</span>
+<span class="sd">        Whether the object contains data.</span>
 <span class="sd">    n_articles : int</span>
 <span class="sd">        Number of articles collected.</span>
+<span class="sd">    ids : list of int</span>
+<span class="sd">        Article ids for all articles.</span>
 <span class="sd">    titles : list of str</span>
 <span class="sd">        Titles of all articles.</span>
 <span class="sd">    journals : list of tuple of (str, str)</span>
@@ -151,28 +157,37 @@
 <span class="sd">        Publication year of each article.</span>
 <span class="sd">    dois : list of str</span>
 <span class="sd">        DOIs of each article.</span>
+<span class="sd">    processed : bool</span>
+<span class="sd">        Whether the article data has been processed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Articles.__init__"><a class="viewcode-back" href="../../../generated/lisc.data.Articles.html#lisc.data.Articles.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">):</span>
+<div class="viewcode-block" id="Articles.__init__"><a class="viewcode-back" href="../../../generated/lisc.data.Articles.html#lisc.data.Articles.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize Articles object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        term : Term object or str</span>
+<span class="sd">        term : Term or str</span>
 <span class="sd">            Search term definition. If input is a string, it is used as the label for the term.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Initialize an ``Articles`` object, with a label for the search term it represents:</span>
+
+<span class="sd">        &gt;&gt;&gt; articles = Articles(&#39;frontal lobe&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Inherit from the BaseArticles object</span>
-        <span class="n">BaseArticles</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">)</span></div>
+        <span class="n">BaseArticles</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processed</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Iterate through collected articles.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Index into a object, getting a specific article based on it&#39;s index.&quot;&quot;&quot;</span>
 
-        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
-            <span class="k">yield</span> <span class="p">{</span>
-                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ids</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ids</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
                 <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">titles</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
                 <span class="s1">&#39;journal&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">journals</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
                 <span class="s1">&#39;authors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
@@ -180,6 +195,19 @@
                 <span class="s1">&#39;keywords&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
                 <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
                 <span class="s1">&#39;doi&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dois</span><span class="p">[</span><span class="n">ind</span><span class="p">]}</span>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterate through collected articles.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add access to getting length of object as number of articles.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span>
 
 
 <div class="viewcode-block" id="Articles.add_data"><a class="viewcode-back" href="../../../generated/lisc.data.Articles.html#lisc.data.Articles.add_data">[docs]</a>    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">new_data</span><span class="p">):</span>
@@ -191,6 +219,13 @@
 <span class="sd">            The attribute of the object to add data to.</span>
 <span class="sd">        new_data : str or int or list</span>
 <span class="sd">            Data to add to object.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Add a journal to an ``Articles`` object:</span>
+
+<span class="sd">        &gt;&gt;&gt; articles = Articles(&#39;frontal lobe&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; articles.add_data(&#39;journals&#39;, &#39;Nature&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span></div>
@@ -201,8 +236,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        directory : str or SCDB object, optional</span>
+<span class="sd">        directory : str or SCDB, optional</span>
 <span class="sd">            Folder or database object specifying the save location.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Save an ``Articles`` object, using a temporary directory:</span>
+
+<span class="sd">        &gt;&gt;&gt; from tempfile import TemporaryDirectory</span>
+<span class="sd">        &gt;&gt;&gt; articles = Articles(&#39;frontal lobe&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; with TemporaryDirectory() as dirpath:</span>
+<span class="sd">        ...     articles.save(directory=dirpath)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">)</span>
@@ -220,8 +264,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        directory : str or SCDB object, optional</span>
+<span class="sd">        directory : str or SCDB, optional</span>
 <span class="sd">            Folder or database object specifying the save location.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Load an ``Articles`` object, assuming an :class:`~.SCDB` organization named &#39;lisc_db&#39;:</span>
+
+<span class="sd">        &gt;&gt;&gt; from lisc.utils import SCDB</span>
+<span class="sd">        &gt;&gt;&gt; articles = Articles(&#39;frontal lobe&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; articles.load(SCDB(&#39;lisc_db&#39;)) # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">)</span>
@@ -230,15 +282,15 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">term</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="o">*</span><span class="nb">next</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s1">&#39;term&#39;</span><span class="p">])</span>
 
-        <span class="k">for</span> <span class="n">dat</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;ids&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;titles&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;journals&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;keywords&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;keywords&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;dois&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;doi&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;ids&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;titles&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;journals&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;keywords&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;keywords&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="s1">&#39;dois&#39;</span><span class="p">,</span> <span class="n">datum</span><span class="p">[</span><span class="s1">&#39;doi&#39;</span><span class="p">])</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_results</span><span class="p">()</span></div>
 
@@ -248,12 +300,38 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        directory : str or SCDB object, optional</span>
+<span class="sd">        directory : str or SCDB, optional</span>
 <span class="sd">            Folder or database object specifying the save location.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Save and clear data from an ``Articles`` object:</span>
+
+<span class="sd">        &gt;&gt;&gt; from tempfile import TemporaryDirectory</span>
+<span class="sd">        &gt;&gt;&gt; articles = Articles(&#39;frontal lobe&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; with TemporaryDirectory() as dirpath:</span>
+<span class="sd">        ...     articles.save_and_clear(directory=dirpath)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Articles.process"><a class="viewcode-back" href="../../../generated/lisc.data.Articles.html#lisc.data.Articles.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process the data stored in the current object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        process_func : callable, optional</span>
+<span class="sd">            A function to process the articles. Must take as input an `Articles` object.</span>
+<span class="sd">            If not provided, applies the default `process_articles` function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">process_func</span><span class="p">:</span>
+            <span class="n">process_func</span> <span class="o">=</span> <span class="n">process_articles</span>
+
+        <span class="n">process_func</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processed</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
     <span class="k">def</span> <span class="nf">_check_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -286,8 +364,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

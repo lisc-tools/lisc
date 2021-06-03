@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.requester.requester &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.requester.requester &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -110,16 +113,16 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for lisc.requester.requester</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Object to handle URL requests.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Object for handling URL requests.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">check_directory</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">check_ext</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">check_ext</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -143,27 +146,33 @@
 <span class="sd">        Time at which last request was sent.</span>
 <span class="sd">    logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}</span>
 <span class="sd">        What kind of logging, if any, to do for requested URLs.</span>
-<span class="sd">    log : None or list or file object</span>
+<span class="sd">    log : None or list or FileObject</span>
 <span class="sd">        Log of requested URLs. Format depends on `logging`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Requester.__init__"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Requester.__init__"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a requester object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        wait_time : float, optional, default: 0.</span>
+<span class="sd">        wait_time : float, optional, default: 0.0</span>
 <span class="sd">            Amount of time to wait between requests, in seconds.</span>
 <span class="sd">        logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}, optional</span>
 <span class="sd">            What kind of logging, if any, to do for requested URLs.</span>
 <span class="sd">        directory : SCDB or str or None, optional</span>
-<span class="sd">            A string or object containing a file path.</span>
+<span class="sd">            A string or object containing a file path, used for logging.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Initialize a ``Requester`` object, specifying a wait time of 0.1 seconds between requests:</span>
+
+<span class="sd">        &gt;&gt;&gt; requester = Requester(wait_time=0.1)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_requests</span> <span class="o">=</span> <span class="nb">int</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait_time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">()</span>
@@ -178,7 +187,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_up_logging</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
 
 
@@ -199,6 +208,13 @@
 <span class="sd">        ----------</span>
 <span class="sd">        wait_time : float</span>
 <span class="sd">            Time, in seconds, to wait between launching URL requests.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Set the wait time to 0.1 seconds:</span>
+
+<span class="sd">        &gt;&gt;&gt; requester = Requester()</span>
+<span class="sd">        &gt;&gt;&gt; requester.set_wait_time(0.1)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">wait_time</span> <span class="o">=</span> <span class="n">wait_time</span></div>
@@ -226,7 +242,7 @@
 
 <div class="viewcode-block" id="Requester.wait"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.wait">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">wait_time</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Pause for specified amount of  time.</span>
+        <span class="sd">&quot;&quot;&quot;Pause for specified amount of time.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -247,8 +263,15 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        out : requests.models.Response object</span>
+<span class="sd">        out : requests.models.Response</span>
 <span class="sd">            Object containing the requested web page.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Use a ``Requester`` object to request the LISC Github repository url:</span>
+
+<span class="sd">        &gt;&gt;&gt; requester = Requester()</span>
+<span class="sd">        &gt;&gt;&gt; response = requester.request_url(&#39;https://github.com/lisc-tools/lisc&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Check if current object is active</span>
@@ -284,7 +307,8 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging</span> <span class="o">==</span> <span class="s1">&#39;file&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">REQUESTER LOG - CLOSED AT:  &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="s1">&#39;Logging saved to file.&#39;</span></div>
 
 
     <span class="k">def</span> <span class="nf">_set_up_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
@@ -358,8 +382,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

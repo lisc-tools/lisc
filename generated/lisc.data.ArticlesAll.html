@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.data.ArticlesAll &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.data.ArticlesAll &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,32 +116,34 @@
 <h1>lisc.data.ArticlesAll<a class="headerlink" href="#lisc-data-articlesall" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="lisc.data.ArticlesAll">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">ArticlesAll</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">term_data</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.data.</code><code class="sig-name descname">ArticlesAll</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">articles</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object to hold term data, aggregated across articles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>label</strong><span class="classifier">str</span></dt><dd><p>Label for the term.</p>
+<dt><a class="reference internal" href="#lisc.data.ArticlesAll.label" title="lisc.data.ArticlesAll.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a><span class="classifier">str</span></dt><dd><p>The label for the current term.</p>
 </dd>
-<dt><strong>term</strong><span class="classifier">Term object</span></dt><dd><p>Definition of the search term, with inclusion and exclusion words.</p>
+<dt><strong>term</strong><span class="classifier">Term</span></dt><dd><p>Definition of the search term, with inclusion and exclusion words.</p>
 </dd>
-<dt><strong>n_articles</strong><span class="classifier">int</span></dt><dd><p>Number of articles included in object.</p>
+<dt><a class="reference internal" href="#lisc.data.ArticlesAll.has_data" title="lisc.data.ArticlesAll.has_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></a><span class="classifier">bool</span></dt><dd><p>Whether the current object contains data.</p>
+</dd>
+<dt><a class="reference internal" href="#lisc.data.ArticlesAll.n_articles" title="lisc.data.ArticlesAll.n_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_articles</span></code></a><span class="classifier">int</span></dt><dd><p>The number of articles included in the object.</p>
 </dd>
 <dt><strong>ids</strong><span class="classifier">list of int</span></dt><dd><p>Article ids for all articles included in object.</p>
 </dd>
-<dt><strong>journals</strong><span class="classifier">collections.Counter</span></dt><dd><p>Counts for each journal.</p>
+<dt><strong>journals</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution for each journal.</p>
 </dd>
-<dt><strong>authors</strong><span class="classifier">collections.Counter</span></dt><dd><p>Counts for each author.</p>
+<dt><strong>authors</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution for each author.</p>
 </dd>
-<dt><strong>first_authors</strong><span class="classifier">collections.Counter</span></dt><dd><p>Counts for each first author.</p>
+<dt><strong>first_authors</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution for each first author.</p>
 </dd>
-<dt><strong>last_authors</strong><span class="classifier">collections.Counter</span></dt><dd><p>Counts for each last author.</p>
+<dt><strong>last_authors</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution for each last author.</p>
 </dd>
-<dt><strong>words</strong><span class="classifier">nltk.probability.FreqDist</span></dt><dd><p>Frequency distribution of all words.</p>
+<dt><strong>words</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution of all words.</p>
 </dd>
-<dt><strong>keywords</strong><span class="classifier">nltk.probability.FreqDist</span></dt><dd><p>Frequency distribution of all keywords.</p>
+<dt><strong>keywords</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution of all keywords.</p>
 </dd>
-<dt><strong>years</strong><span class="classifier">collections.Counter</span></dt><dd><p>Counts for each year of publication.</p>
+<dt><strong>years</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution for each year of publication.</p>
 </dd>
 <dt><strong>dois</strong><span class="classifier">list of str</span></dt><dd><p>DOIs of each article included in object.</p>
 </dd>
@@ -149,18 +154,25 @@
 </dl>
 <dl class="py method">
 <dt id="lisc.data.ArticlesAll.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">term_data</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">articles</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize ArticlesAll object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>term_data</strong><span class="classifier">Articles object</span></dt><dd><p>Data for all articles from a given search term.</p>
+<dt><strong>articles</strong><span class="classifier">Articles</span></dt><dd><p>Data for all articles from a given search term.</p>
 </dd>
-<dt><strong>exclusions</strong><span class="classifier">list of str</span></dt><dd><p>Words to exclude from the word collections.</p>
-</dd>
-</dl>
+<dt><strong>exclusions</strong><span class="classifier">list of str, optional</span></dt><dd><p>Words to exclude from the word collections.</p>
 </dd>
 </dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Create an <code class="docutils literal notranslate"><span class="pre">ArticlesAll</span></code> object from an <a class="reference internal" href="lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Articles</span></code></a> object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <span class="n">Articles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">articles</span> <span class="o">=</span> <span class="n">Articles</span><span class="p">(</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span> <span class="o">=</span> <span class="n">ArticlesAll</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -170,25 +182,22 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.__init__" title="lisc.data.ArticlesAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self, term_data[, exclusions])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.__init__" title="lisc.data.ArticlesAll.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(articles[, exclusions])</p></td>
 <td><p>Initialize ArticlesAll object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.check_frequencies" title="lisc.data.ArticlesAll.check_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_frequencies</span></code></a>(self[, data_type, n_check])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.check_frequencies" title="lisc.data.ArticlesAll.check_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_frequencies</span></code></a>([data_type, n_check])</p></td>
 <td><p>Prints out the most common items in a frequency distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.clear" title="lisc.data.ArticlesAll.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.clear" title="lisc.data.ArticlesAll.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
 <td><p>Clear all data attached to object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.create_freq_dist" title="lisc.data.ArticlesAll.create_freq_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_freq_dist</span></code></a>(in_lst, exclude)</p></td>
-<td><p>Create a frequency distribution.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.create_summary" title="lisc.data.ArticlesAll.create_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_summary</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.create_summary" title="lisc.data.ArticlesAll.create_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_summary</span></code></a>()</p></td>
 <td><p>Fill the summary dictionary of the current terms Words data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.print_summary" title="lisc.data.ArticlesAll.print_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.print_summary" title="lisc.data.ArticlesAll.print_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_summary</span></code></a>()</p></td>
 <td><p>Print out a summary of the collected words data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.save_summary" title="lisc.data.ArticlesAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>(self[, directory])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.save_summary" title="lisc.data.ArticlesAll.save_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_summary</span></code></a>([directory])</p></td>
 <td><p>Save out a summary of the collected words data.</p></td>
 </tr>
 </tbody>
@@ -200,82 +209,104 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.has_data" title="lisc.data.ArticlesAll.has_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></a></p></td>
+<td><p>Whether the current object contains data.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_articles</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.label" title="lisc.data.ArticlesAll.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a></p></td>
+<td><p>The label for the current term.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.ArticlesAll.n_articles" title="lisc.data.ArticlesAll.n_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_articles</span></code></a></p></td>
+<td><p>The number of articles included in the object.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt id="lisc.data.ArticlesAll.check_frequencies">
-<code class="sig-name descname">check_frequencies</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">'words'</span></em>, <em class="sig-param"><span class="n">n_check</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.check_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.check_frequencies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_frequencies</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">'words'</span></em>, <em class="sig-param"><span class="n">n_check</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.check_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.check_frequencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints out the most common items in a frequency distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data_type</strong><span class="classifier">{‘words’, ‘keywords’}</span></dt><dd><p>Which frequency distribution to check.</p>
 </dd>
-<dt><strong>n_check</strong><span class="classifier">int</span></dt><dd><p>Number of most common items to print out.</p>
+<dt><strong>n_check</strong><span class="classifier">int, optional, default: 20</span></dt><dd><p>Number of most common items to print out.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Print the most frequent words, assuming an initialized <code class="docutils literal notranslate"><span class="pre">ArticlesAll</span></code> object with data:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span><span class="o">.</span><span class="n">check_frequencies</span><span class="p">()</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="lisc.data.ArticlesAll.clear">
-<code class="sig-name descname">clear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.data.ArticlesAll.clear" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lisc.data.ArticlesAll.clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clear all data attached to object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="lisc.data.ArticlesAll.create_freq_dist">
-<em class="property">static </em><code class="sig-name descname">create_freq_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_lst</span></em>, <em class="sig-param"><span class="n">exclude</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_freq_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_freq_dist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a frequency distribution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>in_lst</strong><span class="classifier">list of str</span></dt><dd><p>Words to create the frequency distribution from.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">list of str</span></dt><dd><p>Words to exclude from the frequency distribution.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>freqs</strong><span class="classifier">nltk.FreqDist</span></dt><dd><p>Frequency distribution of the words.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<dt id="lisc.data.ArticlesAll.create_summary">
+<code class="sig-name descname">create_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill the summary dictionary of the current terms Words data.</p>
+<p class="rubric">Examples</p>
+<p>Create a summary for a term, assuming an initialized <code class="docutils literal notranslate"><span class="pre">ArticlesAll</span></code> object with collected
+<code class="docutils literal notranslate"><span class="pre">Words</span></code> data:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt id="lisc.data.ArticlesAll.create_summary">
-<code class="sig-name descname">create_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.create_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.create_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fill the summary dictionary of the current terms Words data.</p>
+<dt id="lisc.data.ArticlesAll.has_data">
+<em class="property">property </em><code class="sig-name descname">has_data</code><a class="headerlink" href="#lisc.data.ArticlesAll.has_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the current object contains data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.data.ArticlesAll.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#lisc.data.ArticlesAll.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>The label for the current term.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.data.ArticlesAll.n_articles">
+<em class="property">property </em><code class="sig-name descname">n_articles</code><a class="headerlink" href="#lisc.data.ArticlesAll.n_articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of articles included in the object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="lisc.data.ArticlesAll.print_summary">
-<code class="sig-name descname">print_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.print_summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.print_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out a summary of the collected words data.</p>
+<p class="rubric">Examples</p>
+<p>Print a summary for a term, assuming an initialized <code class="docutils literal notranslate"><span class="pre">ArticlesAll</span></code> object with data:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="lisc.data.ArticlesAll.save_summary">
-<code class="sig-name descname">save_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.save_summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles_all.html#ArticlesAll.save_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.data.ArticlesAll.save_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out a summary of the collected words data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>directory</strong><span class="classifier">str or SCDB object, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
+<dt><strong>directory</strong><span class="classifier">str or SCDB or None, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Save a summary for a term, assuming an initialized <code class="docutils literal notranslate"><span class="pre">ArticlesAll</span></code> object with data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span><span class="o">.</span><span class="n">create_summary</span><span class="p">()</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">articles_all</span><span class="o">.</span><span class="n">save_summary</span><span class="p">()</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -283,8 +314,8 @@
 <div class="section" id="examples-using-lisc-data-articlesall">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.data.ArticlesAll</span></code><a class="headerlink" href="#examples-using-lisc-data-articlesall" title="Permalink to this headline">¶</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected text data and metadata."><div class="figure align-default" id="id1">
-<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" src="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">Tutorial 04: Words Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<img alt="Tutorial 02: Words Analysis" src="../_images/sphx_glr_plot_02-WordsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_02-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-02-wordsanalysis-py"><span class="std std-ref">Tutorial 02: Words Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div></div>
 </div>
@@ -301,8 +332,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

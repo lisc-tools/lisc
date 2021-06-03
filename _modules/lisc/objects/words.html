@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.objects.words &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.objects.words &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -112,8 +115,10 @@
   <h1>Source code for lisc.objects.words</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Class for LISC word analysis: analyses of text data.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="k">import</span> <span class="n">Base</span>
-<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <span class="n">collect_words</span>
+<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_words</span>
+<span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="kn">import</span> <span class="n">get_max_length</span>
+<span class="kn">from</span> <span class="nn">lisc.data.articles_all</span> <span class="kn">import</span> <span class="n">ArticlesAll</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -123,68 +128,83 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    results : list of Articles object</span>
-<span class="sd">        Results of &#39;Words&#39; data for each search term.</span>
 <span class="sd">    labels : list of str</span>
 <span class="sd">        Labels for each data object attached to the object.</span>
-<span class="sd">    meta_data : MetaData object</span>
+<span class="sd">    has_data : bool</span>
+<span class="sd">        Whether the object contains data.</span>
+<span class="sd">    results : list of Articles</span>
+<span class="sd">        Results of &#39;Words&#39; data collection for each search term.</span>
+<span class="sd">    combined_results : list of ArticlesAll</span>
+<span class="sd">        Results for each search term combined across individual articles.</span>
+<span class="sd">    meta_data : MetaData</span>
 <span class="sd">        Meta data information about the data collection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Words.__init__"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Words.__init__"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize LISC Words object.&quot;&quot;&quot;</span>
 
         <span class="n">Base</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">combined_results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Index into Words object with term result key.</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Index into Words object, accessing results.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        key : str</span>
-<span class="sd">            Term name to get from results data.</span>
+<span class="sd">        label : str</span>
+<span class="sd">            Label for the term to get from results data.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Articles object</span>
+<span class="sd">        Articles</span>
 <span class="sd">            Articles object for the requested result.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Give up if object is empty</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Object is empty - cannot index.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Check if requested key is available</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">ind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Requested key not available in object.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Requested label not available.&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 
 
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Allow for iterating across the object by stepping through collected results.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">result</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indicator for if the object has collected data.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="Words.add_results"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_result</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a new results object.</span>
+        <span class="sd">&quot;&quot;&quot;Add new results for a term to the current object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        new_result : Articles object</span>
+<span class="sd">        new_result : Articles</span>
 <span class="sd">            Object with collected data for a specified term.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_term</span><span class="p">(</span><span class="n">new_result</span><span class="o">.</span><span class="n">term</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Words.run_collection"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                        <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                       <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect words data.</span>
 
 <span class="sd">        Parameters</span>
@@ -194,27 +214,103 @@
 <span class="sd">        retmax : int, optional</span>
 <span class="sd">            Maximum number of records to return.</span>
 <span class="sd">        field : str, optional, default: &#39;TIAB&#39;</span>
-<span class="sd">            Field to search for term within.</span>
+<span class="sd">            Field(s) to search for term.</span>
 <span class="sd">            Defaults to &#39;TIAB&#39;, which is Title/Abstract.</span>
 <span class="sd">        usehistory : bool, optional, default: False</span>
-<span class="sd">            Whether to use EUtils history, storing results on their server.</span>
+<span class="sd">            Whether to use EUtils history, storing results on the EUtils server.</span>
 <span class="sd">        api_key : str, optional</span>
 <span class="sd">            An API key for a NCBI account.</span>
 <span class="sd">        save_and_clear : bool, optional, default: False</span>
-<span class="sd">            Whether to save words data to disk per term as it goes, instead of holding in memory.</span>
-<span class="sd">        logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}</span>
+<span class="sd">            Whether to save words data to disk per term, instead of holding in memory.</span>
+<span class="sd">        logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}, optional</span>
 <span class="sd">            What kind of logging, if any, to do for requested URLs.</span>
-<span class="sd">        directory : str or SCDB object, optional</span>
+<span class="sd">        directory : str or SCDB, optional</span>
 <span class="sd">            Folder or database object specifying the save location for any outputs.</span>
 <span class="sd">        verbose : bool, optional, default: False</span>
 <span class="sd">            Whether to print out updates.</span>
+<span class="sd">        **eutils_kwargs</span>
+<span class="sd">            Additional settings for the EUtils API.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Collect words data for a set of terms, set to collect up to five articles each:</span>
+
+<span class="sd">        &gt;&gt;&gt; words = Words()</span>
+<span class="sd">        &gt;&gt;&gt; words.add_terms([[&#39;brain&#39;], [&#39;body&#39;]])</span>
+<span class="sd">        &gt;&gt;&gt; words.run_collection(retmax=&#39;5&#39;) # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_words</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_words</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span>
                                                      <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="n">retmax</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span>
                                                      <span class="n">usehistory</span><span class="o">=</span><span class="n">usehistory</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
-                                                     <span class="n">save_and_clear</span><span class="o">=</span><span class="n">save_and_clear</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span>
-                                                     <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div></div>
+                                                     <span class="n">save_and_clear</span><span class="o">=</span><span class="n">save_and_clear</span><span class="p">,</span>
+                                                     <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">,</span>
+                                                     <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Words.check_data"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.check_data">[docs]</a>    <span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prints out the number of articles collected for each term.&quot;&quot;&quot;</span>
+
+        <span class="n">twd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of collected articles per term:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{:</span><span class="si">{twd}</span><span class="s2">} </span><span class="se">\t\t</span><span class="s2">  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">n_articles</span><span class="p">,</span> <span class="n">twd</span><span class="o">=</span><span class="n">twd</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Words.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Drop terms based on number of article results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_articles : int</span>
+<span class="sd">            Minimum number of articles required to keep each term.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Drop terms with less than or equal to 20 articles (assuming `words` already has data):</span>
+
+<span class="sd">        &gt;&gt;&gt; words.drop_data(20) # doctest: +SKIP</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">inds</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">n_articles</span> <span class="o">&lt;</span> <span class="n">n_articles</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">inds</span><span class="p">))):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">drop_term</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Words.process_articles"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.process_articles">[docs]</a>    <span class="k">def</span> <span class="nf">process_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process the articles stored in the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        process_func : callable, optional</span>
+<span class="sd">            A function to process article data. Must take as input an `Articles` object.</span>
+<span class="sd">            If not provided, applies the default `process_articles` function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">arts</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="n">arts</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">process_func</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Words.process_combined_results"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.process_combined_results">[docs]</a>    <span class="k">def</span> <span class="nf">process_combined_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process article data to create combined results, across all articles, for each term.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        exclusions : list of str, optional</span>
+<span class="sd">            Words to exclude from the combined word collections.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This function will process the article data contained in the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Object has no data - cannot proceed.&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">combined_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">ArticlesAll</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">]</span></div></div>
 </pre></div>
 
     </div>
@@ -228,8 +324,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

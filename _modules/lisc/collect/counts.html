@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.collect.counts &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect.counts &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,23 +116,23 @@
 <span></span><span class="sd">&quot;&quot;&quot;Collect counts data from EUtils.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
-<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="k">import</span> <span class="n">Requester</span>
-<span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="k">import</span> <span class="n">Term</span>
-<span class="kn">from</span> <span class="nn">lisc.data.meta_data</span> <span class="k">import</span> <span class="n">MetaData</span>
-<span class="kn">from</span> <span class="nn">lisc.collect.info</span> <span class="k">import</span> <span class="n">get_db_info</span>
-<span class="kn">from</span> <span class="nn">lisc.collect.utils</span> <span class="k">import</span> <span class="n">mk_term</span><span class="p">,</span> <span class="n">join</span>
-<span class="kn">from</span> <span class="nn">lisc.collect.process</span> <span class="k">import</span> <span class="n">extract</span>
-<span class="kn">from</span> <span class="nn">lisc.urls.eutils</span> <span class="k">import</span> <span class="n">EUtils</span><span class="p">,</span> <span class="n">get_wait_time</span>
+<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <span class="n">Requester</span>
+<span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="kn">import</span> <span class="n">Term</span>
+<span class="kn">from</span> <span class="nn">lisc.data.meta_data</span> <span class="kn">import</span> <span class="n">MetaData</span>
+<span class="kn">from</span> <span class="nn">lisc.collect.info</span> <span class="kn">import</span> <span class="n">get_db_info</span>
+<span class="kn">from</span> <span class="nn">lisc.collect.utils</span> <span class="kn">import</span> <span class="n">make_term</span><span class="p">,</span> <span class="n">join</span>
+<span class="kn">from</span> <span class="nn">lisc.collect.process</span> <span class="kn">import</span> <span class="n">get_info</span>
+<span class="kn">from</span> <span class="nn">lisc.urls.eutils</span> <span class="kn">import</span> <span class="n">EUtils</span><span class="p">,</span> <span class="n">get_wait_time</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="collect_counts"><a class="viewcode-back" href="../../../generated/lisc.collect_counts.html#lisc.collect_counts">[docs]</a><span class="k">def</span> <span class="nf">collect_counts</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclusions_a</span><span class="o">=</span><span class="p">[],</span>
-                   <span class="n">terms_b</span><span class="o">=</span><span class="p">[],</span> <span class="n">inclusions_b</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclusions_b</span><span class="o">=</span><span class="p">[],</span>
-                   <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="collect_counts"><a class="viewcode-back" href="../../../generated/lisc.collect_counts.html#lisc.collect_counts">[docs]</a><span class="k">def</span> <span class="nf">collect_counts</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusions_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">terms_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inclusions_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusions_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">collect_coocs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collect count and term co-occurrence data from EUtils.</span>
 
 <span class="sd">    Parameters</span>
@@ -140,12 +143,16 @@
 <span class="sd">        Inclusion words for search terms.</span>
 <span class="sd">    exclusions_a : list of list of str, optional</span>
 <span class="sd">        Exclusion words for search terms.</span>
+<span class="sd">    labels_a : list of str, optional</span>
+<span class="sd">        Labels for the search terms.</span>
 <span class="sd">    terms_b : list of list of str, optional</span>
 <span class="sd">        Secondary list of search terms.</span>
 <span class="sd">    inclusions_b : list of list of str, optional</span>
-<span class="sd">        Inclusion words for secondary lis of search terms.</span>
+<span class="sd">        Inclusion words for the second list of search terms.</span>
 <span class="sd">    exclusions_b : list of list of str, optional</span>
-<span class="sd">        Exclusion words for secondary list of search terms.</span>
+<span class="sd">        Exclusion words for the second list of search terms.</span>
+<span class="sd">    labels_b : list of str</span>
+<span class="sd">        Labels for the second list of search terms.</span>
 <span class="sd">    db : str, optional, default: &#39;pubmed&#39;</span>
 <span class="sd">        Which database to access from EUtils.</span>
 <span class="sd">    field : str, optional, default: &#39;TIAB&#39;</span>
@@ -153,17 +160,23 @@
 <span class="sd">        Defaults to &#39;TIAB&#39;, which is Title/Abstract.</span>
 <span class="sd">    api_key : str, optional</span>
 <span class="sd">        An API key for a NCBI account.</span>
+<span class="sd">    collect_coocs : bool, optional, default: True</span>
+<span class="sd">        Whether to collect co-occurence data.</span>
+<span class="sd">        If False, only collects the counts for first term list.</span>
 <span class="sd">    logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}, optional</span>
 <span class="sd">        What kind of logging, if any, to do for requested URLs.</span>
-<span class="sd">    directory : str or SCDB object, optional</span>
+<span class="sd">    directory : str or SCDB, optional</span>
 <span class="sd">        Folder or database object specifying the save location.</span>
 <span class="sd">    verbose : bool, optional, default: False</span>
 <span class="sd">        Whether to print out updates.</span>
+<span class="sd">    **eutils_kwargs</span>
+<span class="sd">        Additional settings for the EUtils API.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    co_occurences : 2d array</span>
 <span class="sd">        The numbers of articles found for each combination of terms.</span>
+<span class="sd">        Only returned if `collect_coocs` is True.</span>
 <span class="sd">    counts : 1d array or list of 1d array</span>
 <span class="sd">        Number of articles for each term independently.</span>
 <span class="sd">    meta_data : dict</span>
@@ -171,57 +184,82 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    The collection does an exact word search for two terms.</span>
+<span class="sd">    The collection does an exact word search for search terms.</span>
 
 <span class="sd">    The HTML page returned by the EUtils search includes a &#39;count&#39; field.</span>
 <span class="sd">    This field contains the number of articles with both terms. This is extracted.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Collect counts and co-occurrences for a single set of two search terms:</span>
+
+<span class="sd">    &gt;&gt;&gt; coocs, counts, meta_data = collect_counts([[&#39;frontal lobe&#39;], [&#39;temporal lobe&#39;]])</span>
+
+<span class="sd">    Collect counts and co-occurrences for two sets of search terms:</span>
+
+<span class="sd">    &gt;&gt;&gt; coocs, counts, meta_data = collect_counts(terms_a=[[&#39;frontal lobe&#39;], [&#39;temporal lobe&#39;]],</span>
+<span class="sd">    ...                                           terms_b=[[&#39;attention&#39;], [&#39;perception&#39;]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+    <span class="c1"># Define the settings for the search utility, adding a default for datetype if not provided</span>
+    <span class="n">search_settings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="s1">&#39;retmax&#39;</span><span class="p">,</span> <span class="s1">&#39;retmode&#39;</span><span class="p">,</span> <span class="s1">&#39;field&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s1">&#39;date&#39;</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">eutils_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="ow">and</span> <span class="s1">&#39;datetype&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">eutils_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">search_settings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;datetype&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Build the URLs for the utilities that will be used</span>
     <span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;db&#39;</span><span class="p">])</span>
-    <span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="s1">&#39;retmax&#39;</span><span class="p">,</span> <span class="s1">&#39;retmode&#39;</span><span class="p">,</span> <span class="s1">&#39;field&#39;</span><span class="p">])</span>
+    <span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">search_settings</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">eutils_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
-    <span class="c1"># Initialize meta data &amp; requester</span>
+    <span class="c1"># Initialize meta data object</span>
     <span class="n">meta_data</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-    <span class="n">req</span> <span class="o">=</span> <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="n">get_wait_time</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">authenticated</span><span class="p">),</span>
-                    <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
 
-    <span class="c1"># Sort out terms</span>
+    <span class="c1"># Check for a Requester object to be passed in as logging, otherwise initialize</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">logging</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">Requester</span><span class="p">)</span> <span class="k">else</span> \
+        <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="n">get_wait_time</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">authenticated</span><span class="p">),</span>
+                  <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
+
+    <span class="c1"># Sort out terms for list a</span>
     <span class="n">n_terms_a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms_a</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms_b</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">square</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">terms_b</span><span class="p">,</span> <span class="n">inclusions_b</span><span class="p">,</span> <span class="n">exclusions_b</span> <span class="o">=</span> <span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="p">,</span> <span class="n">exclusions_a</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">square</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">n_terms_b</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms_b</span><span class="p">)</span>
-
-    <span class="c1"># Check inclusions &amp; exclusions</span>
-    <span class="n">inclusions_a</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_a</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusions_a</span> <span class="k">else</span> <span class="n">inclusions_a</span>
-    <span class="n">inclusions_b</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_b</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusions_b</span> <span class="k">else</span> <span class="n">inclusions_b</span>
-    <span class="n">exclusions_a</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_a</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exclusions_a</span> <span class="k">else</span> <span class="n">exclusions_a</span>
-    <span class="n">exclusions_b</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_b</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exclusions_b</span> <span class="k">else</span> <span class="n">exclusions_b</span>
-
-    <span class="c1"># Initialize count variables to the correct length</span>
     <span class="n">counts_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">n_terms_a</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="n">counts_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">n_terms_b</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">labels_a</span> <span class="o">=</span> <span class="n">labels_a</span> <span class="k">if</span> <span class="n">labels_a</span> <span class="k">else</span> <span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms_a</span><span class="p">]</span>
+    <span class="n">inclusions_a</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_a</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusions_a</span> <span class="k">else</span> <span class="n">inclusions_a</span>
+    <span class="n">exclusions_a</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_a</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exclusions_a</span> <span class="k">else</span> <span class="n">exclusions_a</span>
 
-    <span class="c1"># Initialize right size matrices to store co-occurence data</span>
-    <span class="n">co_occurences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">n_terms_a</span><span class="p">,</span> <span class="n">n_terms_b</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="c1"># If collecting co-occurences, sort out terms for list b and initialize co-occurence stores</span>
+    <span class="k">if</span> <span class="n">collect_coocs</span><span class="p">:</span>
 
-    <span class="c1"># Set diagonal to zero if square (term co-occurrence with itself)</span>
-    <span class="k">if</span> <span class="n">square</span><span class="p">:</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">co_occurences</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">terms_b</span><span class="p">:</span>
+            <span class="n">square</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">terms_b</span><span class="p">,</span> <span class="n">inclusions_b</span><span class="p">,</span> <span class="n">exclusions_b</span> <span class="o">=</span> <span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="p">,</span> <span class="n">exclusions_a</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">square</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">n_terms_b</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms_b</span><span class="p">)</span>
+
+        <span class="n">counts_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">n_terms_b</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">labels_b</span> <span class="o">=</span> <span class="n">labels_b</span> <span class="k">if</span> <span class="n">labels_b</span> <span class="k">else</span> <span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms_b</span><span class="p">]</span>
+        <span class="n">inclusions_b</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_b</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusions_b</span> <span class="k">else</span> <span class="n">inclusions_b</span>
+        <span class="n">exclusions_b</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">n_terms_b</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exclusions_b</span> <span class="k">else</span> <span class="n">exclusions_b</span>
+
+        <span class="c1"># Initialize matrices to store co-occurrence data</span>
+        <span class="n">co_occurences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">n_terms_a</span><span class="p">,</span> <span class="n">n_terms_b</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># Set diagonal to zero if square (term co-occurrence with itself)</span>
+        <span class="k">if</span> <span class="n">square</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">co_occurences</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># Get current information about database being used</span>
     <span class="n">meta_data</span><span class="o">.</span><span class="n">add_db_info</span><span class="p">(</span><span class="n">get_db_info</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">)))</span>
 
     <span class="c1"># Loop through each term (list-A)</span>
-    <span class="k">for</span> <span class="n">a_ind</span><span class="p">,</span> <span class="p">(</span><span class="n">search_a</span><span class="p">,</span> <span class="n">incl_a</span><span class="p">,</span> <span class="n">excl_a</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="p">,</span> <span class="n">exclusions_a</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">a_ind</span><span class="p">,</span> <span class="p">(</span><span class="n">label_a</span><span class="p">,</span> <span class="n">search_a</span><span class="p">,</span> <span class="n">incl_a</span><span class="p">,</span> <span class="n">excl_a</span><span class="p">)</span> <span class="ow">in</span> \
+        <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">labels_a</span><span class="p">,</span> <span class="n">terms_a</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="p">,</span> <span class="n">exclusions_a</span><span class="p">)):</span>
 
         <span class="c1"># Make term arguments</span>
-        <span class="n">term_a</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="n">search_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">search_a</span><span class="p">,</span> <span class="n">incl_a</span><span class="p">,</span> <span class="n">excl_a</span><span class="p">)</span>
-        <span class="n">term_a_arg</span> <span class="o">=</span> <span class="n">mk_term</span><span class="p">(</span><span class="n">term_a</span><span class="p">)</span>
+        <span class="n">term_a</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="n">label_a</span><span class="p">,</span> <span class="n">search_a</span><span class="p">,</span> <span class="n">incl_a</span><span class="p">,</span> <span class="n">excl_a</span><span class="p">)</span>
+        <span class="n">term_a_arg</span> <span class="o">=</span> <span class="n">make_term</span><span class="p">(</span><span class="n">term_a</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running counts for: &#39;</span><span class="p">,</span> <span class="n">term_a</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
@@ -230,40 +268,46 @@
         <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="n">term_a_arg</span><span class="p">})</span>
         <span class="n">counts_a</span><span class="p">[</span><span class="n">a_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
-        <span class="c1"># For each term in list a, loop through each term in list b</span>
-        <span class="k">for</span> <span class="n">b_ind</span><span class="p">,</span> <span class="p">(</span><span class="n">search_b</span><span class="p">,</span> <span class="n">incl_b</span><span class="p">,</span> <span class="n">excl_b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">terms_b</span><span class="p">,</span> <span class="n">inclusions_b</span><span class="p">,</span> <span class="n">exclusions_b</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">collect_coocs</span><span class="p">:</span>
 
-            <span class="c1"># Skip collections of equivalent term combinations - if single term list</span>
-            <span class="c1">#  This will skip the diagonal row, and any combinations already collected</span>
-            <span class="k">if</span> <span class="n">square</span> <span class="ow">and</span> <span class="n">co_occurences</span><span class="p">[</span><span class="n">a_ind</span><span class="p">,</span> <span class="n">b_ind</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">continue</span>
+            <span class="c1"># For each term in list a, loop through each term in list b</span>
+            <span class="k">for</span> <span class="n">b_ind</span><span class="p">,</span> <span class="p">(</span><span class="n">label_b</span><span class="p">,</span> <span class="n">search_b</span><span class="p">,</span> <span class="n">incl_b</span><span class="p">,</span> <span class="n">excl_b</span><span class="p">)</span> <span class="ow">in</span> \
+                <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">labels_b</span><span class="p">,</span> <span class="n">terms_b</span><span class="p">,</span> <span class="n">inclusions_b</span><span class="p">,</span> <span class="n">exclusions_b</span><span class="p">)):</span>
 
-            <span class="c1"># Make term arguments</span>
-            <span class="n">term_b</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="n">search_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">search_b</span><span class="p">,</span> <span class="n">incl_b</span><span class="p">,</span> <span class="n">excl_b</span><span class="p">)</span>
-            <span class="n">term_b_arg</span> <span class="o">=</span> <span class="n">mk_term</span><span class="p">(</span><span class="n">term_b</span><span class="p">)</span>
-            <span class="n">full_term_arg</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">term_a_arg</span><span class="p">,</span> <span class="n">term_b_arg</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">)</span>
+                <span class="c1"># Skip collections of equivalent term combinations - if single term list</span>
+                <span class="c1">#  This will skip the diagonal row, and any combinations already collected</span>
+                <span class="k">if</span> <span class="n">square</span> <span class="ow">and</span> <span class="n">co_occurences</span><span class="p">[</span><span class="n">a_ind</span><span class="p">,</span> <span class="n">b_ind</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="k">continue</span>
 
-            <span class="c1"># Get number of results for current term search</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">square</span><span class="p">:</span>
-                <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="n">term_b_arg</span><span class="p">})</span>
-                <span class="n">counts_b</span><span class="p">[</span><span class="n">b_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+                <span class="c1"># Make term arguments</span>
+                <span class="n">term_b</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="n">label_b</span><span class="p">,</span> <span class="n">search_b</span><span class="p">,</span> <span class="n">incl_b</span><span class="p">,</span> <span class="n">excl_b</span><span class="p">)</span>
+                <span class="n">term_b_arg</span> <span class="o">=</span> <span class="n">make_term</span><span class="p">(</span><span class="n">term_b</span><span class="p">)</span>
+                <span class="n">full_term_arg</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">term_a_arg</span><span class="p">,</span> <span class="n">term_b_arg</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">)</span>
 
-            <span class="c1"># Get number of results for combination of terms</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="n">full_term_arg</span><span class="p">})</span>
-            <span class="n">count</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+                <span class="c1"># Get number of results for current term search</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">square</span><span class="p">:</span>
+                    <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="n">term_b_arg</span><span class="p">})</span>
+                    <span class="n">counts_b</span><span class="p">[</span><span class="n">b_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
-            <span class="n">co_occurences</span><span class="p">[</span><span class="n">a_ind</span><span class="p">,</span> <span class="n">b_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
-            <span class="k">if</span> <span class="n">square</span><span class="p">:</span>
-                <span class="n">co_occurences</span><span class="p">[</span><span class="n">b_ind</span><span class="p">,</span> <span class="n">a_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+                <span class="c1"># Get number of results for combination of terms</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="n">full_term_arg</span><span class="p">})</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">square</span><span class="p">:</span>
-        <span class="n">counts</span> <span class="o">=</span> <span class="n">counts_a</span>
+                <span class="n">co_occurences</span><span class="p">[</span><span class="n">a_ind</span><span class="p">,</span> <span class="n">b_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+                <span class="k">if</span> <span class="n">square</span><span class="p">:</span>
+                    <span class="n">co_occurences</span><span class="p">[</span><span class="n">b_ind</span><span class="p">,</span> <span class="n">a_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+
+    <span class="k">if</span> <span class="n">collect_coocs</span><span class="p">:</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">counts_a</span> <span class="k">if</span> <span class="n">square</span> <span class="k">else</span> <span class="p">[</span><span class="n">counts_a</span><span class="p">,</span> <span class="n">counts_b</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">counts_a</span><span class="p">,</span> <span class="n">counts_b</span><span class="p">]</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">counts_a</span>
 
     <span class="n">meta_data</span><span class="o">.</span><span class="n">add_requester</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">co_occurences</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">meta_data</span></div>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">collect_coocs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">counts</span><span class="p">,</span> <span class="n">meta_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">co_occurences</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">meta_data</span></div>
 
 
 <span class="k">def</span> <span class="nf">get_count</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
@@ -271,7 +315,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    req : Requester object</span>
+<span class="sd">    req : Requester</span>
 <span class="sd">        Object to launch requests from.</span>
 <span class="sd">    url : str</span>
 <span class="sd">        URL to request count data from.</span>
@@ -285,7 +329,7 @@
     <span class="n">page</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">page_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
 
-    <span class="n">counts</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">page_soup</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">(</span><span class="n">page_soup</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
@@ -306,8 +350,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

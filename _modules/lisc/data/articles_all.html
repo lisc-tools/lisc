@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.data.articles_all &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.data.articles_all &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -114,13 +117,13 @@
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">import</span> <span class="nn">nltk</span>
-
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="k">import</span> <span class="n">check_ext</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="k">import</span> <span class="n">check_directory</span>
-<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="k">import</span> <span class="n">combine_lists</span><span class="p">,</span> <span class="n">convert_string</span><span class="p">,</span> <span class="n">count_elements</span>
-<span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="k">import</span> <span class="n">BaseArticles</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">check_ext</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
+<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="kn">import</span> <span class="n">combine_lists</span><span class="p">,</span> <span class="n">count_elements</span><span class="p">,</span> <span class="n">drop_none</span>
+<span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="kn">import</span> <span class="n">BaseArticles</span>
+<span class="kn">from</span> <span class="nn">lisc.data.process</span> <span class="kn">import</span> <span class="n">process_articles</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -132,61 +135,80 @@
 <span class="sd">    ----------</span>
 <span class="sd">    label : str</span>
 <span class="sd">        Label for the term.</span>
-<span class="sd">    term : Term object</span>
+<span class="sd">    term : Term</span>
 <span class="sd">        Definition of the search term, with inclusion and exclusion words.</span>
+<span class="sd">    has_data : bool</span>
+<span class="sd">        Whether the object contains data.</span>
 <span class="sd">    n_articles : int</span>
 <span class="sd">        Number of articles included in object.</span>
 <span class="sd">    ids : list of int</span>
 <span class="sd">        Article ids for all articles included in object.</span>
 <span class="sd">    journals : collections.Counter</span>
-<span class="sd">        Counts for each journal.</span>
+<span class="sd">        Frequency distribution for each journal.</span>
 <span class="sd">    authors : collections.Counter</span>
-<span class="sd">        Counts for each author.</span>
+<span class="sd">        Frequency distribution for each author.</span>
 <span class="sd">    first_authors : collections.Counter</span>
-<span class="sd">        Counts for each first author.</span>
+<span class="sd">        Frequency distribution for each first author.</span>
 <span class="sd">    last_authors : collections.Counter</span>
-<span class="sd">        Counts for each last author.</span>
-<span class="sd">    words : nltk.probability.FreqDist</span>
+<span class="sd">        Frequency distribution for each last author.</span>
+<span class="sd">    words : collections.Counter</span>
 <span class="sd">        Frequency distribution of all words.</span>
-<span class="sd">    keywords : nltk.probability.FreqDist</span>
+<span class="sd">    keywords : collections.Counter</span>
 <span class="sd">        Frequency distribution of all keywords.</span>
 <span class="sd">    years : collections.Counter</span>
-<span class="sd">        Counts for each year of publication.</span>
+<span class="sd">        Frequency distribution for each year of publication.</span>
 <span class="sd">    dois : list of str</span>
 <span class="sd">        DOIs of each article included in object.</span>
 <span class="sd">    summary : dict</span>
 <span class="sd">        A summary of the data associated with the current object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ArticlesAll.__init__"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_data</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="ArticlesAll.__init__"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">articles</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize ArticlesAll object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        term_data : Articles object</span>
+<span class="sd">        articles : Articles</span>
 <span class="sd">            Data for all articles from a given search term.</span>
-<span class="sd">        exclusions : list of str</span>
+<span class="sd">        exclusions : list of str, optional</span>
 <span class="sd">            Words to exclude from the word collections.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Create an ``ArticlesAll`` object from an :class:`~.Articles` object:</span>
+
+<span class="sd">        &gt;&gt;&gt; from lisc.data import Articles</span>
+<span class="sd">        &gt;&gt;&gt; articles = Articles(&#39;frontal lobe&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; articles_all = ArticlesAll(articles)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Inherit from the BaseArticles object</span>
-        <span class="n">BaseArticles</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_data</span><span class="o">.</span><span class="n">term</span><span class="p">)</span>
+        <span class="n">BaseArticles</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">articles</span><span class="o">.</span><span class="n">term</span><span class="p">)</span>
+
+        <span class="c1"># Process the article data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">articles</span><span class="o">.</span><span class="n">processed</span><span class="p">:</span>
+            <span class="n">articles</span> <span class="o">=</span> <span class="n">process_articles</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
+
+        <span class="c1"># Set exclusions, copying input list, if given, and adding current search terms</span>
+        <span class="n">exclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span> <span class="k">if</span> <span class="n">exclusions</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+            <span class="p">[</span><span class="n">articles</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">+</span> <span class="n">articles</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">search</span> <span class="o">+</span> <span class="n">articles</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">inclusions</span><span class="p">))</span>
 
         <span class="c1"># Copy over tracking of included IDs &amp; DOIs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ids</span> <span class="o">=</span> <span class="n">term_data</span><span class="o">.</span><span class="n">ids</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dois</span> <span class="o">=</span> <span class="n">term_data</span><span class="o">.</span><span class="n">dois</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ids</span> <span class="o">=</span> <span class="n">articles</span><span class="o">.</span><span class="n">ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dois</span> <span class="o">=</span> <span class="n">articles</span><span class="o">.</span><span class="n">dois</span>
 
-        <span class="c1"># Get counts of authors, journals, years</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">([</span><span class="n">journal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">journal</span> <span class="ow">in</span> <span class="n">term_data</span><span class="o">.</span><span class="n">journals</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">years</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">_count_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_authors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_authors</span> <span class="o">=</span> <span class="n">_count_end_authors</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
+        <span class="c1"># Get frequency distributions of years, journals, authors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">articles</span><span class="o">.</span><span class="n">years</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journals</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">articles</span><span class="o">.</span><span class="n">journals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_authors</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span>\
+            <span class="n">auth</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">auth</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">articles</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_authors</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span>\
+            <span class="n">auth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">auth</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">articles</span><span class="o">.</span><span class="n">authors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">articles</span><span class="o">.</span><span class="n">authors</span><span class="p">))</span>
 
         <span class="c1"># Convert lists of all words to frequency distributions</span>
-        <span class="n">exclusions</span> <span class="o">=</span> <span class="n">exclusions</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">search</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">inclusions</span>
-        <span class="n">temp_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">convert_string</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">term_data</span><span class="o">.</span><span class="n">words</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">temp_words</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_freq_dist</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">term_data</span><span class="o">.</span><span class="n">keywords</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">articles</span><span class="o">.</span><span class="n">words</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">combine_lists</span><span class="p">(</span><span class="n">articles</span><span class="o">.</span><span class="n">keywords</span><span class="p">),</span> <span class="n">exclusions</span><span class="p">)</span>
 
         <span class="c1"># Initialize summary dictionary</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></div>
@@ -199,8 +221,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">        data_type : {&#39;words&#39;, &#39;keywords&#39;}</span>
 <span class="sd">            Which frequency distribution to check.</span>
-<span class="sd">        n_check : int</span>
+<span class="sd">        n_check : int, optional, default: 20</span>
 <span class="sd">            Number of most common items to print out.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Print the most frequent words, assuming an initialized ``ArticlesAll`` object with data:</span>
+
+<span class="sd">        &gt;&gt;&gt; articles_all.check_frequencies() # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">data_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">,</span> <span class="s1">&#39;keywords&#39;</span><span class="p">]:</span>
@@ -214,14 +242,22 @@
 
         <span class="c1"># Get the requested number of most common words, and convert to str</span>
         <span class="n">top</span> <span class="o">=</span> <span class="n">freqs</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_check</span><span class="p">]</span>
-        <span class="n">top_str</span> <span class="o">=</span> <span class="s1">&#39; , &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">top</span><span class="p">[:</span><span class="n">n_check</span><span class="p">]])</span>
+        <span class="n">top_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">top</span><span class="p">[:</span><span class="n">n_check</span><span class="p">]])</span>
 
         <span class="c1"># Print out the top words for the current term</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:5}</span><span class="s2"> : &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span> <span class="o">+</span> <span class="n">top_str</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ArticlesAll.create_summary"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.create_summary">[docs]</a>    <span class="k">def</span> <span class="nf">create_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fill the summary dictionary of the current terms Words data.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Fill the summary dictionary of the current terms Words data.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Create a summary for a term, assuming an initialized ``ArticlesAll`` object with collected</span>
+<span class="sd">        ``Words`` data:</span>
+
+<span class="sd">        &gt;&gt;&gt; articles_all.create_summary() # doctest:+SKIP</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Add data to summary dictionary.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
@@ -235,7 +271,15 @@
 
 
 <div class="viewcode-block" id="ArticlesAll.print_summary"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.print_summary">[docs]</a>    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Print out a summary of the collected words data.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Print out a summary of the collected words data.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Print a summary for a term, assuming an initialized ``ArticlesAll`` object with data:</span>
+
+<span class="sd">        &gt;&gt;&gt; articles_all.create_summary() # doctest:+SKIP</span>
+<span class="sd">        &gt;&gt;&gt; articles_all.print_summary() # doctest:+SKIP</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Print out summary information</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
@@ -252,121 +296,21 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        directory : str or SCDB object, optional</span>
+<span class="sd">        directory : str or SCDB or None, optional</span>
 <span class="sd">            Folder or database object specifying the save location.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Save a summary for a term, assuming an initialized ``ArticlesAll`` object with data::</span>
+
+<span class="sd">        &gt;&gt;&gt; articles_all.create_summary() # doctest:+SKIP</span>
+<span class="sd">        &gt;&gt;&gt; articles_all.save_summary() # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="ArticlesAll.create_freq_dist"><a class="viewcode-back" href="../../../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll.create_freq_dist">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">create_freq_dist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">,</span> <span class="n">exclude</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create a frequency distribution.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        in_lst : list of str</span>
-<span class="sd">            Words to create the frequency distribution from.</span>
-<span class="sd">        exclude : list of str</span>
-<span class="sd">            Words to exclude from the frequency distribution.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        freqs : nltk.FreqDist</span>
-<span class="sd">            Frequency distribution of the words.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">freqs</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">in_lst</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">excl</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">freqs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">excl</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="k">pass</span>
-
-        <span class="k">return</span> <span class="n">freqs</span></div></div>
-
-
-<span class="k">def</span> <span class="nf">_count_authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Count all authors.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    authors : list of list of tuple of (str, str, str, str)</span>
-<span class="sd">        Authors, as (last name, first name, initials, affiliation).</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    author_counts : collections.Counter</span>
-<span class="sd">        Number of publications per author.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Reduce author fields to pair of tuples (last name, initials) &amp; count # of publications per author</span>
-    <span class="n">all_authors</span> <span class="o">=</span> <span class="p">[(</span><span class="n">author</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">art_authors</span> <span class="ow">in</span> <span class="n">authors</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">art_authors</span><span class="p">]</span>
-    <span class="n">author_counts</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">_fix_author_names</span><span class="p">(</span><span class="n">all_authors</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">author_counts</span>
-
-
-<span class="k">def</span> <span class="nf">_count_end_authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Count first and last authors only.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    authors : list of list of tuple of (str, str, str, str)</span>
-<span class="sd">        Authors, as (last name, first name, initials, affiliation).</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    first_counts, last_counts : collections.Counter</span>
-<span class="sd">        Number of publications for each first and last author.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Pull out the full name for the first &amp; last author of each article</span>
-    <span class="c1">#  Last author is only considered if there is more than 1 author</span>
-    <span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">auth</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authors</span><span class="p">]</span>
-    <span class="n">f_names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">author</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">firsts</span><span class="p">]</span>
-
-    <span class="n">lasts</span> <span class="o">=</span> <span class="p">[</span><span class="n">auth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authors</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="n">l_names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">author</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">lasts</span><span class="p">]</span>
-
-    <span class="n">f_counts</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">_fix_author_names</span><span class="p">(</span><span class="n">f_names</span><span class="p">))</span>
-    <span class="n">l_counts</span> <span class="o">=</span> <span class="n">count_elements</span><span class="p">(</span><span class="n">_fix_author_names</span><span class="p">(</span><span class="n">l_names</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">f_counts</span><span class="p">,</span> <span class="n">l_counts</span>
-
-
-<span class="k">def</span> <span class="nf">_fix_author_names</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fix author names.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    names : list of tuple of (str, str)</span>
-<span class="sd">        Author names, as (last name, initials).</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    names : list of tuple of (str, str)</span>
-<span class="sd">        Author names, as (last name, initials).</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    Sometimes full author name ends up in the last name field.</span>
-<span class="sd">    If first name is None, assume this happened:</span>
-<span class="sd">        Split up the text in first name, and grab the first name initial.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Drop names whos data is all None</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
-
-    <span class="c1"># Fix names if full name ended up in last name field</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
-        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">names</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div></div>
 </pre></div>
 
     </div>
@@ -380,8 +324,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

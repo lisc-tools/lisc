@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.objects.counts &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.objects.counts &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -110,14 +113,18 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for lisc.objects.counts</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Class for collectiton and analyses of co-occurrences data.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Class for collection and analyses of co-occurrences data.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="k">import</span> <span class="n">Base</span>
-<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="k">import</span> <span class="n">wrap</span><span class="p">,</span> <span class="n">get_max_length</span>
-<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="k">import</span> <span class="n">collect_counts</span>
-<span class="kn">from</span> <span class="nn">lisc.analysis.counts</span> <span class="k">import</span> <span class="n">compute_normalization</span><span class="p">,</span> <span class="n">compute_association_index</span>
+<span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="kn">import</span> <span class="n">wrap</span><span class="p">,</span> <span class="n">get_max_length</span>
+<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_counts</span>
+<span class="kn">from</span> <span class="nn">lisc.analysis.counts</span> <span class="kn">import</span> <span class="p">(</span><span class="n">compute_normalization</span><span class="p">,</span> <span class="n">compute_association_index</span><span class="p">,</span>
+                                  <span class="n">compute_similarity</span><span class="p">)</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -130,71 +137,119 @@
 <span class="sd">    terms : dict</span>
 <span class="sd">        Search terms to use.</span>
 <span class="sd">    counts : 2d array</span>
-<span class="sd">        The numbers of articles found for each combination of terms.</span>
+<span class="sd">        The number of articles found for each combination of terms.</span>
 <span class="sd">    score : 2d array</span>
-<span class="sd">        A transformed &#39;score&#39; of co-occurrence data</span>
-<span class="sd">        This can be a normalized version of the data, and/or a computed association index.</span>
+<span class="sd">        A transformed &#39;score&#39; of co-occurrence data.</span>
+<span class="sd">        This may be normalized count data, or a similarity or association measure.</span>
+<span class="sd">    score_info : dict</span>
+<span class="sd">        Information about the computed score data.</span>
 <span class="sd">    square : bool</span>
 <span class="sd">        Whether the count data matrix is symmetrical.</span>
-<span class="sd">    meta_data : MetaData object</span>
+<span class="sd">    meta_data : MetaData</span>
 <span class="sd">        Meta data information about the data collection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Counts.__init__"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.__init__"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize LISC Counts object.&quot;&quot;&quot;</span>
 
         <span class="c1"># Initialize dictionary to store search terms</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">dat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dat</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="Counts.add_terms"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add the given list of strings as terms.</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Index into Counts object, accessing count.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        terms : list of str OR list of list of str</span>
-<span class="sd">            List of terms.</span>
-<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
-<span class="sd">            Which type of terms are being added.</span>
-<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
-<span class="sd">            Which set of terms to operate upon.</span>
+<span class="sd">        keys : list of (str, int)</span>
+<span class="sd">            Labels or indices for the data to access.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;terms&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Input keys do not match the object.&#39;</span><span class="p">)</span>
+
+        <span class="n">ind0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ind1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span> <span class="k">else</span> <span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind0</span><span class="p">,</span> <span class="n">ind1</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Counts.add_terms_file"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_terms_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f_name</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Load terms from a text file.</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indicator for if the object has collected data.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Counts.add_terms"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add search terms to the object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        f_name : str</span>
-<span class="sd">            File name to load terms from.</span>
-<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
+<span class="sd">        terms : list or str</span>
+<span class="sd">            Terms to add to the object.</span>
+<span class="sd">            If list, assumed to be terms, which can be a list of str or a list of list of str.</span>
+<span class="sd">            If str, assumed to be a file name to load from.</span>
+<span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}, optional</span>
 <span class="sd">            Which type of terms are being added.</span>
-<span class="sd">        directory : SCDB or str or None</span>
+<span class="sd">        directory : SCDB or str, optional</span>
 <span class="sd">            A string or object containing a file path.</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
-<span class="sd">            Which set of terms to operate upon.</span>
+<span class="sd">            Which set of terms to add.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Add one set of terms, from a list:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts = Counts()</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+
+<span class="sd">        Add a second set of terms, from a list:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;attention&#39;, &#39;perception&#39;], dim=&#39;B&#39;)</span>
+
+<span class="sd">        Add some exclusion words, for the second set of terms, from a list:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;&#39;, &#39;extrasensory&#39;], term_type=&#39;exclusions&#39;, dim=&#39;B&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">add_terms_file</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">term_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;terms&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Counts.add_labels"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_labels">[docs]</a>    <span class="k">def</span> <span class="nf">add_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add labels for terms to the object.</span>
 
-<div class="viewcode-block" id="Counts.run_collection"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        labels : list of str or str</span>
+<span class="sd">            Labels for each term to add to the object.</span>
+<span class="sd">            If list, is assumed to be labels.</span>
+<span class="sd">            If str, is assumed to be a file name to load from.</span>
+<span class="sd">        directory : SCDB or str, optional</span>
+<span class="sd">            Folder or database object specifying the file location, if loading from file.</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">            Which set of labels to add.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Counts.run_collection"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect co-occurrence data.</span>
 
 <span class="sd">        Parameters</span>
@@ -208,22 +263,40 @@
 <span class="sd">            An API key for a NCBI account.</span>
 <span class="sd">        logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}, optional</span>
 <span class="sd">            What kind of logging, if any, to do for requested URLs.</span>
-<span class="sd">        directory : str or SCDB object, optional</span>
+<span class="sd">        directory : str or SCDB, optional</span>
 <span class="sd">            Folder or database object specifying the save location.</span>
 <span class="sd">        verbose : bool, optional, default: False</span>
 <span class="sd">            Whether to print out updates.</span>
+<span class="sd">        **eutils_kwargs</span>
+<span class="sd">            Additional settings for the EUtils API.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Collect co-occurrence data from added terms, across one set of terms:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts = Counts()</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; counts.run_collection() # doctest: +SKIP</span>
+
+<span class="sd">        Collect co-occurrence data from added terms, across two sets of terms:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts = Counts()</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;attention&#39;, &#39;perception&#39;, &#39;cognition&#39;], dim=&#39;B&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; counts.run_collection() # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Run single list of terms against themselves, in &#39;square&#39; mode</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has_terms</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_counts</span><span class="p">(</span>
                 <span class="n">terms_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span>
                 <span class="n">inclusions_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">inclusions</span><span class="p">,</span>
                 <span class="n">exclusions_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span>
+                <span class="n">labels_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span>
                 <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
                 <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">,</span>
-                <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run two different sets of terms</span>
         <span class="k">else</span><span class="p">:</span>
@@ -232,26 +305,60 @@
                 <span class="n">terms_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span>
                 <span class="n">inclusions_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">inclusions</span><span class="p">,</span>
                 <span class="n">exclusions_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span>
+                <span class="n">labels_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span>
                 <span class="n">terms_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span>
                 <span class="n">inclusions_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">inclusions</span><span class="p">,</span>
                 <span class="n">exclusions_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span>
+                <span class="n">labels_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span>
                 <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
                 <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">,</span>
-                <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">term_counts</span></div>
 
 
-<div class="viewcode-block" id="Counts.compute_score"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.compute_score">[docs]</a>    <span class="k">def</span> <span class="nf">compute_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s1">&#39;association&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.compute_score"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.compute_score">[docs]</a>    <span class="k">def</span> <span class="nf">compute_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s1">&#39;association&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">return_result</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Compute a score, such as an index or normalization, of the co-occurrence data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        score_type : {&#39;association&#39;, &#39;normalize&#39;}, optional</span>
+<span class="sd">        score_type : {&#39;association&#39;, &#39;normalize&#39;, &#39;similarity&#39;}, optional</span>
 <span class="sd">            The type of score to apply to the co-occurrence data.</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
-<span class="sd">            Which dimension of counts to use to normalize the co-occurence data by.</span>
-<span class="sd">            Only used if &#39;score&#39; is &#39;normalize&#39;.</span>
+<span class="sd">            Which dimension of counts to use to normalize by or compute similarity across.</span>
+<span class="sd">            Only used if &#39;score&#39; is &#39;normalize&#39; or &#39;similarity&#39;.</span>
+<span class="sd">        return_result : bool, optional, default: False</span>
+<span class="sd">            Whether to return the computed result.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Compute association scores of co-occurrence data collected for two lists of terms:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts = Counts()</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;attention&#39;, &#39;perception&#39;], dim=&#39;B&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; counts.run_collection() # doctest: +SKIP</span>
+<span class="sd">        &gt;&gt;&gt; counts.compute_score() # doctest: +SKIP</span>
+
+<span class="sd">        Once you have co-occurrence scores calculated, you might want to plot this data.</span>
+
+<span class="sd">        You can plot the results as a matrix:</span>
+
+<span class="sd">        &gt;&gt;&gt; from lisc.plts.counts import plot_matrix  # doctest:+SKIP</span>
+<span class="sd">        &gt;&gt;&gt; plot_matrix(counts)  # doctest:+SKIP</span>
+
+<span class="sd">        And/or as a clustermap:</span>
+
+<span class="sd">        &gt;&gt;&gt; from lisc.plts.counts import plot_clustermap  # doctest:+SKIP</span>
+<span class="sd">        &gt;&gt;&gt; plot_clustermap(counts)  # doctest:+SKIP</span>
+
+<span class="sd">        And/or as a dendrogram:</span>
+
+<span class="sd">        &gt;&gt;&gt; from lisc.plts.counts import plot_dendrogram  # doctest:+SKIP</span>
+<span class="sd">        &gt;&gt;&gt; plot_dendrogram(counts)  # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">score_type</span> <span class="o">==</span> <span class="s1">&#39;association&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">square</span><span class="p">:</span>
@@ -262,11 +369,20 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">score_type</span> <span class="o">==</span> <span class="s1">&#39;normalize&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">compute_normalization</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">compute_normalization</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">score_type</span> <span class="o">==</span> <span class="s1">&#39;similarity&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">compute_similarity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Score type not understood.&#39;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Score type not understood.&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">score_type</span>
+        <span class="k">if</span> <span class="n">score_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;normalize&#39;</span><span class="p">,</span> <span class="s1">&#39;similarity&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dim</span>
+
+        <span class="k">if</span> <span class="n">return_result</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Counts.check_top"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
@@ -276,7 +392,16 @@
 <span class="sd">        ----------</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
 <span class="sd">            Which set of terms to check.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Print which term has the most articles (assuming `counts` already has data):</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.check_top() # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
         <span class="n">max_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{}</span><span class="s2">  with  </span><span class="si">{}</span><span class="s2">  articles.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -289,16 +414,27 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}</span>
 <span class="sd">            Which set of terms to check.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Print the number of articles found for each term (assuming `counts` already has data):</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.check_counts() # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Calculate widths for printing</span>
+        <span class="n">twd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">nwd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of documents found for each search term is:&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  {:</span><span class="si">{twd}</span><span class="s2">}   -   {:</span><span class="si">{nwd}</span><span class="s2">.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
-                <span class="n">twd</span><span class="o">=</span><span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                <span class="n">nwd</span><span class="o">=</span><span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)))</span></div>
+                <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">twd</span><span class="o">=</span><span class="n">twd</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Counts.check_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_data">[docs]</a>    <span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
@@ -310,29 +446,48 @@
 <span class="sd">            Which data type to use.</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
 <span class="sd">            Which set of terms to check.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Print the highest count for each term (assuming `counts` already has data):</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.check_data() # doctest: +SKIP</span>
+
+<span class="sd">        Print the highest score value for each term (assuming `counts` already has data):</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.check_data(data_type=&#39;score&#39;) # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">data_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Data type not understood - can not proceed.&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;score&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Score is not computed - can not proceed.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Score is not computed - can not proceed.&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;similarity&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot check value counts for similarity score.&#39;</span><span class="p">)</span>
 
         <span class="c1"># Set up which direction to act across</span>
-        <span class="n">dat</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">)</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span> <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span> <span class="k">else</span> <span class="n">data</span>
         <span class="n">alt</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="k">else</span> <span class="s1">&#39;A&#39;</span>
+
+        <span class="c1"># Calculate widths for printing</span>
+        <span class="n">twd1</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">twd2</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">nwd</span> <span class="o">=</span> <span class="s1">&#39;&gt;10.0f&#39;</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;counts&#39;</span> <span class="k">else</span> <span class="s1">&#39;06.3f&#39;</span>
 
         <span class="c1"># Loop through each term, find maximally associated term and print out</span>
         <span class="k">for</span> <span class="n">term_ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
 
             <span class="c1"># Find the index of the most common association for current term</span>
-            <span class="n">assoc_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">assoc_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="p">:])</span>
 
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For  {:</span><span class="si">{twd1}</span><span class="s2">}  the highest association is  {:</span><span class="si">{twd2}</span><span class="s2">}  with  {:</span><span class="si">{nwd}</span><span class="s2">}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">assoc_ind</span><span class="p">]),</span>
-                <span class="n">dat</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="n">assoc_ind</span><span class="p">],</span>
-                <span class="n">twd1</span><span class="o">=</span><span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                <span class="n">twd2</span><span class="o">=</span><span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                <span class="n">nwd</span><span class="o">=</span><span class="s1">&#39;&gt;10.0f&#39;</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;counts&#39;</span> <span class="k">else</span> <span class="s1">&#39;06.3f&#39;</span><span class="p">))</span></div>
+                <span class="n">data</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="n">assoc_ind</span><span class="p">],</span> <span class="n">twd1</span><span class="o">=</span><span class="n">twd1</span><span class="p">,</span> <span class="n">twd2</span><span class="o">=</span><span class="n">twd2</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Counts.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
@@ -341,22 +496,49 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        n_articles : int</span>
-<span class="sd">            Mininum number of articles to keep each term.</span>
+<span class="sd">            Minimum number of articles required to keep each term.</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
 <span class="sd">            Which set of terms to drop.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Drop terms with less than or equal to 20 articles (assuming `counts` already has data):</span>
+
+<span class="sd">        &gt;&gt;&gt; counts.drop_data(20) # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># Set a flipper dictionary, to flip inds if needed</span>
+        <span class="n">flip_inds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">}</span>
+
+        <span class="c1"># Finds the indices of the terms with enough data to keep</span>
         <span class="n">keep_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="n">n_articles</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
+        <span class="c1"># Drop terms that do not have enough data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">keep_inds</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">_labels</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">keep_inds</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">keep_inds</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">keep_inds</span><span class="p">,</span> <span class="p">:]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">keep_inds</span><span class="p">,</span> <span class="p">:]</span>
-        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[:,</span> <span class="n">keep_inds</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[:,</span> <span class="n">keep_inds</span><span class="p">]</span></div></div>
+        <span class="c1"># Create an inds dictionary that defaults to all-index slice</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[:])</span>
+
+        <span class="c1"># If square, set both dims, and do array orgs needed for fancy indexing</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">square</span><span class="p">:</span>
+            <span class="n">inds</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">keep_inds</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">inds</span><span class="p">[</span><span class="n">flip_inds</span><span class="p">[</span><span class="n">dim</span><span class="p">]]</span> <span class="o">=</span> <span class="n">keep_inds</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">inds</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">keep_inds</span>
+
+        <span class="c1"># Drop raw count data for terms without enough data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">inds</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">inds</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+
+            <span class="c1"># If score is a similarity matrix check and flip data indices as needed</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;similarity&#39;</span><span class="p">:</span>
+                <span class="n">inds</span><span class="p">[</span><span class="n">flip_inds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">inds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]]</span>
+
+            <span class="c1"># Drop score data for terms without enough data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">inds</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">inds</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span></div></div>
 </pre></div>
 
     </div>
@@ -370,8 +552,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

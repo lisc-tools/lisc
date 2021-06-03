@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.collect_words &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.collect_words &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,7 +116,7 @@
 <h1>lisc.collect_words<a class="headerlink" href="#lisc-collect-words" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="lisc.collect_words">
-<code class="sig-prename descclassname">lisc.</code><code class="sig-name descname">collect_words</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">terms</span></em>, <em class="sig-param"><span class="n">inclusions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">'pubmed'</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">'TIAB'</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">save_and_clear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect_words" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.</code><code class="sig-name descname">collect_words</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">terms</span></em>, <em class="sig-param"><span class="n">inclusions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclusions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">'pubmed'</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">'TIAB'</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">save_and_clear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">logging</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">directory</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">eutils_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/words.html#collect_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.collect_words" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect text data and metadata from EUtils using specified search term(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -124,9 +127,11 @@
 </dd>
 <dt><strong>exclusions</strong><span class="classifier">list of list of str, optional</span></dt><dd><p>Exclusion words for search terms.</p>
 </dd>
+<dt><strong>labels</strong><span class="classifier">list of str, optional</span></dt><dd><p>Labels for the search terms.</p>
+</dd>
 <dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
 </dd>
-<dt><strong>retmax</strong><span class="classifier">int, optional</span></dt><dd><p>Maximum number of articles to return.</p>
+<dt><strong>retmax</strong><span class="classifier">int, optional, default: 100</span></dt><dd><p>Maximum number of articles to return.</p>
 </dd>
 <dt><strong>field</strong><span class="classifier">str, optional, default: ‘TIAB’</span></dt><dd><p>Field to search for term within.
 Defaults to ‘TIAB’, which is Title/Abstract.</p>
@@ -139,17 +144,19 @@ Defaults to ‘TIAB’, which is Title/Abstract.</p>
 </dd>
 <dt><strong>logging</strong><span class="classifier">{None, ‘print’, ‘store’, ‘file’}</span></dt><dd><p>What kind of logging, if any, to do for requested URLs.</p>
 </dd>
-<dt><strong>directory</strong><span class="classifier">str or SCDB object, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
+<dt><strong>directory</strong><span class="classifier">str or SCDB, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>
 <dt><strong>verbose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out updates.</p>
+</dd>
+<dt><strong>**eutils_kwargs</strong></dt><dd><p>Additional settings for the EUtils API.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">list of Articles object</span></dt><dd><p>Results from collecting data for each term.</p>
+<dt><strong>results</strong><span class="classifier">list of Articles</span></dt><dd><p>Results from collecting data for each term.</p>
 </dd>
-<dt><strong>meta_data</strong><span class="classifier">MetaData object</span></dt><dd><p>Meta data from the data collection.</p>
+<dt><strong>meta_data</strong><span class="classifier">MetaData</span></dt><dd><p>Meta data from the data collection.</p>
 </dd>
 </dl>
 </dd>
@@ -159,12 +166,17 @@ Defaults to ‘TIAB’, which is Title/Abstract.</p>
 the articles found for that term.</p>
 <p>For each article, it pulls and saves out data (including title, abstract, authors, etc),
 using the hierarchical tag structure that organizes the articles.</p>
+<p class="rubric">Examples</p>
+<p>Collect words data for two terms, limiting the results to 5 articles per term:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">results</span><span class="p">,</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_words</span><span class="p">([[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">]],</span> <span class="n">retmax</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <div class="section" id="examples-using-lisc-collect-words">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.collect_words</span></code><a class="headerlink" href="#examples-using-lisc-collect-words" title="Permalink to this headline">¶</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="Collect article text data and metadata, using a function oriented approach."><div class="figure align-default" id="id1">
-<img alt="../_images/sphx_glr_plot_functions_words_thumb.png" src="../_images/sphx_glr_plot_functions_words_thumb.png" />
+<img alt="Words with Functions" src="../_images/sphx_glr_plot_functions_words_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_functions_words.html#sphx-glr-auto-examples-plot-functions-words-py"><span class="std std-ref">Words with Functions</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div><div style='clear:both'></div></div>
@@ -182,8 +194,8 @@ using the hierarchical tag structure that organizes the articles.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

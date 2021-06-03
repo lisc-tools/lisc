@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 03: Counts Collection &#8212; lisc 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-03-countscollection-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="tutorial-03-counts-collection">
+<span id="sphx-glr-auto-tutorials-plot-03-countscollection-py"></span><h1>Tutorial 03: Counts Collection<a class="headerlink" href="#tutorial-03-counts-collection" title="Permalink to this headline">¶</a></h1>
+<p>Collecting term co-occurrence data from the scientific literature.</p>
+<div class="section" id="term-co-occurrence">
+<h2>Term Co-occurrence<a class="headerlink" href="#term-co-occurrence" title="Permalink to this headline">¶</a></h2>
+<p>The ‘Counts’ approach, or term co-occurrence, searches the literature for
+how often terms of interest appear together.</p>
+<p>This type of analysis can be used to infer associations between terms.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Counts object, which is used for co-occurrence analysis</span>
+<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts</span></a>
+
+<span class="c1"># Import the SCDB object, which defines a database structure for saved data</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+
+<span class="c1"># Import a utility function for saving out collected data</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="counts-object">
+<h2>Counts Object<a class="headerlink" href="#counts-object" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object is used to handle term co-occurrence collection and analyses.</p>
+<p>This object is based on the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object introduced in the prior tutorial,
+meaning we can define and add terms to it like introduced there.</p>
+<div class="section" id="counts-single-list-of-terms">
+<h3>Counts: Single List of Terms<a class="headerlink" href="#counts-single-list-of-terms" title="Permalink to this headline">¶</a></h3>
+<p>For the first example of running a counts analysis, we will use a single list of terms.</p>
+<p>When a single list of terms is provided, the word co-occurrence is collected as the
+co-occurrence of each term with every other term in the list.</p>
+<p>Let’s start with an example using different parts of the brain, and examine
+how often these brain regions are talked about together.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms to search for</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Initialize counts object &amp; add the terms that we want to collect co-occurrences for</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a> <span class="o">=</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts</span></a><span class="p">()</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.add_terms" title="lisc.Counts.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.run_collection" title="lisc.Counts.run_collection" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span></a><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running counts for:  frontal lobe
+Running counts for:  temporal lobe
+Running counts for:  parietal lobe
+Running counts for:  occipital lobe
+</pre></div>
+</div>
+<p>We have now collected some literature data!</p>
+<p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object will now contain data on term co-occurrence in the literature.</p>
+<p>This is stored in the <cite>counts</cite> attribute of the object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the raw count data</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 1928  865  546]
+ [1928    0  806  667]
+ [ 865  806    0  476]
+ [ 546  667  476    0]]
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object also has methods for exploring the collected data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many articles were found for each search term</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.check_counts" title="lisc.Counts.check_counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_counts</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
+  &#39;frontal lobe&#39;     -   15032
+  &#39;temporal lobe&#39;    -   29493
+  &#39;parietal lobe&#39;    -    5363
+  &#39;occipital lobe&#39;   -    4023
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.check_top" title="lisc.Counts.check_top" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_top</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  29493  articles.
+</pre></div>
+</div>
+</div>
+<div class="section" id="counts-two-terms-lists">
+<h3>Counts: Two Terms Lists<a class="headerlink" href="#counts-two-terms-lists" title="Permalink to this headline">¶</a></h3>
+<p>In the first example above, we provided a single list of terms.</p>
+<p>Now let’s explore using two different sets of terms. When providing two lists of terms,
+each term from each list is compared to each term of the other list.</p>
+<p>In this example, we will keep our list of brain regions, and explore how they
+relate to different sensory systems.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define some new terms</span>
+<span class="n">terms_a</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
+<span class="n">terms_b</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;vision&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;audition&#39;</span><span class="p">,</span> <span class="s1">&#39;auditory&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;somatosensory&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;olfaction&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span><span class="p">],</span>
+           <span class="p">[</span><span class="s1">&#39;gustation&#39;</span><span class="p">,</span> <span class="s1">&#39;taste&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;proprioception&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;nociception&#39;</span><span class="p">,</span> <span class="s1">&#39;pain&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Now that we have multiple term lists, we have to keep track of and specify which is which.</p>
+<p>This is done with the <cite>dim</cite> argument (for ‘dimension’), and encoded as either ‘A’ or ‘B’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set terms lists, indicating they are separate lists with the &#39;A&#39; and &#39;B&#39; labels</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.add_terms" title="lisc.Counts.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.add_terms" title="lisc.Counts.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms_b</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading terms.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect co-occurrence data</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.run_collection" title="lisc.Counts.run_collection" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p>From here you can use all the same methods to explore the data we just collected.</p>
+<p>In the next tutorial, we will explore analyzing our collected counts data.</p>
+<p>For now, let’s save out our collected counts data, using the LISC utility to save the object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out the counts object</span>
+<span class="n">save_object</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  31.415 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-countscollection-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/f6b7222965c1f8d157227f97ac2f3eef/plot_03-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-CountsCollection.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1b307ec7d3ca419e921d7b786605b5fd/plot_03-CountsCollection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_03-CountsCollection.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

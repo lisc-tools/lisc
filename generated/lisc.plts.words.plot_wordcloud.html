@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.plts.words.plot_wordcloud &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.plts.words.plot_wordcloud &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,27 +116,31 @@
 <h1>lisc.plts.words.plot_wordcloud<a class="headerlink" href="#lisc-plts-words-plot-wordcloud" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="lisc.plts.words.plot_wordcloud">
-<code class="sig-prename descclassname">lisc.plts.words.</code><code class="sig-name descname">plot_wordcloud</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">freq_dist</span></em>, <em class="sig-param"><span class="n">n_words</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_wordcloud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.words.plot_wordcloud" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lisc.plts.words.</code><code class="sig-name descname">plot_wordcloud</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">freq_dist</span></em>, <em class="sig-param"><span class="n">n_words</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">plt_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_wordcloud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.words.plot_wordcloud" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a wordcloud.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>freq_dist</strong><span class="classifier">nltk.FreqDist</span></dt><dd><p>Frequency distribution of words to plot.</p>
+<dt><strong>freq_dist</strong><span class="classifier">collections.Counter</span></dt><dd><p>Frequency distribution of words to plot.</p>
 </dd>
 <dt><strong>n_words</strong><span class="classifier">int</span></dt><dd><p>Number of top words to include in the wordcloud.</p>
 </dd>
 <dt><strong>ax</strong><span class="classifier">matplotlib.Axes, optional</span></dt><dd><p>Figure axes upon which to plot.</p>
 </dd>
+<dt><strong>plt_kwargs</strong></dt><dd><p>Additional keyword arguments for the plot.</p>
+</dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>See the <code class="xref py py-meth docutils literal notranslate"><span class="pre">create_freq_dist()</span></code> method of the <a class="reference internal" href="lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a> object.</p>
 </dd></dl>
 
 <div class="section" id="examples-using-lisc-plts-words-plot-wordcloud">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.plts.words.plot_wordcloud</span></code><a class="headerlink" href="#examples-using-lisc-plts-words-plot-wordcloud" title="Permalink to this headline">¶</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected text data and metadata."><div class="figure align-default" id="id1">
-<img alt="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" src="../_images/sphx_glr_plot_04-WordsAnalysis_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-04-wordsanalysis-py"><span class="std std-ref">Tutorial 04: Words Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<img alt="Tutorial 02: Words Analysis" src="../_images/sphx_glr_plot_02-WordsAnalysis_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_02-WordsAnalysis.html#sphx-glr-auto-tutorials-plot-02-wordsanalysis-py"><span class="std std-ref">Tutorial 02: Words Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div><div style='clear:both'></div></div>
 </div>
@@ -150,8 +157,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

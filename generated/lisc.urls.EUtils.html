@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.urls.EUtils &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.urls.EUtils &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -113,7 +116,7 @@
 <h1>lisc.urls.EUtils<a class="headerlink" href="#lisc-urls-eutils" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="lisc.urls.EUtils">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.urls.</code><code class="sig-name descname">EUtils</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lisc.urls.</code><code class="sig-name descname">EUtils</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">eutils_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for the NCBI EUtils API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -126,14 +129,14 @@
 </dd>
 <dt><strong>settings</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of all defined settings and their values.</p>
 </dd>
-<dt><strong>authenticated</strong><span class="classifier">boolean</span></dt><dd><p>Whether using an API key as an authenticated NCBI user.</p>
+<dt><strong>authenticated</strong><span class="classifier">bool</span></dt><dd><p>Whether using an API key as an authenticated NCBI user.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="lisc.urls.EUtils.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">retmode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">usehistory</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">api_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">eutils_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the NCBI EUtils URLs, with provided settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -146,13 +149,21 @@
 </dd>
 <dt><strong>retmode</strong><span class="classifier">{‘lxml’, ‘xml’}, optional</span></dt><dd><p>The return format for the results.</p>
 </dd>
-<dt><strong>usehistory</strong><span class="classifier">{‘n’, ‘y’}</span></dt><dd><p>Whether to use history caching on the EUtils server.</p>
+<dt><strong>usehistory</strong><span class="classifier">{‘n’, ‘y’}, optional</span></dt><dd><p>Whether to use history caching on the EUtils server.
+‘n’ indicates ‘no’, do not use history. ‘y’ indicates ‘yes’, to use history.</p>
 </dd>
 <dt><strong>api_key</strong><span class="classifier">str, optional</span></dt><dd><p>An API key for authenticated NCBI user account.</p>
 </dd>
+<dt><strong>**eutils_kwargs</strong></dt><dd><p>Additional settings for the EUtils API.</p>
+</dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Initialize a <code class="docutils literal notranslate"><span class="pre">EUtils</span></code> URL object, setting the max number of returned items:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -162,34 +173,34 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.__init__" title="lisc.urls.EUtils.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, db, retmax, field, retmode, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.__init__" title="lisc.urls.EUtils.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([db, retmax, field, retmode, …])</p></td>
 <td><p>Initialize the NCBI EUtils URLs, with provided settings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.authenticate" title="lisc.urls.EUtils.authenticate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authenticate</span></code></a>(self, url)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.authenticate" title="lisc.urls.EUtils.authenticate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authenticate</span></code></a>(url)</p></td>
 <td><p>Authenticate a URL for the EUtils API.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.build_url" title="lisc.urls.EUtils.build_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_url</span></code></a>(self, util[, segments, settings])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.build_url" title="lisc.urls.EUtils.build_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_url</span></code></a>(util[, segments, settings])</p></td>
 <td><p>Build the URL for a specified utility, with provided settings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.check_url" title="lisc.urls.EUtils.check_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_url</span></code></a>(self, util)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.check_url" title="lisc.urls.EUtils.check_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_url</span></code></a>(util)</p></td>
 <td><p>Check the built URL for a specified utility.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.fill_settings" title="lisc.urls.EUtils.fill_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_settings</span></code></a>(self, \*\*kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.fill_settings" title="lisc.urls.EUtils.fill_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_settings</span></code></a>(**kwargs)</p></td>
 <td><p>Put all provided settings values into a dictionary object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.get_url" title="lisc.urls.EUtils.get_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code></a>(self, util[, segments, settings])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.urls.EUtils.get_url" title="lisc.urls.EUtils.get_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code></a>(util[, segments, settings])</p></td>
 <td><p>Get a requested URL, with any additional segments or settings.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt id="lisc.urls.EUtils.authenticate">
-<code class="sig-name descname">authenticate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.authenticate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">authenticate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.urls.EUtils.authenticate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Authenticate a URL for the EUtils API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>url</strong><span class="classifier">str</span></dt><dd><p>URL to add authentification to.</p>
+<dt><strong>url</strong><span class="classifier">str</span></dt><dd><p>URL to add authentication to.</p>
 </dd>
 </dl>
 </dd>
@@ -204,26 +215,33 @@
 
 <dl class="py method">
 <dt id="lisc.urls.EUtils.build_url">
-<code class="sig-name descname">build_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.build_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">build_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.build_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the URL for a specified utility, with provided settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to build the URL for.</p>
 </dd>
-<dt><strong>segments</strong><span class="classifier">list of str</span></dt><dd><p>Segments to add to the URL.</p>
+<dt><strong>segments</strong><span class="classifier">list of str, optional</span></dt><dd><p>Segments to add to the URL.</p>
 </dd>
-<dt><strong>settings</strong><span class="classifier">dict or list of str</span></dt><dd><p>Settings to use to build the URL.
+<dt><strong>settings</strong><span class="classifier">dict or list of str, optional</span></dt><dd><p>Settings to use to build the URL.
 If list, the settings values are taken from the objects settings attribute.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Build the url for the Github API to search for a repository search:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span> <span class="o">=</span> <span class="n">URLs</span><span class="p">(</span><span class="s1">&#39;https://api.github.com&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;search_repos&#39;</span><span class="p">:</span> <span class="s2">&quot;search/repositories&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">fill_settings</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;lisc&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;search_repos&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="lisc.urls.EUtils.check_url">
-<code class="sig-name descname">check_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.check_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">util</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.check_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the built URL for a specified utility.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -233,11 +251,20 @@ If list, the settings values are taken from the objects settings attribute.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Check the URL that gets built for a Github repository search:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span> <span class="o">=</span> <span class="n">URLs</span><span class="p">(</span><span class="s1">&#39;https://api.github.com&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;search_repos&#39;</span><span class="p">:</span> <span class="s2">&quot;search/repositories&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">fill_settings</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;lisc&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;search_repos&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">check_url</span><span class="p">(</span><span class="s1">&#39;search_repos&#39;</span><span class="p">)</span>
+<span class="go">https://api.github.com/search/repositories?q=lisc&amp;sort=stars&amp;order=desc</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="lisc.urls.EUtils.fill_settings">
-<code class="sig-name descname">fill_settings</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.fill_settings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fill_settings</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.fill_settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Put all provided settings values into a dictionary object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -251,11 +278,17 @@ If list, the settings values are taken from the objects settings attribute.</p>
 <p>Potential parameters to this function include all the possible settings for the given API.</p>
 <p>Any possible setting that is provided a value as an input to this function is
 saved out to the dictionary of collected and available settings.</p>
+<p class="rubric">Examples</p>
+<p>Provide settings for the query, sort, and order of a Github search:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span> <span class="o">=</span> <span class="n">URLs</span><span class="p">(</span><span class="s1">&#39;https://api.github.com&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;search_repos&#39;</span><span class="p">:</span> <span class="s2">&quot;search/repositories&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">fill_settings</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;lisc&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="lisc.urls.EUtils.get_url">
-<code class="sig-name descname">get_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.get_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">util</span></em>, <em class="sig-param"><span class="n">segments</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">settings</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.get_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a requested URL, with any additional segments or settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -275,14 +308,23 @@ saved out to the dictionary of collected and available settings.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Get the url built for a Github repository search:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span> <span class="o">=</span> <span class="n">URLs</span><span class="p">(</span><span class="s1">&#39;https://api.github.com&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;search_repos&#39;</span><span class="p">:</span> <span class="s2">&quot;search/repositories&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">fill_settings</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;lisc&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;search_repos&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;search_repos&#39;</span><span class="p">)</span>
+<span class="go">&#39;https://api.github.com/search/repositories?q=lisc&amp;sort=stars&amp;order=desc&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
 
 <div class="section" id="examples-using-lisc-urls-eutils">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.urls.EUtils</span></code><a class="headerlink" href="#examples-using-lisc-urls-eutils" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Exploring LISC utilities for managing URLs and requests."><div class="figure align-default" id="id1">
-<img alt="../_images/sphx_glr_plot_requester_urls_thumb.png" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
+<div class="sphx-glr-thumbcontainer" tooltip="Explore LISC utilities for managing URLs and requests."><div class="figure align-default" id="id1">
+<img alt="URLs and Requests" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_requester_urls.html#sphx-glr-auto-examples-plot-requester-urls-py"><span class="std std-ref">URLs and Requests</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div></div>
@@ -300,8 +342,8 @@ saved out to the dictionary of collected and available settings.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

@@ -4,13 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.data.term &#8212; lisc 0.1.1 documentation</title>
+    <title>lisc.data.term &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -18,6 +19,7 @@
     <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -55,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -64,6 +66,7 @@
                 <li><a href="../../../api.html">API</a></li>
                 <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
                 <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
                 <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
             
             
@@ -112,27 +115,33 @@
   <h1>Source code for lisc.data.term</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Term object for LISC.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<span class="n">Term</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Term&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="Term"><a class="viewcode-back" href="../../../generated/lisc.data.Term.html#lisc.data.Term">[docs]</a><span class="k">class</span> <span class="nc">Term</span><span class="p">(</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Term&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">,</span> <span class="s1">&#39;exclusions&#39;</span><span class="p">])):</span>
+    <span class="sd">&quot;&quot;&quot;Search term definition with inclusion &amp; exclusion words.</span>
 
-<span class="n">Term</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="s2">Search term definition with inclusion &amp; exclusion words.</span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    label : str</span>
+<span class="sd">        Label for the term.</span>
+<span class="sd">    search : list of str</span>
+<span class="sd">        Search terms.</span>
+<span class="sd">    inclusions : list of str</span>
+<span class="sd">        Inclusion words for search terms.</span>
+<span class="sd">    exclusions : list of str</span>
+<span class="sd">        Exclusion words for search terms.</span>
 
-<span class="s2">Attributes</span>
-<span class="s2">----------</span>
-<span class="s2">label : str</span>
-<span class="s2">    Label for the term.</span>
-<span class="s2">search : list of str</span>
-<span class="s2">    Search terms.</span>
-<span class="s2">inclusions : list of str</span>
-<span class="s2">    Inclusion words for search terms.</span>
-<span class="s2">exclusions : list of str</span>
-<span class="s2">    Exclusion words for search terms.</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Define a search term, with inclusions and exclusions:</span>
+
+<span class="sd">    &gt;&gt;&gt; Term(&#39;brain&#39;, [&#39;frontal&#39;, &#39;temporal&#39;], [&#39;EEG&#39;], [&#39;MRI&#39;])</span>
+<span class="sd">    Term(label=&#39;brain&#39;, search=[&#39;frontal&#39;, &#39;temporal&#39;], inclusions=[&#39;EEG&#39;], exclusions=[&#39;MRI&#39;])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span></div>
 </pre></div>
 
     </div>
@@ -146,8 +155,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2020, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.0.<br/>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

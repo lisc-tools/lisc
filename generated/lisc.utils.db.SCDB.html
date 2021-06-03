@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lisc.utils.db.SCDB &#8212; lisc 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="lisc-utils-db-scdb">
+<h1>lisc.utils.db.SCDB<a class="headerlink" href="#lisc-utils-db-scdb" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="lisc.utils.db.SCDB">
+<em class="property">class </em><code class="sig-prename descclassname">lisc.utils.db.</code><code class="sig-name descname">SCDB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">generate_paths</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database object for a SCANR project.</p>
+<p class="rubric">Notes</p>
+<p>The default set of paths for SCDB is:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 25%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td colspan="2"><p><strong>Level 1: Base</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>terms</p></td>
+<td><p>Terms files.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>logs</p></td>
+<td><p>Logs files.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>figs</p></td>
+<td><p>Figures files.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>data</p></td>
+<td><p>Data files.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td colspan="2"><p><strong>Level 2: Data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>counts</p></td>
+<td><p>Counts data files.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>words</p></td>
+<td><p>Words data files.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p><strong>Level 3: Words</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>raw</p></td>
+<td><p>Raw words data files.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>summary</p></td>
+<td><p>Summary files for words data.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>paths</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of all folder paths in the project.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="lisc.utils.db.SCDB.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">generate_paths</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a SCDB object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>base</strong><span class="classifier">str</span></dt><dd><p>The base path to where the database is located.</p>
+</dd>
+<dt><strong>generate_paths</strong><span class="classifier">bool</span></dt><dd><p>Whether to automatically generate all the paths for the database folders.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Initialize a <code class="docutils literal notranslate"><span class="pre">SCDB</span></code> object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.utils.db.SCDB.__init__" title="lisc.utils.db.SCDB.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([base, generate_paths, structure])</p></td>
+<td><p>Initialize a SCDB object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.utils.db.SCDB.check_file_structure" title="lisc.utils.db.SCDB.check_file_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_file_structure</span></code></a>()</p></td>
+<td><p>Check the file structure of the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.utils.db.SCDB.gen_paths" title="lisc.utils.db.SCDB.gen_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gen_paths</span></code></a>([structure])</p></td>
+<td><p>Generate all the full paths for the database object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.utils.db.SCDB.get_file_path" title="lisc.utils.db.SCDB.get_file_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_path</span></code></a>(folder, file_name)</p></td>
+<td><p>Get a path to a file in a designated directory folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.utils.db.SCDB.get_files" title="lisc.utils.db.SCDB.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder[, drop_ext, sort_files])</p></td>
+<td><p>Get a list of available files in a folder in the database.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.utils.db.SCDB.get_folder_path" title="lisc.utils.db.SCDB.get_folder_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_folder_path</span></code></a>(folder)</p></td>
+<td><p>Get the path to a folder in the directory.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="lisc.utils.db.SCDB.check_file_structure">
+<code class="sig-name descname">check_file_structure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.check_file_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.check_file_structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the file structure of the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.db.SCDB.gen_paths">
+<code class="sig-name descname">gen_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.gen_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.gen_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate all the full paths for the database object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>structure</strong><span class="classifier">dict, optional</span></dt><dd><p>Definition of the folder structure for the database.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Generate paths for a <code class="docutils literal notranslate"><span class="pre">SCDB</span></code> object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">gen_paths</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">paths</span> 
+<span class="go">{&#39;base&#39;: &#39;lisc_db&#39;,</span>
+<span class="go"> &#39;terms&#39;: &#39;lisc_db/terms&#39;,</span>
+<span class="go"> &#39;logs&#39;: &#39;lisc_db/logs&#39;,</span>
+<span class="go"> &#39;data&#39;: &#39;lisc_db/data&#39;,</span>
+<span class="go"> &#39;figures&#39;: &#39;lisc_db/figures&#39;,</span>
+<span class="go"> &#39;counts&#39;: &#39;lisc_db/data/counts&#39;,</span>
+<span class="go"> &#39;words&#39;: &#39;lisc_db/data/words&#39;,</span>
+<span class="go"> &#39;raw&#39;: &#39;lisc_db/data/words/raw&#39;,</span>
+<span class="go"> &#39;summary&#39;: &#39;lisc_db/data/words/summary&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.db.SCDB.get_file_path">
+<code class="sig-name descname">get_file_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_file_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a path to a file in a designated directory folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder path to get the file path from.</p>
+</dd>
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>The name of the file to create the full file path for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>str</dt><dd><p>The full file path to the requested file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the path to a <a class="reference internal" href="lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> file:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="s1">&#39;tutorial_counts.p&#39;</span><span class="p">)</span>
+<span class="go">&#39;lisc_db/data/counts/tutorial_counts.p&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.db.SCDB.get_files">
+<code class="sig-name descname">get_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">drop_ext</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sort_files</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of available files in a folder in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder path to get the list of files from.</p>
+</dd>
+<dt><strong>drop_ext</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to drop the extensions from the list of file names.</p>
+</dd>
+<dt><strong>sort_files</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to sort the list of files before returning.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>files</strong><span class="classifier">list of str</span></dt><dd><p>List of files available in specified folder.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get a list of available terms files:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="lisc.utils.db.SCDB.get_folder_path">
+<code class="sig-name descname">get_folder_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_folder_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_folder_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the path to a folder in the directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder to get the path for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>str</dt><dd><p>The path to the requested directory folder.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the path to the folder containing <a class="reference internal" href="lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> data:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_folder_path</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+<span class="go">&#39;lisc_db/data/counts&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
