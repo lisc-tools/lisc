@@ -153,7 +153,7 @@ class Words(Base):
 
         Examples
         --------
-        Drop terms with less than or equal to 20 articles (assuming `words` already has data):
+        Drop terms with less than 20 articles (assuming `words` already has data):
 
         >>> words.drop_data(20) # doctest: +SKIP
         """

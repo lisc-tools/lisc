@@ -387,7 +387,7 @@ class Counts():
 
         Examples
         --------
-        Drop terms with less than or equal to 20 articles (assuming `counts` already has data):
+        Drop terms with less than 20 articles (assuming `counts` already has data):
 
         >>> counts.drop_data(20) # doctest: +SKIP
         """
@@ -396,7 +396,7 @@ class Counts():
         flip_inds = {'A' : 'B', 'B' : 'A'}
 
         # Finds the indices of the terms with enough data to keep
-        keep_inds = np.where(self.terms[dim].counts > n_articles)[0]
+        keep_inds = np.where(self.terms[dim].counts >= n_articles)[0]
 
         # Drop terms that do not have enough data
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
