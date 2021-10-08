@@ -3,8 +3,8 @@
 Notes
 -----
 This is a copy of the english stopwords listed in nltk, accessible as:
->>> from nltk.corpus import stopwords
->>> stopwords = stopwords.words('english')
+>>> from nltk.corpus import stopwords            # doctest:+SKIP
+>>> stopwords = stopwords.words('english')       # doctest:+SKIP
 
 This was copied over from nltk version 3.5.
 """
