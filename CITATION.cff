@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Donoghue"
+    given-names: "Thomas"
+    orcid: "https://orcid.org/0000-0001-5911-0472"
+  doi: "10.21105/joss.01674"
+  journal: "Journal of Open Source Software"
+  month: 9
+  title: "LISC: A Python Package for Scientific Literature Collection and Analysis"
+  issue: 41
+  volume: 4
+  year: 2019
+  start: 1674
