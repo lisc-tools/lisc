@@ -67,8 +67,8 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
 
 
 @savefig
-def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
-                    transpose=False, cmap='purple', **kwargs):
+def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score', transpose=False,
+                    method='complete', metric='cosine', cmap='purple', **kwargs):
     """Plot a clustermap of the given data.
 
     Parameters
@@ -84,6 +84,10 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
         Only used if the `data` input is a Counts object.
     transpose : bool, optional, default: False
         Whether to transpose the data before plotting.
+    method : str, optional, default: 'complete'
+        The linkage algorithm to use. See `scipy.cluster.hierarchy.linkage` for options.
+    metric : str or function, optional, default: 'cosine'
+        The distance metric to use. See `scipy.spatial.distance.pdist` for options.
     cmap : {'purple', 'blue'} or matplotlib.cmap
         Colormap to use for the plot.
         If string, uses a sequential palette of the specified color.
@@ -92,7 +96,7 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
 
     Notes
     -----
-    This function is a wrapper of the seaborn `clustermap` plot function.
+    This function is a wrapper of the `seaborn.clustermap` plot function.
 
     Examples
     --------
@@ -105,9 +109,8 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score',
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
     with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
-        cg = sns.clustermap(data, cmap=cmap, figsize=kwargs.pop('figsize', None),
-                            method=kwargs.pop('method', 'complete'),
-                            metric=kwargs.pop('metric', 'cosine'),
+        cg = sns.clustermap(data, method=method, metric=metric,
+                            cmap=cmap, figsize=kwargs.pop('figsize', None),
                             **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
                             **kwargs)
 
@@ -131,10 +134,10 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
         Only used if the `data` input is a Counts object.
     transpose : bool, optional, default: False
         Whether to transpose the data before plotting.
-    method : str
+    method : str, optional, default: 'complete'
         The linkage algorithm to use. See `scipy.cluster.hierarchy.linkage` for options.
-    metric : str or function
-        The distance metric to use. See `scipy.cluster.hierarchy.linkage` for options.
+    metric : str or function, optional, default: 'cosine'
+        The distance metric to use.  See `scipy.spatial.distance.pdist` for options.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.
     **kwargs
@@ -142,7 +145,7 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
 
     Notes
     -----
-    This function is a wrapper of the scipy `dendrogram` plot function.
+    This function is a wrapper of the `scipy.cluster.hierarchy.dendrogram' plot function.
 
     Examples
     --------
