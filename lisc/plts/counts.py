@@ -109,7 +109,7 @@ def plot_clustermap(data, x_labels=None, y_labels=None, attribute='score', trans
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
     with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
-        cg = sns.clustermap(data, method=method, metric=metric
+        cg = sns.clustermap(data, method=method, metric=metric,
                             cmap=cmap, figsize=kwargs.pop('figsize', None),
                             **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
                             **kwargs)
