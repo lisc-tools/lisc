@@ -200,6 +200,7 @@ Counts
     :toctree: generated/
 
     plot_matrix
+    plot_vector
     plot_clustermap
     plot_dendrogram
 
