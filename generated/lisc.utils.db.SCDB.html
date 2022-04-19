@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.utils.db.SCDB &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>lisc.utils.db.SCDB &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -112,11 +111,11 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-utils-db-scdb">
+  <section id="lisc-utils-db-scdb">
 <h1>lisc.utils.db.SCDB<a class="headerlink" href="#lisc-utils-db-scdb" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="lisc.utils.db.SCDB">
-<em class="property">class </em><code class="sig-prename descclassname">lisc.utils.db.</code><code class="sig-name descname">SCDB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">generate_paths</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.utils.db.</span></span><span class="sig-name descname"><span class="pre">SCDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{1:</span> <span class="pre">{'base':</span> <span class="pre">['terms',</span> <span class="pre">'logs',</span> <span class="pre">'data',</span> <span class="pre">'figures']},</span> <span class="pre">2:</span> <span class="pre">{'data':</span> <span class="pre">['counts',</span> <span class="pre">'words']},</span> <span class="pre">3:</span> <span class="pre">{'words':</span> <span class="pre">['raw',</span> <span class="pre">'summary']}}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Database object for a SCANR project.</p>
 <p class="rubric">Notes</p>
 <p>The default set of paths for SCDB is:</p>
@@ -192,8 +191,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="lisc.utils.db.SCDB.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">generate_paths</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{1:</span> <span class="pre">{'base':</span> <span class="pre">['terms',</span> <span class="pre">'logs',</span> <span class="pre">'data',</span> <span class="pre">'figures']},</span> <span class="pre">2:</span> <span class="pre">{'data':</span> <span class="pre">['counts',</span> <span class="pre">'words']},</span> <span class="pre">3:</span> <span class="pre">{'words':</span> <span class="pre">['raw',</span> <span class="pre">'summary']}}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a SCDB object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -213,7 +212,7 @@
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -240,14 +239,14 @@
 </tbody>
 </table>
 <dl class="py method">
-<dt id="lisc.utils.db.SCDB.check_file_structure">
-<code class="sig-name descname">check_file_structure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.check_file_structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.check_file_structure" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB.check_file_structure">
+<span class="sig-name descname"><span class="pre">check_file_structure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.check_file_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB.check_file_structure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the file structure of the database.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="lisc.utils.db.SCDB.gen_paths">
-<code class="sig-name descname">gen_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">structure</span><span class="o">=</span><span class="default_value">{1: {'base': ['terms', 'logs', 'data', 'figures']}, 2: {'data': ['counts', 'words']}, 3: {'words': ['raw', 'summary']}}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.gen_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.gen_paths" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB.gen_paths">
+<span class="sig-name descname"><span class="pre">gen_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{1:</span> <span class="pre">{'base':</span> <span class="pre">['terms',</span> <span class="pre">'logs',</span> <span class="pre">'data',</span> <span class="pre">'figures']},</span> <span class="pre">2:</span> <span class="pre">{'data':</span> <span class="pre">['counts',</span> <span class="pre">'words']},</span> <span class="pre">3:</span> <span class="pre">{'words':</span> <span class="pre">['raw',</span> <span class="pre">'summary']}}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.gen_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB.gen_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate all the full paths for the database object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -276,8 +275,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="lisc.utils.db.SCDB.get_file_path">
-<code class="sig-name descname">get_file_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_file_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_file_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB.get_file_path">
+<span class="sig-name descname"><span class="pre">get_file_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_file_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_file_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a path to a file in a designated directory folder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -305,8 +304,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="lisc.utils.db.SCDB.get_files">
-<code class="sig-name descname">get_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">drop_ext</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sort_files</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_files" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB.get_files">
+<span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of available files in a folder in the database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -335,8 +334,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="lisc.utils.db.SCDB.get_folder_path">
-<code class="sig-name descname">get_folder_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_folder_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_folder_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.utils.db.SCDB.get_folder_path">
+<span class="sig-name descname"><span class="pre">get_folder_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#SCDB.get_folder_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.SCDB.get_folder_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the path to a folder in the directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -363,7 +362,7 @@
 
 </dd></dl>
 
-</div>
+</section>
 
 
     </div>
@@ -377,8 +376,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

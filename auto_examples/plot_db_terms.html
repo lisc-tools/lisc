@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database and Terms Lists &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Database and Terms Lists &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,14 +116,14 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-db-terms-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="database-and-terms-lists">
+<section class="sphx-glr-example-title" id="database-and-terms-lists">
 <span id="sphx-glr-auto-examples-plot-db-terms-py"></span><h1>Database and Terms Lists<a class="headerlink" href="#database-and-terms-lists" title="Permalink to this headline">¶</a></h1>
 <p>Exploring the LISC database, and using search terms loaded from files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a function to create a LISC database file structure</span>
 <span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">create_file_structure</span>
 </pre></div>
 </div>
-<div class="section" id="scdb-database-structure">
+<section id="scdb-database-structure">
 <h2>SCDB Database Structure<a class="headerlink" href="#scdb-database-structure" title="Permalink to this headline">¶</a></h2>
 <p>LISC provides and uses a custom directory structure.</p>
 <p>If you want to store terms definitions and data, these files can be put into a LISC
@@ -139,8 +138,8 @@ the built database structure.</p>
 <span class="n">db</span> <span class="o">=</span> <span class="n">create_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="storing-terms-in-text-files">
+</section>
+<section id="storing-terms-in-text-files">
 <h2>Storing Terms in Text Files<a class="headerlink" href="#storing-terms-in-text-files" title="Permalink to this headline">¶</a></h2>
 <p>Here we will explore using files to store terms to use for LISC collections.</p>
 <p>The typical use case would be to curate and write text files manually.</p>
@@ -190,8 +189,8 @@ txt file of terms to use.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tom/Code/ModCode/lisc/examples/lisc_db/terms/terms.txt&#39;
 </pre></div>
 </div>
-</div>
-<div class="section" id="term-file-structure">
+</section>
+<section id="term-file-structure">
 <h2>Term File Structure<a class="headerlink" href="#term-file-structure" title="Permalink to this headline">¶</a></h2>
 <p>For term files, each line should reflect a new term, with synonyms for the same term
 stored as comma-separated values on the same line.</p>
@@ -205,8 +204,8 @@ stored as comma-separated values on the same line.</p>
 body,corporeal
 </pre></div>
 </div>
-</div>
-<div class="section" id="loading-terms-from-file">
+</section>
+<section id="loading-terms-from-file">
 <h2>Loading Terms from File<a class="headerlink" href="#loading-terms-from-file" title="Permalink to this headline">¶</a></h2>
 <p>Text files of Terms can be loaded and used with LISC objects, such as
 <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> and <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a>.</p>
@@ -241,7 +240,7 @@ using one line per term, with comma-separated values for synonyms.</p>
 associated files for inclusion and exclusion terms should have the same number of lines,
 and the n-th line of each file should refer to the same term. If a given search
 term does not have an associated inclusion or exclusion term, leave that line blank.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.009 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.006 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2dd610e85e7ccd3131f26e11e81b72d5/plot_db_terms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_db_terms.py</span></code></a></p>
@@ -251,8 +250,8 @@ term does not have an associated inclusion or exclusion term, leave that line bl
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -266,8 +265,8 @@ term does not have an associated inclusion or exclusion term, leave that line bl
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

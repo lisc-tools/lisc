@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Words with Functions &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Words with Functions &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,10 +116,10 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-words-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="words-with-functions">
+<section class="sphx-glr-example-title" id="words-with-functions">
 <span id="sphx-glr-auto-examples-plot-functions-words-py"></span><h1>Words with Functions<a class="headerlink" href="#words-with-functions" title="Permalink to this headline">¶</a></h1>
 <p>Collect article text data and metadata, using a function oriented approach.</p>
-<div class="section" id="function-approach-collect-words">
+<section id="function-approach-collect-words">
 <h2>Function Approach: collect_words<a class="headerlink" href="#function-approach-collect-words" title="Permalink to this headline">¶</a></h2>
 <p>The function for collecting words data is <a class="reference internal" href="../generated/lisc.collect_words.html#lisc.collect_words" title="lisc.collect_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_words()</span></code></a>.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
@@ -149,7 +148,7 @@ Collecting data for:  body
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build210601-2212m.3&#39;, &#39;count&#39;: &#39;32617372&#39;, &#39;lastupdate&#39;: &#39;2021/06/02 15:31&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build220414-2142m.3&#39;, &#39;count&#39;: &#39;33956491&#39;, &#39;lastupdate&#39;: &#39;2022/04/15 14:57&#39;}
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The collected data is returned as a list of Articles objects</span>
@@ -157,7 +156,7 @@ Collecting data for:  body
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7f90a5b02370&gt;, &lt;lisc.data.articles.Articles object at 0x7f90a5b74760&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7f88a38887f0&gt;, &lt;lisc.data.articles.Articles object at 0x7f88a385e730&gt;]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each `Articles` object holds the data for the collected articles for a given term</span>
@@ -165,24 +164,24 @@ Collecting data for:  body
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out some of the data</span>
-<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles.n_articles" title="lisc.data.Articles.n_articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-method"><span class="n">res1</span><span class="o">.</span><span class="n">n_articles</span></a><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles.n_articles" title="lisc.data.Articles.n_articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-property"><span class="n">res1</span><span class="o">.</span><span class="n">n_articles</span></a><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res1</span></a><span class="o">.</span><span class="n">titles</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
 
-Prediction of salivary cortisol level by electroencephalography features.
-Assessment of cellular and molecular changes in the rat brain after gamma radiation and radioprotection by anisomycin.
-Abnormal Body Phenomena in Persons with Major Depressive Disorder.
-Diffusion tensor-based analysis of white matter in the healthy aging canine brain.
-Microvascular degeneration occurs before plaque onset and progresses with age in 3xTg AD mice.
+A sensitive HILIC-MS/MS method for quantification of theanine in rat plasma and tissues: Application to preclinical pharmacokinetic study.
+Association between surgical volume and outcomes after craniotomy for brain tumor removal: A South Korean nationwide cohort study.
+Toxicity induced via ingestion of naturally-aged polystyrene microplastics by a small-sized terrestrial bird and its potential role as vectors for the dispersion of these pollutants.
+Characterizing the propagation pathway of neuropathological events of Alzheimer&#39;s disease using harmonic wavelet analysis.
+Pilomotor seizures in autoimmune limbic encephalitis: description of two GAD65 antibodies- related cases and literature review.
 </pre></div>
 </div>
 <p>To further explore the collected data, check out the documentation for the
 <a class="reference internal" href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Articles</span></code></a> object. To aggregate data across articles, check out the
 <a class="reference internal" href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a> object.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.307 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.868 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5f10c9c5df213661cc6b3aadff25c189/plot_functions_words.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_words.py</span></code></a></p>
@@ -192,8 +191,8 @@ Microvascular degeneration occurs before plaque onset and progresses with age in
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -207,8 +206,8 @@ Microvascular degeneration occurs before plaque onset and progresses with age in
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

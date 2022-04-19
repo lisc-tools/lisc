@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 05: Collecting Citation Data &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 05: Collecting Citation Data &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,16 +116,16 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-05-citations-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="tutorial-05-collecting-citation-data">
+<section class="sphx-glr-example-title" id="tutorial-05-collecting-citation-data">
 <span id="sphx-glr-auto-tutorials-plot-05-citations-py"></span><h1>Tutorial 05: Collecting Citation Data<a class="headerlink" href="#tutorial-05-collecting-citation-data" title="Permalink to this headline">¶</a></h1>
 <p>Collecting citation data from OpenCitations.</p>
-<div class="section" id="references-citations">
+<section id="references-citations">
 <h2>References &amp; Citations<a class="headerlink" href="#references-citations" title="Permalink to this headline">¶</a></h2>
 <p>Citation data, such as the list of articles a paper cites, and how many citations it
 receives, can be another useful measure for investigating the scientific literature.
 Unfortunately, citation data has historically been hard to access and investigate, due to
 a lack of available databases and APIs that provide access to such information.</p>
-<div class="section" id="opencitations-project">
+<section id="opencitations-project">
 <h3>OpenCitations Project<a class="headerlink" href="#opencitations-project" title="Permalink to this headline">¶</a></h3>
 <p>Recently, citation data has become more available with the
 <a class="reference external" href="https://opencitations.net">OpenCitations</a> project, which
@@ -138,9 +137,9 @@ that can be accessed using LISC.</p>
 <span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <a href="../generated/lisc.collect_citations.html#lisc.collect_citations" title="lisc.collect_citations" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_citations</span></a>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="opencitations-api">
+</section>
+</section>
+<section id="opencitations-api">
 <h2>OpenCitations API<a class="headerlink" href="#opencitations-api" title="Permalink to this headline">¶</a></h2>
 <p>The OpenCitations <a class="reference external" href="https://opencitations.net/index/coci/api/v1">API</a> offers multiple
 utilities to collect citation and reference data.</p>
@@ -154,8 +153,8 @@ citation and reference information about them with OpenCitations.</p>
 <span class="n">dois</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.1007/s00228-017-2226-2&#39;</span><span class="p">,</span> <span class="s1">&#39;10.1186/1756-8722-6-59&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="citation-data">
+</section>
+<section id="citation-data">
 <h2>Citation Data<a class="headerlink" href="#citation-data" title="Permalink to this headline">¶</a></h2>
 <p>Citations refers to articles that are cited by a specified article.</p>
 <p>To do so, we need to pass our list of DOIs to the <a class="reference internal" href="../generated/lisc.collect_citations.html#lisc.collect_citations" title="lisc.collect_citations"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_citations()</span></code></a> function.
@@ -173,8 +172,8 @@ of citations per input DOI, as well as a <a class="reference internal" href="../
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>10.1007/s00228-017-2226-2        : 9
-10.1186/1756-8722-6-59           : 95
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>10.1007/s00228-017-2226-2        : 25
+10.1186/1756-8722-6-59           : 157
 </pre></div>
 </div>
 <p>You can also specify to collect DOIs of the papers that cite papers of interest.</p>
@@ -189,11 +188,11 @@ storing the DOIs of the articles that cite the searched for article(s) will be r
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;10.1080/13543776.2017.1355908&#39;, &#39;10.1038/s41584-019-0211-0&#39;, &#39;10.1124/jpet.119.257089&#39;, &#39;10.3390/ijms19041244&#39;, &#39;10.1080/17474086.2018.1435268&#39;, &#39;10.1007/s00228-020-02851-x&#39;, &#39;10.1080/13543784.2019.1692812&#39;, &#39;10.1080/03602532.2020.1765793&#39;, &#39;10.3390/cancers12051328&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;10.1080/13543776.2017.1355908&#39;, &#39;10.1038/s41584-019-0211-0&#39;, &#39;10.1124/jpet.119.257089&#39;, &#39;10.3390/ijms19041244&#39;, &#39;10.1080/17474086.2018.1435268&#39;, &#39;10.1007/s00228-020-02851-x&#39;, &#39;10.1080/13543784.2019.1692812&#39;, &#39;10.1080/03602532.2020.1765793&#39;, &#39;10.3390/cancers12051328&#39;, &#39;10.3390/ijms21145164&#39;, &#39;10.1111/bcp.14571&#39;, &#39;10.1016/j.jpba.2020.113730&#39;, &#39;10.1021/acs.jmedchem.0c01511&#39;, &#39;10.1002/cti2.1295&#39;, &#39;10.1016/bs.armc.2021.03.001&#39;, &#39;10.3390/cancers13051103&#39;, &#39;10.1016/j.bmc.2021.116163&#39;, &#39;10.3899/jrheum.201622&#39;, &#39;10.1371/journal.pntd.0008425&#39;, &#39;10.1016/j.tetlet.2021.153068&#39;, &#39;10.3390/molecules26164907&#39;, &#39;10.1021/acs.jmedchem.9b00167&#39;, &#39;10.1021/acs.jmedchem.7b01712&#39;, &#39;10.1021/acsmedchemlett.0c00335&#39;, &#39;10.1016/j.bioorg.2021.105541&#39;]
 </pre></div>
 </div>
-</div>
-<div class="section" id="reference-data">
+</section>
+<section id="reference-data">
 <h2>Reference Data<a class="headerlink" href="#reference-data" title="Permalink to this headline">¶</a></h2>
 <p>Instead of searching for citations to specified articles, we can also search for
 references, which refers to articles that are cited by the specified article(s).</p>
@@ -209,18 +208,18 @@ references, which refers to articles that are cited by the specified article(s).
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>10.1007/s00228-017-2226-2        : 23
-10.1186/1756-8722-6-59           : 53
+10.1186/1756-8722-6-59           : 66
 </pre></div>
 </div>
-</div>
-<div class="section" id="additional-operations">
+</section>
+<section id="additional-operations">
 <h2>Additional Operations<a class="headerlink" href="#additional-operations" title="Permalink to this headline">¶</a></h2>
 <p>There is additional information in the OpenCitations database, including meta-data- on
 individual articles that are cited and included in references.</p>
 <p>This information is not yet accessible through LISC. Contributions are always
 welcome to extend the functionality. If you might be interested, feel free to get in
 touch on <a class="reference external" href="https://github.com/lisc-tools/lisc">Github</a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.567 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.722 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-05-citations-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cf28685dc3c67e93e863aaab0ed72dbb/plot_05-Citations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_05-Citations.py</span></code></a></p>
@@ -230,8 +229,8 @@ touch on <a class="reference external" href="https://github.com/lisc-tools/lisc"
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -245,8 +244,8 @@ touch on <a class="reference external" href="https://github.com/lisc-tools/lisc"
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

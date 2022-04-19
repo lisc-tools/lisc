@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.plts.words.plot_years &#8212; lisc 0.2.1-dev documentation</title>
+    <title>lisc.plts.counts.plot_vector &#8212; lisc 0.2.1-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -111,34 +111,32 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="lisc-plts-words-plot-years">
-<h1>lisc.plts.words.plot_years<a class="headerlink" href="#lisc-plts-words-plot-years" title="Permalink to this headline">¶</a></h1>
+  <section id="lisc-plts-counts-plot-vector">
+<h1>lisc.plts.counts.plot_vector<a class="headerlink" href="#lisc-plts-counts-plot-vector" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="lisc.plts.words.plot_years">
-<span class="sig-prename descclassname"><span class="pre">lisc.plts.words.</span></span><span class="sig-name descname"><span class="pre">plot_years</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">years</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plt_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/words.html#plot_years"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.plts.words.plot_years" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot a histogram of the number publications across years.</p>
+<dt class="sig sig-object py" id="lisc.plts.counts.plot_vector">
+<span class="sig-prename descclassname"><span class="pre">lisc.plts.counts.</span></span><span class="sig-name descname"><span class="pre">plot_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transpose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'purple'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.plts.counts.plot_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a vector as an annotated heatmap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>years</strong><span class="classifier">collections.Counter</span></dt><dd><p>Data on the number of publications per year.</p>
+<dt><strong>data</strong><span class="classifier">Counts or 1d array</span></dt><dd><p>Data to plot as a heatmap.</p>
 </dd>
-<dt><strong>year_range</strong><span class="classifier">list of [int, int], optional</span></dt><dd><p>The range of years to plot on the x-axis, inclusive.</p>
+<dt><strong>dim</strong><span class="classifier">{‘A’, ‘B’}, optional</span></dt><dd><p>Which set of terms to plot.
+Only used if <cite>data</cite> is a <cite>Counts</cite> object.</p>
+</dd>
+<dt><strong>transpose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to transpose the data before plotting.</p>
+</dd>
+<dt><strong>cmap</strong><span class="classifier">{‘purple’, ‘blue’} or matplotlib.cmap</span></dt><dd><p>Colormap to use for the plot.
+If string, uses a sequential palette of the specified color.</p>
 </dd>
 <dt><strong>ax</strong><span class="classifier">matplotlib.Axes, optional</span></dt><dd><p>Figure axes upon which to plot.</p>
 </dd>
-<dt><strong>plt_kwargs</strong></dt><dd><p>Additional keyword arguments for the plot.</p>
+<dt><strong>**kwargs</strong></dt><dd><p>Additional keyword arguments to pass through to seaborn.heatmap.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>Publication years are collected together in the <a class="reference internal" href="lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a> class.</p>
-<p class="rubric">Examples</p>
-<p>Plot a histogram of publication years:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_years</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">Counter</span><span class="p">({</span><span class="s1">&#39;2018&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;2019&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;2020&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">}))</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <div style='clear:both'></div></section>

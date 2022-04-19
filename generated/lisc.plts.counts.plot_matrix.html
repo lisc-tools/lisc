@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.plts.counts.plot_matrix &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>lisc.plts.counts.plot_matrix &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -112,12 +111,12 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="lisc-plts-counts-plot-matrix">
+  <section id="lisc-plts-counts-plot-matrix">
 <h1>lisc.plts.counts.plot_matrix<a class="headerlink" href="#lisc-plts-counts-plot-matrix" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="lisc.plts.counts.plot_matrix">
-<code class="sig-prename descclassname">lisc.plts.counts.</code><code class="sig-name descname">plot_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">x_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attribute</span><span class="o">=</span><span class="default_value">'score'</span></em>, <em class="sig-param"><span class="n">transpose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">cmap</span><span class="o">=</span><span class="default_value">'purple'</span></em>, <em class="sig-param"><span class="n">square</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lisc.plts.counts.plot_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot a matrix representation of given data.</p>
+<dt class="sig sig-object py" id="lisc.plts.counts.plot_matrix">
+<span class="sig-prename descclassname"><span class="pre">lisc.plts.counts.</span></span><span class="sig-name descname"><span class="pre">plot_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'score'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transpose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'purple'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">square</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/plts/counts.html#plot_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.plts.counts.plot_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a matrix as a heatmap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -150,14 +149,16 @@ If string, uses a sequential palette of the specified color.</p>
 <p>See the example for the <a class="reference internal" href="lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_score()</span></code></a> method of the <a class="reference internal" href="lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> class.</p>
 </dd></dl>
 
-<div class="section" id="examples-using-lisc-plts-counts-plot-matrix">
+<section id="examples-using-lisc-plts-counts-plot-matrix">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.plts.counts.plot_matrix</span></code><a class="headerlink" href="#examples-using-lisc-plts-counts-plot-matrix" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><div class="figure align-default" id="id1">
+<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><figure class="align-default" id="id1">
 <img alt="Tutorial 04: Counts Analysis" src="../_images/sphx_glr_plot_04-CountsAnalysis_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-04-countsanalysis-py"><span class="std std-ref">Tutorial 04: Counts Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div><div style='clear:both'></div></div>
-</div>
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-04-countsanalysis-py"><span class="std std-ref">Tutorial 04: Counts Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div style='clear:both'></div></section>
+</section>
 
 
     </div>
@@ -171,8 +172,8 @@ If string, uses a sequential palette of the specified color.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

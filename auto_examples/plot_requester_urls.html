@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URLs and Requests &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>URLs and Requests &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,10 +116,10 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-requester-urls-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="urls-and-requests">
+<section class="sphx-glr-example-title" id="urls-and-requests">
 <span id="sphx-glr-auto-examples-plot-requester-urls-py"></span><h1>URLs and Requests<a class="headerlink" href="#urls-and-requests" title="Permalink to this headline">¶</a></h1>
 <p>Explore LISC utilities for managing URLs and requests.</p>
-<div class="section" id="urls-requests">
+<section id="urls-requests">
 <h2>URLs &amp; Requests<a class="headerlink" href="#urls-requests" title="Permalink to this headline">¶</a></h2>
 <p>LISC uses custom objects to manage URLs and launch requests. These can be used to
 define how to interact with APIs of interest.</p>
@@ -133,7 +132,7 @@ creating custom data collections, and/or to connect LISC with other APIs.</p>
 <span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class"><span class="n">Requester</span></a>
 </pre></div>
 </div>
-<div class="section" id="requester-object">
+<section id="requester-object">
 <h3>Requester Object<a class="headerlink" href="#requester-object" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester"><code class="xref py py-class docutils literal notranslate"><span class="pre">Requester</span></code></a> object uses the
 <a class="reference external" href="https://2.python-requests.org/">requests</a>
@@ -166,7 +165,7 @@ Collecting web page      https://duckduckgo.com/         got status code        
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Requester object is active:      True
 Number of requests sent:         3
-Requester opened:                23:01:16 Wednesday 02 June 2021
+Requester opened:                23:30:43 Monday 18 April 2022
 Requester closed:
 </pre></div>
 </div>
@@ -175,11 +174,11 @@ Requester closed:
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;23:01:16 Wednesday 02 June 2021&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;23:30:43 Monday 18 April 2022&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
 </pre></div>
 </div>
-</div>
-<div class="section" id="urls-object">
+</section>
+<section id="urls-object">
 <h3>URLs Object<a class="headerlink" href="#urls-object" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLs</span></code></a> object is used in LISC to store URLs used for interacting with APIs.</p>
 <p>It includes functionality for using different utilities available through an API,
@@ -227,8 +226,8 @@ and for storing and using different settings that may be available.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Wikipedia&#39;
 </pre></div>
 </div>
-</div>
-<div class="section" id="supported-apis">
+</section>
+<section id="supported-apis">
 <h3>Supported APIs<a class="headerlink" href="#supported-apis" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLs</span></code></a> object can be used to create objects that support external APIs.</p>
 <p>LISC currently supports APIs for
@@ -261,13 +260,13 @@ and for storing and using different settings that may be available.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;references&#39;: &#39;references&#39;, &#39;citations&#39;: &#39;citations&#39;, &#39;metadata&#39;: &#39;metadata&#39;, &#39;base&#39;: &#39;https://w3id.org/oc/index/coci/api/v1&#39;}
 </pre></div>
 </div>
-</div>
-<div class="section" id="adding-new-apis">
+</section>
+<section id="adding-new-apis">
 <h3>Adding New APIs<a class="headerlink" href="#adding-new-apis" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>EUtils</cite> and <cite>OpenCitations</cite> objects can be used as examples for potentially adding
 new APIs to LISC. New API objects can be created by inheriting from the <cite>URLs</cite> object,
 and added information on the utilities and settings available for that particular API.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.351 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.484 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-requester-urls-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4fbc9ac768fbde5467ed80b310f0993d/plot_requester_urls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_requester_urls.py</span></code></a></p>
@@ -277,9 +276,9 @@ and added information on the utilities and settings available for that particula
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -293,8 +292,8 @@ and added information on the utilities and settings available for that particula
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

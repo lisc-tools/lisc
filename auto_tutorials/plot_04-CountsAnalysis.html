@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 04: Counts Analysis &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 04: Counts Analysis &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,10 +116,10 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-04-countsanalysis-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="tutorial-04-counts-analysis">
+<section class="sphx-glr-example-title" id="tutorial-04-counts-analysis">
 <span id="sphx-glr-auto-tutorials-plot-04-countsanalysis-py"></span><h1>Tutorial 04: Counts Analysis<a class="headerlink" href="#tutorial-04-counts-analysis" title="Permalink to this headline">¶</a></h1>
 <p>Analyzing collected co-occurrence data.</p>
-<div class="section" id="counts-analyses">
+<section id="counts-analyses">
 <h2>Counts Analyses<a class="headerlink" href="#counts-analyses" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial explores analyzing collected co-occurrence data.</p>
 <p>Note that this tutorials requires some optional dependencies, including
@@ -145,10 +144,10 @@ matplotlib, seaborn and scipy.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         414
-For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1397
-For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         255
-For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         260
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         430
+For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1453
+For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         262
+For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         276
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the second set of terms</span>
@@ -156,17 +155,17 @@ For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;     
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         260
-For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1397
-For  &#39;somatosensory&#39;   the highest association is  &#39;parietal lobe&#39;   with         199
-For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          80
-For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          52
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         276
+For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1453
+For  &#39;somatosensory&#39;   the highest association is  &#39;temporal lobe&#39;   with         207
+For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          84
+For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          53
 For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with          11
-For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         226
+For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         249
 </pre></div>
 </div>
-</div>
-<div class="section" id="normalization-scores">
+</section>
+<section id="normalization-scores">
 <h2>Normalization &amp; Scores<a class="headerlink" href="#normalization-scores" title="Permalink to this headline">¶</a></h2>
 <p>The collected co-occurrence data includes information on the number of articles in which
 terms co-occur, as well as the number of articles for each term independently.</p>
@@ -187,14 +186,14 @@ method. Scores available include ‘normalize’, ‘association’, or ‘simil
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.11761575e-02 2.75412453e-02 9.64608834e-03 3.65886110e-03
-  1.26397020e-03 2.66098989e-04 1.20409792e-02]
- [7.05252094e-03 4.73671719e-02 6.67955108e-03 2.71250805e-03
-  1.76313023e-03 6.78127013e-05 7.66283525e-03]
- [1.73410405e-02 4.75480142e-02 3.71060973e-02 1.49170241e-03
-  1.49170241e-03 2.05109081e-03 2.38672385e-02]
- [6.46283868e-02 2.46085011e-02 1.01913995e-02 1.24285359e-03
-  0.00000000e+00 2.48570718e-04 1.76485210e-02]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.12748238e-02 2.75464446e-02 9.41704036e-03 3.97181294e-03
+  1.21716848e-03 2.56245996e-04 1.24919923e-02]
+ [7.04568330e-03 4.71768564e-02 6.72099743e-03 2.72736128e-03
+  1.72083509e-03 6.49371733e-05 8.08467807e-03]
+ [1.70424285e-02 4.65116279e-02 3.56825848e-02 1.42020238e-03
+  1.42020238e-03 1.95277827e-03 2.46760163e-02]
+ [6.51865848e-02 2.43268777e-02 1.03920642e-02 1.18091639e-03
+  0.00000000e+00 2.36183278e-04 1.79499291e-02]]
 </pre></div>
 </div>
 <p>The normalization is the number of articles with both terms, divided by the number of
@@ -214,14 +213,14 @@ articles for each anatomical term that include each perception term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.16323351e-03 3.41288488e-03 3.15409380e-03 1.80392929e-03
-  3.98673885e-04 1.95207652e-04 2.63261622e-04]
- [1.30944437e-03 1.03648086e-02 3.26261572e-03 1.78074569e-03
-  8.37547917e-04 5.72180580e-05 3.21962547e-04]
- [6.89752357e-04 2.28096069e-03 5.48980662e-03 3.83380457e-04
-  2.10526316e-04 1.01710587e-03 1.88814789e-04]
- [1.95013651e-03 8.95028523e-04 1.16919041e-03 2.56016385e-04
-  0.00000000e+00 1.05429626e-04 1.04931794e-04]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.14086433e-03 3.40980279e-03 3.07866298e-03 1.90587440e-03
+  3.75731688e-04 1.86228409e-04 2.66904645e-04]
+ [1.28086320e-03 1.03583726e-02 3.29214180e-03 1.76108013e-03
+  8.06414802e-04 5.45404963e-05 3.33899667e-04]
+ [6.64948882e-04 2.25283324e-03 5.32916192e-03 3.53857042e-04
+  1.97034629e-04 9.56937799e-04 1.92874200e-04]
+ [1.93286786e-03 8.95200681e-04 1.20630569e-03 2.35715633e-04
+  0.00000000e+00 9.89511181e-05 1.05652257e-04]]
 </pre></div>
 </div>
 <p>Specifying ‘association’ computes the
@@ -231,8 +230,8 @@ a normalized measure of similarity, bounded between 0 and 1.</p>
 <p>One benefit of the Jaccard index is that you do not have to choose a terms list to normalize
 by - the calculated measure considers both lists of terms to compute an association index.</p>
 <p>The cosine similarity of the co-occurrence data can also be calculated, with ‘similarity’.</p>
-</div>
-<div class="section" id="clustering-and-plotting-co-occurrence-data">
+</section>
+<section id="clustering-and-plotting-co-occurrence-data">
 <h2>Clustering and Plotting Co-occurrence Data<a class="headerlink" href="#clustering-and-plotting-co-occurrence-data" title="Permalink to this headline">¶</a></h2>
 <p>The collected co-occurrence data is a 2D matrix of counts reflecting the relationship
 between terms. This makes it amenable to visualizations and analyses, such as clustering,
@@ -247,18 +246,15 @@ each one is doing.</p>
 <a href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_matrix</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="plot 04 CountsAnalysis" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_04-CountsAnalysis_001.png" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a clustermap of the association index data</span>
+<img src="../_images/sphx_glr_plot_04-CountsAnalysis_001.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_001.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a clustermap of the association index data</span>
 <a href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_clustermap</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="plot 04 CountsAnalysis" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_04-CountsAnalysis_002.png" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a dendrogram, to cluster the terms</span>
+<img src="../_images/sphx_glr_plot_04-CountsAnalysis_002.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_002.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a dendrogram, to cluster the terms</span>
 <a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="plot 04 CountsAnalysis" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.357 seconds)</p>
+<img src="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.385 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-countsanalysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5ff9fa97294fa61217b4d2e25b0264f8/plot_04-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-CountsAnalysis.py</span></code></a></p>
@@ -268,8 +264,8 @@ each one is doing.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -283,8 +279,8 @@ each one is doing.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

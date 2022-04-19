@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 06: MetaData &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 06: MetaData &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,14 +116,14 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-06-metadata-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="tutorial-06-metadata">
+<section class="sphx-glr-example-title" id="tutorial-06-metadata">
 <span id="sphx-glr-auto-tutorials-plot-06-metadata-py"></span><h1>Tutorial 06: MetaData<a class="headerlink" href="#tutorial-06-metadata" title="Permalink to this headline">¶</a></h1>
 <p>Exploring metadata collected and saved during data collections.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
 <span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_object</span>
 </pre></div>
 </div>
-<div class="section" id="metadata">
+<section id="metadata">
 <h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
 <p>Whenever you collect data with LISC, meta data is collected about the API requests
 and databases accessed.</p>
@@ -133,8 +132,8 @@ and databases accessed.</p>
 <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="metadata-object">
+</section>
+<section id="metadata-object">
 <h2>Metadata Object<a class="headerlink" href="#metadata-object" title="Permalink to this headline">¶</a></h2>
 <p>Metadata information is collected into a custom <a class="reference internal" href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetaData</span></code></a> object.</p>
 <p>If you are collecting data using the LISC object, such as the <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a>
@@ -145,7 +144,7 @@ to the object as the <cite>meta_data</cite> attribute.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2021-06-02_23:01:33
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2022-04-18_23:31:01
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the information about the database from which data was collected</span>
@@ -153,7 +152,7 @@ to the object as the <cite>meta_data</cite> attribute.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: None, &#39;menuname&#39;: None, &#39;description&#39;: None, &#39;dbbuild&#39;: None, &#39;count&#39;: None, &#39;lastupdate&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build220418-0832m.2&#39;, &#39;count&#39;: &#39;33962615&#39;, &#39;lastupdate&#39;: &#39;2022/04/18 15:04&#39;}
 </pre></div>
 </div>
 <p>For the next part, we’ll reload the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object, which also has stored meta data.</p>
@@ -161,7 +160,7 @@ to the object as the <cite>meta_data</cite> attribute.</p>
 <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="section" id="requester-metadata">
+<section id="requester-metadata">
 <h3>Requester MetaData<a class="headerlink" href="#requester-metadata" title="Permalink to this headline">¶</a></h3>
 <p>The collected metadata also includes information from the <a class="reference internal" href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester"><code class="xref py py-class docutils literal notranslate"><span class="pre">Requester</span></code></a>
 object, which is used to launch URL requests.</p>
@@ -172,11 +171,11 @@ launched and the number of requests made.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;n_requests&#39;: 9, &#39;wait_time&#39;: 0.3333333333333333, &#39;start_time&#39;: &#39;23:01:21 Wednesday 02 June 2021&#39;, &#39;end_time&#39;: &#39;23:01:28 Wednesday 02 June 2021&#39;, &#39;logging&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;n_requests&#39;: 9, &#39;wait_time&#39;: 0.3333333333333333, &#39;start_time&#39;: &#39;23:30:48 Monday 18 April 2022&#39;, &#39;end_time&#39;: &#39;23:30:55 Monday 18 April 2022&#39;, &#39;logging&#39;: None}
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-end">
+</section>
+<section id="the-end">
 <h3>The End!<a class="headerlink" href="#the-end" title="Permalink to this headline">¶</a></h3>
 <p>That is the end of the main tutorial for LISC!</p>
 <p>There are some additional stand alone examples on the
@@ -196,9 +195,9 @@ page.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -212,8 +211,8 @@ page.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

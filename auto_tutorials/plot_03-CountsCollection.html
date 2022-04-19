@@ -3,23 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 03: Counts Collection &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 03: Counts Collection &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -57,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,10 +116,10 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-03-countscollection-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="tutorial-03-counts-collection">
+<section class="sphx-glr-example-title" id="tutorial-03-counts-collection">
 <span id="sphx-glr-auto-tutorials-plot-03-countscollection-py"></span><h1>Tutorial 03: Counts Collection<a class="headerlink" href="#tutorial-03-counts-collection" title="Permalink to this headline">¶</a></h1>
 <p>Collecting term co-occurrence data from the scientific literature.</p>
-<div class="section" id="term-co-occurrence">
+<section id="term-co-occurrence">
 <h2>Term Co-occurrence<a class="headerlink" href="#term-co-occurrence" title="Permalink to this headline">¶</a></h2>
 <p>The ‘Counts’ approach, or term co-occurrence, searches the literature for
 how often terms of interest appear together.</p>
@@ -135,13 +134,13 @@ how often terms of interest appear together.</p>
 <span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="counts-object">
+</section>
+<section id="counts-object">
 <h2>Counts Object<a class="headerlink" href="#counts-object" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object is used to handle term co-occurrence collection and analyses.</p>
 <p>This object is based on the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object introduced in the prior tutorial,
 meaning we can define and add terms to it like introduced there.</p>
-<div class="section" id="counts-single-list-of-terms">
+<section id="counts-single-list-of-terms">
 <h3>Counts: Single List of Terms<a class="headerlink" href="#counts-single-list-of-terms" title="Permalink to this headline">¶</a></h3>
 <p>For the first example of running a counts analysis, we will use a single list of terms.</p>
 <p>When a single list of terms is provided, the word co-occurrence is collected as the
@@ -175,10 +174,10 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 1928  865  546]
- [1928    0  806  667]
- [ 865  806    0  476]
- [ 546  667  476    0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 2011  920  587]
+ [2011    0  851  708]
+ [ 920  851    0  505]
+ [ 587  708  505    0]]
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object also has methods for exploring the collected data.</p>
@@ -188,10 +187,10 @@ Running counts for:  occipital lobe
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
-  &#39;frontal lobe&#39;     -   15032
-  &#39;temporal lobe&#39;    -   29493
-  &#39;parietal lobe&#39;    -    5363
-  &#39;occipital lobe&#39;   -    4023
+  &#39;frontal lobe&#39;     -   15610
+  &#39;temporal lobe&#39;    -   30799
+  &#39;parietal lobe&#39;    -    5633
+  &#39;occipital lobe&#39;   -    4234
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
@@ -199,11 +198,11 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  29493  articles.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  30799  articles.
 </pre></div>
 </div>
-</div>
-<div class="section" id="counts-two-terms-lists">
+</section>
+<section id="counts-two-terms-lists">
 <h3>Counts: Two Terms Lists<a class="headerlink" href="#counts-two-terms-lists" title="Permalink to this headline">¶</a></h3>
 <p>In the first example above, we provided a single list of terms.</p>
 <p>Now let’s explore using two different sets of terms. When providing two lists of terms,
@@ -238,7 +237,7 @@ relate to different sensory systems.</p>
 <span class="n">save_object</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  31.415 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.370 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-countscollection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/f6b7222965c1f8d157227f97ac2f3eef/plot_03-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-CountsCollection.py</span></code></a></p>
@@ -248,9 +247,9 @@ relate to different sensory systems.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -264,8 +263,8 @@ relate to different sensory systems.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

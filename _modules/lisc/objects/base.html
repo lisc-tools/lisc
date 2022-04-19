@@ -3,23 +3,21 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lisc.objects.base &#8212; lisc 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lisc.objects.base &#8212; lisc 0.2.1-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -57,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -124,7 +122,7 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="Base"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base">[docs]</a><span class="k">class</span> <span class="nc">Base</span><span class="p">():</span>
+<div class="viewcode-block" id="Base"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base">[docs]</a><span class="k">class</span> <span class="nc">Base</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;A class for the base object for LISC collections and analyses.</span>
 
 <span class="sd">    Attributes</span>
@@ -143,7 +141,7 @@
 <span class="sd">        Number of terms.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Base.__init__"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.__init__"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize Base object.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
@@ -195,7 +193,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span>
 
 
-<div class="viewcode-block" id="Base.get_index"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.get_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.get_index"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.get_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the index for a specified search term.</span>
 
 <span class="sd">        Parameters</span>
@@ -222,7 +220,7 @@
         <span class="k">return</span> <span class="n">ind</span></div>
 
 
-<div class="viewcode-block" id="Base.get_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.get_term">[docs]</a>    <span class="k">def</span> <span class="nf">get_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.get_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.get_term">[docs]</a>    <span class="k">def</span> <span class="nf">get_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a search term from the object.</span>
 
 <span class="sd">        Parameters</span>
@@ -244,7 +242,7 @@
         <span class="k">return</span> <span class="n">term</span></div>
 
 
-<div class="viewcode-block" id="Base.add_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Base.add_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms">[docs]</a>    <span class="k">def</span> <span class="nf">add_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_consistency</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add terms to the object.</span>
 
@@ -313,7 +311,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_term_consistency</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Base.add_labels"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.add_labels">[docs]</a>    <span class="k">def</span> <span class="nf">add_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_consistency</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.add_labels"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_labels">[docs]</a>    <span class="k">def</span> <span class="nf">add_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_consistency</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add the given list of strings as labels for the terms.</span>
 
 <span class="sd">        Parameters</span>
@@ -343,7 +341,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_term_consistency</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Base.check_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.check_terms">[docs]</a>    <span class="k">def</span> <span class="nf">check_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.check_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms">[docs]</a>    <span class="k">def</span> <span class="nf">check_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print out the current list of terms.</span>
 
 <span class="sd">        Attributes</span>
@@ -373,7 +371,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;{:</span><span class="si">{width}</span><span class="s1">s}  : &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">term</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Base.drop_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.drop_term">[docs]</a>    <span class="k">def</span> <span class="nf">drop_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.drop_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.drop_term">[docs]</a>    <span class="k">def</span> <span class="nf">drop_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Drop specified term(s) from the object.</span>
 
 <span class="sd">        Parameters</span>
@@ -399,7 +397,7 @@
                 <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Base.unload_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.unload_terms">[docs]</a>    <span class="k">def</span> <span class="nf">unload_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.unload_terms"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.unload_terms">[docs]</a>    <span class="k">def</span> <span class="nf">unload_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Completely unload terms from the object.</span>
 
 <span class="sd">        Attributes</span>
@@ -437,7 +435,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_clusions</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Base.unload_labels"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.unload_labels">[docs]</a>    <span class="k">def</span> <span class="nf">unload_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.unload_labels"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.unload_labels">[docs]</a>    <span class="k">def</span> <span class="nf">unload_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unload labels from the object.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -445,7 +443,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_none_labels</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Base.make_search_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.Base.make_search_term">[docs]</a>    <span class="k">def</span> <span class="nf">make_search_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<div class="viewcode-block" id="Base.make_search_term"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.make_search_term">[docs]</a>    <span class="k">def</span> <span class="nf">make_search_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the combined search term for a selected term.</span>
 
 <span class="sd">        Parameters</span>
@@ -526,8 +524,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2021, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>
