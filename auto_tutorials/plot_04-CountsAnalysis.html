@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 04: Counts Analysis &#8212; lisc 0.2.1-dev documentation</title>
+    <title>Tutorial 04: Counts Analysis &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -181,13 +181,18 @@ method. Scores available include ‘normalize’, ‘association’, or ‘simil
 <a href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span></a><span class="p">(</span><span class="s1">&#39;normalize&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/lisc/analysis/counts.py:48: RuntimeWarning: divide by zero encountered in true_divide
+  out = data / counts_2d
+</pre></div>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the computed normalization</span>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.12748238e-02 2.75464446e-02 9.41704036e-03 3.97181294e-03
-  1.21716848e-03 2.56245996e-04 1.24919923e-02]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[           inf            inf            inf            inf
+             inf            inf            inf]
  [7.04568330e-03 4.71768564e-02 6.72099743e-03 2.72736128e-03
   1.72083509e-03 6.49371733e-05 8.08467807e-03]
  [1.70424285e-02 4.65116279e-02 3.56825848e-02 1.42020238e-03
@@ -213,8 +218,8 @@ articles for each anatomical term that include each perception term.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.14086433e-03 3.40980279e-03 3.07866298e-03 1.90587440e-03
-  3.75731688e-04 1.86228409e-04 2.66904645e-04]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.26930095e-03 3.89150837e-03 4.57402452e-03 3.66408605e-03
+  5.43509354e-04 6.81547112e-04 2.72731850e-04]
  [1.28086320e-03 1.03583726e-02 3.29214180e-03 1.76108013e-03
   8.06414802e-04 5.45404963e-05 3.33899667e-04]
  [6.64948882e-04 2.25283324e-03 5.32916192e-03 3.53857042e-04
@@ -254,7 +259,7 @@ each one is doing.</p>
 <a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.385 seconds)</p>
+<img src="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.695 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-countsanalysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5ff9fa97294fa61217b4d2e25b0264f8/plot_04-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-CountsAnalysis.py</span></code></a></p>

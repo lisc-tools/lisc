@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.plts.counts.plot_dendrogram &#8212; lisc 0.2.1-dev documentation</title>
+    <title>lisc.plts.counts.plot_dendrogram &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.1-dev</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -129,9 +129,9 @@ Only used if the <cite>data</cite> input is a Counts object.</p>
 </dd>
 <dt><strong>transpose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to transpose the data before plotting.</p>
 </dd>
-<dt><strong>method</strong><span class="classifier">str, optional, default: ‘complete’</span></dt><dd><p>The linkage algorithm to use. See <cite>scipy.cluster.hierarchy.linkage</cite> for options.</p>
+<dt><strong>method</strong><span class="classifier">str</span></dt><dd><p>The linkage algorithm to use. See <cite>scipy.cluster.hierarchy.linkage</cite> for options.</p>
 </dd>
-<dt><strong>metric</strong><span class="classifier">str or function, optional, default: ‘cosine’</span></dt><dd><p>The distance metric to use.  See <cite>scipy.spatial.distance.pdist</cite> for options.</p>
+<dt><strong>metric</strong><span class="classifier">str or function</span></dt><dd><p>The distance metric to use. See <cite>scipy.cluster.hierarchy.linkage</cite> for options.</p>
 </dd>
 <dt><strong>ax</strong><span class="classifier">matplotlib.Axes, optional</span></dt><dd><p>Figure axes upon which to plot.</p>
 </dd>
@@ -141,17 +141,17 @@ Only used if the <cite>data</cite> input is a Counts object.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>This function is a wrapper of the <a href="#id1"><span class="problematic" id="id2">`</span></a>scipy.cluster.hierarchy.dendrogram’ plot function.</p>
+<p>This function is a wrapper of the scipy <cite>dendrogram</cite> plot function.</p>
 <p class="rubric">Examples</p>
 <p>See the example for the <a class="reference internal" href="lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_score()</span></code></a> method of the <a class="reference internal" href="lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> class.</p>
 </dd></dl>
 
 <section id="examples-using-lisc-plts-counts-plot-dendrogram">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.plts.counts.plot_dendrogram</span></code><a class="headerlink" href="#examples-using-lisc-plts-counts-plot-dendrogram" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><figure class="align-default" id="id3">
+<div class="sphx-glr-thumbcontainer" tooltip="Analyzing collected co-occurrence data."><figure class="align-default" id="id1">
 <img alt="Tutorial 04: Counts Analysis" src="../_images/sphx_glr_plot_04-CountsAnalysis_thumb.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-04-countsanalysis-py"><span class="std std-ref">Tutorial 04: Counts Analysis</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../auto_tutorials/plot_04-CountsAnalysis.html#sphx-glr-auto-tutorials-plot-04-countsanalysis-py"><span class="std std-ref">Tutorial 04: Counts Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div style='clear:both'></div></section>
