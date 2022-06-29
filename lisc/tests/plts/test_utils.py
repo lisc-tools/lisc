@@ -1,5 +1,7 @@
 """Tests for the lisc.plts.utils."""
 
+import os
+
 from py.test import raises
 
 import numpy as np
@@ -103,3 +105,9 @@ def test_savefig(tdb):
     # Test does not save when `save_fig` set to False
     example_plot(save_fig=False, file_name='test_savefig_nope.pdf', directory=tdb)
     assert not os.path.exists(os.path.join(tdb.paths['figures'], 'test_savefig_nope.pdf'))
+
+def test_save_figure(tdb):
+
+    plt.plot([1, 2], [3, 4])
+    save_figure(file_name='test_save_figure.pdf', file_path=tdb.paths['figures'])
+    assert os.path.exists(os.path.join(tdb.paths['figures'], 'test_save_figure.pdf'))
