@@ -12,11 +12,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env: 
+    env:
       MODULE_NAME: lisc
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.6, 3.7, 3.8, 3.9, "3.10"]
       # Because this repo launches requests, limit to one concurrent job at a time
       max-parallel: 1
 

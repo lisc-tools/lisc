@@ -42,7 +42,8 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9'
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         ],
     platforms = 'any',
     keywords = ['web-scraping', 'meta-analysis', 'text-mining', 'scientific-publications',
