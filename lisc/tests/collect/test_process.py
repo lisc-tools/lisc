@@ -1,6 +1,6 @@
 """Tests for lisc.collect.process."""
 
-from py.test import raises
+from pytest import raises
 
 import bs4
 

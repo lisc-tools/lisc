@@ -1,6 +1,6 @@
 """Tests for lisc.urls.eutils."""
 
-from py.test import raises
+from pytest import raises
 
 from lisc.urls.eutils import *
 

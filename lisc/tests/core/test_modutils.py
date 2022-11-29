@@ -2,7 +2,7 @@
 
 from inspect import ismodule
 
-from py.test import raises
+from pytest import raises
 
 from lisc.core.modutils import *
 

@@ -1,6 +1,6 @@
 """Tests for lisc.objects.words"""
 
-from py.test import raises
+from pytest import raises
 
 from lisc.data import Term, Articles
 from lisc.objects.words import Words
