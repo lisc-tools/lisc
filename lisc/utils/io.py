@@ -29,7 +29,7 @@ def check_ext(file_name, ext):
 
 
 def load_txt_file(file_name, directory=None, split_elements=True, split_character=','):
-    """Loads contents from a text file.
+    """Load contents from a text file.
 
     Parameters
     ----------
@@ -72,7 +72,7 @@ def load_txt_file(file_name, directory=None, split_elements=True, split_characte
 
 
 def load_api_key(file_name, directory=None, required=False):
-    """"Load an API key from a file.
+    """Load an API key from a file.
 
     Parameters
     ----------
