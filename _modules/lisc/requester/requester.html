@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,9 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -25,10 +27,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../../../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -126,7 +128,7 @@
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="Requester"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester">[docs]</a><span class="k">class</span> <span class="nc">Requester</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Object to handle URL requests.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Object to handle URL requests.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -149,7 +151,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Requester.__init__"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize a requester object.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a requester object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -190,7 +192,7 @@
 
 
 <div class="viewcode-block" id="Requester.as_dict"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get the attributes of the Requester object as a dictionary.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the attributes of the Requester object as a dictionary.&quot;&quot;&quot;</span>
 
         <span class="c1"># Copy is so that attributes aren&#39;t dropped from object itself</span>
         <span class="n">req_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
@@ -200,7 +202,7 @@
 
 
 <div class="viewcode-block" id="Requester.set_wait_time"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.set_wait_time">[docs]</a>    <span class="k">def</span> <span class="nf">set_wait_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set the amount of time to rest between requests.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the amount of time to rest between requests.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -219,7 +221,7 @@
 
 
 <div class="viewcode-block" id="Requester.check"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Print out basic check of requester object.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out basic check of requester object.&quot;&quot;&quot;</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Requester object is active: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of requests sent: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_requests</span><span class="p">))</span>
@@ -228,7 +230,7 @@
 
 
 <div class="viewcode-block" id="Requester.throttle"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.throttle">[docs]</a>    <span class="k">def</span> <span class="nf">throttle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Slow down rate of requests by waiting if a new request is initiated too soon.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Slow down rate of requests by waiting if a new request is initiated too soon.&quot;&quot;&quot;</span>
 
         <span class="c1"># Check how long it has been since last request was sent</span>
         <span class="n">time_since_req</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_last_req</span>
@@ -240,7 +242,7 @@
 
 <div class="viewcode-block" id="Requester.wait"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.wait">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">wait_time</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Pause for specified amount of time.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pause for specified amount of time.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -252,7 +254,7 @@
 
 
 <div class="viewcode-block" id="Requester.request_url"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.request_url">[docs]</a>    <span class="k">def</span> <span class="nf">request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Request a URL.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Request a URL.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -291,14 +293,14 @@
 
 
 <div class="viewcode-block" id="Requester.open"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set the current object as active.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the current object as active.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_time</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
 <div class="viewcode-block" id="Requester.close"><a class="viewcode-back" href="../../../generated/lisc.requester.Requester.html#lisc.requester.Requester.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set the current object as inactive.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the current object as inactive.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_time</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="kc">False</span>
@@ -310,7 +312,7 @@
 
 
     <span class="k">def</span> <span class="nf">_set_up_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set up for URL logging.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up for URL logging.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -338,7 +340,7 @@
 
 
     <span class="k">def</span> <span class="nf">_log_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Log a URL that is to be requested.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a URL that is to be requested.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -358,7 +360,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_time</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Get the current time.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current time.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -380,8 +382,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

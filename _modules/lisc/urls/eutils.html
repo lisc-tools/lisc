@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,9 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -25,10 +27,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../../../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +168,7 @@
 <span class="c1">###################################################################################################</span>
 
 <span class="k">def</span> <span class="nf">get_wait_time</span><span class="p">(</span><span class="n">authenticated</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the wait time based on whether EUtils API use is authenticated or not.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the wait time based on whether EUtils API use is authenticated or not.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -190,7 +192,7 @@
 
 
 <div class="viewcode-block" id="EUtils"><a class="viewcode-back" href="../../../generated/lisc.urls.EUtils.html#lisc.urls.EUtils">[docs]</a><span class="k">class</span> <span class="nc">EUtils</span><span class="p">(</span><span class="n">URLs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;URLs for the NCBI EUtils API.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;URLs for the NCBI EUtils API.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -208,7 +210,7 @@
 
 <div class="viewcode-block" id="EUtils.__init__"><a class="viewcode-back" href="../../../generated/lisc.urls.EUtils.html#lisc.urls.EUtils.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">usehistory</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize the NCBI EUtils URLs, with provided settings.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the NCBI EUtils URLs, with provided settings.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -254,7 +256,7 @@
 
 
 <div class="viewcode-block" id="EUtils.authenticate"><a class="viewcode-back" href="../../../generated/lisc.urls.EUtils.html#lisc.urls.EUtils.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Authenticate a URL for the EUtils API.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Authenticate a URL for the EUtils API.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -281,8 +283,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

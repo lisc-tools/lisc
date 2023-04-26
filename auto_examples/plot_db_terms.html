@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Database and Terms Lists &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -16,7 +16,9 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,10 +28,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -113,18 +115,18 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-db-terms-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-db-terms-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="database-and-terms-lists">
-<span id="sphx-glr-auto-examples-plot-db-terms-py"></span><h1>Database and Terms Lists<a class="headerlink" href="#database-and-terms-lists" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-db-terms-py"></span><h1>Database and Terms Lists<a class="headerlink" href="#database-and-terms-lists" title="Permalink to this heading">¶</a></h1>
 <p>Exploring the LISC database, and using search terms loaded from files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a function to create a LISC database file structure</span>
 <span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">create_file_structure</span>
 </pre></div>
 </div>
 <section id="scdb-database-structure">
-<h2>SCDB Database Structure<a class="headerlink" href="#scdb-database-structure" title="Permalink to this headline">¶</a></h2>
+<h2>SCDB Database Structure<a class="headerlink" href="#scdb-database-structure" title="Permalink to this heading">¶</a></h2>
 <p>LISC provides and uses a custom directory structure.</p>
 <p>If you want to store terms definitions and data, these files can be put into a LISC
 database structure, and then relevant functions and objects will be able to load and
@@ -140,7 +142,7 @@ the built database structure.</p>
 </div>
 </section>
 <section id="storing-terms-in-text-files">
-<h2>Storing Terms in Text Files<a class="headerlink" href="#storing-terms-in-text-files" title="Permalink to this headline">¶</a></h2>
+<h2>Storing Terms in Text Files<a class="headerlink" href="#storing-terms-in-text-files" title="Permalink to this heading">¶</a></h2>
 <p>Here we will explore using files to store terms to use for LISC collections.</p>
 <p>The typical use case would be to curate and write text files manually.</p>
 <p>For demonstration here, we will first programmatically create an example
@@ -159,7 +161,6 @@ txt file of terms to use.</p>
 <span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>lisc_db/
     terms/
         terms.txt
@@ -177,7 +178,6 @@ txt file of terms to use.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">term_files</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;terms.txt&#39;]
 </pre></div>
 </div>
@@ -185,13 +185,12 @@ txt file of terms to use.</p>
 <span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tom/Code/ModCode/lisc/examples/lisc_db/terms/terms.txt&#39;
 </pre></div>
 </div>
 </section>
 <section id="term-file-structure">
-<h2>Term File Structure<a class="headerlink" href="#term-file-structure" title="Permalink to this headline">¶</a></h2>
+<h2>Term File Structure<a class="headerlink" href="#term-file-structure" title="Permalink to this heading">¶</a></h2>
 <p>For term files, each line should reflect a new term, with synonyms for the same term
 stored as comma-separated values on the same line.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the terms file contents</span>
@@ -199,14 +198,13 @@ stored as comma-separated values on the same line.</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">term_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>brain,cortex
 body,corporeal
 </pre></div>
 </div>
 </section>
 <section id="loading-terms-from-file">
-<h2>Loading Terms from File<a class="headerlink" href="#loading-terms-from-file" title="Permalink to this headline">¶</a></h2>
+<h2>Loading Terms from File<a class="headerlink" href="#loading-terms-from-file" title="Permalink to this heading">¶</a></h2>
 <p>Text files of Terms can be loaded and used with LISC objects, such as
 <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> and <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a>.</p>
 <p>For a general example, here we will use the underlying <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object.</p>
@@ -225,7 +223,6 @@ body,corporeal
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of terms used:
 
 brain  : brain, cortex
@@ -240,8 +237,8 @@ using one line per term, with comma-separated values for synonyms.</p>
 associated files for inclusion and exclusion terms should have the same number of lines,
 and the n-th line of each file should refer to the same term. If a given search
 term does not have an associated inclusion or exclusion term, leave that line blank.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.006 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.009 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2dd610e85e7ccd3131f26e11e81b72d5/plot_db_terms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_db_terms.py</span></code></a></p>
 </div>
@@ -265,8 +262,8 @@ term does not have an associated inclusion or exclusion term, leave that line bl
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

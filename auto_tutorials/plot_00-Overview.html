@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tutorial 00: LISC Overview &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -16,7 +16,9 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,10 +28,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -113,21 +115,21 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-00-overview-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-00-overview-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="tutorial-00-lisc-overview">
-<span id="sphx-glr-auto-tutorials-plot-00-overview-py"></span><h1>Tutorial 00: LISC Overview<a class="headerlink" href="#tutorial-00-lisc-overview" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-00-overview-py"></span><h1>Tutorial 00: LISC Overview<a class="headerlink" href="#tutorial-00-lisc-overview" title="Permalink to this heading">¶</a></h1>
 <p>An overview of the LISC code organization and approach.</p>
 <section id="lisc-overview">
-<h2>LISC Overview<a class="headerlink" href="#lisc-overview" title="Permalink to this headline">¶</a></h2>
+<h2>LISC Overview<a class="headerlink" href="#lisc-overview" title="Permalink to this heading">¶</a></h2>
 <p>LISC, or ‘Literature Scanner’, is a module for collecting and analyzing scientific literature.</p>
 <p>LISC serves mainly as a wrapper around available application programmer interfaces (APIs)
 that provide access to databases of scientific literature and related data.</p>
 <p>In this overview, we will first introduce LISC, including the overall code structure,
 and how the module handles search terms, data, files, and requests.</p>
 <section id="available-analyses">
-<h3>Available Analyses<a class="headerlink" href="#available-analyses" title="Permalink to this headline">¶</a></h3>
+<h3>Available Analyses<a class="headerlink" href="#available-analyses" title="Permalink to this heading">¶</a></h3>
 <p>The utility of LISC is based on the APIs that it accesses.</p>
 <p>Currently supported external APIs include:</p>
 <ul class="simple">
@@ -152,7 +154,7 @@ which provides access to citation data</p></li>
 </section>
 </section>
 <section id="lisc-objects">
-<h2>LISC Objects<a class="headerlink" href="#lisc-objects" title="Permalink to this headline">¶</a></h2>
+<h2>LISC Objects<a class="headerlink" href="#lisc-objects" title="Permalink to this heading">¶</a></h2>
 <p>LISC is object oriented, meaning it uses objects to handle search terms and collect data.</p>
 <p>We will first explore the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object, which is the underlying object that is
 used for data collection and analyses with EUtils.</p>
@@ -169,7 +171,7 @@ that we will use later.</p>
 </div>
 </section>
 <section id="search-terms">
-<h2>Search Terms<a class="headerlink" href="#search-terms" title="Permalink to this headline">¶</a></h2>
+<h2>Search Terms<a class="headerlink" href="#search-terms" title="Permalink to this heading">¶</a></h2>
 <p>To collect scientific articles and associated data, we first need to define search terms
 of interest to find relevant literature.</p>
 <p>Search terms in LISC are organized as lists of strings. Each new search terms should
@@ -188,7 +190,6 @@ matches to the given search terms.</p>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of terms used:
 
 chemistry  : chemistry
@@ -197,13 +198,13 @@ biology    : biology
 </div>
 </section>
 <section id="complex-search-terms">
-<h2>Complex Search Terms<a class="headerlink" href="#complex-search-terms" title="Permalink to this headline">¶</a></h2>
+<h2>Complex Search Terms<a class="headerlink" href="#complex-search-terms" title="Permalink to this heading">¶</a></h2>
 <p>So far, we have chosen some search terms, defined as single words, to use as queries,
 and added them to our object.</p>
 <p>Sometimes we might want more control than just using single words, in which case we might
 want to add synonyms and/or use include inclusions or exclusion words.</p>
 <section id="synonyms">
-<h3>Synonyms<a class="headerlink" href="#synonyms" title="Permalink to this headline">¶</a></h3>
+<h3>Synonyms<a class="headerlink" href="#synonyms" title="Permalink to this heading">¶</a></h3>
 <p>To include synonyms, just add more entries to the input list of terms.</p>
 <p>Multiple strings within the same list are combined with the ‘OR’ operator. This means
 results will be returned if they include any of the given terms.</p>
@@ -212,7 +213,7 @@ results will be returned if they include any of the given terms.</p>
 <p>Being able to include synonyms is the reason each term entry is itself a list.</p>
 </section>
 <section id="inclusion-exclusion-words">
-<h3>Inclusion &amp; Exclusion Words<a class="headerlink" href="#inclusion-exclusion-words" title="Permalink to this headline">¶</a></h3>
+<h3>Inclusion &amp; Exclusion Words<a class="headerlink" href="#inclusion-exclusion-words" title="Permalink to this heading">¶</a></h3>
 <p>Sometimes we might need to control the returned results, by specifically including
 or excluding certain topics or results. We can do so by adding ‘inclusion’ and/or
 ‘exclusion’ words.</p>
@@ -228,7 +229,7 @@ will be excluded if they include these terms.</p>
 is interpreted as ‘(“brain”OR”cortex”)NOT(“body”)’.</p>
 </section>
 <section id="putting-it-all-together">
-<h3>Putting it all Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<h3>Putting it all Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this heading">¶</a></h3>
 <p>Synonyms, inclusion and exclusion words can all be used together.
 You can also specify synonyms for inclusion and exclusion words.</p>
 <p>For example, the following set of search term components:</p>
@@ -253,7 +254,6 @@ or exclusions words for a given search term.</p>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading terms.
 </pre></div>
 </div>
@@ -271,7 +271,6 @@ or exclusions words for a given search term.</p>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of terms used:
 
 gene    : gene, genetic
@@ -284,7 +283,6 @@ cortex  : cortex, cortical
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">(</span><span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of inclusions used:
 
 gene    : brain
@@ -299,7 +297,7 @@ cortex  : subcortical
 </div>
 </section>
 <section id="labels">
-<h3>Labels<a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h3>
+<h3>Labels<a class="headerlink" href="#labels" title="Permalink to this heading">¶</a></h3>
 <p>Since search terms can have multiple components, LISC also creates and uses ‘labels’
 for each search term.</p>
 <p>By default, the label for each term is defined as the first word in the search term list.
@@ -308,13 +306,12 @@ Custom labels can also be added to the object.</p>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.labels" title="lisc.objects.base.Base.labels" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-property"><span class="n">base</span><span class="o">.</span><span class="n">labels</span></a>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;gene&#39;, &#39;cortex&#39;]
 </pre></div>
 </div>
 </section>
 <section id="check-full-search-terms">
-<h3>Check Full Search Terms<a class="headerlink" href="#check-full-search-terms" title="Permalink to this headline">¶</a></h3>
+<h3>Check Full Search Terms<a class="headerlink" href="#check-full-search-terms" title="Permalink to this heading">¶</a></h3>
 <p>If you want to check what the full search term will be, the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.make_search_term" title="lisc.objects.base.Base.make_search_term"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_search_term()</span></code></a>
 can be used to create the combined term.</p>
 <p>Note that terms can be accessed using either their index or their label.</p>
@@ -323,14 +320,13 @@ can be used to create the combined term.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.make_search_term" title="lisc.objects.base.Base.make_search_term" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">make_search_term</span></a><span class="p">(</span><span class="s1">&#39;cortex&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&quot;gene&quot;OR&quot;genetic&quot;)AND(&quot;brain&quot;)NOT(&quot;protein&quot;)
 (&quot;cortex&quot;OR&quot;cortical&quot;)AND(&quot;body&quot;)NOT(&quot;subcortical&quot;)
 </pre></div>
 </div>
 </section>
 <section id="id1">
-<h3>LISC Objects<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>LISC Objects<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
 <p>Though LISC offers an object-oriented approach, all the core procedures used for
 collecting and analyzing data are implemented and available as stand-alone functions.</p>
 <p>The objects serve primarily to help organize the data and support common analyses.</p>
@@ -339,7 +335,7 @@ analyses. To see examples of using the function, see the Examples page.</p>
 </section>
 </section>
 <section id="database-management">
-<h2>Database Management<a class="headerlink" href="#database-management" title="Permalink to this headline">¶</a></h2>
+<h2>Database Management<a class="headerlink" href="#database-management" title="Permalink to this heading">¶</a></h2>
 <p>When collecting and analyzing the scientific literature, there can be a lot of data,
 and therefore a lot of files, to keep track of.</p>
 <p>To address this, LISC proposes a database structure for organizing collected data.</p>
@@ -361,7 +357,6 @@ stores the organization for a LISC database.</p>
 <span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>lisc_db/
     terms/
     logs/
@@ -379,8 +374,8 @@ stores the organization for a LISC database.</p>
             tutorial_counts.p
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.008 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-00-overview-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.004 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-00-overview-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/821a03dc58124cbddb2f426de44e27da/plot_00-Overview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_00-Overview.py</span></code></a></p>
 </div>
@@ -404,8 +399,8 @@ stores the organization for a LISC database.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

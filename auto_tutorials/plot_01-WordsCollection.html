@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tutorial 01: Words Collection &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -16,7 +16,9 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,10 +28,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -113,14 +115,14 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-01-wordscollection-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-01-wordscollection-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="tutorial-01-words-collection">
-<span id="sphx-glr-auto-tutorials-plot-01-wordscollection-py"></span><h1>Tutorial 01: Words Collection<a class="headerlink" href="#tutorial-01-words-collection" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-01-wordscollection-py"></span><h1>Tutorial 01: Words Collection<a class="headerlink" href="#tutorial-01-words-collection" title="Permalink to this heading">¶</a></h1>
 <p>Collecting literature data, including text and metadata for specified search terms.</p>
 <section id="words-analysis">
-<h2>Words Analysis<a class="headerlink" href="#words-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>Words Analysis<a class="headerlink" href="#words-analysis" title="Permalink to this heading">¶</a></h2>
 <p>The ‘Words’ approach collects text and meta-data from articles found for requested search terms.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Words object, which is used for words collection</span>
 <span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Words</span></a>
@@ -134,7 +136,7 @@ to download the full example code</p>
 </div>
 </section>
 <section id="words-object">
-<h2>Words Object<a class="headerlink" href="#words-object" title="Permalink to this headline">¶</a></h2>
+<h2>Words Object<a class="headerlink" href="#words-object" title="Permalink to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object is used to collect and analyze text data and article metadata.</p>
 <p>Search terms are specified, as previously introduced, to find articles of interest,
 from which text data and meta-data is collected.</p>
@@ -153,8 +155,12 @@ from which text data and meta-data is collected.</p>
 <a href="../generated/lisc.Words.html#lisc.Words.run_collection" title="lisc.Words.run_collection" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">words</span><span class="o">.</span><span class="n">run_collection</span></a><span class="p">(</span><span class="n">retmax</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/bs4/builder/__init__.py:545: XMLParsedAsHTMLWarning: It looks like you&#39;re parsing an XML document using an HTML parser. If this really is an HTML document (maybe it&#39;s XHTML?), you can ignore or filter this warning. If it&#39;s XML, you should know that using an XML parser will be more reliable. To parse this document as XML, make sure you have the lxml package installed, and pass the keyword argument `features=&quot;xml&quot;` into the BeautifulSoup constructor.
+  warnings.warn(
+</pre></div>
+</div>
 <section id="lisc-data-objects">
-<h3>LISC Data Objects<a class="headerlink" href="#lisc-data-objects" title="Permalink to this headline">¶</a></h3>
+<h3>LISC Data Objects<a class="headerlink" href="#lisc-data-objects" title="Permalink to this heading">¶</a></h3>
 <p>LISC uses custom objects to store collected words data.</p>
 <p>The <a class="reference internal" href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Articles</span></code></a> object stores data for each collected article.</p>
 <p>Collected data includes:</p>
@@ -171,8 +177,7 @@ from which text data and meta-data is collected.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7f8a68da78e0&gt;, &lt;lisc.data.articles.Articles object at 0x7f8a6943d130&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7ff3f12f7340&gt;, &lt;lisc.data.articles.Articles object at 0x7ff3f12d8220&gt;]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check some specific fields of the collected data</span>
@@ -180,15 +185,14 @@ from which text data and meta-data is collected.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">titles</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
-[&#39;A sensitive HILIC-MS/MS method for quantification of theanine in rat plasma and tissues: Application to preclinical pharmacokinetic study.&#39;, &#39;Association between surgical volume and outcomes after craniotomy for brain tumor removal: A South Korean nationwide cohort study.&#39;, &#39;Toxicity induced via ingestion of naturally-aged polystyrene microplastics by a small-sized terrestrial bird and its potential role as vectors for the dispersion of these pollutants.&#39;, &quot;Characterizing the propagation pathway of neuropathological events of Alzheimer&#39;s disease using harmonic wavelet analysis.&quot;, &#39;Pilomotor seizures in autoimmune limbic encephalitis: description of two GAD65 antibodies- related cases and literature review.&#39;]
+[&#39;Evaluation of Brain-Body Health in Individuals With Common Neuropsychiatric Disorders.&#39;, &#39;Intracranial and Extracranial Progression and Their Correlation With Overall Survival After Stereotactic Radiosurgery in a Multi-institutional Cohort With Brain Metastases.&#39;, &#39;Correction to: Natural history of spinal cord metastasis from brain glioblastomas.&#39;, &#39;An association of epidermal growth factor receptor mutation subtypes with prognostic prediction and site-specific recurrence in advanced stage lung cancer patients.&#39;, &#39;Diffusion prepared pseudo-continuous arterial spin labeling reveals blood-brain barrier dysfunction in patients with CADASIL.&#39;]
 </pre></div>
 </div>
 </section>
 </section>
 <section id="word-collections">
-<h2>Word Collections<a class="headerlink" href="#word-collections" title="Permalink to this headline">¶</a></h2>
+<h2>Word Collections<a class="headerlink" href="#word-collections" title="Permalink to this heading">¶</a></h2>
 <p>Collected words data from articles can become quite large. We will often want to use
 some of the available EUtils settings to help control what is collected, and how the data
 collection proceeds.</p>
@@ -199,12 +203,11 @@ co-occurence analysis, and explore some of these settings.</p>
 <a href="../generated/lisc.Words.html#lisc.Words.add_terms" title="lisc.Words.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">words</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Unloading terms.
 </pre></div>
 </div>
 <section id="eutils-settings">
-<h3>EUtils Settings<a class="headerlink" href="#eutils-settings" title="Permalink to this headline">¶</a></h3>
+<h3>EUtils Settings<a class="headerlink" href="#eutils-settings" title="Permalink to this heading">¶</a></h3>
 <p>The Pubmed EUtils has several settings that can help control searches, including:</p>
 <ul class="simple">
 <li><p><cite>field</cite> : which part of the record to search for search results</p></li>
@@ -221,7 +224,7 @@ as this is more efficient</p></li>
 </ul>
 </section>
 <section id="word-collection-settings">
-<h3>Word Collection Settings<a class="headerlink" href="#word-collection-settings" title="Permalink to this headline">¶</a></h3>
+<h3>Word Collection Settings<a class="headerlink" href="#word-collection-settings" title="Permalink to this heading">¶</a></h3>
 <p>For larger collections, the collectio my take a while and return a large amount of data.</p>
 <p>Because of this, the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object allows for continuously saving collected data.
 If set to True, the <cite>save_and_clear</cite> parameter saves out collected data, and clears the
@@ -243,8 +246,8 @@ use to reload our data, so it is still worth saving as well.</p>
 <span class="n">save_object</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.204 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-wordscollection-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.964 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-wordscollection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/9f06023fc1faf31be849407264f3c765/plot_01-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-WordsCollection.py</span></code></a></p>
 </div>
@@ -269,8 +272,8 @@ use to reload our data, so it is still worth saving as well.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

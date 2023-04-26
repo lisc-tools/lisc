@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Words with Functions &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -16,7 +16,9 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,10 +28,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -113,14 +115,14 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-words-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-words-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="words-with-functions">
-<span id="sphx-glr-auto-examples-plot-functions-words-py"></span><h1>Words with Functions<a class="headerlink" href="#words-with-functions" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-functions-words-py"></span><h1>Words with Functions<a class="headerlink" href="#words-with-functions" title="Permalink to this heading">¶</a></h1>
 <p>Collect article text data and metadata, using a function oriented approach.</p>
 <section id="function-approach-collect-words">
-<h2>Function Approach: collect_words<a class="headerlink" href="#function-approach-collect-words" title="Permalink to this headline">¶</a></h2>
+<h2>Function Approach: collect_words<a class="headerlink" href="#function-approach-collect-words" title="Permalink to this heading">¶</a></h2>
 <p>The function for collecting words data is <a class="reference internal" href="../generated/lisc.collect_words.html#lisc.collect_words" title="lisc.collect_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_words()</span></code></a>.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
 <p>The parameters for <cite>collect_words</cite> are the same as described in the Words tutorial.</p>
@@ -138,8 +140,9 @@ to download the full example code</p>
                                    <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Collecting data for:  brain
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/bs4/builder/__init__.py:545: XMLParsedAsHTMLWarning: It looks like you&#39;re parsing an XML document using an HTML parser. If this really is an HTML document (maybe it&#39;s XHTML?), you can ignore or filter this warning. If it&#39;s XML, you should know that using an XML parser will be more reliable. To parse this document as XML, make sure you have the lxml package installed, and pass the keyword argument `features=&quot;xml&quot;` into the BeautifulSoup constructor.
+  warnings.warn(
+Collecting data for:  brain
 Collecting data for:  body
 </pre></div>
 </div>
@@ -147,16 +150,14 @@ Collecting data for:  body
 <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">meta_data</span></a><span class="p">[</span><span class="s1">&#39;db_info&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build220418-0832m.2&#39;, &#39;count&#39;: &#39;33962615&#39;, &#39;lastupdate&#39;: &#39;2022/04/18 15:04&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build-2023.04.25.18.48&#39;, &#39;count&#39;: &#39;35602067&#39;, &#39;lastupdate&#39;: &#39;2023/04/25 18:48&#39;}
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The collected data is returned as a list of Articles objects</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7f8a68d3c850&gt;, &lt;lisc.data.articles.Articles object at 0x7f8a69010070&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7ff3f12f72b0&gt;, &lt;lisc.data.articles.Articles object at 0x7ff3f14b30d0&gt;]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each `Articles` object holds the data for the collected articles for a given term</span>
@@ -168,21 +169,20 @@ Collecting data for:  body
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res1</span></a><span class="o">.</span><span class="n">titles</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
 
-A sensitive HILIC-MS/MS method for quantification of theanine in rat plasma and tissues: Application to preclinical pharmacokinetic study.
-Association between surgical volume and outcomes after craniotomy for brain tumor removal: A South Korean nationwide cohort study.
-Toxicity induced via ingestion of naturally-aged polystyrene microplastics by a small-sized terrestrial bird and its potential role as vectors for the dispersion of these pollutants.
-Characterizing the propagation pathway of neuropathological events of Alzheimer&#39;s disease using harmonic wavelet analysis.
-Pilomotor seizures in autoimmune limbic encephalitis: description of two GAD65 antibodies- related cases and literature review.
+Evaluation of Brain-Body Health in Individuals With Common Neuropsychiatric Disorders.
+Intracranial and Extracranial Progression and Their Correlation With Overall Survival After Stereotactic Radiosurgery in a Multi-institutional Cohort With Brain Metastases.
+Correction to: Natural history of spinal cord metastasis from brain glioblastomas.
+An association of epidermal growth factor receptor mutation subtypes with prognostic prediction and site-specific recurrence in advanced stage lung cancer patients.
+Diffusion prepared pseudo-continuous arterial spin labeling reveals blood-brain barrier dysfunction in patients with CADASIL.
 </pre></div>
 </div>
 <p>To further explore the collected data, check out the documentation for the
 <a class="reference internal" href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Articles</span></code></a> object. To aggregate data across articles, check out the
 <a class="reference internal" href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticlesAll</span></code></a> object.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.493 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.714 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-words-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5f10c9c5df213661cc6b3aadff25c189/plot_functions_words.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_words.py</span></code></a></p>
 </div>
@@ -206,8 +206,8 @@ Pilomotor seizures in autoimmune limbic encephalitis: description of two GAD65 a
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

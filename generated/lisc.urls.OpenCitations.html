@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>lisc.urls.OpenCitations &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -16,7 +16,9 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,10 +28,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -112,13 +114,13 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="lisc-urls-opencitations">
-<h1>lisc.urls.OpenCitations<a class="headerlink" href="#lisc-urls-opencitations" title="Permalink to this headline">¶</a></h1>
+<h1>lisc.urls.OpenCitations<a class="headerlink" href="#lisc-urls-opencitations" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="lisc.urls.OpenCitations">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.urls.</span></span><span class="sig-name descname"><span class="pre">OpenCitations</span></span><a class="reference internal" href="../_modules/lisc/urls/open_citations.html#OpenCitations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.urls.OpenCitations" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for the OpenCitations API.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes</dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>base</strong><span class="classifier">str</span></dt><dd><p>Base URL for the OpenCitations API.</p>
 </dd>
@@ -137,10 +139,6 @@
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.OpenCitations.__init__" title="lisc.urls.OpenCitations.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
 <td><p>Initialize the open citations urls object.</p></td>
@@ -167,13 +165,13 @@
 <span class="sig-name descname"><span class="pre">authenticate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.OpenCitations.authenticate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to authenticate a URL for a given API.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>url</strong><span class="classifier">str</span></dt><dd><p>URL to add authentication to.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>str</dt><dd><p>Authenticated URL.</p>
 </dd>
@@ -192,7 +190,7 @@ to authenticate a URL request for the specified API.</p>
 <span class="sig-name descname"><span class="pre">build_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">util</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.OpenCitations.build_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the URL for a specified utility, with provided settings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to build the URL for.</p>
 </dd>
@@ -218,7 +216,7 @@ If list, the settings values are taken from the objects settings attribute.</p>
 <span class="sig-name descname"><span class="pre">check_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">util</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.OpenCitations.check_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the built URL for a specified utility.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to check the URL for.</p>
 </dd>
@@ -241,7 +239,7 @@ If list, the settings values are taken from the objects settings attribute.</p>
 <span class="sig-name descname"><span class="pre">fill_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.OpenCitations.fill_settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Put all provided settings values into a dictionary object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments for all settings, with their values.</p>
 </dd>
@@ -265,7 +263,7 @@ saved out to the dictionary of collected and available settings.</p>
 <span class="sig-name descname"><span class="pre">get_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">util</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.OpenCitations.get_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a requested URL, with any additional segments or settings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to get the URL for.</p>
 </dd>
@@ -275,7 +273,7 @@ saved out to the dictionary of collected and available settings.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>full_url</strong><span class="classifier">str</span></dt><dd><p>The requested URL, with any extra segments and settings added.</p>
 </dd>
@@ -296,14 +294,11 @@ saved out to the dictionary of collected and available settings.</p>
 </dd></dl>
 
 <section id="examples-using-lisc-urls-opencitations">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.urls.OpenCitations</span></code><a class="headerlink" href="#examples-using-lisc-urls-opencitations" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Explore LISC utilities for managing URLs and requests."><figure class="align-default" id="id1">
-<img alt="URLs and Requests" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_requester_urls.html#sphx-glr-auto-examples-plot-requester-urls-py"><span class="std std-ref">URLs and Requests</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div></section>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.urls.OpenCitations</span></code><a class="headerlink" href="#examples-using-lisc-urls-opencitations" title="Permalink to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Explore LISC utilities for managing URLs and requests."><img alt="" src="../_images/sphx_glr_plot_requester_urls_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/plot_requester_urls.html#sphx-glr-auto-examples-plot-requester-urls-py"><span class="std std-ref">URLs and Requests</span></a></p>
+  <div class="sphx-glr-thumbnail-title">URLs and Requests</div>
+</div></div></section>
 </section>
 
 
@@ -318,8 +313,8 @@ saved out to the dictionary of collected and available settings.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

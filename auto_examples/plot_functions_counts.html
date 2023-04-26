@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Counts with Functions &#8212; lisc 0.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -16,7 +16,9 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,10 +28,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -113,14 +115,14 @@
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-counts-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-functions-counts-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="counts-with-functions">
-<span id="sphx-glr-auto-examples-plot-functions-counts-py"></span><h1>Counts with Functions<a class="headerlink" href="#counts-with-functions" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-functions-counts-py"></span><h1>Counts with Functions<a class="headerlink" href="#counts-with-functions" title="Permalink to this heading">¶</a></h1>
 <p>Collect word co-occurrence data, using a function oriented approach.</p>
 <section id="function-approach-collect-counts">
-<h2>Function Approach: collect_counts<a class="headerlink" href="#function-approach-collect-counts" title="Permalink to this headline">¶</a></h2>
+<h2>Function Approach: collect_counts<a class="headerlink" href="#function-approach-collect-counts" title="Permalink to this heading">¶</a></h2>
 <p>The function for collecting co-occurrence data is <a class="reference internal" href="../generated/lisc.collect_counts.html#lisc.collect_counts" title="lisc.collect_counts"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_counts()</span></code></a>.</p>
 <p>Given a list of search terms, this function handles all the requests to collect the data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import function to collect data, and helper functions to analyze co-occurrence data</span>
@@ -137,8 +139,9 @@ to download the full example code</p>
 <span class="n">coocs</span><span class="p">,</span> <span class="n">term_counts</span><span class="p">,</span> <a href="../generated/lisc.data.MetaData.html#lisc.data.MetaData" title="lisc.data.MetaData" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">meta_dat</span></a> <span class="o">=</span> <a href="../generated/lisc.collect_counts.html#lisc.collect_counts" title="lisc.collect_counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_counts</span></a><span class="p">(</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running counts for:  protein
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/bs4/builder/__init__.py:545: XMLParsedAsHTMLWarning: It looks like you&#39;re parsing an XML document using an HTML parser. If this really is an HTML document (maybe it&#39;s XHTML?), you can ignore or filter this warning. If it&#39;s XML, you should know that using an XML parser will be more reliable. To parse this document as XML, make sure you have the lxml package installed, and pass the keyword argument `features=&quot;xml&quot;` into the BeautifulSoup constructor.
+  warnings.warn(
+Running counts for:  protein
 Running counts for:  gene
 </pre></div>
 </div>
@@ -146,9 +149,8 @@ Running counts for:  gene
 <span class="nb">print</span><span class="p">(</span><span class="n">coocs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 608705]
- [608705      0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 641115]
+ [641115      0]]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out how many articles found for each term</span>
@@ -156,9 +158,8 @@ Running counts for:  gene
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:12}</span><span class="s1"> : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2746612
-gene         : 1890414
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2889514
+gene         : 2003407
 </pre></div>
 </div>
 <p>When given a single set of terms, the function collects counts of each term
@@ -170,14 +171,13 @@ each term in list A is collected measuring co-occurrences with each term in list
     <span class="n">terms_a</span><span class="o">=</span><span class="n">terms_a</span><span class="p">,</span> <span class="n">terms_b</span><span class="o">=</span><span class="n">terms_b</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running counts for:  protein
 Running counts for:  gene
 </pre></div>
 </div>
 </section>
 <section id="calculating-co-occurrence-scores">
-<h2>Calculating Co-occurrence Scores<a class="headerlink" href="#calculating-co-occurrence-scores" title="Permalink to this headline">¶</a></h2>
+<h2>Calculating Co-occurrence Scores<a class="headerlink" href="#calculating-co-occurrence-scores" title="Permalink to this heading">¶</a></h2>
 <p>Once co-occurrence data has been collected, we often want to compute a normalization
 or transform of the data.</p>
 <p>The <a class="reference internal" href="../generated/lisc.analysis.counts.compute_normalization.html#lisc.analysis.counts.compute_normalization" title="lisc.analysis.counts.compute_normalization"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_normalization()</span></code></a>, <a class="reference internal" href="../generated/lisc.analysis.counts.compute_association_index.html#lisc.analysis.counts.compute_association_index" title="lisc.analysis.counts.compute_association_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_association_index()</span></code></a>
@@ -193,9 +193,8 @@ are available in <cite>lisc.analysis</cite>.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">normed_coocs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02481712 0.03108666]
- [0.0215667  0.03138096]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02483082 0.03170291]
+ [0.02153531 0.03209782]]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index score, calculating the Jaccard index from the co-occurrences</span>
@@ -205,15 +204,14 @@ are available in <cite>lisc.analysis</cite>.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01894799 0.02549675]
- [0.01472602 0.02355357]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01896843 0.02595344]
+ [0.01474985 0.02407685]]
 </pre></div>
 </div>
 <p>From here, further analysis of collected co-occurrence data depends on the goal of the analysis.</p>
 <p>There are also plot functions available, as demonstrated in the Counts tutorial.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.946 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-counts-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.382 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-counts-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2fa321f235fa85157f1fdd9ef345e8f4/plot_functions_counts.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_counts.py</span></code></a></p>
 </div>
@@ -237,8 +235,8 @@ are available in <cite>lisc.analysis</cite>.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2022, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>
