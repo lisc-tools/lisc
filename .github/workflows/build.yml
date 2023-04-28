@@ -19,9 +19,7 @@ jobs:
       MODULE_NAME: lisc
     strategy:
       matrix:
-        # Temp version only 3.11 - when working, switch to line below to test all versions
-        python-version: ["3.11"]
-        #python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
       # Because this repo launches requests, limit to one concurrent job at a time
       max-parallel: 1
 
