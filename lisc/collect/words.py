@@ -166,8 +166,6 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
             ids = page_soup.find_all('id')
             ids_str = ','.join([el.text for el in ids])
 
-            arts = []
-
             # Batch ids_str into groups of 100 to avoid URL length limit
             for i in range(0, len(ids_str), 100):
                 batch = ids_str[i:i+100]
