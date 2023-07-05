@@ -77,7 +77,7 @@ For a curated list of projects that use LISC check out the `projects <https://gi
 Dependencies
 ------------
 
-LISC is written in Python 3, and requires Python >= 3.6 to run.
+LISC is written in Python 3, and requires Python >= 3.7 to run.
 
 Requirements:
 
