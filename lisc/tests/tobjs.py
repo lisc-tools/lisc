@@ -1,6 +1,5 @@
 """Utilties to create objects for testing."""
 
-import pkg_resources as pkg
 from itertools import repeat
 
 from bs4.element import Tag
@@ -9,6 +8,8 @@ from lisc.objects.base import Base
 from lisc.data import Articles, ArticlesAll, Term
 
 from lisc.utils.db import SCDB
+
+from lisc.tests.tsettings import TEST_DB_PATH
 
 ###################################################################################################
 ###################################################################################################
@@ -19,8 +20,7 @@ class TestDB(SCDB):
     def __init__(self):
 
         # Initialize from normal database object
-        base = pkg.resource_filename(__name__, 'test_db')
-        SCDB.__init__(self, base=base)
+        SCDB.__init__(self, base=TEST_DB_PATH)
 
 def load_tag():
     """Helper function to create a complex bs4 tag for testing."""
