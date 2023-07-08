@@ -35,4 +35,4 @@ _lint.txt
 # Ignore disribution files
 build/*
 dist/*
-lisc.egg-info/*
+*.egg-info/*
