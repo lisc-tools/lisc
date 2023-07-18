@@ -310,7 +310,7 @@ def check_file_structure(base):
 
     for root, _, files in os.walk(base):
 
-        level = root.replace(base, '').count(os.sep)
+        level = root.replace(str(base), '').count(os.sep)
         indent = ' ' * 4 * (level)
 
         print('{}{}/'.format(indent, os.path.basename(root)))

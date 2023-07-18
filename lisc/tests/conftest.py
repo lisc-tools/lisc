@@ -5,7 +5,6 @@ import pytest
 import os
 import shutil
 from copy import deepcopy
-import pkg_resources as pkg
 
 from lisc.objects import Counts, Words
 from lisc.requester import Requester
@@ -15,7 +14,7 @@ from lisc.utils.db import create_file_structure
 
 from lisc.tests.tdata import create_term_files, create_api_files
 from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all, load_tag, load_term
-from lisc.tests.tsettings import TEST_WAIT_TIME, TEST_DB_NAME
+from lisc.tests.tsettings import TEST_WAIT_TIME, TESTS_PATH, TEST_DB_PATH, TEST_DB_NAME
 
 plt = safe_import('.pyplot', 'matplotlib')
 
@@ -32,14 +31,11 @@ def pytest_configure(config):
 def check_db():
     """Once, prior to session, this will clear and re-initialize the test file database."""
 
-    # Create the test database directory
-    tests_dir = pkg.resource_filename('lisc', 'tests')
+    # If the test directory already exists, clear it
+    if os.path.exists(TEST_DB_PATH):
+        shutil.rmtree(TEST_DB_PATH)
 
-    # If the directories already exist, clear them
-    if os.path.exists(os.path.join(tests_dir, TEST_DB_NAME)):
-        shutil.rmtree(os.path.join(tests_dir, TEST_DB_NAME))
-
-    tdb = create_file_structure(tests_dir, TEST_DB_NAME)
+    tdb = create_file_structure(TESTS_PATH, TEST_DB_NAME)
 
     create_term_files(tdb)
     create_api_files(tdb)

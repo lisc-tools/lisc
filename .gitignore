@@ -5,7 +5,7 @@
 **/.coverage
 
 # Ignore test data files
-lisc/tests/test_db/*
+*/tests/test_db/*
 
 # Ignore cache files
 **/.cache
@@ -35,4 +35,4 @@ _lint.txt
 # Ignore disribution files
 build/*
 dist/*
-lisc.egg-info/*
+*.egg-info/*
