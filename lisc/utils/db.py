@@ -1,6 +1,7 @@
 """Database structure object for LISC."""
 
 import os
+from pathlib import Path
 
 ###################################################################################################
 ###################################################################################################
@@ -204,19 +205,20 @@ class SCDB():
 ###################################################################################################
 ###################################################################################################
 
-def check_directory(directory, folder):
+def check_directory(directory, folder=None):
     """Check and extract a file path.
 
     Parameters
     ----------
-    directory : SCDB or str or None
+    directory : SCDB or str or Path or None
         A string or object containing a file path.
-    folder : str
-        Which folder path to extract, if it's a SCDB object.
+    folder : str, optional
+        Which folder path to extract.
+        Only used if `directory` is a SCDB object.
 
     Returns
     -------
-    path : str
+    path : str or Path
         File path for the desired folder.
 
     Notes
@@ -230,7 +232,7 @@ def check_directory(directory, folder):
 
     if isinstance(directory, SCDB):
         path = directory.get_folder_path(folder)
-    elif isinstance(directory, str):
+    elif isinstance(directory, (str, Path)):
         path = directory
     elif directory is None:
         path = ''

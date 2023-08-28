@@ -1,5 +1,7 @@
 """Tests for lisc.core.db"""
 
+from pathlib import Path
+
 from lisc.utils.db import *
 
 ###################################################################################################
@@ -76,8 +78,9 @@ def test_scdb_check_file_structure(tdb):
 
 def test_check_directory():
 
-    assert check_directory(None, '') == ''
-    assert check_directory('string', '') == 'string'
+    assert check_directory(None) == ''
+    assert check_directory('/path/to/file') == '/path/to/file'
+    assert check_directory(Path('path/to/file')) == Path('path/to/file')
     assert isinstance(check_directory(SCDB(), 'terms'), str)
 
 def test_check_file_structure(tdb):
