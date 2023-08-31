@@ -38,7 +38,7 @@ def collect_across_time(obj, years, **collect_kwargs):
     >>> counts = Counts1D()
     >>> counts.add_terms([['frontal lobe'], ['temporal lobe']])
     >>> years = [1950, 1975, 2000]
-    >>> collect_across_time(counts, years)
+    >>> results = collect_across_time(counts, years)
     """
 
     results = {}
