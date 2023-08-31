@@ -9,6 +9,13 @@ def test_counts():
 
     assert Counts()
 
+def test_copy():
+
+    tcounts = Counts()
+    ntcounts = tcounts.copy()
+
+    assert ntcounts != tcounts
+
 def test_collect_one(test_req):
 
     counts = Counts()

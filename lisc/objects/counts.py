@@ -72,6 +72,12 @@ class Counts():
         return self.counts[ind0, ind1]
 
 
+    def copy(self):
+        """Return a copy of the current object."""
+
+        return deepcopy(self)
+
+
     @property
     def has_data(self):
         """Indicator for if the object has collected data."""

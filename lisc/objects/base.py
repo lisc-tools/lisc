@@ -1,5 +1,7 @@
 """Base object for LISC."""
 
+from copy import deepcopy
+
 from lisc.data.term import Term
 from lisc.objects.utils import flatten
 from lisc.utils.io import load_txt_file
@@ -54,6 +56,12 @@ class Base():
 
         for ind in range(self.n_terms):
             yield self.get_term(ind)
+
+
+    def copy(self):
+        """Return a copy of the current object."""
+
+        return deepcopy(self)
 
 
     @property

@@ -15,6 +15,13 @@ def test_base():
 
     assert Base()
 
+def test_copy():
+
+    tbase = Base()
+    ntbase = tbase.copy()
+
+    assert ntbase != tbase
+
 def test_get_item(tbase_terms):
 
     out = tbase_terms['label0']
