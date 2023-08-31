@@ -14,6 +14,130 @@ from lisc.analysis.counts import (compute_normalization, compute_association_ind
 ###################################################################################################
 ###################################################################################################
 
+class Counts1D(Base):
+    """A class for collecting counts data for specified terms.
+
+    Attributes
+    ----------
+    counts : 1d array
+        The number of articles found for each term.
+    meta_data : MetaData
+        Meta data information about the data collection.
+    """
+
+    def __init__(self):
+        """Initialize LISC Counts1D object."""
+
+        Base.__init__(self)
+
+        self.counts = np.zeros(0)
+        self.meta_data = None
+
+
+    def __getitem__(self, item):
+        """Index into Counts1D object, accessing count.
+
+        Parameters
+        ----------
+        keys : str or int
+            Label or index to access.
+        """
+
+        ind = self.get_index(item) if isinstance(item, str) else item
+
+        return self.counts[ind]
+
+
+    @property
+    def has_data(self):
+        """Indicator for if the object has collected data."""
+
+        return np.any(self.counts)
+
+
+    def run_collection(self, db='pubmed', field='TIAB', api_key=None, logging=None,
+                       directory=None, verbose=False, **eutils_kwargs):
+        """Collect counts data.
+
+        Parameters
+        ----------
+        db : str, optional, default: 'pubmed'
+            Which database to access from EUtils.
+        field : str, optional, default: 'TIAB'
+            Field to search for term in.
+            Defaults to 'TIAB', which is Title/Abstract.
+        api_key : str, optional
+            An API key for a NCBI account.
+        logging : {None, 'print', 'store', 'file'}, optional
+            What kind of logging, if any, to do for requested URLs.
+        directory : str or SCDB, optional
+            Folder or database object specifying the save location.
+        verbose : bool, optional, default: False
+            Whether to print out updates.
+        **eutils_kwargs
+            Additional settings for the EUtils API.
+
+        Examples
+        --------
+        Collect counts data from added terms:
+
+        >>> counts = Counts1D()
+        >>> counts.add_terms(['frontal lobe', 'temporal lobe', 'parietal lobe', 'occipital lobe'])
+        >>> counts.run_collection() # doctest: +SKIP
+        """
+
+        self.counts, self.meta_data = collect_counts(
+            terms_a=self.terms, inclusions_a=self.inclusions,
+            exclusions_a=self.exclusions, labels_a=self.labels,
+            db=db, field=field, api_key=api_key, collect_coocs=False,
+            logging=logging, directory=directory, verbose=verbose, **eutils_kwargs)
+
+
+    def check_top(self):
+        """Check the term with the most articles."""
+
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
+        max_ind = np.argmax(self.counts)
+        print("The most studied term is  {}  with  {}  articles.".format(
+            wrap(self.labels[max_ind]), self.counts[max_ind]))
+
+
+    def check_counts(self):
+        """Check how many articles were found for each term."""
+
+        if not self.has_data:
+            raise ValueError('No data is available - cannot proceed.')
+
+        # Calculate widths for printing
+        twd = get_max_length(self.labels, 2)
+        nwd = get_max_length(self.counts)
+
+        print("The number of documents found for each search term is:")
+        for ind, term in enumerate(self.labels):
+            print("  {:{twd}}   -   {:{nwd}.0f}".format(
+                wrap(term), self.counts[ind], twd=twd, nwd=nwd))
+
+
+    def drop_data(self, n_articles):
+        """Drop terms based on number of article results.
+
+        Parameters
+        ----------
+        n_articles : int
+            Minimum number of articles required to keep each term.
+        """
+
+        # Finds the indices of the terms with enough data to keep
+        keep_inds = np.where(self.counts >= n_articles)[0]
+
+        # Drop terms that do not have enough data
+        self.terms = [self.terms[ind] for ind in keep_inds]
+        self._labels = [self._labels[ind] for ind in keep_inds]
+        self.counts = self.counts[keep_inds]
+
+
 class Counts():
     """A class for collecting and analyzing co-occurrence data for specified terms list(s).
 
@@ -62,7 +186,7 @@ class Counts():
         if not self.has_data:
             raise IndexError('No data is available - cannot proceed.')
 
-        if not isinstance(keys, list):
+        if not isinstance(keys, (tuple, list)):
             return ValueError('Input keys do not match the object.')
 
         ind0 = self.terms['A'].get_index(keys[0]) if isinstance(keys[0], str) else keys[0]
