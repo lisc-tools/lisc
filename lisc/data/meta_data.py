@@ -17,6 +17,8 @@ class MetaData():
         Details of the requester object used for the data collection.
     db_info : dict
         Details of the database from which the data was accessed.
+    settings : dict
+        Details of any search settings that were used during the collection.
     log : list or None
         A log of requested URLs, if requests were logged.
     """
@@ -27,6 +29,7 @@ class MetaData():
         self.date = None
         self.requester = None
         self.db_info = None
+        self.settings = None
         self.log = None
 
         self.get_date()
@@ -47,7 +50,7 @@ class MetaData():
         mt_dict = deepcopy(self.__dict__)
 
         # Unpack dictionary attributes to flatten dictionary
-        for label in ['requester', 'db_info']:
+        for label in ['requester', 'db_info', 'settings']:
             attr = mt_dict.pop(label)
             if attr:
                 for key, val in attr.items():
@@ -92,3 +95,14 @@ class MetaData():
         """
 
         self.db_info = db_info
+
+    def add_settings(self, settings):
+        """Add search settings information to the MetaData object.
+
+        Parameters
+        ----------
+        settings : dict
+            Information about settings that were used during the data collection.
+        """
+
+        self.settings = settings

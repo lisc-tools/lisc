@@ -86,8 +86,16 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
     ...                                           terms_b=[['attention'], ['perception']])
     """
 
+    # Initialize meta data object
+    meta_data = MetaData()
+
+    # Collect settings for URLs, and add them to the metadata object
+    settings = {'db' : db, 'field' : field}
+    settings.update(eutils_kwargs)
+    meta_data.add_settings(settings)
+
     # Get e-utils URLS object. Set retmax as 0, since not using UIDs for counts
-    urls = EUtils(db=db, retmax='0', field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
+    urls = EUtils(**settings, retmax='0', retmode='xml', api_key=api_key)
 
     # Define the settings for the search utility, adding a default for datetype if not provided
     search_settings = ['db', 'retmax', 'retmode', 'field']
@@ -97,9 +105,6 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
     # Build the URLs for the utilities that will be used
     urls.build_url('info', settings=['db'])
     urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
-
-    # Initialize meta data object
-    meta_data = MetaData()
 
     # Check for a Requester object to be passed in as logging, otherwise initialize
     req = logging if isinstance(logging, Requester) else \
