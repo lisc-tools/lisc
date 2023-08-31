@@ -32,6 +32,7 @@ Counts Object
     :toctree: generated/
 
     Counts
+    Counts1D
 
 Words Object
 ~~~~~~~~~~~~
@@ -115,6 +116,7 @@ EUtils
     collect_info
     collect_words
     collect_counts
+    collect_across_time
 
 OpenCitations
 ~~~~~~~~~~~~~
