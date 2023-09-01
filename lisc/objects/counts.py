@@ -214,9 +214,10 @@ class Counts():
 
         Parameters
         ----------
-        terms : list or str
+        terms : list or dict or str
             Terms to add to the object.
             If list, assumed to be terms, which can be a list of str or a list of list of str.
+            If dict, each key should reflect a term_type, and values the corresponding terms.
             If str, assumed to be a file name to load from.
         term_type : {'terms', 'inclusions', 'exclusions'}, optional
             Which type of terms are being added.

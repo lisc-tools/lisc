@@ -138,6 +138,22 @@ def test_add_terms_file(tdb, tbase):
 
     assert tbase.has_terms
 
+def test_add_terms_dict(tbase):
+
+    terms_dict = {
+        'terms' : [['word'], ['thing', 'same']],
+        'inclusions' : [['need'], ['required']],
+        'exclusions' : [['not'], ['this']],
+        'labels' : ['label0', 'label1'],
+    }
+
+    tbase.add_terms(terms_dict)
+
+    assert tbase.terms == terms_dict['terms']
+    assert tbase.inclusions == terms_dict['inclusions']
+    assert tbase.exclusions == terms_dict['exclusions']
+    assert tbase.labels == terms_dict['labels']
+
 def test_add_labels(tbase):
 
     # Define test terms & labels
