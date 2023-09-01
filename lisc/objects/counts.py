@@ -242,7 +242,9 @@ class Counts():
         >>> counts.add_terms(['', 'extrasensory'], term_type='exclusions', dim='B')
         """
 
-        self.terms[dim].add_terms(terms, term_type, directory)
+        self.terms[dim].add_terms(terms,
+                                  term_type if not isinstance(terms, dict) else None,
+                                  directory)
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
