@@ -6,7 +6,7 @@ import json
 from lisc.data.term import Term
 from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles
-from lisc.core.errors import InconsistentDataError
+from lisc.core.errors import InconsistentDataError, ProcessingError
 from lisc.utils.db import check_directory
 from lisc.utils.io import parse_json_data, check_ext
 
@@ -211,6 +211,9 @@ class Articles(BaseArticles):
             A function to process the articles. Must take as input an `Articles` object.
             If not provided, applies the default `process_articles` function.
         """
+
+        if self.processed:
+            raise ProcessingError('Articles have already been processed - cannot process again.')
 
         if not process_func:
             process_func = process_articles
