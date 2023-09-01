@@ -5,6 +5,8 @@ from itertools import repeat
 
 from bs4.element import Tag
 
+import numpy as np
+
 from lisc.objects.base import Base
 from lisc.objects import Counts1D, Counts, Words
 from lisc.data import Articles, ArticlesAll, Term
