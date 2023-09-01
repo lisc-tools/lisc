@@ -72,14 +72,14 @@ def drop_data(words, n_articles):
     words.drop_data(n_articles)
     assert words.n_terms == len(words.results) == 0
 
-def test_process_articles(twords_full):
+def test_process_articles(twords_data):
 
-    twords_full.process_articles()
-    assert twords_full.results[0].processed
+    twords_data.process_articles()
+    assert twords_data.results[0].processed
 
-def test_process_combined_results(twords_full):
+def test_process_combined_results(twords_data):
 
-    twords_full.process_combined_results()
-    assert len(twords_full.results) == len(twords_full.combined_results)
-    assert twords_full.results[0].dois == twords_full.combined_results[0].dois
-    assert twords_full.results[0].authors != twords_full.combined_results[0].authors
+    twords_data.process_combined_results()
+    assert len(twords_data.results) == len(twords_data.combined_results)
+    assert twords_data.results[0].dois == twords_data.combined_results[0].dois
+    assert twords_data.results[0].authors != twords_data.combined_results[0].authors

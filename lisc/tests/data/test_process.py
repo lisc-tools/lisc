@@ -6,13 +6,13 @@ from lisc.data.process import _process_authors, _fix_author_names
 ###################################################################################################
 ###################################################################################################
 
-def test_process_articles(tarts_full):
+def test_process_articles(tarts_data):
 
-    arts = process_articles(tarts_full)
+    arts = process_articles(tarts_data)
 
     # Check that data attributes maintain expected size
     for attr in ['words', 'years', 'authors', 'journals']:
-        assert len(getattr(arts, attr)) == tarts_full.n_articles
+        assert len(getattr(arts, attr)) == tarts_data.n_articles
 
     # Check that the processed attributes have correct types
     assert len(arts.authors[0]) == 2

@@ -1,10 +1,12 @@
 """Utilties to create objects for testing."""
 
+from copy import deepcopy
 from itertools import repeat
 
 from bs4.element import Tag
 
 from lisc.objects.base import Base
+from lisc.objects import Counts1D, Counts, Words
 from lisc.data import Articles, ArticlesAll, Term
 
 from lisc.utils.db import SCDB
@@ -44,22 +46,65 @@ def load_term():
                 inclusions=['incl', 'incl_synonym'],
                 exclusions=['excl', 'excl_synonym'])
 
-def load_base(set_terms=False, set_clusions=False, set_labels=False, n_terms=2):
+def load_base(add_terms=False, add_clusions=False, add_labels=False, n_terms=2):
     """Helper function to load Base object for testing."""
 
     base = Base()
 
-    if set_terms:
+    if add_terms:
         base.add_terms(repeat_data(['test', 'synonym'], n_terms))
 
-    if set_clusions:
+    if add_clusions:
         base.add_terms(repeat_data(['incl', 'incl_synonym'], n_terms), 'inclusions')
         base.add_terms(repeat_data(['excl', 'excl_synonym'], n_terms), 'exclusions')
 
-    if set_labels:
+    if add_labels:
         base.add_labels([val[0] for val in repeat_data(['label'], n_terms)])
 
     return base
+
+def load_counts1d(add_terms=False, add_data=False, n_terms=2):
+    """Helper function to load Counts1D object for testing."""
+
+    counts1d = Counts1D()
+
+    if add_terms:
+        counts1d.add_terms(repeat_data(['test', 'synonym'], n_terms))
+
+    if add_data:
+        counts1d.counts = np.random.randint(0, 100, (2))
+
+    return counts1d
+
+def load_counts(add_terms=False, add_data=False, n_terms=(2, 2)):
+    """Helper function to load Counts object for testing."""
+
+    counts = Counts()
+
+    if add_terms:
+        counts1d.add_terms(repeat_data(['test', 'synonym'], n_terms[0]), dim='A')
+        counts1d.add_terms(repeat_data(['test', 'synonym'], n_terms[1]), dim='B')
+
+    if add_data:
+        counts.terms['A'].counts = np.random.randint(0, 100, (n_terms[0]))
+        counts.terms['B'].counts = np.random.randint(0, 100, (n_terms[1]))
+        counts.counts = np.random.randint(0, 100, n_terms)
+
+    return counts
+
+def load_words(add_terms=False, add_data=False, n_terms=2):
+    """Helper function to load Words object for testing."""
+
+    words = Words()
+
+    if add_terms:
+        words.add_terms(repeat_data(['test', 'synonym'], n_terms))
+
+    if add_data:
+        arts = load_arts(add_data=True, n_data=2)
+        words.results = [deepcopy(arts) for ind in range(n_terms)]
+
+    return words
 
 def load_arts(add_data=False, n_data=1, add_none=False):
     """Helper function to load Articles object for testing."""

@@ -4,16 +4,15 @@ import pytest
 
 import os
 import shutil
-from copy import deepcopy
 
-from lisc.objects import Counts, Words
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
 from lisc.core.modutils import safe_import
 from lisc.utils.db import create_file_structure
 
 from lisc.tests.tdata import create_term_files, create_api_files
-from lisc.tests.tobjs import TestDB, load_base, load_arts, load_arts_all, load_tag, load_term
+from lisc.tests.tobjs import (TestDB, load_base, load_counts1d, load_counts, load_words,
+                              load_arts, load_arts_all, load_tag, load_term)
 from lisc.tests.tsettings import TEST_WAIT_TIME, TESTS_PATH, TEST_DB_PATH, TEST_DB_NAME
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -49,21 +48,28 @@ def tdb():
     return TestDB()
 
 @pytest.fixture(scope='session')
+def tcounts1d():
+    return load_counts1d()
+
+@pytest.fixture(scope='session')
+def tcounts1d_data():
+    return load_counts1d(add_terms=True, add_data=True)
+
+@pytest.fixture(scope='session')
 def tcounts():
-    return Counts()
+    return load_counts()
+
+@pytest.fixture(scope='session')
+def tcounts_data():
+    return load_counts(add_terms=True, add_data=True)
 
 @pytest.fixture(scope='session')
 def twords():
-    return Words()
+    return load_words()
 
 @pytest.fixture(scope='function')
-def twords_full():
-
-    words = Words()
-    arts = load_arts(add_data=True, n_data=2)
-    words.results = [arts, deepcopy(arts)]
-
-    return words
+def twords_data():
+    return load_words(add_terms=True, add_data=True)
 
 @pytest.fixture(scope='function')
 def treq():
@@ -75,14 +81,14 @@ def tbase():
 
 @pytest.fixture(scope='function')
 def tbase_terms():
-    return load_base(True, True, True)
+    return load_base(add_terms=True, add_clusions=True, add_labels=True)
 
 @pytest.fixture(scope='function')
-def tarts_empty():
+def tarts():
     return load_arts()
 
 @pytest.fixture(scope='function')
-def tarts_full():
+def tarts_data():
     return load_arts(add_data=True, n_data=2)
 
 @pytest.fixture(scope='function')

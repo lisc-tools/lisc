@@ -8,3 +8,6 @@ class LISCError(Exception):
 
 class InconsistentDataError(LISCError):
     """Custom error for when data is inconsistent."""
+
+class ProcessingError(LISCError):
+    """Custom error for when there is an issue processing data."""

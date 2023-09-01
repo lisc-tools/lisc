@@ -18,7 +18,8 @@ def collect_across_time(obj, years, **collect_kwargs):
     Returns
     -------
     results : dict
-        Results, where each key is the start year, and each value is a object with search results.
+        Results collected across time.
+        Each key reflects the start year, and each value is a object with search results.
 
     Notes
     -----
