@@ -234,6 +234,8 @@ File IO
     load_object
     load_txt_file
     load_api_key
+    save_meta_data
+    load_meta_data
 
 Database Management
 ~~~~~~~~~~~~~~~~~~~
