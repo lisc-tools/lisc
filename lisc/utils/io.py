@@ -216,6 +216,53 @@ def load_object(file_name, directory=None, reload_results=False):
     return custom_object
 
 
+def save_meta_data(meta_data, file_name, directory):
+    """Save out a meta object, as a JSON file.
+
+    Parameters
+    ----------
+    meta_data : MetaData
+        Object containing metadata.
+    file_name : str
+        Name of the file to save to.
+    directory : str or SCDB, optional
+        Folder or database object specifying the location to save the file.
+    """
+
+    file_path = os.path.join(check_directory(directory, 'logs'), check_ext(file_name, '.json'))
+    with open(file_path, 'w') as save_file:
+        json.dump(meta_data.as_dict(), save_file)
+
+
+def load_meta_data(file_name, directory):
+    """Load a MetaData object from file.
+
+    Parameters
+    ----------
+    file_name : str
+        Name of the file to load.
+    directory : str or SCDB, optional
+        Folder or database object specifying the location to load the file from.
+
+    Returns
+    -------
+    meta_data : MetaData
+        Object containing metadata.
+    """
+
+    # Import objects locally, to avoid circular imports
+    from lisc.data.meta_data import MetaData
+
+    file_path = os.path.join(check_directory(directory, 'logs'), check_ext(file_name, '.json'))
+    with open(file_path, 'r') as load_file:
+        meta_dict = json.load(load_file)
+
+    meta_data = MetaData()
+    meta_data.from_dict(meta_dict)
+
+    return meta_data
+
+
 def parse_json_data(file_name):
     """Parse data from a json file.
 

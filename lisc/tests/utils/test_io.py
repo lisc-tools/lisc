@@ -4,6 +4,7 @@ import os
 
 from pytest import raises
 
+from lisc.data import MetaData
 from lisc.objects import Counts, Words
 
 from lisc.utils.io import *
@@ -71,3 +72,13 @@ def test_load_object(tdb):
 
     words = load_object('test_words', directory=tdb)
     assert isinstance(words, Words)
+
+def test_save_meta_data(tdb, tmetadata):
+
+    save_meta_data(tmetadata, 'test_meta_save', tdb)
+    assert os.path.exists(os.path.join(tdb.get_folder_path('logs'), 'test_meta_save.json'))
+
+def test_load_meta_data(tdb):
+
+    meta_data = load_meta_data('test_meta_save', tdb)
+    assert isinstance(meta_data, MetaData)
