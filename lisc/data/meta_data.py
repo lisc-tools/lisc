@@ -46,14 +46,18 @@ class MetaData():
 
 
     def __repr__(self):
-        return str(self.__dict__)
+        return str(self.as_dict())
 
 
     def as_dict(self):
         """Get the attributes of the MetaData object as a dictionary."""
 
-        # Copy is so that attributes aren't dropped from object itself
-        return self._unpack_dict(deepcopy(self.__dict__))
+        # Copy so attributes aren't dropped from object itself; drop hidden attributes & unpack
+        meta_dict = deepcopy(self.__dict__)
+        meta_dict = {key : val for key, val in meta_dict.items() if key[0] != '_'}
+        meta_dict = self._unpack_dict(meta_dict)
+
+        return meta_dict
 
 
     def get_date(self):
