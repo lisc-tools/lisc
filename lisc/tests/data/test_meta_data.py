@@ -13,6 +13,21 @@ def test_meta_data():
     assert meta_data
     assert meta_data['date']
 
+def test_meta_data_as_dict(tmetadata, treq):
+
+    meta_dict = tmetadata.as_dict()
+    assert isinstance(meta_dict, dict)
+
+    # Test with db info added
+    tmetadata.add_db_info({'dbname' : 'name'})
+    meta_dict = tmetadata.as_dict()
+    assert 'db_info_dbname' in meta_dict
+
+    # Test with a requester added
+    tmetadata.add_requester(treq)
+    meta_dict = tmetadata.as_dict()
+    assert 'requester_n_requests' in meta_dict
+
 def test_meta_data_get_date(tmetadata):
 
     tmetadata.get_date()
@@ -29,17 +44,27 @@ def test_meta_data_add_db_info(tmetadata):
     tmetadata.add_db_info({'dbname' : 'name'})
     assert tmetadata.db_info
 
-def test_meta_data_as_dict(tmetadata, treq):
+def test_meta_data_add_settings(tmetadata):
 
-    mt_dict = tmetadata.as_dict()
-    assert isinstance(mt_dict, dict)
+    tmetadata.add_settings({'setting1' : 12, 'setting2' : True})
+    assert tmetadata.settings
 
-    # Test with db info added
-    tmetadata.add_db_info({'dbname' : 'name'})
-    mt_dict = tmetadata.as_dict()
-    assert 'db_info_dbname' in mt_dict
+def test_meta_data_from_dict(tmetadict):
 
-    # Test with a requester added
-    tmetadata.add_requester(treq)
-    mt_dict = tmetadata.as_dict()
-    assert 'requester_n_requests' in mt_dict
+    meta_data = MetaData()
+    meta_data.from_dict(tmetadict)
+    for label in meta_data._dict_attrs:
+        assert isinstance(getattr(meta_data, label), dict)
+
+def test_meta_data_dict_managment(tmetadict):
+    # Tests both `unpack` and `repack`
+
+    meta_data = MetaData()
+
+    repacked_dict = meta_data._repack_dict(tmetadict)
+    assert isinstance(repacked_dict, dict)
+
+    unpacked_dict = meta_data._unpack_dict(repacked_dict)
+    assert isinstance(unpacked_dict, dict)
+
+    assert unpacked_dict == tmetadict

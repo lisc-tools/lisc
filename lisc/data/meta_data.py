@@ -3,6 +3,8 @@
 from copy import deepcopy
 from datetime import datetime
 
+from lisc.requester import Requester
+
 ###################################################################################################
 ###################################################################################################
 
@@ -34,6 +36,10 @@ class MetaData():
 
         self.get_date()
 
+        # Add information about which attributes are themselves dictionaries, etc
+        self._dict_attrs = ['requester', 'db_info', 'settings']
+        self._flat_attrs = ['date', 'log']
+
 
     def __getitem__(self, attr):
         return getattr(self, attr)
@@ -47,16 +53,7 @@ class MetaData():
         """Get the attributes of the MetaData object as a dictionary."""
 
         # Copy is so that attributes aren't dropped from object itself
-        mt_dict = deepcopy(self.__dict__)
-
-        # Unpack dictionary attributes to flatten dictionary
-        for label in ['requester', 'db_info', 'settings']:
-            attr = mt_dict.pop(label)
-            if attr:
-                for key, val in attr.items():
-                    mt_dict[label + '_' + key] = val
-
-        return mt_dict
+        return self._unpack_dict(deepcopy(self.__dict__))
 
 
     def get_date(self):
@@ -70,19 +67,21 @@ class MetaData():
 
         Parameters
         ----------
-        requester : Requester
-            The object used to launch URL requests.
+        requester : Requester or dict
+            If Requester, the object used to launch URL requests.
+            If dict, information from a requester object.
         """
 
-        requester.close()
-        req_dict = requester.as_dict()
+        if isinstance(requester, Requester):
+            requester.close()
+            requester = requester.as_dict()
 
-        _ = req_dict.pop('is_active')
-        log = req_dict.pop('log')
+        _ = requester.pop('is_active', None)
+        log = requester.pop('log', None)
         if isinstance(log, list):
             self.log = log
 
-        self.requester = req_dict
+        self.requester = requester
 
 
     def add_db_info(self, db_info):
@@ -96,6 +95,7 @@ class MetaData():
 
         self.db_info = db_info
 
+
     def add_settings(self, settings):
         """Add search settings information to the MetaData object.
 
@@ -106,3 +106,50 @@ class MetaData():
         """
 
         self.settings = settings
+
+
+    def from_dict(self, meta_dict):
+        """Populate object from an input dictionary.
+
+        Parameters
+        ----------
+        meta_dict : dict
+            Dictionary of information to add to the object.
+        """
+
+        if self._dict_attrs[0] not in meta_dict.keys():
+            meta_dict = self._repack_dict(meta_dict)
+
+        for label in self._flat_attrs:
+            setattr(self, label, meta_dict[label])
+
+        for label in self._dict_attrs:
+            if meta_dict[label]:
+                getattr(self, 'add_' + label)(meta_dict[label])
+
+
+    def _unpack_dict(self, meta_dict):
+        """Unpack dictionary representation attributes to create a flattened dictionary."""
+
+        for label in self._dict_attrs:
+            attr = meta_dict.pop(label)
+            if attr:
+                for key, val in attr.items():
+                    meta_dict[label + '_' + key] = val
+
+        return meta_dict
+
+
+    def _repack_dict(self, meta_dict):
+        """Repack dictionary representation attributes to create a hierarchical dictionary."""
+
+        new_meta_dict = {}
+        for label in self._dict_attrs:
+            new_meta_dict[label] = {}
+            for key, value in meta_dict.items():
+                if label in key:
+                    new_meta_dict[label][key[len(label)+1:]] = value
+        for label in self._flat_attrs:
+            new_meta_dict[label] = meta_dict[label]
+
+        return new_meta_dict

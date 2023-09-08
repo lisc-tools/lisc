@@ -12,7 +12,7 @@ from lisc.utils.db import create_file_structure
 
 from lisc.tests.tdata import create_term_files, create_api_files
 from lisc.tests.tobjs import (TestDB, load_base, load_counts1d, load_counts, load_words,
-                              load_arts, load_arts_all, load_tag, load_term)
+                              load_arts, load_arts_all, load_tag, load_term, load_meta_dict)
 from lisc.tests.tsettings import TEST_WAIT_TIME, TESTS_PATH, TEST_DB_PATH, TEST_DB_NAME
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -106,6 +106,10 @@ def tterm():
 @pytest.fixture(scope='function')
 def tmetadata():
     return MetaData()
+
+@pytest.fixture(scope='function')
+def tmetadict():
+    return load_meta_dict()
 
 @pytest.fixture(scope='function')
 def ttag():

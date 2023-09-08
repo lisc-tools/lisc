@@ -48,6 +48,27 @@ def load_term():
                 inclusions=['incl', 'incl_synonym'],
                 exclusions=['excl', 'excl_synonym'])
 
+def load_meta_dict():
+    """Helper function to create a dictionary of meta data information."""
+
+    return {
+        'date': '1999-12-31_00:00:00',
+        'log': None,
+        'requester_n_requests': 1,
+        'requester_wait_time': 1,
+        'requester_start_time': '00:00:00 Friday 01 January 2000',
+        'requester_end_time': '00:00:00 Monday 01 January 2000',
+        'requester_logging': None,
+        'db_info_dbname': 'pubmed',
+        'db_info_menuname': 'PubMed',
+        'db_info_description': 'PubMed bibliographic record',
+        'db_info_dbbuild': 'Build-#####',
+        'db_info_count': '123456789',
+        'db_info_lastupdate': '1999/12/31 00:00',
+        'settings_setting1' : True,
+        'settings_setting2' : 42,
+    }
+
 def load_base(add_terms=False, add_clusions=False, add_labels=False, n_terms=2):
     """Helper function to load Base object for testing."""
 
