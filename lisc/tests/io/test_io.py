@@ -49,11 +49,13 @@ def test_load_api_key(tdb):
     with raises(FileNotFoundError):
         api_key = load_api_key('bad_name', tdb, required=True)
 
-def test_save_object(tdb, tcounts, twords):
+def test_save_object(tdb, tcounts1d, tcounts, twords):
 
+    save_object(tcounts, 'test_counts1d', directory=tdb)
     save_object(tcounts, 'test_counts', directory=tdb)
     save_object(twords, 'test_words', directory=tdb)
 
+    assert os.path.exists(os.path.join(tdb.get_folder_path('counts'), 'test_counts1d.p'))
     assert os.path.exists(os.path.join(tdb.get_folder_path('counts'), 'test_counts.p'))
     assert os.path.exists(os.path.join(tdb.get_folder_path('words'), 'test_words.p'))
 

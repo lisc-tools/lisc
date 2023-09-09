@@ -210,10 +210,10 @@ def save_object(obj, file_name, directory=None):
     """
 
     # Import objects locally, to avoid circular imports
-    from lisc.objects import Counts, Words
+    from lisc.objects import Counts1D, Counts, Words
 
     # Set the save path based on object type
-    if isinstance(obj, Counts):
+    if isinstance(obj, (Counts1D, Counts)):
         obj_type = 'counts'
     elif isinstance(obj, Words):
         obj_type = 'words'
