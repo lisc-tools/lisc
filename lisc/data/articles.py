@@ -1,8 +1,5 @@
 """Classes and functions to store and process extracted article data."""
 
-import os
-import json
-
 from lisc.data.term import Term
 from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles

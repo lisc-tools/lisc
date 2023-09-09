@@ -1,7 +1,5 @@
 """Classes and functions to store aggregated term article data."""
 
-import os
-import json
 from copy import deepcopy
 
 from lisc.io.io import save_json

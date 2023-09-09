@@ -3,9 +3,8 @@
 import numpy as np
 
 from lisc.requester import Requester
-from lisc.data.meta_data import MetaData
 from lisc.collect.info import collect_info
-from lisc.urls.eutils import EUtils, get_wait_time
+from lisc.urls.eutils import get_wait_time
 
 ###################################################################################################
 ###################################################################################################
@@ -49,7 +48,7 @@ def collect_across_time(obj, years, **collect_kwargs):
     >>> results = collect_across_time(counts, years)
     """
 
-    req = Requester(wait_time=get_wait_time(True if 'api_key' in collect_kwargs else False),
+    req = Requester(wait_time=get_wait_time('api_key' in collect_kwargs),
                     logging=collect_kwargs.pop('logging', None),
                     directory=collect_kwargs.pop('logging', None))
 
