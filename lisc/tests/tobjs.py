@@ -11,7 +11,7 @@ from lisc.objects.base import Base
 from lisc.objects import Counts1D, Counts, Words
 from lisc.data import Articles, ArticlesAll, Term
 
-from lisc.utils.db import SCDB
+from lisc.io.db import SCDB
 
 from lisc.tests.tsettings import TEST_DB_PATH
 

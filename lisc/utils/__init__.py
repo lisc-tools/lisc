@@ -1,5 +1,6 @@
-"""Utilities."""
+# Alias in function after move for backwards compatibility
+#   Recommended location to import these functions is now from `lisc.io`
 
-from .db import SCDB, create_file_structure
-from .io import (save_object, load_object, load_api_key, load_txt_file,
-                 save_meta_data, load_meta_data)
+from lisc.io.io import *
+from lisc.io.db import *
+from lisc.io.utils import *

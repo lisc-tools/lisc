@@ -4,7 +4,7 @@ from copy import deepcopy
 
 from lisc.data.term import Term
 from lisc.objects.utils import flatten
-from lisc.utils.io import load_txt_file
+from lisc.io import load_txt_file
 from lisc.collect.utils import make_term
 from lisc.core.errors import InconsistentDataError
 

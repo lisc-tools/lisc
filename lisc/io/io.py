@@ -4,8 +4,8 @@ import os
 import json
 import pickle
 
-from lisc.utils.db import SCDB, check_directory
-from lisc.utils.utils import check_ext
+from lisc.io.db import SCDB, check_directory
+from lisc.io.utils import check_ext
 
 ###################################################################################################
 ###################################################################################################

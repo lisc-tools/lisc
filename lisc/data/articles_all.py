@@ -4,8 +4,8 @@ import os
 import json
 from copy import deepcopy
 
-from lisc.utils.io import save_json
-from lisc.utils.db import check_directory
+from lisc.io.io import save_json
+from lisc.io.db import check_directory
 from lisc.data.utils import combine_lists, count_elements
 from lisc.data.base_articles import BaseArticles
 from lisc.data.process import process_articles

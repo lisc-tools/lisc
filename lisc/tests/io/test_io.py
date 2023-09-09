@@ -1,4 +1,4 @@
-"""Tests for lisc.utils.io."""
+"""Tests for lisc.io.io"""
 
 import os
 
@@ -7,7 +7,7 @@ from pytest import raises
 from lisc.data import MetaData
 from lisc.objects import Counts, Words
 
-from lisc.utils.io import *
+from lisc.io.io import *
 
 ###################################################################################################
 ###################################################################################################
