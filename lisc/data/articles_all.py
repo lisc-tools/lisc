@@ -4,7 +4,7 @@ import os
 import json
 from copy import deepcopy
 
-from lisc.utils.io import check_ext
+from lisc.utils.io import save_json
 from lisc.utils.db import check_directory
 from lisc.data.utils import combine_lists, count_elements
 from lisc.data.base_articles import BaseArticles
@@ -144,7 +144,6 @@ class ArticlesAll(BaseArticles):
         >>> articles_all.create_summary() # doctest:+SKIP
         """
 
-        # Add data to summary dictionary.
         self.summary['label'] = self.label
         self.summary['n_articles'] = str(self.n_articles)
         self.summary['top_author_name'] = ' '.join(self.authors.most_common()[0][0])
@@ -166,7 +165,6 @@ class ArticlesAll(BaseArticles):
         >>> articles_all.print_summary() # doctest:+SKIP
         """
 
-        # Print out summary information
         print(self.summary['label'], ':')
         print('  Number of articles: \t\t', self.summary['n_articles'])
         print('  First publication: \t\t', self.summary['first_publication'])
@@ -192,7 +190,4 @@ class ArticlesAll(BaseArticles):
         >>> articles_all.save_summary() # doctest:+SKIP
         """
 
-        directory = check_directory(directory, 'summary')
-
-        with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
-            json.dump(self.summary, outfile)
+        save_json(self.summary, self.label, check_directory(directory, 'summary'))

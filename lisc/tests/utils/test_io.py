@@ -12,11 +12,6 @@ from lisc.utils.io import *
 ###################################################################################################
 ###################################################################################################
 
-def test_check_ext():
-
-    assert check_ext('file', '.txt') == 'file.txt'
-    assert check_ext('file.txt', '.txt') == 'file.txt'
-
 def test_load_txt_file(tdb):
 
     terms = load_txt_file('test_terms', tdb)

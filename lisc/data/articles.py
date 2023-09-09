@@ -8,7 +8,7 @@ from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles
 from lisc.core.errors import InconsistentDataError, ProcessingError
 from lisc.utils.db import check_directory
-from lisc.utils.io import parse_json_data, check_ext
+from lisc.utils.io import save_jsonlines, parse_json_data
 
 ###################################################################################################
 ###################################################################################################
@@ -134,14 +134,8 @@ class Articles(BaseArticles):
         ...     articles.save(directory=dirpath)
         """
 
-        directory = check_directory(directory, 'raw')
-
-        with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
-            json.dump({'term' : self.term}, outfile)
-            outfile.write('\n')
-            for art in self:
-                json.dump(art, outfile)
-                outfile.write('\n')
+        save_jsonlines(self, self.label, check_directory(directory, 'raw'),
+                       header={'term' : self.term})
 
 
     def load(self, directory=None):
@@ -161,9 +155,7 @@ class Articles(BaseArticles):
         >>> articles.load(SCDB('lisc_db')) # doctest:+SKIP
         """
 
-        directory = check_directory(directory, 'raw')
-
-        data = parse_json_data(os.path.join(directory, check_ext(self.label, '.json')))
+        data = parse_json_data(self.label, check_directory(directory, 'raw'))
 
         self.term = Term(*next(data)['term'])
 

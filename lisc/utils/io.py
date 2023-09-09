@@ -5,27 +5,97 @@ import json
 import pickle
 
 from lisc.utils.db import SCDB, check_directory
+from lisc.utils.utils import check_ext
 
 ###################################################################################################
 ###################################################################################################
 
-def check_ext(file_name, ext):
-    """Check the extension for a file name, and add if missing.
+def save_json(data, file_name, directory):
+    """Save out a JSON file.
+
+    Parameters
+    ----------
+    data : dict
+        Data to save out to a JSON file.
+    file_name : str
+        File name to give the saved out json file.
+    directory: str or Path, optional
+        Folder to save out to.
+    """
+
+    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    with open(file_path, 'w') as save_file:
+        json.dump(data, save_file)
+
+
+def load_json(file_name, directory):
+    """Load from a JSON file.
 
     Parameters
     ----------
     file_name : str
-        The name of the file.
-    ext : str
-        The extension to check and add.
+        File name of the file to load.
+    directory : str or Path, optional
+        Folder to load from.
 
     Returns
     -------
-    str
-        File name with the extension added.
+    data : dict
+        Loaded data from the JSON file.
     """
 
-    return file_name + ext if not file_name.endswith(ext) else file_name
+    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    with open(file_path) as json_file:
+        data = json.load(json_file)
+
+    return data
+
+
+def save_jsonlines(data, file_name, directory=None, header=None):
+    """Save out data to a JSONlines file.
+
+    Parameters
+    ----------
+    data : list of dict or iterable
+        Data to save out to a JSONlines file.
+    file_name : str
+        File name to give the saved out json file.
+    directory : str or Path, optional
+        Folder to save out to.
+    header : dict, optional
+        Data to save out as the header line of the file.
+    """
+
+    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    with open(file_path, 'w') as outfile:
+        if header:
+            json.dump(header, outfile)
+            outfile.write('\n')
+        for cdata in data:
+            json.dump(cdata, outfile)
+            outfile.write('\n')
+
+
+def parse_json_data(file_name, directory=None):
+    """Parse data from a json file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the json file.
+    directory : str or Path, optional
+        Folder or database object specifying the location to load the file from.
+
+    Yields
+    ------
+    str
+        The loaded line of json data.
+    """
+
+    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    with open(file_path) as f_obj:
+        for line in f_obj:
+            yield json.loads(line)
 
 
 def load_txt_file(file_name, directory=None, split_elements=True, split_character=','):
@@ -35,7 +105,7 @@ def load_txt_file(file_name, directory=None, split_elements=True, split_characte
     ----------
     file_name : str
         Name of the file to load.
-    directory : str or SCDB, optional
+    directory : str or Path or SCDB, optional
         Folder or database object specifying the location of the file to load.
     split_elements : bool, optional, default: True
         If True, splits elements within a single line.
@@ -78,7 +148,7 @@ def load_api_key(file_name, directory=None, required=False):
     ----------
     file_name : str
         Name of the file to load.
-    directory : str or SCDB, optional
+    directory : str or Path or SCDB, optional
         Folder or database object specifying the location of the file to load.
     required : bool, optional, default: False
         Whether loading the API key file is required for continued execution.
@@ -126,7 +196,7 @@ def save_object(obj, file_name, directory=None):
         Object to save out.
     file_name : str
         Name for the file to be saved out.
-    directory : str or SCDB, optional
+    directory : str or Path or SCDB, optional
         Folder or database object specifying the save location.
 
     Examples
@@ -163,7 +233,7 @@ def load_object(file_name, directory=None, reload_results=False):
     ----------
     file_name : str
         File name of the object to be loaded.
-    directory : str or SCDB, optional
+    directory : str or Path or SCDB, optional
         Folder or database object specifying the location to load from.
     reload_results : bool, optional, default: False
         Whether to reload individual results into the loaded object.
@@ -225,23 +295,21 @@ def save_meta_data(meta_data, file_name, directory):
         Object containing metadata.
     file_name : str
         Name of the file to save to.
-    directory : str or SCDB, optional
+    directory : str or Path or SCDB, optional
         Folder or database object specifying the location to save the file.
     """
 
-    file_path = os.path.join(check_directory(directory, 'logs'), check_ext(file_name, '.json'))
-    with open(file_path, 'w') as save_file:
-        json.dump(meta_data.as_dict(), save_file)
+    save_json(meta_data.as_dict(), file_name, check_directory(directory, 'logs'))
 
 
-def load_meta_data(file_name, directory):
+def load_meta_data(file_name, directory=None):
     """Load a MetaData object from file.
 
     Parameters
     ----------
     file_name : str
         Name of the file to load.
-    directory : str or SCDB, optional
+    directory : str or Path or SCDB, optional
         Folder or database object specifying the location to load the file from.
 
     Returns
@@ -253,30 +321,9 @@ def load_meta_data(file_name, directory):
     # Import objects locally, to avoid circular imports
     from lisc.data.meta_data import MetaData
 
-    file_path = os.path.join(check_directory(directory, 'logs'), check_ext(file_name, '.json'))
-    with open(file_path, 'r') as load_file:
-        meta_dict = json.load(load_file)
+    meta_dict = load_json(file_name, check_directory(directory, 'logs'))
 
     meta_data = MetaData()
     meta_data.from_dict(meta_dict)
 
     return meta_data
-
-
-def parse_json_data(file_name):
-    """Parse data from a json file.
-
-    Parameters
-    ----------
-    file_name : str
-        File name of the json file.
-
-    Yields
-    ------
-    str
-        The loaded line of json data.
-    """
-
-    with open(file_name) as f_obj:
-        for line in f_obj:
-            yield json.loads(line)

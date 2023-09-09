@@ -3,6 +3,8 @@
 import os
 from pathlib import Path
 
+from lisc.utils.utils import get_files
+
 ###################################################################################################
 ###################################################################################################
 
@@ -186,15 +188,7 @@ class SCDB():
         >>> db.get_files('terms') # doctest:+SKIP
         """
 
-        files = os.listdir(self.get_folder_path(folder))
-
-        if drop_ext:
-            files = [file.split('.')[0] for file in files]
-
-        if sort_files:
-            files.sort()
-
-        return files
+        return get_files(self.get_folder_path(folder), drop_ext, sort_files)
 
 
     def check_file_structure(self):
