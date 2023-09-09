@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 
-from lisc.io.utils import get_files
+from lisc.io.utils import get_files, make_folder
 
 ###################################################################################################
 ###################################################################################################
@@ -278,19 +278,13 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
     db = SCDB(os.path.join(base, name), structure=structure)
 
     # Create the base path
-    try:
-        os.mkdir(db.get_folder_path('base'))
-    except FileExistsError:
-        pass
+    make_folder(db.get_folder_path('base'))
 
     # Create all paths, following the database structure
     for level in sorted(structure.keys()):
         for group in structure[level].values():
             for path in group:
-                try:
-                    os.mkdir(db.get_folder_path(path))
-                except FileExistsError:
-                    pass
+                make_folder(db.get_folder_path(path))
 
     return db
 

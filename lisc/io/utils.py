@@ -61,3 +61,18 @@ def check_ext(file_name, ext):
     """
 
     return file_name + ext if not file_name.endswith(ext) else file_name
+
+
+def make_folder(folder):
+    """Make a folder.
+
+    Parameters
+    ----------
+    folder : str or Path
+        Folder name and location to create.
+    """
+
+    try:
+        os.mkdir(folder)
+    except FileExistsError:
+        pass
