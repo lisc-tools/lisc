@@ -2,6 +2,11 @@
 
 import numpy as np
 
+from lisc.requester import Requester
+from lisc.data.meta_data import MetaData
+from lisc.collect.info import collect_info
+from lisc.urls.eutils import EUtils, get_wait_time
+
 ###################################################################################################
 ###################################################################################################
 
@@ -14,6 +19,8 @@ def collect_across_time(obj, years, **collect_kwargs):
         Object to collect data with.
     years : list of int
         Years to collect literature for.
+    **collect_kwargs
+        Additional keyword arguments to pass into the collect function.
 
     Returns
     -------
@@ -42,12 +49,23 @@ def collect_across_time(obj, years, **collect_kwargs):
     >>> results = collect_across_time(counts, years)
     """
 
+    req = Requester(wait_time=get_wait_time(True if 'api_key' in collect_kwargs else False),
+                    logging=collect_kwargs.pop('logging', None),
+                    directory=collect_kwargs.pop('logging', None))
+
+    meta_data = collect_info(db=collect_kwargs.get('db', 'pubmed'), logging=req)
+
     results = {}
     for start, end in zip(years, np.array(years[1:]) - 1):
 
         obj.run_collection(mindate=str(start) + '/01/01',
                            maxdate=str(end) + '/12/31',
+                           logging=req, collect_info=False,
                            **collect_kwargs)
+
+        obj.meta_data.add_db_info(meta_data.db_info)
+        obj.meta_data.add_requester(req, close=False)
+
         results[start] = obj.copy()
 
     return results

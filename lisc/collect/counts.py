@@ -17,7 +17,8 @@ from lisc.urls.eutils import EUtils, get_wait_time
 def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
                    terms_b=None, inclusions_b=None, exclusions_b=None, labels_b=None,
                    db='pubmed', field='TIAB', api_key=None, collect_coocs=True,
-                   logging=None, directory=None, verbose=False, **eutils_kwargs):
+                   logging=None, directory=None, collect_info=True, verbose=False,
+                   **eutils_kwargs):
     """Collect count and term co-occurrence data from EUtils.
 
     Parameters
@@ -52,6 +53,8 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+    collect_info : bool, optional, default: True
+        Whether to collect database information, to be added to meta data.
     verbose : bool, optional, default: False
         Whether to print out updates.
     **eutils_kwargs
@@ -141,7 +144,8 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
             np.fill_diagonal(co_occurences, 0)
 
     # Get current information about database being used
-    meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
+    if collect_info:
+        meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Loop through each term (list-A)
     for a_ind, (label_a, search_a, incl_a, excl_a) in \
@@ -192,7 +196,8 @@ def collect_counts(terms_a, inclusions_a=None, exclusions_a=None, labels_a=None,
     else:
         counts = counts_a
 
-    meta_data.add_requester(req)
+    # If a requester was passed in, assume it is to contiune (don't close)
+    meta_data.add_requester(req, close=not isinstance(logging, Requester))
 
     if not collect_coocs:
         return counts, meta_data

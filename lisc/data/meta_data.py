@@ -66,7 +66,7 @@ class MetaData():
         self.date = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
 
-    def add_requester(self, requester):
+    def add_requester(self, requester, close=True):
         """Add a requester to the MetaData object.
 
         Parameters
@@ -74,10 +74,13 @@ class MetaData():
         requester : Requester or dict
             If Requester, the object used to launch URL requests.
             If dict, information from a requester object.
+        close : bool, optional, default: True
+            Whether to close the requester.
         """
 
         if isinstance(requester, Requester):
-            requester.close()
+            if close:
+                requester.close()
             requester = requester.as_dict()
 
         _ = requester.pop('is_active', None)

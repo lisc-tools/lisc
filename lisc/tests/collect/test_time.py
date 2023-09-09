@@ -2,6 +2,7 @@
 
 from lisc.objects.counts import Counts1D
 from lisc.objects.words import Words
+from lisc.data.meta_data import MetaData
 
 from lisc.collect.time import *
 

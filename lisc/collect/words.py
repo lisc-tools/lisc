@@ -18,7 +18,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 def collect_words(terms, inclusions=None, exclusions=None, labels=None,
                   db='pubmed', retmax=100, field='TIAB', usehistory=False,
                   api_key=None, save_and_clear=False, logging=None, directory=None,
-                  verbose=False, **eutils_kwargs):
+                  collect_info=True, verbose=False, **eutils_kwargs):
     """Collect text data and metadata from EUtils using specified search term(s).
 
     Parameters
@@ -48,6 +48,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+    collect_info : bool, optional, default: True
+        Whether to collect database information, to be added to meta data.
     verbose : bool, optional, default: False
         Whether to print out updates.
     **eutils_kwargs
@@ -108,7 +110,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
                   logging=logging, directory=directory)
 
     # Get current information about database being used
-    meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
+    if collect_info:
+        meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Check labels, inclusions & exclusions
     labels = labels if labels else [term[0] for term in terms]
@@ -179,7 +182,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
             arts.save_and_clear(directory=directory)
         results.append(arts)
 
-    meta_data.add_requester(req)
+    # If a requester was passed in, assume it is to contiune (don't close)
+    meta_data.add_requester(req, close=not isinstance(logging, Requester))
 
     return results, meta_data
 
