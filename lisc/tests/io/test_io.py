@@ -5,7 +5,7 @@ import os
 from pytest import raises
 
 from lisc.data import MetaData
-from lisc.objects import Counts, Words
+from lisc.objects import Counts1D, Counts, Words
 
 from lisc.io.io import *
 
@@ -69,6 +69,21 @@ def test_load_object(tdb):
 
     words = load_object('test_words', directory=tdb)
     assert isinstance(words, Words)
+
+def test_save_time_results(tdb, tcounts1d):
+
+    year_results = {1950 : tcounts1d, 2000 : tcounts1d}
+    save_time_results(year_results, 'test_time', 'time_counts1d', directory=tdb)
+
+def test_load_time_resuts(tdb):
+
+    year_results = load_time_results('test_time', 'time_counts1d', directory=tdb)
+    assert isinstance(year_results, dict)
+
+    expected_keys = [1950, 2000]
+    assert list(year_results.keys()) == expected_keys
+    for key in expected_keys:
+        assert isinstance(year_results[key], Counts1D)
 
 def test_save_meta_data(tdb, tmetadata):
 

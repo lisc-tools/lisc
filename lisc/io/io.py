@@ -5,7 +5,9 @@ import json
 import pickle
 
 from lisc.io.db import SCDB, check_directory
-from lisc.io.utils import check_ext
+from lisc.io.utils import check_ext, get_files, make_folder
+
+from lisc.objects.temp import check_object_type
 
 ###################################################################################################
 ###################################################################################################
@@ -284,6 +286,71 @@ def load_object(file_name, directory=None, reload_results=False):
             result.load(directory=directory)
 
     return custom_object
+
+
+def save_time_results(results, folder, file_name, directory=None):
+    """Save a set of results collected across time.
+
+    Parameters
+    ----------
+    results : list of {Counts1D, Counts, Words}
+        Results of the collection across time.
+    folder : str
+        The name of the folder to save the objects to.
+    file_name : str
+        The name of the file to save each object with.
+        Each individual object is saved with this label plus a year marker.
+    directory : str or Path
+        Location to save to.
+    """
+
+    obj_type = check_object_type(results[list(results.keys())[0]])
+    folder_path = os.path.join(check_directory(directory, obj_type), folder)
+    make_folder(folder_path)
+
+    for key, obj in results.items():
+        save_object(obj, file_name + '_' + str(key), folder_path)
+
+
+def load_time_results(folder, file_name=None, directory=None):
+    """Load a set of results collected across time.
+
+    Parameters
+    ----------
+    folder : str
+        Folder to load the results from.
+    file_name : str, optional
+        A file name to specify a set of files to load.
+    directory : str or Path
+        Location to load from.
+    """
+
+    folder_path = None
+
+    if isinstance(directory, SCDB):
+
+        if folder in directory.get_files('counts'):
+            folder_path = os.path.join(check_directory(directory, 'counts'), folder)
+        elif folder in directory.get_files('words'):
+            folder_path = os.path.join(check_directory(directory, 'words'), folder)
+
+    elif isinstance(directory, str) or directory is None:
+
+        if file_name in os.listdir(directory):
+            directory = '' if directory is None else directory
+            folder_path = os.path.join(directory, folder)
+
+    if not folder_path:
+        raise ValueError('Can not find requested folder name.')
+
+    files = get_files(folder_path, select=file_name)
+
+    results = {}
+    for file in files:
+        year_label = file.split('.')[0].split('_')[-1]
+        results[int(year_label)] = load_object(file, folder_path)
+
+    return results
 
 
 def save_meta_data(meta_data, file_name, directory):

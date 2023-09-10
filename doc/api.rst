@@ -238,6 +238,8 @@ File IO
     load_api_key
     save_object
     load_object
+    save_time_results
+    load_time_results
     save_meta_data
     load_meta_data
 
