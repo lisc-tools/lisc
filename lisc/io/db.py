@@ -91,15 +91,15 @@ class SCDB():
         >>> db = SCDB('lisc_db')
         >>> db.gen_paths()
         >>> db.paths # doctest: +NORMALIZE_WHITESPACE
-        {'base': 'lisc_db',
-         'terms': 'lisc_db/terms',
-         'logs': 'lisc_db/logs',
-         'data': 'lisc_db/data',
-         'figures': 'lisc_db/figures',
-         'counts': 'lisc_db/data/counts',
-         'words': 'lisc_db/data/words',
-         'raw': 'lisc_db/data/words/raw',
-         'summary': 'lisc_db/data/words/summary'}
+        {'base': PosixPath('lisc_db'),
+         'terms': PosixPath('lisc_db/terms'),
+         'logs': PosixPath('lisc_db/logs'),
+         'data': PosixPath('lisc_db/data'),
+         'figures': PosixPath('lisc_db/figures'),
+         'counts': PosixPath('lisc_db/data/counts'),
+         'words': PosixPath('lisc_db/data/words'),
+         'raw': PosixPath('lisc_db/data/words/raw'),
+         'summary': PosixPath('lisc_db/data/words/summary')}
         """
 
         for level in sorted(structure):
@@ -127,7 +127,7 @@ class SCDB():
 
         >>> db = SCDB('lisc_db')
         >>> db.get_folder_path('counts')
-        'lisc_db/data/counts'
+        PosixPath('lisc_db/data/counts')
         """
 
         if folder not in self.paths.keys():
@@ -157,7 +157,7 @@ class SCDB():
 
         >>> db = SCDB('lisc_db')
         >>> db.get_file_path('counts', 'tutorial_counts.p')
-        'lisc_db/data/counts/tutorial_counts.p'
+        PosixPath('lisc_db/data/counts/tutorial_counts.p')
         """
 
         return self.get_folder_path(folder) / file_name
