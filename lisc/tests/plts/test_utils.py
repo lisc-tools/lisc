@@ -8,7 +8,7 @@ import numpy as np
 
 from lisc import Counts
 
-from lisc.tests.tutils import optional_test
+from lisc.tests.tutils import plot_test, optional_test
 
 from lisc.plts.utils import *
 
@@ -106,8 +106,16 @@ def test_savefig(tdb):
     example_plot(save_fig=False, file_name='test_savefig_nope.pdf', directory=tdb)
     assert not os.path.exists(os.path.join(tdb.paths['figures'], 'test_savefig_nope.pdf'))
 
+@optional_test('matplotlib')
 def test_save_figure(tdb):
 
     plt.plot([1, 2], [3, 4])
     save_figure(file_name='test_save_figure.pdf', file_path=tdb.paths['figures'])
     assert os.path.exists(os.path.join(tdb.paths['figures'], 'test_save_figure.pdf'))
+
+@optional_test('matplotlib')
+@plot_test
+def test_rotate_ticks(tdb):
+
+    plt.plot([1, 2], [3, 4])
+    rotate_ticks(plt.gca(), xtickrotation=30, ytickrotation=45)

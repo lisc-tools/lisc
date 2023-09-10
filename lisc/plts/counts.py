@@ -9,7 +9,8 @@ libraries, to give access to relevant plots and clustering measures.
 import numpy as np
 
 from lisc import Counts1D, Counts
-from lisc.plts.utils import check_args, check_ax, savefig, get_cmap, counts_data_helper
+from lisc.plts.utils import (check_args, check_ax, savefig, get_cmap,
+                             counts_data_helper, rotate_ticks)
 from lisc.core.modutils import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -56,15 +57,21 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
     See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
+    rot_kwargs = {'xtickrotation' : kwargs.pop('xtickrotation', None),
+                  'ytickrotation' : kwargs.pop('ytickrotation', None)}
+
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
     with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
-        sns.heatmap(data, square=square, ax=check_ax(ax, kwargs.pop('figsize', None)), cmap=cmap,
-                    **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
-                    **kwargs)
+        ax = check_ax(ax, kwargs.pop('figsize', None))
+        sns.heatmap(data, square=square, cmap=cmap, ax=ax, **kwargs,
+                    **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
+
+    rotate_ticks(ax if ax else plt.gca(), **rot_kwargs)
+
     plt.tight_layout()
 
 
@@ -92,6 +99,9 @@ def plot_vector(data, dim='A', labels=None, transpose=False, cmap='purple', ax=N
         Additional keyword arguments to pass through to seaborn.heatmap.
     """
 
+    rot_kwargs = {'xtickrotation' : kwargs.pop('xtickrotation', None),
+                  'ytickrotation' : kwargs.pop('ytickrotation', None)}
+
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
@@ -112,11 +122,13 @@ def plot_vector(data, dim='A', labels=None, transpose=False, cmap='purple', ax=N
     elif labels:
         label_kwargs['yticklabels'] = labels
 
+    ax = check_ax(ax, kwargs.pop('figsize', None))
     sns.heatmap(data, cmap=cmap, square=kwargs.pop('square', True),
                 annot=kwargs.pop('annot', True), fmt=kwargs.pop('fmt', 'd'),
                 annot_kws={"size": 18}, cbar=kwargs.pop('cbar', False),
-                **label_kwargs, ax=check_ax(ax, kwargs.pop('figsize', None)),
-                **kwargs)
+                ax=ax, **label_kwargs, **kwargs)
+
+    rotate_ticks(ax if ax else plt.gca(), **rot_kwargs)
 
 
 @savefig
