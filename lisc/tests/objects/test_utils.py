@@ -5,17 +5,8 @@ from lisc.objects.utils import *
 ###################################################################################################
 ###################################################################################################
 
-def test_wrap():
+def test_check_object_type(tcounts1d, tcounts, twords):
 
-    assert wrap('string') == "'string'"
-
-def test_get_max_length():
-
-    assert get_max_length(['aa', 'aaa', 'a']) == 3
-    assert get_max_length([1, 123, 12, 1234]) == 4
-    assert get_max_length(['aa', 'a'], 2) == 4
-
-def test_flatten():
-
-    assert flatten([[1, 2], [3, 4]]) == [1, 2, 3, 4]
-    assert flatten([[], []]) == []
+    assert check_object_type(tcounts1d) == 'counts'
+    assert check_object_type(tcounts) == 'counts'
+    assert check_object_type(twords) == 'words'

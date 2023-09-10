@@ -1,70 +1,35 @@
-"""Utilities for LISC objects."""
-
-from itertools import chain
+"""Utilities for working with lisc objects."""
 
 ###################################################################################################
 ###################################################################################################
 
-def wrap(string, char="'"):
-    """Wrap a string in a specified character.
+def check_object_type(obj):
+    """Check the type of a LISC object.
 
     Parameters
     ----------
-    string : str
-        Input string.
-    char : str
-        The character to wrap around the string.
+    obj : Counts1D or Counts or Words
+        LISC object to check the type of.
 
     Returns
     -------
-    str
-        The input string wrapped in single quotes.
+    obj_type : {'counts', 'words'}
+        The object type of the input object.
+
+    Raises
+    ------
+    ValueError
+        If input object is not a lisc object / type cannot be inferred.
     """
 
-    return char + string + char
+    # Import objects locally, to avoid circular imports
+    from lisc.objects import Counts1D, Counts, Words
 
+    if isinstance(obj, (Counts1D, Counts)):
+        obj_type = 'counts'
+    elif isinstance(obj, Words):
+        obj_type = 'words'
+    else:
+        raise ValueError('Object type unclear.')
 
-def get_max_length(lst, add=0):
-    """Get the length of the longest element in a list.
-
-    Parameters
-    ----------
-    lst : list
-        A list of element to check the length of.
-    add : int, optional
-        Amount to add to max length, to add as a buffer.
-
-    Returns
-    -------
-    max_len : int
-        The length of the longest element in lst.
-
-    Notes
-    -----
-    - The longest element is in terms of the length of the element as a string.
-    - If the first list element is not a string, all elements are typecast to str.
-    """
-
-    if not isinstance(lst[0], str):
-        lst = map(str, lst)
-
-    max_len = len(max(lst, key=len))
-
-    return max_len + add
-
-
-def flatten(lst):
-    """Flatten embedded lists.
-
-    Parameters
-    ----------
-    lst : list of list
-        List of embedded lists, to flatten.
-
-    Returns
-    -------
-    list
-        Flattened list.
-    """
-
-    return list(chain.from_iterable(lst))
+    return obj_type

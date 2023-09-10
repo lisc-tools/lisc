@@ -2,7 +2,7 @@
 
 from lisc.collect import collect_words
 from lisc.objects.base import Base
-from lisc.objects.utils import get_max_length
+from lisc.utils.base import get_max_length
 from lisc.data.articles_all import ArticlesAll
 
 ###################################################################################################

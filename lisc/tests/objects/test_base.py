@@ -4,7 +4,7 @@ from pytest import raises
 
 from lisc.data.term import Term
 from lisc.objects.base import Base
-from lisc.objects.utils import flatten
+from lisc.utils.base import flatten
 
 from lisc.core.errors import InconsistentDataError
 

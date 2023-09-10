@@ -7,8 +7,7 @@ from pathlib import Path
 
 from lisc.io.db import SCDB, check_directory
 from lisc.io.utils import check_ext, get_files, make_folder
-
-from lisc.objects.temp import check_object_type
+from lisc.objects.utils import check_object_type
 
 ###################################################################################################
 ###################################################################################################
@@ -212,17 +211,7 @@ def save_object(obj, file_name, directory=None):
     ...     save_object(Counts(), 'counts.p', directory=dirpath)
     """
 
-    # Import objects locally, to avoid circular imports
-    from lisc.objects import Counts1D, Counts, Words
-
-    # Set the save path based on object type
-    if isinstance(obj, (Counts1D, Counts)):
-        obj_type = 'counts'
-    elif isinstance(obj, Words):
-        obj_type = 'words'
-    else:
-        raise ValueError('Object type unclear - can not save.')
-
+    obj_type = check_object_type(obj)
     file_path = check_directory(directory, obj_type) / check_ext(file_name, '.p')
 
     with open(file_path, 'wb') as file_path:

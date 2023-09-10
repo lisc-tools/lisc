@@ -3,8 +3,8 @@
 from copy import deepcopy
 
 from lisc.data.term import Term
-from lisc.objects.utils import flatten
 from lisc.io import load_txt_file
+from lisc.utils.base import flatten
 from lisc.collect.utils import make_term
 from lisc.core.errors import InconsistentDataError
 
