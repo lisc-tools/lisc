@@ -69,7 +69,7 @@ class SCDB():
 
         # Create paths dictionary, and set base path for the project
         self.paths = {}
-        self.paths['base'] = ("") if not base else base
+        self.paths['base'] = Path('') if not base else Path(base)
 
         # Generate project paths
         if generate_paths:
@@ -105,7 +105,7 @@ class SCDB():
         for level in sorted(structure):
             for upper in structure[level]:
                 for label in structure[level][upper]:
-                    self.paths[label] = os.path.join(self.paths[upper], label)
+                    self.paths[label] = Path(self.paths[upper]) / label
 
 
     def get_folder_path(self, folder):
@@ -160,7 +160,7 @@ class SCDB():
         'lisc_db/data/counts/tutorial_counts.p'
         """
 
-        return os.path.join(self.get_folder_path(folder), file_name)
+        return self.get_folder_path(folder) / file_name
 
 
     def get_files(self, folder, drop_ext=False, sort_files=True):
@@ -212,7 +212,7 @@ def check_directory(directory, folder=None):
 
     Returns
     -------
-    path : str or Path
+    path : Path
         File path for the desired folder.
 
     Notes
@@ -231,7 +231,7 @@ def check_directory(directory, folder=None):
     elif directory is None:
         path = ''
 
-    return path
+    return Path(path)
 
 
 def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
@@ -239,7 +239,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     Parameters
     ----------
-    base : str or None
+    base : str or Path or None
         Base path for the database directory.
         If None, the structure is created in the current directory.
     name : str, optional, default: 'lisc_db'
@@ -274,8 +274,9 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     if not base:
         base = os.getcwd()
+    base = Path(base)
 
-    db = SCDB(os.path.join(base, name), structure=structure)
+    db = SCDB(base / name, structure=structure)
 
     # Create the base path
     make_folder(db.get_folder_path('base'))

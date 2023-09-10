@@ -3,6 +3,7 @@
 import os
 import json
 import pickle
+from pathlib import Path
 
 from lisc.io.db import SCDB, check_directory
 from lisc.io.utils import check_ext, get_files, make_folder
@@ -25,7 +26,7 @@ def save_json(data, file_name, directory):
         Folder to save out to.
     """
 
-    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    file_path = check_directory(directory) / check_ext(file_name, '.json')
     with open(file_path, 'w') as save_file:
         json.dump(data, save_file)
 
@@ -46,7 +47,7 @@ def load_json(file_name, directory):
         Loaded data from the JSON file.
     """
 
-    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    file_path = check_directory(directory) / check_ext(file_name, '.json')
     with open(file_path) as json_file:
         data = json.load(json_file)
 
@@ -68,7 +69,7 @@ def save_jsonlines(data, file_name, directory=None, header=None):
         Data to save out as the header line of the file.
     """
 
-    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    file_path = check_directory(directory) / check_ext(file_name, '.json')
     with open(file_path, 'w') as outfile:
         if header:
             json.dump(header, outfile)
@@ -94,7 +95,7 @@ def parse_json_data(file_name, directory=None):
         The loaded line of json data.
     """
 
-    file_path = os.path.join(check_directory(directory), check_ext(file_name, '.json'))
+    file_path = check_directory(directory) / check_ext(file_name, '.json')
     with open(file_path) as f_obj:
         for line in f_obj:
             yield json.loads(line)
@@ -120,7 +121,7 @@ def load_txt_file(file_name, directory=None, split_elements=True, split_characte
         Data loaded from the file.
     """
 
-    file_path = os.path.join(check_directory(directory, 'terms'), check_ext(file_name, '.txt'))
+    file_path = check_directory(directory, 'terms') / check_ext(file_name, '.txt')
 
     with open(file_path, 'r') as terms_file:
 
@@ -172,7 +173,7 @@ def load_api_key(file_name, directory=None, required=False):
     This function assumes the API key is in a single-line txt file.
     """
 
-    file_path = os.path.join(check_directory(directory, 'base'), check_ext(file_name, '.txt'))
+    file_path = check_directory(directory, 'base') / check_ext(file_name, '.txt')
 
     try:
 
@@ -222,7 +223,7 @@ def save_object(obj, file_name, directory=None):
     else:
         raise ValueError('Object type unclear - can not save.')
 
-    file_path = os.path.join(check_directory(directory, obj_type), check_ext(file_name, '.p'))
+    file_path = check_directory(directory, obj_type) / check_ext(file_name, '.p')
 
     with open(file_path, 'wb') as file_path:
         pickle.dump(obj, file_path)
@@ -262,20 +263,18 @@ def load_object(file_name, directory=None, reload_results=False):
     if isinstance(directory, SCDB):
 
         if check_ext(file_name, '.p') in directory.get_files('counts'):
-            load_path = os.path.join(directory.get_folder_path('counts'), file_name)
+            load_path = directory.get_folder_path('counts') / check_ext(file_name, '.p')
         elif check_ext(file_name, '.p') in directory.get_files('words'):
-            load_path = os.path.join(directory.get_folder_path('words'), file_name)
+            load_path = directory.get_folder_path('words') / check_ext(file_name, '.p')
 
-    elif isinstance(directory, str) or directory is None:
+    elif isinstance(directory, (str, Path)) or directory is None:
 
         if file_name in os.listdir(directory):
             directory = '' if directory is None else directory
-            load_path = os.path.join(directory, file_name)
+            load_path = os.path.join(directory, check_ext(file_name, '.p'))
 
     if not load_path:
         raise ValueError('Can not find requested file name.')
-
-    load_path = check_ext(load_path, '.p')
 
     with open(load_path, 'rb') as load_obj:
         custom_object = pickle.load(load_obj)
@@ -305,7 +304,7 @@ def save_time_results(results, folder, file_name, directory=None):
     """
 
     obj_type = check_object_type(results[list(results.keys())[0]])
-    folder_path = os.path.join(check_directory(directory, obj_type), folder)
+    folder_path = check_directory(directory, obj_type) / folder
     make_folder(folder_path)
 
     for key, obj in results.items():
@@ -330,11 +329,11 @@ def load_time_results(folder, file_name=None, directory=None):
     if isinstance(directory, SCDB):
 
         if folder in directory.get_files('counts'):
-            folder_path = os.path.join(check_directory(directory, 'counts'), folder)
+            folder_path = check_directory(directory, 'counts') / folder
         elif folder in directory.get_files('words'):
-            folder_path = os.path.join(check_directory(directory, 'words'), folder)
+            folder_path = check_directory(directory, 'words') / folder
 
-    elif isinstance(directory, str) or directory is None:
+    elif isinstance(directory, (str, Path)) or directory is None:
 
         if file_name in os.listdir(directory):
             directory = '' if directory is None else directory

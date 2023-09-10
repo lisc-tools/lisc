@@ -55,9 +55,9 @@ def test_save_object(tdb, tcounts1d, tcounts, twords):
     save_object(tcounts, 'test_counts', directory=tdb)
     save_object(twords, 'test_words', directory=tdb)
 
-    assert os.path.exists(os.path.join(tdb.get_folder_path('counts'), 'test_counts1d.p'))
-    assert os.path.exists(os.path.join(tdb.get_folder_path('counts'), 'test_counts.p'))
-    assert os.path.exists(os.path.join(tdb.get_folder_path('words'), 'test_words.p'))
+    assert os.path.exists(tdb.get_folder_path('counts') / 'test_counts1d.p')
+    assert os.path.exists(tdb.get_folder_path('counts') / 'test_counts.p')
+    assert os.path.exists(tdb.get_folder_path('words') / 'test_words.p')
 
     with raises(ValueError):
         save_object(['bad data'], 'test_bad', directory=tdb)
@@ -88,7 +88,7 @@ def test_load_time_resuts(tdb):
 def test_save_meta_data(tdb, tmetadata):
 
     save_meta_data(tmetadata, 'test_meta_save', tdb)
-    assert os.path.exists(os.path.join(tdb.get_folder_path('logs'), 'test_meta_save.json'))
+    assert os.path.exists(tdb.get_folder_path('logs') / 'test_meta_save.json')
 
 def test_load_meta_data(tdb):
 
