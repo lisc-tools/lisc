@@ -1,14 +1,11 @@
 """Classes and functions to store and process extracted article data."""
 
-import os
-import json
-
 from lisc.data.term import Term
 from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles
-from lisc.core.errors import InconsistentDataError
-from lisc.utils.db import check_directory
-from lisc.utils.io import parse_json_data, check_ext
+from lisc.core.errors import InconsistentDataError, ProcessingError
+from lisc.io.db import check_directory
+from lisc.io.io import save_jsonlines, parse_json_data
 
 ###################################################################################################
 ###################################################################################################
@@ -134,14 +131,8 @@ class Articles(BaseArticles):
         ...     articles.save(directory=dirpath)
         """
 
-        directory = check_directory(directory, 'raw')
-
-        with open(os.path.join(directory, check_ext(self.label, '.json')), 'w') as outfile:
-            json.dump({'term' : self.term}, outfile)
-            outfile.write('\n')
-            for art in self:
-                json.dump(art, outfile)
-                outfile.write('\n')
+        save_jsonlines(self, self.label, check_directory(directory, 'raw'),
+                       header={'term' : self.term})
 
 
     def load(self, directory=None):
@@ -161,9 +152,7 @@ class Articles(BaseArticles):
         >>> articles.load(SCDB('lisc_db')) # doctest:+SKIP
         """
 
-        directory = check_directory(directory, 'raw')
-
-        data = parse_json_data(os.path.join(directory, check_ext(self.label, '.json')))
+        data = parse_json_data(self.label, check_directory(directory, 'raw'))
 
         self.term = Term(*next(data)['term'])
 
@@ -211,6 +200,9 @@ class Articles(BaseArticles):
             A function to process the articles. Must take as input an `Articles` object.
             If not provided, applies the default `process_articles` function.
         """
+
+        if self.processed:
+            raise ProcessingError('Articles have already been processed - cannot process again.')
 
         if not process_func:
             process_func = process_articles

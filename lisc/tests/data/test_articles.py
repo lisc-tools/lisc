@@ -16,61 +16,61 @@ def test_articles():
     arts = Articles(Term('label', ['search'], ['inclusion'], ['exclusion']))
     assert isinstance(arts, Articles)
 
-def test_get_item(tarts_full):
+def test_get_item(tarts_data):
 
-    for ind in range(tarts_full.n_articles):
-        art = tarts_full[ind]
+    for ind in range(tarts_data.n_articles):
+        art = tarts_data[ind]
         assert art
 
-def test_iter(tarts_full):
+def test_iter(tarts_data):
 
-    for data in tarts_full:
+    for data in tarts_data:
         assert data
 
-def test_len(tarts_empty, tarts_full):
+def test_len(tarts, tarts_data):
 
-    assert len(tarts_empty) == 0
-    assert len(tarts_full) == len(tarts_full.ids)
+    assert len(tarts) == 0
+    assert len(tarts_data) == len(tarts_data.ids)
 
-def test_add_data(tarts_empty):
+def test_add_data(tarts):
 
-    tarts_empty.add_data('ids', 1)
-    assert tarts_empty.ids
+    tarts.add_data('ids', 1)
+    assert tarts.ids
 
-    tarts_empty.add_data('titles', 'title')
-    assert tarts_empty.titles
+    tarts.add_data('titles', 'title')
+    assert tarts.titles
 
-    tarts_empty.add_data('authors', ('Last', 'First', 'IN', 'School'))
-    assert tarts_empty.authors
+    tarts.add_data('authors', ('Last', 'First', 'IN', 'School'))
+    assert tarts.authors
 
-    tarts_empty.add_data('journals', ('Journal name', 'J abbrev'))
-    assert tarts_empty.journals
+    tarts.add_data('journals', ('Journal name', 'J abbrev'))
+    assert tarts.journals
 
-    tarts_empty.add_data('words', ['new', 'data'])
-    assert tarts_empty.words
+    tarts.add_data('words', ['new', 'data'])
+    assert tarts.words
 
-    tarts_empty.add_data('keywords', ['list', 'of', 'keywords'])
-    assert tarts_empty.keywords
+    tarts.add_data('keywords', ['list', 'of', 'keywords'])
+    assert tarts.keywords
 
-    tarts_empty.add_data('years', 2000)
-    assert tarts_empty.years
+    tarts.add_data('years', 2000)
+    assert tarts.years
 
-    tarts_empty.add_data('dois', 'doi_str')
-    assert tarts_empty.dois
+    tarts.add_data('dois', 'doi_str')
+    assert tarts.dois
 
 
-def test_check_results(tarts_full):
+def test_check_results(tarts_data):
 
-    tarts_full._check_results()
+    tarts_data._check_results()
 
-    tarts_full.ids = [1]
+    tarts_data.ids = [1]
     with raises(InconsistentDataError):
-        assert tarts_full._check_results()
+        assert tarts_data._check_results()
 
-def test_save(tdb, tarts_full):
+def test_save(tdb, tarts_data):
 
-    tarts_full.save(tdb)
-    assert os.path.exists(os.path.join(tdb.get_folder_path('raw'), tarts_full.label + '.json'))
+    tarts_data.save(tdb)
+    assert os.path.exists(os.path.join(tdb.get_folder_path('raw'), tarts_data.label + '.json'))
 
 def test_load(tdb):
 
@@ -79,12 +79,16 @@ def test_load(tdb):
 
     assert data
 
-def test_save_and_clear(tdb, tarts_full):
+def test_save_and_clear(tdb, tarts_data):
 
-    tarts_full.save_and_clear(tdb)
-    assert tarts_full.n_articles == 0
+    tarts_data.save_and_clear(tdb)
+    assert tarts_data.n_articles == 0
 
-def test_process(tarts_full):
+def test_process(tarts_data):
 
-    tarts_full.process()
-    assert tarts_full.processed
+    tarts_data.process()
+    assert tarts_data.processed
+
+    # Check error raised if trying to process twice
+    with raises(ProcessingError):
+        assert tarts_data.process()

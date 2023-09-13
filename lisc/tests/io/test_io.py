@@ -1,20 +1,16 @@
-"""Tests for lisc.utils.io."""
+"""Tests for lisc.io.io"""
 
 import os
 
 from pytest import raises
 
-from lisc.objects import Counts, Words
+from lisc.data import MetaData
+from lisc.objects import Counts1D, Counts, Words
 
-from lisc.utils.io import *
+from lisc.io.io import *
 
 ###################################################################################################
 ###################################################################################################
-
-def test_check_ext():
-
-    assert check_ext('file', '.txt') == 'file.txt'
-    assert check_ext('file.txt', '.txt') == 'file.txt'
 
 def test_load_txt_file(tdb):
 
@@ -53,13 +49,15 @@ def test_load_api_key(tdb):
     with raises(FileNotFoundError):
         api_key = load_api_key('bad_name', tdb, required=True)
 
-def test_save_object(tdb, tcounts, twords):
+def test_save_object(tdb, tcounts1d, tcounts, twords):
 
+    save_object(tcounts, 'test_counts1d', directory=tdb)
     save_object(tcounts, 'test_counts', directory=tdb)
     save_object(twords, 'test_words', directory=tdb)
 
-    assert os.path.exists(os.path.join(tdb.get_folder_path('counts'), 'test_counts.p'))
-    assert os.path.exists(os.path.join(tdb.get_folder_path('words'), 'test_words.p'))
+    assert os.path.exists(tdb.get_folder_path('counts') / 'test_counts1d.p')
+    assert os.path.exists(tdb.get_folder_path('counts') / 'test_counts.p')
+    assert os.path.exists(tdb.get_folder_path('words') / 'test_words.p')
 
     with raises(ValueError):
         save_object(['bad data'], 'test_bad', directory=tdb)
@@ -71,3 +69,28 @@ def test_load_object(tdb):
 
     words = load_object('test_words', directory=tdb)
     assert isinstance(words, Words)
+
+def test_save_time_results(tdb, tcounts1d):
+
+    year_results = {1950 : tcounts1d, 2000 : tcounts1d}
+    save_time_results(year_results, 'test_time', 'time_counts1d', directory=tdb)
+
+def test_load_time_resuts(tdb):
+
+    year_results = load_time_results('test_time', 'time_counts1d', directory=tdb)
+    assert isinstance(year_results, dict)
+
+    expected_keys = [1950, 2000]
+    assert list(year_results.keys()) == expected_keys
+    for key in expected_keys:
+        assert isinstance(year_results[key], Counts1D)
+
+def test_save_meta_data(tdb, tmetadata):
+
+    save_meta_data(tmetadata, 'test_meta_save', tdb)
+    assert os.path.exists(tdb.get_folder_path('logs') / 'test_meta_save.json')
+
+def test_load_meta_data(tdb):
+
+    meta_data = load_meta_data('test_meta_save', tdb)
+    assert isinstance(meta_data, MetaData)

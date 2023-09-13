@@ -42,14 +42,19 @@ def collect_info(db='pubmed', api_key=None, logging=None, directory=None, verbos
     urls.build_url('info', settings=['db'])
 
     meta_data = MetaData()
-    req = Requester(wait_time=get_wait_time(urls.authenticated),
-                    logging=logging, directory=directory)
+
+    req = logging if isinstance(logging, Requester) else \
+        Requester(wait_time=get_wait_time(urls.authenticated),
+                  logging=logging, directory=directory)
 
     if verbose:
         print('Gathering info on {} database.'.format(db))
 
     meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
-    meta_data.add_requester(req)
+
+    # If a requester was passed in, assume it is to contiune (don't close & add to MetaData)
+    if not isinstance(logging, Requester):
+        meta_data.add_requester(req)
 
     return meta_data
 

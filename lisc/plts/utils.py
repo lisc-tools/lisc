@@ -4,7 +4,7 @@ from functools import wraps
 from os.path import join as pjoin
 
 from lisc import Counts
-from lisc.utils.db import SCDB
+from lisc.io.db import SCDB
 from lisc.core.modutils import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -202,3 +202,26 @@ def save_figure(file_name, file_path=None, close=False, **save_kwargs):
 
     if close:
         plt.close()
+
+
+def rotate_ticks(ax, xtickrotation=None, ytickrotation=None):
+    """Rotate ticklabels on a plot.
+
+    Parameters
+    ----------
+    ax : matplotlib.Axes
+        Figure axes to apply tick rotation to.
+    xtickrotation, ytickrotation : float
+        Rotation to apply to the x and/or y axis tick labels.
+    """
+
+    if xtickrotation:
+        ax.set_xticklabels(ax.get_xticklabels(),
+                           rotation=xtickrotation,
+                           horizontalalignment='right')
+
+    if ytickrotation:
+        alignment = 'top' if ytickrotation > 0 and ytickrotation < 180 else 'bottom'
+        ax.set_yticklabels(ax.get_yticklabels(),
+                           rotation=ytickrotation,
+                           verticalalignment=alignment)

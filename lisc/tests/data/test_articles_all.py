@@ -5,9 +5,9 @@ from lisc.data.articles_all import *
 ###################################################################################################
 ###################################################################################################
 
-def test_articles_all(tarts_full):
+def test_articles_all(tarts_data):
 
-    data_all = ArticlesAll(tarts_full)
+    data_all = ArticlesAll(tarts_data)
     assert data_all
 
 def test_articles_all_none(tarts_none):

@@ -1,13 +1,17 @@
 """Utilties to create objects for testing."""
 
+from copy import deepcopy
 from itertools import repeat
 
 from bs4.element import Tag
 
+import numpy as np
+
 from lisc.objects.base import Base
+from lisc.objects import Counts1D, Counts, Words
 from lisc.data import Articles, ArticlesAll, Term
 
-from lisc.utils.db import SCDB
+from lisc.io.db import SCDB
 
 from lisc.tests.tsettings import TEST_DB_PATH
 
@@ -44,22 +48,86 @@ def load_term():
                 inclusions=['incl', 'incl_synonym'],
                 exclusions=['excl', 'excl_synonym'])
 
-def load_base(set_terms=False, set_clusions=False, set_labels=False, n_terms=2):
+def load_meta_dict():
+    """Helper function to create a dictionary of meta data information."""
+
+    return {
+        'date': '1999-12-31_00:00:00',
+        'log': None,
+        'requester_n_requests': 1,
+        'requester_wait_time': 1,
+        'requester_start_time': '00:00:00 Friday 01 January 2000',
+        'requester_end_time': '00:00:00 Monday 01 January 2000',
+        'requester_logging': None,
+        'db_info_dbname': 'pubmed',
+        'db_info_menuname': 'PubMed',
+        'db_info_description': 'PubMed bibliographic record',
+        'db_info_dbbuild': 'Build-#####',
+        'db_info_count': '123456789',
+        'db_info_lastupdate': '1999/12/31 00:00',
+        'settings_setting1' : True,
+        'settings_setting2' : 42,
+    }
+
+def load_base(add_terms=False, add_clusions=False, add_labels=False, n_terms=2):
     """Helper function to load Base object for testing."""
 
     base = Base()
 
-    if set_terms:
+    if add_terms:
         base.add_terms(repeat_data(['test', 'synonym'], n_terms))
 
-    if set_clusions:
+    if add_clusions:
         base.add_terms(repeat_data(['incl', 'incl_synonym'], n_terms), 'inclusions')
         base.add_terms(repeat_data(['excl', 'excl_synonym'], n_terms), 'exclusions')
 
-    if set_labels:
+    if add_labels:
         base.add_labels([val[0] for val in repeat_data(['label'], n_terms)])
 
     return base
+
+def load_counts1d(add_terms=False, add_data=False, n_terms=2):
+    """Helper function to load Counts1D object for testing."""
+
+    counts1d = Counts1D()
+
+    if add_terms:
+        counts1d.add_terms(repeat_data(['test', 'synonym'], n_terms))
+
+    if add_data:
+        counts1d.counts = np.random.randint(0, 100, (2))
+
+    return counts1d
+
+def load_counts(add_terms=False, add_data=False, n_terms=(2, 2)):
+    """Helper function to load Counts object for testing."""
+
+    counts = Counts()
+
+    if add_terms:
+        counts1d.add_terms(repeat_data(['test', 'synonym'], n_terms[0]), dim='A')
+        counts1d.add_terms(repeat_data(['test', 'synonym'], n_terms[1]), dim='B')
+
+    if add_data:
+        counts.terms['A'].counts = np.random.randint(0, 100, (n_terms[0]))
+        counts.terms['B'].counts = np.random.randint(0, 100, (n_terms[1]))
+        counts.counts = np.random.randint(0, 100, n_terms)
+
+    return counts
+
+def load_words(add_terms=False, add_data=False, n_terms=2):
+    """Helper function to load Words object for testing."""
+
+    words = Words()
+
+    if add_terms:
+        words.add_terms(repeat_data(['test', 'synonym'], n_terms))
+
+    if add_data:
+        arts = load_arts(add_data=True, n_data=2)
+        words.results = [deepcopy(arts) for ind in range(n_terms)]
+
+    return words
 
 def load_arts(add_data=False, n_data=1, add_none=False):
     """Helper function to load Articles object for testing."""

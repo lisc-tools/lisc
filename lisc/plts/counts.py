@@ -8,8 +8,9 @@ libraries, to give access to relevant plots and clustering measures.
 
 import numpy as np
 
-from lisc import Counts
-from lisc.plts.utils import check_args, check_ax, savefig, get_cmap, counts_data_helper
+from lisc import Counts1D, Counts
+from lisc.plts.utils import (check_args, check_ax, savefig, get_cmap,
+                             counts_data_helper, rotate_ticks)
 from lisc.core.modutils import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
@@ -56,29 +57,37 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
     See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.
     """
 
+    rot_kwargs = {'xtickrotation' : kwargs.pop('xtickrotation', None),
+                  'ytickrotation' : kwargs.pop('ytickrotation', None)}
+
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
     data, x_labels, y_labels = counts_data_helper(data, x_labels, y_labels, attribute, transpose)
 
     with sns.plotting_context("notebook", font_scale=kwargs.pop('font_scale', 1.0)):
-        sns.heatmap(data, square=square, ax=check_ax(ax, kwargs.pop('figsize', None)), cmap=cmap,
-                    **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels),
-                    **kwargs)
+        ax = check_ax(ax, kwargs.pop('figsize', None))
+        sns.heatmap(data, square=square, cmap=cmap, ax=ax, **kwargs,
+                    **check_args(['xticklabels', 'yticklabels'], x_labels, y_labels))
+
+    rotate_ticks(ax if ax else plt.gca(), **rot_kwargs)
+
     plt.tight_layout()
 
 
 @savefig
-def plot_vector(data, dim='A', transpose=False, cmap='purple', ax=None, **kwargs):
+def plot_vector(data, dim='A', labels=None, transpose=False, cmap='purple', ax=None, **kwargs):
     """Plot a vector as an annotated heatmap.
 
     Parameters
     ----------
-    data : Counts or 1d array
+    data : Counts1D or Counts or 1d array
         Data to plot as a heatmap.
     dim : {'A', 'B'}, optional
         Which set of terms to plot.
         Only used if `data` is a `Counts` object.
+    labels : list of str, optional
+        Labels for the figure.
     transpose : bool, optional, default: False
         Whether to transpose the data before plotting.
     cmap : {'purple', 'blue'} or matplotlib.cmap
@@ -90,23 +99,36 @@ def plot_vector(data, dim='A', transpose=False, cmap='purple', ax=None, **kwargs
         Additional keyword arguments to pass through to seaborn.heatmap.
     """
 
+    rot_kwargs = {'xtickrotation' : kwargs.pop('xtickrotation', None),
+                  'ytickrotation' : kwargs.pop('ytickrotation', None)}
+
     if isinstance(cmap, str):
         cmap = get_cmap(cmap)
 
-    if isinstance(data, Counts):
+    if isinstance(data, Counts1D):
+        data = data.counts
+    elif isinstance(data, Counts):
         data = data.terms[dim].counts
+
     if data.ndim == 1:
         data = np.expand_dims(data, 1)
     if transpose:
         data = data.T
 
+    label_kwargs = {'xticklabels' : kwargs.pop('xticklabels', []),
+                    'yticklabels' : kwargs.pop('yticklabels', [])}
+    if labels and transpose:
+        label_kwargs['xticklabels'] = labels
+    elif labels:
+        label_kwargs['yticklabels'] = labels
+
+    ax = check_ax(ax, kwargs.pop('figsize', None))
     sns.heatmap(data, cmap=cmap, square=kwargs.pop('square', True),
                 annot=kwargs.pop('annot', True), fmt=kwargs.pop('fmt', 'd'),
                 annot_kws={"size": 18}, cbar=kwargs.pop('cbar', False),
-                xticklabels=kwargs.pop('xticklabels', []),
-                yticklabels=kwargs.pop('yticklabels', []),
-                ax=check_ax(ax, kwargs.pop('figsize', None)),
-                **kwargs)
+                ax=ax, **label_kwargs, **kwargs)
+
+    rotate_ticks(ax if ax else plt.gca(), **rot_kwargs)
 
 
 @savefig

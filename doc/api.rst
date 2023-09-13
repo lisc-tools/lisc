@@ -32,6 +32,7 @@ Counts Object
     :toctree: generated/
 
     Counts
+    Counts1D
 
 Words Object
 ~~~~~~~~~~~~
@@ -115,6 +116,7 @@ EUtils
     collect_info
     collect_words
     collect_counts
+    collect_across_time
 
 OpenCitations
 ~~~~~~~~~~~~~
@@ -228,10 +230,18 @@ File IO
 .. autosummary::
     :toctree: generated/
 
-    save_object
-    load_object
+    save_json
+    load_json
+    save_jsonlines
+    parse_json_data
     load_txt_file
     load_api_key
+    save_object
+    load_object
+    save_time_results
+    load_time_results
+    save_meta_data
+    load_meta_data
 
 Database Management
 ~~~~~~~~~~~~~~~~~~~
@@ -246,3 +256,14 @@ Database Management
     check_file_structure
     get_structure_info
     check_directory
+
+File Utilities
+~~~~~~~~~~~~~~
+
+.. currentmodule:: lisc.utils.utils
+
+.. autosummary::
+    :toctree: generated/
+
+    check_ext
+    get_files

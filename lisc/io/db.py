@@ -3,6 +3,8 @@
 import os
 from pathlib import Path
 
+from lisc.io.utils import get_files, make_folder
+
 ###################################################################################################
 ###################################################################################################
 
@@ -67,7 +69,7 @@ class SCDB():
 
         # Create paths dictionary, and set base path for the project
         self.paths = {}
-        self.paths['base'] = ("") if not base else base
+        self.paths['base'] = Path('') if not base else Path(base)
 
         # Generate project paths
         if generate_paths:
@@ -89,21 +91,21 @@ class SCDB():
         >>> db = SCDB('lisc_db')
         >>> db.gen_paths()
         >>> db.paths # doctest: +NORMALIZE_WHITESPACE
-        {'base': 'lisc_db',
-         'terms': 'lisc_db/terms',
-         'logs': 'lisc_db/logs',
-         'data': 'lisc_db/data',
-         'figures': 'lisc_db/figures',
-         'counts': 'lisc_db/data/counts',
-         'words': 'lisc_db/data/words',
-         'raw': 'lisc_db/data/words/raw',
-         'summary': 'lisc_db/data/words/summary'}
+        {'base': PosixPath('lisc_db'),
+         'terms': PosixPath('lisc_db/terms'),
+         'logs': PosixPath('lisc_db/logs'),
+         'data': PosixPath('lisc_db/data'),
+         'figures': PosixPath('lisc_db/figures'),
+         'counts': PosixPath('lisc_db/data/counts'),
+         'words': PosixPath('lisc_db/data/words'),
+         'raw': PosixPath('lisc_db/data/words/raw'),
+         'summary': PosixPath('lisc_db/data/words/summary')}
         """
 
         for level in sorted(structure):
             for upper in structure[level]:
                 for label in structure[level][upper]:
-                    self.paths[label] = os.path.join(self.paths[upper], label)
+                    self.paths[label] = Path(self.paths[upper]) / label
 
 
     def get_folder_path(self, folder):
@@ -125,7 +127,7 @@ class SCDB():
 
         >>> db = SCDB('lisc_db')
         >>> db.get_folder_path('counts')
-        'lisc_db/data/counts'
+        PosixPath('lisc_db/data/counts')
         """
 
         if folder not in self.paths.keys():
@@ -155,10 +157,10 @@ class SCDB():
 
         >>> db = SCDB('lisc_db')
         >>> db.get_file_path('counts', 'tutorial_counts.p')
-        'lisc_db/data/counts/tutorial_counts.p'
+        PosixPath('lisc_db/data/counts/tutorial_counts.p')
         """
 
-        return os.path.join(self.get_folder_path(folder), file_name)
+        return self.get_folder_path(folder) / file_name
 
 
     def get_files(self, folder, drop_ext=False, sort_files=True):
@@ -186,15 +188,7 @@ class SCDB():
         >>> db.get_files('terms') # doctest:+SKIP
         """
 
-        files = os.listdir(self.get_folder_path(folder))
-
-        if drop_ext:
-            files = [file.split('.')[0] for file in files]
-
-        if sort_files:
-            files.sort()
-
-        return files
+        return get_files(self.get_folder_path(folder), drop_ext, sort_files)
 
 
     def check_file_structure(self):
@@ -218,7 +212,7 @@ def check_directory(directory, folder=None):
 
     Returns
     -------
-    path : str or Path
+    path : Path
         File path for the desired folder.
 
     Notes
@@ -237,7 +231,7 @@ def check_directory(directory, folder=None):
     elif directory is None:
         path = ''
 
-    return path
+    return Path(path)
 
 
 def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
@@ -245,7 +239,7 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     Parameters
     ----------
-    base : str or None
+    base : str or Path or None
         Base path for the database directory.
         If None, the structure is created in the current directory.
     name : str, optional, default: 'lisc_db'
@@ -280,23 +274,18 @@ def create_file_structure(base=None, name='lisc_db', structure=STRUCTURE):
 
     if not base:
         base = os.getcwd()
+    base = Path(base)
 
-    db = SCDB(os.path.join(base, name), structure=structure)
+    db = SCDB(base / name, structure=structure)
 
     # Create the base path
-    try:
-        os.mkdir(db.get_folder_path('base'))
-    except FileExistsError:
-        pass
+    make_folder(db.get_folder_path('base'))
 
     # Create all paths, following the database structure
     for level in sorted(structure.keys()):
         for group in structure[level].values():
             for path in group:
-                try:
-                    os.mkdir(db.get_folder_path(path))
-                except FileExistsError:
-                    pass
+                make_folder(db.get_folder_path(path))
 
     return db
 

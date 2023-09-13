@@ -18,7 +18,7 @@ from lisc.urls.eutils import EUtils, get_wait_time
 def collect_words(terms, inclusions=None, exclusions=None, labels=None,
                   db='pubmed', retmax=100, field='TIAB', usehistory=False,
                   api_key=None, save_and_clear=False, logging=None, directory=None,
-                  verbose=False, **eutils_kwargs):
+                  collect_info=True, verbose=False, **eutils_kwargs):
     """Collect text data and metadata from EUtils using specified search term(s).
 
     Parameters
@@ -48,6 +48,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         What kind of logging, if any, to do for requested URLs.
     directory : str or SCDB, optional
         Folder or database object specifying the save location.
+    collect_info : bool, optional, default: True
+        Whether to collect database information, to be added to meta data.
     verbose : bool, optional, default: False
         Whether to print out updates.
     **eutils_kwargs
@@ -80,9 +82,17 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
         msg = 'Only the `pubmed` database is currently supported for words collection.'
         raise NotImplementedError(msg)
 
+    # Initialize meta data object
+    meta_data = MetaData()
+
+    # Collect settings for URLs, and add them to the metadata object
+    settings = {'db' : db, 'retmax' : retmax, 'field' : field,
+                'usehistory' : 'y' if usehistory else 'n'}
+    settings.update(eutils_kwargs)
+    meta_data.add_settings(settings)
+
     # Get EUtils URLS object, with desired settings, and build required utility URLs
-    urls = EUtils(db=db, retmax=retmax, usehistory='y' if usehistory else 'n',
-                  field=field, retmode='xml', **eutils_kwargs, api_key=api_key)
+    urls = EUtils(**settings, retmode='xml', api_key=api_key)
 
     # Define the settings for the search utility, adding a default for datetype if not provided
     search_settings = ['db', 'usehistory', 'retmax', 'retmode', 'field']
@@ -94,24 +104,22 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
     urls.build_url('search', settings=search_settings + list(eutils_kwargs.keys()))
     urls.build_url('fetch', settings=['db', 'retmode'])
 
-    # Initialize results & meta data
-    results = []
-    meta_data = MetaData()
-
     # Check for a Requester object to be passed in as logging, otherwise initialize
     req = logging if isinstance(logging, Requester) else \
         Requester(wait_time=get_wait_time(urls.authenticated),
                   logging=logging, directory=directory)
 
     # Get current information about database being used
-    meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
+    if collect_info:
+        meta_data.add_db_info(get_db_info(req, urls.get_url('info')))
 
     # Check labels, inclusions & exclusions
     labels = labels if labels else [term[0] for term in terms]
     inclusions = inclusions if inclusions else [[]] * len(terms)
     exclusions = exclusions if exclusions else [[]] * len(terms)
 
-    # Loop through all the terms
+    # Loop through all the terms, launch collection, and collect results
+    results = []
     for label, search, incl, excl in zip(labels, terms, inclusions, exclusions):
 
         # Collect term information and make search term argument
@@ -174,7 +182,8 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
             arts.save_and_clear(directory=directory)
         results.append(arts)
 
-    meta_data.add_requester(req)
+    # If a requester was passed in, assume it is to contiune (don't close)
+    meta_data.add_requester(req, close=not isinstance(logging, Requester))
 
     return results, meta_data
 
