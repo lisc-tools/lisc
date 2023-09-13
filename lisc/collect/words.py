@@ -173,8 +173,11 @@ def collect_words(terms, inclusions=None, exclusions=None, labels=None,
 
             ids = page_soup.find_all('id')
             ids_str = ','.join([el.text for el in ids])
-            art_url = urls.get_url('fetch', settings={'id' : ids_str})
-            arts = get_articles(req, art_url, arts)
+
+            # Batch requested IDs into groups of 100 to avoid URL length limits
+            for ind in range(0, len(ids_str), 100):
+                art_url = urls.get_url('fetch', settings={'id' : ids_str[ind:ind+100]})
+                arts = get_articles(req, art_url, arts)
 
         arts._check_results()
 
