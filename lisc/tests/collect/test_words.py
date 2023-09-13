@@ -8,7 +8,7 @@ from lisc.collect.words import *
 ###################################################################################################
 ###################################################################################################
 
-def test_collect_words_history(tdb, test_req):
+def test_collect_words(tdb, test_req):
 
     terms = [['science'], ['engineering']]
     excls = [['philosophy'], []]
@@ -23,7 +23,7 @@ def test_collect_words_history(tdb, test_req):
     for field in ['titles', 'authors', 'ids', 'journals', 'keywords', 'words', 'years']:
         assert getattr(res[0], field)
 
-def test_collect_words_nohistory(tdb, test_req):
+def test_collect_words_history(tdb, test_req):
 
     terms = [['science'], ['engineering']]
     excls = [['philosophy'], []]
