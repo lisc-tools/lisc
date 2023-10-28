@@ -1,5 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: >-
+  If you use this software, please cite it using the metadata from this file.
 type: software
 title: 'lisc: literature scanner'
 authors:
@@ -11,13 +12,13 @@ url: 'https://lisc-tools.github.io/'
 license: Apache-2.0
 preferred-citation:
   type: article
-  title: "LISC: A Python Package for Scientific Literature Collection and Analysis"
+  title: 'LISC: A Python Package for Scientific Literature Collection and Analysis'
   authors:
-  - given-names: 'Thomas'
-    family-names: 'Donoghue'
+  - given-names: Thomas
+    family-names: Donoghue
     orcid: 'https://orcid.org/0000-0001-5911-0472'
-  journal: "Journal of Open Source Software"
-  doi: "10.21105/joss.01674"
+  journal: 'Journal of Open Source Software'
+  doi: '10.21105/joss.01674'
   issue: 41
   volume: 4
   year: 2019
