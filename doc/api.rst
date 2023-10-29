@@ -217,15 +217,15 @@ Words
     plot_years
     plot_wordcloud
 
-Utilities
----------
+File Management
+---------------
 
-Utilities and file management.
+File management and input / output.
 
-File IO
-~~~~~~~
+I/O
+~~~
 
-.. currentmodule:: lisc.utils.io
+.. currentmodule:: lisc.io.io
 
 .. autosummary::
     :toctree: generated/
@@ -246,7 +246,7 @@ File IO
 Database Management
 ~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: lisc.utils.db
+.. currentmodule:: lisc.io.db
 
 .. autosummary::
     :toctree: generated/
@@ -260,7 +260,7 @@ Database Management
 File Utilities
 ~~~~~~~~~~~~~~
 
-.. currentmodule:: lisc.utils.utils
+.. currentmodule:: lisc.io.utils
 
 .. autosummary::
     :toctree: generated/

@@ -21,10 +21,10 @@ Collecting term co-occurrence data from the scientific literature.
 from lisc import Counts
 
 # Import the SCDB object, which defines a database structure for saved data
-from lisc.utils.db import SCDB
+from lisc.io import SCDB
 
 # Import a utility function for saving out collected data
-from lisc.utils.io import save_object
+from lisc.io import save_object
 
 ###################################################################################################
 # Counts Object

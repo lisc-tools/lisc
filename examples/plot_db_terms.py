@@ -8,7 +8,7 @@ Exploring the LISC database, and using search terms loaded from files.
 ###################################################################################################
 
 # Import a function to create a LISC database file structure
-from lisc.utils.db import create_file_structure
+from lisc.io.db import create_file_structure
 
 ###################################################################################################
 # SCDB Database Structure

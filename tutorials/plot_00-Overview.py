@@ -259,7 +259,7 @@ print(base.make_search_term('cortex'))
 ###################################################################################################
 
 # Import a helper function to create a LISC file structure
-from lisc.utils.db import create_file_structure
+from lisc.io import create_file_structure
 
 ###################################################################################################
 #
