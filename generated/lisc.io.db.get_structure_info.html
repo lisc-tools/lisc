@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.utils.db.check_directory &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.io.db.get_structure_info &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -113,35 +113,28 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="lisc-utils-db-check-directory">
-<h1>lisc.utils.db.check_directory<a class="headerlink" href="#lisc-utils-db-check-directory" title="Permalink to this heading">¶</a></h1>
+  <section id="lisc-io-db-get-structure-info">
+<h1>lisc.io.db.get_structure_info<a class="headerlink" href="#lisc-io-db-get-structure-info" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="lisc.utils.db.check_directory">
-<span class="sig-prename descclassname"><span class="pre">lisc.utils.db.</span></span><span class="sig-name descname"><span class="pre">check_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#check_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.check_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check and extract a file path.</p>
+<dt class="sig sig-object py" id="lisc.io.db.get_structure_info">
+<span class="sig-prename descclassname"><span class="pre">lisc.io.db.</span></span><span class="sig-name descname"><span class="pre">get_structure_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/io/db.html#get_structure_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.io.db.get_structure_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information from a directory structure definition.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>directory</strong><span class="classifier">SCDB or str or None</span></dt><dd><p>A string or object containing a file path.</p>
-</dd>
-<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>Which folder path to extract, if it’s a SCDB object.</p>
+<dt><strong>structure</strong><span class="classifier">dict</span></dt><dd><p>Definition of the directory.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>File path for the desired folder.</p>
+<dt><strong>names</strong><span class="classifier">list of str</span></dt><dd><p>List of all the folder names (at any level).</p>
+</dd>
+<dt><strong>paths</strong><span class="classifier">list of str</span></dt><dd><p>List of all the relative paths for all folders.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The output of this function depends on the input, as:</p>
-<ul class="simple">
-<li><p>If the input is an SCDB object, returns a file path as a string.</p></li>
-<li><p>If the input is already a string, returns the input.</p></li>
-<li><p>If the input is None, returns an empty string.</p></li>
-</ul>
 </dd></dl>
 
 <div style='clear:both'></div></section>

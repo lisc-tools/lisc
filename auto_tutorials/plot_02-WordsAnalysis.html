@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 02: Words Analysis &#8212; lisc 0.2.0 documentation</title>
+    <title>Tutorial 02: Words Analysis &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -132,8 +132,7 @@ the data that we collected in the last tutorial.</p>
 <span class="kn">from</span> <span class="nn">lisc.data</span> <span class="kn">import</span> <a href="../generated/lisc.data.Articles.html#lisc.data.Articles" title="lisc.data.Articles" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">Articles</span></a><span class="p">,</span> <a href="../generated/lisc.data.ArticlesAll.html#lisc.data.ArticlesAll" title="lisc.data.ArticlesAll" class="sphx-glr-backref-module-lisc-data sphx-glr-backref-type-py-class"><span class="n">ArticlesAll</span></a>
 
 <span class="c1"># Import database and IO utilities to reload our previously collected data</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_object</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
 
 <span class="c1"># Import plots that are available for words data</span>
 <span class="kn">from</span> <span class="nn">lisc.plts.words</span> <span class="kn">import</span> <a href="../generated/lisc.plts.words.plot_wordcloud.html#lisc.plts.words.plot_wordcloud" title="lisc.plts.words.plot_wordcloud" class="sphx-glr-backref-module-lisc-plts-words sphx-glr-backref-type-py-function"><span class="n">plot_wordcloud</span></a>
@@ -172,10 +171,10 @@ for a given search term.</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>frontal lobe :
   Number of articles:            15
-  First publication:             2022
-  Most common author:            Yang YX
-    number of publications:      1
-  Most common journal:           Zhongguo ying yong sheng li xue za zhi = Zhongguo yingyong shenglixue zazhi = Chinese journal of applied physiology
+  First publication:             2023
+  Most common author:            Li M
+    number of publications:      2
+  Most common journal:           Brain sciences
     number of publications:      1
 </pre></div>
 </div>
@@ -222,7 +221,7 @@ allowing for indexing into and looping through collected results.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x7ff3f1d0cb50&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;lisc.data.articles.Articles object at 0x7fa0aa47feb0&gt;
 </pre></div>
 </div>
 <p>You can also loop through all the articles found for a specified search term.</p>
@@ -232,21 +231,21 @@ allowing for indexing into and looping through collected results.</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">art</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Brain structure and cortical activity changes of new daily persistent headache: multimodal evidence from MEG/sMRI.
-Increased low-frequency brain responses to music after psilocybin therapy for depression.
-Usefulness of the Visual Cognitive Assessment Test in Detecting Mild Cognitive Impairment in the Community.
-Anti-amphiphysin encephalitis: Expanding the clinical spectrum.
-Deep learning-based precise prediction and early detection of radiation-induced temporal lobe injury for nasopharyngeal carcinoma.
-Alteration of intracranial blood perfusion in temporal lobe epilepsy, an arterial spin labeling study.
-Episodic Memory formation: A review of complex Hippocampus input pathways.
-Artery of Uchimura: origin and evolution of identification of the vascular supply to the hippocampus.
-Intracerebroventricular administration for delivery of antiseizure therapeutics: Challenges and opportunities.
-Glycolysis inhibition partially resets epilepsy-induced alterations in the dorsal hippocampus-basolateral amygdala circuit involved in anxiety-like behavior.
-The clock drawing test is an important contribution to the Mini Mental State Examination in screening for cognitive impairment.
-Age-related and amyloid-beta-independent tau deposition and its downstream effects.
-Cortical microstructural gradients capture memory network reorganization in temporal lobe epilepsy.
-Volume changes of medial temporal lobe structures in patients with genetic generalized and temporal lobe epilepsy in relation to neuropsychological functions.
-Circadian rhythm of blood pressure in patients with drug-resistant mesial temporal lobe epilepsy.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Antiepileptogenic Effects of Anakinra, Lamotrigine and Their Combination in a Lithium-Pilocarpine Model of Temporal Lobe Epilepsy in Rats.
+The NLRP3 Inflammasome in Neurodegenerative Disorders: Insights from Epileptic Models.
+An Integrated Multi-Channel Deep Neural Network for Mesial Temporal Lobe Epilepsy Identification Using Multi-Modal Medical Data.
+Abnormal Topological Organization of Structural Covariance Networks in Patients with Temporal Lobe Epilepsy Comorbid Sleep Disorder.
+An MR spectroscopy study of temporal areas excluding primary auditory cortex and frontal regions in subjective bilateral and unilateral tinnitus.
+Involvement of the posterior cingulate gyrus in temporal lobe epilepsy: A study using stereo-EEG.
+Phase II randomised placebo-controlled trial of sodium selenate as a disease-modifying treatment in chronic drug-resistant temporal lobe epilepsy: the SeLECT study protocol.
+Language MEG predicts postoperative verbal memory change in left mesial temporal lobe epilepsy.
+The role of subicular VIP-expressing interneurons on seizure dynamics in the intrahippocampal kainic acid model of temporal lobe epilepsy.
+Hippocampal Network Dysfunction in Early Psychosis: A 2-Year Longitudinal Study.
+Molecular subtypes of epilepsy associated with post-surgical seizure recurrence.
+High-Grade Temporal Ganglioglioma in an Older Adult Woman.
+Metabolic connectivity as a predictor of surgical outcome in mesial temporal lobe epilepsy.
+Cell-specific NFIA upregulation promotes epileptogenesis by TRPV4-mediated astrocyte reactivity.
+Autophagy and autophagy signaling in Epilepsy: possible role of autophagy activator.
 </pre></div>
 </div>
 <section id="analyzing-words-data">
@@ -258,7 +257,7 @@ processing, such as vector embeddings and/or similarity measures.</p>
 <p>Specific analyses might also be interested in exploring historical patterns in the literature,
 examining, for example, the history of when certain topics were written about, and in what
 journals, by which authors.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.197 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.179 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-wordsanalysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5a1db4511df1ec7fcd1e684058ecfdb2/plot_02-WordsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-WordsAnalysis.py</span></code></a></p>

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.objects.base &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.objects.base &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,9 +115,11 @@
   <h1>Source code for lisc.objects.base</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Base object for LISC.&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
 <span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="kn">import</span> <span class="n">Term</span>
-<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="kn">import</span> <span class="n">flatten</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_txt_file</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">load_txt_file</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.base</span> <span class="kn">import</span> <span class="n">flatten</span>
 <span class="kn">from</span> <span class="nn">lisc.collect.utils</span> <span class="kn">import</span> <span class="n">make_term</span>
 <span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span>
 
@@ -169,6 +171,12 @@
 
         <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">):</span>
             <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_term</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Base.copy"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a copy of the current object.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
     <span class="nd">@property</span>
@@ -250,9 +258,10 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        terms : list or str</span>
+<span class="sd">        terms : list or dict or str</span>
 <span class="sd">            Terms to add to the object.</span>
 <span class="sd">            If list, assumed to be terms, which can be a list of str or a list of list of str.</span>
+<span class="sd">            If dict, each key should reflect a term_type, and values the corresponding terms.</span>
 <span class="sd">            If str, assumed to be a file name to load from.</span>
 <span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}</span>
 <span class="sd">            Which type of terms to are being added.</span>
@@ -283,8 +292,16 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">term_type</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Term</span><span class="p">):</span>
                 <span class="n">term_type</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">term_type</span><span class="p">,</span> <span class="n">term_values</span> <span class="ow">in</span> <span class="n">terms</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">term_values</span><span class="p">,</span> <span class="n">term_type</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="p">,</span> <span class="n">check_consistency</span><span class="p">)</span>
+                <span class="k">return</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">term_type</span> <span class="o">=</span> <span class="s1">&#39;terms&#39;</span>
+
+        <span class="k">if</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;labels&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">check_consistency</span><span class="p">)</span>
+            <span class="k">return</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">append</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">unload_terms</span><span class="p">(</span><span class="n">term_type</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>

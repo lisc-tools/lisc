@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 04: Counts Analysis &#8212; lisc 0.2.0 documentation</title>
+    <title>Tutorial 04: Counts Analysis &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -127,8 +127,7 @@ to download the full example code</p>
 <p>Note that this tutorials requires some optional dependencies, including
 matplotlib, seaborn and scipy.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import database and IO utilities to reload our previously collected data</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_object</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
 
 <span class="c1"># Import plots that are available for co-occurrence analysis</span>
 <span class="kn">from</span> <span class="nn">lisc.plts.counts</span> <span class="kn">import</span> <a href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_matrix</span></a><span class="p">,</span> <a href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_clustermap</span></a><span class="p">,</span> <a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a>
@@ -145,23 +144,23 @@ matplotlib, seaborn and scipy.</p>
 <a href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_data</span></a><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         448
-For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1516
-For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         272
-For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         296
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         459
+For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1543
+For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         275
+For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         303
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the second set of terms</span>
 <a href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_data</span></a><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         296
-For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1516
-For  &#39;somatosensory&#39;   the highest association is  &#39;temporal lobe&#39;   with         216
-For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          92
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         303
+For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1543
+For  &#39;somatosensory&#39;   the highest association is  &#39;temporal lobe&#39;   with         223
+For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with          96
 For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          54
-For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with          11
-For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         260
+For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with          12
+For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         271
 </pre></div>
 </div>
 </section>
@@ -185,14 +184,14 @@ method. Scores available include ‘normalize’, ‘association’, or ‘simil
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.16378782e-02 2.74408918e-02 9.24905059e-03 4.04263139e-03
-  1.22503981e-03 2.45007963e-04 1.30466740e-02]
- [7.41312741e-03 4.68262548e-02 6.67181467e-03 2.84169884e-03
-  1.66795367e-03 6.17760618e-05 8.03088803e-03]
- [1.74525927e-02 4.56452425e-02 3.54086256e-02 1.51032052e-03
-  1.51032052e-03 1.84594731e-03 2.46685686e-02]
- [6.56173797e-02 2.41631567e-02 1.08623365e-02 1.10840168e-03
-  0.00000000e+00 2.21680337e-04 1.83994680e-02]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.17668248e-02 2.75559825e-02 9.30539713e-03 4.14240259e-03
+  1.20069640e-03 2.40139281e-04 1.33277301e-02]
+ [7.40606390e-03 4.66430882e-02 6.74102959e-03 2.90196790e-03
+  1.63235694e-03 6.04576645e-05 8.19201354e-03]
+ [1.75409836e-02 4.50819672e-02 3.52459016e-02 1.47540984e-03
+  1.47540984e-03 1.96721311e-03 2.47540984e-02]
+ [6.53017241e-02 2.43534483e-02 1.07758621e-02 1.07758621e-03
+  0.00000000e+00 2.15517241e-04 1.85344828e-02]]
 </pre></div>
 </div>
 <p>The normalization is the number of articles with both terms, divided by the number of
@@ -211,14 +210,14 @@ articles for each anatomical term that include each perception term.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.13805847e-03 3.39579164e-03 3.00850750e-03 1.88954737e-03
-  3.68799557e-04 1.76009857e-04 2.72264319e-04]
- [1.31183383e-03 1.03193133e-02 3.26407253e-03 1.80562098e-03
-  7.68737988e-04 5.15769657e-05 3.25679857e-04]
- [6.63815663e-04 2.23432481e-03 5.30630721e-03 3.65571307e-04
-  2.05132881e-04 8.90544041e-04 1.90407848e-04]
- [1.90930788e-03 9.04924783e-04 1.27345496e-03 2.15749730e-04
-  0.00000000e+00 9.16254352e-05 1.07702269e-04]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.13145028e-03 3.40749649e-03 3.02568908e-03 1.91592159e-03
+  3.57980275e-04 1.71629623e-04 2.74766418e-04]
+ [1.29216683e-03 1.02837187e-02 3.29959754e-03 1.83167656e-03
+  7.47311754e-04 5.03372596e-05 3.28750240e-04]
+ [6.57405644e-04 2.21185555e-03 5.29413213e-03 3.52706039e-04
+  1.98574675e-04 9.41841300e-04 1.89348103e-04]
+ [1.88076099e-03 9.18460238e-04 1.27174687e-03 2.07805162e-04
+  0.00000000e+00 8.85582713e-05 1.08029615e-04]]
 </pre></div>
 </div>
 <p>Specifying ‘association’ computes the
@@ -252,7 +251,7 @@ each one is doing.</p>
 <a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.441 seconds)</p>
+<img src="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" srcset="../_images/sphx_glr_plot_04-CountsAnalysis_003.png" alt="plot 04 CountsAnalysis" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.480 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-countsanalysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5ff9fa97294fa61217b4d2e25b0264f8/plot_04-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-CountsAnalysis.py</span></code></a></p>

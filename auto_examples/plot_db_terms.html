@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Database and Terms Lists &#8212; lisc 0.2.0 documentation</title>
+    <title>Database and Terms Lists &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -122,7 +122,7 @@ to download the full example code</p>
 <span id="sphx-glr-auto-examples-plot-db-terms-py"></span><h1>Database and Terms Lists<a class="headerlink" href="#database-and-terms-lists" title="Permalink to this heading">¶</a></h1>
 <p>Exploring the LISC database, and using search terms loaded from files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a function to create a LISC database file structure</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">create_file_structure</span>
+<span class="kn">from</span> <span class="nn">lisc.io.db</span> <span class="kn">import</span> <span class="n">create_file_structure</span>
 </pre></div>
 </div>
 <section id="scdb-database-structure">
@@ -131,9 +131,9 @@ to download the full example code</p>
 <p>If you want to store terms definitions and data, these files can be put into a LISC
 database structure, and then relevant functions and objects will be able to load and
 use these files.</p>
-<p>LISC also uses a database object, <a class="reference internal" href="../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a>, to manage these databases.</p>
-<p>You can create a database structure using the <a class="reference internal" href="../generated/lisc.utils.db.create_file_structure.html#lisc.utils.db.create_file_structure" title="lisc.utils.db.create_file_structure"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_file_structure()</span></code></a> function.
-When you call this function, a <a class="reference internal" href="../generated/lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object is returned, that describes
+<p>LISC also uses a database object, <a class="reference internal" href="../generated/lisc.io.db.SCDB.html#lisc.io.db.SCDB" title="lisc.io.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a>, to manage these databases.</p>
+<p>You can create a database structure using the <a class="reference internal" href="../generated/lisc.io.db.create_file_structure.html#lisc.io.db.create_file_structure" title="lisc.io.db.create_file_structure"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_file_structure()</span></code></a> function.
+When you call this function, a <a class="reference internal" href="../generated/lisc.io.db.SCDB.html#lisc.io.db.SCDB" title="lisc.io.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object is returned, that describes
 the built database structure.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure</span>
 <span class="c1">#   When called without a path input, the folder structure is created in the current directory</span>
@@ -185,7 +185,7 @@ txt file of terms to use.</p>
 <span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tom/Code/ModCode/lisc/examples/lisc_db/terms/terms.txt&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PosixPath(&#39;/Users/tom/Code/ModCode/lisc/examples/lisc_db/terms/terms.txt&#39;)
 </pre></div>
 </div>
 </section>
@@ -237,7 +237,7 @@ using one line per term, with comma-separated values for synonyms.</p>
 associated files for inclusion and exclusion terms should have the same number of lines,
 and the n-th line of each file should refer to the same term. If a given search
 term does not have an associated inclusion or exclusion term, leave that line blank.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.009 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.008 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2dd610e85e7ccd3131f26e11e81b72d5/plot_db_terms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_db_terms.py</span></code></a></p>

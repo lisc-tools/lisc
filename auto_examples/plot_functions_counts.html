@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Counts with Functions &#8212; lisc 0.2.0 documentation</title>
+    <title>Counts with Functions &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -149,8 +149,8 @@ Running counts for:  gene
 <span class="nb">print</span><span class="p">(</span><span class="n">coocs</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 641115]
- [641115      0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[     0 655974]
+ [655974      0]]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out how many articles found for each term</span>
@@ -158,8 +158,8 @@ Running counts for:  gene
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:12}</span><span class="s1"> : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2889514
-gene         : 2003407
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>protein      : 2955255
+gene         : 2056207
 </pre></div>
 </div>
 <p>When given a single set of terms, the function collects counts of each term
@@ -193,8 +193,8 @@ are available in <cite>lisc.analysis</cite>.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">normed_coocs</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02483082 0.03170291]
- [0.02153531 0.03209782]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.02482628 0.03193159]
+ [0.02157176 0.0323839 ]]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index score, calculating the Jaccard index from the co-occurrences</span>
@@ -204,13 +204,13 @@ are available in <cite>lisc.analysis</cite>.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01896843 0.02595344]
- [0.01474985 0.02407685]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.01896413 0.02611793]
+ [0.01479154 0.02428621]]
 </pre></div>
 </div>
 <p>From here, further analysis of collected co-occurrence data depends on the goal of the analysis.</p>
 <p>There are also plot functions available, as demonstrated in the Counts tutorial.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.382 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.486 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-functions-counts-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2fa321f235fa85157f1fdd9ef345e8f4/plot_functions_counts.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_functions_counts.py</span></code></a></p>

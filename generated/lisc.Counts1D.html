@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>lisc.Counts1D &#8212; lisc 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="lisc-counts1d">
+<h1>lisc.Counts1D<a class="headerlink" href="#lisc-counts1d" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="lisc.Counts1D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.</span></span><span class="sig-name descname"><span class="pre">Counts1D</span></span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for collecting counts data for specified terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>counts</strong><span class="classifier">1d array</span></dt><dd><p>The number of articles found for each term.</p>
+</dd>
+<dt><strong>meta_data</strong><span class="classifier">MetaData</span></dt><dd><p>Meta data information about the data collection.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts1D.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts1D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize LISC Counts1D object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.__init__" title="lisc.Counts1D.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<td><p>Initialize LISC Counts1D object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.add_labels" title="lisc.Counts1D.add_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_labels</span></code></a>(labels[, directory, ...])</p></td>
+<td><p>Add the given list of strings as labels for the terms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.add_terms" title="lisc.Counts1D.add_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_terms</span></code></a>(terms[, term_type, directory, ...])</p></td>
+<td><p>Add terms to the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.check_counts" title="lisc.Counts1D.check_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_counts</span></code></a>()</p></td>
+<td><p>Check how many articles were found for each term.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.check_terms" title="lisc.Counts1D.check_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_terms</span></code></a>([term_type])</p></td>
+<td><p>Print out the current list of terms.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.check_top" title="lisc.Counts1D.check_top"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_top</span></code></a>()</p></td>
+<td><p>Check the term with the most articles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.copy" title="lisc.Counts1D.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
+<td><p>Return a copy of the current object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.drop_data" title="lisc.Counts1D.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles)</p></td>
+<td><p>Drop terms based on number of article results.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.drop_term" title="lisc.Counts1D.drop_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_term</span></code></a>(label)</p></td>
+<td><p>Drop specified term(s) from the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.get_index" title="lisc.Counts1D.get_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_index</span></code></a>(label)</p></td>
+<td><p>Get the index for a specified search term.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.get_term" title="lisc.Counts1D.get_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_term</span></code></a>(label)</p></td>
+<td><p>Get a search term from the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.make_search_term" title="lisc.Counts1D.make_search_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_search_term</span></code></a>(label)</p></td>
+<td><p>Create the combined search term for a selected term.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.run_collection" title="lisc.Counts1D.run_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_collection</span></code></a>([db, field, api_key, ...])</p></td>
+<td><p>Collect counts data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.unload_labels" title="lisc.Counts1D.unload_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_labels</span></code></a>([verbose])</p></td>
+<td><p>Unload labels from the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.unload_terms" title="lisc.Counts1D.unload_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code></a>([term_type, reset, verbose])</p></td>
+<td><p>Completely unload terms from the object.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.has_data" title="lisc.Counts1D.has_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></a></p></td>
+<td><p>Indicator for if the object has collected data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.has_terms" title="lisc.Counts1D.has_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_terms</span></code></a></p></td>
+<td><p>Indicator for if the object has terms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts1D.labels" title="lisc.Counts1D.labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code></a></p></td>
+<td><p>The labels for each term.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts1D.n_terms" title="lisc.Counts1D.n_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_terms</span></code></a></p></td>
+<td><p>How many terms are included in the object.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_consistency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.add_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the given list of strings as labels for the terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>labels</strong><span class="classifier">list of str or str</span></dt><dd><p>Labels for each term to add to the object.
+If list, is assumed to be labels.
+If str, is assumed to be a file name to load from.</p>
+</dd>
+<dt><strong>directory</strong><span class="classifier">SCDB or str, optional</span></dt><dd><p>Folder or database object specifying the file location, if loading from file.</p>
+</dd>
+<dt><strong>check_consistency</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to check the object for consistency after adding labels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.add_terms">
+<span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_consistency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.add_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add terms to the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>terms</strong><span class="classifier">list or dict or str</span></dt><dd><p>Terms to add to the object.
+If list, assumed to be terms, which can be a list of str or a list of list of str.
+If dict, each key should reflect a term_type, and values the corresponding terms.
+If str, assumed to be a file name to load from.</p>
+</dd>
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to are being added.</p>
+</dd>
+<dt><strong>directory</strong><span class="classifier">SCDB or str, optional</span></dt><dd><p>Folder or database object specifying the file location, if loading from file.</p>
+</dd>
+<dt><strong>append</strong><span class="classifier">boolean, optional, default: False</span></dt><dd><p>Whether to append the new term(s) to any existing terms.
+If False, any prior terms are cleared prior to adding current term(s).</p>
+</dd>
+<dt><strong>check_consistency</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to check the object for consistency after adding terms.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Add search terms, from a list:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;parietal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;occipital lobe&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Add inclusion terms, from a list:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([[],</span> <span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[]],</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add exclusion terms, from a list:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([[</span><span class="s1">&#39;prefrontal&#39;</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]],</span> <span class="n">term_type</span><span class="o">=</span><span class="s1">&#39;exclusions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.check_counts">
+<span class="sig-name descname"><span class="pre">check_counts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts1D.check_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts1D.check_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check how many articles were found for each term.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.check_terms">
+<span class="sig-name descname"><span class="pre">check_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'terms'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.check_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out the current list of terms.</p>
+<p class="rubric">Examples</p>
+<p>Check added terms:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;parietal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;occipital lobe&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span><span class="p">()</span> 
+<span class="go">List of terms used:</span>
+
+<span class="go">frontal lobe    : frontal lobe</span>
+<span class="go">temporal lobe   : temporal lobe</span>
+<span class="go">parietal lobe   : parietal lobe</span>
+<span class="go">occipital lobe  : occipital lobe</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to use.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.check_top">
+<span class="sig-name descname"><span class="pre">check_top</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts1D.check_top"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts1D.check_top" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the term with the most articles.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the current object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.drop_data">
+<span class="sig-name descname"><span class="pre">drop_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_articles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts1D.drop_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts1D.drop_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop terms based on number of article results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n_articles</strong><span class="classifier">int</span></dt><dd><p>Minimum number of articles required to keep each term.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.drop_term">
+<span class="sig-name descname"><span class="pre">drop_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.drop_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop specified term(s) from the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label</strong><span class="classifier">str or int or list</span></dt><dd><p>The label of the term to drop.
+If str, is the label of the term.
+If int, is used as the index of the term.
+If list, drops each element of the list.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.get_index">
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.get_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the index for a specified search term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label</strong><span class="classifier">str</span></dt><dd><p>The label of the search term.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ind</strong><span class="classifier">int</span></dt><dd><p>The index of the requested search term.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>IndexError</dt><dd><p>If the requested term label is not found.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.get_term">
+<span class="sig-name descname"><span class="pre">get_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.get_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a search term from the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label</strong><span class="classifier">str or int</span></dt><dd><p>The requested term.
+If str, is the label of the term.
+If int, is used as the index of the term.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>term</strong><span class="classifier">Term</span></dt><dd><p>The full search term definition.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisc.Counts1D.has_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_data</span></span><a class="headerlink" href="#lisc.Counts1D.has_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicator for if the object has collected data.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisc.Counts1D.has_terms">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_terms</span></span><a class="headerlink" href="#lisc.Counts1D.has_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicator for if the object has terms.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisc.Counts1D.labels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">labels</span></span><a class="headerlink" href="#lisc.Counts1D.labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The labels for each term.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.make_search_term">
+<span class="sig-name descname"><span class="pre">make_search_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.make_search_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the combined search term for a selected term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label</strong><span class="classifier">str or int</span></dt><dd><p>The requested term.
+If str, is the label of the term.
+If int, is used as the index of the term.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisc.Counts1D.n_terms">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_terms</span></span><a class="headerlink" href="#lisc.Counts1D.n_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>How many terms are included in the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.run_collection">
+<span class="sig-name descname"><span class="pre">run_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pubmed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'TIAB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">eutils_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts1D.run_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts1D.run_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect counts data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
+</dd>
+<dt><strong>field</strong><span class="classifier">str, optional, default: ‘TIAB’</span></dt><dd><p>Field to search for term in.
+Defaults to ‘TIAB’, which is Title/Abstract.</p>
+</dd>
+<dt><strong>api_key</strong><span class="classifier">str, optional</span></dt><dd><p>An API key for a NCBI account.</p>
+</dd>
+<dt><strong>logging</strong><span class="classifier">{None, ‘print’, ‘store’, ‘file’}, optional</span></dt><dd><p>What kind of logging, if any, to do for requested URLs.</p>
+</dd>
+<dt><strong>directory</strong><span class="classifier">str or SCDB, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out updates.</p>
+</dd>
+<dt><strong>**eutils_kwargs</strong></dt><dd><p>Additional settings for the EUtils API.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Collect counts data from added terms:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span> <span class="o">=</span> <span class="n">Counts1D</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;parietal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;occipital lobe&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span><span class="o">.</span><span class="n">run_collection</span><span class="p">()</span> 
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.unload_labels">
+<span class="sig-name descname"><span class="pre">unload_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.unload_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unload labels from the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts1D.unload_terms">
+<span class="sig-name descname"><span class="pre">unload_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'terms'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Counts1D.unload_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Completely unload terms from the object.</p>
+<p class="rubric">Examples</p>
+<p>Unload added terms:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;parietal lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;occipital lobe&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="o">.</span><span class="n">unload_terms</span><span class="p">()</span>
+<span class="go">Unloading terms.</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’, ‘labels’, ‘all’}</span></dt><dd><p>Which type of terms to unload.</p>
+</dd>
+<dt><strong>reset</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to reset in/exclusions to empty lists.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to be verbose in printing out any changes.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.utils.io.load_object &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.io.io.load_json &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -113,40 +113,28 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="lisc-utils-io-load-object">
-<h1>lisc.utils.io.load_object<a class="headerlink" href="#lisc-utils-io-load-object" title="Permalink to this heading">¶</a></h1>
+  <section id="lisc-io-io-load-json">
+<h1>lisc.io.io.load_json<a class="headerlink" href="#lisc-io-io-load-json" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="lisc.utils.io.load_object">
-<span class="sig-prename descclassname"><span class="pre">lisc.utils.io.</span></span><span class="sig-name descname"><span class="pre">load_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reload_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/io.html#load_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.io.load_object" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load a custom object, from a pickle file.</p>
+<dt class="sig sig-object py" id="lisc.io.io.load_json">
+<span class="sig-prename descclassname"><span class="pre">lisc.io.io.</span></span><span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/io/io.html#load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.io.io.load_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load from a JSON file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>File name of the object to be loaded.</p>
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>File name of the file to load.</p>
 </dd>
-<dt><strong>directory</strong><span class="classifier">str or SCDB, optional</span></dt><dd><p>Folder or database object specifying the location to load from.</p>
-</dd>
-<dt><strong>reload_results</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to reload individual results into the loaded object.
-Only applies if loading a Words object.</p>
+<dt><strong>directory</strong><span class="classifier">str or Path, optional</span></dt><dd><p>Folder to load from.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>custom_object</dt><dd><p>Custom object loaded from pickle file.</p>
+<dt><strong>data</strong><span class="classifier">dict</span></dt><dd><p>Loaded data from the JSON file.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<p>Load a <a class="reference internal" href="lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object, using a temporary directory:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lisc.objects</span> <span class="kn">import</span> <span class="n">Counts</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">dirpath</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">save_object</span><span class="p">(</span><span class="n">Counts</span><span class="p">(),</span> <span class="s1">&#39;counts.p&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">dirpath</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">counts</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;counts.p&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">dirpath</span><span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <div style='clear:both'></div></section>

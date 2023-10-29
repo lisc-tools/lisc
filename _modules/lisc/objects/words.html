@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.objects.words &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.objects.words &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,7 +117,7 @@
 
 <span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_words</span>
 <span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <span class="n">Base</span>
-<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="kn">import</span> <span class="n">get_max_length</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.base</span> <span class="kn">import</span> <span class="n">get_max_length</span>
 <span class="kn">from</span> <span class="nn">lisc.data.articles_all</span> <span class="kn">import</span> <span class="n">ArticlesAll</span>
 
 <span class="c1">###################################################################################################</span>
@@ -268,7 +268,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        Drop terms with less than or equal to 20 articles (assuming `words` already has data):</span>
+<span class="sd">        Drop terms with less than 20 articles (assuming `words` already has data):</span>
 
 <span class="sd">        &gt;&gt;&gt; words.drop_data(20) # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>

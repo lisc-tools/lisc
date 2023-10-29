@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.data.articles &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.data.articles &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,15 +115,12 @@
   <h1>Source code for lisc.data.articles</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Classes and functions to store and process extracted article data.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">json</span>
-
 <span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="kn">import</span> <span class="n">Term</span>
 <span class="kn">from</span> <span class="nn">lisc.data.process</span> <span class="kn">import</span> <span class="n">process_articles</span>
 <span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="kn">import</span> <span class="n">BaseArticles</span>
-<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">parse_json_data</span><span class="p">,</span> <span class="n">check_ext</span>
+<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span><span class="p">,</span> <span class="n">ProcessingError</span>
+<span class="kn">from</span> <span class="nn">lisc.io.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
+<span class="kn">from</span> <span class="nn">lisc.io.io</span> <span class="kn">import</span> <span class="n">save_jsonlines</span><span class="p">,</span> <span class="n">parse_json_data</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -249,14 +246,8 @@
 <span class="sd">        ...     articles.save(directory=dirpath)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">)</span>
-
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">},</span> <span class="n">outfile</span><span class="p">)</span>
-            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">art</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        <span class="n">save_jsonlines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">),</span>
+                       <span class="n">header</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="Articles.load"><a class="viewcode-back" href="../../../generated/lisc.data.Articles.html#lisc.data.Articles.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -276,9 +267,7 @@
 <span class="sd">        &gt;&gt;&gt; articles.load(SCDB(&#39;lisc_db&#39;)) # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">)</span>
-
-        <span class="n">data</span> <span class="o">=</span> <span class="n">parse_json_data</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)))</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">parse_json_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">term</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="o">*</span><span class="nb">next</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s1">&#39;term&#39;</span><span class="p">])</span>
 
@@ -326,6 +315,9 @@
 <span class="sd">            A function to process the articles. Must take as input an `Articles` object.</span>
 <span class="sd">            If not provided, applies the default `process_articles` function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProcessingError</span><span class="p">(</span><span class="s1">&#39;Articles have already been processed - cannot process again.&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">process_func</span><span class="p">:</span>
             <span class="n">process_func</span> <span class="o">=</span> <span class="n">process_articles</span>

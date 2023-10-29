@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.Words &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.Words &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,7 +120,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.</span></span><span class="sig-name descname"><span class="pre">Words</span></span><a class="reference internal" href="../_modules/lisc/objects/words.html#Words"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Words" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class for collecting and analyzing words data for specified terms list(s).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><a class="reference internal" href="#lisc.Words.labels" title="lisc.Words.labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code></a><span class="classifier">list of str</span></dt><dd><p>The labels for each term.</p>
 </dd>
@@ -143,6 +143,10 @@
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.__init__" title="lisc.Words.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
 <td><p>Initialize LISC Words object.</p></td>
@@ -162,40 +166,47 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.check_terms" title="lisc.Words.check_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_terms</span></code></a>([term_type])</p></td>
 <td><p>Print out the current list of terms.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.drop_data" title="lisc.Words.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.copy" title="lisc.Words.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
+<td><p>Return a copy of the current object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.drop_data" title="lisc.Words.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles)</p></td>
 <td><p>Drop terms based on number of article results.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.drop_term" title="lisc.Words.drop_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_term</span></code></a>(label)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.drop_term" title="lisc.Words.drop_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_term</span></code></a>(label)</p></td>
 <td><p>Drop specified term(s) from the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.get_index" title="lisc.Words.get_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_index</span></code></a>(label)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.get_index" title="lisc.Words.get_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_index</span></code></a>(label)</p></td>
 <td><p>Get the index for a specified search term.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.get_term" title="lisc.Words.get_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_term</span></code></a>(label)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.get_term" title="lisc.Words.get_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_term</span></code></a>(label)</p></td>
 <td><p>Get a search term from the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.make_search_term" title="lisc.Words.make_search_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_search_term</span></code></a>(label)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.make_search_term" title="lisc.Words.make_search_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_search_term</span></code></a>(label)</p></td>
 <td><p>Create the combined search term for a selected term.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.process_articles" title="lisc.Words.process_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_articles</span></code></a>([process_func])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.process_articles" title="lisc.Words.process_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_articles</span></code></a>([process_func])</p></td>
 <td><p>Process the articles stored in the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.process_combined_results" title="lisc.Words.process_combined_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_combined_results</span></code></a>([exclusions])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.process_combined_results" title="lisc.Words.process_combined_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_combined_results</span></code></a>([exclusions])</p></td>
 <td><p>Process article data to create combined results, across all articles, for each term.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.run_collection" title="lisc.Words.run_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_collection</span></code></a>([db, retmax, field, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.run_collection" title="lisc.Words.run_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_collection</span></code></a>([db, retmax, field, ...])</p></td>
 <td><p>Collect words data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.unload_labels" title="lisc.Words.unload_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_labels</span></code></a>([verbose])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.unload_labels" title="lisc.Words.unload_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_labels</span></code></a>([verbose])</p></td>
 <td><p>Unload labels from the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Words.unload_terms" title="lisc.Words.unload_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code></a>([term_type, reset, verbose])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.unload_terms" title="lisc.Words.unload_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_terms</span></code></a>([term_type, reset, verbose])</p></td>
 <td><p>Completely unload terms from the object.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Words.has_data" title="lisc.Words.has_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></a></p></td>
 <td><p>Indicator for if the object has collected data.</p></td>
@@ -216,7 +227,7 @@
 <span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_consistency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.add_labels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the given list of strings as labels for the terms.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>labels</strong><span class="classifier">list of str or str</span></dt><dd><p>Labels for each term to add to the object.
 If list, is assumed to be labels.
@@ -236,7 +247,7 @@ If str, is assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">add_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/words.html#Words.add_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Words.add_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add new results for a term to the current object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>new_result</strong><span class="classifier">Articles</span></dt><dd><p>Object with collected data for a specified term.</p>
 </dd>
@@ -250,10 +261,11 @@ If str, is assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_consistency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.add_terms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add terms to the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>terms</strong><span class="classifier">list or str</span></dt><dd><p>Terms to add to the object.
+<dt><strong>terms</strong><span class="classifier">list or dict or str</span></dt><dd><p>Terms to add to the object.
 If list, assumed to be terms, which can be a list of str or a list of list of str.
+If dict, each key should reflect a term_type, and values the corresponding terms.
 If str, assumed to be a file name to load from.</p>
 </dd>
 <dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to are being added.</p>
@@ -308,7 +320,7 @@ If False, any prior terms are cleared prior to adding current term(s).</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}</span></dt><dd><p>Which type of terms to use.</p>
 </dd>
@@ -318,11 +330,17 @@ If False, any prior terms are cleared prior to adding current term(s).</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="lisc.Words.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the current object.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="lisc.Words.drop_data">
 <span class="sig-name descname"><span class="pre">drop_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_articles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/words.html#Words.drop_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Words.drop_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Drop terms based on number of article results.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n_articles</strong><span class="classifier">int</span></dt><dd><p>Minimum number of articles required to keep each term.</p>
 </dd>
@@ -330,7 +348,7 @@ If False, any prior terms are cleared prior to adding current term(s).</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Drop terms with less than or equal to 20 articles (assuming <cite>words</cite> already has data):</p>
+<p>Drop terms with less than 20 articles (assuming <cite>words</cite> already has data):</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="o">.</span><span class="n">drop_data</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> 
 </pre></div>
 </div>
@@ -341,7 +359,7 @@ If False, any prior terms are cleared prior to adding current term(s).</p>
 <span class="sig-name descname"><span class="pre">drop_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.drop_term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Drop specified term(s) from the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>label</strong><span class="classifier">str or int or list</span></dt><dd><p>The label of the term to drop.
 If str, is the label of the term.
@@ -358,19 +376,19 @@ If list, drops each element of the list.</p>
 <span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.get_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the index for a specified search term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>label</strong><span class="classifier">str</span></dt><dd><p>The label of the search term.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>ind</strong><span class="classifier">int</span></dt><dd><p>The index of the requested search term.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>IndexError</dt><dd><p>If the requested term label is not found.</p>
 </dd>
@@ -384,7 +402,7 @@ If list, drops each element of the list.</p>
 <span class="sig-name descname"><span class="pre">get_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.get_term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a search term from the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>label</strong><span class="classifier">str or int</span></dt><dd><p>The requested term.
 If str, is the label of the term.
@@ -392,7 +410,7 @@ If int, is used as the index of the term.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>term</strong><span class="classifier">Term</span></dt><dd><p>The full search term definition.</p>
 </dd>
@@ -424,7 +442,7 @@ If int, is used as the index of the term.</p>
 <span class="sig-name descname"><span class="pre">make_search_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.Words.make_search_term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the combined search term for a selected term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>label</strong><span class="classifier">str or int</span></dt><dd><p>The requested term.
 If str, is the label of the term.
@@ -446,7 +464,7 @@ If int, is used as the index of the term.</p>
 <span class="sig-name descname"><span class="pre">process_articles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/words.html#Words.process_articles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Words.process_articles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process the articles stored in the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>process_func</strong><span class="classifier">callable, optional</span></dt><dd><p>A function to process article data. Must take as input an <cite>Articles</cite> object.
 If not provided, applies the default <cite>process_articles</cite> function.</p>
@@ -461,7 +479,7 @@ If not provided, applies the default <cite>process_articles</cite> function.</p>
 <span class="sig-name descname"><span class="pre">process_combined_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exclusions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/words.html#Words.process_combined_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Words.process_combined_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process article data to create combined results, across all articles, for each term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>exclusions</strong><span class="classifier">list of str, optional</span></dt><dd><p>Words to exclude from the combined word collections.</p>
 </dd>
@@ -477,7 +495,7 @@ If not provided, applies the default <cite>process_articles</cite> function.</p>
 <span class="sig-name descname"><span class="pre">run_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pubmed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'TIAB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usehistory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_and_clear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">eutils_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/words.html#Words.run_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Words.run_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect words data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
 </dd>
@@ -531,7 +549,7 @@ Defaults to ‘TIAB’, which is Title/Abstract.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’, ‘labels’, ‘all’}</span></dt><dd><p>Which type of terms to unload.</p>
 </dd>

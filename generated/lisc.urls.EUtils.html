@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.urls.EUtils &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.urls.EUtils &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,7 +120,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.urls.</span></span><span class="sig-name descname"><span class="pre">EUtils</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retmode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usehistory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">eutils_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.urls.EUtils" title="Permalink to this definition">¶</a></dt>
 <dd><p>URLs for the NCBI EUtils API.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>base</strong><span class="classifier">str</span></dt><dd><p>Base URL for the EUtils API.</p>
 </dd>
@@ -140,7 +140,7 @@
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retmode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usehistory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">eutils_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.urls.EUtils.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the NCBI EUtils URLs, with provided settings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>db</strong><span class="classifier">str, optional</span></dt><dd><p>Which database to access from EUtils.</p>
 </dd>
@@ -169,6 +169,10 @@
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.urls.EUtils.__init__" title="lisc.urls.EUtils.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([db, retmax, field, retmode, ...])</p></td>
 <td><p>Initialize the NCBI EUtils URLs, with provided settings.</p></td>
@@ -195,13 +199,13 @@
 <span class="sig-name descname"><span class="pre">authenticate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/urls/eutils.html#EUtils.authenticate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.urls.EUtils.authenticate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Authenticate a URL for the EUtils API.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>url</strong><span class="classifier">str</span></dt><dd><p>URL to add authentication to.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>str</dt><dd><p>Authenticated URL.</p>
 </dd>
@@ -215,7 +219,7 @@
 <span class="sig-name descname"><span class="pre">build_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">util</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.build_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the URL for a specified utility, with provided settings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to build the URL for.</p>
 </dd>
@@ -241,7 +245,7 @@ If list, the settings values are taken from the objects settings attribute.</p>
 <span class="sig-name descname"><span class="pre">check_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">util</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.check_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the built URL for a specified utility.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to check the URL for.</p>
 </dd>
@@ -264,7 +268,7 @@ If list, the settings values are taken from the objects settings attribute.</p>
 <span class="sig-name descname"><span class="pre">fill_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.fill_settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Put all provided settings values into a dictionary object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments for all settings, with their values.</p>
 </dd>
@@ -288,7 +292,7 @@ saved out to the dictionary of collected and available settings.</p>
 <span class="sig-name descname"><span class="pre">get_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">util</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lisc.urls.EUtils.get_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a requested URL, with any additional segments or settings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>util</strong><span class="classifier">str</span></dt><dd><p>Which utility to get the URL for.</p>
 </dd>
@@ -298,7 +302,7 @@ saved out to the dictionary of collected and available settings.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>full_url</strong><span class="classifier">str</span></dt><dd><p>The requested URL, with any extra segments and settings added.</p>
 </dd>

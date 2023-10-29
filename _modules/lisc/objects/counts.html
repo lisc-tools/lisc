@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.objects.counts &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.objects.counts &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -121,13 +121,137 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <span class="n">Base</span>
-<span class="kn">from</span> <span class="nn">lisc.objects.utils</span> <span class="kn">import</span> <span class="n">wrap</span><span class="p">,</span> <span class="n">get_max_length</span>
+<span class="kn">from</span> <span class="nn">lisc.utils.base</span> <span class="kn">import</span> <span class="n">wrap</span><span class="p">,</span> <span class="n">get_max_length</span>
 <span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <span class="n">collect_counts</span>
 <span class="kn">from</span> <span class="nn">lisc.analysis.counts</span> <span class="kn">import</span> <span class="p">(</span><span class="n">compute_normalization</span><span class="p">,</span> <span class="n">compute_association_index</span><span class="p">,</span>
                                   <span class="n">compute_similarity</span><span class="p">)</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="Counts1D"><a class="viewcode-back" href="../../../generated/lisc.Counts1D.html#lisc.Counts1D">[docs]</a><span class="k">class</span> <span class="nc">Counts1D</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for collecting counts data for specified terms.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    counts : 1d array</span>
+<span class="sd">        The number of articles found for each term.</span>
+<span class="sd">    meta_data : MetaData</span>
+<span class="sd">        Meta data information about the data collection.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Counts1D.__init__"><a class="viewcode-back" href="../../../generated/lisc.Counts1D.html#lisc.Counts1D.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize LISC Counts1D object.&quot;&quot;&quot;</span>
+
+        <span class="n">Base</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Index into Counts1D object, accessing count.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        keys : str or int</span>
+<span class="sd">            Label or index to access.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">item</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object has collected data.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Counts1D.run_collection"><a class="viewcode-back" href="../../../generated/lisc.Counts1D.html#lisc.Counts1D.run_collection">[docs]</a>    <span class="k">def</span> <span class="nf">run_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Collect counts data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        db : str, optional, default: &#39;pubmed&#39;</span>
+<span class="sd">            Which database to access from EUtils.</span>
+<span class="sd">        field : str, optional, default: &#39;TIAB&#39;</span>
+<span class="sd">            Field to search for term in.</span>
+<span class="sd">            Defaults to &#39;TIAB&#39;, which is Title/Abstract.</span>
+<span class="sd">        api_key : str, optional</span>
+<span class="sd">            An API key for a NCBI account.</span>
+<span class="sd">        logging : {None, &#39;print&#39;, &#39;store&#39;, &#39;file&#39;}, optional</span>
+<span class="sd">            What kind of logging, if any, to do for requested URLs.</span>
+<span class="sd">        directory : str or SCDB, optional</span>
+<span class="sd">            Folder or database object specifying the save location.</span>
+<span class="sd">        verbose : bool, optional, default: False</span>
+<span class="sd">            Whether to print out updates.</span>
+<span class="sd">        **eutils_kwargs</span>
+<span class="sd">            Additional settings for the EUtils API.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Collect counts data from added terms:</span>
+
+<span class="sd">        &gt;&gt;&gt; counts = Counts1D()</span>
+<span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;frontal lobe&#39;, &#39;temporal lobe&#39;, &#39;parietal lobe&#39;, &#39;occipital lobe&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; counts.run_collection() # doctest: +SKIP</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_counts</span><span class="p">(</span>
+            <span class="n">terms_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span> <span class="n">inclusions_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span><span class="p">,</span>
+            <span class="n">exclusions_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="p">,</span> <span class="n">labels_a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span>
+            <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">collect_coocs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Counts1D.check_top"><a class="viewcode-back" href="../../../generated/lisc.Counts1D.html#lisc.Counts1D.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the term with the most articles.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
+
+        <span class="n">max_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{}</span><span class="s2">  with  </span><span class="si">{}</span><span class="s2">  articles.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="Counts1D.check_counts"><a class="viewcode-back" href="../../../generated/lisc.Counts1D.html#lisc.Counts1D.check_counts">[docs]</a>    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check how many articles were found for each term.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Calculate widths for printing</span>
+        <span class="n">twd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">nwd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of documents found for each search term is:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  {:</span><span class="si">{twd}</span><span class="s2">}   -   {:</span><span class="si">{nwd}</span><span class="s2">.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">twd</span><span class="o">=</span><span class="n">twd</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Counts1D.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Counts1D.html#lisc.Counts1D.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop terms based on number of article results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_articles : int</span>
+<span class="sd">            Minimum number of articles required to keep each term.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Finds the indices of the terms with enough data to keep</span>
+        <span class="n">keep_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">&gt;=</span> <span class="n">n_articles</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Drop terms that do not have enough data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">keep_inds</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">keep_inds</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">keep_inds</span><span class="p">]</span></div></div>
+
 
 <div class="viewcode-block" id="Counts"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts">[docs]</a><span class="k">class</span> <span class="nc">Counts</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for collecting and analyzing co-occurrence data for specified terms list(s).</span>
@@ -177,7 +301,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
             <span class="k">return</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Input keys do not match the object.&#39;</span><span class="p">)</span>
 
         <span class="n">ind0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -185,6 +309,12 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind0</span><span class="p">,</span> <span class="n">ind1</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Counts.copy"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a copy of the current object.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
     <span class="nd">@property</span>
@@ -199,9 +329,10 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        terms : list or str</span>
+<span class="sd">        terms : list or dict or str</span>
 <span class="sd">            Terms to add to the object.</span>
 <span class="sd">            If list, assumed to be terms, which can be a list of str or a list of list of str.</span>
+<span class="sd">            If dict, each key should reflect a term_type, and values the corresponding terms.</span>
 <span class="sd">            If str, assumed to be a file name to load from.</span>
 <span class="sd">        term_type : {&#39;terms&#39;, &#39;inclusions&#39;, &#39;exclusions&#39;}, optional</span>
 <span class="sd">            Which type of terms are being added.</span>
@@ -226,7 +357,9 @@
 <span class="sd">        &gt;&gt;&gt; counts.add_terms([&#39;&#39;, &#39;extrasensory&#39;], term_type=&#39;exclusions&#39;, dim=&#39;B&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">term_type</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span>
+                                  <span class="n">term_type</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                                  <span class="n">directory</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;terms&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
 
@@ -502,7 +635,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        Drop terms with less than or equal to 20 articles (assuming `counts` already has data):</span>
+<span class="sd">        Drop terms with less than 20 articles (assuming `counts` already has data):</span>
 
 <span class="sd">        &gt;&gt;&gt; counts.drop_data(20) # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -511,7 +644,7 @@
         <span class="n">flip_inds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">}</span>
 
         <span class="c1"># Finds the indices of the terms with enough data to keep</span>
-        <span class="n">keep_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="n">n_articles</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">keep_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">&gt;=</span> <span class="n">n_articles</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># Drop terms that do not have enough data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">keep_inds</span><span class="p">]</span>

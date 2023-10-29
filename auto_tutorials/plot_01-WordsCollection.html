@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 01: Words Collection &#8212; lisc 0.2.0 documentation</title>
+    <title>Tutorial 01: Words Collection &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -128,10 +128,10 @@ to download the full example code</p>
 <span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Words</span></a>
 
 <span class="c1"># Import the SCDB object, which organizes a database structure for saved data</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">SCDB</span>
 
 <span class="c1"># Import a utility function for saving out collected data</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">save_object</span>
 </pre></div>
 </div>
 </section>
@@ -177,7 +177,7 @@ from which text data and meta-data is collected.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7ff3f12f7340&gt;, &lt;lisc.data.articles.Articles object at 0x7ff3f12d8220&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7fa0aa175430&gt;, &lt;lisc.data.articles.Articles object at 0x7fa0aa2b6310&gt;]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check some specific fields of the collected data</span>
@@ -186,7 +186,7 @@ from which text data and meta-data is collected.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
-[&#39;Evaluation of Brain-Body Health in Individuals With Common Neuropsychiatric Disorders.&#39;, &#39;Intracranial and Extracranial Progression and Their Correlation With Overall Survival After Stereotactic Radiosurgery in a Multi-institutional Cohort With Brain Metastases.&#39;, &#39;Correction to: Natural history of spinal cord metastasis from brain glioblastomas.&#39;, &#39;An association of epidermal growth factor receptor mutation subtypes with prognostic prediction and site-specific recurrence in advanced stage lung cancer patients.&#39;, &#39;Diffusion prepared pseudo-continuous arterial spin labeling reveals blood-brain barrier dysfunction in patients with CADASIL.&#39;]
+[&#39;Bench-to-bedside investigations of H3 K27-altered diffuse midline glioma: drug targets and potential pharmacotherapies.&#39;, &#39;Epidemiological risk factors and phylogenetic affinities of Sarcocystis infecting village chickens and pigs in Peninsular Malaysia.&#39;, &#39;Association of aEEG and brain injury severity on MRI at term-equivalent age in preterm infants.&#39;, &#39;Gut microbiota-derived short chain fatty acids act as mediators of the gut-brain axis targeting age-related neurodegenerative disorders: a narrative review.&#39;, &#39;Polyomavirus Wakes Up and Chooses Neurovirulence.&#39;]
 </pre></div>
 </div>
 </section>
@@ -246,7 +246,7 @@ use to reload our data, so it is still worth saving as well.</p>
 <span class="n">save_object</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.964 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.181 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-wordscollection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/9f06023fc1faf31be849407264f3c765/plot_01-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-WordsCollection.py</span></code></a></p>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lisc.collect.time &#8212; lisc 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for lisc.collect.time</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Collect data across time.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <span class="n">Requester</span>
+<span class="kn">from</span> <span class="nn">lisc.collect.info</span> <span class="kn">import</span> <span class="n">collect_info</span>
+<span class="kn">from</span> <span class="nn">lisc.urls.eutils</span> <span class="kn">import</span> <span class="n">get_wait_time</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="collect_across_time"><a class="viewcode-back" href="../../../generated/lisc.collect_across_time.html#lisc.collect_across_time">[docs]</a><span class="k">def</span> <span class="nf">collect_across_time</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="o">**</span><span class="n">collect_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect data across time epochs.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : Counts1D, Counts, Words</span>
+<span class="sd">        Object to collect data with.</span>
+<span class="sd">    years : list of int</span>
+<span class="sd">        Years to collect literature for.</span>
+<span class="sd">    **collect_kwargs</span>
+<span class="sd">        Additional keyword arguments to pass into the collect function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    results : dict</span>
+<span class="sd">        Results collected across time.</span>
+<span class="sd">        Each key reflects the start year, and each value is a object with search results.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Time regions are defined as the set of regions {start of `years[n]` to end of `years[n]-1`}.</span>
+<span class="sd">    For example, for `years = [1990, 1995, 2000]`, this would search for:</span>
+<span class="sd">        {01/01/1990 to 12/31/1994; 01/01/1995 to 12/31/1990}</span>
+<span class="sd">    Similarly, for `years = [2000, 2001, 2002, 2003]`, this would search for:</span>
+<span class="sd">        {01/01/2000 to 12/31/2000; 01/01/2001 to 12/31/2001; 01/01/2002 to 12/31/2002}</span>
+<span class="sd">    Note that this means that final element in `years` is not included in the search.</span>
+<span class="sd">    Also, this function only currently supports contiguous, whole year search times.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Collect counts for a single set of search terms, across time:</span>
+
+<span class="sd">    &gt;&gt;&gt; from lisc.objects.counts import Counts1D</span>
+<span class="sd">    &gt;&gt;&gt; counts = Counts1D()</span>
+<span class="sd">    &gt;&gt;&gt; counts.add_terms([[&#39;frontal lobe&#39;], [&#39;temporal lobe&#39;]])</span>
+<span class="sd">    &gt;&gt;&gt; years = [1950, 1975, 2000]</span>
+<span class="sd">    &gt;&gt;&gt; results = collect_across_time(counts, years)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="n">get_wait_time</span><span class="p">(</span><span class="s1">&#39;api_key&#39;</span> <span class="ow">in</span> <span class="n">collect_kwargs</span><span class="p">),</span>
+                    <span class="n">logging</span><span class="o">=</span><span class="n">collect_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;logging&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                    <span class="n">directory</span><span class="o">=</span><span class="n">collect_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;logging&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+    <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collect_info</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">collect_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="s1">&#39;pubmed&#39;</span><span class="p">),</span> <span class="n">logging</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">years</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+
+        <span class="n">obj</span><span class="o">.</span><span class="n">run_collection</span><span class="p">(</span><span class="n">mindate</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/01/01&#39;</span><span class="p">,</span>
+                           <span class="n">maxdate</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/12/31&#39;</span><span class="p">,</span>
+                           <span class="n">logging</span><span class="o">=</span><span class="n">req</span><span class="p">,</span> <span class="n">collect_info</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="o">**</span><span class="n">collect_kwargs</span><span class="p">)</span>
+
+        <span class="n">obj</span><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">add_db_info</span><span class="p">(</span><span class="n">meta_data</span><span class="o">.</span><span class="n">db_info</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">add_requester</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

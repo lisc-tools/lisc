@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.data.articles_all &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.data.articles_all &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,13 +115,11 @@
   <h1>Source code for lisc.data.articles_all</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Classes and functions to store aggregated term article data.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">check_ext</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
-<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="kn">import</span> <span class="n">combine_lists</span><span class="p">,</span> <span class="n">count_elements</span><span class="p">,</span> <span class="n">drop_none</span>
+<span class="kn">from</span> <span class="nn">lisc.io.io</span> <span class="kn">import</span> <span class="n">save_json</span>
+<span class="kn">from</span> <span class="nn">lisc.io.db</span> <span class="kn">import</span> <span class="n">check_directory</span>
+<span class="kn">from</span> <span class="nn">lisc.data.utils</span> <span class="kn">import</span> <span class="n">combine_lists</span><span class="p">,</span> <span class="n">count_elements</span>
 <span class="kn">from</span> <span class="nn">lisc.data.base_articles</span> <span class="kn">import</span> <span class="n">BaseArticles</span>
 <span class="kn">from</span> <span class="nn">lisc.data.process</span> <span class="kn">import</span> <span class="n">process_articles</span>
 
@@ -259,7 +257,6 @@
 <span class="sd">        &gt;&gt;&gt; articles_all.create_summary() # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Add data to summary dictionary.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;n_articles&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_articles</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;top_author_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
@@ -281,7 +278,6 @@
 <span class="sd">        &gt;&gt;&gt; articles_all.print_summary() # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Print out summary information</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Number of articles: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;n_articles&#39;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  First publication: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;first_publication&#39;</span><span class="p">])</span>
@@ -307,10 +303,7 @@
 <span class="sd">        &gt;&gt;&gt; articles_all.save_summary() # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">directory</span> <span class="o">=</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">)</span>
-
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">check_ext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">)),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div></div>
+        <span class="n">save_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">check_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">))</span></div></div>
 </pre></div>
 
     </div>

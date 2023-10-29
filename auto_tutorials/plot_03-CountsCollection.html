@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 03: Counts Collection &#8212; lisc 0.2.0 documentation</title>
+    <title>Tutorial 03: Counts Collection &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -130,10 +130,10 @@ how often terms of interest appear together.</p>
 <span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts</span></a>
 
 <span class="c1"># Import the SCDB object, which defines a database structure for saved data</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">SCDB</span>
 
 <span class="c1"># Import a utility function for saving out collected data</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">save_object</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">save_object</span>
 </pre></div>
 </div>
 </section>
@@ -176,10 +176,10 @@ Running counts for:  occipital lobe
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 2154  999  647]
- [2154    0  920  768]
- [ 999  920    0  543]
- [ 647  768  543    0]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0 2212 1028  673]
+ [2212    0  951  795]
+ [1028  951    0  565]
+ [ 673  795  565    0]]
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object also has methods for exploring the collected data.</p>
@@ -188,17 +188,17 @@ Running counts for:  occipital lobe
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
-  &#39;frontal lobe&#39;     -   16326
-  &#39;temporal lobe&#39;    -   32375
-  &#39;parietal lobe&#39;    -    5959
-  &#39;occipital lobe&#39;   -    4511
+  &#39;frontal lobe&#39;     -   16657
+  &#39;temporal lobe&#39;    -   33081
+  &#39;parietal lobe&#39;    -    6100
+  &#39;occipital lobe&#39;   -    4640
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the most studied term</span>
 <a href="../generated/lisc.Counts.html#lisc.Counts.check_top" title="lisc.Counts.check_top" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_top</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  32375  articles.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  33081  articles.
 </pre></div>
 </div>
 </section>
@@ -236,7 +236,7 @@ relate to different sensory systems.</p>
 <span class="n">save_object</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  40.447 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  39.602 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-countscollection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/f6b7222965c1f8d157227f97ac2f3eef/plot_03-CountsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-CountsCollection.py</span></code></a></p>

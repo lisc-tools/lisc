@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.utils.db.check_file_structure &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.collect_across_time &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -113,20 +113,52 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="lisc-utils-db-check-file-structure">
-<h1>lisc.utils.db.check_file_structure<a class="headerlink" href="#lisc-utils-db-check-file-structure" title="Permalink to this heading">¶</a></h1>
+  <section id="lisc-collect-across-time">
+<h1>lisc.collect_across_time<a class="headerlink" href="#lisc-collect-across-time" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="lisc.utils.db.check_file_structure">
-<span class="sig-prename descclassname"><span class="pre">lisc.utils.db.</span></span><span class="sig-name descname"><span class="pre">check_file_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#check_file_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.check_file_structure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check the file structure of a folder.</p>
+<dt class="sig sig-object py" id="lisc.collect_across_time">
+<span class="sig-prename descclassname"><span class="pre">lisc.</span></span><span class="sig-name descname"><span class="pre">collect_across_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">collect_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/time.html#collect_across_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.collect_across_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect data across time epochs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>base</strong><span class="classifier">str</span></dt><dd><p>Base path of the directory structure to check.</p>
+<dt><strong>obj</strong><span class="classifier">Counts1D, Counts, Words</span></dt><dd><p>Object to collect data with.</p>
+</dd>
+<dt><strong>years</strong><span class="classifier">list of int</span></dt><dd><p>Years to collect literature for.</p>
+</dd>
+<dt><strong>**collect_kwargs</strong></dt><dd><p>Additional keyword arguments to pass into the collect function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">dict</span></dt><dd><p>Results collected across time.
+Each key reflects the start year, and each value is a object with search results.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>Time regions are defined as the set of regions {start of <cite>years[n]</cite> to end of <cite>years[n]-1</cite>}.
+For example, for <cite>years = [1990, 1995, 2000]</cite>, this would search for:</p>
+<blockquote>
+<div><p>{01/01/1990 to 12/31/1994; 01/01/1995 to 12/31/1990}</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Similarly, for <cite>years = [2000, 2001, 2002, 2003]</cite>, this would search for:</dt><dd><p>{01/01/2000 to 12/31/2000; 01/01/2001 to 12/31/2001; 01/01/2002 to 12/31/2002}</p>
+</dd>
+</dl>
+<p>Note that this means that final element in <cite>years</cite> is not included in the search.
+Also, this function only currently supports contiguous, whole year search times.</p>
+<p class="rubric">Examples</p>
+<p>Collect counts for a single set of search terms, across time:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lisc.objects.counts</span> <span class="kn">import</span> <span class="n">Counts1D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span> <span class="o">=</span> <span class="n">Counts1D</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span><span class="p">([[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">collect_across_time</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">years</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <div style='clear:both'></div></section>

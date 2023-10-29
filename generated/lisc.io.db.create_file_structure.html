@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.utils.db.create_file_structure &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.io.db.create_file_structure &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -113,23 +113,23 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="lisc-utils-db-create-file-structure">
-<h1>lisc.utils.db.create_file_structure<a class="headerlink" href="#lisc-utils-db-create-file-structure" title="Permalink to this heading">¶</a></h1>
+  <section id="lisc-io-db-create-file-structure">
+<h1>lisc.io.db.create_file_structure<a class="headerlink" href="#lisc-io-db-create-file-structure" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="lisc.utils.db.create_file_structure">
-<span class="sig-prename descclassname"><span class="pre">lisc.utils.db.</span></span><span class="sig-name descname"><span class="pre">create_file_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lisc_db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{1:</span> <span class="pre">{'base':</span> <span class="pre">['terms',</span> <span class="pre">'logs',</span> <span class="pre">'data',</span> <span class="pre">'figures']},</span> <span class="pre">2:</span> <span class="pre">{'data':</span> <span class="pre">['counts',</span> <span class="pre">'words']},</span> <span class="pre">3:</span> <span class="pre">{'words':</span> <span class="pre">['raw',</span> <span class="pre">'summary']}}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/utils/db.html#create_file_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.utils.db.create_file_structure" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="lisc.io.db.create_file_structure">
+<span class="sig-prename descclassname"><span class="pre">lisc.io.db.</span></span><span class="sig-name descname"><span class="pre">create_file_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lisc_db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{1:</span> <span class="pre">{'base':</span> <span class="pre">['terms',</span> <span class="pre">'logs',</span> <span class="pre">'data',</span> <span class="pre">'figures']},</span> <span class="pre">2:</span> <span class="pre">{'data':</span> <span class="pre">['counts',</span> <span class="pre">'words']},</span> <span class="pre">3:</span> <span class="pre">{'words':</span> <span class="pre">['raw',</span> <span class="pre">'summary']}}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/io/db.html#create_file_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.io.db.create_file_structure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the file structure for a SCANR database.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>base</strong><span class="classifier">str or None</span></dt><dd><p>Base path for the database directory.
+<dt><strong>base</strong><span class="classifier">str or Path or None</span></dt><dd><p>Base path for the database directory.
 If None, the structure is created in the current directory.</p>
 </dd>
 <dt><strong>name</strong><span class="classifier">str, optional, default: ‘lisc_db’</span></dt><dd><p>The name of the root folder of the directory structure.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>db</strong><span class="classifier">SCDB</span></dt><dd><p>A database object for the file structure that was created.</p>
 </dd>
@@ -137,7 +137,7 @@ If None, the structure is created in the current directory.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Create a temporary file structure for a <a class="reference internal" href="lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object:</p>
+<p>Create a temporary file structure for a <a class="reference internal" href="lisc.io.db.SCDB.html#lisc.io.db.SCDB" title="lisc.io.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">dirpath</span><span class="p">:</span> 

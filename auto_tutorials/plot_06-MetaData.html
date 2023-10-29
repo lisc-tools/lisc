@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 06: MetaData &#8212; lisc 0.2.0 documentation</title>
+    <title>Tutorial 06: MetaData &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -121,8 +121,7 @@ to download the full example code</p>
 <section class="sphx-glr-example-title" id="tutorial-06-metadata">
 <span id="sphx-glr-auto-tutorials-plot-06-metadata-py"></span><h1>Tutorial 06: MetaData<a class="headerlink" href="#tutorial-06-metadata" title="Permalink to this heading">¶</a></h1>
 <p>Exploring metadata collected and saved during data collections.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.utils.db</span> <span class="kn">import</span> <span class="n">SCDB</span>
-<span class="kn">from</span> <span class="nn">lisc.utils.io</span> <span class="kn">import</span> <span class="n">load_object</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
 </pre></div>
 </div>
 <section id="metadata">
@@ -145,14 +144,14 @@ to the object as the <cite>meta_data</cite> attribute.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">date</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2023-04-26_16:58:09
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2023-10-29_00:27:28
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the information about the database from which data was collected</span>
 <a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">db_info</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build-2023.04.25.18.57&#39;, &#39;count&#39;: &#39;35602067&#39;, &#39;lastupdate&#39;: &#39;2023/04/25 18:57&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dbname&#39;: &#39;pubmed&#39;, &#39;menuname&#39;: &#39;PubMed&#39;, &#39;description&#39;: &#39;PubMed bibliographic record&#39;, &#39;dbbuild&#39;: &#39;Build-2023.10.29.00.10&#39;, &#39;count&#39;: &#39;36388316&#39;, &#39;lastupdate&#39;: &#39;2023/10/29 00:10&#39;}
 </pre></div>
 </div>
 <p>For the next part, we’ll reload the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object, which also has stored meta data.</p>
@@ -170,7 +169,7 @@ launched and the number of requests made.</p>
 <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">requester</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;n_requests&#39;: 9, &#39;wait_time&#39;: 0.3333333333333333, &#39;start_time&#39;: &#39;16:57:58 Wednesday 26 April 2023&#39;, &#39;end_time&#39;: &#39;16:58:03 Wednesday 26 April 2023&#39;, &#39;logging&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;n_requests&#39;: 9, &#39;wait_time&#39;: 0.3333333333333333, &#39;start_time&#39;: &#39;00:27:17 Sunday 29 October 2023&#39;, &#39;end_time&#39;: &#39;00:27:22 Sunday 29 October 2023&#39;, &#39;logging&#39;: None}
 </pre></div>
 </div>
 </section>
@@ -184,7 +183,7 @@ page.</p>
 please get in touch through the Github
 <a class="reference external" href="https://github.com/lisc-tools/lisc/issues">issues</a>
 page.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.004 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-06-metadata-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/9eaed94a6a287cb61086592b27440660/plot_06-MetaData.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_06-MetaData.py</span></code></a></p>

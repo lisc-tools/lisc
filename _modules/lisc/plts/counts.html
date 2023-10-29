@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.plts.counts &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.plts.counts &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -121,8 +121,11 @@
 <span class="sd">libraries, to give access to relevant plots and clustering measures.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Counts</span>
-<span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="kn">import</span> <span class="n">check_args</span><span class="p">,</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span><span class="p">,</span> <span class="n">get_cmap</span><span class="p">,</span> <span class="n">counts_data_helper</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Counts1D</span><span class="p">,</span> <span class="n">Counts</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">check_args</span><span class="p">,</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span><span class="p">,</span> <span class="n">get_cmap</span><span class="p">,</span>
+                             <span class="n">counts_data_helper</span><span class="p">,</span> <span class="n">rotate_ticks</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="kn">import</span> <span class="n">safe_import</span>
 
 <span class="n">plt</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;.pyplot&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
@@ -135,7 +138,7 @@
 <div class="viewcode-block" id="plot_matrix"><a class="viewcode-back" href="../../../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix">[docs]</a><span class="nd">@savefig</span>
 <span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a matrix representation of given data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a matrix as a heatmap.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -169,21 +172,83 @@
 <span class="sd">    See the example for the :meth:`~.compute_score` method of the :class:`~.Counts` class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">rot_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xtickrotation&#39;</span> <span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;xtickrotation&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                  <span class="s1">&#39;ytickrotation&#39;</span> <span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ytickrotation&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">cmap</span> <span class="o">=</span> <span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
 
     <span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span> <span class="o">=</span> <span class="n">counts_data_helper</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">transpose</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">plotting_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;font_scale&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)):</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">square</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
-                    <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="s1">&#39;yticklabels&#39;</span><span class="p">],</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">),</span>
-                    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">square</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="s1">&#39;yticklabels&#39;</span><span class="p">],</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">))</span>
+
+    <span class="n">rotate_ticks</span><span class="p">(</span><span class="n">ax</span> <span class="k">if</span> <span class="n">ax</span> <span class="k">else</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="o">**</span><span class="n">rot_kwargs</span><span class="p">)</span>
+
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="plot_vector"><a class="viewcode-back" href="../../../generated/lisc.plts.counts.plot_vector.html#lisc.plts.counts.plot_vector">[docs]</a><span class="nd">@savefig</span>
+<span class="k">def</span> <span class="nf">plot_vector</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a vector as an annotated heatmap.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : Counts1D or Counts or 1d array</span>
+<span class="sd">        Data to plot as a heatmap.</span>
+<span class="sd">    dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">        Which set of terms to plot.</span>
+<span class="sd">        Only used if `data` is a `Counts` object.</span>
+<span class="sd">    labels : list of str, optional</span>
+<span class="sd">        Labels for the figure.</span>
+<span class="sd">    transpose : bool, optional, default: False</span>
+<span class="sd">        Whether to transpose the data before plotting.</span>
+<span class="sd">    cmap : {&#39;purple&#39;, &#39;blue&#39;} or matplotlib.cmap</span>
+<span class="sd">        Colormap to use for the plot.</span>
+<span class="sd">        If string, uses a sequential palette of the specified color.</span>
+<span class="sd">    ax : matplotlib.Axes, optional</span>
+<span class="sd">        Figure axes upon which to plot.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional keyword arguments to pass through to seaborn.heatmap.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rot_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xtickrotation&#39;</span> <span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;xtickrotation&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                  <span class="s1">&#39;ytickrotation&#39;</span> <span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ytickrotation&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Counts1D</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">counts</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Counts</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span>
+
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">label_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xticklabels&#39;</span> <span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="p">[]),</span>
+                    <span class="s1">&#39;yticklabels&#39;</span> <span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;yticklabels&#39;</span><span class="p">,</span> <span class="p">[])}</span>
+    <span class="k">if</span> <span class="n">labels</span> <span class="ow">and</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">label_kwargs</span><span class="p">[</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+    <span class="k">elif</span> <span class="n">labels</span><span class="p">:</span>
+        <span class="n">label_kwargs</span><span class="p">[</span><span class="s1">&#39;yticklabels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+                <span class="n">annot</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;annot&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fmt&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">),</span>
+                <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">},</span> <span class="n">cbar</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;cbar&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">label_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">rotate_ticks</span><span class="p">(</span><span class="n">ax</span> <span class="k">if</span> <span class="n">ax</span> <span class="k">else</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="o">**</span><span class="n">rot_kwargs</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="plot_clustermap"><a class="viewcode-back" href="../../../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap">[docs]</a><span class="nd">@savefig</span>
-<span class="k">def</span> <span class="nf">plot_clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span>
-                    <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a clustermap of the given data.</span>
 
 <span class="sd">    Parameters</span>
@@ -199,6 +264,10 @@
 <span class="sd">        Only used if the `data` input is a Counts object.</span>
 <span class="sd">    transpose : bool, optional, default: False</span>
 <span class="sd">        Whether to transpose the data before plotting.</span>
+<span class="sd">    method : str, optional, default: &#39;complete&#39;</span>
+<span class="sd">        The linkage algorithm to use. See `scipy.cluster.hierarchy.linkage` for options.</span>
+<span class="sd">    metric : str or function, optional, default: &#39;cosine&#39;</span>
+<span class="sd">        The distance metric to use. See `scipy.spatial.distance.pdist` for options.</span>
 <span class="sd">    cmap : {&#39;purple&#39;, &#39;blue&#39;} or matplotlib.cmap</span>
 <span class="sd">        Colormap to use for the plot.</span>
 <span class="sd">        If string, uses a sequential palette of the specified color.</span>
@@ -207,7 +276,7 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    This function is a wrapper of the seaborn `clustermap` plot function.</span>
+<span class="sd">    This function is a wrapper of the `seaborn.clustermap` plot function.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -220,9 +289,8 @@
     <span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span> <span class="o">=</span> <span class="n">counts_data_helper</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">transpose</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">plotting_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;font_scale&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)):</span>
-        <span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-                            <span class="n">method</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;complete&#39;</span><span class="p">),</span>
-                            <span class="n">metric</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="s1">&#39;cosine&#39;</span><span class="p">),</span>
+        <span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                            <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
                             <span class="o">**</span><span class="n">check_args</span><span class="p">([</span><span class="s1">&#39;xticklabels&#39;</span><span class="p">,</span> <span class="s1">&#39;yticklabels&#39;</span><span class="p">],</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">),</span>
                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -246,10 +314,10 @@
 <span class="sd">        Only used if the `data` input is a Counts object.</span>
 <span class="sd">    transpose : bool, optional, default: False</span>
 <span class="sd">        Whether to transpose the data before plotting.</span>
-<span class="sd">    method : str</span>
+<span class="sd">    method : str, optional, default: &#39;complete&#39;</span>
 <span class="sd">        The linkage algorithm to use. See `scipy.cluster.hierarchy.linkage` for options.</span>
-<span class="sd">    metric : str or function</span>
-<span class="sd">        The distance metric to use. See `scipy.cluster.hierarchy.linkage` for options.</span>
+<span class="sd">    metric : str or function, optional, default: &#39;cosine&#39;</span>
+<span class="sd">        The distance metric to use.  See `scipy.spatial.distance.pdist` for options.</span>
 <span class="sd">    ax : matplotlib.Axes, optional</span>
 <span class="sd">        Figure axes upon which to plot.</span>
 <span class="sd">    **kwargs</span>
@@ -257,7 +325,7 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    This function is a wrapper of the scipy `dendrogram` plot function.</span>
+<span class="sd">    This function is a wrapper of the `scipy.cluster.hierarchy.dendrogram&#39; plot function.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>

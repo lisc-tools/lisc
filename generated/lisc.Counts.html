@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.Counts &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.Counts &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,7 +120,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.</span></span><span class="sig-name descname"><span class="pre">Counts</span></span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class for collecting and analyzing co-occurrence data for specified terms list(s).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>terms</strong><span class="classifier">dict</span></dt><dd><p>Search terms to use.</p>
 </dd>
@@ -146,6 +146,10 @@ This may be normalized count data, or a similarity or association measure.</p>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts.__init__" title="lisc.Counts.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
 <td><p>Initialize LISC Counts object.</p></td>
@@ -168,16 +172,23 @@ This may be normalized count data, or a similarity or association measure.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts.compute_score" title="lisc.Counts.compute_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_score</span></code></a>([score_type, dim, return_result])</p></td>
 <td><p>Compute a score, such as an index or normalization, of the co-occurrence data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts.drop_data" title="lisc.Counts.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles[, dim])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts.copy" title="lisc.Counts.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
+<td><p>Return a copy of the current object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts.drop_data" title="lisc.Counts.drop_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_data</span></code></a>(n_articles[, dim])</p></td>
 <td><p>Drop terms based on number of article results.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts.run_collection" title="lisc.Counts.run_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_collection</span></code></a>([db, field, api_key, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#lisc.Counts.run_collection" title="lisc.Counts.run_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_collection</span></code></a>([db, field, api_key, ...])</p></td>
 <td><p>Collect co-occurrence data.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.Counts.has_data" title="lisc.Counts.has_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></a></p></td>
 <td><p>Indicator for if the object has collected data.</p></td>
@@ -189,7 +200,7 @@ This may be normalized count data, or a similarity or association measure.</p>
 <span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.add_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.add_labels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add labels for terms to the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>labels</strong><span class="classifier">list of str or str</span></dt><dd><p>Labels for each term to add to the object.
 If list, is assumed to be labels.
@@ -209,10 +220,11 @@ If str, is assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'terms'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.add_terms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.add_terms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add search terms to the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>terms</strong><span class="classifier">list or str</span></dt><dd><p>Terms to add to the object.
+<dt><strong>terms</strong><span class="classifier">list or dict or str</span></dt><dd><p>Terms to add to the object.
 If list, assumed to be terms, which can be a list of str or a list of list of str.
+If dict, each key should reflect a term_type, and values the corresponding terms.
 If str, assumed to be a file name to load from.</p>
 </dd>
 <dt><strong>term_type</strong><span class="classifier">{‘terms’, ‘inclusions’, ‘exclusions’}, optional</span></dt><dd><p>Which type of terms are being added.</p>
@@ -245,7 +257,7 @@ If str, assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">check_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.check_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.check_counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check how many articles were found for each term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dim</strong><span class="classifier">{‘A’, ‘B’}</span></dt><dd><p>Which set of terms to check.</p>
 </dd>
@@ -264,7 +276,7 @@ If str, assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">check_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'counts'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.check_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.check_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints out the highest value count or score for each term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data_type</strong><span class="classifier">{‘counts’, ‘score’}</span></dt><dd><p>Which data type to use.</p>
 </dd>
@@ -289,7 +301,7 @@ If str, assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">check_top</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.check_top"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.check_top" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the terms with the most articles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dim</strong><span class="classifier">{‘A’, ‘B’}, optional</span></dt><dd><p>Which set of terms to check.</p>
 </dd>
@@ -308,7 +320,7 @@ If str, assumed to be a file name to load from.</p>
 <span class="sig-name descname"><span class="pre">compute_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'association'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.compute_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.compute_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a score, such as an index or normalization, of the co-occurrence data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>score_type</strong><span class="classifier">{‘association’, ‘normalize’, ‘similarity’}, optional</span></dt><dd><p>The type of score to apply to the co-occurrence data.</p>
 </dd>
@@ -348,11 +360,17 @@ Only used if ‘score’ is ‘normalize’ or ‘similarity’.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="lisc.Counts.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the current object.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="lisc.Counts.drop_data">
 <span class="sig-name descname"><span class="pre">drop_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_articles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.drop_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.drop_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Drop terms based on number of article results.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n_articles</strong><span class="classifier">int</span></dt><dd><p>Minimum number of articles required to keep each term.</p>
 </dd>
@@ -362,7 +380,7 @@ Only used if ‘score’ is ‘normalize’ or ‘similarity’.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Drop terms with less than or equal to 20 articles (assuming <cite>counts</cite> already has data):</p>
+<p>Drop terms with less than 20 articles (assuming <cite>counts</cite> already has data):</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span><span class="o">.</span><span class="n">drop_data</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> 
 </pre></div>
 </div>
@@ -379,7 +397,7 @@ Only used if ‘score’ is ‘normalize’ or ‘similarity’.</p>
 <span class="sig-name descname"><span class="pre">run_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pubmed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'TIAB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">eutils_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/objects/counts.html#Counts.run_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.Counts.run_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect co-occurrence data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>db</strong><span class="classifier">str, optional, default: ‘pubmed’</span></dt><dd><p>Which database to access from EUtils.</p>
 </dd>

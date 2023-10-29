@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.data.Articles &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.data.Articles &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,7 +120,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisc.data.</span></span><span class="sig-name descname"><span class="pre">Articles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object to hold collected ‘words’ data for a specified term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><a class="reference internal" href="#lisc.data.Articles.label" title="lisc.data.Articles.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a><span class="classifier">str</span></dt><dd><p>The label for the current term.</p>
 </dd>
@@ -156,7 +156,7 @@
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize Articles object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>term</strong><span class="classifier">Term or str</span></dt><dd><p>Search term definition. If input is a string, it is used as the label for the term.</p>
 </dd>
@@ -172,6 +172,10 @@
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.Articles.__init__" title="lisc.data.Articles.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(term)</p></td>
 <td><p>Initialize Articles object.</p></td>
@@ -198,6 +202,10 @@
 </table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#lisc.data.Articles.has_data" title="lisc.data.Articles.has_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_data</span></code></a></p></td>
 <td><p>Whether the current object contains data.</p></td>
@@ -215,7 +223,7 @@
 <span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles.add_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles.add_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add data to object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>field</strong><span class="classifier">str</span></dt><dd><p>The attribute of the object to add data to.</p>
 </dd>
@@ -255,7 +263,7 @@
 <span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load raw data from json file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>directory</strong><span class="classifier">str or SCDB, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>
@@ -263,7 +271,7 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Load an <code class="docutils literal notranslate"><span class="pre">Articles</span></code> object, assuming an <a class="reference internal" href="lisc.utils.db.SCDB.html#lisc.utils.db.SCDB" title="lisc.utils.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> organization named ‘lisc_db’:</p>
+<p>Load an <code class="docutils literal notranslate"><span class="pre">Articles</span></code> object, assuming an <a class="reference internal" href="lisc.io.db.SCDB.html#lisc.io.db.SCDB" title="lisc.io.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> organization named ‘lisc_db’:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lisc.utils</span> <span class="kn">import</span> <span class="n">SCDB</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">articles</span> <span class="o">=</span> <span class="n">Articles</span><span class="p">(</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">articles</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span> 
@@ -282,7 +290,7 @@
 <span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles.process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process the data stored in the current object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>process_func</strong><span class="classifier">callable, optional</span></dt><dd><p>A function to process the articles. Must take as input an <cite>Articles</cite> object.
 If not provided, applies the default <cite>process_articles</cite> function.</p>
@@ -297,7 +305,7 @@ If not provided, applies the default <cite>process_articles</cite> function.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out a json file with all attached data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>directory</strong><span class="classifier">str or SCDB, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>
@@ -319,7 +327,7 @@ If not provided, applies the default <cite>process_articles</cite> function.</p>
 <span class="sig-name descname"><span class="pre">save_and_clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/data/articles.html#Articles.save_and_clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.data.Articles.save_and_clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save out the attached data and clear the object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>directory</strong><span class="classifier">str or SCDB, optional</span></dt><dd><p>Folder or database object specifying the save location.</p>
 </dd>

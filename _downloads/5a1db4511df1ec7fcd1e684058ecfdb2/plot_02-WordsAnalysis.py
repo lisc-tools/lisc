@@ -24,8 +24,7 @@ Analyzing collected text data and metadata.
 from lisc.data import Articles, ArticlesAll
 
 # Import database and IO utilities to reload our previously collected data
-from lisc.utils.db import SCDB
-from lisc.utils.io import load_object
+from lisc.io import SCDB, load_object
 
 # Import plots that are available for words data
 from lisc.plts.words import plot_wordcloud

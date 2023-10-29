@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.collect.words &#8212; lisc 0.2.0 documentation</title>
+    <title>lisc.collect.words &#8212; lisc 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.2.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -133,7 +133,7 @@
 <div class="viewcode-block" id="collect_words"><a class="viewcode-back" href="../../../generated/lisc.collect_words.html#lisc.collect_words">[docs]</a><span class="k">def</span> <span class="nf">collect_words</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">inclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pubmed&#39;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;TIAB&#39;</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                   <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_and_clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                  <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
+                  <span class="n">collect_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect text data and metadata from EUtils using specified search term(s).</span>
 
 <span class="sd">    Parameters</span>
@@ -163,6 +163,8 @@
 <span class="sd">        What kind of logging, if any, to do for requested URLs.</span>
 <span class="sd">    directory : str or SCDB, optional</span>
 <span class="sd">        Folder or database object specifying the save location.</span>
+<span class="sd">    collect_info : bool, optional, default: True</span>
+<span class="sd">        Whether to collect database information, to be added to meta data.</span>
 <span class="sd">    verbose : bool, optional, default: False</span>
 <span class="sd">        Whether to print out updates.</span>
 <span class="sd">    **eutils_kwargs</span>
@@ -195,9 +197,17 @@
         <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Only the `pubmed` database is currently supported for words collection.&#39;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
+    <span class="c1"># Initialize meta data object</span>
+    <span class="n">meta_data</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+
+    <span class="c1"># Collect settings for URLs, and add them to the metadata object</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;db&#39;</span> <span class="p">:</span> <span class="n">db</span><span class="p">,</span> <span class="s1">&#39;retmax&#39;</span> <span class="p">:</span> <span class="n">retmax</span><span class="p">,</span> <span class="s1">&#39;field&#39;</span> <span class="p">:</span> <span class="n">field</span><span class="p">,</span>
+                <span class="s1">&#39;usehistory&#39;</span> <span class="p">:</span> <span class="s1">&#39;y&#39;</span> <span class="k">if</span> <span class="n">usehistory</span> <span class="k">else</span> <span class="s1">&#39;n&#39;</span><span class="p">}</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">eutils_kwargs</span><span class="p">)</span>
+    <span class="n">meta_data</span><span class="o">.</span><span class="n">add_settings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+
     <span class="c1"># Get EUtils URLS object, with desired settings, and build required utility URLs</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="n">retmax</span><span class="p">,</span> <span class="n">usehistory</span><span class="o">=</span><span class="s1">&#39;y&#39;</span> <span class="k">if</span> <span class="n">usehistory</span> <span class="k">else</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span>
-                  <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">eutils_kwargs</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">EUtils</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
 
     <span class="c1"># Define the settings for the search utility, adding a default for datetype if not provided</span>
     <span class="n">search_settings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="s1">&#39;usehistory&#39;</span><span class="p">,</span> <span class="s1">&#39;retmax&#39;</span><span class="p">,</span> <span class="s1">&#39;retmode&#39;</span><span class="p">,</span> <span class="s1">&#39;field&#39;</span><span class="p">]</span>
@@ -209,24 +219,22 @@
     <span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">search_settings</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">eutils_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
     <span class="n">urls</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="s1">&#39;retmode&#39;</span><span class="p">])</span>
 
-    <span class="c1"># Initialize results &amp; meta data</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">meta_data</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-
     <span class="c1"># Check for a Requester object to be passed in as logging, otherwise initialize</span>
     <span class="n">req</span> <span class="o">=</span> <span class="n">logging</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">Requester</span><span class="p">)</span> <span class="k">else</span> \
         <span class="n">Requester</span><span class="p">(</span><span class="n">wait_time</span><span class="o">=</span><span class="n">get_wait_time</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">authenticated</span><span class="p">),</span>
                   <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
 
     <span class="c1"># Get current information about database being used</span>
-    <span class="n">meta_data</span><span class="o">.</span><span class="n">add_db_info</span><span class="p">(</span><span class="n">get_db_info</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">collect_info</span><span class="p">:</span>
+        <span class="n">meta_data</span><span class="o">.</span><span class="n">add_db_info</span><span class="p">(</span><span class="n">get_db_info</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">)))</span>
 
     <span class="c1"># Check labels, inclusions &amp; exclusions</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span> <span class="k">if</span> <span class="n">labels</span> <span class="k">else</span> <span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">]</span>
     <span class="n">inclusions</span> <span class="o">=</span> <span class="n">inclusions</span> <span class="k">if</span> <span class="n">inclusions</span> <span class="k">else</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
     <span class="n">exclusions</span> <span class="o">=</span> <span class="n">exclusions</span> <span class="k">if</span> <span class="n">exclusions</span> <span class="k">else</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 
-    <span class="c1"># Loop through all the terms</span>
+    <span class="c1"># Loop through all the terms, launch collection, and collect results</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">search</span><span class="p">,</span> <span class="n">incl</span><span class="p">,</span> <span class="n">excl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">inclusions</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">):</span>
 
         <span class="c1"># Collect term information and make search term argument</span>
@@ -280,8 +288,11 @@
 
             <span class="n">ids</span> <span class="o">=</span> <span class="n">page_soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
             <span class="n">ids_str</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">el</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">])</span>
-            <span class="n">art_url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="n">ids_str</span><span class="p">})</span>
-            <span class="n">arts</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">art_url</span><span class="p">,</span> <span class="n">arts</span><span class="p">)</span>
+
+            <span class="c1"># Batch requested IDs into groups of 100 to avoid URL length limits</span>
+            <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids_str</span><span class="p">),</span> <span class="mi">100</span><span class="p">):</span>
+                <span class="n">art_url</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="n">ids_str</span><span class="p">[</span><span class="n">ind</span><span class="p">:</span><span class="n">ind</span><span class="o">+</span><span class="mi">100</span><span class="p">]})</span>
+                <span class="n">arts</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">art_url</span><span class="p">,</span> <span class="n">arts</span><span class="p">)</span>
 
         <span class="n">arts</span><span class="o">.</span><span class="n">_check_results</span><span class="p">()</span>
 
@@ -289,7 +300,8 @@
             <span class="n">arts</span><span class="o">.</span><span class="n">save_and_clear</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">)</span>
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arts</span><span class="p">)</span>
 
-    <span class="n">meta_data</span><span class="o">.</span><span class="n">add_requester</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="c1"># If a requester was passed in, assume it is to contiune (don&#39;t close)</span>
+    <span class="n">meta_data</span><span class="o">.</span><span class="n">add_requester</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">Requester</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">meta_data</span></div>
 
