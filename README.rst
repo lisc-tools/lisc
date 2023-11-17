@@ -146,6 +146,8 @@ Reference
 
 If you use this code in your project, please cite
 
+.. code-block:: text
+
     Donoghue, T. (2018)  LISC: A Python Package for Scientific Literature Collection and Analysis.
     Journal of Open Source Software, 4(41), 1674. DOI: 10.21105/joss.01674
 
