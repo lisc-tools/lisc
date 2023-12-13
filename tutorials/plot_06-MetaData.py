@@ -5,8 +5,7 @@ Tutorial 06: MetaData
 Exploring metadata collected and saved during data collections.
 """
 
-from lisc.utils.db import SCDB
-from lisc.utils.io import load_object
+from lisc.io import SCDB, load_object
 
 ###################################################################################################
 # Metadata

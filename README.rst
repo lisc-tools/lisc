@@ -30,8 +30,8 @@ LISC is a package for collecting and analyzing scientific literature.
 Overview
 --------
 
-LISC acts as a wrapper and connector between available APIs, allowing users to collect data from and
-about scientific articles, and perform analyses on this data, such as performing automated meta-analyses.
+LISC wraps and combines existing APIs, allowing users to collect data from and about
+scientific articles and perform analyses on this data, allowing for automated meta-analyses.
 
 A curated list of some projects enabled by LISC is available on the
 `projects <https://github.com/lisc-tools/Projects>`_ page.
@@ -42,8 +42,8 @@ Supported APIs & Collection Approaches
 Supported APIs and data collection approaches include:
 
 - The `EUtils <https://www.ncbi.nlm.nih.gov/books/NBK25497/>`_ API, which provides access to literature data,
-  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which text and meta-data from
-  identified articles can be collected, as well as analyses such as counts and co-occurrences of terms.
+  including the `Pubmed <https://pubmed.ncbi.nlm.nih.gov/about/>`_ database, from which counts, co-occurrences,
+  text, and meta-data from scientific articles can be collected.
 - The `OpenCitations <https://opencitations.net>`_ API, which provides access to citation data, from which
   citation and reference information can be collected.
 
@@ -74,7 +74,7 @@ This documentation includes:
 - `Reference <https://lisc-tools.github.io/lisc/reference.html>`_:
   with information for how to reference and report on using the module
 
-For a curated list of projects that use LISC, check out the
+For a curated list of projects that use LISC, see the
 `projects <https://github.com/lisc-tools/Projects>`_ page.
 
 Dependencies
@@ -147,7 +147,9 @@ version as above, and run:
 Reference
 ---------
 
-If you use this code in your project, please cite
+If you use this code in your project, please cite:
+
+.. code-block:: text
 
     Donoghue, T. (2018)  LISC: A Python Package for Scientific Literature Collection and Analysis.
     Journal of Open Source Software, 4(41), 1674. DOI: 10.21105/joss.01674
@@ -167,8 +169,10 @@ To file bug reports and/or ask questions about this project, please use the
 
 To see and get involved in discussions about the module, check out:
 
-- the `issues board <https://github.com/lisc-tools/lisc/issues>`_ for topics relating to code updates, bugs, and fixes
-- the `development page <https://github.com/lisc-tools/Development>`_ for discussion of potential major updates to the module
+- the `issues board <https://github.com/lisc-tools/lisc/issues>`_
+  for topics relating to code updates, bugs, and fixes
+- the `development page <https://github.com/lisc-tools/Development>`_
+  for discussion of potential major updates to the module
 
 When interacting with this project, please use the
 `contribution guidelines <https://github.com/lisc-tools/lisc/blob/main/CONTRIBUTING.md>`_

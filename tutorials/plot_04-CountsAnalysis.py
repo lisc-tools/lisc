@@ -18,8 +18,7 @@ Analyzing collected co-occurrence data.
 ###################################################################################################
 
 # Import database and IO utilities to reload our previously collected data
-from lisc.utils.db import SCDB
-from lisc.utils.io import load_object
+from lisc.io import SCDB, load_object
 
 # Import plots that are available for co-occurrence analysis
 from lisc.plts.counts import plot_matrix, plot_clustermap, plot_dendrogram

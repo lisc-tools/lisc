@@ -18,10 +18,10 @@ Collecting literature data, including text and metadata for specified search ter
 from lisc import Words
 
 # Import the SCDB object, which organizes a database structure for saved data
-from lisc.utils.db import SCDB
+from lisc.io import SCDB
 
 # Import a utility function for saving out collected data
-from lisc.utils.io import save_object
+from lisc.io import save_object
 
 ###################################################################################################
 # Words Object
