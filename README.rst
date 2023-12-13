@@ -25,7 +25,7 @@ LISC - Literature Scanner
 .. |Publication| image:: https://joss.theoj.org/papers/10.21105/joss.01674/status.svg
 .. _Publication: https://doi.org/10.21105/joss.01674
 
-LISC is a package for collecting and analyzing the scientific literature.
+LISC is a package for collecting and analyzing scientific literature.
 
 Overview
 --------
@@ -74,7 +74,7 @@ This documentation includes:
 - `Reference <https://lisc-tools.github.io/lisc/reference.html>`_:
   with information for how to reference and report on using the module
 
-For a curated list of projects that use LISC see the
+For a curated list of projects that use LISC, see the
 `projects <https://github.com/lisc-tools/Projects>`_ page.
 
 Dependencies
