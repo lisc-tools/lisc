@@ -2,7 +2,7 @@
 LISC - Literature Scanner
 =========================
 
-|ProjectStatus|_ |Version|_ |BuildStatus|_ |Coverage|_ |License|_ |PythonVersions|_ |Publication|_
+|ProjectStatus| |Version| |BuildStatus| |Coverage| |License| |PythonVersions| |Publication|
 
 .. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
 .. _ProjectStatus: https://www.repostatus.org/#active
