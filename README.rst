@@ -5,25 +5,32 @@ LISC - Literature Scanner
 |ProjectStatus| |Version| |BuildStatus| |Coverage| |License| |PythonVersions| |Publication|
 
 .. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
-.. _ProjectStatus: https://www.repostatus.org/#active
+   :target: https://www.repostatus.org/#active
+   :alt: project status
 
 .. |Version| image:: https://img.shields.io/pypi/v/lisc.svg
-.. _Version: https://pypi.python.org/pypi/lisc/
+   :target: https://pypi.python.org/pypi/lisc/
+   :alt: version
 
 .. |BuildStatus| image:: https://github.com/lisc-tools/lisc/actions/workflows/build.yml/badge.svg
-.. _BuildStatus: https://github.com/lisc-tools/lisc/actions/workflows/build.yml
+   :target: https://github.com/lisc-tools/lisc/actions/workflows/build.yml
+   :alt: build status
 
 .. |Coverage| image:: https://codecov.io/gh/lisc-tools/lisc/branch/main/graph/badge.svg
-.. _Coverage: https://codecov.io/gh/lisc-tools/lisc
+   :target: https://codecov.io/gh/lisc-tools/lisc
+   :alt: coverage
 
 .. |License| image:: https://img.shields.io/pypi/l/lisc.svg
-.. _License: https://opensource.org/licenses/Apache-2.0
+   :target: https://opensource.org/licenses/Apache-2.0
+   :alt: license
 
 .. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/lisc.svg
-.. _PythonVersions: https://pypi.python.org/pypi/lisc/
+   :target: https://pypi.python.org/pypi/lisc/
+   :alt: python versions
 
 .. |Publication| image:: https://joss.theoj.org/papers/10.21105/joss.01674/status.svg
-.. _Publication: https://doi.org/10.21105/joss.01674
+   :target: https://doi.org/10.21105/joss.01674
+   :alt: publication
 
 LISC is a package for collecting and analyzing scientific literature.
 
