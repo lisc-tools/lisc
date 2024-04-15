@@ -30,10 +30,18 @@ def collect_across_time(obj, years, **collect_kwargs):
     Notes
     -----
     Time regions are defined as the set of regions {start of `years[n]` to end of `years[n]-1`}.
+
     For example, for `years = [1990, 1995, 2000]`, this would search for:
-        {01/01/1990 to 12/31/1994; 01/01/1995 to 12/31/1990}
+
+    - 01/01/1990 to 12/31/1994
+    - 01/01/1995 to 12/31/1990
+
     Similarly, for `years = [2000, 2001, 2002, 2003]`, this would search for:
-        {01/01/2000 to 12/31/2000; 01/01/2001 to 12/31/2001; 01/01/2002 to 12/31/2002}
+
+    - 01/01/2000 to 12/31/2000
+    - 01/01/2001 to 12/31/2001
+    - 01/01/2002 to 12/31/2002
+
     Note that this means that final element in `years` is not included in the search.
     Also, this function only currently supports contiguous, whole year search times.
 
