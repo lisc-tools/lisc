@@ -216,12 +216,14 @@ def rotate_ticks(ax, xtickrotation=None, ytickrotation=None):
     """
 
     if xtickrotation:
+        ax.set_xticks(ax.get_xticks())
         ax.set_xticklabels(ax.get_xticklabels(),
                            rotation=xtickrotation,
                            horizontalalignment='right')
 
     if ytickrotation:
         alignment = 'top' if ytickrotation > 0 and ytickrotation < 180 else 'bottom'
+        ax.set_yticks(ax.get_yticks())
         ax.set_yticklabels(ax.get_yticklabels(),
                            rotation=ytickrotation,
                            verticalalignment=alignment)
