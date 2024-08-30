@@ -144,12 +144,18 @@ class ArticlesAll(BaseArticles):
 
         self.summary['label'] = self.label
         self.summary['n_articles'] = str(self.n_articles)
-        self.summary['top_author_name'] = ' '.join(self.authors.most_common()[0][0])
-        self.summary['top_author_count'] = str(self.authors.most_common()[0][1])
-        self.summary['top_journal_name'] = self.journals.most_common()[0][0]
-        self.summary['top_journal_count'] = str(self.journals.most_common()[0][1])
-        self.summary['top_keywords'] = [freq[0] for freq in self.keywords.most_common()[0:5]]
-        self.summary['first_publication'] = str(min(self.years.keys()))
+        if self.has_data:
+            self.summary['top_author_name'] = ' '.join(self.authors.most_common()[0][0])
+            self.summary['top_author_count'] = str(self.authors.most_common()[0][1])
+            self.summary['top_journal_name'] = self.journals.most_common()[0][0]
+            self.summary['top_journal_count'] = str(self.journals.most_common()[0][1])
+            self.summary['top_keywords'] = [freq[0] for freq in self.keywords.most_common()[0:5]]
+            self.summary['first_publication'] = str(min(self.years.keys()))
+        else:
+            labels = ['top_author_name', 'top_author_count', 'top_journal_name',
+                      'top_journal_count', 'top_keywords', 'first_publication']
+            for label in labels:
+                self.summary[label] = None
 
 
     def print_summary(self):
