@@ -83,6 +83,11 @@ def get_db_info(req, info_url):
     >>> db_info = get_db_info(Requester(), url)
     """
 
+    # Squash warning that arises despite specifying XML parsing
+    from bs4.builder import XMLParsedAsHTMLWarning
+    import warnings
+    warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
+
     # Get the info page and parse with BeautifulSoup
     info_page = req.request_url(info_url)
     info_page_soup = BeautifulSoup(info_page.content, 'lxml')
