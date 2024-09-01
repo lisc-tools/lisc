@@ -144,7 +144,7 @@ class Words(Base):
 
 
     def check_articles(self):
-        """Check the list of articles collected for each term."""
+        """Prints out the articles collected for each term."""
 
         for results in self.results:
             print('\nLabel: {}\n'.format(results.label))
