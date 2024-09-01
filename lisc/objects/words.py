@@ -143,6 +143,17 @@ class Words(Base):
             print("\t{:{twd}} \t\t  {}".format(label, data.n_articles, twd=twd))
 
 
+    def check_articles(self):
+        """Prints out the articles collected for each term."""
+
+        for results in self.results:
+            print('\nLabel: {}\n'.format(results.label))
+            for cres in results:
+                author = cres['authors'][0][0] + (' et al' if len(cres['authors']) > 1 else '')
+                doi = 'https://dx.doi.org/' + cres['doi'] if cres['doi'] else ''
+                print(author + ',', str(cres['year']) + ':', cres['title'], doi)
+
+
     def drop_data(self, n_articles):
         """Drop terms based on number of article results.
 
