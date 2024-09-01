@@ -66,6 +66,7 @@ def check_dunders(words):
 def check_funcs(words):
 
     words.check_data()
+    words.check_articles()
 
 def drop_data(words, n_articles):
 
