@@ -324,7 +324,7 @@ def load_time_results(folder, file_name=None, directory=None):
 
     elif isinstance(directory, (str, Path)) or directory is None:
 
-        if file_name in os.listdir(directory):
+        if folder in os.listdir(directory):
             directory = '' if directory is None else directory
             folder_path = os.path.join(directory, folder)
 
