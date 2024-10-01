@@ -41,7 +41,7 @@ def plot_matrix(data, x_labels=None, y_labels=None, attribute='score', transpose
     cmap : {'purple', 'blue'} or matplotlib.cmap
         Colormap to use for the plot.
         If string, uses a sequential palette of the specified color.
-    square : bool
+    square : bool, optional, default: False
         Whether to plot all the cells as equally sized squares.
     ax : matplotlib.Axes, optional
         Figure axes upon which to plot.

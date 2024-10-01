@@ -41,7 +41,7 @@ def check_aliases(kwargs, aliases, default=None):
         Dictionary to check for elements labelled with possible aliases.
     aliases : list
         List of possible key value labels.
-    default
+    default : object or None, optional
         Default value to return if none of the potential labels are present.
 
     Returns
@@ -135,7 +135,7 @@ def check_ax(ax, figsize=None):
     ----------
     ax : matplotlib.Axes or None
         Axes object to check if is defined.
-    figsize : (float, float)
+    figsize : (float, float), optional
         The figure size for a new axis, if ax is not defined.
 
     Returns
@@ -189,7 +189,7 @@ def save_figure(file_name, file_path=None, close=False, **save_kwargs):
     ----------
     file_name : str
         File name for the figure file to save out.
-    file_path : str or Path
+    file_path : str or Path, optional
         Path for where to save out the figure to.
     close : bool, optional, default: False
         Whether to close the plot after saving.
@@ -211,7 +211,7 @@ def rotate_ticks(ax, xtickrotation=None, ytickrotation=None):
     ----------
     ax : matplotlib.Axes
         Figure axes to apply tick rotation to.
-    xtickrotation, ytickrotation : float
+    xtickrotation, ytickrotation : float, optional
         Rotation to apply to the x and/or y axis tick labels.
     """
 
