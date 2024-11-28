@@ -1,4 +1,4 @@
-"""LISC setup script."""
+"""Setup script for lisc."""
 
 import os
 from setuptools import setup, find_packages
@@ -46,6 +46,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         ],
     platforms = 'any',
     keywords = ['web-scraping', 'meta-analysis', 'text-mining', 'scientific-publications',
@@ -55,11 +56,11 @@ setup(
     extras_require = {
         'plot'     : ['matplotlib', 'seaborn', 'wordcloud'],
         'analysis' : ['scipy'],
-        'all'      : ['matplotlib', 'seaborn', 'wordcloud', 'scipy']
+        'all'      : ['matplotlib', 'seaborn', 'wordcloud', 'scipy'],
     },
     project_urls = {
         'Documentation' : 'https://lisc-tools.github.io/',
         'Bug Reports' : 'https://github.com/lisc-tools/lisc/issues',
-        'Source' : 'https://github.com/lisc-tools/lisc'
+        'Source' : 'https://github.com/lisc-tools/lisc',
     },
 )
