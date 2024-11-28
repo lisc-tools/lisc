@@ -132,3 +132,19 @@ for doi, n_refs in n_references.items():
 # welcome to extend the functionality. If you might be interested, feel free to get in
 # touch on `Github <https://github.com/lisc-tools/lisc>`_.
 #
+
+###################################################################################################
+# The End!
+# ~~~~~~~~
+#
+# That is the end of the main tutorial for LISC!
+#
+# There are some additional stand alone examples on the
+# `examples <https://lisc-tools.github.io/lisc/auto_tutorials/index.html>`_
+# page.
+#
+# If you have any further questions, or find any problems with the code,
+# please get in touch through the Github
+# `issues <https://github.com/lisc-tools/lisc/issues>`_
+# page.
+#
