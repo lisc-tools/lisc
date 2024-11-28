@@ -68,19 +68,3 @@ words = load_object('tutorial_words', SCDB('lisc_db'))
 
 # Check meta data from the requester object
 words.meta_data.requester
-
-###################################################################################################
-# The End!
-# ~~~~~~~~
-#
-# That is the end of the main tutorial for LISC!
-#
-# There are some additional stand alone examples on the
-# `examples <https://lisc-tools.github.io/lisc/auto_tutorials/index.html>`_
-# page.
-#
-# If you have any further questions, or find any problems with the code,
-# please get in touch through the Github
-# `issues <https://github.com/lisc-tools/lisc/issues>`_
-# page.
-#

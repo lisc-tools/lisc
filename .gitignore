@@ -25,6 +25,7 @@
 /doc/generated/*
 /doc/backrefs/*
 /doc/.sass-cache/*
+/doc/sg_execution_times.rst
 
 # Ignore pylint output
 _lint.txt
