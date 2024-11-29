@@ -248,6 +248,7 @@ class Counts():
         if term_type == 'terms':
             self.terms[dim].counts = np.zeros(self.terms[dim].n_terms, dtype=int)
 
+
     def add_labels(self, terms, directory=None, dim='A'):
         """Add labels for terms to the object.
 
@@ -525,11 +526,24 @@ class Counts():
         >>> counts.drop_data(20) # doctest: +SKIP
         """
 
-        # Set a flipper dictionary, to flip inds if needed
-        flip_inds = {'A' : 'B', 'B' : 'A'}
+        # Get set of indices to drop & drop them from the object
+        drop_inds = np.where(self.terms[dim].counts < n_articles)[0]
+        self._drop_terms(drop_inds, dim)
 
-        # Finds the indices of the terms with enough data to keep
-        keep_inds = np.where(self.terms[dim].counts >= n_articles)[0]
+
+    def _drop_terms(self, drop_inds, dim='A'):
+        """Sub-function to drop terms from object.
+
+        Parameters
+        ----------
+        drop_inds : list of int
+            Incides of terms to drop.
+        dim : {'A', 'B'}, optional
+            Which dim to drop terms from.
+        """
+
+        # Invert to indices of the terms to keep
+        keep_inds = np.delete(np.arange(self.terms[dim].n_terms), drop_inds)
 
         # Drop terms that do not have enough data
         self.terms[dim].terms = [self.terms[dim].terms[ind] for ind in keep_inds]
@@ -538,6 +552,9 @@ class Counts():
 
         # Create an inds dictionary that defaults to all-index slice
         inds = defaultdict(lambda: np.s_[:])
+
+        # Set a flipper dictionary, to flip inds if needed
+        flip_inds = {'A' : 'B', 'B' : 'A'}
 
         # If square, set both dims, and do array orgs needed for fancy indexing
         if self.square:
