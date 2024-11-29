@@ -509,7 +509,7 @@ class Counts():
                 data[term_ind, assoc_ind], twd1=twd1, twd2=twd2, nwd=nwd))
 
 
-    def drop_data(self, n_articles, dim='A'):
+    def drop_data(self, n_articles, dim='A', value='count'):
         """Drop terms based on number of article results.
 
         Parameters
@@ -518,6 +518,10 @@ class Counts():
             Minimum number of articles required to keep each term.
         dim : {'A', 'B'}, optional
             Which set of terms to drop.
+        value : {'count', 'coocs'}
+            Which data count to drop based on:
+                'count' : drops based on the total number of articles per term
+                'coocs' : drops based on the co-occurrences, if all values are below `n_articles`
 
         Examples
         --------
@@ -526,19 +530,25 @@ class Counts():
         >>> counts.drop_data(20) # doctest: +SKIP
         """
 
+        dim_inds = {'A' : 1, 'B' : 0}
+
         # Get set of indices to drop & drop them from the object
-        drop_inds = np.where(self.terms[dim].counts < n_articles)[0]
+        if value == 'count':
+            drop_inds = np.where(self.terms[dim].counts < n_articles)[0]
+        elif value == 'coocs':
+            drop_inds = list(np.where(np.all(self.counts < n_articles, dim_inds[dim]))[0])
+
         self._drop_terms(drop_inds, dim)
 
 
-    def _drop_terms(self, drop_inds, dim='A'):
+    def _drop_terms(self, drop_inds, dim):
         """Sub-function to drop terms from object.
 
         Parameters
         ----------
         drop_inds : list of int
-            Incides of terms to drop.
-        dim : {'A', 'B'}, optional
+            Indices of terms to drop.
+        dim : {'A', 'B'}
             Which dim to drop terms from.
         """
 
