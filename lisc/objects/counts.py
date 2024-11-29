@@ -409,7 +409,7 @@ class Counts():
 
         Parameters
         ----------
-        dim : {'A', 'B'}, optional
+        dim : {'A', 'B', 'both'}, optional
             Which set of terms to check.
 
         Examples
@@ -422,10 +422,18 @@ class Counts():
         if not self.has_data:
             raise ValueError('No data is available - cannot proceed.')
 
-        max_ind = np.argmax(self.terms[dim].counts)
-        print("The most studied term is  {}  with  {}  articles.".format(
-            wrap(self.terms[dim].labels[max_ind]),
-            self.terms[dim].counts[max_ind]))
+        if dim == 'both':
+
+            self.check_top('A')
+            print('\n')
+            self.check_top('B')
+
+        else:
+
+            max_ind = np.argmax(self.terms[dim].counts)
+            print("The most studied term is  {}  with  {}  articles.".format(
+                wrap(self.terms[dim].labels[max_ind]),
+                self.terms[dim].counts[max_ind]))
 
 
     def check_counts(self, dim='A'):
@@ -433,7 +441,7 @@ class Counts():
 
         Parameters
         ----------
-        dim : {'A', 'B'}
+        dim : {'A', 'B', 'both'}
             Which set of terms to check.
 
         Examples
@@ -446,14 +454,22 @@ class Counts():
         if not self.has_data:
             raise ValueError('No data is available - cannot proceed.')
 
-        # Calculate widths for printing
-        twd = get_max_length(self.terms[dim].labels, 2)
-        nwd = get_max_length(self.terms[dim].counts)
+        if dim == 'both':
 
-        print("The number of documents found for each search term is:")
-        for ind, term in enumerate(self.terms[dim].labels):
-            print("  {:{twd}}   -   {:{nwd}.0f}".format(
-                wrap(term), self.terms[dim].counts[ind], twd=twd, nwd=nwd))
+            self.check_counts('A')
+            print('\n')
+            self.check_counts('B')
+
+        else:
+
+            # Calculate widths for printing
+            twd = get_max_length(self.terms[dim].labels, 2)
+            nwd = get_max_length(self.terms[dim].counts)
+
+            print("The number of documents found for each search term is:")
+            for ind, term in enumerate(self.terms[dim].labels):
+                print("  {:{twd}}   -   {:{nwd}.0f}".format(
+                    wrap(term), self.terms[dim].counts[ind], twd=twd, nwd=nwd))
 
 
     def check_data(self, data_type='counts', dim='A'):
@@ -463,7 +479,7 @@ class Counts():
         ----------
         data_type : {'counts', 'score'}
             Which data type to use.
-        dim : {'A', 'B'}, optional
+        dim : {'A', 'B', 'both'}, optional
             Which set of terms to check.
 
         Examples
@@ -488,25 +504,33 @@ class Counts():
             if self.score_info['type'] == 'similarity':
                 raise ValueError('Cannot check value counts for similarity score.')
 
-        # Set up which direction to act across
-        data = getattr(self, data_type)
-        data = data.T if dim == 'B' else data
-        alt = 'B' if dim == 'A' and not self.square else 'A'
+        if dim == 'both':
 
-        # Calculate widths for printing
-        twd1 = get_max_length(self.terms[dim].labels, 2)
-        twd2 = get_max_length(self.terms[alt].labels, 2)
-        nwd = '>10.0f' if data_type == 'counts' else '06.3f'
+            self.check_data(data_type, 'A')
+            print('\n')
+            self.check_data(data_type, 'B')
 
-        # Loop through each term, find maximally associated term and print out
-        for term_ind, term in enumerate(self.terms[dim].labels):
+        else:
 
-            # Find the index of the most common association for current term
-            assoc_ind = np.argmax(data[term_ind, :])
+            # Set up which direction to act across
+            data = getattr(self, data_type)
+            data = data.T if dim == 'B' else data
+            alt = 'B' if dim == 'A' and not self.square else 'A'
 
-            print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
-                wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
-                data[term_ind, assoc_ind], twd1=twd1, twd2=twd2, nwd=nwd))
+            # Calculate widths for printing
+            twd1 = get_max_length(self.terms[dim].labels, 2)
+            twd2 = get_max_length(self.terms[alt].labels, 2)
+            nwd = '>10.0f' if data_type == 'counts' else '06.3f'
+
+            # Loop through each term, find maximally associated term and print out
+            for term_ind, term in enumerate(self.terms[dim].labels):
+
+                # Find the index of the most common association for current term
+                assoc_ind = np.argmax(data[term_ind, :])
+
+                print("For  {:{twd1}}  the highest association is  {:{twd2}}  with  {:{nwd}}".format(
+                    wrap(term), wrap(self.terms[alt].labels[assoc_ind]),
+                    data[term_ind, assoc_ind], twd1=twd1, twd2=twd2, nwd=nwd))
 
 
     def drop_data(self, n_articles, dim='A', value='count'):
@@ -530,15 +554,22 @@ class Counts():
         >>> counts.drop_data(20) # doctest: +SKIP
         """
 
-        dim_inds = {'A' : 1, 'B' : 0}
+        if dim == 'both':
 
-        # Get set of indices to drop & drop them from the object
-        if value == 'count':
-            drop_inds = np.where(self.terms[dim].counts < n_articles)[0]
-        elif value == 'coocs':
-            drop_inds = list(np.where(np.all(self.counts < n_articles, dim_inds[dim]))[0])
+            self.drop_data(n_articles, 'A', value)
+            self.drop_data(n_articles, 'B', value)
 
-        self._drop_terms(drop_inds, dim)
+        else:
+
+            dim_inds = {'A' : 1, 'B' : 0}
+
+            # Get set of indices to drop & drop them from the object
+            if value == 'count':
+                drop_inds = np.where(self.terms[dim].counts < n_articles)[0]
+            elif value == 'coocs':
+                drop_inds = list(np.where(np.all(self.counts < n_articles, dim_inds[dim]))[0])
+
+            self._drop_terms(drop_inds, dim)
 
 
     def _drop_terms(self, drop_inds, dim):
