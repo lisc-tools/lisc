@@ -8,7 +8,7 @@ from lisc.collect.counts import *
 def test_collect_counts_two(test_req):
 
     terms_a = ['language', 'memory']
-    excls_a = [['protein'], ['protein']]
+    excls_a = [['protein'], ['cell']]
     terms_b = ['brain']
 
     # Test co-occurence with two terms lists
@@ -22,7 +22,7 @@ def test_collect_counts_two(test_req):
 def test_collect_counts_one(test_req):
 
     terms_a = ['language', 'memory']
-    excls_a = [['protein'], ['protein']]
+    excls_a = [['protein'], ['cell']]
 
     # Test co-occurence with one list of terms
     cooc, counts, meta_data = collect_counts(\
@@ -34,7 +34,7 @@ def test_collect_counts_one(test_req):
 def test_collect_counts_nocooc(test_req):
 
     terms_a = ['language', 'memory']
-    excls_a = [['protein'], ['protein']]
+    excls_a = [['protein'], ['cell']]
 
     # Test coounts without co-occurence
     counts, meta_data = collect_counts(\
