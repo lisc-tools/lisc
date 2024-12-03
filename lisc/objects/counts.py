@@ -376,6 +376,9 @@ class Counts():
         >>> plot_dendrogram(counts)  # doctest:+SKIP
         """
 
+        # Clear any previously computed score
+        self.clear_score()
+
         if not self.has_data:
             raise ValueError('No data is available - cannot proceed.')
 
@@ -402,6 +405,13 @@ class Counts():
 
         if return_result:
             return deepcopy(self.score)
+
+
+    def clear_score(self):
+        """Clear any previously computed score."""
+
+        self.score = np.zeros(0)
+        self.score_info = {}
 
 
     def check_top(self, dim='A'):
@@ -547,12 +557,18 @@ class Counts():
                 'count' : drops based on the total number of articles per term
                 'coocs' : drops based on the co-occurrences, if all values are below `n_articles`
 
+        Notes
+        -----
+        This will drop any computed scores, as they may not be accurate after dropping data.
+
         Examples
         --------
         Drop terms with less than 20 articles (assuming `counts` already has data):
 
         >>> counts.drop_data(20) # doctest: +SKIP
         """
+
+        self.clear_score()
 
         if dim == 'both':
 
@@ -606,12 +622,3 @@ class Counts():
 
         # Drop raw count data for terms without enough data
         self.counts = self.counts[inds['A'], inds['B']]
-
-        if self.score.any():
-
-            # If score is a similarity matrix check and flip data indices as needed
-            if self.score_info['type'] == 'similarity':
-                inds[flip_inds[self.score_info['dim']]] = inds[self.score_info['dim']]
-
-            # Drop score data for terms without enough data
-            self.score = self.score[inds['A'], inds['B']]
