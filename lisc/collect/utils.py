@@ -145,7 +145,7 @@ def join(front, back, joiner):
     --------
     Join single-term search term components together:
 
-    >>> join('("term1")', '("incl1")', joiner='OR')
+    >>> join('("term1")', '("incl1")', joiner='AND')
     '("term1")AND("incl1")'
 
     Join multi-term search term components together, with 'AND' joiner:
