@@ -150,3 +150,43 @@ def join(front, back, joiner='AND'):
     """
 
     return front + joiner + back if (front and back) else front + back
+
+
+def join_multi(sections, joiners):
+    """Join multiple sections together into a search string.
+
+    Parameters
+    ----------
+    sections : list of str
+        List of sections to join together.
+    joiners : list of str
+        Joiners for between sections.
+        Should be length of sections - 1.
+
+    Returns
+    -------
+    joined : str
+        Joined search string.
+
+    Examples
+    --------
+    Create a joined search term from simple inputs (1 term per section):
+
+    >>> join_multi(['("term1")', '("incl1")', '("excl1")'], ['AND', 'NOT'])
+    '("term1")AND("incl1")NOT("excl1")'
+
+    Create a joined search term from more complex inputs (2 terms per section):
+
+    >>> sections = ['("term2"OR"term2b")', '("incl2"OR"incl2b")', '("excl2"OR"excl2b")']
+    >>> joiners = ['AND', 'NOT']
+    >>> join_multi(sections, joiners)
+    '("term2"OR"term2b")AND("incl2"OR"incl2b")NOT("excl2"OR"excl2b")'
+    """
+
+    assert len(sections) - 1 == len(joiners), 'Inputs do not align'
+
+    joined = sections[0]
+    for csec, cjoin in zip(sections[1:], joiners):
+        joined = join(joined, csec, cjoin)
+
+    return joined
