@@ -35,19 +35,19 @@ def test_make_comp():
 
 def test_join():
 
-    join1 = join('("term1")', '("incl1")')
+    join1 = join('("term1")', '("incl1")', joiner='AND')
     assert join1 == '("term1")AND("incl1")'
 
-    join2 = join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")')
+    join2 = join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")', joiner='AND')
     assert join2 == '("term1a"OR"term1b")AND("incl1a"OR"incl1b")'
 
     join3 = join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")', joiner='OR')
     join3 == '("term1a"OR"term1b")OR("incl1a"OR"incl1b")'
 
-    join4 = join('("term1")', '')
+    join4 = join('("term1")', '', joiner='OR')
     assert join4 == '("term1")'
 
-    join5 = join('', '("term1")')
+    join5 = join('', '("term1")', joiner='OR')
     assert join5 == '("term1")'
 
 def test_join_multi():

@@ -121,7 +121,7 @@ def make_comp(terms, joiner='OR'):
     return comp
 
 
-def join(front, back, joiner='AND'):
+def join(front, back, joiner):
     """Join search term components together with a specified joiner.
 
     Parameters
@@ -145,15 +145,15 @@ def join(front, back, joiner='AND'):
     --------
     Join single-term search term components together:
 
-    >>> join('("term1")', '("incl1")')
+    >>> join('("term1")', '("incl1")', joiner='OR')
     '("term1")AND("incl1")'
 
-    Join multi-term search term components together:
+    Join multi-term search term components together, with 'AND' joiner:
 
-    >>> join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")')
+    >>> join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")', joiner='AND')
     '("term1a"OR"term1b")AND("incl1a"OR"incl1b")'
 
-    Join multi-term search term components together, specifying the joiner:
+    Join multi-term search term components together, with 'OR' joiner:
 
     >>> join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")', joiner='OR')
     '("term1a"OR"term1b")OR("incl1a"OR"incl1b")'
