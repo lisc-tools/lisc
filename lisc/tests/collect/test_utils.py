@@ -1,11 +1,20 @@
 """Tests for the lisc.collect.utils."""
 
+from pytest import raises
+
 from lisc.data.term import Term
 
 from lisc.collect.utils import *
 
 ###################################################################################################
 ###################################################################################################
+
+def test_check_joiner():
+
+    for joiner in JOINERS:
+        _check_joiner(joiner)
+    with raises ValueError:
+        _check_joiner('ANDD')
 
 def test_make_term():
 

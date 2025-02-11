@@ -43,7 +43,6 @@ def test_compute_association_index():
     with raises(ValueError):
         compute_association_index(data, counts_b, counts_a)
 
-
 def test_compute_similarity():
 
     data = np.array([[5, 10, 5], [0, 5, 0]])

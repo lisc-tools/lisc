@@ -3,6 +3,27 @@
 ###################################################################################################
 ###################################################################################################
 
+# Define list of possible joiners
+JOINERS = ['AND', 'OR', 'NOT']
+
+def check_joiner(joiner):
+    """Check if a joiner definition is valid.
+
+    Parameters
+    ----------
+    joiner : {'OR', 'AND', 'NOT'}
+        A string to join together search term elements.
+
+    Raises
+    ------
+    ValueError
+        If an invalid joiner value is given.
+    """
+
+    if joiner not in JOINERS:
+        raise ValueError('Invalid term joiner.')
+
+
 def make_term(term, incl_joiner='OR'):
     """Make a full search term argument.
 
