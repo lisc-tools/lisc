@@ -13,7 +13,7 @@ def test_check_joiner():
 
     for joiner in JOINERS:
         _check_joiner(joiner)
-    with raises ValueError:
+    with raises(ValueError):
         _check_joiner('ANDD')
 
 def test_make_term():
