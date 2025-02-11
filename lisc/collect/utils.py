@@ -61,8 +61,14 @@ def make_term(term, incl_joiner='OR'):
 
     check_joiner(incl_joiner)
 
-    return join(join(make_comp(term.search), make_comp(term.inclusions, incl_joiner), 'AND'),
-                make_comp(term.exclusions), 'NOT')
+    # Create list of sections - search terms, inclusions, exclusions
+    sections = [make_comp(term.search),
+                make_comp(term.inclusions, incl_joiner),
+                make_comp(term.exclusions)]
+    # Define joiners to combine (SEARCH)AND(INCLUSIONS)NOT(EXCLUSIONS)
+    joiners = ['AND', 'NOT']
+
+    return join_multi(sections, joiners)
 
 
 def make_comp(terms, joiner='OR'):
