@@ -59,6 +59,8 @@ def make_term(term, incl_joiner='OR'):
     '("term2"OR"term2b")AND("incl2"OR"incl2b")NOT("excl2"OR"excl2b")'
     """
 
+    check_joiner(incl_joiner)
+
     return join(join(make_comp(term.search), make_comp(term.inclusions, incl_joiner), 'AND'),
                 make_comp(term.exclusions), 'NOT')
 
@@ -101,6 +103,8 @@ def make_comp(terms, joiner='OR'):
     >>> make_comp(['term1a', 'term1b'], joiner='AND')
     '("term1a"AND"term1b")'
     """
+
+    check_joiner(joiner)
 
     comp = ''
     if terms and terms[0]:
@@ -148,6 +152,8 @@ def join(front, back, joiner='AND'):
     >>> join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")', joiner='OR')
     '("term1a"OR"term1b")OR("incl1a"OR"incl1b")'
     """
+
+    check_joiner(joiner)
 
     return front + joiner + back if (front and back) else front + back
 
