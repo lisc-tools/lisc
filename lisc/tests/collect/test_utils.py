@@ -18,10 +18,13 @@ def test_check_joiner():
 
 def test_make_term():
 
-    term = Term('label', ['search1', 'search2'], ['incl1', 'incl2'], ['excl1', 'excl2'])
-    arg = make_term(term)
+    term1 = Term('label', ['search'], ['incl'], ['excl'])
+    out1 = make_term(term1)
+    assert out1 == '("search")AND("incl")NOT("excl")'
 
-    assert arg == "(\"search1\"OR\"search2\")AND(\"incl1\"OR\"incl2\")NOT(\"excl1\"OR\"excl2\")"
+    term2 = Term('label', ['search1', 'search2'], ['incl1', 'incl2'], ['excl1', 'excl2'])
+    out2 = make_term(term2)
+    assert out2 == '("search1"OR"search2")AND("incl1"OR"incl2")NOT("excl1"OR"excl2")'
 
 def test_make_comp():
 
@@ -32,9 +35,20 @@ def test_make_comp():
 
 def test_join():
 
-    assert join('Front', 'Back', '&&') == 'Front&&Back'
-    assert join('', 'Back', '&&') == 'Back'
-    assert join('Front', '', '&&') == 'Front'
+    join1 = join('("term1")', '("incl1")')
+    assert join1 == '("term1")AND("incl1")'
+
+    join2 = join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")')
+    assert join2 == '("term1a"OR"term1b")AND("incl1a"OR"incl1b")'
+
+    join3 = join('("term1a"OR"term1b")', '("incl1a"OR"incl1b")', joiner='OR')
+    join3 == '("term1a"OR"term1b")OR("incl1a"OR"incl1b")'
+
+    join4 = join('("term1")', '')
+    assert join4 == '("term1")'
+
+    join5 = join('', '("term1")')
+    assert join5 == '("term1")'
 
 def test_join_multi():
 
