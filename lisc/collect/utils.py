@@ -62,16 +62,16 @@ def make_term(term, incl_joiner='OR'):
     check_joiner(incl_joiner)
 
     # Create list of sections - search terms, inclusions, exclusions
-    sections = [make_comp(term.search),
+    sections = [make_comp(term.search, 'OR'),
                 make_comp(term.inclusions, incl_joiner),
-                make_comp(term.exclusions)]
+                make_comp(term.exclusions, 'OR')]
     # Define joiners to combine (SEARCH)AND(INCLUSIONS)NOT(EXCLUSIONS)
     joiners = ['AND', 'NOT']
 
     return join_multi(sections, joiners)
 
 
-def make_comp(terms, joiner='OR'):
+def make_comp(terms, joiner):
     """Make a search term component.
 
     Parameters
@@ -96,15 +96,15 @@ def make_comp(terms, joiner='OR'):
     --------
     Make a search component for a single term:
 
-    >>> make_comp(['term1'])
+    >>> make_comp(['term1'], joiner='OR')
     '("term1")'
 
-    Make a search component for multiple terms together:
+    Make a search component for multiple terms together, joining with 'OR':
 
-    >>> make_comp(['term1a', 'term1b'])
+    >>> make_comp(['term1a', 'term1b'], joiner='OR')
     '("term1a"OR"term1b")'
 
-    Make a search component for multiple terms together, specifying the joiner:
+    Make a search component for multiple terms together, joining with 'AND':
 
     >>> make_comp(['term1a', 'term1b'], joiner='AND')
     '("term1a"AND"term1b")'
