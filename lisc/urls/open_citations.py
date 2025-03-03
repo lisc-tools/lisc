@@ -49,8 +49,10 @@ class OpenCitations(URLs):
         # Set up the base url & utils list for the open citations API
         base = 'https://w3id.org/oc/index/coci/api/v1'
 
-        utils = {'references' : 'references',
-                 'citations' : 'citations',
-                 'metadata' : 'metadata'}
+        utils = {
+            'references' : 'references',
+            'citations' : 'citations',
+            'metadata' : 'metadata',
+        }
 
         URLs.__init__(self, base, utils)
