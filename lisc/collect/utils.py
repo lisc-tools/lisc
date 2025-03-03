@@ -6,6 +6,13 @@
 # Define list of possible joiners
 JOINERS = ['AND', 'OR', 'NOT']
 
+# Default default joiners to use to join individual terms within each type
+DEFAULT_TERM_JOINERS = {
+    'search' : 'OR',
+    'inclusions' : 'OR',
+    'exclusions' : 'OR',
+}
+
 def check_joiner(joiner):
     """Check if a joiner definition is valid.
 
@@ -24,15 +31,17 @@ def check_joiner(joiner):
         raise ValueError('Invalid term joiner.')
 
 
-def make_term(term, incl_joiner='OR'):
+def make_term(term, joiners=DEFAULT_TERM_JOINERS):
     """Make a full search term argument.
 
     Parameters
     ----------
     term : Term
         Term information.
-    incl_joiner : {'OR', 'AND'}
-        The joiner to use to combine the inclusion words.
+    joiners : dict
+        The joiner to use for each of the term types.
+        Should have keys ['search', 'inclusions', 'exclusions']
+        Each key should be one of {'OR', 'AND', 'NOT'}.
 
     Returns
     -------
@@ -59,16 +68,17 @@ def make_term(term, incl_joiner='OR'):
     '("term2"OR"term2b")AND("incl2"OR"incl2b")NOT("excl2"OR"excl2b")'
     """
 
-    check_joiner(incl_joiner)
+    for joiner in joiners.values():
+        check_joiner(joiner)
 
     # Create list of sections - search terms, inclusions, exclusions
-    sections = [make_comp(term.search, 'OR'),
-                make_comp(term.inclusions, incl_joiner),
-                make_comp(term.exclusions, 'OR')]
-    # Define joiners to combine (SEARCH)AND(INCLUSIONS)NOT(EXCLUSIONS)
-    joiners = ['AND', 'NOT']
+    sections = [make_comp(term.search, joiners['search']),
+                make_comp(term.inclusions, joiners['inclusions']),
+                make_comp(term.exclusions, joiners['exclusions'])]
+    # Define joiners to combine - (SEARCH)AND(INCLUSIONS)NOT(EXCLUSIONS)
+    section_joiners = ['AND', 'NOT']
 
-    return join_multi(sections, joiners)
+    return join_multi(sections, section_joiners)
 
 
 def make_comp(terms, joiner):
