@@ -7,7 +7,7 @@ We welcome any contributions to the project that extend or improve code and/or d
 This page includes information for how to get involved and contribute to the project, and guidelines for how to do so.
 
 This project adheres to a
-[code of conduct](https://github.com/lisc-tools/liscp/blob/main/CODE_OF_CONDUCT.md)
+[code of conduct](https://github.com/lisc-tools/lisc/blob/main/CODE_OF_CONDUCT.md)
 that you are expected to uphold when participating in this project.
 
 On this page, you can find information on:
@@ -73,7 +73,7 @@ Once you're ready to start working on your contribution, do the following:
 3. [Check the project conventions](#project-conventions), and make sure all new or updated code follows the guidelines
 4. [Submit a pull request](https://help.github.com/articles/proposing-changes-to-a-project-with-pull-requests/), to start the process of merging the new code to the main branch
 
-If it's your first time contributing to open source software, check out this free resource on [how to contribute to an open-source project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+If it's your first time contributing to open source software, check out this free resource on [how to contribute to an open-source project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
 
 ## Project Conventions
 
@@ -124,5 +124,3 @@ All code contributed to the module should follow these conventions:
         * Move to the `lisc/doc` directory (`cd doc`)
         * Run `make html` to create a local copy of the documentation website
         * The documentation can then be opened in a web browser by opening the file `lisc/doc/_build/html/index.html`
-
-For more guidelines on how to write well formated and organized code, check out the [Python API Checklist](http://python.apichecklist.com).
