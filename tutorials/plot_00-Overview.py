@@ -176,8 +176,8 @@ base.add_terms(terms)
 
 # Set up inclusions and exclusions
 #   Each is a list, that should be the same length as the number of terms
-inclusions = [['brain'], ['body']]
-exclusions = [['protein'], ['subcortical']]
+inclusions = [['brain'], ['body', 'peripheral']]
+exclusions = [['protein'], ['subcortical', 'brainstem']]
 
 # Add the inclusion and exclusions
 base.add_terms(inclusions, 'inclusions')
@@ -226,6 +226,42 @@ base.labels
 # Print out the full search terms
 print(base.make_search_term(0))
 print(base.make_search_term('cortex'))
+
+###################################################################################################
+#
+# As you can see in the above, when creating the search terms, these get combined to create
+# overall search terms defined as 'SEARCH'AND'INCLUSIONS'NOT'EXCLUSIONS', with multiple
+# terms within any set of terms combined with the 'OR' operator.
+#
+
+###################################################################################################
+# Change 'joiners'
+# ~~~~~~~~~~~~~~~~
+#
+# By default, multiple terms within each section get combined with the 'OR' operator,
+# allowing for creating search terms that include (or exclude) multiple terms of interest.
+#
+# While this may often be the desired approach, there is also the option to change the
+# join operator between different terms, separately for each set of terms.
+#
+# To do so, the :meth:`~.Base.set_joiners` method can be used to update the joiners used, from
+# the options 'OR', 'AND', and 'NOT', which can be specified for 'search', 'inclusion'
+# or 'exclusion' terms.
+#
+
+###################################################################################################
+
+# Change the joiner for exclusions
+base.set_joiners(exclusions='AND')
+
+# Check the full search terms, after updating the joiner
+for term_ind in range(base.n_terms):
+    print(base.make_search_term(term_ind))
+
+###################################################################################################
+#
+# By updating the joiners, you can add extra customizations to creating search terms.
+#
 
 ###################################################################################################
 # LISC Objects
