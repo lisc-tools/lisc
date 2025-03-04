@@ -348,6 +348,20 @@ class Base():
         self._set_none_labels()
 
 
+    def make_search_term(self, label):
+        """Create the combined search term for a selected term.
+
+        Parameters
+        ----------
+        label : str or int
+            The requested term.
+            If str, is the label of the term.
+            If int, is used as the index of the term.
+        """
+
+        return make_term(self[label], joiners=self._joiners)
+
+
     def set_joiners(self, search=None, inclusions=None, exclusions=None):
         """Set joiners to use, specified for each term type.
 
@@ -367,20 +381,6 @@ class Base():
             if joiner:
                 check_joiner(joiner)
                 self._joiners[label] = joiner
-
-
-    def make_search_term(self, label):
-        """Create the combined search term for a selected term.
-
-        Parameters
-        ----------
-        label : str or int
-            The requested term.
-            If str, is the label of the term.
-            If int, is used as the index of the term.
-        """
-
-        return make_term(self[label], joiners=self._joiners)
 
 
     def _set_none_labels(self):

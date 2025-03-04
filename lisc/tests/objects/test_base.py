@@ -235,6 +235,17 @@ def test_make_search_term(tbase_terms):
         for el in getattr(tbase_terms.get_term(tbase_terms.labels[1]), attr):
             assert el in sterm2
 
+def test_set_joiners(tbase_terms):
+
+    tbase_terms.set_joiners(search='AND', inclusions='AND', exclusions='AND')
+    sterm1 = tbase_terms.make_search_term(0)
+    assert '"test0"AND"synonym0"' in sterm1
+    assert '"incl0"AND"incl_synonym0"' in sterm1
+    assert '"excl0"AND"excl_synonym0"' in sterm1
+
+    with raises(ValueError):
+        tbase_terms.set_joiners(search='MAYBE')
+
 def test_set_none_labels(tbase):
 
     tbase.terms = [['first'], ['second']]
