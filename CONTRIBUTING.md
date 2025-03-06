@@ -121,7 +121,7 @@ All code contributed to the module should follow these conventions:
     * Any new functionality should be added and described in the tutorials and/or examples
         * If a new approach is added, a new tutorial or example may be appropriate
     * To build and check the documentation locally:
-        * Install the requirements for the docsite (`pip install -r requirements-doc.txt`)
+        * Install the requirements for the docsite (`pip install -r requirements-docs.txt`)
         * Move to the `lisc/doc` directory (`cd doc`)
         * Run `make html` to create a local copy of the documentation website
         * The documentation can then be opened in a web browser by opening the file `lisc/doc/_build/html/index.html`
