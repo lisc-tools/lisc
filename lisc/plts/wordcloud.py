@@ -2,7 +2,7 @@
 
 import random
 
-from lisc.core.modutils import safe_import
+from lisc.modutils.dependencies import safe_import
 
 wc = safe_import('wordcloud')
 

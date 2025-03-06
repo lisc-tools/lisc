@@ -4,7 +4,7 @@ import numpy as np
 
 from lisc.plts.utils import check_aliases, check_ax, savefig
 from lisc.plts.wordcloud import create_wordcloud, conv_freqs
-from lisc.core.modutils import safe_import
+from lisc.modutils.dependencies import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
 

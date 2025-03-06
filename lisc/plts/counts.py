@@ -11,7 +11,7 @@ import numpy as np
 from lisc import Counts1D, Counts
 from lisc.plts.utils import (check_args, check_ax, savefig, get_cmap,
                              counts_data_helper, rotate_ticks)
-from lisc.core.modutils import safe_import
+from lisc.modutils.dependencies import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
 sns = safe_import('seaborn')

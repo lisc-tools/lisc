@@ -5,7 +5,7 @@ from os.path import join as pjoin
 
 from lisc import Counts
 from lisc.io.db import SCDB
-from lisc.core.modutils import safe_import
+from lisc.modutils.dependencies import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
 sns = safe_import('seaborn')

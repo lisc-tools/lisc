@@ -3,7 +3,7 @@
 from lisc.data.term import Term
 from lisc.data.process import process_articles
 from lisc.data.base_articles import BaseArticles
-from lisc.core.errors import InconsistentDataError, ProcessingError
+from lisc.modutils.errors import InconsistentDataError, ProcessingError
 from lisc.io.db import check_directory
 from lisc.io.io import save_jsonlines, parse_json_data
 
