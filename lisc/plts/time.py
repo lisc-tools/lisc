@@ -2,7 +2,7 @@
 
 from lisc.analysis.time import get_counts_across_years
 from lisc.plts.utils import check_ax, savefig
-from lisc.core.modutils import safe_import
+from lisc.modutils.dependencies import safe_import
 
 plt = safe_import('.pyplot', 'matplotlib')
 

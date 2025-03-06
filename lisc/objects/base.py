@@ -6,7 +6,7 @@ from lisc.data.term import Term
 from lisc.io import load_txt_file
 from lisc.utils.base import flatten
 from lisc.collect.utils import make_term, check_joiner, DEFAULT_TERM_JOINERS
-from lisc.core.errors import InconsistentDataError
+from lisc.modutils.errors import InconsistentDataError
 
 ###################################################################################################
 ###################################################################################################

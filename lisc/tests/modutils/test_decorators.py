@@ -1,6 +1,6 @@
-"""Tests for the lisc.core.decorators."""
+"""Tests for the lisc.modutils.decorators."""
 
-from lisc.core.decorators import *
+from lisc.modutils.decorators import *
 
 ###################################################################################################
 ###################################################################################################
