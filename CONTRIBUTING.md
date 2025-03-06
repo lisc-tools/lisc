@@ -20,7 +20,8 @@ On this page, you can find information on:
 
 ## Reporting a Problem
 
-To report an issue with the code, please submit it to our [issue tracker](https://github.com/lisc-tools/lisc/issues).
+To report an issue with the code, please submit it to our
+[issue tracker](https://github.com/lisc-tools/lisc/issues).
 
 In doing so, please try to include the following:
 
@@ -49,7 +50,8 @@ If you have a new idea you would like to suggest or contribute, please do the fo
 If you are interested in getting involved and helping with the project, a great place to start is to visit the
 [issues](https://github.com/lisc-tools/lisc/issues) or
 [development](https://github.com/lisc-tools/Development) page
-and see if there is anything you would be interested in helping with. If so, join the conversation, and project developers can help get you started.
+and see if there is anything you would be interested in helping with.
+If so, join the conversation, and project developers can help get you started.
 
 ## Project Scope
 
@@ -62,18 +64,16 @@ such as custom or custom web scraping and/or novel natural language processing (
 
 ## Making a Contribution
 
-If there is a feature you would like to add, or an issue you saw that you think you can help with, you are ready to make a submission to the project!
+If there is a feature you would like to add, or an issue you saw that you think you can help with, you are ready to make a submission to the project! If you are working on a feature, please indicate so in the relevant issue, so that we can keep track of who is working on what.
 
-If you are working on a feature, please indicate so in the relevant issue, so that we can keep track of who is working on what.
+All contributions are managed through Github. If you are ready to start working on a contribution, you should follow the Github
+[guidelines for contributing to a project](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project), which include forking the repository, making your suggested changes to the code, and then opening a pull request (PR) to suggest the code to the project.
 
-Once you're ready to start working on your contribution, do the following:
+Once you open a PR, developers will review the code. Please make sure to check and follow the
+[project conventions](#project-conventions) making sure that all new or updated code follows the guidelines.
 
-1. [Fork this repository](https://help.github.com/articles/fork-a-repo/), which makes your own version of this project you can edit
-2. [Make your changes](https://guides.github.com/activities/forking/#making-changes), updating or adding code to add the desired functionality
-3. [Check the project conventions](#project-conventions), and make sure all new or updated code follows the guidelines
-4. [Submit a pull request](https://help.github.com/articles/proposing-changes-to-a-project-with-pull-requests/), to start the process of merging the new code to the main branch
-
-If it's your first time contributing to open source software, check out this free resource on [how to contribute to an open-source project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+If it's your first time contributing to open source software, check out this free resource on
+[how to contribute to an open-source project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
 
 ## Project Conventions
 
