@@ -66,14 +66,15 @@ such as custom or custom web scraping and/or novel natural language processing (
 
 If there is a feature you would like to add, or an issue you saw that you think you can help with, you are ready to make a submission to the project! If you are working on a feature, please indicate so in the relevant issue, so that we can keep track of who is working on what.
 
-All contributions are managed through Github. If you are ready to start working on a contribution, you should follow the Github
+All contributions are managed through Github.
+If you are ready to start working on a contribution, you should follow the Github
 [guidelines for contributing to a project](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project), which include forking the repository, making your suggested changes to the code, and then opening a pull request (PR) to suggest the code to the project.
 
 Once you open a PR, developers will review the code. Please make sure to check and follow the
-[project conventions](#project-conventions) making sure that all new or updated code follows the guidelines.
+[project conventions](#project-conventions) so that all new or updated code follows the guidelines.
 
 If it's your first time contributing to open source software, check out this free resource on
-[how to contribute to an open-source project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+[how to contribute to open-source projects on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
 
 ## Project Conventions
 
