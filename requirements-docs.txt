@@ -4,9 +4,3 @@ sphinx_gallery
 sphinx_bootstrap_theme
 sphinx-copybutton
 numpydoc
-
-# Optional dependencies that are required for building documentation
-matplotlib
-seaborn
-scipy
-wordcloud
