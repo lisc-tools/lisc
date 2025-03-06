@@ -588,6 +588,20 @@ class Counts():
             self._drop_terms(drop_inds, dim)
 
 
+    def set_joiners(self, search=None, inclusions=None, exclusions=None, dim='A'):
+        """Set joiners to use, specified for each term type.
+
+        Parameters
+        ----------
+        search, inclusions, exclusions : {'OR', 'AND', 'NOT'}
+            Joiner to use to combine terms, for search, inclusions, and exclusions terms.
+        dim : {'A', 'B'}, optional
+            Which set of terms to set joiners for.
+        """
+
+        self.terms[dim].set_joiners(search, inclusions, exclusions)
+
+
     def _drop_terms(self, drop_inds, dim):
         """Sub-function to drop terms from object.
 

@@ -5,8 +5,8 @@ from copy import deepcopy
 from lisc.data.term import Term
 from lisc.io import load_txt_file
 from lisc.utils.base import flatten
-from lisc.collect.utils import make_term
-from lisc.core.errors import InconsistentDataError
+from lisc.collect.terms import make_term, check_joiner, DEFAULT_TERM_JOINERS
+from lisc.modutils.errors import InconsistentDataError
 
 ###################################################################################################
 ###################################################################################################
@@ -37,6 +37,7 @@ class Base():
         self.inclusions = list()
         self.exclusions = list()
         self._labels = list()
+        self._joiners = deepcopy(DEFAULT_TERM_JOINERS)
 
 
     def __getitem__(self, key):
@@ -358,7 +359,28 @@ class Base():
             If int, is used as the index of the term.
         """
 
-        return make_term(self[label])
+        return make_term(self[label], joiners=self._joiners)
+
+
+    def set_joiners(self, search=None, inclusions=None, exclusions=None):
+        """Set joiners to use, specified for each term type.
+
+        Parameters
+        ----------
+        search, inclusions, exclusions : {'OR', 'AND', 'NOT'}
+            Joiner to use to combine terms, for search, inclusions, and exclusions terms.
+        """
+
+        input_joiners = {
+            'search' : search,
+            'inclusions' : inclusions,
+            'exclusions' : exclusions,
+        }
+
+        for label, joiner in input_joiners.items():
+            if joiner:
+                check_joiner(joiner)
+                self._joiners[label] = joiner
 
 
     def _set_none_labels(self):

@@ -1,10 +1,10 @@
-"""Tests for the lisc.core.modutils."""
+"""Tests for the lisc.modutils.dependencies."""
 
 from inspect import ismodule
 
 from pytest import raises
 
-from lisc.core.modutils import *
+from lisc.modutils.dependencies import *
 
 ###################################################################################################
 ###################################################################################################

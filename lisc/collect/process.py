@@ -1,6 +1,6 @@
 """Functions to process tags from collected data."""
 
-from lisc.core.decorators import catch_none
+from lisc.modutils.decorators import catch_none
 
 ###################################################################################################
 ###################################################################################################

@@ -1,4 +1,4 @@
-"""Utility functions & decorators for dealing with LISC, as a module."""
+"""Dependency related utitiles and decorators."""
 
 from importlib import import_module
 

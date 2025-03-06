@@ -7,8 +7,8 @@ import shutil
 
 from lisc.requester import Requester
 from lisc.data.meta_data import MetaData
-from lisc.core.modutils import safe_import
 from lisc.io.db import create_file_structure
+from lisc.modutils.dependencies import safe_import
 
 from lisc.tests.tdata import create_term_files, create_api_files
 from lisc.tests.tobjs import (TestDB, load_base, load_counts1d, load_counts, load_words,

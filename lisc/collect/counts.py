@@ -7,7 +7,7 @@ from lisc.requester import Requester
 from lisc.data.term import Term
 from lisc.data.meta_data import MetaData
 from lisc.collect.info import get_db_info
-from lisc.collect.utils import make_term, join
+from lisc.collect.terms import make_term, join
 from lisc.collect.process import get_info
 from lisc.urls.eutils import EUtils, get_wait_time
 
