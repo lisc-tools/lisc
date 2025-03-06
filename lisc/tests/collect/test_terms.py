@@ -1,10 +1,10 @@
-"""Tests for the lisc.collect.utils."""
+"""Tests for the lisc.collect.terms."""
 
 from pytest import raises
 
 from lisc.data.term import Term
 
-from lisc.collect.utils import *
+from lisc.collect.terms import *
 
 ###################################################################################################
 ###################################################################################################
