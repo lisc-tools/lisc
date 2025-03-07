@@ -220,7 +220,7 @@ Words
 Time
 ~~~~
 
-.. currentmodule:: lisc.plts.words
+.. currentmodule:: lisc.plts.time
 
 .. autosummary::
     :toctree: generated/
