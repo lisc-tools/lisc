@@ -4,22 +4,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.objects.base &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
+    <title>lisc.objects.base &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -57,7 +54,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,8 +117,8 @@
 <span class="kn">from</span> <span class="nn">lisc.data.term</span> <span class="kn">import</span> <span class="n">Term</span>
 <span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">load_txt_file</span>
 <span class="kn">from</span> <span class="nn">lisc.utils.base</span> <span class="kn">import</span> <span class="n">flatten</span>
-<span class="kn">from</span> <span class="nn">lisc.collect.utils</span> <span class="kn">import</span> <span class="n">make_term</span>
-<span class="kn">from</span> <span class="nn">lisc.core.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span>
+<span class="kn">from</span> <span class="nn">lisc.collect.terms</span> <span class="kn">import</span> <span class="n">make_term</span><span class="p">,</span> <span class="n">check_joiner</span><span class="p">,</span> <span class="n">DEFAULT_TERM_JOINERS</span>
+<span class="kn">from</span> <span class="nn">lisc.modutils.errors</span> <span class="kn">import</span> <span class="n">InconsistentDataError</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -151,7 +148,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_joiners</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_TERM_JOINERS</span><span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
@@ -473,7 +471,28 @@
 <span class="sd">            If int, is used as the index of the term.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">make_term</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">label</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">make_term</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">joiners</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_joiners</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Base.set_joiners"><a class="viewcode-back" href="../../../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.set_joiners">[docs]</a>    <span class="k">def</span> <span class="nf">set_joiners</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set joiners to use, specified for each term type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        search, inclusions, exclusions : {&#39;OR&#39;, &#39;AND&#39;, &#39;NOT&#39;}</span>
+<span class="sd">            Joiner to use to combine terms, for search, inclusions, and exclusions terms.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">input_joiners</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;search&#39;</span> <span class="p">:</span> <span class="n">search</span><span class="p">,</span>
+            <span class="s1">&#39;inclusions&#39;</span> <span class="p">:</span> <span class="n">inclusions</span><span class="p">,</span>
+            <span class="s1">&#39;exclusions&#39;</span> <span class="p">:</span> <span class="n">exclusions</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">joiner</span> <span class="ow">in</span> <span class="n">input_joiners</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">joiner</span><span class="p">:</span>
+                <span class="n">check_joiner</span><span class="p">(</span><span class="n">joiner</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_joiners</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">joiner</span></div>
 
 
     <span class="k">def</span> <span class="nf">_set_none_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -543,8 +562,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

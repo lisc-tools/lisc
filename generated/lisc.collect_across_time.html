@@ -3,24 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>lisc.collect_across_time &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <title>lisc.collect_across_time &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -58,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,7 +117,7 @@
 <span class="sig-prename descclassname"><span class="pre">lisc.</span></span><span class="sig-name descname"><span class="pre">collect_across_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">collect_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lisc/collect/time.html#collect_across_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisc.collect_across_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect data across time epochs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>obj</strong><span class="classifier">Counts1D, Counts, Words</span></dt><dd><p>Object to collect data with.</p>
 </dd>
@@ -130,7 +127,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>results</strong><span class="classifier">dict</span></dt><dd><p>Results collected across time.
 Each key reflects the start year, and each value is a object with search results.</p>
@@ -139,15 +136,18 @@ Each key reflects the start year, and each value is a object with search results
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Time regions are defined as the set of regions {start of <cite>years[n]</cite> to end of <cite>years[n]-1</cite>}.
-For example, for <cite>years = [1990, 1995, 2000]</cite>, this would search for:</p>
-<blockquote>
-<div><p>{01/01/1990 to 12/31/1994; 01/01/1995 to 12/31/1990}</p>
-</div></blockquote>
-<dl class="simple">
-<dt>Similarly, for <cite>years = [2000, 2001, 2002, 2003]</cite>, this would search for:</dt><dd><p>{01/01/2000 to 12/31/2000; 01/01/2001 to 12/31/2001; 01/01/2002 to 12/31/2002}</p>
-</dd>
-</dl>
+<p>Time regions are defined as the set of regions {start of <cite>years[n]</cite> to end of <cite>years[n]-1</cite>}.</p>
+<p>For example, for <cite>years = [1990, 1995, 2000]</cite>, this would search for:</p>
+<ul class="simple">
+<li><p>01/01/1990 to 12/31/1994</p></li>
+<li><p>01/01/1995 to 12/31/1990</p></li>
+</ul>
+<p>Similarly, for <cite>years = [2000, 2001, 2002, 2003]</cite>, this would search for:</p>
+<ul class="simple">
+<li><p>01/01/2000 to 12/31/2000</p></li>
+<li><p>01/01/2001 to 12/31/2001</p></li>
+<li><p>01/01/2002 to 12/31/2002</p></li>
+</ul>
 <p>Note that this means that final element in <cite>years</cite> is not included in the search.
 Also, this function only currently supports contiguous, whole year search times.</p>
 <p class="rubric">Examples</p>
@@ -161,7 +161,13 @@ Also, this function only currently supports contiguous, whole year search times.
 </div>
 </dd></dl>
 
-<div style='clear:both'></div></section>
+<section id="examples-using-lisc-collect-across-time">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">lisc.collect_across_time</span></code><a class="headerlink" href="#examples-using-lisc-collect-across-time" title="Permalink to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Collecting and examining data collected across time."><img alt="" src="../_images/sphx_glr_plot_06-CollectAcrossTime_thumb.png" />
+<p><a class="reference internal" href="../auto_tutorials/plot_06-CollectAcrossTime.html#sphx-glr-auto-tutorials-plot-06-collectacrosstime-py"><span class="std std-ref">Tutorial 06: Collect Across Time</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Tutorial 06: Collect Across Time</div>
+</div></div><div style='clear:both'></div></section>
+</section>
 
 
     </div>
@@ -175,8 +181,8 @@ Also, this function only currently supports contiguous, whole year search times.
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

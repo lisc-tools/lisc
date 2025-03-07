@@ -3,24 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial 01: Words Collection &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <title>Tutorial 01: Words Collection &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -58,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -116,7 +113,7 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-01-wordscollection-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="tutorial-01-words-collection">
 <span id="sphx-glr-auto-tutorials-plot-01-wordscollection-py"></span><h1>Tutorial 01: Words Collection<a class="headerlink" href="#tutorial-01-words-collection" title="Permalink to this heading">¶</a></h1>
@@ -124,7 +121,7 @@ to download the full example code</p>
 <section id="words-analysis">
 <h2>Words Analysis<a class="headerlink" href="#words-analysis" title="Permalink to this heading">¶</a></h2>
 <p>The ‘Words’ approach collects text and meta-data from articles found for requested search terms.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Words object, which is used for words collection</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Words object, which is used for words collection</span>
 <span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Words</span></a>
 
 <span class="c1"># Import the SCDB object, which organizes a database structure for saved data</span>
@@ -140,23 +137,19 @@ to download the full example code</p>
 <p>The <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object is used to collect and analyze text data and article metadata.</p>
 <p>Search terms are specified, as previously introduced, to find articles of interest,
 from which text data and meta-data is collected.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some search terms</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some search terms</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Words object and set the terms to search for</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Words object and set the terms to search for</span>
 <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a> <span class="o">=</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Words</span></a><span class="p">()</span>
 <a href="../generated/lisc.Words.html#lisc.Words.add_terms" title="lisc.Words.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">words</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To get started, we will first run a collection of words data, collecting up to
 5 articles for each search term, as specified by the <cite>retmax</cite> parameter.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words data</span>
 <a href="../generated/lisc.Words.html#lisc.Words.run_collection" title="lisc.Words.run_collection" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">words</span><span class="o">.</span><span class="n">run_collection</span></a><span class="p">(</span><span class="n">retmax</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/bs4/builder/__init__.py:545: XMLParsedAsHTMLWarning: It looks like you&#39;re parsing an XML document using an HTML parser. If this really is an HTML document (maybe it&#39;s XHTML?), you can ignore or filter this warning. If it&#39;s XML, you should know that using an XML parser will be more reliable. To parse this document as XML, make sure you have the lxml package installed, and pass the keyword argument `features=&quot;xml&quot;` into the BeautifulSoup constructor.
-  warnings.warn(
 </pre></div>
 </div>
 <section id="lisc-data-objects">
@@ -173,20 +166,20 @@ from which text data and meta-data is collected.</p>
 <li><p>keywords</p></li>
 <li><p>DOIs</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the collected words data</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the collected words data</span>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7fa0aa175430&gt;, &lt;lisc.data.articles.Articles object at 0x7fa0aa2b6310&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;lisc.data.articles.Articles object at 0x7f82b85b7340&gt;, &lt;lisc.data.articles.Articles object at 0x7f82b85b7550&gt;]
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check some specific fields of the collected data</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check some specific fields of the collected data</span>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">n_articles</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">titles</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
-[&#39;Bench-to-bedside investigations of H3 K27-altered diffuse midline glioma: drug targets and potential pharmacotherapies.&#39;, &#39;Epidemiological risk factors and phylogenetic affinities of Sarcocystis infecting village chickens and pigs in Peninsular Malaysia.&#39;, &#39;Association of aEEG and brain injury severity on MRI at term-equivalent age in preterm infants.&#39;, &#39;Gut microbiota-derived short chain fatty acids act as mediators of the gut-brain axis targeting age-related neurodegenerative disorders: a narrative review.&#39;, &#39;Polyomavirus Wakes Up and Chooses Neurovirulence.&#39;]
+[&#39;Biomarkers of Oxidative Stress, Inflammation, and Brain Damage in Mexican Women over 60 Years of Age with Obesity.&#39;, &#39;KNDy Neurons and the Control of the Gonadotropic Axis in the Midgestation Fetal Sheep.&#39;, &#39;Fetal malformations of cortical development: review and clinical guidance.&#39;, &#39;Phase II Trial of Pembrolizumab in Combination With Bevacizumab for Untreated Melanoma Brain Metastases.&#39;, &#39;Reader Response: Right Brain: The Unraveling.&#39;]
 </pre></div>
 </div>
 </section>
@@ -198,7 +191,7 @@ some of the available EUtils settings to help control what is collected, and how
 collection proceeds.</p>
 <p>In the next example, we’ll revisit the same search terms we used in the previous
 co-occurence analysis, and explore some of these settings.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set search terms of interest</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set search terms of interest</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
 <a href="../generated/lisc.Words.html#lisc.Words.add_terms" title="lisc.Words.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">words</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
@@ -230,7 +223,7 @@ as this is more efficient</p></li>
 If set to True, the <cite>save_and_clear</cite> parameter saves out collected data, and clears the
 object per term, so that collected data does not have to stay in RAM.</p>
 <p>Now, let’s run our bigger collection, using some of these settings.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up our database object, so we can save out data as we go</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up our database object, so we can save out data as we go</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">)</span>
 
 <span class="c1"># Collect words data</span>
@@ -242,17 +235,17 @@ as the data was saved and cleared throughout the collection.</p>
 <p>The Words object does still have all the information about the search terms, which we can
 use to reload our data, so it is still worth saving as well.</p>
 <p>We will analyze our words data in the next tutorial. For now lets save out the Words object.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out the words data</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out the words data</span>
 <span class="n">save_object</span><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">,</span> <span class="s1">&#39;tutorial_words&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.181 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.581 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-wordscollection-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/9f06023fc1faf31be849407264f3c765/plot_01-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-WordsCollection.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dbca71718513b176286f40a28f831bca/plot_01-WordsCollection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_01-WordsCollection.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9f06023fc1faf31be849407264f3c765/plot_01-WordsCollection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-WordsCollection.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -272,8 +265,8 @@ use to reload our data, so it is still worth saving as well.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

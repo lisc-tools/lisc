@@ -4,22 +4,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.objects.counts &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
+    <title>lisc.objects.counts &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -57,7 +54,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -363,6 +360,7 @@
         <span class="k">if</span> <span class="n">term_type</span> <span class="o">==</span> <span class="s1">&#39;terms&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
 
+
 <div class="viewcode-block" id="Counts.add_labels"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.add_labels">[docs]</a>    <span class="k">def</span> <span class="nf">add_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add labels for terms to the object.</span>
 
@@ -490,6 +488,9 @@
 <span class="sd">        &gt;&gt;&gt; plot_dendrogram(counts)  # doctest:+SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># Clear any previously computed score</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_score</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
@@ -518,12 +519,19 @@
             <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Counts.clear_score"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.clear_score">[docs]</a>    <span class="k">def</span> <span class="nf">clear_score</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear any previously computed score.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
 <div class="viewcode-block" id="Counts.check_top"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_top">[docs]</a>    <span class="k">def</span> <span class="nf">check_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the terms with the most articles.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;, &#39;both&#39;}, optional</span>
 <span class="sd">            Which set of terms to check.</span>
 
 <span class="sd">        Examples</span>
@@ -536,10 +544,18 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
-        <span class="n">max_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{}</span><span class="s2">  with  </span><span class="si">{}</span><span class="s2">  articles.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]))</span></div>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_top</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_top</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">max_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The most studied term is  </span><span class="si">{}</span><span class="s2">  with  </span><span class="si">{}</span><span class="s2">  articles.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">max_ind</span><span class="p">]))</span></div>
 
 
 <div class="viewcode-block" id="Counts.check_counts"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_counts">[docs]</a>    <span class="k">def</span> <span class="nf">check_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
@@ -547,7 +563,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;, &#39;both&#39;}</span>
 <span class="sd">            Which set of terms to check.</span>
 
 <span class="sd">        Examples</span>
@@ -560,14 +576,22 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data is available - cannot proceed.&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Calculate widths for printing</span>
-        <span class="n">twd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">nwd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of documents found for each search term is:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  {:</span><span class="si">{twd}</span><span class="s2">}   -   {:</span><span class="si">{nwd}</span><span class="s2">.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">twd</span><span class="o">=</span><span class="n">twd</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_counts</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_counts</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># Calculate widths for printing</span>
+            <span class="n">twd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">nwd</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of documents found for each search term is:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  {:</span><span class="si">{twd}</span><span class="s2">}   -   {:</span><span class="si">{nwd}</span><span class="s2">.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">twd</span><span class="o">=</span><span class="n">twd</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Counts.check_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.check_data">[docs]</a>    <span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
@@ -577,7 +601,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        data_type : {&#39;counts&#39;, &#39;score&#39;}</span>
 <span class="sd">            Which data type to use.</span>
-<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;, &#39;both&#39;}, optional</span>
 <span class="sd">            Which set of terms to check.</span>
 
 <span class="sd">        Examples</span>
@@ -602,28 +626,36 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;similarity&#39;</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot check value counts for similarity score.&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Set up which direction to act across</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span> <span class="k">else</span> <span class="n">data</span>
-        <span class="n">alt</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="k">else</span> <span class="s1">&#39;A&#39;</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
 
-        <span class="c1"># Calculate widths for printing</span>
-        <span class="n">twd1</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">twd2</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">nwd</span> <span class="o">=</span> <span class="s1">&#39;&gt;10.0f&#39;</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;counts&#39;</span> <span class="k">else</span> <span class="s1">&#39;06.3f&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_data</span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Loop through each term, find maximally associated term and print out</span>
-        <span class="k">for</span> <span class="n">term_ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
+        <span class="k">else</span><span class="p">:</span>
 
-            <span class="c1"># Find the index of the most common association for current term</span>
-            <span class="n">assoc_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="c1"># Set up which direction to act across</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span> <span class="k">else</span> <span class="n">data</span>
+            <span class="n">alt</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">square</span> <span class="k">else</span> <span class="s1">&#39;A&#39;</span>
 
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For  {:</span><span class="si">{twd1}</span><span class="s2">}  the highest association is  {:</span><span class="si">{twd2}</span><span class="s2">}  with  {:</span><span class="si">{nwd}</span><span class="s2">}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">assoc_ind</span><span class="p">]),</span>
-                <span class="n">data</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="n">assoc_ind</span><span class="p">],</span> <span class="n">twd1</span><span class="o">=</span><span class="n">twd1</span><span class="p">,</span> <span class="n">twd2</span><span class="o">=</span><span class="n">twd2</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
+            <span class="c1"># Calculate widths for printing</span>
+            <span class="n">twd1</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">twd2</span> <span class="o">=</span> <span class="n">get_max_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">nwd</span> <span class="o">=</span> <span class="s1">&#39;&gt;10.0f&#39;</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;counts&#39;</span> <span class="k">else</span> <span class="s1">&#39;06.3f&#39;</span>
+
+            <span class="c1"># Loop through each term, find maximally associated term and print out</span>
+            <span class="k">for</span> <span class="n">term_ind</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">):</span>
+
+                <span class="c1"># Find the index of the most common association for current term</span>
+                <span class="n">assoc_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="p">:])</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For  {:</span><span class="si">{twd1}</span><span class="s2">}  the highest association is  {:</span><span class="si">{twd2}</span><span class="s2">}  with  {:</span><span class="si">{nwd}</span><span class="s2">}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">wrap</span><span class="p">(</span><span class="n">term</span><span class="p">),</span> <span class="n">wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">alt</span><span class="p">]</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">assoc_ind</span><span class="p">]),</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">term_ind</span><span class="p">,</span> <span class="n">assoc_ind</span><span class="p">],</span> <span class="n">twd1</span><span class="o">=</span><span class="n">twd1</span><span class="p">,</span> <span class="n">twd2</span><span class="o">=</span><span class="n">twd2</span><span class="p">,</span> <span class="n">nwd</span><span class="o">=</span><span class="n">nwd</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Counts.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Counts.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop terms based on number of article results.</span>
 
 <span class="sd">        Parameters</span>
@@ -632,6 +664,14 @@
 <span class="sd">            Minimum number of articles required to keep each term.</span>
 <span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
 <span class="sd">            Which set of terms to drop.</span>
+<span class="sd">        value : {&#39;count&#39;, &#39;coocs&#39;}</span>
+<span class="sd">            Which data count to drop based on:</span>
+<span class="sd">                &#39;count&#39; : drops based on the total number of articles per term</span>
+<span class="sd">                &#39;coocs&#39; : drops based on the co-occurrences, if all values are below `n_articles`</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This will drop any computed scores, as they may not be accurate after dropping data.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -640,11 +680,53 @@
 <span class="sd">        &gt;&gt;&gt; counts.drop_data(20) # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Set a flipper dictionary, to flip inds if needed</span>
-        <span class="n">flip_inds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_score</span><span class="p">()</span>
 
-        <span class="c1"># Finds the indices of the terms with enough data to keep</span>
-        <span class="n">keep_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">&gt;=</span> <span class="n">n_articles</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">drop_data</span><span class="p">(</span><span class="n">n_articles</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">drop_data</span><span class="p">(</span><span class="n">n_articles</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">dim_inds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+            <span class="c1"># Get set of indices to drop &amp; drop them from the object</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;count&#39;</span><span class="p">:</span>
+                <span class="n">drop_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">counts</span> <span class="o">&lt;</span> <span class="n">n_articles</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;coocs&#39;</span><span class="p">:</span>
+                <span class="n">drop_inds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">&lt;</span> <span class="n">n_articles</span><span class="p">,</span> <span class="n">dim_inds</span><span class="p">[</span><span class="n">dim</span><span class="p">]))[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_drop_terms</span><span class="p">(</span><span class="n">drop_inds</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Counts.set_joiners"><a class="viewcode-back" href="../../../generated/lisc.Counts.html#lisc.Counts.set_joiners">[docs]</a>    <span class="k">def</span> <span class="nf">set_joiners</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set joiners to use, specified for each term type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        search, inclusions, exclusions : {&#39;OR&#39;, &#39;AND&#39;, &#39;NOT&#39;}</span>
+<span class="sd">            Joiner to use to combine terms, for search, inclusions, and exclusions terms.</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}, optional</span>
+<span class="sd">            Which set of terms to set joiners for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">set_joiners</span><span class="p">(</span><span class="n">search</span><span class="p">,</span> <span class="n">inclusions</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_drop_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop_inds</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sub-function to drop terms from object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        drop_inds : list of int</span>
+<span class="sd">            Indices of terms to drop.</span>
+<span class="sd">        dim : {&#39;A&#39;, &#39;B&#39;}</span>
+<span class="sd">            Which dim to drop terms from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Invert to indices of the terms to keep</span>
+        <span class="n">keep_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">n_terms</span><span class="p">),</span> <span class="n">drop_inds</span><span class="p">)</span>
 
         <span class="c1"># Drop terms that do not have enough data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">keep_inds</span><span class="p">]</span>
@@ -654,6 +736,9 @@
         <span class="c1"># Create an inds dictionary that defaults to all-index slice</span>
         <span class="n">inds</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[:])</span>
 
+        <span class="c1"># Set a flipper dictionary, to flip inds if needed</span>
+        <span class="n">flip_inds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">}</span>
+
         <span class="c1"># If square, set both dims, and do array orgs needed for fancy indexing</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">square</span><span class="p">:</span>
             <span class="n">inds</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">keep_inds</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
@@ -662,16 +747,7 @@
             <span class="n">inds</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">keep_inds</span>
 
         <span class="c1"># Drop raw count data for terms without enough data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">inds</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">inds</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-
-            <span class="c1"># If score is a similarity matrix check and flip data indices as needed</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;similarity&#39;</span><span class="p">:</span>
-                <span class="n">inds</span><span class="p">[</span><span class="n">flip_inds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">inds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score_info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]]</span>
-
-            <span class="c1"># Drop score data for terms without enough data</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">inds</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">inds</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">inds</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">inds</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span></div>
 </pre></div>
 
     </div>
@@ -685,8 +761,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 06: Collect Across Time &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-06-collectacrosstime-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="tutorial-06-collect-across-time">
+<span id="sphx-glr-auto-tutorials-plot-06-collectacrosstime-py"></span><h1>Tutorial 06: Collect Across Time<a class="headerlink" href="#tutorial-06-collect-across-time" title="Permalink to this heading">¶</a></h1>
+<p>Collecting and examining data collected across time.</p>
+<section id="collecting-by-time">
+<h2>Collecting By Time<a class="headerlink" href="#collecting-by-time" title="Permalink to this heading">¶</a></h2>
+<p>The EUtils API allows for selecting a date range to collect articles published within
+particular time frames. One thing we can use this for is to collect information for
+articles published across time.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import LISC objects</span>
+<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts1D</span></a><span class="p">,</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Words</span></a>
+
+<span class="c1"># Import function to collect literature data over time</span>
+<span class="kn">from</span> <span class="nn">lisc.collect</span> <span class="kn">import</span> <a href="../generated/lisc.collect_across_time.html#lisc.collect_across_time" title="lisc.collect_across_time" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_across_time</span></a>
+
+<span class="c1"># Import plots that are available for time-related analyses</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.time</span> <span class="kn">import</span> <span class="n">plot_results_across_years</span>
+</pre></div>
+</div>
+</section>
+<section id="example-1-simple-example-of-counts-over-years">
+<h2>Example 1: Simple Example of Counts over Years<a class="headerlink" href="#example-1-simple-example-of-counts-over-years" title="Permalink to this heading">¶</a></h2>
+<p>In this first example, we will use the <a class="reference internal" href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts1D</span></code></a> class and approach to
+collect information about how many papers discuss a topic over time.</p>
+<p>To do so, we will first define a simple set of terms, and initialize the LISC object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a set of terms to use</span>
+<span class="n">terms_a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a Counts1D object to use</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a> <span class="o">=</span> <a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts1D</span></a><span class="p">()</span>
+
+<span class="c1"># Add terms to counts object</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.add_terms" title="lisc.Counts1D.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms_a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next we have to define the time range(s) that we want to collect literature data for!</p>
+<p>To do so, we define a list of years which specifies a set of ranges to collect data for.</p>
+<p>By default, all date ranges reflect full years, from January 1st of the start year until
+December 31st of the year prior to the listed end year (so that there is no overlap).</p>
+<p>For example, if a list of years was defined [1900, 1950, 2000], this would collect data for:</p>
+<ul class="simple">
+<li><p>year range 1900-1950, defined as January 1st 1900 to December 31st 1949</p></li>
+<li><p>year range 1950-2000, defined as January 1st 1950 to December 31st 1999</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a range of years to collect data for</span>
+<span class="n">years_a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1980</span><span class="p">,</span> <span class="mi">1990</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2020</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To run a collection of literature data across time, we use the
+<a class="reference internal" href="../generated/lisc.collect_across_time.html#lisc.collect_across_time" title="lisc.collect_across_time"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect_across_time()</span></code></a> function.</p>
+<p>This function takes as input a pre-initialized LISC object, used to collect the data, as
+well as the definition of which years to run the search for.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect counts data across years</span>
+<span class="n">year_results</span> <span class="o">=</span> <a href="../generated/lisc.collect_across_time.html#lisc.collect_across_time" title="lisc.collect_across_time" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_across_time</span></a><span class="p">(</span><a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">years_a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Running this collection returns a list of LISC objects, which each object corresponding
+to a time range as defined by the <cite>years</cite> argument.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the output of running the collection across time</span>
+<span class="n">year_results</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{1970: &lt;lisc.objects.counts.Counts1D object at 0x7f82b8e5adc0&gt;, 1980: &lt;lisc.objects.counts.Counts1D object at 0x7f82b8e5af70&gt;, 1990: &lt;lisc.objects.counts.Counts1D object at 0x7f82b8e601f0&gt;, 2000: &lt;lisc.objects.counts.Counts1D object at 0x7f82b8e606a0&gt;, 2010: &lt;lisc.objects.counts.Counts1D object at 0x7f82b8e602b0&gt;}
+</pre></div>
+</div>
+<p>Now that we have collected this data</p>
+<p>For example, if collecting Counts data as done here, the <code class="xref py py-func docutils literal notranslate"><span class="pre">plot_results_across_years()</span></code>
+function can be used to plot the results across the collected time ranges.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results over time</span>
+<span class="n">plot_results_across_years</span><span class="p">(</span><span class="n">year_results</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_06-CollectAcrossTime_001.png" srcset="../_images/sphx_glr_plot_06-CollectAcrossTime_001.png" alt="plot 06 CollectAcrossTime" class = "sphx-glr-single-img"/></section>
+<section id="example-2-additional-counts-explorations">
+<h2>Example 2: Additional Counts Explorations<a class="headerlink" href="#example-2-additional-counts-explorations" title="Permalink to this heading">¶</a></h2>
+<p>In the first example, we searched for simple term counts across time. Searches across time
+also support more complex terms and search criteria.</p>
+<p>In this example, we will search for a more complex counts analysis across time.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define range of years to collect data for</span>
+<span class="n">years_b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2026</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define terms lists</span>
+<span class="n">terms_b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;frontal&#39;</span><span class="p">,</span> <span class="s1">&#39;parietal&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal&#39;</span><span class="p">,</span> <span class="s1">&#39;occipital&#39;</span><span class="p">]</span>
+<span class="n">inclusions_b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;neuroscience&#39;</span><span class="p">,</span> <span class="s1">&#39;lobe&#39;</span><span class="p">,</span> <span class="s1">&#39;cortex&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize LISC object and add terms</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a> <span class="o">=</span> <a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts1D</span></a><span class="p">()</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.add_terms" title="lisc.Counts1D.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms_b</span><span class="p">)</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.add_terms" title="lisc.Counts1D.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">inclusions_b</span><span class="p">,</span> <span class="s1">&#39;inclusions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run collection across time</span>
+<span class="n">year_results</span> <span class="o">=</span> <a href="../generated/lisc.collect_across_time.html#lisc.collect_across_time" title="lisc.collect_across_time" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_across_time</span></a><span class="p">(</span><a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">years_b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As before, the output of <cite>collect_across_time</cite> is a list of returned LISC objects.</p>
+<p>We can examine the results for a particular time period.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access an individual search</span>
+<span class="n">year_results</span><span class="p">[</span><span class="mi">2010</span><span class="p">]</span><span class="o">.</span><span class="n">check_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
+  &#39;frontal&#39;     -   4341
+  &#39;parietal&#39;    -     56
+  &#39;temporal&#39;    -   2544
+  &#39;occipital&#39;   -    915
+</pre></div>
+</div>
+<p>We can also plot the results across years, comparing across all search items.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results over time</span>
+<span class="n">plot_results_across_years</span><span class="p">(</span><span class="n">year_results</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_06-CollectAcrossTime_002.png" srcset="../_images/sphx_glr_plot_06-CollectAcrossTime_002.png" alt="plot 06 CollectAcrossTime" class = "sphx-glr-single-img"/></section>
+<section id="example-3-words">
+<h2>Example 3: Words<a class="headerlink" href="#example-3-words" title="Permalink to this heading">¶</a></h2>
+<p>In the examples above, we searched for article counts and co-occurrences across time,
+We can also collect article information across time, using the <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a> object.</p>
+<p>To do so, as before we start by defining the time range to search, and our search terms.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define time ranges to collect data across</span>
+<span class="n">decades</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1930</span><span class="p">,</span> <span class="mi">1940</span><span class="p">,</span> <span class="mi">1950</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define search terms</span>
+<span class="n">terms_c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;metabolism&#39;</span><span class="p">]</span>
+<span class="n">incl_c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now we can add our search terms to a Words object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize words object, and add terms</span>
+<a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a> <span class="o">=</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Words</span></a><span class="p">()</span>
+<a href="../generated/lisc.Words.html#lisc.Words.add_terms" title="lisc.Words.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">words</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms_c</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we pass in the pre-initialized Words object to the <cite>collect_across_time</cite>, also passing
+in any word collection settings.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Word collection settings</span>
+<span class="n">retmax</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect words results across time</span>
+<span class="n">word_results</span> <span class="o">=</span> <a href="../generated/lisc.collect_across_time.html#lisc.collect_across_time" title="lisc.collect_across_time" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-function"><span class="n">collect_across_time</span></a><span class="p">(</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">words</span></a><span class="p">,</span> <span class="n">decades</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="n">retmax</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As before, the output is a list of LISC objects, each containing the results for a particular
+time period.</p>
+<p>We can loop across these objects to examines results per time period.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the titles found across different time ranges</span>
+<span class="k">for</span> <span class="n">time_period</span><span class="p">,</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a> <span class="ow">in</span> <span class="n">word_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">time_period</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;s:&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">res_title</span> <span class="ow">in</span> <a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="o">.</span><a href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">titles</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">res_title</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>1930s:
+         A DEFECT IN THE METABOLISM OF AROMATIC AMINO ACIDS IN PREMATURE INFANTS: THE ROLE OF VITAMIN C.
+         Metabolism of the Heart.
+         The metabolism of normal and tumour tissue: The action of guanidines and amidines on the Pasteur effect.
+         The role of sorbitol in the C-metabolism of the Kelsey plum: Relation of carbohydrate and acid loss to CO(2) production in stored fruit.
+         THE METABOLISM OF GLUTATHIONE.
+1940s:
+         [Carbohydrate metabolism disorders in the course of minor chronic diarrhea].
+         The low metabolic state.
+         Iron metabolism in liver disease.
+         [Effect of histidine on glucide metabolism].
+         Action of potassium ions on brain metabolism.
+</pre></div>
+</div>
+<p>That completes the tutorial for searching across time!</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 36.411 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-06-collectacrosstime-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/3e0e0b9bed23c5cf6d66dbc34853c652/plot_06-CollectAcrossTime.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_06-CollectAcrossTime.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/aeee68fd3f968751dd8a1aa9b6aaf2be/plot_06-CollectAcrossTime.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_06-CollectAcrossTime.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

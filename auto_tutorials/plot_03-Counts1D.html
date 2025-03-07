@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 03: 1D Counts &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-03-counts1d-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="tutorial-03-1d-counts">
+<span id="sphx-glr-auto-tutorials-plot-03-counts1d-py"></span><h1>Tutorial 03: 1D Counts<a class="headerlink" href="#tutorial-03-1d-counts" title="Permalink to this heading">¶</a></h1>
+<p>Collect term occurrence data from the scientific literature.</p>
+<section id="term-occurrence">
+<h2>Term Occurrence<a class="headerlink" href="#term-occurrence" title="Permalink to this heading">¶</a></h2>
+<p>One thing we may want to examine in the literature is how common certain research topics are.</p>
+<p>To do so, we can search for term occurrence - how often particular search terms occur in the
+the literature. This will be the topic of the current tutorial.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Counts1D object, which is used for co-occurrence analysis</span>
+<span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts1D</span></a>
+</pre></div>
+</div>
+</section>
+<section id="counts1d-object">
+<h2>Counts1D Object<a class="headerlink" href="#counts1d-object" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts1D</span></code></a> object is used to handle term occurrence collection and analyses.</p>
+<p>This object is based on the <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object introduced in the prior tutorial,
+meaning we can define and add terms to it like introduced there.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up some terms to search for</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;frontal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;temporal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;parietal lobe&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;occipital lobe&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize counts object &amp; add the terms that we want to collect co-occurrences for</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts1d</span></a> <span class="o">=</span> <a href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class"><span class="n">Counts1D</span></a><span class="p">()</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.add_terms" title="lisc.Counts1D.add_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts1d</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As before, we can check the terms that we’ve added to the object.</p>
+<p>Note that adding terms could also include adding synonyms, inclusion, and exclusion terms
+(see previous tutorials).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check terms definition</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.check_terms" title="lisc.Counts1D.check_terms" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts1d</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>List of terms used:
+
+frontal lobe    : frontal lobe
+temporal lobe   : temporal lobe
+parietal lobe   : parietal lobe
+occipital lobe  : occipital lobe
+</pre></div>
+</div>
+<p>Now we are ready to run collection!</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect term occurrence data</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.run_collection" title="lisc.Counts1D.run_collection" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts1d</span><span class="o">.</span><span class="n">run_collection</span></a><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running counts for:  frontal lobe
+Running counts for:  temporal lobe
+Running counts for:  parietal lobe
+Running counts for:  occipital lobe
+</pre></div>
+</div>
+<p>We have now collected some literature data!</p>
+<p>The <a class="reference internal" href="../generated/lisc.Counts1D.html#lisc.Counts1D" title="lisc.Counts1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts1D</span></code></a> object will now contain data on term occurrence in the literature.</p>
+<p>This is stored in the <cite>counts</cite> attribute of the object.</p>
+<p>We can check the results of the occurrence search with the <cite>check_counts</cite> method.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check counts per term</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.check_counts" title="lisc.Counts1D.check_counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts1d</span><span class="o">.</span><span class="n">check_counts</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of documents found for each search term is:
+  &#39;frontal lobe&#39;     -   17549
+  &#39;temporal lobe&#39;    -   34937
+  &#39;parietal lobe&#39;    -    6507
+  &#39;occipital lobe&#39;   -    4995
+</pre></div>
+</div>
+<p>If we want to compare term occurrences, we can also use the <cite>check_top</cite> method to check
+the term with the most occurrences.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check top term</span>
+<a href="../generated/lisc.Counts1D.html#lisc.Counts1D.check_top" title="lisc.Counts1D.check_top" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts1d</span><span class="o">.</span><span class="n">check_top</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The most studied term is  &#39;temporal lobe&#39;  with  34937  articles.
+</pre></div>
+</div>
+<p>By itself, term occurrence provides some insight into the literature, in a simple way.</p>
+<p>In the next tutorial we will build up from this simple term occurrence to examine term
+co-occurrence, allowing for examining more complex questions about how different research
+topics relate to each other.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.549 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-counts1d-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/bf14a529aaacfcf7a59952a653bb5016/plot_03-Counts1D.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_03-Counts1D.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/4f28b77744a5a4d1104c29e68d2b945f/plot_03-Counts1D.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-Counts1D.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

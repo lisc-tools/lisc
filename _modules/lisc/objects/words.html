@@ -4,22 +4,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.objects.words &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
+    <title>lisc.objects.words &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -57,7 +54,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -258,6 +255,17 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{:</span><span class="si">{twd}</span><span class="s2">} </span><span class="se">\t\t</span><span class="s2">  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">n_articles</span><span class="p">,</span> <span class="n">twd</span><span class="o">=</span><span class="n">twd</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="Words.check_articles"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.check_articles">[docs]</a>    <span class="k">def</span> <span class="nf">check_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prints out the articles collected for each term.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Label: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">cres</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">author</span> <span class="o">=</span> <span class="n">cres</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39; et al&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cres</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">doi</span> <span class="o">=</span> <span class="s1">&#39;https://dx.doi.org/&#39;</span> <span class="o">+</span> <span class="n">cres</span><span class="p">[</span><span class="s1">&#39;doi&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">cres</span><span class="p">[</span><span class="s1">&#39;doi&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">author</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">cres</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">cres</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="n">doi</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Words.drop_data"><a class="viewcode-back" href="../../../generated/lisc.Words.html#lisc.Words.drop_data">[docs]</a>    <span class="k">def</span> <span class="nf">drop_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_articles</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop terms based on number of article results.</span>
 
@@ -324,8 +332,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

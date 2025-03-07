@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 05: Counts Analysis &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172328255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172328255-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          lisc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/lisc-tools/lisc">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-05-countsanalysis-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="tutorial-05-counts-analysis">
+<span id="sphx-glr-auto-tutorials-plot-05-countsanalysis-py"></span><h1>Tutorial 05: Counts Analysis<a class="headerlink" href="#tutorial-05-counts-analysis" title="Permalink to this heading">¶</a></h1>
+<p>Analyzing collected co-occurrence data.</p>
+<section id="counts-analyses">
+<h2>Counts Analyses<a class="headerlink" href="#counts-analyses" title="Permalink to this heading">¶</a></h2>
+<p>This tutorial explores analyzing collected co-occurrence data.</p>
+<p>Note that this tutorials requires some optional dependencies, including
+matplotlib, seaborn and scipy.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import database and IO utilities to reload our previously collected data</span>
+<span class="kn">from</span> <span class="nn">lisc.io</span> <span class="kn">import</span> <span class="n">SCDB</span><span class="p">,</span> <span class="n">load_object</span>
+
+<span class="c1"># Import plots that are available for co-occurrence analysis</span>
+<span class="kn">from</span> <span class="nn">lisc.plts.counts</span> <span class="kn">import</span> <a href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_matrix</span></a><span class="p">,</span> <a href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_clustermap</span></a><span class="p">,</span> <a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reload the counts object from the last tutorial</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="s1">&#39;tutorial_counts&#39;</span><span class="p">,</span> <span class="n">SCDB</span><span class="p">(</span><span class="s1">&#39;lisc_db&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> object has some helper methods to explore the collected data.</p>
+<p>First lets check the number of counts per term list, which we can do with the
+<a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">check_data()</span></code></a> method.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the first set of terms</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_data</span></a><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;frontal lobe&#39;    the highest association is  &#39;audition&#39;        with         477
+For  &#39;temporal lobe&#39;   the highest association is  &#39;audition&#39;        with        1621
+For  &#39;parietal lobe&#39;   the highest association is  &#39;audition&#39;        with         287
+For  &#39;occipital lobe&#39;  the highest association is  &#39;vision&#39;          with         335
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the collected counts data for the second set of terms</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.check_data" title="lisc.Counts.check_data" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">check_data</span></a><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>For  &#39;vision&#39;          the highest association is  &#39;occipital lobe&#39;  with         335
+For  &#39;audition&#39;        the highest association is  &#39;temporal lobe&#39;   with        1621
+For  &#39;somatosensory&#39;   the highest association is  &#39;temporal lobe&#39;   with         226
+For  &#39;olfaction&#39;       the highest association is  &#39;temporal lobe&#39;   with         104
+For  &#39;gustation&#39;       the highest association is  &#39;temporal lobe&#39;   with          56
+For  &#39;proprioception&#39;  the highest association is  &#39;parietal lobe&#39;   with          14
+For  &#39;nociception&#39;     the highest association is  &#39;temporal lobe&#39;   with         296
+</pre></div>
+</div>
+</section>
+<section id="normalization-scores">
+<h2>Normalization &amp; Scores<a class="headerlink" href="#normalization-scores" title="Permalink to this heading">¶</a></h2>
+<p>The collected co-occurrence data includes information on the number of articles in which
+terms co-occur, as well as the number of articles for each term independently.</p>
+<p>Once we have this data, we typically want to calculate a normalized measures,
+and/or other kinds of similarity score, to compare between terms.</p>
+<p>To normalize the data, we can divide the co-occurrence counts by the number of articles
+per term. This allows us the examine, for example, the proportion of articles
+that include particular co-occurrence patterns.</p>
+<p>These measures are available using the <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_score()</span></code></a> method. This method
+can compute different types of scores, with the type specified by  the first input to the
+method. Scores available include ‘normalize’, ‘association’, or ‘similarity’.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute a normalization of the co-occurrence data</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span></a><span class="p">(</span><span class="s1">&#39;normalize&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the computed normalization</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.19664938e-02 2.71810360e-02 9.00336201e-03 4.10279788e-03
+  1.19664938e-03 2.84916519e-04 1.37329762e-02]
+ [7.49921287e-03 4.63978018e-02 6.46878667e-03 2.97678679e-03
+  1.60288519e-03 5.72458998e-05 8.47239316e-03]
+ [1.75195943e-02 4.41063470e-02 3.42707853e-02 1.38312586e-03
+  1.53680652e-03 2.15152912e-03 2.45889043e-02]
+ [6.70670671e-02 2.40240240e-02 1.02102102e-02 1.00100100e-03
+  0.00000000e+00 4.00400400e-04 1.86186186e-02]]
+</pre></div>
+</div>
+<p>The normalization is the number of articles with both terms, divided by the number of
+articles for a single term. It can therefore be interpreted as a proportion of articles
+with term <cite>a</cite> that also have term <cite>b</cite>, or as <cite>a &amp; b / a</cite>.</p>
+<p>Note that when using two different terms lists, you have to choose which list of
+terms to normalize by, which is controlled by the <cite>dim</cite> input.</p>
+<p>In this case, we have calculated the normalized data as the proportion of
+articles for each anatomical term that include each perception term.</p>
+<p>Alternately, we can also calculate an association index or score, as below:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the association index</span>
+<a href="../generated/lisc.Counts.html#lisc.Counts.compute_score" title="lisc.Counts.compute_score" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-method"><span class="n">counts</span><span class="o">.</span><span class="n">compute_score</span></a><span class="p">(</span><span class="s1">&#39;association&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the computed score</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.09634812e-03 3.34887248e-03 2.92820342e-03 1.85595711e-03
+  3.46420323e-04 2.00264349e-04 2.73312973e-04]
+ [1.25430269e-03 1.02155281e-02 3.17068380e-03 1.85218166e-03
+  7.18197325e-04 4.72165825e-05 3.29215910e-04]
+ [6.31232731e-04 2.18111625e-03 5.20407925e-03 3.23566421e-04
+  2.01657626e-04 1.00603622e-03 1.83736559e-04]
+ [1.87291045e-03 9.21382996e-04 1.22859001e-03 1.90063481e-04
+  0.00000000e+00 1.61082474e-04 1.06974385e-04]]
+</pre></div>
+</div>
+<p>Specifying ‘association’ computes the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a>,
+which is a standard measure for measuring the similarity of samples, calculating
+a normalized measure of similarity, bounded between 0 and 1.</p>
+<p>One benefit of the Jaccard index is that you do not have to choose a terms list to normalize
+by - the calculated measure considers both lists of terms to compute an association index.</p>
+<p>The cosine similarity of the co-occurrence data can also be calculated, with ‘similarity’.</p>
+</section>
+<section id="clustering-and-plotting-co-occurrence-data">
+<h2>Clustering and Plotting Co-occurrence Data<a class="headerlink" href="#clustering-and-plotting-co-occurrence-data" title="Permalink to this heading">¶</a></h2>
+<p>The collected co-occurrence data is a 2D matrix of counts reflecting the relationship
+between terms. This makes it amenable to visualizations and analyses, such as clustering,
+that look to find structure in the data.</p>
+<p>LISC provides some functions to visualize and cluster co-occurrence data. These functions
+use functionality offered by optional dependencies, including scipy and seaborn, which
+need to be installed for these to run.</p>
+<p>The functions <a class="reference internal" href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_matrix()</span></code></a>, <a class="reference internal" href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_clustermap()</span></code></a>, and <a class="reference internal" href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_dendrogram()</span></code></a>
+offer visualizations and clustering. You can check through each function for details on what
+each one is doing.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a matrix of the association index data</span>
+<a href="../generated/lisc.plts.counts.plot_matrix.html#lisc.plts.counts.plot_matrix" title="lisc.plts.counts.plot_matrix" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_matrix</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_05-CountsAnalysis_001.png" srcset="../_images/sphx_glr_plot_05-CountsAnalysis_001.png" alt="plot 05 CountsAnalysis" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a clustermap of the association index data</span>
+<a href="../generated/lisc.plts.counts.plot_clustermap.html#lisc.plts.counts.plot_clustermap" title="lisc.plts.counts.plot_clustermap" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_clustermap</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_05-CountsAnalysis_002.png" srcset="../_images/sphx_glr_plot_05-CountsAnalysis_002.png" alt="plot 05 CountsAnalysis" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a dendrogram, to cluster the terms</span>
+<a href="../generated/lisc.plts.counts.plot_dendrogram.html#lisc.plts.counts.plot_dendrogram" title="lisc.plts.counts.plot_dendrogram" class="sphx-glr-backref-module-lisc-plts-counts sphx-glr-backref-type-py-function"><span class="n">plot_dendrogram</span></a><span class="p">(</span><a href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts" class="sphx-glr-backref-module-lisc sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">counts</span></a><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_05-CountsAnalysis_003.png" srcset="../_images/sphx_glr_plot_05-CountsAnalysis_003.png" alt="plot 05 CountsAnalysis" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.522 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-05-countsanalysis-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b9fde078d741c60c4f884fc2b07202d5/plot_05-CountsAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_05-CountsAnalysis.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/3aab6d81c84fe92f74cd0e0f4f717508/plot_05-CountsAnalysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_05-CountsAnalysis.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

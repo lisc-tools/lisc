@@ -4,22 +4,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lisc.plts.counts &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
+    <title>lisc.plts.counts &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
 
@@ -57,7 +54,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -126,7 +123,7 @@
 <span class="kn">from</span> <span class="nn">lisc</span> <span class="kn">import</span> <span class="n">Counts1D</span><span class="p">,</span> <span class="n">Counts</span>
 <span class="kn">from</span> <span class="nn">lisc.plts.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">check_args</span><span class="p">,</span> <span class="n">check_ax</span><span class="p">,</span> <span class="n">savefig</span><span class="p">,</span> <span class="n">get_cmap</span><span class="p">,</span>
                              <span class="n">counts_data_helper</span><span class="p">,</span> <span class="n">rotate_ticks</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">lisc.core.modutils</span> <span class="kn">import</span> <span class="n">safe_import</span>
+<span class="kn">from</span> <span class="nn">lisc.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span>
 
 <span class="n">plt</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;.pyplot&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
 <span class="n">sns</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
@@ -156,7 +153,7 @@
 <span class="sd">    cmap : {&#39;purple&#39;, &#39;blue&#39;} or matplotlib.cmap</span>
 <span class="sd">        Colormap to use for the plot.</span>
 <span class="sd">        If string, uses a sequential palette of the specified color.</span>
-<span class="sd">    square : bool</span>
+<span class="sd">    square : bool, optional, default: False</span>
 <span class="sd">        Whether to plot all the cells as equally sized squares.</span>
 <span class="sd">    ax : matplotlib.Axes, optional</span>
 <span class="sd">        Figure axes upon which to plot.</span>
@@ -360,8 +357,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

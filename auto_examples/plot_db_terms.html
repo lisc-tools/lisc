@@ -3,24 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Database and Terms Lists &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <title>Database and Terms Lists &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -58,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -116,12 +113,12 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-db-terms-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="database-and-terms-lists">
 <span id="sphx-glr-auto-examples-plot-db-terms-py"></span><h1>Database and Terms Lists<a class="headerlink" href="#database-and-terms-lists" title="Permalink to this heading">¶</a></h1>
 <p>Exploring the LISC database, and using search terms loaded from files.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a function to create a LISC database file structure</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a function to create a LISC database file structure</span>
 <span class="kn">from</span> <span class="nn">lisc.io.db</span> <span class="kn">import</span> <span class="n">create_file_structure</span>
 </pre></div>
 </div>
@@ -135,7 +132,7 @@ use these files.</p>
 <p>You can create a database structure using the <a class="reference internal" href="../generated/lisc.io.db.create_file_structure.html#lisc.io.db.create_file_structure" title="lisc.io.db.create_file_structure"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_file_structure()</span></code></a> function.
 When you call this function, a <a class="reference internal" href="../generated/lisc.io.db.SCDB.html#lisc.io.db.SCDB" title="lisc.io.db.SCDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCDB</span></code></a> object is returned, that describes
 the built database structure.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a database file structure</span>
 <span class="c1">#   When called without a path input, the folder structure is created in the current directory</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">create_file_structure</span><span class="p">()</span>
 </pre></div>
@@ -147,7 +144,7 @@ the built database structure.</p>
 <p>The typical use case would be to curate and write text files manually.</p>
 <p>For demonstration here, we will first programmatically create an example
 txt file of terms to use.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms file</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set some terms file</span>
 <span class="n">terms</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;cortex&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;corporeal&#39;</span><span class="p">]]</span>
 
 <span class="c1"># Save the terms out to a txt file</span>
@@ -157,7 +154,7 @@ txt file of terms to use.</p>
         <span class="n">term_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the file structure for the created database</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the file structure for the created database</span>
 <span class="n">db</span><span class="o">.</span><span class="n">check_file_structure</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -173,7 +170,7 @@ txt file of terms to use.</p>
         counts/
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a list of all files available in the &#39;terms&#39; folder</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a list of all files available in the &#39;terms&#39; folder</span>
 <span class="n">term_files</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">term_files</span><span class="p">)</span>
 </pre></div>
@@ -181,7 +178,7 @@ txt file of terms to use.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;terms.txt&#39;]
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the full file path for the terms file</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the full file path for the terms file</span>
 <span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -193,7 +190,7 @@ txt file of terms to use.</p>
 <h2>Term File Structure<a class="headerlink" href="#term-file-structure" title="Permalink to this heading">¶</a></h2>
 <p>For term files, each line should reflect a new term, with synonyms for the same term
 stored as comma-separated values on the same line.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the terms file contents</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the terms file contents</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="s1">&#39;terms.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">term_file</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">term_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
@@ -208,18 +205,18 @@ body,corporeal
 <p>Text files of Terms can be loaded and used with LISC objects, such as
 <a class="reference internal" href="../generated/lisc.Counts.html#lisc.Counts" title="lisc.Counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counts</span></code></a> and <a class="reference internal" href="../generated/lisc.Words.html#lisc.Words" title="lisc.Words"><code class="xref py py-class docutils literal notranslate"><span class="pre">Words</span></code></a>.</p>
 <p>For a general example, here we will use the underlying <a class="reference internal" href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a> object.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the base object in LISC</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the base object in LISC</span>
 <span class="kn">from</span> <span class="nn">lisc.objects.base</span> <span class="kn">import</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a base LISC object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a base LISC object</span>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">base</span></a> <span class="o">=</span> <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base" title="lisc.objects.base.Base" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-class"><span class="n">Base</span></a><span class="p">()</span>
 
 <span class="c1"># Add terms to object, loading from file</span>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.add_terms" title="lisc.objects.base.Base.add_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">add_terms</span></a><span class="p">(</span><span class="s1">&#39;terms.txt&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the terms that were loaded from file</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the terms that were loaded from file</span>
 <a href="../generated/lisc.objects.base.Base.html#lisc.objects.base.Base.check_terms" title="lisc.objects.base.Base.check_terms" class="sphx-glr-backref-module-lisc-objects-base sphx-glr-backref-type-py-method"><span class="n">base</span><span class="o">.</span><span class="n">check_terms</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -237,13 +234,13 @@ using one line per term, with comma-separated values for synonyms.</p>
 associated files for inclusion and exclusion terms should have the same number of lines,
 and the n-th line of each file should refer to the same term. If a given search
 term does not have an associated inclusion or exclusion term, leave that line blank.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.008 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.013 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-db-terms-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/2dd610e85e7ccd3131f26e11e81b72d5/plot_db_terms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_db_terms.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1018a39aec58d9e6df554a896b2723f8/plot_db_terms.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_db_terms.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/2dd610e85e7ccd3131f26e11e81b72d5/plot_db_terms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_db_terms.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -262,8 +259,8 @@ term does not have an associated inclusion or exclusion term, leave that line bl
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

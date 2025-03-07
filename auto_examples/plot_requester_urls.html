@@ -3,24 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>URLs and Requests &#8212; lisc 0.3.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <title>URLs and Requests &#8212; lisc 0.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=0d51e2b1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -58,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           lisc</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -116,7 +113,7 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-requester-urls-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="urls-and-requests">
 <span id="sphx-glr-auto-examples-plot-requester-urls-py"></span><h1>URLs and Requests<a class="headerlink" href="#urls-and-requests" title="Permalink to this heading">¶</a></h1>
@@ -130,50 +127,50 @@ They are used ‘under the hood’ by LISC functions for collecting data and int
 APIs without requiring direct user interaction.</p>
 <p>In this example, we will explore using these objects directly, which may be useful for
 creating custom data collections, and/or to connect LISC with other APIs.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the requester object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the requester object</span>
 <span class="kn">from</span> <span class="nn">lisc.requester</span> <span class="kn">import</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class"><span class="n">Requester</span></a>
 </pre></div>
 </div>
 <section id="requester-object">
 <h3>Requester Object<a class="headerlink" href="#requester-object" title="Permalink to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester"><code class="xref py py-class docutils literal notranslate"><span class="pre">Requester</span></code></a> object uses the
-<a class="reference external" href="https://2.python-requests.org/">requests</a>
+<a class="reference external" href="https://requests.readthedocs.io/">requests</a>
 module to launch URL requests. It also adds some functionality such as throttling, to
 ensure requests respect API limits, as well as metadata collection and URL logging.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a requester object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a requester object</span>
 <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">req</span></a> <span class="o">=</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester" title="lisc.requester.Requester" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-class"><span class="n">Requester</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the minimum wait time between requests</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the minimum wait time between requests</span>
 <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester.set_wait_time" title="lisc.requester.Requester.set_wait_time" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-method"><span class="n">req</span><span class="o">.</span><span class="n">set_wait_time</span></a><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the Requester object to request some web pages</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the Requester object to request some web pages</span>
 <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://www.yahoo.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://duckduckgo.com&#39;</span><span class="p">]:</span>
     <span class="n">page</span> <span class="o">=</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester.request_url" title="lisc.requester.Requester.request_url" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-method"><span class="n">req</span><span class="o">.</span><span class="n">request_url</span></a><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Collecting web page </span><span class="se">\t</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> got status code </span><span class="se">\t</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">page</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Collecting web page      https://www.google.com/         got status code         200
-Collecting web page      https://www.yahoo.com/          got status code         200
+Collecting web page      https://www.yahoo.com/          got status code         429
 Collecting web page      https://duckduckgo.com/         got status code         200
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check details of the requester object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check details of the requester object</span>
 <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester.check" title="lisc.requester.Requester.check" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-method"><span class="n">req</span><span class="o">.</span><span class="n">check</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Requester object is active:      True
 Number of requests sent:         3
-Requester opened:                00:27:11 Sunday 29 October 2023
+Requester opened:                23:27:47 Thursday 06 March 2025
 Requester closed:
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get information from the requester object as a dictionary</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get information from the requester object as a dictionary</span>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester.as_dict" title="lisc.requester.Requester.as_dict" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-method"><span class="n">req</span><span class="o">.</span><span class="n">as_dict</span></a><span class="p">())</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;00:27:11 Sunday 29 October 2023&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;is_active&#39;: True, &#39;n_requests&#39;: 3, &#39;wait_time&#39;: 0.5, &#39;start_time&#39;: &#39;23:27:47 Thursday 06 March 2025&#39;, &#39;end_time&#39;: &#39;&#39;, &#39;logging&#39;: None, &#39;log&#39;: None}
 </pre></div>
 </div>
 </section>
@@ -184,18 +181,18 @@ Requester closed:
 and for storing and using different settings that may be available.</p>
 <p>In this example, we will explore using the the URLs object to access the
 <a class="reference external" href="https://duckduckgo.com">duckduckgo</a> API.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the URLs object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the URLs object</span>
 <span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">URLs</span></a>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the base path for an API to use</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the base path for an API to use</span>
 <span class="n">base_path</span> <span class="o">=</span> <span class="s1">&#39;https://api.duckduckgo.com/&#39;</span>
 
 <span class="c1"># Create the URLs object for the API, specifying it has a search utility</span>
 <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">urls</span></a> <span class="o">=</span> <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">URLs</span></a><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;search&#39;</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and check the search URL</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and check the search URL</span>
 <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs.build_url" title="lisc.urls.URLs.build_url" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-method"><span class="n">urls</span><span class="o">.</span><span class="n">build_url</span></a><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;json&#39;</span><span class="p">})</span>
 <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs.check_url" title="lisc.urls.URLs.check_url" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-method"><span class="n">urls</span><span class="o">.</span><span class="n">check_url</span></a><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">)</span>
 </pre></div>
@@ -203,7 +200,7 @@ and for storing and using different settings that may be available.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>https://api.duckduckgo.com/?format=json
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the URL to launch a search request with a specified search term</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the URL to launch a search request with a specified search term</span>
 <span class="n">api_url</span> <span class="o">=</span> <a href="../generated/lisc.urls.URLs.html#lisc.urls.URLs.get_url" title="lisc.urls.URLs.get_url" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-method"><span class="n">urls</span><span class="o">.</span><span class="n">get_url</span></a><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;q&#39;</span> <span class="p">:</span> <span class="s1">&#39;brain&#39;</span><span class="p">})</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
 </pre></div>
@@ -211,11 +208,11 @@ and for storing and using different settings that may be available.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>https://api.duckduckgo.com/?format=json&amp;q=brain
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Request the URL with the requester object from before</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Request the URL with the requester object from before</span>
 <span class="n">api_page</span> <span class="o">=</span> <a href="../generated/lisc.requester.Requester.html#lisc.requester.Requester.request_url" title="lisc.requester.Requester.request_url" class="sphx-glr-backref-module-lisc-requester sphx-glr-backref-type-py-method"><span class="n">req</span><span class="o">.</span><span class="n">request_url</span></a><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the source of the first search result</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the source of the first search result</span>
 <span class="n">api_page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;AbstractSource&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -230,11 +227,11 @@ and for storing and using different settings that may be available.</p>
 <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">EUtils</a> and
 <a class="reference external" href="https://opencitations.net">OpenCitations</a>.</p>
 <p>These are implemented as custom objects which are built on top of the <a class="reference internal" href="../generated/lisc.urls.URLs.html#lisc.urls.URLs" title="lisc.urls.URLs"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLs</span></code></a> object.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import URL objects for supported APIs</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import URL objects for supported APIs</span>
 <span class="kn">from</span> <span class="nn">lisc.urls</span> <span class="kn">import</span> <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">EUtils</span></a><span class="p">,</span> <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">OpenCitations</span></a>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize EUtils API object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize EUtils API object</span>
 <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">eutils</span></a> <span class="o">=</span> <a href="../generated/lisc.urls.EUtils.html#lisc.urls.EUtils" title="lisc.urls.EUtils" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">EUtils</span></a><span class="p">()</span>
 
 <span class="c1"># Check what utilities are supported for the EUtils API</span>
@@ -244,7 +241,7 @@ and for storing and using different settings that may be available.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;info&#39;: &#39;einfo.fcgi&#39;, &#39;query&#39;: &#39;egquery.fcgi&#39;, &#39;search&#39;: &#39;esearch.fcgi&#39;, &#39;fetch&#39;: &#39;efetch.fcgi&#39;, &#39;base&#39;: &#39;https://eutils.ncbi.nlm.nih.gov/entrez/eutils&#39;}
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an OpenCitations API object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an OpenCitations API object</span>
 <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">citations</span></a> <span class="o">=</span> <a href="../generated/lisc.urls.OpenCitations.html#lisc.urls.OpenCitations" title="lisc.urls.OpenCitations" class="sphx-glr-backref-module-lisc-urls sphx-glr-backref-type-py-class"><span class="n">OpenCitations</span></a><span class="p">()</span>
 
 <span class="c1"># Check what utilities are supported for the OpenCitations API</span>
@@ -260,13 +257,13 @@ and for storing and using different settings that may be available.</p>
 <p>The <cite>EUtils</cite> and <cite>OpenCitations</cite> objects can be used as examples for potentially adding
 new APIs to LISC. New API objects can be created by inheriting from the <cite>URLs</cite> object,
 and added information on the utilities and settings available for that particular API.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.572 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.470 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-requester-urls-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/4fbc9ac768fbde5467ed80b310f0993d/plot_requester_urls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_requester_urls.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/231b9f155b47b4064ad70f03773f1331/plot_requester_urls.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_requester_urls.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/4fbc9ac768fbde5467ed80b310f0993d/plot_requester_urls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_requester_urls.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -286,8 +283,8 @@ and added information on the utilities and settings available for that particula
       
     </p>
     <p>
-        &copy; Copyright 2018-2023, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+        &copy; Copyright 2018-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>
