@@ -25,7 +25,7 @@ LISC - Literature Scanner
    :alt: license
 
 .. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/lisc.svg
-   :target: https://pypi.python.org/pypi/lisc/
+   :target: https://pypi.org/project/lisc/
    :alt: python versions
 
 .. |Publication| image:: https://joss.theoj.org/papers/10.21105/joss.01674/status.svg
