@@ -217,6 +217,16 @@ Words
     plot_years
     plot_wordcloud
 
+Time
+~~~~
+
+.. currentmodule:: lisc.plts.words
+
+.. autosummary::
+    :toctree: generated/
+
+    plot_results_across_years
+
 File Management
 ---------------
 
