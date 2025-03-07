@@ -210,7 +210,7 @@ def plot_dendrogram(data, labels=None, attribute='score', transpose=False,
 
     Notes
     -----
-    This function is a wrapper of the `scipy.cluster.hierarchy.dendrogram' plot function.
+    This function is a wrapper of the `scipy.cluster.hierarchy.dendrogram` plot function.
 
     Examples
     --------

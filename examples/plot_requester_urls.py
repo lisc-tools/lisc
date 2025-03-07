@@ -30,7 +30,7 @@ from lisc.requester import Requester
 # ~~~~~~~~~~~~~~~~
 #
 # The :class:`~.Requester` object uses the
-# `requests <https://2.python-requests.org/>`_
+# `requests <https://requests.readthedocs.io/>`_
 # module to launch URL requests. It also adds some functionality such as throttling, to
 # ensure requests respect API limits, as well as metadata collection and URL logging.
 #

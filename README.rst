@@ -9,7 +9,7 @@ LISC - Literature Scanner
    :alt: project status
 
 .. |Version| image:: https://img.shields.io/pypi/v/lisc.svg
-   :target: https://pypi.python.org/pypi/lisc/
+   :target: https://pypi.org/project/lisc/
    :alt: version
 
 .. |BuildStatus| image:: https://github.com/lisc-tools/lisc/actions/workflows/build.yml/badge.svg
@@ -21,7 +21,7 @@ LISC - Literature Scanner
    :alt: coverage
 
 .. |License| image:: https://img.shields.io/pypi/l/lisc.svg
-   :target: https://opensource.org/licenses/Apache-2.0
+   :target: https://opensource.org/license/apache-2-0
    :alt: license
 
 .. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/lisc.svg
