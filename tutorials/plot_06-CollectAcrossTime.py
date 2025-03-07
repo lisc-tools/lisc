@@ -1,5 +1,5 @@
 """
-Tutorial 05: Collect Across Time
+Tutorial 06: Collect Across Time
 ================================
 
 Collecting and examining data collected across time.

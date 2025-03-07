@@ -1,5 +1,5 @@
 """
-Tutorial 05: Collecting Citation Data
+Tutorial 08: Collecting Citation Data
 =====================================
 
 Collecting citation data from OpenCitations.

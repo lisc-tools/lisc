@@ -1,5 +1,5 @@
 """
-Tutorial 06: MetaData
+Tutorial 07: MetaData
 =====================
 
 Exploring metadata collected and saved during data collections.

@@ -1,5 +1,5 @@
 """
-Tutorial 0X: 1D Counts
+Tutorial 03: 1D Counts
 ======================
 
 Collect term occurrence data from the scientific literature.

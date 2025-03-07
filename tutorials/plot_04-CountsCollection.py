@@ -1,5 +1,5 @@
 """
-Tutorial 03: Counts Collection
+Tutorial 04: Counts Collection
 ==============================
 
 Collecting term co-occurrence data from the scientific literature.
