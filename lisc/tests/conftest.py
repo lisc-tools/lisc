@@ -10,8 +10,8 @@ from lisc.data.meta_data import MetaData
 from lisc.io.db import create_file_structure
 from lisc.modutils.dependencies import safe_import
 
-from lisc.tests.tdata import create_term_files, create_api_files
-from lisc.tests.tobjs import (TestDB, load_base, load_counts1d, load_counts, load_words,
+from lisc.tests.tfiles import create_term_files, create_api_files
+from lisc.tests.tdata import (TestDB, load_base, load_counts1d, load_counts, load_words,
                               load_arts, load_arts_all, load_tag, load_term, load_meta_dict)
 from lisc.tests.tsettings import TEST_WAIT_TIME, TESTS_PATH, TEST_DB_PATH, TEST_DB_NAME
 
@@ -19,6 +19,8 @@ plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
+
+## TEST SETUP
 
 def pytest_configure(config):
 
@@ -38,6 +40,8 @@ def check_db():
 
     create_term_files(tdb)
     create_api_files(tdb)
+
+## TEST OBJECTS
 
 @pytest.fixture(scope='function')
 def test_req():
