@@ -149,8 +149,14 @@ class Words(Base):
         for results in self.results:
             print('\nLabel: {}\n'.format(results.label))
             for cres in results:
-                author = cres['authors'][0][0] + (' et al' if len(cres['authors']) > 1 else '')
-                doi = 'https://dx.doi.org/' + cres['doi'] if cres['doi'] else ''
+                if cres['authors']:
+                    author = cres['authors'][0][0] + (' et al' if len(cres['authors']) > 1 else '')
+                else:
+                    author = 'unknown author'
+                if cres['doi']:
+                    doi = 'https://dx.doi.org/' + cres['doi']
+                else:
+                    doi = ''
                 print(author + ',', str(cres['year']) + ':', cres['title'], doi)
 
 
