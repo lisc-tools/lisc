@@ -84,6 +84,8 @@ arts_all.print_summary()
 #
 # The `results` attribute contains a list of :class:`~.Articles` objects, one for each term.
 #
+# Note that the reloaded data is the raw data from the data collection.
+#
 
 ###################################################################################################
 
@@ -92,7 +94,18 @@ words = load_object('tutorial_words', directory=SCDB('lisc_db'), reload_results=
 
 ###################################################################################################
 #
-# Note that the reloaded data is the raw data from the data collection.
+# The :meth:`~.Words.check_articles` method can be used to print out a summary of the articles
+# that have been collected under each search term.
+#
+
+###################################################################################################
+
+# Check the collected articles
+words.check_articles()
+
+###################################################################################################
+# Processing Collected Data
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # The :meth:`~.Words.process_articles` method can be used to do some preprocessing on the
 # collected data.
