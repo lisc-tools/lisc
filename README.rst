@@ -37,8 +37,9 @@ LISC is a package for collecting and analyzing scientific literature.
 Overview
 --------
 
-LISC wraps and combines existing APIs, allowing users to collect data from and about
-scientific articles and perform analyses on this data, allowing for automated meta-analyses.
+LISC is a Python module for collection and analyzing the scientific literature. To do so,
+LISC wraps and combines existing APIs, allowing users to collect and analyze scientific articles,
+allowing for automated meta-analyses.
 
 A curated list of some projects enabled by LISC is available on the
 `projects <https://github.com/lisc-tools/Projects>`_ page.
