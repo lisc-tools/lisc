@@ -143,15 +143,22 @@ class Words(Base):
             print("\t{:{twd}} \t\t  {}".format(label, data.n_articles, twd=twd))
 
 
-    def check_articles(self):
-        """Prints out the articles collected for each term."""
+    def check_articles(self, header=None):
+        """Print out a brief description of the articles collected for each term."""
 
         for results in self.results:
-            print('\nLabel: {}\n'.format(results.label))
+            print('\nLabel: {} ({} articles)\n'.format(results.label, results.n_articles))
             for cres in results:
-                author = cres['authors'][0][0] + (' et al' if len(cres['authors']) > 1 else '')
-                doi = 'https://dx.doi.org/' + cres['doi'] if cres['doi'] else ''
+                if cres['authors']:
+                    author = cres['authors'][0][0] + (' et al' if len(cres['authors']) > 1 else '')
+                else:
+                    author = 'unknown author'
+                if cres['doi']:
+                    doi = 'https://dx.doi.org/' + cres['doi']
+                else:
+                    doi = ''
                 print(author + ',', str(cres['year']) + ':', cres['title'], doi)
+        print('\n')
 
 
     def drop_data(self, n_articles):

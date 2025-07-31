@@ -241,7 +241,7 @@ def get_article_info(arts, article):
 
     # Extract reference list, if present
     #   Otherwise, tags within this can interfere with collected data
-    refs = extract_tag(article, 'ReferenceList')
+    refs = extract_tag(article, 'ReferenceList', 'all')
 
     arts.add_data('ids', process_ids(get_info(article, 'ArticleId', 'all'), 'pubmed'))
     arts.add_data('titles', get_info(article, 'ArticleTitle', 'str'))

@@ -219,11 +219,10 @@ word_results = collect_across_time(words, decades, retmax=retmax)
 
 ###################################################################################################
 
-# Check the titles found across different time ranges
+# Check the articles found across different time ranges
 for time_period, results in word_results.items():
-    print(str(time_period) + 's:')
-    for res_title in results.results[0].titles:
-        print('\t', res_title)
+    print('---- {} ----'.format(time_period))
+    results.check_articles()
 
 ###################################################################################################
 #
