@@ -17,7 +17,7 @@ jobs:
       MODULE_NAME: lisc
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
       # Because this repo launches requests, limit to one concurrent job at a time
       max-parallel: 1
 
