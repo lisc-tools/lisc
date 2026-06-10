@@ -175,13 +175,6 @@ This project welcomes and encourages contributions from the community!
 To file bug reports and/or ask questions about this project, please use the
 `Github issue tracker <https://github.com/lisc-tools/lisc/issues>`_.
 
-To see and get involved in discussions about the module, check out:
-
-- the `issues board <https://github.com/lisc-tools/lisc/issues>`_
-  for topics relating to code updates, bugs, and fixes
-- the `development page <https://github.com/lisc-tools/Development>`_
-  for discussion of potential major updates to the module
-
 When interacting with this project, please use the
 `contribution guidelines <https://github.com/lisc-tools/lisc/blob/main/CONTRIBUTING.md>`_
 and follow the
